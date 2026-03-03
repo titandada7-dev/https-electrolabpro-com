@@ -1,0 +1,136 @@
+import { useState, useMemo } from "react";
+
+const BAND_COLORS = [
+  { name: "Negro", color: "#000000", value: 0, multiplier: 1, textColor: "white" },
+  { name: "Marrón", color: "#8B4513", value: 1, multiplier: 10, textColor: "white" },
+  { name: "Rojo", color: "#FF0000", value: 2, multiplier: 100, textColor: "white" },
+  { name: "Naranja", color: "#FF8C00", value: 3, multiplier: 1000, textColor: "black" },
+  { name: "Amarillo", color: "#FFD700", value: 4, multiplier: 10000, textColor: "black" },
+  { name: "Verde", color: "#22C55E", value: 5, multiplier: 100000, textColor: "white" },
+  { name: "Azul", color: "#3B82F6", value: 6, multiplier: 1000000, textColor: "white" },
+  { name: "Violeta", color: "#8B5CF6", value: 7, multiplier: 10000000, textColor: "white" },
+  { name: "Gris", color: "#6B7280", value: 8, multiplier: 100000000, textColor: "white" },
+  { name: "Blanco", color: "#FFFFFF", value: 9, multiplier: 1000000000, textColor: "black" },
+];
+
+const TOLERANCE_COLORS = [
+  { name: "Dorado", color: "#DAA520", tolerance: "±5%", textColor: "black" },
+  { name: "Plateado", color: "#C0C0C0", tolerance: "±10%", textColor: "black" },
+  { name: "Marrón", color: "#8B4513", tolerance: "±1%", textColor: "white" },
+  { name: "Rojo", color: "#FF0000", tolerance: "±2%", textColor: "white" },
+];
+
+function formatResistance(ohms: number): string {
+  if (ohms >= 1_000_000_000) return `${(ohms / 1_000_000_000).toFixed(ohms % 1_000_000_000 === 0 ? 0 : 1)} GΩ`;
+  if (ohms >= 1_000_000) return `${(ohms / 1_000_000).toFixed(ohms % 1_000_000 === 0 ? 0 : 1)} MΩ`;
+  if (ohms >= 1_000) return `${(ohms / 1_000).toFixed(ohms % 1_000 === 0 ? 0 : 1)} kΩ`;
+  return `${ohms} Ω`;
+}
+
+const ResistorCalculator = () => {
+  const [band1, setBand1] = useState(1);
+  const [band2, setBand2] = useState(0);
+  const [band3, setBand3] = useState(2);
+  const [band4, setBand4] = useState(0);
+
+  const resistance = useMemo(() => {
+    const value = (BAND_COLORS[band1].value * 10 + BAND_COLORS[band2].value) * BAND_COLORS[band3].multiplier;
+    return value;
+  }, [band1, band2, band3]);
+
+  const tolerance = TOLERANCE_COLORS[band4].tolerance;
+
+  const bandSelections = [
+    { label: "Banda 1", value: band1, setter: setBand1, options: BAND_COLORS },
+    { label: "Banda 2", value: band2, setter: setBand2, options: BAND_COLORS },
+    { label: "Multiplicador", value: band3, setter: setBand3, options: BAND_COLORS },
+  ];
+
+  return (
+    <section className="space-y-8">
+      <div className="text-center space-y-2">
+        <h2 className="text-2xl md:text-3xl font-bold font-mono text-foreground glow-text">
+          Calculadora de Resistencias
+        </h2>
+        <p className="text-muted-foreground text-sm md:text-base">
+          Selecciona los colores de las 4 bandas para calcular el valor
+        </p>
+      </div>
+
+      {/* Visual Resistor */}
+      <div className="flex justify-center">
+        <div className="relative flex items-center">
+          {/* Left wire */}
+          <div className="w-12 md:w-20 h-0.5 bg-muted-foreground" />
+          {/* Resistor body */}
+          <div className="relative flex items-center gap-2 md:gap-3 px-4 md:px-6 py-5 md:py-7 rounded-full bg-[hsl(30,30%,25%)] border border-[hsl(30,20%,35%)]">
+            {[band1, band2, band3].map((b, i) => (
+              <div
+                key={i}
+                className="w-3 md:w-4 h-10 md:h-14 rounded-sm transition-colors duration-300"
+                style={{ backgroundColor: BAND_COLORS[b].color, boxShadow: `0 0 8px ${BAND_COLORS[b].color}40` }}
+              />
+            ))}
+            <div className="w-1 md:w-2" />
+            <div
+              className="w-3 md:w-4 h-10 md:h-14 rounded-sm transition-colors duration-300"
+              style={{ backgroundColor: TOLERANCE_COLORS[band4].color, boxShadow: `0 0 8px ${TOLERANCE_COLORS[band4].color}40` }}
+            />
+          </div>
+          {/* Right wire */}
+          <div className="w-12 md:w-20 h-0.5 bg-muted-foreground" />
+        </div>
+      </div>
+
+      {/* Result */}
+      <div className="text-center p-6 rounded-xl bg-card border border-glow glow">
+        <p className="text-muted-foreground text-sm mb-1">Valor calculado</p>
+        <p className="text-3xl md:text-5xl font-mono font-bold text-primary glow-text">
+          {formatResistance(resistance)}
+        </p>
+        <p className="text-muted-foreground mt-2">Tolerancia: {tolerance}</p>
+      </div>
+
+      {/* Band selectors */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {bandSelections.map(({ label, value, setter, options }) => (
+          <div key={label} className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">{label}</label>
+            <div className="grid grid-cols-5 gap-1.5">
+              {options.map((c, i) => (
+                <button
+                  key={i}
+                  onClick={() => setter(i)}
+                  className={`w-full aspect-square rounded-md border-2 transition-all duration-200 hover:scale-110 ${
+                    value === i ? "border-primary glow scale-110" : "border-transparent opacity-70 hover:opacity-100"
+                  }`}
+                  style={{ backgroundColor: c.color }}
+                  title={`${c.name} (${c.value})`}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+        {/* Tolerance */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-muted-foreground">Tolerancia</label>
+          <div className="grid grid-cols-4 gap-1.5">
+            {TOLERANCE_COLORS.map((c, i) => (
+              <button
+                key={i}
+                onClick={() => setBand4(i)}
+                className={`w-full aspect-square rounded-md border-2 transition-all duration-200 hover:scale-110 ${
+                  band4 === i ? "border-primary glow scale-110" : "border-transparent opacity-70 hover:opacity-100"
+                }`}
+                style={{ backgroundColor: c.color }}
+                title={`${c.name} (${c.tolerance})`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ResistorCalculator;
