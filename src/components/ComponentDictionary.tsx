@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Zap, Lightbulb, ArrowRight, CircuitBoard, Cpu, ExternalLink } from "lucide-react";
+import { Zap, Lightbulb, ArrowRight, CircuitBoard, Cpu, ExternalLink, ShoppingCart } from "lucide-react";
 
 interface ComponentInfo {
   name: string;
@@ -107,9 +107,24 @@ const ComponentDictionary = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed">{selected.details}</p>
               </div>
 
-              {/* Amazon button */}
+              {/* Recommendation */}
+              <div className="p-3 rounded-lg bg-secondary/50 border border-border">
+                <p className="text-xs text-muted-foreground text-center">
+                  ⭐ Recomendado para tus proyectos: <span className="text-foreground font-medium">Kit de inicio para principiantes</span>
+                </p>
+              </div>
+
+              {/* CTA Buttons */}
               <Button
-                className="w-full gap-2 font-semibold"
+                className="w-full gap-2 font-semibold bg-[hsl(25,95%,53%)] hover:bg-[hsl(25,95%,45%)] text-[hsl(0,0%,100%)]"
+                onClick={() => window.open(`https://www.amazon.com/s?k=${selected.amazonSearch}`, "_blank")}
+              >
+                <ShoppingCart className="w-4 h-4" />
+                Comprar Kit de {selected.name}
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full gap-2"
                 onClick={() => window.open(`https://www.amazon.com/s?k=${selected.amazonSearch}`, "_blank")}
               >
                 <ExternalLink className="w-4 h-4" />
