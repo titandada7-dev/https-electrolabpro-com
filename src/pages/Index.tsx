@@ -146,8 +146,11 @@ const Index = () => {
       {/* Pie de página */}
       <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400 text-sm mb-4">
-            © 2026 ElectroLab Pro. Todos los derechos reservados.
+          <p className="text-muted-foreground text-sm mb-2">
+            © 2026 ElectroLab Pro | Desarrollado por <span className="font-medium">J.A.Sanchez</span>
+          </p>
+          <p className="text-muted-foreground/60 text-xs mb-4">
+            Todos los derechos reservados.
           </p>
           <p className="text-gray-500 text-[10px] leading-relaxed max-w-xl mx-auto italic">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
