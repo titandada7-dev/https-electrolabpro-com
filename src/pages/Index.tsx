@@ -155,6 +155,11 @@ const Index = () => {
               Si decides comprar a través de ellos, recibimos una pequeña comisión que nos ayuda a 
               mantener este proyecto gratuito, sin ningún costo adicional para ti.
             </p>
+            <p className="text-xs text-muted-foreground leading-relaxed border-t border-border/50 pt-4">
+              <strong>Aviso Legal:</strong> ElectroLab Pro participa en programas de publicidad y afiliados. 
+              Al utilizar este sitio, aceptas el uso de cookies para mejorar tu experiencia y mostrar anuncios 
+              relevantes. No almacenamos datos personales sensibles.
+            </p>
             <div className="text-sm text-muted-foreground font-mono border-t border-border/50 pt-4">
               Desarrollado con precisión por J.A.Sanchez — ElectroLab Pro © 2026
             </div>
