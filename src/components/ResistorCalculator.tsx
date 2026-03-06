@@ -13,11 +13,22 @@ const BAND_COLORS = [
   { name: "Blanco", color: "#FFFFFF", value: 9, multiplier: 1000000000, textColor: "black" },
 ];
 
+const MULTIPLIER_EXTRAS = [
+  { name: "Dorado", color: "#DAA520", value: null, multiplier: 0.1, textColor: "black" },
+  { name: "Plateado", color: "#C0C0C0", value: null, multiplier: 0.01, textColor: "black" },
+];
+
+const ALL_MULTIPLIERS = [...BAND_COLORS, ...MULTIPLIER_EXTRAS];
+
 const TOLERANCE_COLORS = [
   { name: "Dorado", color: "#DAA520", tolerance: "±5%", textColor: "black" },
   { name: "Plateado", color: "#C0C0C0", tolerance: "±10%", textColor: "black" },
   { name: "Marrón", color: "#8B4513", tolerance: "±1%", textColor: "white" },
   { name: "Rojo", color: "#FF0000", tolerance: "±2%", textColor: "white" },
+  { name: "Verde", color: "#22C55E", tolerance: "±0.5%", textColor: "white" },
+  { name: "Azul", color: "#3B82F6", tolerance: "±0.25%", textColor: "white" },
+  { name: "Violeta", color: "#8B5CF6", tolerance: "±0.1%", textColor: "white" },
+  { name: "Gris", color: "#6B7280", tolerance: "±0.05%", textColor: "white" },
 ];
 
 function formatResistance(ohms: number): string {
