@@ -99,10 +99,10 @@ const ResistorCalculator = () => {
 
           {/* Band 3 - Multiplier */}
           <rect x="200" y="22" width="16" height="76" rx="2"
-            fill={BAND_COLORS[band3].color} className="transition-all duration-300">
+            fill={ALL_MULTIPLIERS[band3].color} className="transition-all duration-300">
             <animate attributeName="opacity" values="0.85;1;0.85" dur="3s" begin="1s" repeatCount="indefinite" />
           </rect>
-          <rect x="198" y="20" width="20" height="80" rx="3" fill={BAND_COLORS[band3].color} opacity="0.15" />
+          <rect x="198" y="20" width="20" height="80" rx="3" fill={ALL_MULTIPLIERS[band3].color} opacity="0.15" />
 
           {/* Band 4 - Tolerance (separated) */}
           <rect x="260" y="22" width="16" height="76" rx="2"
