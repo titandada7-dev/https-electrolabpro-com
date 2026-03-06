@@ -110,6 +110,25 @@ const Index = () => {
         </div>
       </div>
 
+      {/* Recomendación de afiliado */}
+      <div className="container mx-auto px-4">
+        <div className="pt-8 flex flex-col items-center gap-2">
+          <p className="text-xs text-muted-foreground uppercase tracking-widest">Recomendación Pro</p>
+          <a
+            href="TU_LINK_DE_AFILIADO"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20 hover:bg-primary/10 transition-colors"
+          >
+            <img src="/kit-icon.png" alt="Kit" className="w-10 h-10 object-contain" />
+            <div className="text-left">
+              <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">Kit de Inicio Oficial</p>
+              <p className="text-xs text-muted-foreground">Todo lo necesario para tus primeros circuitos.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
       {/* Pie de página */}
       <footer className="border-t border-border py-6 mt-16">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground font-mono">
