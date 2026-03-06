@@ -161,9 +161,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-        </div>
-      </footer>
     </div>
+  );
   );
 };
 
