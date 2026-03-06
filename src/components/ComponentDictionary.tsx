@@ -3,9 +3,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Zap, Lightbulb, ArrowRight, CircuitBoard, Cpu, ExternalLink, ShoppingCart, Search, Thermometer, Radio, BatteryCharging } from "lucide-react";
+import { Zap, Lightbulb, ArrowRight, CircuitBoard, Cpu, ExternalLink, ShoppingCart, Search, Thermometer, Radio, BatteryCharging, Power, Wrench, Microchip } from "lucide-react";
 
-type Category = "Todos" | "Pasivos" | "Activos" | "Sensores";
+type Category = "Todos" | "Pasivos" | "Activos" | "Sensores" | "Herramientas";
 
 interface ComponentInfo {
   name: string;
