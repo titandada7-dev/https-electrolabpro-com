@@ -1,4 +1,5 @@
-import { Zap } from "lucide-react";
+import { Zap, Calculator, BookOpen } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
@@ -28,10 +29,26 @@ const Index = () => {
       {/* Main layout */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main content */}
-          <main className="flex-1 space-y-16">
-            <ResistorCalculator />
-            <ComponentDictionary />
+          {/* Main content with Tabs */}
+          <main className="flex-1">
+            <Tabs defaultValue="calculadoras" className="w-full">
+              <TabsList className="w-full mb-6 bg-card border border-border">
+                <TabsTrigger value="calculadoras" className="flex-1 gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <Calculator className="w-4 h-4" />
+                  Calculadoras
+                </TabsTrigger>
+                <TabsTrigger value="diccionario" className="flex-1 gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <BookOpen className="w-4 h-4" />
+                  Diccionario
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="calculadoras">
+                <ResistorCalculator />
+              </TabsContent>
+              <TabsContent value="diccionario">
+                <ComponentDictionary />
+              </TabsContent>
+            </Tabs>
           </main>
 
           {/* Sidebar ad */}
