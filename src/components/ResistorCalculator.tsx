@@ -46,7 +46,7 @@ const ResistorCalculator = () => {
   const [band4, setBand4] = useState(0);
 
   const resistance = useMemo(() => {
-    const value = (BAND_COLORS[band1].value * 10 + BAND_COLORS[band2].value) * BAND_COLORS[band3].multiplier;
+    const value = (BAND_COLORS[band1].value * 10 + BAND_COLORS[band2].value) * ALL_MULTIPLIERS[band3].multiplier;
     return value;
   }, [band1, band2, band3]);
 
@@ -55,7 +55,7 @@ const ResistorCalculator = () => {
   const bandSelections = [
     { label: "Banda 1", value: band1, setter: setBand1, options: BAND_COLORS },
     { label: "Banda 2", value: band2, setter: setBand2, options: BAND_COLORS },
-    { label: "Multiplicador", value: band3, setter: setBand3, options: BAND_COLORS },
+    { label: "Multiplicador", value: band3, setter: setBand3, options: ALL_MULTIPLIERS },
   ];
 
   return (
