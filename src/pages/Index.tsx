@@ -113,7 +113,7 @@ const Index = () => {
       {/* Pie de página */}
       <footer className="border-t border-border py-6 mt-16">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground font-mono">
-          ElectroLab © 2026 — Herramientas para estudiantes de electrónica
+          Desarrollado con precisión por J.A.Sanchez — ElectroLab Pro © 2026
         </div>
       </footer>
     </div>
