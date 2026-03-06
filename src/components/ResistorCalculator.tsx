@@ -35,7 +35,8 @@ function formatResistance(ohms: number): string {
   if (ohms >= 1_000_000_000) return `${(ohms / 1_000_000_000).toFixed(ohms % 1_000_000_000 === 0 ? 0 : 1)} GΩ`;
   if (ohms >= 1_000_000) return `${(ohms / 1_000_000).toFixed(ohms % 1_000_000 === 0 ? 0 : 1)} MΩ`;
   if (ohms >= 1_000) return `${(ohms / 1_000).toFixed(ohms % 1_000 === 0 ? 0 : 1)} kΩ`;
-  return `${ohms} Ω`;
+  if (ohms < 1) return `${(ohms * 1000).toFixed(1)} mΩ`;
+  return `${parseFloat(ohms.toFixed(2))} Ω`;
 }
 
 const ResistorCalculator = () => {
