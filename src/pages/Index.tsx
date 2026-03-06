@@ -1,4 +1,4 @@
-import { Zap, ChevronDown } from "lucide-react";
+import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
@@ -45,6 +45,46 @@ const Index = () => {
             Empezar a Calcular
             <ChevronDown className="w-4 h-4" />
           </Button>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-16 border-b border-border" style={{ background: 'linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(222 47% 11%) 100%)' }}>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { icon: <Zap className="w-8 h-8 text-primary glow-icon" />, title: "Precisión Total", desc: "Algoritmos verificados para cálculos exactos de 4 y 5 bandas." },
+              { icon: <BookOpen className="w-8 h-8 text-primary glow-icon" />, title: "Diccionario Vivo", desc: "Acceso rápido a definiciones y símbolos de componentes reales." },
+              { icon: <Cpu className="w-8 h-8 text-primary glow-icon" />, title: "Modo Pro", desc: "Interfaz optimizada para ingenieros con modo oscuro de alto contraste." },
+            ].map((f) => (
+              <div key={f.title} className="group p-6 rounded-xl bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 text-center space-y-3">
+                <div className="inline-flex p-3 rounded-lg bg-secondary">{f.icon}</div>
+                <h3 className="text-lg font-mono font-bold text-foreground">{f.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-12 border-b border-border bg-card/50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+            {[
+              { icon: <Calculator className="w-5 h-5 text-primary" />, value: "+10,000", label: "Cálculos realizados" },
+              { icon: <Users className="w-5 h-5 text-primary" />, value: "+500", label: "Estudiantes en la comunidad" },
+              { icon: <Target className="w-5 h-5 text-primary" />, value: "99.9%", label: "Precisión garantizada" },
+            ].map((s) => (
+              <div key={s.label} className="space-y-1">
+                <div className="flex items-center justify-center gap-2">
+                  {s.icon}
+                  <span className="text-3xl md:text-4xl font-mono font-bold text-primary glow-text">{s.value}</span>
+                </div>
+                <p className="text-sm text-muted-foreground">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
