@@ -57,29 +57,52 @@ const ResistorCalculator = () => {
         </p>
       </div>
 
-      {/* Visual Resistor */}
-      <div className="flex justify-center">
-        <div className="relative flex items-center">
+      {/* SVG Resistor */}
+      <div className="flex justify-center px-4">
+        <svg viewBox="0 0 400 120" className="w-full max-w-md" aria-label="Representación visual de resistencia">
           {/* Left wire */}
-          <div className="w-12 md:w-20 h-0.5 bg-muted-foreground" />
-          {/* Resistor body */}
-          <div className="relative flex items-center gap-2 md:gap-3 px-4 md:px-6 py-5 md:py-7 rounded-full bg-[hsl(30,30%,25%)] border border-[hsl(30,20%,35%)]">
-            {[band1, band2, band3].map((b, i) => (
-              <div
-                key={i}
-                className="w-3 md:w-4 h-10 md:h-14 rounded-sm transition-colors duration-300"
-                style={{ backgroundColor: BAND_COLORS[b].color, boxShadow: `0 0 8px ${BAND_COLORS[b].color}40` }}
-              />
-            ))}
-            <div className="w-1 md:w-2" />
-            <div
-              className="w-3 md:w-4 h-10 md:h-14 rounded-sm transition-colors duration-300"
-              style={{ backgroundColor: TOLERANCE_COLORS[band4].color, boxShadow: `0 0 8px ${TOLERANCE_COLORS[band4].color}40` }}
-            />
-          </div>
+          <line x1="0" y1="60" x2="80" y2="60" stroke="hsl(215, 12%, 50%)" strokeWidth="3" />
           {/* Right wire */}
-          <div className="w-12 md:w-20 h-0.5 bg-muted-foreground" />
-        </div>
+          <line x1="320" y1="60" x2="400" y2="60" stroke="hsl(215, 12%, 50%)" strokeWidth="3" />
+
+          {/* Resistor body */}
+          <rect x="80" y="20" width="240" height="80" rx="40" ry="40"
+            fill="hsl(30, 30%, 22%)" stroke="hsl(30, 20%, 35%)" strokeWidth="2" />
+          {/* Body highlight */}
+          <ellipse cx="200" cy="45" rx="100" ry="18" fill="hsl(30, 25%, 28%)" opacity="0.5" />
+
+          {/* Band 1 */}
+          <rect x="120" y="22" width="16" height="76" rx="2"
+            fill={BAND_COLORS[band1].color} className="transition-all duration-300">
+            <animate attributeName="opacity" values="0.85;1;0.85" dur="3s" repeatCount="indefinite" />
+          </rect>
+          <rect x="118" y="20" width="20" height="80" rx="3" fill={BAND_COLORS[band1].color} opacity="0.15" />
+
+          {/* Band 2 */}
+          <rect x="160" y="22" width="16" height="76" rx="2"
+            fill={BAND_COLORS[band2].color} className="transition-all duration-300">
+            <animate attributeName="opacity" values="0.85;1;0.85" dur="3s" begin="0.5s" repeatCount="indefinite" />
+          </rect>
+          <rect x="158" y="20" width="20" height="80" rx="3" fill={BAND_COLORS[band2].color} opacity="0.15" />
+
+          {/* Band 3 - Multiplier */}
+          <rect x="200" y="22" width="16" height="76" rx="2"
+            fill={BAND_COLORS[band3].color} className="transition-all duration-300">
+            <animate attributeName="opacity" values="0.85;1;0.85" dur="3s" begin="1s" repeatCount="indefinite" />
+          </rect>
+          <rect x="198" y="20" width="20" height="80" rx="3" fill={BAND_COLORS[band3].color} opacity="0.15" />
+
+          {/* Band 4 - Tolerance (separated) */}
+          <rect x="260" y="22" width="16" height="76" rx="2"
+            fill={TOLERANCE_COLORS[band4].color} className="transition-all duration-300">
+            <animate attributeName="opacity" values="0.85;1;0.85" dur="3s" begin="1.5s" repeatCount="indefinite" />
+          </rect>
+          <rect x="258" y="20" width="20" height="80" rx="3" fill={TOLERANCE_COLORS[band4].color} opacity="0.15" />
+
+          {/* Wire terminals */}
+          <circle cx="80" cy="60" r="4" fill="hsl(215, 12%, 50%)" />
+          <circle cx="320" cy="60" r="4" fill="hsl(215, 12%, 50%)" />
+        </svg>
       </div>
 
       {/* Result */}
