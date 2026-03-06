@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
+import OhmCalculator from "@/components/OhmCalculator";
 
 const Index = () => {
   return (
