@@ -143,23 +143,15 @@ const Index = () => {
       </div>
 
       {/* Pie de página */}
-      <footer className="border-t border-border py-8 mt-16 bg-card/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center space-y-4">
-            <p className="text-xs text-muted-foreground leading-relaxed italic">
-              Nota de transparencia: Algunos de los enlaces en ElectroLab Pro son enlaces de afiliados. 
-              Si decides comprar a través de ellos, recibimos una pequeña comisión que nos ayuda a 
-              mantener este proyecto gratuito, sin ningún costo adicional para ti.
-            </p>
-            <p className="text-xs text-muted-foreground leading-relaxed border-t border-border/50 pt-4">
-              <strong>Aviso Legal:</strong> ElectroLab Pro participa en programas de publicidad y afiliados. 
-              Al utilizar este sitio, aceptas el uso de cookies para mejorar tu experiencia y mostrar anuncios 
-              relevantes. No almacenamos datos personales sensibles.
-            </p>
-            <div className="text-sm text-muted-foreground font-mono border-t border-border/50 pt-4">
-              Desarrollado con precisión por J.A.Sanchez — ElectroLab Pro © 2026
-            </div>
-          </div>
+      <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-400 text-sm mb-4">
+            © 2026 ElectroLab Pro. Todos los derechos reservados.
+          </p>
+          <p className="text-gray-500 text-[10px] leading-relaxed max-w-xl mx-auto italic">
+            "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
+            Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica."
+          </p>
         </div>
       </footer>
     </div>
