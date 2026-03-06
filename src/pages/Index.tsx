@@ -21,7 +21,7 @@ const Index = () => {
           </p>
         </div>
         {/* Header ad banner */}
-        <div className="container mx-auto px-4 pb-2">
+        <div className="container mx-auto px-4 pb-2 min-h-[90px] flex items-center justify-center bg-muted/20 rounded-lg">
           <AdBanner orientation="horizontal" />
         </div>
       </header>
