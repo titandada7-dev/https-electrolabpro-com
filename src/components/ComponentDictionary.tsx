@@ -224,13 +224,11 @@ const ComponentDictionary = () => {
                 <ShoppingCart className="w-4 h-4" />
                 Comprar Kit de {selected.name}
               </Button>
-              <Button
-                variant="outline"
-                className="w-full gap-2"
-                onClick={() => window.open(`https://www.amazon.com/s?k=${selected.amazonSearch}`, "_blank")}
-              >
-                <ExternalLink className="w-4 h-4" />
-                Ver en Amazon
+              <Button variant="outline" className="w-full mt-1 gap-2" asChild>
+                <a href={`https://www.amazon.com/s?k=${selected.name}+electronics&tag=TU_TAG`} target="_blank" rel="noopener noreferrer">
+                  Ver precios en Amazon
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               </Button>
             </div>
           )}
