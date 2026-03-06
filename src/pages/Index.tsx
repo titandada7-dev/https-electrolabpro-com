@@ -98,6 +98,9 @@ const Index = () => {
               <ResistorCalculator />
             </div>
             <div>
+              <OhmCalculator />
+            </div>
+            <div>
               <ComponentDictionary />
             </div>
           </main>
