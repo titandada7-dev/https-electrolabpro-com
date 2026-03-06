@@ -13,18 +13,30 @@ const BAND_COLORS = [
   { name: "Blanco", color: "#FFFFFF", value: 9, multiplier: 1000000000, textColor: "black" },
 ];
 
+const MULTIPLIER_EXTRAS = [
+  { name: "Dorado", color: "#DAA520", value: null, multiplier: 0.1, textColor: "black" },
+  { name: "Plateado", color: "#C0C0C0", value: null, multiplier: 0.01, textColor: "black" },
+];
+
+const ALL_MULTIPLIERS = [...BAND_COLORS, ...MULTIPLIER_EXTRAS];
+
 const TOLERANCE_COLORS = [
   { name: "Dorado", color: "#DAA520", tolerance: "±5%", textColor: "black" },
   { name: "Plateado", color: "#C0C0C0", tolerance: "±10%", textColor: "black" },
   { name: "Marrón", color: "#8B4513", tolerance: "±1%", textColor: "white" },
   { name: "Rojo", color: "#FF0000", tolerance: "±2%", textColor: "white" },
+  { name: "Verde", color: "#22C55E", tolerance: "±0.5%", textColor: "white" },
+  { name: "Azul", color: "#3B82F6", tolerance: "±0.25%", textColor: "white" },
+  { name: "Violeta", color: "#8B5CF6", tolerance: "±0.1%", textColor: "white" },
+  { name: "Gris", color: "#6B7280", tolerance: "±0.05%", textColor: "white" },
 ];
 
 function formatResistance(ohms: number): string {
   if (ohms >= 1_000_000_000) return `${(ohms / 1_000_000_000).toFixed(ohms % 1_000_000_000 === 0 ? 0 : 1)} GΩ`;
   if (ohms >= 1_000_000) return `${(ohms / 1_000_000).toFixed(ohms % 1_000_000 === 0 ? 0 : 1)} MΩ`;
   if (ohms >= 1_000) return `${(ohms / 1_000).toFixed(ohms % 1_000 === 0 ? 0 : 1)} kΩ`;
-  return `${ohms} Ω`;
+  if (ohms < 1) return `${(ohms * 1000).toFixed(1)} mΩ`;
+  return `${parseFloat(ohms.toFixed(2))} Ω`;
 }
 
 const ResistorCalculator = () => {
@@ -34,7 +46,7 @@ const ResistorCalculator = () => {
   const [band4, setBand4] = useState(0);
 
   const resistance = useMemo(() => {
-    const value = (BAND_COLORS[band1].value * 10 + BAND_COLORS[band2].value) * BAND_COLORS[band3].multiplier;
+    const value = (BAND_COLORS[band1].value * 10 + BAND_COLORS[band2].value) * ALL_MULTIPLIERS[band3].multiplier;
     return value;
   }, [band1, band2, band3]);
 
@@ -43,7 +55,7 @@ const ResistorCalculator = () => {
   const bandSelections = [
     { label: "Banda 1", value: band1, setter: setBand1, options: BAND_COLORS },
     { label: "Banda 2", value: band2, setter: setBand2, options: BAND_COLORS },
-    { label: "Multiplicador", value: band3, setter: setBand3, options: BAND_COLORS },
+    { label: "Multiplicador", value: band3, setter: setBand3, options: ALL_MULTIPLIERS },
   ];
 
   return (
@@ -87,10 +99,10 @@ const ResistorCalculator = () => {
 
           {/* Band 3 - Multiplier */}
           <rect x="200" y="22" width="16" height="76" rx="2"
-            fill={BAND_COLORS[band3].color} className="transition-all duration-300">
+            fill={ALL_MULTIPLIERS[band3].color} className="transition-all duration-300">
             <animate attributeName="opacity" values="0.85;1;0.85" dur="3s" begin="1s" repeatCount="indefinite" />
           </rect>
-          <rect x="198" y="20" width="20" height="80" rx="3" fill={BAND_COLORS[band3].color} opacity="0.15" />
+          <rect x="198" y="20" width="20" height="80" rx="3" fill={ALL_MULTIPLIERS[band3].color} opacity="0.15" />
 
           {/* Band 4 - Tolerance (separated) */}
           <rect x="260" y="22" width="16" height="76" rx="2"
