@@ -10,7 +10,7 @@ const Index = () => {
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Zap className="w-6 h-6 text-primary" />
+            <Zap className="w-6 h-6 text-primary glow-icon" />
             <h1 className="text-lg md:text-xl font-mono font-bold text-foreground">
               Electro<span className="text-primary">Lab</span>
             </h1>
