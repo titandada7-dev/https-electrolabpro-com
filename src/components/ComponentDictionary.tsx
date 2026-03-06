@@ -22,6 +22,7 @@ const CATEGORIES: { label: Category; icon: React.ReactNode }[] = [
   { label: "Pasivos", icon: <Zap className="w-3.5 h-3.5" /> },
   { label: "Activos", icon: <Cpu className="w-3.5 h-3.5" /> },
   { label: "Sensores", icon: <Thermometer className="w-3.5 h-3.5" /> },
+  { label: "Herramientas", icon: <Wrench className="w-3.5 h-3.5" /> },
 ];
 
 const COMPONENTS: ComponentInfo[] = [
