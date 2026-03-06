@@ -101,9 +101,26 @@ const Index = () => {
             </div>
           </main>
 
-          {/* Lateral con publicidad */}
-          <aside className="hidden lg:block w-64 shrink-0">
-            <div className="sticky top-40">
+          {/* Lateral con afiliados y publicidad */}
+          <aside className="hidden lg:flex flex-col gap-8 w-64 shrink-0">
+            <div className="sticky top-40 space-y-8">
+              {/* Bloque de Afiliados */}
+              <div className="p-4 rounded-xl border border-border bg-card/50">
+                <h4 className="text-sm font-bold mb-3 flex items-center gap-2">
+                  <Cpu className="w-4 h-4 text-primary" /> Herramientas Pro
+                </h4>
+                <ul className="space-y-4">
+                  <li className="text-xs">
+                    <a href="LINK" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Multímetro Digital Autorango</a>
+                    <p className="text-muted-foreground mt-1">El que usamos en el lab.</p>
+                  </li>
+                  <li className="text-xs">
+                    <a href="LINK" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Estación de Soldado 60W</a>
+                    <p className="text-muted-foreground mt-1">Precisión para integrados.</p>
+                  </li>
+                </ul>
+              </div>
+              {/* Banner de publicidad */}
               <AdBanner orientation="vertical" />
             </div>
           </aside>
