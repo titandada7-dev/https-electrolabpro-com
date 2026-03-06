@@ -1,4 +1,5 @@
-import { Zap } from "lucide-react";
+import { Zap, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
@@ -25,12 +26,34 @@ const Index = () => {
         </div>
       </header>
 
+      {/* Hero Section */}
+      <section className="relative overflow-hidden py-24 md:py-32" style={{ background: 'linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(0 0% 4%) 100%)' }}>
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-30 blur-[100px]" style={{ background: 'hsl(199 89% 60% / 0.4)' }} />
+        <div className="relative container mx-auto px-4 text-center space-y-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent">
+            ElectroLab Pro
+          </h1>
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            La suite definitiva para ingenieros y entusiastas de la electrónica. Calcula, aprende y diseña con precisión digital.
+          </p>
+          <Button
+            size="lg"
+            className="gap-2 text-base font-semibold animate-pulse-glow"
+            onClick={() => document.getElementById('calculadora')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            Empezar a Calcular
+            <ChevronDown className="w-4 h-4" />
+          </Button>
+        </div>
+      </section>
+
       {/* Contenido principal */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Herramientas */}
           <main className="flex-1 space-y-12">
-            <div>
+            <div id="calculadora">
               <ResistorCalculator />
             </div>
             <div>
