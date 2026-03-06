@@ -131,13 +131,12 @@ const Index = () => {
       <div className="container mx-auto px-4">
         <div className="pt-8 flex flex-col items-center gap-3">
           <p className="text-xs text-muted-foreground uppercase tracking-widest">Recomendación Pro</p>
-          <Button 
-            onClick={() => window.open('https://amzn.to/3ZInLgL', '_blank')} 
-            className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-extrabold shadow-lg hover:scale-105 transition-transform text-base px-8 py-6"
-            size="lg"
+          <button 
+            onClick={() => window.open('https://amzn.to/3ZInLgL', '_blank')}
+            className="px-6 py-3 bg-gradient-to-r from-amber-400 to-amber-600 text-black font-bold rounded-lg shadow-[0_0_15px_rgba(251,191,36,0.4)] hover:scale-105 transition-all duration-300"
           >
-            💎 Obtener Kit de Inicio Oficial
-          </Button>
+            💎 Kit de Inicio Oficial
+          </button>
           <p className="text-xs text-muted-foreground">Todo lo necesario para tus primeros circuitos.</p>
         </div>
       </div>
