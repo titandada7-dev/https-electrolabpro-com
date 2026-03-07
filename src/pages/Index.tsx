@@ -97,6 +97,12 @@ const Index = () => {
             <div id="calculadora">
               <ResistorCalculator />
             </div>
+
+            {/* AdSense: Entre calculadoras */}
+            <div id="adsense-mid-calculators" className="w-full min-h-[90px] md:min-h-[120px] flex items-center justify-center rounded-xl border border-border/50 bg-muted/20 text-muted-foreground text-xs font-mono">
+              Publicidad
+            </div>
+
             <div>
               <OhmCalculator />
             </div>
@@ -193,6 +199,13 @@ const Index = () => {
             💎 Kit de Inicio Oficial
           </a>
           <p className="text-xs text-muted-foreground">Todo lo necesario para tus primeros circuitos.</p>
+        </div>
+      </div>
+
+      {/* AdSense: Antes del footer */}
+      <div id="adsense-pre-footer" className="container mx-auto px-4 py-6">
+        <div className="w-full min-h-[90px] md:min-h-[120px] flex items-center justify-center rounded-xl border border-border/50 bg-muted/20 text-muted-foreground text-xs font-mono">
+          Publicidad
         </div>
       </div>
 
