@@ -131,6 +131,44 @@ const Index = () => {
         </div>
       </div>
 
+      {/* Tips de Electrónica */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+            <Zap className="w-6 h-6 text-primary glow-icon" />
+            Tips de Electrónica
+          </h2>
+          <p className="text-center text-muted-foreground text-sm mb-8">por J.A.Sanchez</p>
+          <div className="space-y-4">
+            {[
+              { emoji: "💡", title: "El sentido del LED", text: "Recordá que los LED tienen polaridad. La pata larga es el Ánodo (+) y la corta el Cátodo (-). Si lo ponés al revés, no prenderá." },
+              { emoji: "🔗", title: "Resistencias en serie", text: "Si sumás dos resistencias una tras otra, su valor total aumenta (Rt = R1 + R2). Ideal para cuando no tenés el valor exacto que necesitás." },
+              { emoji: "⚠️", title: "Cuidado con el Protoboard", text: "Las líneas laterales (roja y azul) suelen estar conectadas a lo largo para la alimentación, pero las del medio están conectadas de forma vertical. ¡No hagas cortocircuito!" },
+              { emoji: "🔥", title: "Soldadura brillante", text: "Una buena soldadura debe quedar brillante y con forma de volcán. Si queda opaca o como una bola, es una 'soldadura fría' y fallará pronto." },
+              { emoji: "📏", title: "El truco del multímetro", text: "Siempre empezá midiendo en la escala más alta de tu tester para no quemar el fusible si no conocés el voltaje que vas a medir." },
+            ].map((tip, i) => (
+              <div key={i} className="flex gap-4 p-4 rounded-xl border border-border bg-card/60 hover:border-primary/40 transition-all duration-300 group">
+                <span className="text-2xl shrink-0 mt-0.5">{tip.emoji}</span>
+                <div>
+                  <h3 className="font-mono font-bold text-foreground text-sm mb-1 group-hover:text-primary transition-colors">{tip.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{tip.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <a
+              href="https://amzn.to/3Nj6QlU"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-600 text-black font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.3)]"
+            >
+              🚀 Aprendé más con el Kit de Inicio Oficial
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Recomendación de afiliado */}
       <div className="container mx-auto px-4">
         <div className="pt-8 flex flex-col items-center gap-3">
