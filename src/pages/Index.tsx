@@ -1,4 +1,4 @@
-import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target } from "lucide-react";
+import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
@@ -186,21 +186,63 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Recomendación de afiliado */}
-      <div className="container mx-auto px-4">
-        <div className="pt-8 flex flex-col items-center gap-3">
-          <p className="text-xs text-muted-foreground uppercase tracking-widest">Recomendación Pro</p>
-          <a 
-            href="https://amzn.to/3Nj6QlU"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-gradient-to-r from-amber-400 to-amber-600 text-black font-bold rounded-lg shadow-[0_0_15px_rgba(251,191,36,0.4)] hover:scale-105 transition-all duration-300 inline-block"
-          >
-            💎 Kit de Inicio Oficial
-          </a>
-          <p className="text-xs text-muted-foreground">Todo lo necesario para tus primeros circuitos.</p>
+      {/* Kits Oficiales ElectroLab */}
+      <section className="container mx-auto px-4 py-16">
+        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+          <ShoppingBag className="w-6 h-6 text-primary glow-icon" />
+          Kits Oficiales ElectroLab
+        </h2>
+        <p className="text-center text-muted-foreground text-sm mb-10">Equipate con lo mejor para aprender electrónica</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            {
+              title: "Kit de Inicio",
+              subtitle: "Protoboard, LEDs, Cables",
+              desc: "Todo lo esencial para armar tus primeros circuitos. Incluye protoboard, LEDs de colores, cables dupont y resistencias básicas.",
+              link: "https://amzn.to/3Nj6QlU",
+              emoji: "🔌",
+            },
+            {
+              title: "Kit de Resistencias y Capacitores",
+              subtitle: "Pack completo de componentes pasivos",
+              desc: "Más de 500 resistencias y 200 capacitores en valores estándar. Organizados en caja clasificadora para acceso rápido.",
+              link: "https://amzn.to/3Nj6QlU",
+              emoji: "⚡",
+            },
+            {
+              title: "Multímetro Digital Profesional",
+              subtitle: "Medición de precisión",
+              desc: "Multímetro autorango con medición de voltaje, corriente, resistencia, capacitancia y temperatura. Pantalla retroiluminada.",
+              link: "https://amzn.to/3Nj6QlU",
+              emoji: "📟",
+            },
+          ].map((kit) => (
+            <div
+              key={kit.title}
+              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(56,189,248,0.1)]"
+            >
+              {/* Placeholder image */}
+              <div className="w-full h-40 bg-secondary/50 flex items-center justify-center text-5xl">
+                {kit.emoji}
+              </div>
+              <div className="flex flex-col flex-1 p-5 space-y-3">
+                <h3 className="font-mono font-bold text-foreground text-lg">{kit.title}</h3>
+                <p className="text-xs text-primary font-semibold uppercase tracking-wide">{kit.subtitle}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{kit.desc}</p>
+                <a
+                  href={kit.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-600 text-black font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.3)] mt-auto"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Ver en Amazon
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
 
       {/* AdSense: Antes del footer */}
       <div id="adsense-pre-footer" className="container mx-auto px-4 py-6">
