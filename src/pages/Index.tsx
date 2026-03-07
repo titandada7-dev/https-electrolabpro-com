@@ -186,6 +186,59 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Herramientas Imprescindibles */}
+      <section className="container mx-auto px-4 py-16 border-b border-border">
+        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+          <Cpu className="w-6 h-6 text-primary glow-icon" />
+          Herramientas Imprescindibles
+        </h2>
+        <p className="text-center text-muted-foreground text-sm mb-10">Las herramientas que todo electrónico necesita en su mesa de trabajo</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            {
+              title: "Multímetro Digital",
+              desc: "Mide voltaje, corriente, resistencia y más. Imprescindible para diagnosticar cualquier circuito.",
+              link: "https://amzn.to/3Nj6QlU",
+              emoji: "📟",
+            },
+            {
+              title: "Cautín / Estación de Soldadura",
+              desc: "Soldadura de precisión para tus proyectos. Temperatura regulable y punta intercambiable.",
+              link: "https://amzn.to/3Nj6QlU",
+              emoji: "🔥",
+            },
+            {
+              title: "Protoboard 830 Puntos",
+              desc: "La base para prototipar sin soldar. Conectá componentes rápidamente y probá tus diseños.",
+              link: "https://amzn.to/3Nj6QlU",
+              emoji: "🔌",
+            },
+          ].map((tool) => (
+            <div
+              key={tool.title}
+              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+            >
+              <div className="w-full h-40 bg-secondary/50 flex items-center justify-center text-5xl">
+                {tool.emoji}
+              </div>
+              <div className="flex flex-col flex-1 p-5 space-y-3">
+                <h3 className="font-mono font-bold text-foreground text-lg">{tool.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{tool.desc}</p>
+                <a
+                  href={tool.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  Ver en Amazon
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Kits Oficiales ElectroLab */}
       <section className="container mx-auto px-4 py-16">
         <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
@@ -219,9 +272,8 @@ const Index = () => {
           ].map((kit) => (
             <div
               key={kit.title}
-              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(56,189,248,0.1)]"
+              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
             >
-              {/* Placeholder image */}
               <div className="w-full h-40 bg-secondary/50 flex items-center justify-center text-5xl">
                 {kit.emoji}
               </div>
@@ -233,9 +285,9 @@ const Index = () => {
                   href={kit.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-600 text-black font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.3)] mt-auto"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto"
                 >
-                  <ShoppingBag className="w-4 h-4" />
+                  <ShoppingCart className="w-4 h-4" />
                   Ver en Amazon
                 </a>
               </div>
