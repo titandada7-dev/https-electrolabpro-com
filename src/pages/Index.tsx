@@ -304,6 +304,7 @@ const Index = () => {
               desc: "Todo lo esencial para armar tus primeros circuitos. Incluye protoboard, LEDs de colores, cables dupont y resistencias básicas.",
               link: "https://amzn.to/3Nj6QlU",
               emoji: "🔌",
+              badge: "Más vendido",
             },
             {
               title: "Kit de Resistencias y Capacitores",
@@ -311,6 +312,7 @@ const Index = () => {
               desc: "Más de 500 resistencias y 200 capacitores en valores estándar. Organizados en caja clasificadora para acceso rápido.",
               link: "https://amzn.to/3Nj6QlU",
               emoji: "⚡",
+              badge: "Recomendado",
             },
             {
               title: "Multímetro Digital Profesional",
@@ -318,12 +320,17 @@ const Index = () => {
               desc: "Multímetro autorango con medición de voltaje, corriente, resistencia, capacitancia y temperatura. Pantalla retroiluminada.",
               link: "https://amzn.to/3Nj6QlU",
               emoji: "📟",
+              badge: "Recomendado",
             },
           ].map((kit) => (
             <div
               key={kit.title}
-              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+              className="relative group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-[hsl(30,90%,50%)]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_hsl(30,90%,50%,0.2)]"
             >
+              {/* Badge */}
+              <span className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-[hsl(30,90%,50%)] text-white text-[10px] font-bold uppercase tracking-wider shadow-lg">
+                {kit.badge}
+              </span>
               <div className="w-full h-40 bg-secondary/50 flex items-center justify-center text-5xl">
                 {kit.emoji}
               </div>
@@ -335,10 +342,11 @@ const Index = () => {
                   href={kit.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto"
+                  className="relative inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] text-white font-bold text-sm transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto overflow-hidden hover:scale-105 hover:shadow-[0_0_25px_hsl(30,90%,50%,0.5)] hover:bg-[hsl(30,90%,55%)]"
                 >
-                  <ShoppingCart className="w-4 h-4" />
-                  Ver en Amazon
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                  <ShoppingCart className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">Ver en Amazon</span>
                 </a>
               </div>
             </div>
