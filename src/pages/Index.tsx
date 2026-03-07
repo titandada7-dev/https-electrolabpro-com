@@ -151,6 +151,13 @@ const Index = () => {
         </div>
       </section>
 
+      {/* AdSense Slot 1: Debajo del menú/stats */}
+      <div id="adsense-slot-1" className="container mx-auto px-4 py-4">
+        <div className="w-full min-h-[90px] md:min-h-[100px] flex items-center justify-center rounded-xl border border-border/30 bg-muted/10 text-muted-foreground/50 text-xs font-mono">
+          Espacio Publicitario
+        </div>
+      </div>
+
       {/* Contenido principal */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
@@ -423,6 +430,12 @@ const Index = () => {
       <div id="adsense-pre-footer" className="container mx-auto px-4 py-6">
         <div className="w-full min-h-[90px] md:min-h-[120px] flex items-center justify-center rounded-xl border border-border/50 bg-muted/20 text-muted-foreground text-xs font-mono">
           Publicidad
+        </div>
+      </div>
+      {/* AdSense Slot 3: Final de la página */}
+      <div id="adsense-slot-3" className="container mx-auto px-4 py-4">
+        <div className="w-full min-h-[90px] md:min-h-[100px] flex items-center justify-center rounded-xl border border-border/30 bg-muted/10 text-muted-foreground/50 text-xs font-mono">
+          Espacio Publicitario
         </div>
       </div>
 
