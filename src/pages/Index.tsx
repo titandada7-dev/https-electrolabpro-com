@@ -1,4 +1,4 @@
-import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target } from "lucide-react";
+import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
