@@ -109,6 +109,55 @@ const Index = () => {
             <div>
               <ComponentDictionary />
             </div>
+
+            {/* Equipamiento Recomendado */}
+            <section className="space-y-6">
+              <h2 className="text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
+                <Package className="w-6 h-6 text-primary glow-icon" />
+                Equipamiento Recomendado
+              </h2>
+              <p className="text-center text-muted-foreground text-sm">Lo que necesitás para empezar a crear</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {[
+                  {
+                    icon: <Zap className="w-8 h-8 text-primary" />,
+                    title: "Kit de Inicio de Electrónica",
+                    desc: "Ideal para principiantes. Incluye protoboard, LEDs, resistencias y cables jumper.",
+                    link: "https://amzn.to/3Nj6QlU",
+                  },
+                  {
+                    icon: <Cpu className="w-8 h-8 text-primary" />,
+                    title: "Multímetro Digital Profesional",
+                    desc: "La herramienta esencial para medir voltaje, corriente y continuidad con precisión.",
+                    link: "https://amzn.to/3Nj6QlU",
+                  },
+                  {
+                    icon: <Flame className="w-8 h-8 text-primary" />,
+                    title: "Estación de Soldadura",
+                    desc: "Kit completo con cautín ajustable y accesorios para tus primeros proyectos.",
+                    link: "https://amzn.to/3Nj6QlU",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur p-5 space-y-4 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+                  >
+                    <div className="inline-flex p-3 rounded-lg bg-secondary w-fit">{item.icon}</div>
+                    <h3 className="font-mono font-bold text-foreground text-lg">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.desc}</p>
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      Ver en Amazon
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </section>
           </main>
 
           {/* Lateral con afiliados y publicidad */}
