@@ -123,19 +123,19 @@ const Index = () => {
                     icon: <Zap className="w-8 h-8 text-primary" />,
                     title: "Kit de Inicio de Electrónica",
                     desc: "Ideal para principiantes. Incluye protoboard, LEDs, resistencias y cables jumper.",
-                    link: "https://amzn.to/3Nj6QlU",
+                    link: "https://www.amazon.es/s?k=kit+electronica+principiantes&tag=electrolabpro-21",
                   },
                   {
                     icon: <Cpu className="w-8 h-8 text-primary" />,
                     title: "Multímetro Digital Profesional",
                     desc: "La herramienta esencial para medir voltaje, corriente y continuidad con precisión.",
-                    link: "https://amzn.to/3Nj6QlU",
+                    link: "https://www.amazon.es/s?k=multimetro+digital+profesional&tag=electrolabpro-21",
                   },
                   {
                     icon: <Flame className="w-8 h-8 text-primary" />,
                     title: "Estación de Soldadura",
                     desc: "Kit completo con cautín ajustable y accesorios para tus primeros proyectos.",
-                    link: "https://amzn.to/3Nj6QlU",
+                    link: "https://www.amazon.es/s?k=kit+soldador+electronica&tag=electrolabpro-21",
                   },
                 ].map((item) => (
                   <div
