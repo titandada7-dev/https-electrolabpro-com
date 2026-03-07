@@ -157,6 +157,9 @@ const Index = () => {
                   </div>
                 ))}
               </div>
+              <p className="text-center text-xs text-muted-foreground/70 mt-4 italic">
+                Como Afiliado de Amazon, gano por las compras adscritas que cumplen los requisitos aplicables.
+              </p>
             </section>
           </main>
 
