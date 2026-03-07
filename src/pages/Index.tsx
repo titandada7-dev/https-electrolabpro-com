@@ -1,11 +1,24 @@
-import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, ShoppingCart, Package, Flame } from "lucide-react";
+import { useState } from "react";
+import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, ShoppingCart, Package, Flame, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
 import OhmCalculator from "@/components/OhmCalculator";
 
+const navLinks = [
+  { label: "Calculadora", target: "calculadora" },
+  { label: "Componentes", target: "diccionario" },
+  { label: "Equipamiento", target: "equipamiento" },
+];
+
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
+
 const Index = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Encabezado */}
@@ -13,14 +26,63 @@ const Index = () => {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Zap className="w-6 h-6 text-primary glow-icon" />
-            <h1 className="text-lg md:text-xl font-mono font-bold text-foreground">
+            <span className="text-lg md:text-xl font-mono font-bold text-foreground">
               Electro<span className="text-primary">Lab</span>
-            </h1>
+            </span>
           </div>
-          <p className="text-xs text-muted-foreground hidden sm:block">
-            Aprende electrónica desde cero
-          </p>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <button
+                key={link.target}
+                onClick={() => scrollTo(link.target)}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+              >
+                {link.label}
+              </button>
+            ))}
+            <button
+              onClick={() => scrollTo("kits-oficiales")}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all hover:scale-105 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              Kits de Oferta
+            </button>
+          </nav>
+
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden p-2 text-foreground"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-4 space-y-3">
+            {navLinks.map((link) => (
+              <button
+                key={link.target}
+                onClick={() => { scrollTo(link.target); setMenuOpen(false); }}
+                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              >
+                {link.label}
+              </button>
+            ))}
+            <button
+              onClick={() => { scrollTo("kits-oficiales"); setMenuOpen(false); }}
+              className="flex items-center gap-1.5 w-full px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              Kits de Oferta
+            </button>
+          </nav>
+        )}
+
         {/* Banner publicitario superior */}
         <div className="container mx-auto px-4 pb-2 min-h-[90px] flex items-center justify-center bg-muted/20 rounded-lg">
           <AdBanner orientation="horizontal" />
