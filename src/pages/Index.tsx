@@ -140,7 +140,7 @@ const Index = () => {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur p-5 space-y-4 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+                    className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur p-5 space-y-4 hover:border-[hsl(200,100%,60%)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(200,100%,60%,0.2)]"
                   >
                     <div className="inline-flex p-3 rounded-lg bg-secondary w-fit">{item.icon}</div>
                     <h3 className="font-mono font-bold text-foreground text-lg">{item.title}</h3>
