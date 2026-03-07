@@ -304,6 +304,7 @@ const Index = () => {
               desc: "Todo lo esencial para armar tus primeros circuitos. Incluye protoboard, LEDs de colores, cables dupont y resistencias básicas.",
               link: "https://amzn.to/3Nj6QlU",
               emoji: "🔌",
+              badge: "Más vendido",
             },
             {
               title: "Kit de Resistencias y Capacitores",
@@ -311,6 +312,7 @@ const Index = () => {
               desc: "Más de 500 resistencias y 200 capacitores en valores estándar. Organizados en caja clasificadora para acceso rápido.",
               link: "https://amzn.to/3Nj6QlU",
               emoji: "⚡",
+              badge: "Recomendado",
             },
             {
               title: "Multímetro Digital Profesional",
@@ -318,6 +320,7 @@ const Index = () => {
               desc: "Multímetro autorango con medición de voltaje, corriente, resistencia, capacitancia y temperatura. Pantalla retroiluminada.",
               link: "https://amzn.to/3Nj6QlU",
               emoji: "📟",
+              badge: "Recomendado",
             },
           ].map((kit) => (
             <div
