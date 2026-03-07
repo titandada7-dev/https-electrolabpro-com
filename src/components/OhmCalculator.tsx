@@ -87,12 +87,14 @@ const OhmCalculator = () => {
         </div>
 
         <div className="flex items-center justify-between">
-          <button
+          <Button
+            variant="outline"
+            size="sm"
             onClick={reset}
-            className="text-xs text-muted-foreground hover:text-primary transition-colors font-mono underline"
+            className="gap-2 font-mono text-xs"
           >
-            Limpiar campos
-          </button>
+            🔄 Limpiar / Reset
+          </Button>
           <span className="text-[11px] text-primary/70 font-mono italic">
             ⚡ Herramienta Pro por J.A.Sanchez
           </span>

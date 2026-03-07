@@ -156,15 +156,26 @@ const Index = () => {
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
-            <a
-              href="https://amzn.to/3Nj6QlU"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-600 text-black font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.3)]"
-            >
-              🚀 Aprendé más con el Kit de Inicio Oficial
-            </a>
+          {/* Tarjeta Kit Recomendado */}
+          <div className="mt-10 p-6 rounded-xl border border-primary/30 bg-card/80 backdrop-blur max-w-lg mx-auto space-y-4">
+            <h3 className="text-lg font-mono font-bold text-foreground text-center">
+              🛠️ Equipamiento Recomendado por J.A.Sanchez
+            </h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li className="flex items-start gap-2"><span className="text-primary mt-0.5">✔️</span> Incluye Placa Arduino Uno Original.</li>
+              <li className="flex items-start gap-2"><span className="text-primary mt-0.5">✔️</span> Más de 200 componentes y sensores.</li>
+              <li className="flex items-start gap-2"><span className="text-primary mt-0.5">✔️</span> Manual de proyectos paso a paso.</li>
+            </ul>
+            <div className="text-center">
+              <a
+                href="https://amzn.to/3Nj6QlU"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-600 text-black font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.3)]"
+              >
+                🚀 Aprendé más con el Kit de Inicio Oficial
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -188,11 +199,8 @@ const Index = () => {
       {/* Pie de página */}
       <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground text-sm mb-2">
-            © 2026 ElectroLab Pro | Desarrollado por <span className="font-medium">J.A.Sanchez</span>
-          </p>
-          <p className="text-muted-foreground/60 text-xs mb-4">
-            Todos los derechos reservados.
+           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
+             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
           </p>
           <p className="text-gray-500 text-[10px] leading-relaxed max-w-xl mx-auto italic">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
