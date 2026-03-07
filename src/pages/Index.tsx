@@ -175,6 +175,12 @@ const Index = () => {
             <div>
               <OhmCalculator />
             </div>
+
+            {/* AdSense Slot 2: Entre calculadoras y diccionario */}
+            <div id="adsense-slot-2" className="w-full min-h-[90px] md:min-h-[100px] flex items-center justify-center rounded-xl border border-border/30 bg-muted/10 text-muted-foreground/50 text-xs font-mono">
+              Espacio Publicitario
+            </div>
+
             <div id="diccionario">
               <ComponentDictionary />
             </div>
