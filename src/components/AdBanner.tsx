@@ -1,11 +1,42 @@
-const AdBanner = ({ className = "", orientation = "horizontal" }: { className?: string; orientation?: "horizontal" | "vertical" }) => {
+import { useEffect, useRef } from "react";
+
+declare global {
+  interface Window {
+    adsbygoogle: unknown[];
+  }
+}
+
+interface AdBannerProps {
+  slot: string;
+  format?: string;
+  responsive?: boolean;
+  className?: string;
+}
+
+const AdBanner = ({ slot, format = "auto", responsive = true, className = "" }: AdBannerProps) => {
+  const adRef = useRef<HTMLDivElement>(null);
+  const pushed = useRef(false);
+
+  useEffect(() => {
+    if (pushed.current) return;
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      pushed.current = true;
+    } catch (e) {
+      console.error("AdSense error:", e);
+    }
+  }, []);
+
   return (
-    <div
-      className={`flex items-center justify-center border border-dashed border-border rounded-lg bg-muted/30 text-muted-foreground text-sm font-mono ${
-        orientation === "vertical" ? "min-h-[400px] w-full p-4" : "h-20 w-full p-2"
-      } ${className}`}
-    >
-      <span className="opacity-50">📢 Espacio Publicitario — AdSense</span>
+    <div ref={adRef} className={`w-full overflow-hidden ${className}`}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-9393284878747603"
+        data-ad-slot={slot}
+        data-ad-format={format}
+        data-full-width-responsive={responsive ? "true" : "false"}
+      />
     </div>
   );
 };
