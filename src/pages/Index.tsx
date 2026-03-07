@@ -168,12 +168,12 @@ const Index = () => {
             <div>
               <OhmCalculator />
             </div>
-            <div>
+            <div id="diccionario">
               <ComponentDictionary />
             </div>
 
             {/* Equipamiento Recomendado */}
-            <section className="space-y-6">
+            <section id="equipamiento" className="space-y-6">
               <h2 className="text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
                 <Package className="w-6 h-6 text-primary glow-icon" />
                 Equipamiento Recomendado
@@ -355,7 +355,7 @@ const Index = () => {
       </section>
 
       {/* Kits Oficiales ElectroLab */}
-      <section className="container mx-auto px-4 py-16">
+      <section id="kits-oficiales" className="container mx-auto px-4 py-16">
         <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
           <ShoppingBag className="w-6 h-6 text-primary glow-icon" />
           Kits Oficiales ElectroLab
