@@ -247,7 +247,7 @@ const ComponentDictionary = () => {
 
               <Button
                 className="w-full gap-2 font-semibold bg-[hsl(25,95%,53%)] hover:bg-[hsl(25,95%,45%)] text-[hsl(0,0%,100%)]"
-                onClick={() => window.open(`https://www.amazon.com/s?k=${selected.amazonSearch}`, "_blank")}
+                onClick={() => window.open(`https://www.amazon.es/s?k=${selected.amazonSearch}&tag=electrolabpro-21`, "_blank")}
               >
                 <ShoppingCart className="w-4 h-4" />
                 Comprar Kit de {selected.name}
