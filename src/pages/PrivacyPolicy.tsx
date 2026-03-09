@@ -19,9 +19,9 @@ const PrivacyPolicy = () => {
       <main className="container mx-auto px-4 py-10 max-w-3xl">
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
           <Shield className="w-8 h-8 text-primary" />
-          Política de Privacidad y Cookies
+          Política de Privacidad - ElectroLab Pro
         </h1>
-        <p className="text-muted-foreground text-sm mb-8">Última actualización: Marzo 2026</p>
+        <p className="text-muted-foreground text-sm mb-8">Última actualización: 9 de marzo de 2026</p>
 
         <Section icon={<Eye className="w-5 h-5 text-primary" />} title="1. Google AdSense y Cookies">
           <p>
