@@ -17,135 +17,49 @@ const PrivacyPolicy = () => {
       </header>
 
       <main className="container mx-auto px-4 py-10 max-w-3xl">
+        <p className="text-muted-foreground mb-6">
+          En ElectroLab Pro, gestionado por <strong>J.A. Sanchez</strong>, la privacidad de nuestros visitantes es
+          una prioridad. Esta página detalla cómo se recopila y utiliza la información.
+        </p>
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
           <Shield className="w-8 h-8 text-primary" />
-          Política de Privacidad y Cookies
+          Política de Privacidad - ElectroLab Pro
         </h1>
-        <p className="text-muted-foreground text-sm mb-8">Última actualización: Marzo 2026</p>
+        <p className="text-muted-foreground text-sm mb-8">Última actualización: 9 de marzo de 2026</p>
 
-        {/* Responsable */}
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="1. Responsable del sitio">
+        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="1. Google AdSense y Cookies">
           <p>
-            <strong>ElectroLab Pro</strong> (electrolabpro.com) es un proyecto educativo sobre electrónica creado y mantenido por
-            <strong> J.A. Sanchez</strong>.
-          </p>
-          <p>
-            Este sitio web no almacena datos personales sensibles ni requiere registro de usuarios.
-          </p>
-        </Section>
-
-        {/* Datos recopilados */}
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="2. Datos que recopilamos">
-          <p>ElectroLab Pro puede recopilar de forma automática:</p>
-          <ul className="list-disc pl-6 space-y-1 mt-2">
-            <li><strong>Cookies técnicas esenciales:</strong> necesarias para el funcionamiento básico del sitio (preferencias de consentimiento).</li>
-            <li><strong>Cookies analíticas:</strong> datos anónimos de navegación mediante Google Analytics para mejorar la experiencia del usuario.</li>
-            <li><strong>Cookies publicitarias:</strong> utilizadas por Google AdSense para mostrar anuncios personalizados según tus intereses.</li>
-            <li><strong>Cookies de afiliados:</strong> Amazon Associates utiliza cookies para rastrear las compras realizadas a través de nuestros enlaces de afiliado.</li>
-          </ul>
-        </Section>
-
-        {/* Cookies */}
-        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="3. Política de Cookies">
-          <p>
-            Una cookie es un pequeño archivo de texto que se almacena en tu dispositivo al visitar un sitio web.
-            Utilizamos los siguientes tipos de cookies:
-          </p>
-
-          <div className="mt-4 rounded-lg border border-border overflow-hidden">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-muted/30">
-                  <th className="text-left p-3 font-semibold">Tipo</th>
-                  <th className="text-left p-3 font-semibold">Proveedor</th>
-                  <th className="text-left p-3 font-semibold">Finalidad</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                <tr>
-                  <td className="p-3">Esenciales</td>
-                  <td className="p-3">ElectroLab Pro</td>
-                  <td className="p-3">Guardar preferencias de consentimiento</td>
-                </tr>
-                <tr>
-                  <td className="p-3">Analíticas</td>
-                  <td className="p-3">Google Analytics</td>
-                  <td className="p-3">Estadísticas anónimas de uso</td>
-                </tr>
-                <tr>
-                  <td className="p-3">Publicitarias</td>
-                  <td className="p-3">Google AdSense</td>
-                  <td className="p-3">Anuncios personalizados</td>
-                </tr>
-                <tr>
-                  <td className="p-3">Afiliados</td>
-                  <td className="p-3">Amazon Associates</td>
-                  <td className="p-3">Seguimiento de compras por enlace de afiliado</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <p className="mt-4">
-            Puedes gestionar tus preferencias de cookies en cualquier momento haciendo clic en el botón de configuración del banner de cookies,
-            o desactivándolas desde la configuración de tu navegador.
-          </p>
-        </Section>
-
-        {/* Google AdSense */}
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="4. Google AdSense y publicidad">
-          <p>
-            Este sitio utiliza Google AdSense para mostrar anuncios. Google y sus socios publicitarios pueden utilizar cookies
-            para personalizar los anuncios en función de tus visitas a este sitio y a otros sitios de Internet.
-          </p>
-          <p className="mt-2">
-            Puedes optar por la publicidad no personalizada visitando la{" "}
+            Utilizamos Google AdSense para mostrar anuncios. Google, como proveedor externo, utiliza cookies para
+            publicar anuncios basados en las visitas anteriores de los usuarios a este sitio web. Los usuarios pueden
+            inhabilitar la publicidad personalizada visitando la{" "}
             <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
-              configuración de anuncios de Google
+              Configuración de anuncios de Google
             </a>.
+            Nuestro ID de editor es: <strong>pub-9393284878747603</strong>.
           </p>
         </Section>
 
-        {/* Amazon */}
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="5. Programa de Afiliados de Amazon">
+        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="2. Programa de Afiliados de Amazon">
           <p>
-            ElectroLab Pro participa en el Programa de Afiliados de Amazon EU, un programa de publicidad para afiliados
-            diseñado para ofrecer a sitios web un modo de obtener comisiones por publicidad, publicitando e incluyendo
-            enlaces a Amazon.es.
-          </p>
-          <p className="mt-2">
-            Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica.
+            ElectroLab Pro participa en el Programa de Afiliados de Amazon Services LLC. Esto significa que recibimos
+            una pequeña comisión por las compras realizadas a través de nuestros enlaces de productos recomendados
+            (ID de seguimiento: <strong>electrolabpro-21</strong>), sin costo adicional para el usuario.
           </p>
         </Section>
 
-        {/* Derechos */}
-        <Section icon={<Shield className="w-5 h-5 text-primary" />} title="6. Tus derechos (GDPR)">
+        <Section icon={<Shield className="w-5 h-5 text-primary" />} title="3. Cookies y Seguimiento">
           <p>
-            De acuerdo con el Reglamento General de Protección de Datos (RGPD), tienes derecho a:
-          </p>
-          <ul className="list-disc pl-6 space-y-1 mt-2">
-            <li>Acceder a tus datos personales</li>
-            <li>Rectificar datos inexactos</li>
-            <li>Solicitar la eliminación de tus datos</li>
-            <li>Oponerte al tratamiento de tus datos</li>
-            <li>Solicitar la portabilidad de tus datos</li>
-            <li>Retirar tu consentimiento en cualquier momento</li>
-          </ul>
-        </Section>
-
-        {/* Contacto */}
-        <Section icon={<Mail className="w-5 h-5 text-primary" />} title="7. Contacto">
-          <p>
-            Si tienes preguntas sobre esta política de privacidad o deseas ejercer tus derechos,
-            puedes contactarnos a través de nuestras redes sociales o canales oficiales de ElectroLab Pro.
+            Este sitio utiliza cookies técnicas para mejorar la experiencia del usuario, como el funcionamiento de
+            nuestras calculadoras de resistencias y el diccionario de componentes.
           </p>
         </Section>
 
-        {/* Cambios */}
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="8. Cambios en esta política">
+        <Section icon={<Mail className="w-5 h-5 text-primary" />} title="4. Contacto">
           <p>
-            Nos reservamos el derecho de actualizar esta política de privacidad y cookies en cualquier momento.
-            Los cambios serán publicados en esta página con la fecha de actualización correspondiente.
+            Para cualquier duda sobre esta política, puedes contactarnos a través de nuestra web oficial:{" "}
+            <a href="https://electrolabpro.com" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              electrolabpro.com
+            </a>.
           </p>
         </Section>
       </main>
