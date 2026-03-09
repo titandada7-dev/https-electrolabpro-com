@@ -167,9 +167,7 @@ const Index = () => {
             </div>
 
             {/* AdSense: Entre calculadoras */}
-            <div id="adsense-mid-calculators" className="w-full min-h-[90px] md:min-h-[120px] flex items-center justify-center rounded-xl border border-border/50 bg-muted/20 text-muted-foreground text-xs font-mono">
-              Publicidad
-            </div>
+            <AdBanner slot="2222222222" format="auto" className="min-h-[90px] md:min-h-[120px]" />
 
             <div>
               <OhmCalculator />
