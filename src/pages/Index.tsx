@@ -152,11 +152,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AdSense Slot 1: Debajo del menú/stats */}
-      <div id="adsense-slot-1" className="container mx-auto px-4 py-4">
-        <div className="w-full min-h-[90px] md:min-h-[100px] flex items-center justify-center rounded-xl border border-border/30 bg-muted/10 text-muted-foreground/50 text-xs font-mono">
-          Espacio Publicitario
-        </div>
+      {/* AdSense Slot 1: Debajo de stats */}
+      <div className="container mx-auto px-4 py-4">
+        <AdBanner slot="1111111111" format="auto" className="min-h-[90px] md:min-h-[100px]" />
       </div>
 
       {/* Contenido principal */}
