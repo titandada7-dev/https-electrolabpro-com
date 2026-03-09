@@ -84,8 +84,8 @@ const Index = () => {
         )}
 
         {/* Banner publicitario superior */}
-        <div className="container mx-auto px-4 pb-2 min-h-[90px] flex items-center justify-center bg-muted/20 rounded-lg">
-          <AdBanner orientation="horizontal" />
+        <div className="container mx-auto px-4 pb-2">
+          <AdBanner slot="1234567890" format="horizontal" className="min-h-[90px]" />
         </div>
       </header>
 
@@ -258,7 +258,7 @@ const Index = () => {
                 </ul>
               </div>
               {/* Banner de publicidad */}
-              <AdBanner orientation="vertical" />
+              <AdBanner slot="0987654321" format="vertical" className="min-h-[250px]" />
             </div>
           </aside>
         </div>
