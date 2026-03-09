@@ -29,7 +29,7 @@ const CookieBanner = () => {
             <p className="text-sm text-foreground/90 leading-relaxed mb-4">
               🍪 Utilizamos cookies para mejorar tu experiencia y mostrarte anuncios personalizados.
               Al continuar navegando en <span className="font-semibold text-primary">ElectroLab Pro</span>,
-              aceptas nuestra política de cookies y el uso de afiliados de Amazon.
+              aceptas nuestra <Link to="/privacidad" className="text-primary underline hover:text-primary/80">política de cookies</Link> y el uso de afiliados de Amazon.
             </p>
             <div className="flex gap-3 justify-end">
               <Button variant="outline" size="sm" onClick={() => setShowConfig(true)}>
