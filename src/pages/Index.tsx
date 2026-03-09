@@ -258,7 +258,7 @@ const Index = () => {
                 </ul>
               </div>
               {/* Banner de publicidad */}
-              <AdBanner orientation="vertical" />
+              <AdBanner slot="0987654321" format="vertical" className="min-h-[250px]" />
             </div>
           </aside>
         </div>
