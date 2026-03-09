@@ -5,6 +5,7 @@ import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
 import OhmCalculator from "@/components/OhmCalculator";
+import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Calculadora", target: "calculadora" },
@@ -451,7 +452,12 @@ const Index = () => {
            <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
              © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
           </p>
-          <p className="text-gray-500 text-[10px] leading-relaxed max-w-xl mx-auto italic">
+           <div className="flex items-center justify-center gap-4 mb-3">
+             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+             <span className="text-muted-foreground/40 text-[10px]">|</span>
+             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+           </div>
+           <p className="text-gray-500 text-[10px] leading-relaxed max-w-xl mx-auto italic">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
             Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica."
           </p>
