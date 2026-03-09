@@ -17,6 +17,10 @@ const PrivacyPolicy = () => {
       </header>
 
       <main className="container mx-auto px-4 py-10 max-w-3xl">
+        <p className="text-muted-foreground mb-6">
+          En ElectroLab Pro, gestionado por <strong>J.A. Sanchez</strong>, la privacidad de nuestros visitantes es
+          una prioridad. Esta página detalla cómo se recopila y utiliza la información.
+        </p>
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
           <Shield className="w-8 h-8 text-primary" />
           Política de Privacidad - ElectroLab Pro
