@@ -64,11 +64,18 @@ const PrivacyPolicy = () => {
         </Section>
       </main>
 
-      <footer className="w-full py-6 bg-black/50 border-t border-white/10">
+      <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
           </p>
+          <div className="flex items-center justify-center gap-4">
+            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
+          </div>
         </div>
       </footer>
     </div>
