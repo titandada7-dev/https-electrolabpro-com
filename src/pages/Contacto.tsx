@@ -6,8 +6,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 const Contacto = () => {
+  usePageMeta({
+    title: "Contacto | ElectroLab Pro",
+    description: "¿Tienes dudas sobre electrónica o sugerencias? Contacta con ElectroLab Pro a través de nuestro formulario o correo electrónico. Te respondemos lo antes posible.",
+  });
   const [formData, setFormData] = useState({ nombre: "", email: "", asunto: "", mensaje: "" });
   const [sending, setSending] = useState(false);
 

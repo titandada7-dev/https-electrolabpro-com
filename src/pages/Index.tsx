@@ -29,6 +29,10 @@ const scrollTo = (id: string) => {
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  usePageMeta({
+    title: "ElectroLab Pro - Calculadora de Resistencias, Ley de Ohm y Guías de Electrónica",
+    description: "Herramientas gratuitas para calcular resistencias por código de colores, aplicar la Ley de Ohm y aprender sobre condensadores, diodos y circuitos electrónicos.",
+  });
 
   return (
     <div className="min-h-screen bg-background bg-grid">
