@@ -438,10 +438,10 @@ const Index = () => {
 
       {/* Guías de Electrónica */}
       <section className="container mx-auto px-4 py-16 border-b border-border">
-        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-          <BookOpen className="w-6 h-6 text-primary glow-icon" />
-          Guías de Electrónica
-        </h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
+            Guías de Electrónica
+          </h2>
         <p className="text-center text-muted-foreground text-sm mb-10">Artículos esenciales para dominar los fundamentos</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {[
