@@ -13,6 +13,12 @@ const navLinks = [
   { label: "Equipamiento", target: "equipamiento" },
 ];
 
+const articleLinks = [
+  { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
+  { label: "Condensadores", to: "/articulos/condensadores" },
+  { label: "Diodos", to: "/articulos/diodos" },
+];
+
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
@@ -43,6 +49,23 @@ const Index = () => {
                 {link.label}
               </button>
             ))}
+            <div className="relative group">
+              <button className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium flex items-center gap-1">
+                Artículos
+                <ChevronDown className="w-3.5 h-3.5" />
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-lg border border-border bg-card/95 backdrop-blur-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+                {articleLinks.map((a) => (
+                  <Link
+                    key={a.to}
+                    to={a.to}
+                    className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+                  >
+                    {a.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <button
               onClick={() => scrollTo("kits-oficiales")}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all hover:scale-105 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
@@ -74,6 +97,19 @@ const Index = () => {
                 {link.label}
               </button>
             ))}
+            <div className="border-t border-border pt-2 mt-1">
+              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2">Artículos</p>
+              {articleLinks.map((a) => (
+                <Link
+                  key={a.to}
+                  to={a.to}
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                >
+                  {a.label}
+                </Link>
+              ))}
+            </div>
             <button
               onClick={() => { scrollTo("kits-oficiales"); setMenuOpen(false); }}
               className="flex items-center gap-1.5 w-full px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"

@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CodigoColoresResistencias from "./pages/articles/CodigoColoresResistencias";
+import Condensadores from "./pages/articles/Condensadores";
+import Diodos from "./pages/articles/Diodos";
 import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
@@ -19,6 +22,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/privacidad" element={<PrivacyPolicy />} />
+          <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
+          <Route path="/articulos/condensadores" element={<Condensadores />} />
+          <Route path="/articulos/diodos" element={<Diodos />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
