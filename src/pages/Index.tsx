@@ -247,12 +247,12 @@ const Index = () => {
 
             {/* Guías Técnicas Destacadas */}
             <section className="space-y-6">
-              <h2 className="text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
-                <BookOpen className="w-6 h-6 text-primary glow-icon" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
+                <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
                 Guías Técnicas Destacadas
               </h2>
-              <p className="text-center text-muted-foreground text-sm">Artículos esenciales para dominar los fundamentos</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <p className="text-center text-muted-foreground text-xs sm:text-sm">Artículos esenciales para dominar los fundamentos</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
                 {[
                   {
                     emoji: "🔢",
