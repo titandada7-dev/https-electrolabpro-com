@@ -30,8 +30,8 @@ const scrollTo = (id: string) => {
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   usePageMeta({
-    title: "ElectroLab Pro - Calculadora de Resistencias, Ley de Ohm y Guías de Electrónica",
-    description: "Herramientas gratuitas para calcular resistencias por código de colores, aplicar la Ley de Ohm y aprender sobre condensadores, diodos y circuitos electrónicos.",
+    title: "ElectroLab Pro - Calculadora de Resistencias, Capacitores y Diodos Online",
+    description: "Calculadora de resistencias, capacitores y diodos online. Aprende electrónica desde cero con las herramientas gratuitas de ElectroLab Pro por José Andrés Sánchez.",
   });
 
   return (
