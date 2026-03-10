@@ -9,6 +9,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CodigoColoresResistencias from "./pages/articles/CodigoColoresResistencias";
 import Condensadores from "./pages/articles/Condensadores";
 import Diodos from "./pages/articles/Diodos";
+import LeyDeOhm from "./pages/articles/LeyDeOhm";
+import Multimetro from "./pages/articles/Multimetro";
+import CircuitosSerieParalelo from "./pages/articles/CircuitosSerieParalelo";
 import AvisoLegal from "./pages/AvisoLegal";
 import Contacto from "./pages/Contacto";
 import CookieBanner from "./components/CookieBanner";
@@ -29,6 +32,9 @@ const App = () => (
           <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
           <Route path="/articulos/condensadores" element={<Condensadores />} />
           <Route path="/articulos/diodos" element={<Diodos />} />
+          <Route path="/articulos/ley-de-ohm" element={<LeyDeOhm />} />
+          <Route path="/articulos/multimetro" element={<Multimetro />} />
+          <Route path="/articulos/circuitos-serie-paralelo" element={<CircuitosSerieParalelo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

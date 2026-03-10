@@ -69,6 +69,9 @@ const ArticleLayout = ({ title, subtitle, children }: ArticleLayoutProps) => {
                   <li><Link to="/articulos/codigo-colores-resistencias" className="text-muted-foreground hover:text-primary transition-colors">Código de colores de resistencias</Link></li>
                   <li><Link to="/articulos/condensadores" className="text-muted-foreground hover:text-primary transition-colors">Qué es un condensador</Link></li>
                   <li><Link to="/articulos/diodos" className="text-muted-foreground hover:text-primary transition-colors">Guía básica de diodos</Link></li>
+                  <li><Link to="/articulos/ley-de-ohm" className="text-muted-foreground hover:text-primary transition-colors">Ley de Ohm explicada</Link></li>
+                  <li><Link to="/articulos/multimetro" className="text-muted-foreground hover:text-primary transition-colors">Cómo usar un multímetro</Link></li>
+                  <li><Link to="/articulos/circuitos-serie-paralelo" className="text-muted-foreground hover:text-primary transition-colors">Circuitos serie vs paralelo</Link></li>
                 </ul>
               </div>
             </div>
