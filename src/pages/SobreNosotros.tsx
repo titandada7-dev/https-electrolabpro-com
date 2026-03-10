@@ -52,13 +52,13 @@ const SobreNosotros = () => {
           {/* Main text */}
           <div className="p-6 rounded-xl border border-border bg-card/80 backdrop-blur space-y-4">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Bienvenido a <strong className="text-foreground">ElectroLab Pro</strong>, un proyecto educativo fundado por <strong className="text-foreground">J.A. Sanchez</strong>. Nuestra misión es simplificar el aprendizaje de la electrónica para principiantes y entusiastas.
+              Bienvenidos a <strong className="text-foreground">ElectroLab Pro</strong>. Este proyecto educativo es una iniciativa de <strong className="text-foreground">José Andrés Sánchez</strong>, web developer y apasionado de la electrónica.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Como desarrolladores y apasionados por la tecnología, entendemos lo difícil que puede ser identificar componentes como resistencias, capacitores y diodos al principio. Por eso, hemos creado herramientas interactivas y guías visuales para que cualquier persona pueda aprender a interpretar valores y códigos de colores de forma rápida y gratuita.
+              Nuestra misión es crear herramientas digitales gratuitas que ayuden a estudiantes y aficionados a identificar componentes como resistencias, capacitores y diodos sin errores.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              En ElectroLab Pro, creemos que la electrónica debe ser accesible para todos.
+              En ElectroLab Pro, convertimos la teoría compleja en herramientas simples y visuales.
             </p>
           </div>
 
