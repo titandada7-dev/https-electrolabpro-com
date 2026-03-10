@@ -103,7 +103,7 @@ const Index = () => {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-foreground rounded-lg hover:bg-secondary/50 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >

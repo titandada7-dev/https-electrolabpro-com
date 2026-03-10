@@ -214,7 +214,7 @@ const ResistorCalculator = () => {
       {/* Result */}
       <div className="text-center p-6 rounded-xl bg-card border border-glow glow space-y-3">
         <p className="text-muted-foreground text-sm">Valor calculado</p>
-        <p className="text-3xl md:text-5xl font-mono font-bold text-primary glow-text">
+        <p className="text-2xl sm:text-3xl md:text-5xl font-mono font-bold text-primary glow-text">
           {formatResistance(resistance)}
         </p>
         <p className="text-muted-foreground">Tolerancia: {tolerance}</p>
