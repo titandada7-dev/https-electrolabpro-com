@@ -92,13 +92,13 @@ const Index = () => {
             >
               Sobre Nosotros
             </Link>
-            <button
-              onClick={() => scrollTo("kits-oficiales")}
+            <Link
+              to="/articulos/multimetro"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all hover:scale-105 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
             >
               <ShoppingBag className="w-4 h-4" />
-              Kits de Oferta
-            </button>
+              Productos Recomendados
+            </Link>
           </nav>
 
           {/* Mobile hamburger */}
