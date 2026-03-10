@@ -10,8 +10,11 @@ import { Link } from "react-router-dom";
 
 const navLinks = [
   { label: "Calculadora", target: "calculadora" },
-  { label: "Componentes", target: "diccionario" },
-  { label: "Equipamiento", target: "equipamiento" },
+];
+
+const navPageLinks = [
+  { label: "Componentes", to: "/articulos/codigo-colores-resistencias" },
+  { label: "Equipamiento", to: "/articulos/multimetro" },
 ];
 
 const articleLinks = [
