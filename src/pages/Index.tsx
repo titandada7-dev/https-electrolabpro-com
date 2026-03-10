@@ -309,8 +309,8 @@ const Index = () => {
 
             {/* Equipamiento Recomendado */}
             <section id="equipamiento" className="space-y-6">
-              <h2 className="text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
-                <Package className="w-6 h-6 text-primary glow-icon" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
+                <Package className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
                 Equipamiento Recomendado
               </h2>
               <p className="text-center text-muted-foreground text-sm">Lo que necesitás para empezar a crear</p>
