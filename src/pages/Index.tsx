@@ -123,6 +123,16 @@ const Index = () => {
                 {link.label}
               </button>
             ))}
+            {navPageLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setMenuOpen(false)}
+                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              >
+                {link.label}
+              </Link>
+            ))}
             <div className="border-t border-border pt-2 mt-1">
               <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2">Artículos</p>
               {articleLinks.map((a) => (
