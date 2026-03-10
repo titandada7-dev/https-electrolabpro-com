@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import diodeImg from "@/assets/diode-diagram.png";
 
 const Diodos = () => {
   return (
@@ -8,6 +9,10 @@ const Diodos = () => {
       title="Guía Básica de Diodos para Principiantes"
       subtitle="Todo lo que necesitas saber sobre los diodos: qué son, cómo funcionan, tipos principales y cómo usarlos en tus circuitos."
     >
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={diodeImg} alt="Diagrama de un diodo mostrando ánodo, cátodo, dirección de corriente y unión PN" className="w-full max-h-64 object-contain p-4" />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Símbolo del diodo con ánodo, cátodo y dirección de corriente en polarización directa</p>
+      </div>
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es un diodo?</h2>
       <p>
         Un diodo es un componente electrónico semiconductor que permite el paso de la corriente eléctrica en una sola dirección y la bloquea en la dirección opuesta. Esta propiedad, aparentemente simple, lo convierte en uno de los dispositivos más importantes y versátiles de toda la electrónica. Sin los diodos, no existirían las fuentes de alimentación modernas, los paneles solares no podrían generar electricidad útil, y la mayoría de los dispositivos electrónicos que usamos a diario simplemente no funcionarían.

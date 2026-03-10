@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import capacitorImg from "@/assets/capacitor-types.png";
 
 const Condensadores = () => {
   return (
@@ -8,6 +9,10 @@ const Condensadores = () => {
       title="¿Qué es un Condensador y Cómo Funciona?"
       subtitle="Descubre qué son los condensadores, cómo almacenan energía, sus tipos principales y sus aplicaciones más comunes en electrónica."
     >
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={capacitorImg} alt="Tipos de condensadores: cerámico, electrolítico, tantalio y de película" className="w-full max-h-64 object-contain p-4" />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Tipos principales de condensadores — cerámico, electrolítico, tantalio y de película</p>
+      </div>
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">Introducción a los condensadores</h2>
       <p>
         Los condensadores (también llamados capacitores en Latinoamérica) son componentes electrónicos pasivos fundamentales que se encuentran en prácticamente todos los circuitos electrónicos, desde un simple cargador de teléfono hasta los sistemas más complejos de un satélite espacial. Su función principal es <strong className="text-foreground">almacenar energía eléctrica en forma de campo eléctrico</strong> y liberarla cuando el circuito lo necesita.
