@@ -60,6 +60,15 @@ const Index = () => {
                 {link.label}
               </button>
             ))}
+            {navPageLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+              >
+                {link.label}
+              </Link>
+            ))}
             <div className="relative group">
               <button className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium flex items-center gap-1">
                 Artículos
