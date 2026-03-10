@@ -378,6 +378,27 @@ const Index = () => {
               to: "/articulos/diodos",
               tag: "Semiconductores",
             },
+            {
+              emoji: "🔢",
+              title: "Ley de Ohm Explicada",
+              desc: "Domina la relación entre voltaje, corriente y resistencia. Triángulo de Ohm, fórmulas de potencia, ejemplos resueltos y aplicaciones reales en diseño electrónico.",
+              to: "/articulos/ley-de-ohm",
+              tag: "Fundamentos",
+            },
+            {
+              emoji: "📟",
+              title: "Cómo Usar un Multímetro",
+              desc: "Guía paso a paso para medir voltaje, corriente, resistencia y continuidad. Consejos de seguridad y recomendaciones de compra para principiantes.",
+              to: "/articulos/multimetro",
+              tag: "Herramientas",
+            },
+            {
+              emoji: "🔌",
+              title: "Circuitos Serie vs Paralelo",
+              desc: "Entiende las diferencias entre conexiones en serie y paralelo. Fórmulas, tabla comparativa, circuitos mixtos y ejemplos prácticos resueltos.",
+              to: "/articulos/circuitos-serie-paralelo",
+              tag: "Fundamentos",
+            },
           ].map((article) => (
             <Link
               key={article.to}

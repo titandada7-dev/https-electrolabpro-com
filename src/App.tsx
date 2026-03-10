@@ -32,6 +32,9 @@ const App = () => (
           <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
           <Route path="/articulos/condensadores" element={<Condensadores />} />
           <Route path="/articulos/diodos" element={<Diodos />} />
+          <Route path="/articulos/ley-de-ohm" element={<LeyDeOhm />} />
+          <Route path="/articulos/multimetro" element={<Multimetro />} />
+          <Route path="/articulos/circuitos-serie-paralelo" element={<CircuitosSerieParalelo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
