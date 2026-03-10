@@ -9,6 +9,10 @@ const CodigoColoresResistencias = () => {
       title="Cómo Leer el Código de Colores de las Resistencias"
       subtitle="Aprende a identificar el valor de cualquier resistencia usando su código de bandas de colores. Guía completa con tablas, ejemplos y trucos."
     >
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={resistorImg} alt="Resistencia con bandas de colores mostrando el código de 4 bandas" className="w-full max-h-64 object-contain p-4" />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Resistencia con bandas de colores identificativas de su valor óhmico</p>
+      </div>
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es el código de colores de las resistencias?</h2>
       <p>
         Las resistencias son uno de los componentes electrónicos más utilizados en cualquier circuito. Su función principal es limitar el flujo de corriente eléctrica, protegiendo otros componentes más delicados como LEDs, transistores o circuitos integrados. Pero, ¿cómo sabemos cuánta resistencia ofrece cada una? La respuesta está en las <strong className="text-foreground">bandas de colores</strong> pintadas sobre su cuerpo.
