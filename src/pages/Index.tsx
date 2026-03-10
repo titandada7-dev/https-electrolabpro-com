@@ -13,6 +13,12 @@ const navLinks = [
   { label: "Equipamiento", target: "equipamiento" },
 ];
 
+const articleLinks = [
+  { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
+  { label: "Condensadores", to: "/articulos/condensadores" },
+  { label: "Diodos", to: "/articulos/diodos" },
+];
+
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
