@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import capacitorImg from "@/assets/capacitor-types.png";
 
 const Condensadores = () => {
   return (
