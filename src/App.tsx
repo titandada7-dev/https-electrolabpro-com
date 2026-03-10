@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CodigoColoresResistencias from "./pages/articles/CodigoColoresResistencias";
+import Condensadores from "./pages/articles/Condensadores";
+import Diodos from "./pages/articles/Diodos";
 import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
