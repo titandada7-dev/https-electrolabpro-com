@@ -186,20 +186,20 @@ const ResistorCalculator = () => {
               </div>
 
               {isActive && (
-                <div className={`grid gap-1.5 ${config.type === "tolerance" ? "grid-cols-4 sm:grid-cols-8" : "grid-cols-5 sm:grid-cols-6 md:grid-cols-12"}`}>
+                <div className={`grid gap-2 ${config.type === "tolerance" ? "grid-cols-2 sm:grid-cols-4 md:grid-cols-8" : "grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12"}`}>
                   {config.options.map((c, i) => (
                     <button
                       key={i}
                       onClick={(e) => { e.stopPropagation(); handleSelect(stepIdx, i); }}
-                      className={`flex flex-col items-center gap-1 p-1.5 rounded-lg border-2 transition-all duration-200 hover:scale-105 ${
+                      className={`flex items-center gap-2 sm:flex-col sm:gap-1 p-2 sm:p-1.5 rounded-lg border-2 transition-all duration-200 hover:scale-105 min-h-[44px] ${
                         config.value === i ? "border-primary glow scale-105" : "border-transparent opacity-70 hover:opacity-100"
                       }`}
                     >
                       <span
-                        className="w-8 h-8 rounded-md border border-border/50"
+                        className="w-8 h-8 sm:w-8 sm:h-8 rounded-md border border-border/50 shrink-0"
                         style={{ backgroundColor: c.color }}
                       />
-                      <span className="text-[10px] text-muted-foreground font-medium leading-tight text-center">
+                      <span className="text-xs sm:text-[10px] text-muted-foreground font-medium leading-tight text-left sm:text-center">
                         {c.name}
                       </span>
                     </button>
