@@ -52,13 +52,13 @@ const SobreNosotros = () => {
           {/* Main text */}
           <div className="p-6 rounded-xl border border-border bg-card/80 backdrop-blur space-y-4">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Bienvenido a <strong className="text-foreground">ElectroLab Pro</strong>, un proyecto educativo fundado por <strong className="text-foreground">J.A. Sanchez</strong>. Nuestra misión es simplificar el aprendizaje de la electrónica para principiantes y entusiastas.
+              Bienvenidos a <strong className="text-foreground">ElectroLab Pro</strong>. Este proyecto educativo es una iniciativa de <strong className="text-foreground">José Andrés Sánchez</strong>, web developer y apasionado de la electrónica.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Como desarrolladores y apasionados por la tecnología, entendemos lo difícil que puede ser identificar componentes como resistencias, capacitores y diodos al principio. Por eso, hemos creado herramientas interactivas y guías visuales para que cualquier persona pueda aprender a interpretar valores y códigos de colores de forma rápida y gratuita.
+              Nuestra misión es crear herramientas digitales gratuitas que ayuden a estudiantes y aficionados a identificar componentes como resistencias, capacitores y diodos sin errores.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              En ElectroLab Pro, creemos que la electrónica debe ser accesible para todos.
+              En ElectroLab Pro, convertimos la teoría compleja en herramientas simples y visuales.
             </p>
           </div>
 
@@ -99,7 +99,7 @@ const SobreNosotros = () => {
       <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
-            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
+            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">José Andrés Sánchez</span>
           </p>
           <div className="flex items-center justify-center gap-4">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
