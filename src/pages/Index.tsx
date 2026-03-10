@@ -113,12 +113,12 @@ const Index = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-4 space-y-3">
+           <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <button
                 key={link.target}
                 onClick={() => { scrollTo(link.target); setMenuOpen(false); }}
-                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
               >
                 {link.label}
               </button>
@@ -128,19 +128,19 @@ const Index = () => {
                 key={link.to}
                 to={link.to}
                 onClick={() => setMenuOpen(false)}
-                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
               >
                 {link.label}
               </Link>
             ))}
             <div className="border-t border-border pt-2 mt-1">
-              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2">Artículos</p>
+              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-1 px-3">Artículos</p>
               {articleLinks.map((a) => (
                 <Link
                   key={a.to}
                   to={a.to}
                   onClick={() => setMenuOpen(false)}
-                  className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                  className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
                 >
                   {a.label}
                 </Link>
@@ -149,15 +149,15 @@ const Index = () => {
             <Link
               to="/sobre-nosotros"
               onClick={() => setMenuOpen(false)}
-              className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
             >
               Sobre Nosotros
             </Link>
             <button
               onClick={() => { scrollTo("equipamiento"); setMenuOpen(false); }}
-              className="flex items-center gap-1.5 w-full px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
+              className="flex items-center gap-1.5 w-full px-4 py-3 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-base font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)] min-h-[44px]"
             >
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingBag className="w-5 h-5" />
               Herramientas Recomendadas
             </button>
           </nav>
