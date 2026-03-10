@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import resistorImg from "@/assets/resistor-color-code.png";
 
 const CodigoColoresResistencias = () => {
   return (
