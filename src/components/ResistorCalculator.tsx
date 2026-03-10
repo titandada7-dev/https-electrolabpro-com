@@ -89,12 +89,12 @@ const ResistorCalculator = () => {
   };
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-6 md:space-y-8">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl md:text-3xl font-bold font-mono text-foreground glow-text">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-foreground glow-text">
           Calculadora de Resistencias
         </h2>
-        <p className="text-muted-foreground text-sm md:text-base">
+        <p className="text-muted-foreground text-xs sm:text-sm md:text-base">
           Sigue los 4 pasos para identificar el valor de tu resistencia
         </p>
       </div>
