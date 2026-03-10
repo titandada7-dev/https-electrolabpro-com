@@ -278,7 +278,7 @@ const Index = () => {
                     to={guide.to}
                     className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
                   >
-                    <div className="w-full h-28 bg-secondary/50 flex items-center justify-center text-4xl">
+                    <div className="w-full h-24 sm:h-28 bg-secondary/50 flex items-center justify-center text-4xl">
                       {guide.emoji}
                     </div>
                     <div className="flex flex-col flex-1 p-4 space-y-2">
