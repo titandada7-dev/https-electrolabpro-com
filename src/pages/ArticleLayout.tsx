@@ -84,6 +84,10 @@ const ArticleLayout = ({ title, subtitle, children }: ArticleLayoutProps) => {
           </p>
           <div className="flex items-center justify-center gap-4 mb-3">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
           </div>
           <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles."

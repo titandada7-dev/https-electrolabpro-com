@@ -9,6 +9,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CodigoColoresResistencias from "./pages/articles/CodigoColoresResistencias";
 import Condensadores from "./pages/articles/Condensadores";
 import Diodos from "./pages/articles/Diodos";
+import AvisoLegal from "./pages/AvisoLegal";
+import Contacto from "./pages/Contacto";
 import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/privacidad" element={<PrivacyPolicy />} />
+          <Route path="/aviso-legal" element={<AvisoLegal />} />
+          <Route path="/contacto" element={<Contacto />} />
           <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
           <Route path="/articulos/condensadores" element={<Condensadores />} />
           <Route path="/articulos/diodos" element={<Diodos />} />
