@@ -97,6 +97,19 @@ const Index = () => {
                 {link.label}
               </button>
             ))}
+            <div className="border-t border-border pt-2 mt-1">
+              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2">Artículos</p>
+              {articleLinks.map((a) => (
+                <Link
+                  key={a.to}
+                  to={a.to}
+                  onClick={() => setMenuOpen(false)}
+                  className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                >
+                  {a.label}
+                </Link>
+              ))}
+            </div>
             <button
               onClick={() => { scrollTo("kits-oficiales"); setMenuOpen(false); }}
               className="flex items-center gap-1.5 w-full px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
