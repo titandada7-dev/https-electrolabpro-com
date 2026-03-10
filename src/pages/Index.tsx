@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, ShoppingCart, Package, Flame, Menu, X } from "lucide-react";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
@@ -28,6 +29,10 @@ const scrollTo = (id: string) => {
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  usePageMeta({
+    title: "ElectroLab Pro - Calculadora de Resistencias, Ley de Ohm y Guías de Electrónica",
+    description: "Herramientas gratuitas para calcular resistencias por código de colores, aplicar la Ley de Ohm y aprender sobre condensadores, diodos y circuitos electrónicos.",
+  });
 
   return (
     <div className="min-h-screen bg-background bg-grid">

@@ -1,7 +1,12 @@
 import { Zap, ArrowLeft, Users, Target, Heart, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 const SobreNosotros = () => {
+  usePageMeta({
+    title: "Sobre Nosotros | ElectroLab Pro",
+    description: "Conoce a José Andrés Sánchez, creador de ElectroLab Pro. Herramientas gratuitas de electrónica para estudiantes y entusiastas. Nuestra misión y valores.",
+  });
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Header */}

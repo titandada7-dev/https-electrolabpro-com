@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, Shield, Cookie, Eye, Mail } from "lucide-react";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 const PrivacyPolicy = () => {
+  usePageMeta({
+    title: "Política de Privacidad | ElectroLab Pro",
+    description: "Conoce cómo ElectroLab Pro protege tus datos personales, el uso de cookies, Google Analytics y publicidad de Google AdSense en nuestro sitio.",
+  });
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">

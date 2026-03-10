@@ -1,7 +1,12 @@
 import { Zap, ArrowLeft, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 const AvisoLegal = () => {
+  usePageMeta({
+    title: "Aviso Legal | ElectroLab Pro",
+    description: "Aviso legal de ElectroLab Pro: condiciones de uso, propiedad intelectual, enlaces de afiliados de Amazon y limitación de responsabilidad.",
+  });
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Header */}

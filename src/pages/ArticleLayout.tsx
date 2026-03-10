@@ -1,6 +1,7 @@
 import { Zap, ArrowLeft, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import AdBanner from "@/components/AdBanner";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 interface ArticleLayoutProps {
   title: string;
@@ -9,6 +10,10 @@ interface ArticleLayoutProps {
 }
 
 const ArticleLayout = ({ title, subtitle, children }: ArticleLayoutProps) => {
+  usePageMeta({
+    title: `${title} | ElectroLab Pro`,
+    description: subtitle,
+  });
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Header */}
