@@ -14,6 +14,7 @@ import Multimetro from "./pages/articles/Multimetro";
 import CircuitosSerieParalelo from "./pages/articles/CircuitosSerieParalelo";
 import AvisoLegal from "./pages/AvisoLegal";
 import Contacto from "./pages/Contacto";
+import SobreNosotros from "./pages/SobreNosotros";
 import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
