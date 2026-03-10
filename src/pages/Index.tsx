@@ -389,6 +389,58 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Guías de Electrónica */}
+      <section className="container mx-auto px-4 py-16 border-b border-border">
+        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+          <BookOpen className="w-6 h-6 text-primary glow-icon" />
+          Guías de Electrónica
+        </h2>
+        <p className="text-center text-muted-foreground text-sm mb-10">Artículos esenciales para dominar los fundamentos</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            {
+              emoji: "🔢",
+              title: "Ley de Ohm Explicada",
+              desc: "Domina la relación entre voltaje, corriente y resistencia con ejemplos prácticos y el triángulo de Ohm.",
+              to: "/articulos/ley-de-ohm",
+              tag: "Fundamentos",
+            },
+            {
+              emoji: "💡",
+              title: "Tipos de Diodos",
+              desc: "Guía completa sobre diodos rectificadores, LED, Zener, Schottky y fotodiodos con aplicaciones reales.",
+              to: "/articulos/diodos",
+              tag: "Semiconductores",
+            },
+            {
+              emoji: "⚡",
+              title: "Funciones de los Capacitores",
+              desc: "Aprende a leer y diferenciar tipos de capacitores cerámicos y electrolíticos con nuestra guía completa.",
+              to: "/articulos/condensadores",
+              tag: "Componentes",
+            },
+          ].map((guide) => (
+            <Link
+              key={guide.to}
+              to={guide.to}
+              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+            >
+              <div className="w-full h-32 bg-secondary/50 flex items-center justify-center text-5xl">
+                {guide.emoji}
+              </div>
+              <div className="flex flex-col flex-1 p-5 space-y-3">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary">{guide.tag}</span>
+                <h3 className="font-mono font-bold text-foreground text-lg group-hover:text-primary transition-colors">{guide.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{guide.desc}</p>
+                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
+                  Leer guía →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Aprende Electrónica */}
       <section className="container mx-auto px-4 py-16 border-b border-border">
         <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
