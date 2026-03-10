@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import diodeImg from "@/assets/diode-diagram.png";
 
 const Diodos = () => {
   return (
