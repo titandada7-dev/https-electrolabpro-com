@@ -99,7 +99,7 @@ const SobreNosotros = () => {
       <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
-            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
+            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">José Andrés Sánchez</span>
           </p>
           <div className="flex items-center justify-center gap-4">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
