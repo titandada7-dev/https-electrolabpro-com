@@ -245,6 +245,54 @@ const Index = () => {
               <ResistorCalculator />
             </div>
 
+            {/* Guías Técnicas Destacadas */}
+            <section className="space-y-6">
+              <h2 className="text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
+                <BookOpen className="w-6 h-6 text-primary glow-icon" />
+                Guías Técnicas Destacadas
+              </h2>
+              <p className="text-center text-muted-foreground text-sm">Artículos esenciales para dominar los fundamentos</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                {[
+                  {
+                    emoji: "🔢",
+                    title: "Ley de Ohm",
+                    desc: "Aprende los fundamentos del voltaje y la corriente.",
+                    to: "/articulos/ley-de-ohm",
+                  },
+                  {
+                    emoji: "💡",
+                    title: "Diodos y Semiconductores",
+                    desc: "Guía práctica para principiantes.",
+                    to: "/articulos/diodos",
+                  },
+                  {
+                    emoji: "⚡",
+                    title: "Condensadores",
+                    desc: "Tipos, valores y aplicaciones en circuitos.",
+                    to: "/articulos/condensadores",
+                  },
+                ].map((guide) => (
+                  <Link
+                    key={guide.to}
+                    to={guide.to}
+                    className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+                  >
+                    <div className="w-full h-28 bg-secondary/50 flex items-center justify-center text-4xl">
+                      {guide.emoji}
+                    </div>
+                    <div className="flex flex-col flex-1 p-4 space-y-2">
+                      <h3 className="font-mono font-bold text-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{guide.desc}</p>
+                      <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
+                        Leer guía →
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
             {/* AdSense: Entre calculadoras */}
             <AdBanner slot="2222222222" format="auto" className="min-h-[90px] md:min-h-[120px]" />
 
