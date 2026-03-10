@@ -89,12 +89,12 @@ const ResistorCalculator = () => {
   };
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-6 md:space-y-8">
       <div className="text-center space-y-2">
-        <h2 className="text-2xl md:text-3xl font-bold font-mono text-foreground glow-text">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-mono text-foreground glow-text">
           Calculadora de Resistencias
         </h2>
-        <p className="text-muted-foreground text-sm md:text-base">
+        <p className="text-muted-foreground text-xs sm:text-sm md:text-base">
           Sigue los 4 pasos para identificar el valor de tu resistencia
         </p>
       </div>
@@ -186,20 +186,20 @@ const ResistorCalculator = () => {
               </div>
 
               {isActive && (
-                <div className={`grid gap-1.5 ${config.type === "tolerance" ? "grid-cols-4 sm:grid-cols-8" : "grid-cols-5 sm:grid-cols-6 md:grid-cols-12"}`}>
+                <div className={`grid gap-2 ${config.type === "tolerance" ? "grid-cols-2 sm:grid-cols-4 md:grid-cols-8" : "grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12"}`}>
                   {config.options.map((c, i) => (
                     <button
                       key={i}
                       onClick={(e) => { e.stopPropagation(); handleSelect(stepIdx, i); }}
-                      className={`flex flex-col items-center gap-1 p-1.5 rounded-lg border-2 transition-all duration-200 hover:scale-105 ${
+                      className={`flex items-center gap-2 sm:flex-col sm:gap-1 p-2 sm:p-1.5 rounded-lg border-2 transition-all duration-200 hover:scale-105 min-h-[44px] ${
                         config.value === i ? "border-primary glow scale-105" : "border-transparent opacity-70 hover:opacity-100"
                       }`}
                     >
                       <span
-                        className="w-8 h-8 rounded-md border border-border/50"
+                        className="w-8 h-8 sm:w-8 sm:h-8 rounded-md border border-border/50 shrink-0"
                         style={{ backgroundColor: c.color }}
                       />
-                      <span className="text-[10px] text-muted-foreground font-medium leading-tight text-center">
+                      <span className="text-xs sm:text-[10px] text-muted-foreground font-medium leading-tight text-left sm:text-center">
                         {c.name}
                       </span>
                     </button>
@@ -214,7 +214,7 @@ const ResistorCalculator = () => {
       {/* Result */}
       <div className="text-center p-6 rounded-xl bg-card border border-glow glow space-y-3">
         <p className="text-muted-foreground text-sm">Valor calculado</p>
-        <p className="text-3xl md:text-5xl font-mono font-bold text-primary glow-text">
+        <p className="text-2xl sm:text-3xl md:text-5xl font-mono font-bold text-primary glow-text">
           {formatResistance(resistance)}
         </p>
         <p className="text-muted-foreground">Tolerancia: {tolerance}</p>

@@ -103,7 +103,7 @@ const Index = () => {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-foreground rounded-lg hover:bg-secondary/50 transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -113,12 +113,12 @@ const Index = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-4 space-y-3">
+           <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-3 space-y-1">
             {navLinks.map((link) => (
               <button
                 key={link.target}
                 onClick={() => { scrollTo(link.target); setMenuOpen(false); }}
-                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
               >
                 {link.label}
               </button>
@@ -128,19 +128,19 @@ const Index = () => {
                 key={link.to}
                 to={link.to}
                 onClick={() => setMenuOpen(false)}
-                className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
               >
                 {link.label}
               </Link>
             ))}
             <div className="border-t border-border pt-2 mt-1">
-              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2">Artículos</p>
+              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-1 px-3">Artículos</p>
               {articleLinks.map((a) => (
                 <Link
                   key={a.to}
                   to={a.to}
                   onClick={() => setMenuOpen(false)}
-                  className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+                  className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
                 >
                   {a.label}
                 </Link>
@@ -149,15 +149,15 @@ const Index = () => {
             <Link
               to="/sobre-nosotros"
               onClick={() => setMenuOpen(false)}
-              className="block w-full text-left text-sm text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
             >
               Sobre Nosotros
             </Link>
             <button
               onClick={() => { scrollTo("equipamiento"); setMenuOpen(false); }}
-              className="flex items-center gap-1.5 w-full px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-sm font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
+              className="flex items-center gap-1.5 w-full px-4 py-3 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-base font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)] min-h-[44px]"
             >
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingBag className="w-5 h-5" />
               Herramientas Recomendadas
             </button>
           </nav>
@@ -170,11 +170,11 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-24 md:py-32" style={{ background: 'linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(0 0% 4%) 100%)' }}>
+      <section className="relative overflow-hidden py-16 sm:py-24 md:py-32" style={{ background: 'linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(0 0% 4%) 100%)' }}>
         {/* Glow effect */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-30 blur-[100px]" style={{ background: 'hsl(199 89% 60% / 0.4)' }} />
         <div className="relative container mx-auto px-4 text-center space-y-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent">
             ElectroLab Pro
           </h1>
           <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -247,12 +247,12 @@ const Index = () => {
 
             {/* Guías Técnicas Destacadas */}
             <section className="space-y-6">
-              <h2 className="text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
-                <BookOpen className="w-6 h-6 text-primary glow-icon" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
+                <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
                 Guías Técnicas Destacadas
               </h2>
-              <p className="text-center text-muted-foreground text-sm">Artículos esenciales para dominar los fundamentos</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <p className="text-center text-muted-foreground text-xs sm:text-sm">Artículos esenciales para dominar los fundamentos</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
                 {[
                   {
                     emoji: "🔢",
@@ -278,7 +278,7 @@ const Index = () => {
                     to={guide.to}
                     className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
                   >
-                    <div className="w-full h-28 bg-secondary/50 flex items-center justify-center text-4xl">
+                    <div className="w-full h-24 sm:h-28 bg-secondary/50 flex items-center justify-center text-4xl">
                       {guide.emoji}
                     </div>
                     <div className="flex flex-col flex-1 p-4 space-y-2">
@@ -309,8 +309,8 @@ const Index = () => {
 
             {/* Equipamiento Recomendado */}
             <section id="equipamiento" className="space-y-6">
-              <h2 className="text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
-                <Package className="w-6 h-6 text-primary glow-icon" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
+                <Package className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
                 Equipamiento Recomendado
               </h2>
               <p className="text-center text-muted-foreground text-sm">Lo que necesitás para empezar a crear</p>
@@ -389,8 +389,8 @@ const Index = () => {
       {/* Tips de Electrónica */}
       <section className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-            <Zap className="w-6 h-6 text-primary glow-icon" />
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+            <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
             Tips de Electrónica
           </h2>
           <p className="text-center text-muted-foreground text-sm mb-8">por J.A.Sanchez</p>
@@ -438,10 +438,10 @@ const Index = () => {
 
       {/* Guías de Electrónica */}
       <section className="container mx-auto px-4 py-16 border-b border-border">
-        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-          <BookOpen className="w-6 h-6 text-primary glow-icon" />
-          Guías de Electrónica
-        </h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
+            Guías de Electrónica
+          </h2>
         <p className="text-center text-muted-foreground text-sm mb-10">Artículos esenciales para dominar los fundamentos</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {[
@@ -490,10 +490,10 @@ const Index = () => {
 
       {/* Aprende Electrónica */}
       <section className="container mx-auto px-4 py-16 border-b border-border">
-        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-          <BookOpen className="w-6 h-6 text-primary glow-icon" />
-          Aprende Electrónica
-        </h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
+            Aprende Electrónica
+          </h2>
         <p className="text-center text-muted-foreground text-sm mb-10">Artículos educativos escritos por J.A.Sanchez para dominar los fundamentos</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[
@@ -563,10 +563,10 @@ const Index = () => {
 
       {/* Herramientas Imprescindibles */}
       <section className="container mx-auto px-4 py-16 border-b border-border">
-        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-          <Cpu className="w-6 h-6 text-primary glow-icon" />
-          Herramientas Imprescindibles
-        </h2>
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+            <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
+            Herramientas Imprescindibles
+          </h2>
         <p className="text-center text-muted-foreground text-sm mb-10">Las herramientas que todo electrónico necesita en su mesa de trabajo</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[
@@ -616,8 +616,8 @@ const Index = () => {
 
       {/* Kits Oficiales ElectroLab */}
       <section id="kits-oficiales" className="container mx-auto px-4 py-16">
-        <h2 className="text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-          <ShoppingBag className="w-6 h-6 text-primary glow-icon" />
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+          <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
           Kits Oficiales ElectroLab
         </h2>
         <p className="text-center text-muted-foreground text-sm mb-10">Equipate con lo mejor para aprender electrónica</p>
