@@ -370,28 +370,7 @@ const Index = () => {
               </div>
             ))}
           </div>
-          {/* Tarjeta Kit Recomendado */}
-          <div className="mt-10 p-6 rounded-xl border border-primary/30 bg-card/80 backdrop-blur max-w-lg mx-auto space-y-4">
-            <h3 className="text-lg font-mono font-bold text-foreground text-center">
-              🛠️ Equipamiento Recomendado por J.A.Sanchez
-            </h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><span className="text-primary mt-0.5">✔️</span> Incluye Placa Arduino Uno Original.</li>
-              <li className="flex items-start gap-2"><span className="text-primary mt-0.5">✔️</span> Más de 200 componentes y sensores.</li>
-              <li className="flex items-start gap-2"><span className="text-primary mt-0.5">✔️</span> Manual de proyectos paso a paso.</li>
-            </ul>
-            <div className="text-center">
-              <a
-                href="https://amzn.to/3Nj6QlU"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
-              >
-                <ShoppingCart className="w-4 h-4" />
-                🚀 Aprendé más con el Kit de Inicio Oficial
-              </a>
-            </div>
-          </div>
+          {/* Tarjeta Kit Recomendado - removed to simplify */}
         </div>
       </section>
 
