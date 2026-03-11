@@ -163,8 +163,8 @@ const Index = () => {
           </nav>
         )}
 
-        {/* Banner publicitario superior */}
-        <div className="container mx-auto px-4 pb-2">
+        {/* Banner publicitario superior - oculto en móvil */}
+        <div className="container mx-auto px-4 pb-2 hidden md:block">
           <AdBanner slot="1234567890" format="horizontal" className="min-h-[90px]" />
         </div>
       </header>
