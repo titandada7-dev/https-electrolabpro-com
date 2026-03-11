@@ -113,7 +113,7 @@ const Index = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-           <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-3 space-y-1">
+           <nav className="md:hidden border-t border-border bg-background px-4 py-3 space-y-1 z-[9999]">
             {navLinks.map((link) => (
               <button
                 key={link.target}
