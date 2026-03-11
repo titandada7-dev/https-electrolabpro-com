@@ -156,10 +156,10 @@ const Index = () => {
             </Link>
             <button
               onClick={() => { scrollTo("equipamiento"); setMenuOpen(false); }}
-              className="flex items-center gap-1.5 w-full px-4 py-3 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white text-base font-bold transition-all shadow-[0_0_15px_hsl(30,90%,50%,0.3)] min-h-[44px]"
+              className="flex items-center gap-1.5 w-full px-4 py-3 rounded-lg border border-muted-foreground/30 text-muted-foreground text-base font-medium transition-all hover:text-foreground hover:border-foreground/50 min-h-[44px]"
             >
               <ShoppingBag className="w-5 h-5" />
-              Herramientas Recomendadas
+              Herramientas
             </button>
           </nav>
         )}
