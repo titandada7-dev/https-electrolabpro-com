@@ -249,6 +249,56 @@ const Index = () => {
               <ResistorCalculator />
             </div>
 
+            {/* Equipa tu laboratorio */}
+            <section className="rounded-xl border border-border bg-card/80 backdrop-blur p-5 sm:p-7 space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="inline-flex p-2.5 rounded-lg bg-[hsl(30,90%,50%)/0.15]">
+                  <ShoppingCart className="w-6 h-6 text-[hsl(30,90%,50%)]" />
+                </div>
+                <div>
+                  <h2 className="text-lg sm:text-xl font-mono font-bold text-foreground">Equipa tu laboratorio</h2>
+                  <p className="text-xs text-muted-foreground">Selección esencial para empezar a practicar</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {[
+                  {
+                    emoji: "🔧",
+                    title: "Kit de 1000 Resistencias",
+                    desc: "Pack completo con todos los valores comunes (10Ω a 1MΩ). El compañero ideal para la calculadora.",
+                    link: "https://www.amazon.es/s?k=kit+1000+resistencias+surtido&tag=electrolabpro-21",
+                  },
+                  {
+                    emoji: "📟",
+                    title: "Multímetro Digital Económico",
+                    desc: "Imprescindible para cualquier principiante. Mide voltaje, corriente y resistencia con facilidad.",
+                    link: "https://www.amazon.es/s?k=multimetro+digital+economico&tag=electrolabpro-21",
+                  },
+                  {
+                    emoji: "🧪",
+                    title: "Breadboard + Cables Jumper",
+                    desc: "Placa de pruebas y cables para armar los circuitos que calculás aquí. Sin soldadura.",
+                    link: "https://www.amazon.es/s?k=breadboard+cables+jumper+kit&tag=electrolabpro-21",
+                  },
+                ].map((item) => (
+                  <a
+                    key={item.title}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="group flex flex-col rounded-lg border border-border bg-secondary/30 p-4 space-y-2.5 hover:border-[hsl(30,90%,50%)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_20px_hsl(30,90%,50%,0.15)]"
+                  >
+                    <span className="text-2xl">{item.emoji}</span>
+                    <h3 className="font-mono font-bold text-foreground text-sm group-hover:text-[hsl(30,90%,50%)] transition-colors">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed flex-1">{item.desc}</p>
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-[hsl(30,90%,50%)] group-hover:gap-2 transition-all">
+                      Ver en Amazon →
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </section>
+
             {/* Guías Técnicas Destacadas */}
             <section className="space-y-6">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
