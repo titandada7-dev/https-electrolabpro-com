@@ -305,8 +305,10 @@ const Index = () => {
               <OhmCalculator />
             </div>
 
-            {/* AdSense Slot 2: Entre calculadoras y diccionario */}
-            <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+            {/* AdSense Slot 2: Entre calculadoras y diccionario - oculto en móvil */}
+            <div className="hidden md:block">
+              <AdBanner slot="3333333333" format="auto" className="min-h-[100px]" />
+            </div>
 
             <div id="diccionario">
               <ComponentDictionary />
