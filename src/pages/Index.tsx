@@ -40,7 +40,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Encabezado */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-[9999] border-b border-border bg-background backdrop-blur-none">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Zap className="w-6 h-6 text-primary glow-icon" />
