@@ -12,6 +12,7 @@ import Diodos from "./pages/articles/Diodos";
 import LeyDeOhm from "./pages/articles/LeyDeOhm";
 import Multimetro from "./pages/articles/Multimetro";
 import CircuitosSerieParalelo from "./pages/articles/CircuitosSerieParalelo";
+import Transistores from "./pages/articles/Transistores";
 import AvisoLegal from "./pages/AvisoLegal";
 import Contacto from "./pages/Contacto";
 import SobreNosotros from "./pages/SobreNosotros";
