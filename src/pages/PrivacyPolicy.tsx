@@ -32,19 +32,40 @@ const PrivacyPolicy = () => {
         </h1>
         <p className="text-muted-foreground text-sm mb-8">Última actualización: 9 de marzo de 2026</p>
 
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="1. Google AdSense y Cookies">
+        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="1. Uso de Cookies">
           <p>
-            Utilizamos Google AdSense para mostrar anuncios. Google, como proveedor externo, utiliza cookies para
-            publicar anuncios basados en las visitas anteriores de los usuarios a este sitio web. Los usuarios pueden
-            inhabilitar la publicidad personalizada visitando la{" "}
-            <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
-              Configuración de anuncios de Google
-            </a>.
-            Nuestro ID de editor es: <strong>pub-9393284878747603</strong>.
+            Este sitio utiliza cookies para mejorar la experiencia del usuario, permitir el correcto funcionamiento
+            de nuestras herramientas interactivas (calculadoras, diccionario de componentes) y para mostrar anuncios
+            relevantes a través de servicios de publicidad de terceros.
           </p>
         </Section>
 
-        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="2. Programa de Afiliados de Amazon">
+        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="2. Google AdSense">
+          <p>
+            Google, como proveedor de terceros, utiliza cookies para publicar anuncios en nuestro sitio. El uso de
+            la cookie de publicidad de Google permite a Google y a sus socios publicar anuncios basados en las visitas
+            de los usuarios a nuestro sitio y a otros sitios de Internet.
+          </p>
+          <p>
+            Nuestro ID de editor es: <strong>pub-9393284878747603</strong>. Los usuarios pueden inhabilitar la
+            publicidad personalizada visitando la{" "}
+            <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              Configuración de anuncios de Google
+            </a>.
+          </p>
+        </Section>
+
+        <Section icon={<Shield className="w-5 h-5 text-primary" />} title="3. Cookie DART">
+          <p>
+            Google utiliza la cookie DART para mostrar anuncios a los usuarios en función de su visita a nuestro sitio
+            y a otros sitios de Internet. Los usuarios pueden inhabilitar el uso de la cookie de DART a través de la{" "}
+            <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              política de privacidad de la red de anuncios y contenido de Google
+            </a>.
+          </p>
+        </Section>
+
+        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="4. Programa de Afiliados de Amazon">
           <p>
             ElectroLab Pro participa en el Programa de Afiliados de Amazon Services LLC. Esto significa que recibimos
             una pequeña comisión por las compras realizadas a través de nuestros enlaces de productos recomendados
@@ -52,19 +73,17 @@ const PrivacyPolicy = () => {
           </p>
         </Section>
 
-        <Section icon={<Shield className="w-5 h-5 text-primary" />} title="3. Cookies y Seguimiento">
+        <Section icon={<Mail className="w-5 h-5 text-primary" />} title="5. Contacto">
           <p>
-            Este sitio utiliza cookies técnicas para mejorar la experiencia del usuario, como el funcionamiento de
-            nuestras calculadoras de resistencias y el diccionario de componentes.
-          </p>
-        </Section>
-
-        <Section icon={<Mail className="w-5 h-5 text-primary" />} title="4. Contacto">
-          <p>
-            Para cualquier duda sobre esta política, puedes contactarnos a través de nuestra web oficial:{" "}
+            El responsable de este sitio web es <strong>J.A. Sanchez</strong>. Para cualquier duda sobre esta política,
+            puedes contactarnos a través de nuestra web oficial:{" "}
             <a href="https://electrolabpro.com" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
               electrolabpro.com
-            </a>.
+            </a>{" "}
+            o visitando nuestra{" "}
+            <Link to="/contacto" className="text-primary underline hover:text-primary/80">
+              página de contacto
+            </Link>.
           </p>
         </Section>
       </main>
