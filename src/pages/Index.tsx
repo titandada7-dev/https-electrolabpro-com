@@ -499,132 +499,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Herramientas Imprescindibles */}
-      <section className="container mx-auto px-4 py-16 border-b border-border">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-            <Cpu className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
-            Herramientas Imprescindibles
-          </h2>
-        <p className="text-center text-muted-foreground text-sm mb-10">Las herramientas que todo electrónico necesita en su mesa de trabajo</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[
-            {
-              title: "Multímetro Digital",
-              desc: "Mide voltaje, corriente, resistencia y más. Imprescindible para diagnosticar cualquier circuito.",
-              link: "https://amzn.to/3Nj6QlU",
-              emoji: "📟",
-            },
-            {
-              title: "Cautín / Estación de Soldadura",
-              desc: "Soldadura de precisión para tus proyectos. Temperatura regulable y punta intercambiable.",
-              link: "https://amzn.to/3Nj6QlU",
-              emoji: "🔥",
-            },
-            {
-              title: "Protoboard 830 Puntos",
-              desc: "La base para prototipar sin soldar. Conectá componentes rápidamente y probá tus diseños.",
-              link: "https://amzn.to/3Nj6QlU",
-              emoji: "🔌",
-            },
-          ].map((tool) => (
-            <div
-              key={tool.title}
-              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
-            >
-              <div className="w-full h-40 bg-secondary/50 flex items-center justify-center text-5xl">
-                {tool.emoji}
-              </div>
-              <div className="flex flex-col flex-1 p-5 space-y-3">
-                <h3 className="font-mono font-bold text-foreground text-lg">{tool.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{tool.desc}</p>
-                <a
-                  href={tool.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto"
-                >
-                  <ShoppingCart className="w-4 h-4" />
-                  Ver en Amazon
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Kits Oficiales ElectroLab */}
-      <section id="kits-oficiales" className="container mx-auto px-4 py-16">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-          <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
-          Kits Oficiales ElectroLab
+      {/* Equipa tu laboratorio — Fila compacta */}
+      <section id="equipamiento" className="container mx-auto px-4 py-16">
+        <h2 className="text-lg sm:text-xl font-mono font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
+          <ShoppingBag className="w-4 h-4" />
+          Equipa tu laboratorio
         </h2>
-        <p className="text-center text-muted-foreground text-sm mb-10">Equipate con lo mejor para aprender electrónica</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="flex flex-col sm:flex-row gap-3 max-w-4xl mx-auto">
           {[
-            {
-              title: "Kit de Inicio",
-              subtitle: "Protoboard, LEDs, Cables",
-              desc: "Todo lo esencial para armar tus primeros circuitos. Incluye protoboard, LEDs de colores, cables dupont y resistencias básicas.",
-              link: "https://amzn.to/3Nj6QlU",
-              emoji: "🔌",
-              badge: "Más vendido",
-            },
-            {
-              title: "Kit de Resistencias y Capacitores",
-              subtitle: "Pack completo de componentes pasivos",
-              desc: "Más de 500 resistencias y 200 capacitores en valores estándar. Organizados en caja clasificadora para acceso rápido.",
-              link: "https://amzn.to/3Nj6QlU",
-              emoji: "⚡",
-              badge: "Recomendado",
-            },
-            {
-              title: "Multímetro Digital Profesional",
-              subtitle: "Medición de precisión",
-              desc: "Multímetro autorango con medición de voltaje, corriente, resistencia, capacitancia y temperatura. Pantalla retroiluminada.",
-              link: "https://amzn.to/3Nj6QlU",
-              emoji: "📟",
-              badge: "Recomendado",
-            },
-          ].map((kit) => (
-            <div
-              key={kit.title}
-              className="relative group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-[hsl(30,90%,50%)]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_hsl(30,90%,50%,0.2)]"
+            { emoji: "🔧", title: "Kit de Resistencias", link: "https://www.amazon.es/s?k=kit+1000+resistencias+surtido&tag=electrolabpro-21" },
+            { emoji: "📟", title: "Multímetro Digital", link: "https://www.amazon.es/s?k=multimetro+digital+economico&tag=electrolabpro-21" },
+            { emoji: "🧪", title: "Breadboard + Cables", link: "https://www.amazon.es/s?k=breadboard+cables+jumper+kit&tag=electrolabpro-21" },
+          ].map((item) => (
+            <a
+              key={item.title}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="flex-1 flex items-center gap-3 rounded-lg border border-border bg-card/60 px-4 py-3 hover:border-muted-foreground/40 transition-all duration-300 group"
             >
-              {/* Badge */}
-              <span className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-[hsl(30,90%,50%)] text-white text-[10px] font-bold uppercase tracking-wider shadow-lg">
-                {kit.badge}
-              </span>
-              <div className="w-full h-40 bg-secondary/50 flex items-center justify-center text-5xl">
-                {kit.emoji}
-              </div>
-              <div className="flex flex-col flex-1 p-5 space-y-3">
-                <h3 className="font-mono font-bold text-foreground text-lg">{kit.title}</h3>
-                <p className="text-xs text-primary font-semibold uppercase tracking-wide">{kit.subtitle}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{kit.desc}</p>
-                <a
-                  href={kit.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] text-white font-bold text-sm transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto overflow-hidden hover:scale-105 hover:shadow-[0_0_25px_hsl(30,90%,50%,0.5)] hover:bg-[hsl(30,90%,55%)]"
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                  <ShoppingCart className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10">Ver en Amazon</span>
-                </a>
-              </div>
-            </div>
+              <span className="text-xl">{item.emoji}</span>
+              <span className="font-mono text-sm font-medium text-foreground group-hover:text-primary transition-colors">{item.title}</span>
+              <span className="ml-auto text-xs text-muted-foreground group-hover:text-primary transition-colors">→</span>
+            </a>
           ))}
         </div>
+        <p className="text-center text-[10px] text-muted-foreground/50 mt-4 italic">
+          Como Afiliado de Amazon, gano por las compras adscritas que cumplen los requisitos aplicables.
+        </p>
       </section>
 
       {/* AdSense: Antes del footer */}
       <div className="container mx-auto px-4 py-6">
         <AdBanner slot="4444444444" format="auto" className="min-h-[90px] md:min-h-[120px]" />
-      </div>
-
-      {/* AdSense: Después de tips, antes de kits - oculto en móvil */}
-      <div className="container mx-auto px-4 py-4 hidden md:block">
-        <AdBanner slot="5555555555" format="auto" className="min-h-[100px]" />
       </div>
 
       {/* Pie de página */}
