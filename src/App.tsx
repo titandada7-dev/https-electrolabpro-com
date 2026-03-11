@@ -38,6 +38,7 @@ const App = () => (
           <Route path="/articulos/ley-de-ohm" element={<LeyDeOhm />} />
           <Route path="/articulos/multimetro" element={<Multimetro />} />
           <Route path="/articulos/circuitos-serie-paralelo" element={<CircuitosSerieParalelo />} />
+          <Route path="/articulos/transistores" element={<Transistores />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
