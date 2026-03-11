@@ -40,7 +40,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Encabezado */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-[9999] border-b border-border bg-background backdrop-blur-none">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Zap className="w-6 h-6 text-primary glow-icon" />
@@ -74,7 +74,7 @@ const Index = () => {
                 Artículos
                 <ChevronDown className="w-3.5 h-3.5" />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-56 rounded-lg border border-border bg-card/95 backdrop-blur-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-lg border border-border bg-card shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-[9999]">
                 {articleLinks.map((a) => (
                   <Link
                     key={a.to}
@@ -113,7 +113,7 @@ const Index = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-           <nav className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl px-4 py-3 space-y-1">
+           <nav className="md:hidden border-t border-border bg-background px-4 py-3 space-y-1 z-[9999]">
             {navLinks.map((link) => (
               <button
                 key={link.target}
