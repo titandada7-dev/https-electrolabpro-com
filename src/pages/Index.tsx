@@ -691,9 +691,9 @@ const Index = () => {
         <AdBanner slot="4444444444" format="auto" className="min-h-[90px] md:min-h-[120px]" />
       </div>
 
-      {/* AdSense: Después de tips, antes de kits */}
-      <div className="container mx-auto px-4 py-4">
-        <AdBanner slot="5555555555" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+      {/* AdSense: Después de tips, antes de kits - oculto en móvil */}
+      <div className="container mx-auto px-4 py-4 hidden md:block">
+        <AdBanner slot="5555555555" format="auto" className="min-h-[100px]" />
       </div>
 
       {/* Pie de página */}
