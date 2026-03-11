@@ -245,7 +245,7 @@ const Index = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Herramientas */}
           <main className="flex-1 space-y-12">
-            <div id="calculadora">
+            <div id="calculadora" className="pb-6 md:pb-0">
               <ResistorCalculator />
             </div>
 
