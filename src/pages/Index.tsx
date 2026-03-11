@@ -170,14 +170,14 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 sm:py-24 md:py-32" style={{ background: 'linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(0 0% 4%) 100%)' }}>
+      <section className="relative overflow-hidden py-10 sm:py-24 md:py-32" style={{ background: 'linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(0 0% 4%) 100%)' }}>
         {/* Glow effect */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-30 blur-[100px]" style={{ background: 'hsl(199 89% 60% / 0.4)' }} />
         <div className="relative container mx-auto px-4 text-center space-y-6">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent leading-tight">
             ElectroLab Pro
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-2">
             La suite definitiva para ingenieros y entusiastas de la electrónica. Calcula, aprende y diseña con precisión digital.
           </p>
           <Button
@@ -192,9 +192,9 @@ const Index = () => {
       </section>
 
       {/* Features */}
-      <section className="py-16 border-b border-border" style={{ background: 'linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(222 47% 11%) 100%)' }}>
+      <section className="py-10 sm:py-16 border-b border-border" style={{ background: 'linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(222 47% 11%) 100%)' }}>
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {[
               { icon: <Zap className="w-8 h-8 text-primary glow-icon" />, title: "Precisión Total", desc: "Algoritmos verificados para cálculos exactos de 4 y 5 bandas." },
               { icon: <BookOpen className="w-8 h-8 text-primary glow-icon" />, title: "Diccionario Vivo", desc: "Acceso rápido a definiciones y símbolos de componentes reales." },
@@ -211,18 +211,21 @@ const Index = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-12 border-b border-border bg-card/50">
+      <section className="py-8 sm:py-12 border-b border-border bg-card/50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-3 gap-3 sm:gap-8 text-center">
             {[
-              { icon: <Calculator className="w-5 h-5 text-primary" />, value: "+10,000", label: "Cálculos realizados" },
-              { icon: <Users className="w-5 h-5 text-primary" />, value: "+500", label: "Estudiantes en la comunidad" },
-              { icon: <Target className="w-5 h-5 text-primary" />, value: "99.9%", label: "Precisión garantizada" },
+              { icon: <Calculator className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />, value: "+10K", valueFull: "+10,000", label: "Cálculos realizados" },
+              { icon: <Users className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />, value: "+500", valueFull: "+500", label: "Estudiantes" },
+              { icon: <Target className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />, value: "99.9%", valueFull: "99.9%", label: "Precisión" },
             ].map((s) => (
               <div key={s.label} className="space-y-1">
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex items-center justify-center gap-1 sm:gap-2">
                   {s.icon}
-                  <span className="text-3xl md:text-4xl font-mono font-bold text-primary glow-text">{s.value}</span>
+                  <span className="text-xl sm:text-3xl md:text-4xl font-mono font-bold text-primary glow-text">
+                    <span className="sm:hidden">{s.value}</span>
+                    <span className="hidden sm:inline">{s.valueFull}</span>
+                  </span>
                 </div>
                 <p className="text-sm text-muted-foreground">{s.label}</p>
               </div>
@@ -690,19 +693,22 @@ const Index = () => {
       </div>
 
       {/* Pie de página */}
-      <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
+      <footer className="w-full py-6 sm:py-8 mt-auto bg-black/50 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
-           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
-             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
+           <p className="text-muted-foreground text-xs sm:text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
+             © 2026 ElectroLab Pro
+             <br className="sm:hidden" />
+             <span className="hidden sm:inline"> | </span>
+             Diseñado por <span className="font-semibold">J.A.Sanchez</span>
           </p>
-           <div className="flex items-center justify-center gap-4 mb-3">
-             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
+             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Privacidad</Link>
              <span className="text-muted-foreground/40 text-[10px]">|</span>
-             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
              <span className="text-muted-foreground/40 text-[10px]">|</span>
-             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
+             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Contacto</Link>
              <span className="text-muted-foreground/40 text-[10px]">|</span>
-             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Sobre Nosotros</Link>
+             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
            </div>
            <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
