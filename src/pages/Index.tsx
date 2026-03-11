@@ -693,19 +693,22 @@ const Index = () => {
       </div>
 
       {/* Pie de página */}
-      <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
+      <footer className="w-full py-6 sm:py-8 mt-auto bg-black/50 border-t border-white/10">
         <div className="container mx-auto px-4 text-center">
-           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
-             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
+           <p className="text-muted-foreground text-xs sm:text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
+             © 2026 ElectroLab Pro
+             <br className="sm:hidden" />
+             <span className="hidden sm:inline"> | </span>
+             Diseñado por <span className="font-semibold">J.A.Sanchez</span>
           </p>
-           <div className="flex items-center justify-center gap-4 mb-3">
-             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
+             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Privacidad</Link>
              <span className="text-muted-foreground/40 text-[10px]">|</span>
-             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
              <span className="text-muted-foreground/40 text-[10px]">|</span>
-             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
+             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Contacto</Link>
              <span className="text-muted-foreground/40 text-[10px]">|</span>
-             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Sobre Nosotros</Link>
+             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
            </div>
            <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
