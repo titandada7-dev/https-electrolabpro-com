@@ -163,8 +163,8 @@ const Index = () => {
           </nav>
         )}
 
-        {/* Banner publicitario superior */}
-        <div className="container mx-auto px-4 pb-2">
+        {/* Banner publicitario superior - oculto en móvil */}
+        <div className="container mx-auto px-4 pb-2 hidden md:block">
           <AdBanner slot="1234567890" format="horizontal" className="min-h-[90px]" />
         </div>
       </header>
@@ -296,15 +296,19 @@ const Index = () => {
               </div>
             </section>
 
-            {/* AdSense: Entre calculadoras */}
-            <AdBanner slot="2222222222" format="auto" className="min-h-[90px] md:min-h-[120px]" />
+            {/* AdSense: Entre calculadoras - oculto en móvil */}
+            <div className="hidden md:block">
+              <AdBanner slot="2222222222" format="auto" className="min-h-[120px]" />
+            </div>
 
             <div>
               <OhmCalculator />
             </div>
 
-            {/* AdSense Slot 2: Entre calculadoras y diccionario */}
-            <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+            {/* AdSense Slot 2: Entre calculadoras y diccionario - oculto en móvil */}
+            <div className="hidden md:block">
+              <AdBanner slot="3333333333" format="auto" className="min-h-[100px]" />
+            </div>
 
             <div id="diccionario">
               <ComponentDictionary />
@@ -687,9 +691,9 @@ const Index = () => {
         <AdBanner slot="4444444444" format="auto" className="min-h-[90px] md:min-h-[120px]" />
       </div>
 
-      {/* AdSense: Después de tips, antes de kits */}
-      <div className="container mx-auto px-4 py-4">
-        <AdBanner slot="5555555555" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+      {/* AdSense: Después de tips, antes de kits - oculto en móvil */}
+      <div className="container mx-auto px-4 py-4 hidden md:block">
+        <AdBanner slot="5555555555" format="auto" className="min-h-[100px]" />
       </div>
 
       {/* Pie de página */}
