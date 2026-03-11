@@ -211,7 +211,7 @@ const Index = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-12 border-b border-border bg-card/50">
+      <section className="py-8 sm:py-12 border-b border-border bg-card/50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-3 gap-3 sm:gap-8 text-center">
             {[
