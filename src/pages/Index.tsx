@@ -241,9 +241,13 @@ const Index = () => {
       </div>
 
       {/* Contenido principal */}
-      <div className="container mx-auto px-4 py-8">
+      {/* Calculadora — Protagonista */}
+      <div id="calculadora" className="container mx-auto px-4 py-10 sm:py-16">
+        <ResistorCalculator />
+      </div>
+
+      <div className="container mx-auto px-4 pb-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Herramientas */}
           <main className="flex-1 space-y-20">
 
             {/* Guías Técnicas Destacadas */}
