@@ -74,7 +74,7 @@ const Index = () => {
                 Artículos
                 <ChevronDown className="w-3.5 h-3.5" />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-56 rounded-lg border border-border bg-card/95 backdrop-blur-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-lg border border-border bg-card shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-[9999]">
                 {articleLinks.map((a) => (
                   <Link
                     key={a.to}
