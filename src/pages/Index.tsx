@@ -316,58 +316,8 @@ const Index = () => {
               <ComponentDictionary />
             </div>
 
-            {/* Equipamiento Recomendado */}
-            <section id="equipamiento" className="space-y-6">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
-                <Package className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
-                Equipamiento Recomendado
-              </h2>
-              <p className="text-center text-muted-foreground text-sm">Lo que necesitás para empezar a crear</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {[
-                  {
-                    icon: <Zap className="w-8 h-8 text-primary" />,
-                    title: "Kit de Inicio de Electrónica",
-                    desc: "Ideal para principiantes. Incluye protoboard, LEDs, resistencias y cables jumper.",
-                    link: "https://www.amazon.es/s?k=kit+electronica+principiantes&tag=electrolabpro-21",
-                  },
-                  {
-                    icon: <Cpu className="w-8 h-8 text-primary" />,
-                    title: "Multímetro Digital Profesional",
-                    desc: "La herramienta esencial para medir voltaje, corriente y continuidad con precisión.",
-                    link: "https://www.amazon.es/s?k=multimetro+digital+profesional&tag=electrolabpro-21",
-                  },
-                  {
-                    icon: <Flame className="w-8 h-8 text-primary" />,
-                    title: "Estación de Soldadura",
-                    desc: "Kit completo con cautín ajustable y accesorios para tus primeros proyectos.",
-                    link: "https://www.amazon.es/s?k=kit+soldador+electronica&tag=electrolabpro-21",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur p-5 space-y-4 hover:border-[hsl(200,100%,60%)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(200,100%,60%,0.2)]"
-                  >
-                    <div className="inline-flex p-3 rounded-lg bg-secondary w-fit">{item.icon}</div>
-                    <h3 className="font-mono font-bold text-foreground text-lg">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-1">{item.desc}</p>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)] mt-auto"
-                    >
-                      <ShoppingCart className="w-4 h-4" />
-                      Ver en Amazon
-                    </a>
-                  </div>
-                ))}
-              </div>
-              <p className="text-center text-xs text-muted-foreground/70 mt-4 italic">
-                Como Afiliado de Amazon, gano por las compras adscritas que cumplen los requisitos aplicables.
-              </p>
-            </section>
           </main>
+
 
           {/* Lateral con afiliados y publicidad */}
           <aside className="hidden lg:flex flex-col gap-8 w-64 shrink-0">
