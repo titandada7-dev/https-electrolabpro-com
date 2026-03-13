@@ -58,10 +58,20 @@ const ArticleLayout = ({ title, subtitle, children }: ArticleLayoutProps) => {
         </div>
       </section>
 
+      {/* AdSense: Después del hero en artículos */}
+      <div className="container mx-auto px-4 pt-6">
+        <AdBanner slot="7777777777" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+      </div>
+
       <div className="container mx-auto px-4 py-10">
         <div className="flex flex-col lg:flex-row gap-8">
           <article className="flex-1 max-w-3xl mx-auto prose-custom space-y-6 text-muted-foreground leading-relaxed text-[15px]">
             {children}
+
+            {/* AdSense: Después del contenido del artículo */}
+            <div className="mt-10 pt-6 border-t border-border">
+              <AdBanner slot="8888888888" format="auto" className="min-h-[90px] md:min-h-[250px]" />
+            </div>
           </article>
           <aside className="hidden lg:flex flex-col gap-6 w-64 shrink-0">
             <div className="sticky top-24 space-y-6">

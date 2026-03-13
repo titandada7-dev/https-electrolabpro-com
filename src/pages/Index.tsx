@@ -298,19 +298,15 @@ const Index = () => {
               </div>
             </section>
 
-            {/* AdSense: Entre calculadoras - oculto en móvil */}
-            <div className="hidden md:block">
-              <AdBanner slot="2222222222" format="auto" className="min-h-[120px]" />
-            </div>
+            {/* AdSense: Entre calculadoras */}
+            <AdBanner slot="2222222222" format="auto" className="min-h-[90px] md:min-h-[120px]" />
 
             <div>
               <OhmCalculator />
             </div>
 
-            {/* AdSense Slot 2: Entre calculadoras y diccionario - oculto en móvil */}
-            <div className="hidden md:block">
-              <AdBanner slot="3333333333" format="auto" className="min-h-[100px]" />
-            </div>
+            {/* AdSense: Entre calculadora Ohm y diccionario */}
+            <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" />
 
             <div id="diccionario">
               <ComponentDictionary />
