@@ -19,12 +19,25 @@ const AdBanner = ({ slot, format = "auto", responsive = true, className = "" }: 
 
   useEffect(() => {
     if (pushed.current) return;
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-      pushed.current = true;
-    } catch (e) {
-      console.error("AdSense error:", e);
-    }
+
+    const el = adRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver((entries) => {
+      const width = entries[0]?.contentRect?.width ?? 0;
+      if (width > 0 && !pushed.current) {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+          pushed.current = true;
+        } catch (e) {
+          console.error("AdSense error:", e);
+        }
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
