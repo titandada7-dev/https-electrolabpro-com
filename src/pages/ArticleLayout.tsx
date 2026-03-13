@@ -13,7 +13,7 @@ interface ArticleLayoutProps {
   dateModified?: string;
 }
 
-const ArticleLayout = ({ title, subtitle, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps & { children: React.ReactNode }) => {
+const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps) => {
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
     description: subtitle,
