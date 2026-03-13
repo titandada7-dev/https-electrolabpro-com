@@ -7,6 +7,7 @@ const CircuitosSerieParalelo = () => {
     <ArticleLayout
       title="Circuitos en Serie vs Paralelo: Diferencias y Cálculos"
       subtitle="Entiende las diferencias fundamentales entre conexiones en serie y paralelo. Fórmulas, ejemplos prácticos y aplicaciones reales en electrónica."
+      slug="circuitos-serie-paralelo"
     >
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Por qué importa la forma de conectar?</h2>
       <p>

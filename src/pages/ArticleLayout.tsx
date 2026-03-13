@@ -1,5 +1,6 @@
 import { Zap, ArrowLeft, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import AdBanner from "@/components/AdBanner";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
@@ -7,13 +8,61 @@ interface ArticleLayoutProps {
   title: string;
   subtitle: string;
   children: React.ReactNode;
+  slug?: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
-const ArticleLayout = ({ title, subtitle, children }: ArticleLayoutProps) => {
+const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps) => {
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
     description: subtitle,
   });
+
+  useEffect(() => {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": title,
+      "description": subtitle,
+      "author": {
+        "@type": "Person",
+        "name": "J.A. Sanchez",
+        "url": "https://electrolabpro.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ElectroLab Pro",
+        "url": "https://electrolabpro.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://electrolabpro.com/favicon.ico"
+        }
+      },
+      "datePublished": datePublished,
+      "dateModified": dateModified,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com"
+      },
+      "inLanguage": "es"
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(jsonLd);
+    script.id = "article-jsonld";
+    
+    const existing = document.getElementById("article-jsonld");
+    if (existing) existing.remove();
+    document.head.appendChild(script);
+
+    return () => {
+      const el = document.getElementById("article-jsonld");
+      if (el) el.remove();
+    };
+  }, [title, subtitle, slug, datePublished, dateModified]);
+
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Header */}

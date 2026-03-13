@@ -8,6 +8,7 @@ const CodigoColoresResistencias = () => {
     <ArticleLayout
       title="Cómo Leer el Código de Colores de las Resistencias"
       subtitle="Identifica el valor de tus resistencias por código de colores (4, 5 y 6 bandas) de forma fácil y rápida con nuestra herramienta interactiva."
+      slug="codigo-colores-resistencias"
     >
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
         <img src={resistorImg} alt="Resistencia con bandas de colores mostrando el código de 4 bandas" className="w-full max-h-64 object-contain p-4" />
