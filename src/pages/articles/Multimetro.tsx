@@ -7,6 +7,7 @@ const Multimetro = () => {
     <ArticleLayout
       title="Cómo Usar un Multímetro: Guía Completa para Principiantes"
       subtitle="Aprende a medir voltaje, corriente, resistencia y continuidad con un multímetro digital. Guía paso a paso con consejos de seguridad."
+      slug="multimetro"
     >
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es un multímetro?</h2>
       <p>

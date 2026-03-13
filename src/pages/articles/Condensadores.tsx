@@ -8,6 +8,7 @@ const Condensadores = () => {
     <ArticleLayout
       title="¿Qué es un Condensador y Cómo Funciona?"
       subtitle="Aprende a leer y diferenciar tipos de capacitores cerámicos y electrolíticos con nuestra guía completa para principiantes."
+      slug="condensadores"
     >
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
         <img src={capacitorImg} alt="Tipos de condensadores: cerámico, electrolítico, tantalio y de película" className="w-full max-h-64 object-contain p-4" />

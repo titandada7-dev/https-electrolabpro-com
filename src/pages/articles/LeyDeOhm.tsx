@@ -7,6 +7,7 @@ const LeyDeOhm = () => {
     <ArticleLayout
       title="Ley de Ohm: Guía Completa con Ejemplos Prácticos"
       subtitle="Domina la relación entre voltaje, corriente y resistencia. Fórmulas, triángulo de Ohm, ejemplos resueltos y aplicaciones reales en electrónica."
+      slug="ley-de-ohm"
     >
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es la Ley de Ohm?</h2>
       <p>
