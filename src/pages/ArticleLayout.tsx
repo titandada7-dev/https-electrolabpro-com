@@ -7,6 +7,9 @@ interface ArticleLayoutProps {
   title: string;
   subtitle: string;
   children: React.ReactNode;
+  slug?: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
 const ArticleLayout = ({ title, subtitle, children }: ArticleLayoutProps) => {
