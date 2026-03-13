@@ -527,7 +527,15 @@ const Index = () => {
 
       {/* AdSense: Antes del footer */}
       <div className="container mx-auto px-4 py-6">
-        <AdBanner slot="4444444444" format="auto" className="min-h-[90px] md:min-h-[120px]" />
+        <ins className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client="ca-pub-9393284878747603"
+          data-ad-slot="3756475501"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+        <script>
+          {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+        </script>
       </div>
 
       {/* Pie de página */}
