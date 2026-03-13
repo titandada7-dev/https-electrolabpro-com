@@ -23,18 +23,28 @@ const AdBanner = ({ slot, format = "auto", responsive = true, className = "" }: 
     const el = adRef.current;
     if (!el) return;
 
-    const observer = new ResizeObserver((entries) => {
-      const width = entries[0]?.contentRect?.width ?? 0;
-      if (width > 0 && !pushed.current) {
+    const tryPush = () => {
+      if (pushed.current) return;
+      if (el.offsetWidth > 0) {
         try {
           (window.adsbygoogle = window.adsbygoogle || []).push({});
           pushed.current = true;
         } catch (e) {
-          console.error("AdSense error:", e);
+          // Silently ignore in dev/preview environments
         }
-        observer.disconnect();
       }
-    });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          // Small delay to ensure layout is stable
+          setTimeout(tryPush, 100);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
 
     observer.observe(el);
     return () => observer.disconnect();
