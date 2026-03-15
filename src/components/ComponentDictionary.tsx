@@ -262,7 +262,7 @@ const ComponentDictionary = () => {
                 Comprar Kit de {selected.name}
               </Button>
               <Button variant="outline" className="w-full mt-1 gap-2" asChild>
-                <a href={`https://www.amazon.com/s?k=${selected.name}+electronics&tag=TU_TAG`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://www.amazon.es/s?k=${selected.name}+electronics&tag=electrolabpro-21`} target="_blank" rel="noopener noreferrer">
                   Ver precios en Amazon
                   <ExternalLink className="w-4 h-4" />
                 </a>
