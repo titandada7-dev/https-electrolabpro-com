@@ -81,6 +81,15 @@ const COMPONENTS: ComponentInfo[] = [
     category: "Activos",
   },
   {
+    name: "Transistor NPN 2N2222",
+    icon: <Cpu className="w-8 h-8" />,
+    symbol: "B ─┤\n    ├─ C\nE ─┘",
+    description: "Transistor de silicio de baja potencia diseñado para aplicaciones de amplificación lineal y conmutación.",
+    details: "Es uno de los componentes más utilizados por principiantes debido a su versatilidad. Pines (visto de frente): 1. Emisor, 2. Base, 3. Colector.",
+    amazonSearch: "2n2222+transistor",
+    category: "Activos",
+  },
+  {
     name: "Circuito Integrado",
     icon: <Microchip className="w-8 h-8" />,
     symbol: "⏚ —[IC]— ⏚",
