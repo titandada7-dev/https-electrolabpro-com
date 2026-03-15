@@ -6,6 +6,7 @@ import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
 import OhmCalculator from "@/components/OhmCalculator";
+import MiniProjects from "@/components/MiniProjects";
 import { Link } from "react-router-dom";
 
 const navLinks = [
@@ -310,6 +311,10 @@ const Index = () => {
 
             <div id="diccionario">
               <ComponentDictionary />
+            </div>
+
+            <div id="mini-proyectos">
+              <MiniProjects />
             </div>
 
           </main>
