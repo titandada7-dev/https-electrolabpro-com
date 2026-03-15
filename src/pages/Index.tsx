@@ -313,6 +313,10 @@ const Index = () => {
               <ComponentDictionary />
             </div>
 
+            <div id="mini-proyectos">
+              <MiniProjects />
+            </div>
+
           </main>
 
 
