@@ -225,9 +225,9 @@ const ResistorCalculator = () => {
             <Info className="inline w-4 h-4 text-primary mr-1 -mt-0.5" />
             Esta resistencia de <span className="text-foreground font-semibold">{formatOhmsRaw(resistance)}</span> permite
             controlar el flujo de corriente en tu circuito. Para más detalles, lee nuestra{" "}
-            <Link to="/articulos/codigo-colores-resistencias" className="text-primary hover:underline font-medium">
+            <span className="text-primary font-medium">
               Guía de Código de Colores
-            </Link>.
+            </span>.
           </p>
         </div>
       </div>
