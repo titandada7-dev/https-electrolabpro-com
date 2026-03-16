@@ -6,6 +6,7 @@ import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
 import OhmCalculator from "@/components/OhmCalculator";
+import LedCalculator from "@/components/LedCalculator";
 import MiniProjects from "@/components/MiniProjects";
 import { Link } from "react-router-dom";
 
@@ -306,7 +307,11 @@ const Index = () => {
               <OhmCalculator />
             </div>
 
-            {/* AdSense: Entre calculadora Ohm y diccionario */}
+            <div>
+              <LedCalculator />
+            </div>
+
+            {/* AdSense: Entre calculadoras y diccionario */}
             <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" />
 
             <div id="diccionario">
