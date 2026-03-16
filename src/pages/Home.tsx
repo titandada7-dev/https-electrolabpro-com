@@ -66,6 +66,34 @@ export default function Home() {
               >
                 💡 Resistencia LED
               </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("divisor")}
+              >
+                🔌 Divisor de Voltaje
+              </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("555")}
+              >
+                ⏱️ Temporizador 555
+              </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("smd")}
+              >
+                🔍 Decodificador SMD
+              </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("reactancia")}
+              >
+                〰️ Reactancia Capacitiva
+              </Button>
             </div>
             <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
               Estas calculadoras permiten resolver cálculos comunes en electrónica de forma rápida desde el celular o la computadora.
@@ -93,6 +121,38 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <LedCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
+          </div>
+        )}
+
+        {moduloActivo === "divisor" && (
+          <div>
+            {volverAlMenu}
+            <VoltageDividerCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
+          </div>
+        )}
+
+        {moduloActivo === "555" && (
+          <div>
+            {volverAlMenu}
+            <Timer555Calculator />
+            <AdBanner slot="2222222222" className="mt-6" />
+          </div>
+        )}
+
+        {moduloActivo === "smd" && (
+          <div>
+            {volverAlMenu}
+            <SmdDecoderCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
+          </div>
+        )}
+
+        {moduloActivo === "reactancia" && (
+          <div>
+            {volverAlMenu}
+            <CapacitiveReactanceCalculator />
             <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
