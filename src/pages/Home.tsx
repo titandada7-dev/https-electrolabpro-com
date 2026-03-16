@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import LedCalculator from "../components/LedCalculator";
 import OhmCalculator from "../components/OhmCalculator";
 import ResistorCalculator from "../components/ResistorCalculator";
@@ -22,8 +23,9 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
+    <div className="min-h-screen bg-background flex flex-col">
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="w-full max-w-2xl">
         {moduloActivo === "menu" && (
           <div className="text-center space-y-8">
             <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground flex items-center justify-center gap-3">
@@ -79,7 +81,23 @@ export default function Home() {
             <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
+        </div>
       </div>
+
+      <footer className="w-full py-6 border-t border-border bg-background/50">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-muted-foreground text-sm tracking-wide mb-3" style={{ fontFamily: "'Georgia', serif" }}>
+            © 2026 ElectroLab Pro | Diseñado por <span className="font-semibold">J.A. Sanchez</span>
+          </p>
+          <div className="flex items-center justify-center gap-4">
+            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
