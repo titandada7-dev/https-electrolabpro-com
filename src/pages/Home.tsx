@@ -37,6 +37,9 @@ export default function Home() {
               <Zap className="w-8 h-8 text-primary" />
               ElectroLab Pro
             </h1>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl mx-auto">
+              ElectroLab Pro es una herramienta online gratuita para realizar cálculos electrónicos rápidos como Ley de Ohm, códigos de colores de resistencias y cálculo de resistencias para LEDs. Diseñada para estudiantes, técnicos y entusiastas de la electrónica.
+            </p>
             <div className="grid gap-4">
               <Button
                 size="lg"
@@ -60,6 +63,9 @@ export default function Home() {
                 💡 Resistencia LED
               </Button>
             </div>
+            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
+              Estas calculadoras permiten resolver cálculos comunes en electrónica de forma rápida desde el celular o la computadora.
+            </p>
           </div>
         )}
 
