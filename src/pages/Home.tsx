@@ -6,8 +6,13 @@ import ResistorCalculator from "../components/ResistorCalculator";
 import AdBanner from "../components/AdBanner";
 import { Button } from "../components/ui/button";
 import { Zap, ArrowLeft } from "lucide-react";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 export default function Home() {
+  usePageMeta({
+    title: "ElectroLab Pro | Calculadoras electrónicas online",
+    description: "Herramienta online con Ley de Ohm, código de colores y calculadora de resistencia para LED.",
+  });
   const [moduloActivo, setModuloActivo] = useState("menu");
 
   const volverAlMenu = (
