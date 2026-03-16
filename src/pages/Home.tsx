@@ -23,8 +23,9 @@ export default function Home() {
   );
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
+    <div className="min-h-screen bg-background flex flex-col">
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="w-full max-w-2xl">
         {moduloActivo === "menu" && (
           <div className="text-center space-y-8">
             <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground flex items-center justify-center gap-3">
