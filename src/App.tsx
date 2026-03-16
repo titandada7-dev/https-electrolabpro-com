@@ -60,6 +60,7 @@ function App() {
           <div>
             {volverAlMenu}
             <OhmCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
 
@@ -67,6 +68,7 @@ function App() {
           <div>
             {volverAlMenu}
             <ResistorCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
 
@@ -74,6 +76,7 @@ function App() {
           <div>
             {volverAlMenu}
             <LedCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
       </div>
