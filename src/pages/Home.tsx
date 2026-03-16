@@ -153,7 +153,6 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <CapacitiveReactanceCalculator />
-            <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
         </div>
