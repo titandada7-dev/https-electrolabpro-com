@@ -6,6 +6,7 @@ import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import AdBanner from "@/components/AdBanner";
 import OhmCalculator from "@/components/OhmCalculator";
+import LedCalculator from "@/components/LedCalculator";
 import MiniProjects from "@/components/MiniProjects";
 import { Link } from "react-router-dom";
 
