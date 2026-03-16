@@ -15,8 +15,8 @@
     --popover: 222 47% 16%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 199 89% 60%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 217 91% 53%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 235 35% 20%;
     --secondary-foreground: 239 84% 75%;
@@ -26,29 +26,29 @@
     --muted: 222 35% 16%;
     --muted-foreground: 215 20% 55%;
 
-    --accent: 199 89% 60%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 217 91% 53%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 222 30% 22%;
     --input: 222 30% 22%;
-    --ring: 199 89% 60%;
+    --ring: 217 91% 53%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --glow: 0 0 20px hsl(199 89% 60% / 0.3);
-    --glow-strong: 0 0 40px hsl(199 89% 60% / 0.4);
+    --glow: 0 0 20px hsl(217 91% 53% / 0.3);
+    --glow-strong: 0 0 40px hsl(217 91% 53% / 0.4);
 
     --sidebar-background: 222 47% 14%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 199 89% 60%;
+    --sidebar-primary: 217 91% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 222 35% 16%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 222 30% 22%;
-    --sidebar-ring: 199 89% 60%;
+    --sidebar-ring: 217 91% 53%;
   }
 }
 
@@ -58,7 +58,23 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: Arial, sans-serif;
+  }
+
+  input,
+  select,
+  button {
+    @apply w-full mt-2.5 text-base rounded-lg border-none;
+    padding: 12px;
+  }
+
+  button {
+    @apply bg-primary text-primary-foreground font-bold;
+  }
+
+  button:active {
+    transform: scale(0.98);
   }
 }
 
@@ -70,18 +86,18 @@
     box-shadow: var(--glow-strong);
   }
   .glow-text {
-    text-shadow: 0 0 20px hsl(199 89% 60% / 0.5);
+    text-shadow: 0 0 20px hsl(217 91% 53% / 0.5);
   }
   .glow-icon {
-    filter: drop-shadow(0 0 8px hsl(199 89% 60% / 0.6));
+    filter: drop-shadow(0 0 8px hsl(217 91% 53% / 0.6));
   }
   .border-glow {
-    border-color: hsl(199 89% 60% / 0.3);
+    border-color: hsl(217 91% 53% / 0.3);
   }
   .bg-grid {
     background-image: 
-      linear-gradient(hsl(199 89% 60% / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(199 89% 60% / 0.03) 1px, transparent 1px);
+      linear-gradient(hsl(217 91% 53% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(217 91% 53% / 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 }
