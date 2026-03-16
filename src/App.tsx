@@ -17,8 +17,12 @@ function App() {
         <Route
           path="*"
           element={
-            <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-4 text-center">
-              Página no encontrada
+            <div className="min-h-screen flex flex-col items-center justify-center text-center p-6">
+              <h1 className="text-3xl font-bold mb-4">404</h1>
+              <p className="mb-6">La página que buscas no existe.</p>
+              <a href="/" className="text-primary underline">
+                Volver a ElectroLab Pro
+              </a>
             </div>
           }
         />
