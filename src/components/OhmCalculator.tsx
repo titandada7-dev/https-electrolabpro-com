@@ -53,7 +53,7 @@ const OhmCalculator = () => {
   };
 
   return (
-    <Card className="border-border bg-card/80 backdrop-blur">
+    <Card className="tool-interactive border-border bg-card/80 backdrop-blur">
       <CardHeader className="text-center space-y-2">
         <CardTitle className="text-2xl md:text-3xl font-mono flex items-center justify-center gap-3">
           <Zap className="w-7 h-7 text-primary glow-icon" />
