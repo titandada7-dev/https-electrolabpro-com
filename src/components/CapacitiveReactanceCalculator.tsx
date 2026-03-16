@@ -5,15 +5,25 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Zap } from "lucide-react";
 
+const capUnits = [
+  { label: "F", factor: 1 },
+  { label: "µF", factor: 1e-6 },
+  { label: "nF", factor: 1e-9 },
+  { label: "pF", factor: 1e-12 },
+];
+
 const CapacitiveReactanceCalculator = () => {
   const [freq, setFreq] = useState("");
   const [cap, setCap] = useState("");
+  const [capUnit, setCapUnit] = useState("µF");
   const [xc, setXc] = useState<string | null>(null);
 
   const calculate = () => {
     const f = parseFloat(freq);
-    const C = parseFloat(cap);
-    if (!isNaN(f) && !isNaN(C) && f > 0 && C > 0) {
+    const rawC = parseFloat(cap);
+    const factor = capUnits.find((u) => u.label === capUnit)?.factor ?? 1;
+    const C = rawC * factor;
+    if (!isNaN(f) && !isNaN(rawC) && f > 0 && C > 0) {
       const result = 1 / (2 * Math.PI * f * C);
       setXc(result.toFixed(4));
     }
@@ -38,25 +48,42 @@ const CapacitiveReactanceCalculator = () => {
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[
-            { id: "freq", label: "Frecuencia", value: freq, setter: setFreq, unit: "Hz" },
-            { id: "cap", label: "Capacitancia", value: cap, setter: setCap, unit: "F" },
-          ].map((f) => (
-            <div key={f.id} className="space-y-2">
-              <Label htmlFor={f.id} className="text-sm font-mono text-foreground">{f.label}</Label>
-              <div className="relative">
-                <Input
-                  id={f.id}
-                  type="number"
-                  placeholder="0"
-                  value={f.value}
-                  onChange={(e) => f.setter(e.target.value)}
-                  className="pr-12 font-mono bg-secondary/50 border-border focus:border-primary"
-                />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground font-mono">{f.unit}</span>
-              </div>
+          <div className="space-y-2">
+            <Label htmlFor="freq" className="text-sm font-mono text-foreground">Frecuencia</Label>
+            <div className="relative">
+              <Input
+                id="freq"
+                type="number"
+                placeholder="0"
+                value={freq}
+                onChange={(e) => setFreq(e.target.value)}
+                className="pr-12 font-mono bg-secondary/50 border-border focus:border-primary"
+              />
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground font-mono">Hz</span>
             </div>
-          ))}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="cap" className="text-sm font-mono text-foreground">Capacitancia</Label>
+            <div className="flex gap-2">
+              <Input
+                id="cap"
+                type="number"
+                placeholder="0"
+                value={cap}
+                onChange={(e) => setCap(e.target.value)}
+                className="font-mono bg-secondary/50 border-border focus:border-primary flex-1"
+              />
+              <select
+                value={capUnit}
+                onChange={(e) => setCapUnit(e.target.value)}
+                className="font-mono text-sm bg-secondary/50 border border-border rounded-md px-2 text-foreground focus:border-primary outline-none"
+              >
+                {capUnits.map((u) => (
+                  <option key={u.label} value={u.label}>{u.label}</option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="flex gap-3">
