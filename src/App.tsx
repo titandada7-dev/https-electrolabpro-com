@@ -1,10 +1,24 @@
 import { useState } from "react";
 import LedCalculator from "./components/LedCalculator";
+import OhmCalculator from "./components/OhmCalculator";
+import ResistorCalculator from "./components/ResistorCalculator";
 import { Button } from "./components/ui/button";
 import { Zap, ArrowLeft } from "lucide-react";
 
 function App() {
   const [moduloActivo, setModuloActivo] = useState("menu");
+
+  const volverAlMenu = (
+    <Button
+      variant="ghost"
+      size="sm"
+      className="gap-2 font-mono mb-4"
+      onClick={() => setModuloActivo("menu")}
+    >
+      <ArrowLeft className="w-4 h-4" />
+      Volver
+    </Button>
+  );
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -19,33 +33,45 @@ function App() {
               <Button
                 size="lg"
                 className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("ohm")}
+              >
+                ⚡ Ley de Ohm
+              </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("resistencias")}
+              >
+                🎨 Código de Colores
+              </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
                 onClick={() => setModuloActivo("led")}
               >
                 💡 Resistencia LED
               </Button>
-              {/* Agregá más botones cuando tengas más módulos */}
-              {/* <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("ohm")}
-              >
-                ⚡ Ley de Ohm
-              </Button> */}
             </div>
           </div>
         )}
 
+        {moduloActivo === "ohm" && (
+          <div>
+            {volverAlMenu}
+            <OhmCalculator />
+          </div>
+        )}
+
+        {moduloActivo === "resistencias" && (
+          <div>
+            {volverAlMenu}
+            <ResistorCalculator />
+          </div>
+        )}
+
         {moduloActivo === "led" && (
-          <div className="space-y-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="gap-2 font-mono"
-              onClick={() => setModuloActivo("menu")}
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Volver
-            </Button>
+          <div>
+            {volverAlMenu}
             <LedCalculator />
           </div>
         )}
