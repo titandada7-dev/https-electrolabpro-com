@@ -2,6 +2,7 @@ import { useState } from "react";
 import LedCalculator from "./components/LedCalculator";
 import OhmCalculator from "./components/OhmCalculator";
 import ResistorCalculator from "./components/ResistorCalculator";
+import AdBanner from "./components/AdBanner";
 import { Button } from "./components/ui/button";
 import { Zap, ArrowLeft } from "lucide-react";
 
@@ -59,6 +60,7 @@ function App() {
           <div>
             {volverAlMenu}
             <OhmCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
 
@@ -66,6 +68,7 @@ function App() {
           <div>
             {volverAlMenu}
             <ResistorCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
 
@@ -73,6 +76,7 @@ function App() {
           <div>
             {volverAlMenu}
             <LedCalculator />
+            <AdBanner slot="2222222222" className="mt-6" />
           </div>
         )}
       </div>
