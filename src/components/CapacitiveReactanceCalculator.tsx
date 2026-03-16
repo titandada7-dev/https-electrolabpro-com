@@ -92,10 +92,22 @@ const CapacitiveReactanceCalculator = () => {
         </div>
 
         {xc !== null && (
-          <div className="text-center space-y-2 p-4 rounded-lg bg-secondary/30 border border-border">
-            <p className="text-sm text-muted-foreground font-mono">Reactancia capacitiva</p>
-            <p className="text-3xl font-mono font-bold text-primary">{xc} Ω</p>
-          </div>
+          <>
+            <div className="text-center space-y-2 p-4 rounded-lg bg-secondary/30 border border-border">
+              <p className="text-sm text-muted-foreground font-mono">Reactancia capacitiva</p>
+              <p className="text-3xl font-mono font-bold text-primary">{xc} Ω</p>
+            </div>
+
+            <AdBanner slot="2222222222" className="mt-2" />
+
+            <div className="p-4 rounded-lg bg-secondary/20 border border-border space-y-2">
+              <p className="text-sm font-mono font-semibold text-foreground">📘 ¿Qué es la reactancia capacitiva?</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                La reactancia capacitiva (Xc) es la oposición que un condensador ofrece al paso de la corriente alterna. 
+                A mayor frecuencia o mayor capacitancia, menor es la reactancia. Se calcula con <strong>Xc = 1 / (2π × f × C)</strong>.
+              </p>
+            </div>
+          </>
         )}
 
         <div className="flex justify-end">
