@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ElectroLab Pro - Artículos de Electrónica</title>
+    <link>https://electrolabpro.com</link>
+    <description>Aprende electrónica desde cero: guías, calculadoras y tutoriales sobre componentes electrónicos, leyes fundamentales y mini proyectos.</description>
+    <language>es</language>
+    <lastBuildDate>Mon, 17 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://electrolabpro.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Ley de Ohm: Guía Completa</title>
+      <link>https://electrolabpro.com/articulos/ley-de-ohm</link>
+      <description>Aprende la Ley de Ohm desde cero: fórmulas, ejemplos prácticos y cómo aplicarla en circuitos electrónicos reales.</description>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/ley-de-ohm</guid>
+    </item>
+
+    <item>
+      <title>Código de Colores de Resistencias</title>
+      <link>https://electrolabpro.com/articulos/codigo-colores-resistencias</link>
+      <description>Guía completa para leer e interpretar el código de colores de resistencias de 4, 5 y 6 bandas.</description>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/codigo-colores-resistencias</guid>
+    </item>
+
+    <item>
+      <title>Condensadores: Tipos y Funcionamiento</title>
+      <link>https://electrolabpro.com/articulos/condensadores</link>
+      <description>Todo sobre condensadores: tipos, funcionamiento, lectura de valores y aplicaciones en circuitos electrónicos.</description>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/condensadores</guid>
+    </item>
+
+    <item>
+      <title>Diodos: Guía Completa</title>
+      <link>https://electrolabpro.com/articulos/diodos</link>
+      <description>Aprende sobre diodos: tipos, funcionamiento, polarización y aplicaciones prácticas en electrónica.</description>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/diodos</guid>
+    </item>
+
+    <item>
+      <title>Transistores: BJT, MOSFET y Darlington</title>
+      <link>https://electrolabpro.com/articulos/transistores</link>
+      <description>Guía exhaustiva sobre transistores: BJT, MOSFET, Darlington. Pinouts, configuraciones y aplicaciones prácticas.</description>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/transistores</guid>
+    </item>
+
+    <item>
+      <title>Cómo Usar un Multímetro</title>
+      <link>https://electrolabpro.com/articulos/multimetro</link>
+      <description>Guía práctica para aprender a usar un multímetro: medir voltaje, corriente, resistencia y continuidad.</description>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/multimetro</guid>
+    </item>
+
+    <item>
+      <title>Circuitos en Serie y Paralelo</title>
+      <link>https://electrolabpro.com/articulos/circuitos-serie-paralelo</link>
+      <description>Aprende las diferencias entre circuitos en serie y paralelo: cálculos, ejemplos y aplicaciones.</description>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/circuitos-serie-paralelo</guid>
+    </item>
+
+  </channel>
+</rss>
