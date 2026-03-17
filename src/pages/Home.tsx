@@ -125,7 +125,7 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <ResistorCalculator />
-            <AdBanner slot="2222222222" className="mt-6" />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
 
