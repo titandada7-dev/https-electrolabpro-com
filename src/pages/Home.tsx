@@ -95,6 +95,18 @@ export default function Home() {
                 〰️ Reactancia Capacitiva
               </Button>
             </div>
+
+            <a
+              href="https://www.amazon.es/b?node=95175938031&linkCode=ll2&tag=electrolabpro-21&linkId=14708c1f7f2b404c346c65c73385a951&ref_=as_li_ss_tl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mt-2 p-3 rounded-lg border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors text-center"
+            >
+              <span className="text-xs font-mono uppercase tracking-wider text-primary">
+                🛒 Tienda de Electrónica en Amazon
+              </span>
+            </a>
+
             <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
               Estas calculadoras permiten resolver cálculos comunes en electrónica de forma rápida desde el celular o la computadora.
             </p>
