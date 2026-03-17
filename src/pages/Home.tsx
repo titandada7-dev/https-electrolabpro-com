@@ -117,7 +117,7 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <OhmCalculator />
-            <AdBanner slot="2222222222" className="mt-6" />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
 
@@ -125,7 +125,7 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <ResistorCalculator />
-            <AdBanner slot="2222222222" className="mt-6" />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
 
@@ -133,7 +133,7 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <LedCalculator />
-            <AdBanner slot="2222222222" className="mt-6" />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
 
@@ -141,7 +141,7 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <VoltageDividerCalculator />
-            <AdBanner slot="2222222222" className="mt-6" />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
 
@@ -149,7 +149,7 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <Timer555Calculator />
-            <AdBanner slot="2222222222" className="mt-6" />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
 
@@ -157,7 +157,7 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <SmdDecoderCalculator />
-            <AdBanner slot="2222222222" className="mt-6" />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
 

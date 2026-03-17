@@ -301,7 +301,7 @@ const Index = () => {
             </section>
 
             {/* AdSense: Entre calculadoras */}
-            <AdBanner slot="2222222222" format="auto" className="min-h-[90px] md:min-h-[120px]" />
+            <AdBanner slot="3756475501" format="auto" className="min-h-[90px] md:min-h-[120px]" />
 
             <div>
               <OhmCalculator />
