@@ -166,10 +166,12 @@ const Index = () => {
           </nav>
         )}
 
-        {/* Banner publicitario superior - oculto en móvil */}
+        {/* OPTIMIZACIÓN ADSENSE: Banner superior oculto temporalmente para aprobación */}
+        {/*
         <div className="container mx-auto px-4 pb-2 hidden md:block">
           <AdBanner slot="1234567890" format="horizontal" className="min-h-[90px]" />
         </div>
+        */}
       </header>
 
       {/* Hero Section */}
