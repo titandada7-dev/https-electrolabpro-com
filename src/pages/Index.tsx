@@ -239,10 +239,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AdSense Slot 1: Debajo de stats */}
+      {/* OPTIMIZACIÓN ADSENSE: Banner oculto temporalmente */}
+      {/*
       <div className="container mx-auto px-4 py-4">
         <AdBanner slot="1111111111" format="auto" className="min-h-[90px] md:min-h-[100px]" />
       </div>
+      */}
 
       {/* Contenido principal */}
       {/* Calculadora — Protagonista */}
