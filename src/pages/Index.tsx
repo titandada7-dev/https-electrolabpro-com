@@ -315,8 +315,8 @@ const Index = () => {
               <LedCalculator />
             </div>
 
-            {/* AdSense: Entre calculadoras y diccionario */}
-            <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+            {/* OPTIMIZACIÓN ADSENSE: Ocultamos este para no saturar */}
+            {/* <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" /> */}
 
             <div id="diccionario">
               <ComponentDictionary />
