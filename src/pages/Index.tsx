@@ -166,10 +166,12 @@ const Index = () => {
           </nav>
         )}
 
-        {/* Banner publicitario superior - oculto en móvil */}
+        {/* OPTIMIZACIÓN ADSENSE: Banner superior oculto temporalmente para aprobación */}
+        {/*
         <div className="container mx-auto px-4 pb-2 hidden md:block">
           <AdBanner slot="1234567890" format="horizontal" className="min-h-[90px]" />
         </div>
+        */}
       </header>
 
       {/* Hero Section */}
@@ -237,10 +239,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AdSense Slot 1: Debajo de stats */}
+      {/* OPTIMIZACIÓN ADSENSE: Banner oculto temporalmente */}
+      {/*
       <div className="container mx-auto px-4 py-4">
         <AdBanner slot="1111111111" format="auto" className="min-h-[90px] md:min-h-[100px]" />
       </div>
+      */}
 
       {/* Contenido principal */}
       {/* Calculadora — Protagonista */}
@@ -311,8 +315,8 @@ const Index = () => {
               <LedCalculator />
             </div>
 
-            {/* AdSense: Entre calculadoras y diccionario */}
-            <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+            {/* OPTIMIZACIÓN ADSENSE: Ocultamos este para no saturar */}
+            {/* <AdBanner slot="3333333333" format="auto" className="min-h-[90px] md:min-h-[100px]" /> */}
 
             <div id="diccionario">
               <ComponentDictionary />
@@ -432,78 +436,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Aprende Electrónica */}
-      <section className="container mx-auto px-4 py-20 border-b border-border">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
-            <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
-            Aprende Electrónica
-          </h2>
-        <p className="text-center text-muted-foreground text-sm mb-10">Artículos educativos escritos por J.A.Sanchez para dominar los fundamentos</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[
-            {
-              emoji: "🎨",
-              title: "Código de Colores de Resistencias",
-              desc: "Aprende a leer el valor de cualquier resistencia usando su código de bandas de colores. Incluye tablas, ejemplos prácticos de 4 y 5 bandas, errores comunes y trucos mnemotécnicos.",
-              to: "/articulos/codigo-colores-resistencias",
-              tag: "Fundamentos",
-            },
-            {
-              emoji: "⚡",
-              title: "Funciones de los Capacitores",
-              desc: "Descubre cómo funcionan los condensadores, sus tipos (cerámicos, electrolíticos, tantalio, supercondensadores), aplicaciones en filtrado, desacoplamiento, temporización y más.",
-              to: "/articulos/condensadores",
-              tag: "Componentes",
-            },
-            {
-              emoji: "💡",
-              title: "Tipos de Diodos",
-              desc: "Guía completa sobre diodos: rectificadores, LED, Zener, Schottky y fotodiodos. Aprende su funcionamiento, identificación de terminales y aplicaciones prácticas.",
-              to: "/articulos/diodos",
-              tag: "Semiconductores",
-            },
-            {
-              emoji: "🔢",
-              title: "Ley de Ohm Explicada",
-              desc: "Domina la relación entre voltaje, corriente y resistencia. Triángulo de Ohm, fórmulas de potencia, ejemplos resueltos y aplicaciones reales en diseño electrónico.",
-              to: "/articulos/ley-de-ohm",
-              tag: "Fundamentos",
-            },
-            {
-              emoji: "📟",
-              title: "Cómo Usar un Multímetro",
-              desc: "Guía paso a paso para medir voltaje, corriente, resistencia y continuidad. Consejos de seguridad y recomendaciones de compra para principiantes.",
-              to: "/articulos/multimetro",
-              tag: "Herramientas",
-            },
-            {
-              emoji: "🔌",
-              title: "Circuitos Serie vs Paralelo",
-              desc: "Entiende las diferencias entre conexiones en serie y paralelo. Fórmulas, tabla comparativa, circuitos mixtos y ejemplos prácticos resueltos.",
-              to: "/articulos/circuitos-serie-paralelo",
-              tag: "Fundamentos",
-            },
-          ].map((article) => (
-            <Link
-              key={article.to}
-              to={article.to}
-              className="group flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
-            >
-              <div className="w-full h-36 bg-secondary/50 flex items-center justify-center text-5xl">
-                {article.emoji}
-              </div>
-              <div className="flex flex-col flex-1 p-5 space-y-3">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-primary">{article.tag}</span>
-                <h3 className="font-mono font-bold text-foreground text-lg group-hover:text-primary transition-colors">{article.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{article.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
-                  Leer artículo →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
 
       {/* Equipa tu laboratorio — Fila compacta */}
       <section id="equipamiento" className="container mx-auto px-4 py-16">
@@ -535,18 +467,6 @@ const Index = () => {
         </p>
       </section>
 
-      {/* AdSense: Antes del footer */}
-      <div className="container mx-auto px-4 py-6">
-        <ins className="adsbygoogle"
-          style={{ display: 'block' }}
-          data-ad-client="ca-pub-9393284878747603"
-          data-ad-slot="3756475501"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>
-          {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-        </script>
-      </div>
 
       {/* Pie de página */}
       <footer className="w-full py-6 sm:py-8 mt-auto bg-black/50 border-t border-white/10">
