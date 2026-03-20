@@ -407,6 +407,13 @@ const Index = () => {
               to: "/articulos/codigo-colores-resistencias",
               tag: "Componentes",
             },
+            {
+              emoji: "⚡",
+              title: "Guía de Condensadores",
+              desc: "Electrolíticos, cerámicos, cómo leer el código de 3 números y por qué tu circuito los necesita.",
+              to: "/articulos/condensadores",
+              tag: "Componentes",
+            },
           ].map((guide) => (
             <Link
               key={guide.to}
