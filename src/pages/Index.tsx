@@ -89,12 +89,12 @@ const Index = () => {
                 ))}
               </div>
             </div>
-            <Link
+            {/* <Link
               to="/sobre-nosotros"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Sobre Nosotros
-            </Link>
+            </Link> */}
             <button
               onClick={() => scrollTo("equipamiento")}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-muted-foreground/30 text-muted-foreground text-sm font-medium transition-all hover:text-foreground hover:border-foreground/50"
@@ -149,13 +149,13 @@ const Index = () => {
                 </Link>
               ))}
             </div>
-            <Link
+            {/* <Link
               to="/sobre-nosotros"
               onClick={() => setMenuOpen(false)}
               className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
             >
               Sobre Nosotros
-            </Link>
+            </Link> */}
             <button
               onClick={() => { scrollTo("equipamiento"); setMenuOpen(false); }}
               className="flex items-center gap-1.5 w-full px-4 py-3 rounded-lg border border-muted-foreground/30 text-muted-foreground text-base font-medium transition-all hover:text-foreground hover:border-foreground/50 min-h-[44px]"
@@ -470,8 +470,8 @@ const Index = () => {
              <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
              <span className="text-muted-foreground/40 text-[10px]">|</span>
              <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Contacto</Link>
-             <span className="text-muted-foreground/40 text-[10px]">|</span>
-             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
+              {/* <span className="text-muted-foreground/40 text-[10px]">|</span>
+              <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link> */}
            </div>
            <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
