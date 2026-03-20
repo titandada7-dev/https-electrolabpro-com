@@ -21,7 +21,7 @@ const navPageLinks = [
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
-  // { label: "Condensadores", to: "/articulos/condensadores" },
+  { label: "Condensadores", to: "/articulos/condensadores" },
   // { label: "Diodos", to: "/articulos/diodos" },
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
   // { label: "Multímetro", to: "/articulos/multimetro" },
