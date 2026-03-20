@@ -277,6 +277,12 @@ const Index = () => {
                     desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.",
                     to: "/articulos/codigo-colores-resistencias",
                   },
+                  {
+                    emoji: "⚡",
+                    title: "Condensadores",
+                    desc: "Tipos, funciones y cómo leer el código cerámico.",
+                    to: "/articulos/condensadores",
+                  },
                 ].map((guide) => (
                   <Link
                     key={guide.to}
