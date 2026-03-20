@@ -16,17 +16,17 @@ const navLinks = [
 
 const navPageLinks = [
   { label: "Componentes", to: "/articulos/codigo-colores-resistencias" },
-  { label: "Equipamiento", to: "/articulos/multimetro" },
+  // { label: "Equipamiento", to: "/articulos/multimetro" }, // Oculto temporalmente para revisión AdSense
 ];
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
-  { label: "Condensadores", to: "/articulos/condensadores" },
-  { label: "Diodos", to: "/articulos/diodos" },
+  // { label: "Condensadores", to: "/articulos/condensadores" },
+  // { label: "Diodos", to: "/articulos/diodos" },
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
-  { label: "Multímetro", to: "/articulos/multimetro" },
-  { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
-  { label: "Transistores", to: "/articulos/transistores" },
+  // { label: "Multímetro", to: "/articulos/multimetro" },
+  // { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
+  // { label: "Transistores", to: "/articulos/transistores" },
 ];
 
 const scrollTo = (id: string) => {
