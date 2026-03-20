@@ -21,7 +21,7 @@ const navPageLinks = [
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
-  // { label: "Condensadores", to: "/articulos/condensadores" },
+  { label: "Condensadores", to: "/articulos/condensadores" },
   // { label: "Diodos", to: "/articulos/diodos" },
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
   // { label: "Multímetro", to: "/articulos/multimetro" },
@@ -277,6 +277,12 @@ const Index = () => {
                     desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.",
                     to: "/articulos/codigo-colores-resistencias",
                   },
+                  {
+                    emoji: "⚡",
+                    title: "Condensadores",
+                    desc: "Tipos, funciones y cómo leer el código cerámico.",
+                    to: "/articulos/condensadores",
+                  },
                 ].map((guide) => (
                   <Link
                     key={guide.to}
@@ -399,6 +405,13 @@ const Index = () => {
               title: "Código de Colores de Resistencias",
               desc: "Aprende a descifrar las bandas de colores de cualquier resistencia de 4 y 5 bandas paso a paso.",
               to: "/articulos/codigo-colores-resistencias",
+              tag: "Componentes",
+            },
+            {
+              emoji: "⚡",
+              title: "Guía de Condensadores",
+              desc: "Electrolíticos, cerámicos, cómo leer el código de 3 números y por qué tu circuito los necesita.",
+              to: "/articulos/condensadores",
               tag: "Componentes",
             },
           ].map((guide) => (
