@@ -385,7 +385,7 @@ const Index = () => {
             Guías de Electrónica
           </h2>
         <p className="text-center text-muted-foreground text-sm mb-10">Artículos esenciales para dominar los fundamentos</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {[
             {
               emoji: "🔢",
@@ -395,17 +395,10 @@ const Index = () => {
               tag: "Fundamentos",
             },
             {
-              emoji: "💡",
-              title: "Tipos de Diodos",
-              desc: "Guía completa sobre diodos rectificadores, LED, Zener, Schottky y fotodiodos con aplicaciones reales.",
-              to: "/articulos/diodos",
-              tag: "Semiconductores",
-            },
-            {
-              emoji: "⚡",
-              title: "Funciones de los Capacitores",
-              desc: "Aprende a leer y diferenciar tipos de capacitores cerámicos y electrolíticos con nuestra guía completa.",
-              to: "/articulos/condensadores",
+              emoji: "🎨",
+              title: "Código de Colores de Resistencias",
+              desc: "Aprende a descifrar las bandas de colores de cualquier resistencia de 4 y 5 bandas paso a paso.",
+              to: "/articulos/codigo-colores-resistencias",
               tag: "Componentes",
             },
           ].map((guide) => (
