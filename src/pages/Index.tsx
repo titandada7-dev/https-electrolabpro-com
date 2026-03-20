@@ -149,13 +149,13 @@ const Index = () => {
                 </Link>
               ))}
             </div>
-            <Link
+            {/* <Link
               to="/sobre-nosotros"
               onClick={() => setMenuOpen(false)}
               className="block w-full text-left text-base text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors font-medium py-3 px-3 rounded-lg min-h-[44px]"
             >
               Sobre Nosotros
-            </Link>
+            </Link> */}
             <button
               onClick={() => { scrollTo("equipamiento"); setMenuOpen(false); }}
               className="flex items-center gap-1.5 w-full px-4 py-3 rounded-lg border border-muted-foreground/30 text-muted-foreground text-base font-medium transition-all hover:text-foreground hover:border-foreground/50 min-h-[44px]"
