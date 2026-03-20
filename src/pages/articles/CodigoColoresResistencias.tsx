@@ -1,132 +1,60 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
-import { ShoppingCart } from "lucide-react";
-import resistorImg from "@/assets/resistor-color-code.png";
 
 const CodigoColoresResistencias = () => {
   return (
     <ArticleLayout
-      title="Cómo Leer el Código de Colores de las Resistencias"
-      subtitle="Identifica el valor de tus resistencias por código de colores (4, 5 y 6 bandas) de forma fácil y rápida con nuestra herramienta interactiva."
+      title="Guía Definitiva: Cómo Leer el Código de Colores de las Resistencias"
+      subtitle="Aprende a descifrar las bandas de colores de cualquier resistencia de 4 y 5 bandas con ejemplos prácticos paso a paso."
       slug="codigo-colores-resistencias"
     >
-      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
-        <img src={resistorImg} alt="Resistencia con bandas de colores mostrando el código de 4 bandas" className="w-full max-h-64 object-contain p-4" />
-        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Resistencia con bandas de colores identificativas de su valor óhmico</p>
-      </div>
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es el código de colores de las resistencias?</h2>
       <p>
-        Las resistencias son uno de los componentes electrónicos más utilizados en cualquier circuito. Su función principal es limitar el flujo de corriente eléctrica, protegiendo otros componentes más delicados como LEDs, transistores o circuitos integrados. Pero, ¿cómo sabemos cuánta resistencia ofrece cada una? La respuesta está en las <strong className="text-foreground">bandas de colores</strong> pintadas sobre su cuerpo.
-      </p>
-      <p>
-        Cada banda de color representa un número, un multiplicador o una tolerancia. Este sistema fue estandarizado internacionalmente para que cualquier ingeniero, técnico o aficionado pueda identificar el valor de una resistencia sin necesidad de instrumentos de medición, aunque siempre es recomendable verificar con un multímetro.
+        En el mundo de la electrónica, las resistencias son componentes tan pequeños que sería imposible imprimir su valor numérico en la superficie de forma legible. Por esta razón, la industria adoptó un estándar universal hace décadas: el código de colores. Aprender a leer estas bandas cromáticas es una habilidad fundamental para cualquier ingeniero, técnico o aficionado que trabaje con circuitos impresos o protoboards.
       </p>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Tabla de colores estándar</h2>
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">La anatomía de una resistencia: 4 y 5 bandas</h2>
       <p>
-        La tabla de colores es la herramienta fundamental que todo electrónico debe memorizar. Cada color se asocia a un dígito del 0 al 9:
-      </p>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
-          <thead>
-            <tr className="bg-secondary text-foreground">
-              <th className="px-4 py-2 text-left font-mono">Color</th>
-              <th className="px-4 py-2 text-left font-mono">Dígito</th>
-              <th className="px-4 py-2 text-left font-mono">Multiplicador</th>
-              <th className="px-4 py-2 text-left font-mono">Tolerancia</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {[
-              ["Negro", "0", "×1 Ω", "—"],
-              ["Marrón", "1", "×10 Ω", "±1%"],
-              ["Rojo", "2", "×100 Ω", "±2%"],
-              ["Naranja", "3", "×1 kΩ", "—"],
-              ["Amarillo", "4", "×10 kΩ", "—"],
-              ["Verde", "5", "×100 kΩ", "±0.5%"],
-              ["Azul", "6", "×1 MΩ", "±0.25%"],
-              ["Violeta", "7", "×10 MΩ", "±0.1%"],
-              ["Gris", "8", "×100 MΩ", "±0.05%"],
-              ["Blanco", "9", "×1 GΩ", "—"],
-              ["Dorado", "—", "×0.1 Ω", "±5%"],
-              ["Plateado", "—", "×0.01 Ω", "±10%"],
-            ].map(([color, digit, mult, tol]) => (
-              <tr key={color} className="hover:bg-card/60 transition-colors">
-                <td className="px-4 py-2 font-semibold text-foreground">{color}</td>
-                <td className="px-4 py-2">{digit}</td>
-                <td className="px-4 py-2">{mult}</td>
-                <td className="px-4 py-2">{tol}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Resistencias de 4 bandas</h2>
-      <p>
-        Las resistencias de 4 bandas son las más comunes en proyectos de electrónica básica y educación. Su lectura es sencilla: las dos primeras bandas representan los dígitos significativos, la tercera banda es el multiplicador y la cuarta banda indica la tolerancia.
+        Existen principalmente dos tipos de resistencias de orificio pasante (through-hole) que encontrarás en tu laboratorio: las estándar de 4 bandas y las de precisión de 5 bandas.
       </p>
       <p>
-        <strong className="text-foreground">Ejemplo práctico:</strong> Imagina una resistencia con bandas <span className="text-foreground font-semibold">Marrón - Negro - Rojo - Dorado</span>. El primer dígito es 1 (marrón), el segundo es 0 (negro), el multiplicador es ×100 (rojo), y la tolerancia es ±5% (dorado). Resultado: <strong className="text-primary">1,000 Ω = 1 kΩ ±5%</strong>.
-      </p>
-      <p>
-        Un truco útil: la banda de tolerancia suele estar más separada de las demás o ser más delgada. Eso te ayuda a identificar por dónde empezar a leer. Si tienes dudas, gira la resistencia para que la banda dorada o plateada quede a la derecha.
+        La regla de oro para empezar a leerlas es identificar la banda de "Tolerancia". Esta banda suele ser de color Dorado o Plateado y siempre está un poco más separada del resto. Esa es la última banda. Debes empezar a leer desde el extremo opuesto.
       </p>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Resistencias de 5 bandas</h2>
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">¿Qué significa cada posición?</h2>
       <p>
-        Las resistencias de 5 bandas ofrecen mayor precisión y se utilizan en circuitos donde los valores exactos son críticos, como en instrumentación, audio profesional o circuitos de medición. En este caso, las tres primeras bandas son dígitos significativos, la cuarta es el multiplicador y la quinta es la tolerancia.
-      </p>
-      <p>
-        <strong className="text-foreground">Ejemplo:</strong> Una resistencia con bandas <span className="text-foreground font-semibold">Rojo - Violeta - Negro - Rojo - Marrón</span> se lee así: 2 (rojo), 7 (violeta), 0 (negro), multiplicador ×100 (rojo), tolerancia ±1% (marrón). Resultado: <strong className="text-primary">27,000 Ω = 27 kΩ ±1%</strong>.
-      </p>
-
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Errores comunes al leer resistencias</h2>
-      <p>
-        Incluso los técnicos experimentados pueden cometer errores al leer el código de colores. Estos son los más frecuentes:
+        Para las resistencias clásicas de 4 bandas, la lectura funciona así:
       </p>
       <ul className="list-disc list-inside space-y-2 pl-2">
-        <li><strong className="text-foreground">Leer al revés:</strong> Confundir la dirección de lectura es muy común. Recuerda que la banda de tolerancia (dorada o plateada) siempre va al final (derecha).</li>
-        <li><strong className="text-foreground">Confundir colores similares:</strong> Marrón y rojo, o naranja y amarillo, pueden parecer idénticos bajo cierta iluminación. Usa siempre buena luz natural o una lupa.</li>
-        <li><strong className="text-foreground">Ignorar la tolerancia:</strong> Una resistencia de 1 kΩ con ±10% puede medir entre 900 Ω y 1,100 Ω. En circuitos sensibles, esto marca la diferencia.</li>
-        <li><strong className="text-foreground">No verificar con el multímetro:</strong> El código de colores es una referencia rápida, pero el valor real puede variar. Siempre mide antes de soldar.</li>
+        <li><strong className="text-foreground">Banda 1 (Primer Dígito):</strong> Representa el primer número del valor. Por ejemplo, el Rojo vale 2.</li>
+        <li><strong className="text-foreground">Banda 2 (Segundo Dígito):</strong> Representa el segundo número. Por ejemplo, el Negro vale 0.</li>
+        <li><strong className="text-foreground">Banda 3 (El Multiplicador):</strong> Esta es la banda matemática. Te indica por cuántos ceros debes multiplicar los dos números anteriores. Si es Rojo (x100), le agregas dos ceros.</li>
+        <li><strong className="text-foreground">Banda 4 (La Tolerancia):</strong> Indica el margen de error de fábrica. El Dorado significa que el valor real puede variar un 5% hacia arriba o hacia abajo, mientras que el Plateado indica un 10%.</li>
       </ul>
-
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Trucos mnemotécnicos para memorizar los colores</h2>
       <p>
-        Existen varias frases mnemotécnicas populares para recordar la secuencia de colores (Negro=0, Marrón=1, Rojo=2...):
-      </p>
-      <div className="p-4 rounded-xl border border-primary/20 bg-card/60">
-        <p className="text-foreground font-mono text-sm italic">
-          "<strong>N</strong>o <strong>M</strong>e <strong>R</strong>ío <strong>N</strong>ada, <strong>A</strong>marillo <strong>V</strong>erdoso <strong>A</strong>zulado <strong>V</strong>iolentamente <strong>G</strong>ritó <strong>B</strong>lanca"
-        </p>
-        <p className="text-xs text-muted-foreground mt-2">Negro, Marrón, Rojo, Naranja, Amarillo, Verde, Azul, Violeta, Gris, Blanco</p>
-      </div>
-
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">¿Por qué es importante saber leer resistencias?</h2>
-      <p>
-        Conocer el código de colores te permite trabajar más rápido, evitar errores costosos y entender los esquemas electrónicos profesionales. En un entorno de prototipado rápido, no siempre tendrás un multímetro a mano, y poder identificar una resistencia al instante ahorra tiempo valioso. Además, esta habilidad es fundamental en exámenes de electrónica, certificaciones técnicas y entrevistas de trabajo en el sector.
-      </p>
-      <p>
-        Te recomendamos practicar con nuestra <Link to="/" className="text-primary hover:underline font-semibold">calculadora de resistencias interactiva</Link> disponible en la página principal de ElectroLab Pro.
+        Para las resistencias de 5 bandas (mayor precisión), el sistema es casi idéntico, solo que tienes tres bandas para los dígitos iniciales, la cuarta es el multiplicador y la quinta la tolerancia.
       </p>
 
-      {/* CTA */}
-      <div className="mt-10 p-6 rounded-xl border border-primary/30 bg-card/80 backdrop-blur space-y-4">
-        <h3 className="text-lg font-mono font-bold text-foreground text-center">🛠️ Kit de Resistencias Surtidas</h3>
-        <p className="text-sm text-center">Más de 500 resistencias en valores estándar, organizadas en caja clasificadora. Perfecto para practicar.</p>
-        <div className="text-center">
-          <a
-            href="https://www.amazon.es/s?k=kit+resistencias+electronica&tag=electrolabpro-21"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
-          >
-            <ShoppingCart className="w-4 h-4" />
-            Ver Kits en Amazon
-          </a>
-        </div>
-      </div>
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Ejemplo Práctico: Descifrando un componente real</h2>
+      <p>
+        Tomas una resistencia de tu caja de componentes y ves que tiene 4 bandas con los siguientes colores de izquierda a derecha: <span className="text-foreground font-semibold">Marrón - Negro - Rojo - Dorado</span>.
+      </p>
+      <p>Vamos a calcularlo paso a paso:</p>
+      <ul className="list-disc list-inside space-y-2 pl-2">
+        <li><strong className="text-foreground">Marrón</strong> = 1</li>
+        <li><strong className="text-foreground">Negro</strong> = 0 (Hasta aquí tenemos el número 10)</li>
+        <li><strong className="text-foreground">Rojo (Multiplicador)</strong> = x100 (le agregamos dos ceros).</li>
+      </ul>
+      <p>
+        El resultado es <strong className="text-primary">1000 Ohmios</strong>, o lo que es lo mismo, <strong className="text-primary">1kΩ</strong> (Kilo-ohmio).
+      </p>
+      <p>
+        La última banda es Dorada, por lo que su tolerancia es del 5%. El valor real de esta resistencia medida con un multímetro estará entre 950Ω y 1050Ω.
+      </p>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">La herramienta infalible</h2>
+      <p>
+        Memorizar la tabla de colores lleva tiempo y práctica. Si estás en medio de un proyecto y necesitas estar 100% seguro del valor de un componente antes de soldarlo, recuerda que en la página principal de ElectroLab Pro tienes nuestra <Link to="/" className="text-primary hover:underline font-semibold">Calculadora de Resistencias interactiva</Link>. Solo selecciona los colores que ves en tu componente y el sistema hará el cálculo matemático por ti con precisión absoluta.
+      </p>
     </ArticleLayout>
   );
 };
