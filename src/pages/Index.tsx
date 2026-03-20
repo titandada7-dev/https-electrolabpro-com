@@ -16,17 +16,17 @@ const navLinks = [
 
 const navPageLinks = [
   { label: "Componentes", to: "/articulos/codigo-colores-resistencias" },
-  { label: "Equipamiento", to: "/articulos/multimetro" },
+  // { label: "Equipamiento", to: "/articulos/multimetro" }, // Oculto temporalmente para revisión AdSense
 ];
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
-  { label: "Condensadores", to: "/articulos/condensadores" },
-  { label: "Diodos", to: "/articulos/diodos" },
+  // { label: "Condensadores", to: "/articulos/condensadores" },
+  // { label: "Diodos", to: "/articulos/diodos" },
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
-  { label: "Multímetro", to: "/articulos/multimetro" },
-  { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
-  { label: "Transistores", to: "/articulos/transistores" },
+  // { label: "Multímetro", to: "/articulos/multimetro" },
+  // { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
+  // { label: "Transistores", to: "/articulos/transistores" },
 ];
 
 const scrollTo = (id: string) => {
@@ -272,16 +272,10 @@ const Index = () => {
                     to: "/articulos/ley-de-ohm",
                   },
                   {
-                    emoji: "💡",
-                    title: "Diodos y Semiconductores",
-                    desc: "Guía práctica para principiantes.",
-                    to: "/articulos/diodos",
-                  },
-                  {
-                    emoji: "⚡",
-                    title: "Condensadores",
-                    desc: "Tipos, valores y aplicaciones en circuitos.",
-                    to: "/articulos/condensadores",
+                    emoji: "🎨",
+                    title: "Código de Colores",
+                    desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.",
+                    to: "/articulos/codigo-colores-resistencias",
                   },
                 ].map((guide) => (
                   <Link
@@ -391,7 +385,7 @@ const Index = () => {
             Guías de Electrónica
           </h2>
         <p className="text-center text-muted-foreground text-sm mb-10">Artículos esenciales para dominar los fundamentos</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {[
             {
               emoji: "🔢",
@@ -401,17 +395,10 @@ const Index = () => {
               tag: "Fundamentos",
             },
             {
-              emoji: "💡",
-              title: "Tipos de Diodos",
-              desc: "Guía completa sobre diodos rectificadores, LED, Zener, Schottky y fotodiodos con aplicaciones reales.",
-              to: "/articulos/diodos",
-              tag: "Semiconductores",
-            },
-            {
-              emoji: "⚡",
-              title: "Funciones de los Capacitores",
-              desc: "Aprende a leer y diferenciar tipos de capacitores cerámicos y electrolíticos con nuestra guía completa.",
-              to: "/articulos/condensadores",
+              emoji: "🎨",
+              title: "Código de Colores de Resistencias",
+              desc: "Aprende a descifrar las bandas de colores de cualquier resistencia de 4 y 5 bandas paso a paso.",
+              to: "/articulos/codigo-colores-resistencias",
               tag: "Componentes",
             },
           ].map((guide) => (
