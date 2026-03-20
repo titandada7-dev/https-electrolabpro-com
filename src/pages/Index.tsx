@@ -272,16 +272,10 @@ const Index = () => {
                     to: "/articulos/ley-de-ohm",
                   },
                   {
-                    emoji: "💡",
-                    title: "Diodos y Semiconductores",
-                    desc: "Guía práctica para principiantes.",
-                    to: "/articulos/diodos",
-                  },
-                  {
-                    emoji: "⚡",
-                    title: "Condensadores",
-                    desc: "Tipos, valores y aplicaciones en circuitos.",
-                    to: "/articulos/condensadores",
+                    emoji: "🎨",
+                    title: "Código de Colores",
+                    desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.",
+                    to: "/articulos/codigo-colores-resistencias",
                   },
                 ].map((guide) => (
                   <Link
