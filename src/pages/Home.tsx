@@ -9,6 +9,7 @@ import SmdDecoderCalculator from "../components/SmdDecoderCalculator";
 import ColorBandCalculator from "../components/ColorBandCalculator";
 import CapacitiveReactanceCalculator from "../components/CapacitiveReactanceCalculator";
 import RCFilterCalculator from "../components/RCFilterCalculator";
+import UnitConverter from "../components/UnitConverter";
 import AdBanner from "../components/AdBanner";
 import { Button } from "../components/ui/button";
 import { Zap, ArrowLeft } from "lucide-react";
