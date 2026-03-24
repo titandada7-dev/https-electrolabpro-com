@@ -2,6 +2,7 @@ import { Zap, ArrowLeft, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import AdBanner from "@/components/AdBanner";
+import LabProRecommendations from "@/components/LabProRecommendations";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
 interface ArticleLayoutProps {
