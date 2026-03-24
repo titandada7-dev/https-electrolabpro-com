@@ -4,9 +4,9 @@ import soldadorImg from "@/assets/soldador.jpg";
 
 const LAB_PRO_PRODUCTS = [
   {
-    title: "Tester Digital Brinna 113A Pro",
+    title: "Multímetro Brinna Smart HB-601",
     description:
-      "Con imán, NCV y luz de fondo. Ideal para técnicos.",
+      "Recargable, con capacímetro. Ideal para técnicos.",
     image: multimetroImg,
     mlLink:
       "https://www.mercadolibre.com.ar/multimetro-brinna-smart-recargable-hb-601-c-capacimetro/p/MLA46131333?pdp_filters=item_id%3AMLA2141545178&matt_tool=89488245#origin=share&sid=share&wid=MLA2141545178",
