@@ -11,6 +11,7 @@ import LeyDeOhm from "./pages/articles/LeyDeOhm";
 import Multimetro from "./pages/articles/Multimetro";
 import CircuitosSerieParalelo from "./pages/articles/CircuitosSerieParalelo";
 import Transistores from "./pages/articles/Transistores";
+import Arduino from "./pages/articles/Arduino";
 
 function App() {
   return (

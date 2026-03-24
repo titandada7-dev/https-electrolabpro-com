@@ -77,6 +77,7 @@ const ARTICLE_LINKS = [
   { label: "Multímetro", to: "/articulos/multimetro" },
   { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
   { label: "Transistores", to: "/articulos/transistores" },
+  { label: "Arduino", to: "/articulos/arduino" },
 ];
 
 export default function Home() {
