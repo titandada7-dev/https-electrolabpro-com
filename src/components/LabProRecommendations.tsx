@@ -2,23 +2,39 @@ import { ExternalLink, Wrench } from "lucide-react";
 import multimetroImg from "@/assets/multimetro.jpg";
 import soldadorImg from "@/assets/soldador.jpg";
 
-const LAB_PRO_PRODUCTS = [
+type Product = {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  available: boolean;
+  store: "ml" | "amazon";
+};
+
+const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Multímetro Brinna Smart HB-601",
-    description:
-      "Recargable, con capacímetro. Ideal para técnicos.",
+    description: "Recargable, con capacímetro. Ideal para técnicos.",
     image: multimetroImg,
-    mlLink:
-      "https://www.mercadolibre.com.ar/multimetro-brinna-smart-recargable-hb-601-c-capacimetro/p/MLA46131333?pdp_filters=item_id%3AMLA2141545178&matt_tool=89488245#origin=share&sid=share&wid=MLA2141545178",
+    link: "https://www.mercadolibre.com.ar/multimetro-brinna-smart-recargable-hb-601-c-capacimetro/p/MLA46131333?pdp_filters=item_id%3AMLA2141545178&matt_tool=89488245#origin=share&sid=share&wid=MLA2141545178",
     available: true,
+    store: "ml",
+  },
+  {
+    title: "Multímetro Digital Aneng AN8008",
+    description: "7000 cuentas, True RMS, diseño ultra compacto.",
+    image: multimetroImg,
+    link: "https://amzn.to/483vAWk",
+    available: true,
+    store: "amazon",
   },
   {
     title: "Soldador de Estaño (próximamente)",
-    description:
-      "Estación profesional con temperatura regulable.",
+    description: "Estación profesional con temperatura regulable.",
     image: soldadorImg,
-    mlLink: "#",
+    link: "#",
     available: false,
+    store: "ml",
   },
 ];
 
