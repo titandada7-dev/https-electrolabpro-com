@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import circuitBg from "@/assets/circuit-bg.jpg";
+import multimetroImg from "@/assets/multimetro.jpg";
+import soldadorImg from "@/assets/soldador.jpg";
+import osciloscopioImg from "@/assets/osciloscopio.jpg";
+import arduinoImg from "@/assets/arduino-kit.jpg";
 import ThemeToggle from "@/components/ThemeToggle";
 import LedCalculator from "../components/LedCalculator";
 import OhmCalculator from "../components/OhmCalculator";
@@ -20,7 +24,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
-import { Zap, ArrowLeft } from "lucide-react";
+import { Zap, ArrowLeft, ExternalLink } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
 const CATEGORIES = [
@@ -61,6 +65,37 @@ const CATEGORIES = [
       { id: "link:/articulos/transistores", label: "🔀 Transistores" },
       { id: "link:/articulos/diodos", label: "💡 Diodos" },
     ],
+  },
+];
+
+const RECOMMENDED_TOOLS = [
+  {
+    title: "Multímetro Digital Profesional",
+    description: "Medición de voltaje, corriente y resistencia con precisión.",
+    image: multimetroImg,
+    mlLink: "#",
+    amazonLink: "https://www.amazon.es/s?k=multimetro+digital&tag=electrolabpro-21",
+  },
+  {
+    title: "Estación de Soldado",
+    description: "Temperatura regulable, ideal para SMD y through-hole.",
+    image: soldadorImg,
+    mlLink: "#",
+    amazonLink: "https://www.amazon.es/s?k=estacion+de+soldadura&tag=electrolabpro-21",
+  },
+  {
+    title: "Osciloscopio Digital",
+    description: "Visualiza señales eléctricas en tiempo real.",
+    image: osciloscopioImg,
+    mlLink: "#",
+    amazonLink: "https://www.amazon.es/s?k=osciloscopio+digital&tag=electrolabpro-21",
+  },
+  {
+    title: "Kit Arduino Starter",
+    description: "Todo lo necesario para empezar con microcontroladores.",
+    image: arduinoImg,
+    mlLink: "#",
+    amazonLink: "https://www.amazon.es/s?k=arduino+starter+kit&tag=electrolabpro-21",
   },
 ];
 
@@ -126,6 +161,11 @@ export default function Home() {
                 electrónica.
               </p>
 
+              {/* 📢 Ad Unit — TOP (debajo del menú) */}
+              <div className="w-full min-h-[90px]">
+                <AdBanner slot="3756475501" format="horizontal" className="mx-auto" />
+              </div>
+
               <Accordion type="multiple" className="w-full space-y-4 text-left">
                 {CATEGORIES.map((cat) => (
                   <AccordionItem
@@ -174,6 +214,59 @@ export default function Home() {
                 ))}
               </Accordion>
 
+              {/* 📢 Ad Unit — MEDIO */}
+              <div className="w-full min-h-[250px]">
+                <AdBanner slot="3756475501" format="rectangle" className="mx-auto" />
+              </div>
+
+              {/* 🛒 Herramientas Recomendadas */}
+              <section className="text-left space-y-6">
+                <h2 className="text-2xl font-display font-bold text-foreground text-center">
+                  🛠️ Herramientas <span className="text-accent">Recomendadas</span>
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {RECOMMENDED_TOOLS.map((tool) => (
+                    <div
+                      key={tool.title}
+                      className="rounded-xl glass border-neon neon-glow overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_hsl(var(--accent)/0.2)]"
+                    >
+                      <img
+                        src={tool.image}
+                        alt={tool.title}
+                        className="w-full h-40 object-cover"
+                        loading="lazy"
+                        width={512}
+                        height={512}
+                      />
+                      <div className="p-4 space-y-3">
+                        <h3 className="font-display font-bold text-foreground">{tool.title}</h3>
+                        <p className="text-muted-foreground text-sm">{tool.description}</p>
+                        <div className="flex flex-col gap-2">
+                          <a
+                            href={tool.mlLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg font-display font-bold text-sm transition-all duration-200 bg-[hsl(50_100%_50%)] text-[hsl(220_80%_25%)] hover:bg-[hsl(50_100%_55%)] hover:shadow-lg hover:-translate-y-0.5"
+                          >
+                            Ver precio en Mercado Libre
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                          <a
+                            href={tool.amazonLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg font-display font-bold text-sm transition-all duration-200 bg-[hsl(0_0%_10%)] text-[hsl(0_0%_100%)] hover:bg-[hsl(0_0%_15%)] hover:shadow-lg hover:-translate-y-0.5"
+                          >
+                            Ver en Amazon
+                            <span className="text-[hsl(30_100%_50%)]">→</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
               {/* Amazon affiliate - styled button */}
               <a
                 href="https://www.amazon.es/b?node=95175938031&linkCode=ll2&tag=electrolabpro-21&linkId=14708c1f7f2b404c346c65c73385a951&ref_=as_li_ss_tl"
@@ -203,6 +296,11 @@ export default function Home() {
             </div>
           )}
         </div>
+      </div>
+
+      {/* 📢 Ad Unit — FOOTER */}
+      <div className="w-full max-w-2xl mx-auto px-4 pb-4">
+        <AdBanner slot="3756475501" format="horizontal" className="mx-auto" />
       </div>
 
       <footer className="w-full py-6 border-t border-border bg-background/50">
