@@ -22,10 +22,10 @@ const navPageLinks = [
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
   { label: "Condensadores", to: "/articulos/condensadores" },
-  // { label: "Diodos", to: "/articulos/diodos" },
+  { label: "Diodos", to: "/articulos/diodos" },
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
-  // { label: "Multímetro", to: "/articulos/multimetro" },
-  // { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
+  { label: "Multímetro", to: "/articulos/multimetro" },
+  { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
   // { label: "Transistores", to: "/articulos/transistores" },
 ];
 
@@ -413,6 +413,27 @@ const Index = () => {
               desc: "Electrolíticos, cerámicos, cómo leer el código de 3 números y por qué tu circuito los necesita.",
               to: "/articulos/condensadores",
               tag: "Componentes",
+            },
+            {
+              emoji: "💡",
+              title: "Diodos: Guía Completa",
+              desc: "Funcionamiento, tipos y aplicaciones de los diodos en circuitos electrónicos reales.",
+              to: "/articulos/diodos",
+              tag: "Componentes",
+            },
+            {
+              emoji: "📟",
+              title: "Cómo Usar un Multímetro",
+              desc: "Guía práctica para medir voltaje, resistencia y continuidad sin quemar tu tester.",
+              to: "/articulos/multimetro",
+              tag: "Equipamiento",
+            },
+            {
+              emoji: "🔗",
+              title: "Serie vs. Paralelo",
+              desc: "Diferencias clave entre circuitos en serie y paralelo con fórmulas y ejemplos prácticos.",
+              to: "/articulos/circuitos-serie-paralelo",
+              tag: "Fundamentos",
             },
           ].map((guide) => (
             <Link
