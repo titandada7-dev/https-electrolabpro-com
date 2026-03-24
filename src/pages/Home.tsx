@@ -6,6 +6,7 @@ import ResistorCalculator from "../components/ResistorCalculator";
 import VoltageDividerCalculator from "../components/VoltageDividerCalculator";
 import Timer555Calculator from "../components/Timer555Calculator";
 import SmdDecoderCalculator from "../components/SmdDecoderCalculator";
+import ColorBandCalculator from "../components/ColorBandCalculator";
 import CapacitiveReactanceCalculator from "../components/CapacitiveReactanceCalculator";
 import AdBanner from "../components/AdBanner";
 import { Button } from "../components/ui/button";
@@ -94,6 +95,13 @@ export default function Home() {
               >
                 〰️ Reactancia Capacitiva
               </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("colores-visual")}
+              >
+                🌈 Calculadora Visual de Colores
+              </Button>
             </div>
 
             <a
@@ -165,6 +173,14 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <CapacitiveReactanceCalculator />
+          </div>
+        )}
+
+        {moduloActivo === "colores-visual" && (
+          <div>
+            {volverAlMenu}
+            <ColorBandCalculator />
+            <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
         </div>
