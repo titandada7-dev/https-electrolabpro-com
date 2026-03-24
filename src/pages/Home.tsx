@@ -21,7 +21,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
-import { Zap, ArrowLeft, ExternalLink, Menu, X, ChevronDown } from "lucide-react";
+import { Zap, ArrowLeft, Menu, X, ChevronDown } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
 const NAV_LINKS = [
@@ -40,7 +40,7 @@ const CATEGORIES = [
       { id: "divisor", label: "Divisor de Voltaje" },
       { id: "reactancia", label: "Reactancia Capacitiva" },
       { id: "led", label: "Resistencia para LED" },
-      { id: "filtro-rc", label: "Filtro RC (Pasa-Bajos / Altos)" },
+      { id: "filtro-rc", label: "Filtro RC" },
       { id: "conversor", label: "Conversor de Unidades" },
     ],
   },
@@ -49,7 +49,7 @@ const CATEGORIES = [
     title: "Decodificadores y Herramientas",
     tools: [
       { id: "resistencias", label: "Código de Colores" },
-      { id: "colores-visual", label: "Calculadora Visual de Colores" },
+      { id: "colores-visual", label: "Calculadora Visual" },
       { id: "smd", label: "Decodificador SMD" },
       { id: "555", label: "Temporizador 555" },
     ],
@@ -58,11 +58,11 @@ const CATEGORIES = [
     id: "guias",
     title: "Guías Técnicas",
     tools: [
-      { id: "link:/articulos/multimetro", label: "Guía del Multímetro" },
-      { id: "link:/articulos/condensadores", label: "Condensadores" },
-      { id: "link:/articulos/circuitos-serie-paralelo", label: "Circuitos Serie vs Paralelo" },
       { id: "link:/articulos/ley-de-ohm", label: "Ley de Ohm — Teoría" },
-      { id: "link:/articulos/codigo-colores-resistencias", label: "Código de Colores — Teoría" },
+      { id: "link:/articulos/codigo-colores-resistencias", label: "Código de Colores" },
+      { id: "link:/articulos/condensadores", label: "Condensadores" },
+      { id: "link:/articulos/multimetro", label: "Guía del Multímetro" },
+      { id: "link:/articulos/circuitos-serie-paralelo", label: "Serie vs Paralelo" },
       { id: "link:/articulos/transistores", label: "Transistores" },
       { id: "link:/articulos/diodos", label: "Diodos" },
     ],
@@ -97,7 +97,7 @@ export default function Home() {
     <Button
       variant="ghost"
       size="sm"
-      className="gap-2 font-mono mb-4 text-muted-foreground hover:text-foreground"
+      className="gap-2 font-mono mb-6 text-muted-foreground hover:text-foreground"
       onClick={() => setModuloActivo("menu")}
     >
       <ArrowLeft className="w-4 h-4" />
@@ -129,11 +129,10 @@ export default function Home() {
           <Link to="/" className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-primary" />
             <span className="text-base font-mono font-bold text-foreground tracking-tight">
-              Electro<span className="text-primary">Lab</span> Pro
+              ElectroLab Pro
             </span>
           </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link) =>
               link.href ? (
@@ -154,7 +153,6 @@ export default function Home() {
                 </button>
               )
             )}
-            {/* Blog dropdown */}
             <div className="relative group">
               <button className="px-3 py-1.5 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
                 Artículos
@@ -165,7 +163,7 @@ export default function Home() {
                   <Link
                     key={a.to}
                     to={a.to}
-                    className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+                    className="block px-4 py-2 text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
                   >
                     {a.label}
                   </Link>
@@ -175,7 +173,6 @@ export default function Home() {
             <ThemeToggle />
           </nav>
 
-          {/* Mobile */}
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <button
@@ -188,7 +185,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {menuOpen && (
           <nav className="md:hidden border-t border-border bg-background px-4 py-2 space-y-1">
             {NAV_LINKS.map((link) =>
@@ -212,7 +208,7 @@ export default function Home() {
               )
             )}
             <div className="border-t border-border pt-2 mt-1">
-              <p className="text-[10px] text-muted-foreground/50 uppercase tracking-wider font-mono mb-1 px-3">Artículos</p>
+              <p className="text-[10px] text-muted-foreground/40 uppercase tracking-[0.15em] font-mono mb-1 px-3">Artículos</p>
               {ARTICLE_LINKS.map((a) => (
                 <Link
                   key={a.to}
@@ -228,48 +224,43 @@ export default function Home() {
         )}
       </header>
 
-      {/* ─── Main Content ─── */}
-      <div className="flex-1 flex items-start justify-center p-4 pt-8">
+      {/* ─── Main ─── */}
+      <div className="flex-1 flex items-start justify-center px-4 pt-10 pb-4">
         <div className="w-full max-w-2xl">
           {moduloActivo === "menu" && (
-            <div className="space-y-10">
+            <div className="space-y-20">
               {/* Header */}
-              <div className="text-center space-y-3">
+              <div className="text-center space-y-4">
                 <h1 className="text-2xl md:text-4xl font-mono font-bold text-foreground tracking-tight">
-                  Electro<span className="text-primary">Lab</span> Pro
+                  ElectroLab Pro
                 </h1>
-                <p className="text-muted-foreground text-sm leading-relaxed max-w-lg mx-auto">
+                <p className="text-muted-foreground text-sm font-mono leading-relaxed max-w-lg mx-auto">
                   Calculadoras electrónicas online para Ley de Ohm, código de colores,
-                  resistencia para LED y más. Herramientas gratuitas para estudiantes,
-                  técnicos e ingenieros.
+                  resistencia para LED y más.
                 </p>
               </div>
 
-              {/* ─── Calculadoras (prioridad) ─── */}
+              {/* ─── Calculadoras ─── */}
               <section id="calculadoras">
-                <Accordion type="multiple" defaultValue={["circuitos"]} className="w-full space-y-3 text-left">
+                <Accordion type="multiple" defaultValue={["circuitos"]} className="w-full space-y-3">
                   {CATEGORIES.map((cat) => (
                     <AccordionItem
                       key={cat.id}
                       value={cat.id}
-                      className="rounded-lg overflow-hidden border border-border bg-card/50"
+                      className="rounded-md border border-border bg-card/40"
                     >
                       <AccordionTrigger className="px-5 py-3.5 text-sm font-mono font-bold text-foreground hover:no-underline hover:text-primary transition-colors [&[data-state=open]]:text-primary">
                         {cat.title}
                       </AccordionTrigger>
                       <AccordionContent className="px-3 pb-3">
-                        <div className="grid gap-1">
+                        <div className="grid gap-0.5">
                           {cat.tools.map((tool) =>
                             tool.id.startsWith("link:") ? (
-                              <Link
-                                key={tool.id}
-                                to={tool.id.replace("link:", "")}
-                                className="block"
-                              >
+                              <Link key={tool.id} to={tool.id.replace("link:", "")} className="block">
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="w-full justify-start text-sm font-mono rounded-md hover:bg-secondary/50 hover:text-foreground transition-colors"
+                                  className="w-full justify-start text-sm font-mono rounded hover:bg-secondary/50 hover:text-foreground"
                                 >
                                   {tool.label}
                                 </Button>
@@ -279,7 +270,7 @@ export default function Home() {
                                 key={tool.id}
                                 variant="ghost"
                                 size="sm"
-                                className="w-full justify-start text-sm font-mono rounded-md hover:bg-secondary/50 hover:text-foreground transition-colors"
+                                className="w-full justify-start text-sm font-mono rounded hover:bg-secondary/50 hover:text-foreground"
                                 onClick={() => setModuloActivo(tool.id)}
                               >
                                 {tool.label}
@@ -293,12 +284,12 @@ export default function Home() {
                 </Accordion>
               </section>
 
-              {/* ─── Ad: Discrete ─── */}
+              {/* ─── Ad ─── */}
               <AdBannerDiscrete slot="3756475501" format="horizontal" />
 
-              {/* ─── Blog Técnico (links rápidos) ─── */}
-              <section id="blog" className="space-y-4">
-                <h2 className="text-lg font-mono font-bold text-foreground">
+              {/* ─── Blog Técnico ─── */}
+              <section id="blog" className="space-y-5">
+                <h2 className="text-base font-mono font-bold text-foreground tracking-wide uppercase">
                   Blog Técnico
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -306,7 +297,7 @@ export default function Home() {
                     <Link
                       key={a.to}
                       to={a.to}
-                      className="px-3 py-2.5 rounded-md border border-border bg-card/50 text-sm font-mono text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all text-center"
+                      className="px-3 py-2.5 rounded border border-border bg-card/30 text-xs font-mono text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all text-center"
                     >
                       {a.label}
                     </Link>
@@ -314,21 +305,16 @@ export default function Home() {
                 </div>
               </section>
 
-              {/* ─── Ad: Discrete ─── */}
+              {/* ─── Ad ─── */}
               <AdBannerDiscrete slot="3756475501" format="rectangle" />
 
-              {/* ─── Equipamiento de Laboratorio (minimalista, al final) ─── */}
-              <section id="equipamiento" className="space-y-4">
-                <h2 className="text-lg font-mono font-bold text-foreground">
-                  Equipamiento de Laboratorio
+              {/* ─── Instrumentación Certificada ─── */}
+              <section className="space-y-4 border-t border-border pt-10">
+                <h2 className="text-xs font-mono font-bold text-muted-foreground uppercase tracking-[0.2em]">
+                  Instrumentación Certificada
                 </h2>
                 <LabProRecommendations />
               </section>
-
-              <p className="text-muted-foreground text-xs leading-relaxed max-w-lg mx-auto text-center">
-                Estas calculadoras permiten resolver cálculos comunes en
-                electrónica de forma rápida desde el celular o la computadora.
-              </p>
             </div>
           )}
 
@@ -337,38 +323,32 @@ export default function Home() {
               {volverAlMenu}
               {renderTool(moduloActivo)}
               <ShareButtons />
-              <AdBannerDiscrete slot="3756475501" className="mt-6" />
+              <AdBannerDiscrete slot="3756475501" className="mt-20" />
             </div>
           )}
         </div>
       </div>
 
       {/* ─── Footer ─── */}
-      <footer className="w-full py-6 border-t border-border bg-card/30 mt-8">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <p className="text-muted-foreground text-xs tracking-wide mb-3 font-mono">
+      <footer className="w-full py-6 border-t border-border bg-card/20 mt-10">
+        <div className="max-w-2xl mx-auto px-4 text-center space-y-3">
+          <p className="text-muted-foreground text-[11px] font-mono tracking-wide">
             © 2026 ElectroLab Pro — J.A. Sanchez
           </p>
-          <div className="flex items-center justify-center gap-4 mb-3">
-            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">
-              Privacidad
-            </Link>
-            <span className="text-muted-foreground/30">·</span>
-            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">
-              Aviso Legal
-            </Link>
-            <span className="text-muted-foreground/30">·</span>
-            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">
-              Contacto
-            </Link>
+          <div className="flex items-center justify-center gap-4">
+            <Link to="/privacidad" className="text-muted-foreground/60 text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">Privacidad</Link>
+            <span className="text-muted-foreground/20">·</span>
+            <Link to="/aviso-legal" className="text-muted-foreground/60 text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">Aviso Legal</Link>
+            <span className="text-muted-foreground/20">·</span>
+            <Link to="/contacto" className="text-muted-foreground/60 text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">Contacto</Link>
           </div>
           <a
             href="mailto:contacto@electrolabpro.com"
-            className="text-muted-foreground/50 text-[10px] hover:text-foreground transition-colors block mb-3 font-mono"
+            className="text-muted-foreground/40 text-[10px] hover:text-foreground transition-colors block font-mono"
           >
             contacto@electrolabpro.com
           </a>
-          <p className="text-muted-foreground/40 text-[9px] leading-relaxed max-w-md mx-auto">
+          <p className="text-muted-foreground/30 text-[9px] leading-relaxed max-w-md mx-auto font-mono">
             En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
           </p>
         </div>
