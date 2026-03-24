@@ -44,7 +44,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Pack Resistencias 1/4W (30 valores)",
     description: "600 unidades surtidas, de 10Ω a 1MΩ.",
-    image: multimetroImg,
+    image: resistenciasImg,
     link: "https://www.amazon.es/s?k=kit+resistencias+1%2F4w+surtido&tag=electrolabpro-21",
     available: true,
     store: "amazon",
