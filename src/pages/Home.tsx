@@ -8,6 +8,7 @@ import Timer555Calculator from "../components/Timer555Calculator";
 import SmdDecoderCalculator from "../components/SmdDecoderCalculator";
 import ColorBandCalculator from "../components/ColorBandCalculator";
 import CapacitiveReactanceCalculator from "../components/CapacitiveReactanceCalculator";
+import RCFilterCalculator from "../components/RCFilterCalculator";
 import AdBanner from "../components/AdBanner";
 import { Button } from "../components/ui/button";
 import { Zap, ArrowLeft } from "lucide-react";
@@ -102,6 +103,13 @@ export default function Home() {
               >
                 🌈 Calculadora Visual de Colores
               </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("filtro-rc")}
+              >
+                📡 Filtro RC (Pasa-Bajos / Altos)
+              </Button>
             </div>
 
             <a
@@ -180,6 +188,14 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <ColorBandCalculator />
+            <AdBanner slot="3756475501" className="mt-6" />
+          </div>
+        )}
+
+        {moduloActivo === "filtro-rc" && (
+          <div>
+            {volverAlMenu}
+            <RCFilterCalculator />
             <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
