@@ -1,4 +1,4 @@
-import { ExternalLink, Wrench } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import multimetroImg from "@/assets/multimetro.jpg";
 import anengImg from "@/assets/aneng-an8008.jpg";
 import cablesImg from "@/assets/cables-dupont.jpg";
@@ -12,144 +12,107 @@ type Product = {
   description: string;
   image: string;
   link: string;
-  available: boolean;
   store: "ml" | "amazon";
 };
 
-// Mercado Libre Afiliados — Etiqueta: as20260324074639 | Producto ID: 0R6VN8-Q2YR
 const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Tester Digital Multímetro",
     description: "Recargable, con capacímetro. Ideal para técnicos.",
     image: multimetroImg,
     link: "https://meli.la/12zzemF",
-    available: true,
     store: "ml",
   },
   {
-    title: "Multímetro Digital Aneng AN8008",
-    description: "7000 cuentas, True RMS, diseño ultra compacto.",
+    title: "Multímetro Aneng AN8008",
+    description: "7000 cuentas, True RMS, ultra compacto.",
     image: anengImg,
     link: "https://amzn.to/483vAWk",
-    available: true,
     store: "amazon",
   },
   {
-    title: "Kit Cables Dupont (M-M, M-H, H-H)",
-    description: "120 piezas, ideal para protoboard y Arduino.",
+    title: "Kit Cables Dupont",
+    description: "120 piezas M-M, M-H, H-H para protoboard.",
     image: cablesImg,
     link: "https://www.amazon.es/s?k=cables+dupont+arduino&tag=electrolabpro-21",
-    available: true,
     store: "amazon",
   },
   {
-    title: "Pack Resistencias 1/4W (30 valores)",
-    description: "600 unidades surtidas, de 10Ω a 1MΩ.",
+    title: "Pack Resistencias 1/4W",
+    description: "600 unidades surtidas, 10Ω a 1MΩ.",
     image: resistenciasImg,
     link: "https://www.amazon.es/s?k=kit+resistencias+1%2F4w+surtido&tag=electrolabpro-21",
-    available: true,
     store: "amazon",
   },
   {
-    title: "Kit LEDs 5mm (5 colores)",
-    description: "100 unidades: rojo, verde, azul, amarillo y blanco.",
+    title: "Kit LEDs 5mm",
+    description: "100 unidades en 5 colores.",
     image: ledsImg,
     link: "https://www.amazon.es/s?k=kit+led+5mm+surtido&tag=electrolabpro-21",
-    available: true,
     store: "amazon",
   },
   {
-    title: "Componentes Electrónicos Surtidos",
-    description: "Condensadores, transistores, diodos y más repuestos.",
+    title: "Componentes Surtidos",
+    description: "Condensadores, transistores, diodos.",
     image: componentesImg,
     link: "https://www.amazon.es/s?k=kit+componentes+electronicos+surtido&tag=electrolabpro-21",
-    available: true,
     store: "amazon",
   },
   {
-    title: "Soldador de Estaño 60W",
-    description: "Kit completo con soporte, estaño y puntas.",
+    title: "Soldador 60W Kit",
+    description: "Con soporte, estaño y puntas.",
     image: soldadorImg,
     link: "https://www.amazon.es/s?k=soldador+esta%C3%B1o+60w+kit&tag=electrolabpro-21",
-    available: true,
     store: "amazon",
   },
 ];
 
 const LabProRecommendations = () => {
   return (
-    <section className="w-full">
-      <div className="rounded-lg border border-border/60 bg-muted/30 p-5 space-y-4">
-        {/* Header */}
-        <div className="flex items-center gap-2">
-          <Wrench className="w-4 h-4 text-muted-foreground" />
-          <h3 className="text-sm font-display font-semibold text-muted-foreground uppercase tracking-wider">
-            Equipamiento Sugerido
-          </h3>
-        </div>
-
-        {/* Products */}
-        <div className="space-y-3">
-          {LAB_PRO_PRODUCTS.map((product) => (
-            <div
-              key={product.title}
-              className="flex items-center gap-4 group"
-            >
-              {/* Thumbnail */}
-              <div className="w-14 h-14 rounded-md overflow-hidden shrink-0 border border-border/40 relative">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  width={56}
-                  height={56}
-                />
-                {!product.available && (
-                  <div className="absolute inset-0 bg-background/70" />
-                )}
-              </div>
-
-              {/* Info */}
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-foreground truncate">
-                  {product.title}
-                </p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {product.description}
-                </p>
-              </div>
-
-              {/* CTA */}
-              {product.available ? (
-                <a
-                  href={product.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border transition-all duration-200 hover:shadow-sm ${
-                    product.store === "amazon"
-                      ? "border-[hsl(30_100%_50%)] text-[hsl(30_100%_45%)] bg-transparent hover:bg-[hsl(30_100%_50%)] hover:text-white"
-                      : "border-[hsl(50_100%_45%)] text-[hsl(50_100%_40%)] bg-transparent hover:bg-[hsl(50_100%_50%)] hover:text-[hsl(220_80%_20%)]"
-                  }`}
-                >
-                  {product.store === "amazon" ? "Ver en Amazon" : "Ver en ML"}
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              ) : (
-                <span className="shrink-0 text-[10px] text-muted-foreground/60 italic">
-                  Pronto
-                </span>
-              )}
+    <div className="rounded-md border border-border bg-card/30 p-4 space-y-3">
+      <div className="space-y-2.5">
+        {LAB_PRO_PRODUCTS.map((product) => (
+          <div key={product.title} className="flex items-center gap-3 group">
+            {/* Small thumbnail */}
+            <div className="w-10 h-10 rounded overflow-hidden shrink-0 border border-border/30">
+              <img
+                src={product.image}
+                alt={product.title}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={40}
+                height={40}
+              />
             </div>
-          ))}
-        </div>
 
-        {/* Disclaimer */}
-        <p className="text-[10px] text-muted-foreground/50 italic leading-relaxed">
-          Los enlaces pueden generar una pequeña comisión sin costo adicional para vos.
-        </p>
+            {/* Info */}
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-mono font-semibold text-foreground truncate">
+                {product.title}
+              </p>
+              <p className="text-[11px] text-muted-foreground leading-snug">
+                {product.description}
+              </p>
+            </div>
+
+            {/* Outline button */}
+            <a
+              href={product.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-mono font-medium border border-muted-foreground/30 text-muted-foreground bg-transparent transition-all duration-200 hover:bg-primary hover:text-primary-foreground hover:border-primary"
+            >
+              {product.store === "amazon" ? "Amazon" : "ML"}
+              <ExternalLink className="w-2.5 h-2.5" />
+            </a>
+          </div>
+        ))}
       </div>
-    </section>
+
+      <p className="text-[9px] text-muted-foreground/40 leading-relaxed font-mono">
+        Enlaces de afiliado. Sin costo adicional para vos.
+      </p>
+    </div>
   );
 };
 
