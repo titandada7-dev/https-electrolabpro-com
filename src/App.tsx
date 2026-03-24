@@ -29,6 +29,7 @@ function App() {
         <Route path="/articulos/multimetro" element={<Multimetro />} />
         <Route path="/articulos/circuitos-serie-paralelo" element={<CircuitosSerieParalelo />} />
         <Route path="/articulos/transistores" element={<Transistores />} />
+        <Route path="/articulos/arduino" element={<Arduino />} />
         <Route
           path="*"
           element={
