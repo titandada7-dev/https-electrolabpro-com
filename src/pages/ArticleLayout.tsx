@@ -154,7 +154,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       <footer className="w-full py-8 mt-auto bg-card/50 border-t border-border">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
-            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A.Sanchez</span>
+            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A. Sanchez</span>
           </p>
           <div className="flex items-center justify-center gap-4 mb-3">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
@@ -163,6 +163,12 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
           </div>
+          <a
+            href="mailto:contacto@electrolabpro.com"
+            className="text-muted-foreground/60 text-[10px] hover:text-foreground transition-colors block mb-3"
+          >
+            contacto@electrolabpro.com
+          </a>
           <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles."
           </p>
