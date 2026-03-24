@@ -503,7 +503,7 @@ const Index = () => {
           ].map((tool) => (
             <div
               key={tool.title}
-              className="flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+              className="flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden border-glow-hover hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-full h-32 bg-secondary/50 flex items-center justify-center text-5xl">
                 {tool.emoji}
