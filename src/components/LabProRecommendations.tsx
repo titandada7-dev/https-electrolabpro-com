@@ -1,6 +1,11 @@
 import { ExternalLink, Wrench } from "lucide-react";
 import multimetroImg from "@/assets/multimetro.jpg";
-import soldadorImg from "@/assets/soldador.jpg";
+import anengImg from "@/assets/aneng-an8008.jpg";
+import cablesImg from "@/assets/cables-dupont.jpg";
+import resistenciasImg from "@/assets/kit-resistencias.jpg";
+import ledsImg from "@/assets/kit-leds.jpg";
+import componentesImg from "@/assets/kit-componentes.jpg";
+import soldadorImg from "@/assets/soldador-kit.jpg";
 
 type Product = {
   title: string;
@@ -23,7 +28,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Multímetro Digital Aneng AN8008",
     description: "7000 cuentas, True RMS, diseño ultra compacto.",
-    image: multimetroImg,
+    image: anengImg,
     link: "https://amzn.to/483vAWk",
     available: true,
     store: "amazon",
@@ -31,7 +36,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Kit Cables Dupont (M-M, M-H, H-H)",
     description: "120 piezas, ideal para protoboard y Arduino.",
-    image: multimetroImg,
+    image: cablesImg,
     link: "https://www.amazon.es/s?k=cables+dupont+arduino&tag=electrolabpro-21",
     available: true,
     store: "amazon",
@@ -39,7 +44,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Pack Resistencias 1/4W (30 valores)",
     description: "600 unidades surtidas, de 10Ω a 1MΩ.",
-    image: multimetroImg,
+    image: resistenciasImg,
     link: "https://www.amazon.es/s?k=kit+resistencias+1%2F4w+surtido&tag=electrolabpro-21",
     available: true,
     store: "amazon",
@@ -47,7 +52,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Kit LEDs 5mm (5 colores)",
     description: "100 unidades: rojo, verde, azul, amarillo y blanco.",
-    image: multimetroImg,
+    image: ledsImg,
     link: "https://www.amazon.es/s?k=kit+led+5mm+surtido&tag=electrolabpro-21",
     available: true,
     store: "amazon",
@@ -55,7 +60,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Componentes Electrónicos Surtidos",
     description: "Condensadores, transistores, diodos y más repuestos.",
-    image: multimetroImg,
+    image: componentesImg,
     link: "https://www.amazon.es/s?k=kit+componentes+electronicos+surtido&tag=electrolabpro-21",
     available: true,
     store: "amazon",
