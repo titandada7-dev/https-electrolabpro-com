@@ -9,7 +9,7 @@ const LAB_PRO_PRODUCTS = [
       "Con imán, NCV y luz de fondo. Ideal para técnicos.",
     image: multimetroImg,
     mlLink:
-      "https://www.mercadolibre.com.ar/tester-digital-multimetro-brinna-113a-nuevo-iman-luz/up/MLAU208168943?pdp_filters=item_id%3AMLA1280143996&matt_tool=89488245#origin=share&sid=share&wid=MLA1280143996",
+      "https://www.mercadolibre.com.ar/multimetro-brinna-smart-recargable-hb-601-c-capacimetro/p/MLA46131333?pdp_filters=item_id%3AMLA2141545178&matt_tool=89488245#origin=share&sid=share&wid=MLA2141545178",
     available: true,
   },
   {
