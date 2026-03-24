@@ -8,14 +8,13 @@ interface AdBannerDiscreteProps {
 
 const AdBannerDiscrete = ({ slot, format = "auto", className = "" }: AdBannerDiscreteProps) => {
   return (
-    <div className={`w-full ${className}`}>
-      <div className="border-t border-border/30 pt-3">
-        <p className="text-[10px] text-muted-foreground/40 uppercase tracking-widest font-mono mb-2 text-center">
+    <div className={`w-full py-6 ${className}`}>
+      <div className="rounded-md border border-border/40 bg-muted/20 p-3">
+        <p className="text-[9px] text-muted-foreground/35 uppercase tracking-[0.2em] font-mono mb-2 text-center select-none">
           Publicidad
         </p>
         <AdBanner slot={slot} format={format} />
       </div>
-      <div className="border-b border-border/30 mt-3" />
     </div>
   );
 };
