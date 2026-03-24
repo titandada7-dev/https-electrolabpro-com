@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, Menu, X } from "lucide-react";
+import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, Menu, X, CircuitBoard } from "lucide-react";
+import heroPcb from "@/assets/hero-pcb.jpg";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
@@ -175,12 +176,23 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-10 sm:py-24 md:py-32" style={{ background: 'linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(0 0% 4%) 100%)' }}>
-        {/* Glow effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-30 blur-[100px]" style={{ background: 'hsl(199 89% 60% / 0.4)' }} />
+      <section className="relative overflow-hidden py-16 sm:py-28 md:py-36">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src={heroPcb} alt="Placa de circuito impreso ElectroLab Pro" width={1920} height={800} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        </div>
+        {/* Cyan glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full opacity-25 blur-[120px]" style={{ background: 'hsl(185 100% 50% / 0.5)' }} />
+        {/* Green accent glow */}
+        <div className="absolute top-1/3 right-1/4 w-[300px] h-[200px] rounded-full opacity-15 blur-[100px]" style={{ background: 'hsl(100 80% 55% / 0.5)' }} />
         <div className="relative container mx-auto px-4 text-center space-y-6">
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent leading-tight">
-            ElectroLab Pro
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono font-semibold tracking-wider mb-2">
+            <CircuitBoard className="w-3.5 h-3.5" />
+            PLATAFORMA DE ELECTRÓNICA
+          </div>
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-mono font-bold text-foreground leading-tight">
+            Electro<span className="text-primary glow-text">Lab</span> <span className="text-highlight glow-text-accent">Pro</span>
           </h1>
           <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-2">
             La suite definitiva para ingenieros y entusiastas de la electrónica. Calcula, aprende y diseña con precisión digital.
@@ -197,15 +209,15 @@ const Index = () => {
       </section>
 
       {/* Features */}
-      <section className="py-10 sm:py-16 border-b border-border" style={{ background: 'linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(222 47% 11%) 100%)' }}>
+      <section className="py-10 sm:py-16 border-b border-border" style={{ background: 'linear-gradient(180deg, hsl(235 45% 7%) 0%, hsl(235 40% 11%) 100%)' }}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {[
               { icon: <Zap className="w-8 h-8 text-primary glow-icon" />, title: "Precisión Total", desc: "Algoritmos verificados para cálculos exactos de 4 y 5 bandas." },
-              { icon: <BookOpen className="w-8 h-8 text-primary glow-icon" />, title: "Diccionario Vivo", desc: "Acceso rápido a definiciones y símbolos de componentes reales." },
+              { icon: <BookOpen className="w-8 h-8 text-highlight glow-accent" />, title: "Diccionario Vivo", desc: "Acceso rápido a definiciones y símbolos de componentes reales." },
               { icon: <Cpu className="w-8 h-8 text-primary glow-icon" />, title: "Modo Pro", desc: "Interfaz optimizada para ingenieros con modo oscuro de alto contraste." },
             ].map((f) => (
-              <div key={f.title} className="group p-6 rounded-xl bg-card border border-border hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 text-center space-y-3">
+              <div key={f.title} className="group p-6 rounded-xl bg-card border border-border border-glow-hover hover:-translate-y-1 text-center space-y-3 transition-all duration-300">
                 <div className="inline-flex p-3 rounded-lg bg-secondary">{f.icon}</div>
                 <h3 className="text-lg font-mono font-bold text-foreground">{f.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
@@ -491,7 +503,7 @@ const Index = () => {
           ].map((tool) => (
             <div
               key={tool.title}
-              className="flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+              className="flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden border-glow-hover hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-full h-32 bg-secondary/50 flex items-center justify-center text-5xl">
                 {tool.emoji}
@@ -504,7 +516,7 @@ const Index = () => {
                     href={tool.mlLink}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold transition-all duration-200 hover:scale-[1.02] active:scale-95"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-highlight text-accent-foreground text-sm font-bold transition-all duration-200 hover:scale-[1.02] active:scale-95 hover:brightness-110"
                   >
                     Ver en Mercado Libre
                   </a>
@@ -577,7 +589,7 @@ const Index = () => {
             Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica."
            </p>
            <div className="border-t border-white/5 pt-4 mt-2">
-             <p className="text-amber-400/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad y Responsabilidad</p>
+             <p className="text-highlight/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad y Responsabilidad</p>
              <p className="text-muted-foreground/50 text-[9px] leading-relaxed max-w-2xl mx-auto">
                Los cálculos y datos proporcionados por ElectroLab Pro son estrictamente para fines educativos y de prototipado. 
                La electrónica implica riesgos; siempre verifica los valores de componentes (resistencias, capacitores, diodos) con un multímetro real antes de energizar un circuito. 
