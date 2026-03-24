@@ -12,6 +12,9 @@ import Multimetro from "./pages/articles/Multimetro";
 import CircuitosSerieParalelo from "./pages/articles/CircuitosSerieParalelo";
 import Transistores from "./pages/articles/Transistores";
 import Arduino from "./pages/articles/Arduino";
+import Osciloscopio from "./pages/articles/Osciloscopio";
+import FuentesAlimentacion from "./pages/articles/FuentesAlimentacion";
+import Soldadura from "./pages/articles/Soldadura";
 
 function App() {
   return (
@@ -30,6 +33,9 @@ function App() {
         <Route path="/articulos/circuitos-serie-paralelo" element={<CircuitosSerieParalelo />} />
         <Route path="/articulos/transistores" element={<Transistores />} />
         <Route path="/articulos/arduino" element={<Arduino />} />
+        <Route path="/articulos/osciloscopio" element={<Osciloscopio />} />
+        <Route path="/articulos/fuentes-de-alimentacion" element={<FuentesAlimentacion />} />
+        <Route path="/articulos/soldadura-electronica" element={<Soldadura />} />
         <Route
           path="*"
           element={
