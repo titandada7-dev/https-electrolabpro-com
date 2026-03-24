@@ -175,6 +175,14 @@ export default function Home() {
             <CapacitiveReactanceCalculator />
           </div>
         )}
+
+        {moduloActivo === "colores-visual" && (
+          <div>
+            {volverAlMenu}
+            <ColorBandCalculator />
+            <AdBanner slot="3756475501" className="mt-6" />
+          </div>
+        )}
         </div>
       </div>
 
