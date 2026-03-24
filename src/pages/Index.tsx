@@ -22,10 +22,10 @@ const navPageLinks = [
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
   { label: "Condensadores", to: "/articulos/condensadores" },
-  // { label: "Diodos", to: "/articulos/diodos" },
+  { label: "Diodos", to: "/articulos/diodos" },
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
-  // { label: "Multímetro", to: "/articulos/multimetro" },
-  // { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
+  { label: "Multímetro", to: "/articulos/multimetro" },
+  { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
   // { label: "Transistores", to: "/articulos/transistores" },
 ];
 
