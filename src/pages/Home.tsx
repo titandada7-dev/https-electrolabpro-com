@@ -127,9 +127,9 @@ export default function Home() {
                   <AccordionItem
                     key={cat.id}
                     value={cat.id}
-                    className="border border-border/50 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm transition-colors hover:border-primary/40 hover:shadow-[var(--glow)]"
+                    className="border border-border/50 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:shadow-[0_0_25px_hsl(175_70%_45%/0.35),inset_0_0_15px_hsl(175_70%_45%/0.08)]"
                   >
-                    <AccordionTrigger className="px-5 py-4 text-lg font-mono font-semibold text-foreground hover:no-underline hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:shadow-[var(--glow)]">
+                    <AccordionTrigger className="px-5 py-4 text-lg font-mono font-semibold text-foreground hover:no-underline hover:text-accent transition-colors [&[data-state=open]]:text-accent [&[data-state=open]]:shadow-[0_0_30px_hsl(175_70%_45%/0.4)]">
                       <span className="flex items-center gap-3">
                         <span className="text-2xl">{cat.icon}</span>
                         {cat.title}
