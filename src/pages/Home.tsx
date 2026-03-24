@@ -111,6 +111,13 @@ export default function Home() {
               >
                 📡 Filtro RC (Pasa-Bajos / Altos)
               </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("conversor")}
+              >
+                🔄 Conversor de Unidades
+              </Button>
             </div>
 
             <a
