@@ -85,12 +85,16 @@ const LabProRecommendations = () => {
               {/* CTA */}
               {product.available ? (
                 <a
-                  href={product.mlLink}
+                  href={product.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border border-[hsl(50_100%_45%)] text-[hsl(50_100%_40%)] bg-transparent transition-all duration-200 hover:bg-[hsl(50_100%_50%)] hover:text-[hsl(220_80%_20%)] hover:shadow-sm"
+                  className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border transition-all duration-200 hover:shadow-sm ${
+                    product.store === "amazon"
+                      ? "border-[hsl(30_100%_50%)] text-[hsl(30_100%_45%)] bg-transparent hover:bg-[hsl(30_100%_50%)] hover:text-white"
+                      : "border-[hsl(50_100%_45%)] text-[hsl(50_100%_40%)] bg-transparent hover:bg-[hsl(50_100%_50%)] hover:text-[hsl(220_80%_20%)]"
+                  }`}
                 >
-                  Ver en ML
+                  {product.store === "amazon" ? "Ver en Amazon" : "Ver en ML"}
                   <ExternalLink className="w-3 h-3" />
                 </a>
               ) : (

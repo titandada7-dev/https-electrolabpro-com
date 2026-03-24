@@ -342,10 +342,13 @@ export default function Home() {
           </div>
           <a
             href="mailto:contacto@electrolabpro.com"
-            className="text-muted-foreground/60 text-[10px] hover:text-foreground transition-colors"
+            className="text-muted-foreground/60 text-[10px] hover:text-foreground transition-colors block mb-3"
           >
             contacto@electrolabpro.com
           </a>
+          <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic">
+            "En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables."
+          </p>
         </div>
       </footer>
     </div>
