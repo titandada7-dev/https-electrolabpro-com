@@ -18,10 +18,10 @@ type Product = {
 
 const LAB_PRO_PRODUCTS: Product[] = [
   {
-    title: "Multímetro Brinna Smart HB-601",
+    title: "Tester Digital Multímetro",
     description: "Recargable, con capacímetro. Ideal para técnicos.",
     image: multimetroImg,
-    link: "https://www.mercadolibre.com.ar/multimetro-brinna-smart-recargable-hb-601-c-capacimetro/p/MLA46131333?pdp_filters=item_id%3AMLA2141545178&matt_tool=89488245#origin=share&sid=share&wid=MLA2141545178",
+    link: "https://meli.la/12zzemF",
     available: true,
     store: "ml",
   },
