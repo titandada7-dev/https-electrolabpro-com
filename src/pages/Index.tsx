@@ -27,7 +27,7 @@ const articleLinks = [
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
   { label: "Multímetro", to: "/articulos/multimetro" },
   { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
-  // { label: "Transistores", to: "/articulos/transistores" },
+  { label: "Transistores", to: "/articulos/transistores" },
 ];
 
 const scrollTo = (id: string) => {
