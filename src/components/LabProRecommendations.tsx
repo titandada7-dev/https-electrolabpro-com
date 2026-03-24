@@ -6,7 +6,7 @@ const LAB_PRO_PRODUCTS = [
   {
     title: "Tester Digital Brinna 113A Pro",
     description:
-      "Con imán de sujeción, NCV (detección de voltaje sin contacto) y luz de fondo. Ideal para service.",
+      "Imán de sujeción · NCV · Luz de fondo. Ideal para service.",
     image: multimetroImg,
     mlLink:
       "https://articulo.mercadolibre.com.ar/MLA-1384708015-tester-digital-multimetro-brinna-113a-pro-ncv-iman-luz-_JM",
@@ -15,7 +15,7 @@ const LAB_PRO_PRODUCTS = [
   {
     title: "Soldador de Estaño (próximamente)",
     description:
-      "Estación de soldadura profesional con temperatura regulable. ¡Pronto con enlace de compra!",
+      "Estación profesional con temperatura regulable.",
     image: soldadorImg,
     mlLink: "#",
     available: false,
@@ -24,60 +24,72 @@ const LAB_PRO_PRODUCTS = [
 
 const LabProRecommendations = () => {
   return (
-    <section className="w-full space-y-6 text-left">
-      <h2 className="text-2xl font-display font-bold text-foreground text-center flex items-center justify-center gap-3">
-        <Wrench className="w-6 h-6 text-accent" />
-        Laboratorio Pro:{" "}
-        <span className="text-accent">Herramientas que uso y recomiendo</span>
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {LAB_PRO_PRODUCTS.map((product) => (
-          <div
-            key={product.title}
-            className="group rounded-xl glass border-neon overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_32px_hsl(var(--accent)/0.25)]"
-          >
-            <div className="relative overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-                width={512}
-                height={512}
-              />
-              {!product.available && (
-                <div className="absolute inset-0 bg-background/60 flex items-center justify-center">
-                  <span className="text-xs font-display font-bold uppercase tracking-widest text-muted-foreground bg-background/80 px-3 py-1 rounded-full border border-border">
-                    Próximamente
-                  </span>
-                </div>
-              )}
-            </div>
-            <div className="p-4 space-y-3">
-              <h3 className="font-display font-bold text-foreground text-base">
-                {product.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {product.description}
-              </p>
+    <section className="w-full">
+      <div className="rounded-lg border border-border/60 bg-muted/30 p-5 space-y-4">
+        {/* Header */}
+        <div className="flex items-center gap-2">
+          <Wrench className="w-4 h-4 text-muted-foreground" />
+          <h3 className="text-sm font-display font-semibold text-muted-foreground uppercase tracking-wider">
+            Equipamiento recomendado para este proyecto
+          </h3>
+        </div>
+
+        {/* Products */}
+        <div className="space-y-3">
+          {LAB_PRO_PRODUCTS.map((product) => (
+            <div
+              key={product.title}
+              className="flex items-center gap-4 group"
+            >
+              {/* Thumbnail */}
+              <div className="w-14 h-14 rounded-md overflow-hidden shrink-0 border border-border/40 relative">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  width={56}
+                  height={56}
+                />
+                {!product.available && (
+                  <div className="absolute inset-0 bg-background/70" />
+                )}
+              </div>
+
+              {/* Info */}
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-foreground truncate">
+                  {product.title}
+                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {product.description}
+                </p>
+              </div>
+
+              {/* CTA */}
               {product.available ? (
                 <a
                   href={product.mlLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg font-display font-bold text-sm transition-all duration-200 bg-[hsl(50_100%_50%)] text-[hsl(220_80%_25%)] hover:bg-[hsl(50_100%_55%)] hover:shadow-lg hover:-translate-y-0.5"
+                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border border-[hsl(50_100%_45%)] text-[hsl(50_100%_40%)] bg-transparent transition-all duration-200 hover:bg-[hsl(50_100%_50%)] hover:text-[hsl(220_80%_20%)] hover:shadow-sm"
                 >
-                  Ver en Mercado Libre
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  Ver en ML
+                  <ExternalLink className="w-3 h-3" />
                 </a>
               ) : (
-                <div className="flex items-center justify-center w-full py-2.5 px-4 rounded-lg font-display font-bold text-sm bg-muted text-muted-foreground cursor-not-allowed opacity-60">
-                  Enlace próximamente
-                </div>
+                <span className="shrink-0 text-[10px] text-muted-foreground/60 italic">
+                  Pronto
+                </span>
               )}
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Disclaimer */}
+        <p className="text-[10px] text-muted-foreground/50 italic leading-relaxed">
+          Los enlaces pueden generar una pequeña comisión sin costo adicional para vos.
+        </p>
       </div>
     </section>
   );
