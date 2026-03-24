@@ -52,7 +52,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Kit LEDs 5mm (5 colores)",
     description: "100 unidades: rojo, verde, azul, amarillo y blanco.",
-    image: multimetroImg,
+    image: ledsImg,
     link: "https://www.amazon.es/s?k=kit+led+5mm+surtido&tag=electrolabpro-21",
     available: true,
     store: "amazon",
