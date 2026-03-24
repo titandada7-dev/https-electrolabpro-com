@@ -110,11 +110,11 @@ export default function Home() {
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-2xl">
           {moduloActivo === "menu" && (
-            <div className="text-center space-y-8">
+             <div className="text-center space-y-8">
               <div className="flex items-center justify-center gap-3">
-                <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground flex items-center gap-3">
-                  <Zap className="w-8 h-8 text-primary" />
-                  ElectroLab Pro
+                <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground flex items-center gap-3 tracking-tight">
+                  <Zap className="w-8 h-8 md:w-10 md:h-10 text-primary glow-accent" />
+                  Electro<span className="text-primary">Lab</span> <span className="text-accent">Pro</span>
                 </h1>
                 <ThemeToggle />
               </div>
@@ -126,21 +126,21 @@ export default function Home() {
                 electrónica.
               </p>
 
-              <Accordion type="multiple" className="w-full space-y-3 text-left">
+              <Accordion type="multiple" className="w-full space-y-4 text-left">
                 {CATEGORIES.map((cat) => (
                   <AccordionItem
                     key={cat.id}
                     value={cat.id}
-                    className="border border-border/50 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-accent/60 hover:shadow-[0_0_25px_hsl(175_70%_45%/0.35),inset_0_0_15px_hsl(175_70%_45%/0.08)]"
+                    className="rounded-xl overflow-hidden glass border-neon neon-glow neon-glow-hover transition-all duration-500 ease-out"
                   >
-                    <AccordionTrigger className="px-5 py-4 text-lg font-mono font-semibold text-foreground hover:no-underline hover:text-accent transition-colors [&[data-state=open]]:text-accent [&[data-state=open]]:shadow-[0_0_30px_hsl(175_70%_45%/0.4)]">
+                    <AccordionTrigger className="px-5 py-4 text-lg font-display font-bold text-foreground hover:no-underline hover:text-accent transition-all duration-300 [&[data-state=open]]:text-accent [&[data-state=open]]:bg-accent/5">
                       <span className="flex items-center gap-3">
                         <span className="text-2xl">{cat.icon}</span>
                         {cat.title}
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="px-3 pb-3">
-                      <div className="grid gap-2">
+                      <div className="grid gap-1.5">
                         {cat.tools.map((tool) =>
                           tool.id.startsWith("link:") ? (
                             <Link
@@ -151,7 +151,7 @@ export default function Home() {
                               <Button
                                 variant="ghost"
                                 size="lg"
-                                className="w-full justify-start text-base font-mono gap-2 hover:bg-primary/10 hover:text-primary transition-colors"
+                                className="w-full justify-start text-base font-mono gap-2 rounded-lg hover:bg-accent/10 hover:text-accent transition-all duration-200"
                               >
                                 {tool.label}
                               </Button>
@@ -161,7 +161,7 @@ export default function Home() {
                               key={tool.id}
                               variant="ghost"
                               size="lg"
-                              className="w-full justify-start text-base font-mono gap-2 hover:bg-primary/10 hover:text-primary transition-colors"
+                              className="w-full justify-start text-base font-mono gap-2 rounded-lg hover:bg-accent/10 hover:text-accent transition-all duration-200"
                               onClick={() => setModuloActivo(tool.id)}
                             >
                               {tool.label}
@@ -174,13 +174,14 @@ export default function Home() {
                 ))}
               </Accordion>
 
+              {/* Amazon affiliate - styled button */}
               <a
                 href="https://www.amazon.es/b?node=95175938031&linkCode=ll2&tag=electrolabpro-21&linkId=14708c1f7f2b404c346c65c73385a951&ref_=as_li_ss_tl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block mt-2 p-3 rounded-lg border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors text-center"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl glass border-neon neon-glow transition-all duration-300 hover:shadow-[0_8px_30px_hsl(38_92%_55%/0.25)] hover:-translate-y-0.5"
               >
-                <span className="text-xs font-mono uppercase tracking-wider text-primary">
+                <span className="text-sm font-display font-semibold uppercase tracking-wider text-primary">
                   🛒 Tienda de Electrónica en Amazon
                 </span>
               </a>
