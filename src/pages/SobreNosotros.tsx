@@ -101,7 +101,7 @@ const SobreNosotros = () => {
       </div>
 
       {/* Footer */}
-      <footer className="w-full py-8 mt-auto bg-black/50 border-t border-white/10">
+      <footer className="w-full py-8 mt-auto bg-card/50 border-t border-border">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">José Andrés Sánchez</span>
