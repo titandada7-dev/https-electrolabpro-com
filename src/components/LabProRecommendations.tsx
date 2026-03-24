@@ -16,6 +16,7 @@ type Product = {
   store: "ml" | "amazon";
 };
 
+// Mercado Libre Afiliados — Etiqueta: as20260324074639 | Producto ID: 0R6VN8-Q2YR
 const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Tester Digital Multímetro",
