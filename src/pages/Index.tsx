@@ -447,6 +447,13 @@ const Index = () => {
               to: "/articulos/circuitos-serie-paralelo",
               tag: "Fundamentos",
             },
+            {
+              emoji: "🔌",
+              title: "Guía de Transistores",
+              desc: "BJT, MOSFET y Darlington: cómo funcionan, cómo usarlos como interruptor y parámetros clave del datasheet.",
+              to: "/articulos/transistores",
+              tag: "Componentes",
+            },
           ].map((guide) => (
             <Link
               key={guide.to}
