@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import circuitBg from "@/assets/circuit-bg.jpg";
+import ThemeToggle from "@/components/ThemeToggle";
 import LedCalculator from "../components/LedCalculator";
 import OhmCalculator from "../components/OhmCalculator";
 import ResistorCalculator from "../components/ResistorCalculator";
