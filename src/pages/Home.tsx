@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import circuitBg from "@/assets/circuit-bg.jpg";
+import ThemeToggle from "@/components/ThemeToggle";
 import LedCalculator from "../components/LedCalculator";
 import OhmCalculator from "../components/OhmCalculator";
 import ResistorCalculator from "../components/ResistorCalculator";
@@ -110,10 +111,13 @@ export default function Home() {
         <div className="w-full max-w-2xl">
           {moduloActivo === "menu" && (
             <div className="text-center space-y-8">
-              <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground flex items-center justify-center gap-3">
-                <Zap className="w-8 h-8 text-primary" />
-                ElectroLab Pro
-              </h1>
+              <div className="flex items-center justify-center gap-3">
+                <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground flex items-center gap-3">
+                  <Zap className="w-8 h-8 text-primary" />
+                  ElectroLab Pro
+                </h1>
+                <ThemeToggle />
+              </div>
               <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl mx-auto">
                 ElectroLab Pro es una herramienta online gratuita para realizar
                 cálculos electrónicos rápidos como Ley de Ohm, códigos de
