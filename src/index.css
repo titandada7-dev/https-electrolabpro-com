@@ -71,31 +71,31 @@
     box-shadow: var(--glow-strong);
   }
   .glow-text {
-    text-shadow: 0 0 20px hsl(185 100% 50% / 0.5);
+    text-shadow: 0 0 20px hsl(175 70% 45% / 0.5);
   }
   .glow-icon {
-    filter: drop-shadow(0 0 8px hsl(185 100% 50% / 0.6));
+    filter: drop-shadow(0 0 8px hsl(175 70% 45% / 0.6));
   }
   .glow-accent {
-    filter: drop-shadow(0 0 8px hsl(100 80% 55% / 0.6));
+    filter: drop-shadow(0 0 8px hsl(38 92% 55% / 0.6));
   }
   .glow-text-accent {
-    text-shadow: 0 0 20px hsl(100 80% 55% / 0.5);
+    text-shadow: 0 0 20px hsl(38 92% 55% / 0.5);
   }
   .border-glow {
-    border-color: hsl(185 100% 50% / 0.3);
+    border-color: hsl(175 70% 45% / 0.3);
   }
   .border-glow-hover {
     transition: border-color 0.3s, box-shadow 0.3s;
   }
   .border-glow-hover:hover {
-    border-color: hsl(185 100% 50% / 0.6);
-    box-shadow: 0 0 20px hsl(185 100% 50% / 0.15), inset 0 0 20px hsl(185 100% 50% / 0.05);
+    border-color: hsl(175 70% 45% / 0.6);
+    box-shadow: 0 0 20px hsl(175 70% 45% / 0.15), inset 0 0 20px hsl(175 70% 45% / 0.05);
   }
   .bg-grid {
     background-image: 
-      linear-gradient(hsl(185 100% 50% / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(185 100% 50% / 0.03) 1px, transparent 1px);
+      linear-gradient(hsl(175 70% 45% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(175 70% 45% / 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 }
