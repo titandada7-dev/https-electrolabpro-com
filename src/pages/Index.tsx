@@ -437,6 +437,71 @@ const Index = () => {
       </section>
 
 
+      {/* Herramientas Recomendadas */}
+      <section className="container mx-auto px-4 py-20 border-b border-border">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center mb-2 flex items-center justify-center gap-3">
+          <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
+          Herramientas Recomendadas
+        </h2>
+        <p className="text-center text-muted-foreground text-sm mb-10">El equipamiento esencial para armar tu laboratorio de electrónica</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            {
+              emoji: "📟",
+              title: "Multímetro Digital Profesional",
+              desc: "Ideal para medir voltaje, corriente y resistencia con alta precisión. Imprescindible en tu taller.",
+              mlLink: "#",
+              amzLink: "#",
+            },
+            {
+              emoji: "🔧",
+              title: "Estación de Soldado",
+              desc: "Temperatura regulable para trabajos con componentes SMD y placas de circuito impreso.",
+              mlLink: "#",
+              amzLink: "#",
+            },
+            {
+              emoji: "🤖",
+              title: "Kit de Inicio Arduino",
+              desc: "Todo lo que necesitas para empezar a programar microcontroladores y crear proyectos reales.",
+              mlLink: "#",
+              amzLink: "#",
+            },
+          ].map((tool) => (
+            <div
+              key={tool.title}
+              className="flex flex-col rounded-xl border border-border bg-card/80 backdrop-blur overflow-hidden hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
+            >
+              <div className="w-full h-32 bg-secondary/50 flex items-center justify-center text-5xl">
+                {tool.emoji}
+              </div>
+              <div className="flex flex-col flex-1 p-5 space-y-3">
+                <h3 className="font-mono font-bold text-foreground text-base">{tool.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{tool.desc}</p>
+                <div className="flex gap-2 pt-2">
+                  <a
+                    href={tool.mlLink}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black text-sm font-bold transition-all duration-200 hover:scale-[1.02] active:scale-95"
+                  >
+                    Ver en Mercado Libre
+                  </a>
+                  <a
+                    href={tool.amzLink}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-muted-foreground/30 text-muted-foreground text-sm font-medium transition-all duration-200 hover:text-foreground hover:border-foreground/50"
+                  >
+                    Amazon
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Equipa tu laboratorio — Fila compacta */}
       <section id="equipamiento" className="container mx-auto px-4 py-16">
         <h2 className="text-lg sm:text-xl font-mono font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
