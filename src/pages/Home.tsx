@@ -304,6 +304,30 @@ export default function Home() {
         </div>
       </div>
 
+      {/* 🔬 Laboratorio Recomendado */}
+      <section className="w-full max-w-2xl mx-auto px-4 py-8">
+        <div className="rounded-xl border border-border/60 bg-muted/20 p-6 md:p-8 text-center space-y-4">
+          <h2 className="text-lg md:text-xl font-display font-bold text-foreground">
+            🔬 Laboratorio Recomendado
+          </h2>
+          <p className="text-base font-semibold text-foreground">
+            Explora las Mejores Herramientas de Medición
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-lg mx-auto">
+            Seleccionamos para ti los multímetros, osciloscopios y herramientas con la mejor relación calidad-precio del mercado.
+          </p>
+          <a
+            href="https://www.amazon.es/b?node=95175938031&linkCode=ll2&tag=electrolabpro-21&linkId=14708c1f7f2b404c346c65c73385a951&ref_=as_li_ss_tl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[hsl(30_100%_50%)] text-white font-semibold text-sm shadow-md hover:bg-[hsl(30_100%_45%)] hover:shadow-lg transition-all duration-200"
+          >
+            Ver Ofertas en Amazon
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
+      </section>
+
       {/* 📢 Ad Unit — FOOTER */}
       <div className="w-full max-w-2xl mx-auto px-4 pb-4">
         <AdBanner slot="3756475501" format="horizontal" className="mx-auto" />
