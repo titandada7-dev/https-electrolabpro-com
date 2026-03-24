@@ -17,6 +17,7 @@ import CapacitiveReactanceCalculator from "../components/CapacitiveReactanceCalc
 import RCFilterCalculator from "../components/RCFilterCalculator";
 import UnitConverter from "../components/UnitConverter";
 import AdBanner from "../components/AdBanner";
+import LabProRecommendations from "../components/LabProRecommendations";
 import { Button } from "../components/ui/button";
 import {
   Accordion,
@@ -213,6 +214,9 @@ export default function Home() {
                   </AccordionItem>
                 ))}
               </Accordion>
+
+              {/* 🔧 Laboratorio Pro */}
+              <LabProRecommendations />
 
               {/* 📢 Ad Unit — MEDIO */}
               <div className="w-full min-h-[250px]">
