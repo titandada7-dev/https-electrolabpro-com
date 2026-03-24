@@ -207,6 +207,14 @@ export default function Home() {
             <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
+
+        {moduloActivo === "conversor" && (
+          <div>
+            {volverAlMenu}
+            <UnitConverter />
+            <AdBanner slot="3756475501" className="mt-6" />
+          </div>
+        )}
         </div>
       </div>
 
