@@ -6,10 +6,10 @@ const LAB_PRO_PRODUCTS = [
   {
     title: "Tester Digital Brinna 113A Pro",
     description:
-      "Imán de sujeción · NCV · Luz de fondo. Ideal para service.",
+      "Con imán, NCV y luz de fondo. Ideal para técnicos.",
     image: multimetroImg,
     mlLink:
-      "https://articulo.mercadolibre.com.ar/MLA-1384708015-tester-digital-multimetro-brinna-113a-pro-ncv-iman-luz-_JM",
+      "https://www.mercadolibre.com.ar/tester-digital-multimetro-brinna-113a-nuevo-iman-luz/up/MLAU208168943?pdp_filters=item_id%3AMLA1280143996&matt_tool=89488245#origin=share&sid=share&wid=MLA1280143996",
     available: true,
   },
   {
@@ -30,7 +30,7 @@ const LabProRecommendations = () => {
         <div className="flex items-center gap-2">
           <Wrench className="w-4 h-4 text-muted-foreground" />
           <h3 className="text-sm font-display font-semibold text-muted-foreground uppercase tracking-wider">
-            Equipamiento recomendado para este proyecto
+            Equipamiento Sugerido
           </h3>
         </div>
 

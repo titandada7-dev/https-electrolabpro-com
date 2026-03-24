@@ -316,7 +316,7 @@ export default function Home() {
             © 2026 ElectroLab Pro | Diseñado por{" "}
             <span className="font-semibold">J.A. Sanchez</span>
           </p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 mb-3">
             <Link
               to="/privacidad"
               className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors"
@@ -338,6 +338,12 @@ export default function Home() {
               Contacto
             </Link>
           </div>
+          <a
+            href="mailto:contacto@electrolabpro.com"
+            className="text-muted-foreground/60 text-[10px] hover:text-foreground transition-colors"
+          >
+            contacto@electrolabpro.com
+          </a>
         </div>
       </footer>
     </div>
