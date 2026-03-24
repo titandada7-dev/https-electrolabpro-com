@@ -118,7 +118,6 @@ export default function Home() {
                 </h1>
                 <ThemeToggle />
               </div>
-              </h1>
               <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl mx-auto">
                 ElectroLab Pro es una herramienta online gratuita para realizar
                 cálculos electrónicos rápidos como Ley de Ohm, códigos de
