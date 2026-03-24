@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, Menu, X } from "lucide-react";
+import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, Menu, X, CircuitBoard } from "lucide-react";
+import heroPcb from "@/assets/hero-pcb.jpg";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 import ResistorCalculator from "@/components/ResistorCalculator";
