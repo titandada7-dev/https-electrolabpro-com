@@ -28,7 +28,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Multímetro Digital Aneng AN8008",
     description: "7000 cuentas, True RMS, diseño ultra compacto.",
-    image: multimetroImg,
+    image: anengImg,
     link: "https://amzn.to/483vAWk",
     available: true,
     store: "amazon",
