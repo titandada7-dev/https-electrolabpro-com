@@ -27,7 +27,7 @@ const articleLinks = [
   { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
   { label: "Multímetro", to: "/articulos/multimetro" },
   { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
-  // { label: "Transistores", to: "/articulos/transistores" },
+  { label: "Transistores", to: "/articulos/transistores" },
 ];
 
 const scrollTo = (id: string) => {
@@ -446,6 +446,13 @@ const Index = () => {
               desc: "Diferencias clave entre circuitos en serie y paralelo con fórmulas y ejemplos prácticos.",
               to: "/articulos/circuitos-serie-paralelo",
               tag: "Fundamentos",
+            },
+            {
+              emoji: "🔌",
+              title: "Guía de Transistores",
+              desc: "BJT, MOSFET y Darlington: cómo funcionan, cómo usarlos como interruptor y parámetros clave del datasheet.",
+              to: "/articulos/transistores",
+              tag: "Componentes",
             },
           ].map((guide) => (
             <Link
