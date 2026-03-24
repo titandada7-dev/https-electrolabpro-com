@@ -9,6 +9,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import LedCalculator from "../components/LedCalculator";
 import OhmCalculator from "../components/OhmCalculator";
 import ResistorCalculator from "../components/ResistorCalculator";
+import ShareButtons from "../components/ShareButtons";
 import VoltageDividerCalculator from "../components/VoltageDividerCalculator";
 import Timer555Calculator from "../components/Timer555Calculator";
 import SmdDecoderCalculator from "../components/SmdDecoderCalculator";
