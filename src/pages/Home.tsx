@@ -295,6 +295,7 @@ export default function Home() {
             <div>
               {volverAlMenu}
               {renderTool(moduloActivo)}
+              <ShareButtons />
               {moduloActivo !== "reactancia" && (
                 <AdBanner slot="3756475501" className="mt-6" />
               )}
