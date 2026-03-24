@@ -191,6 +191,14 @@ export default function Home() {
             <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
+
+        {moduloActivo === "filtro-rc" && (
+          <div>
+            {volverAlMenu}
+            <RCFilterCalculator />
+            <AdBanner slot="3756475501" className="mt-6" />
+          </div>
+        )}
         </div>
       </div>
 
