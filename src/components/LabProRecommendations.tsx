@@ -36,7 +36,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Kit Cables Dupont (M-M, M-H, H-H)",
     description: "120 piezas, ideal para protoboard y Arduino.",
-    image: multimetroImg,
+    image: cablesImg,
     link: "https://www.amazon.es/s?k=cables+dupont+arduino&tag=electrolabpro-21",
     available: true,
     store: "amazon",
