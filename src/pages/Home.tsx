@@ -215,6 +215,9 @@ export default function Home() {
                 ))}
               </Accordion>
 
+              {/* 🔧 Laboratorio Pro */}
+              <LabProRecommendations />
+
               {/* 📢 Ad Unit — MEDIO */}
               <div className="w-full min-h-[250px]">
                 <AdBanner slot="3756475501" format="rectangle" className="mx-auto" />

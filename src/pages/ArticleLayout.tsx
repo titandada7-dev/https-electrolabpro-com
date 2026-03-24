@@ -118,8 +118,13 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           <article className="flex-1 max-w-3xl mx-auto prose-custom space-y-6 text-muted-foreground leading-relaxed text-[15px]">
             {children}
 
-            {/* AdSense: Después del contenido del artículo */}
+            {/* 🔧 Laboratorio Pro */}
             <div className="mt-10 pt-6 border-t border-border">
+              <LabProRecommendations />
+            </div>
+
+            {/* AdSense: Después del contenido del artículo */}
+            <div className="mt-6">
               <AdBanner slot="8888888888" format="auto" className="min-h-[90px] md:min-h-[250px]" />
             </div>
           </article>
