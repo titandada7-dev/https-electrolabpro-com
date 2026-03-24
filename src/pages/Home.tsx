@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import circuitBg from "@/assets/circuit-bg.jpg";
 import LedCalculator from "../components/LedCalculator";
 import OhmCalculator from "../components/OhmCalculator";
 import ResistorCalculator from "../components/ResistorCalculator";
@@ -99,7 +100,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
+      {/* Circuit background */}
+      <div className="fixed inset-0 -z-10">
+        <img src={circuitBg} alt="" className="w-full h-full object-cover opacity-15" loading="lazy" width={1920} height={1080} />
+        <div className="absolute inset-0 bg-background/85" />
+      </div>
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-2xl">
           {moduloActivo === "menu" && (
