@@ -103,6 +103,13 @@ export default function Home() {
               >
                 🌈 Calculadora Visual de Colores
               </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("filtro-rc")}
+              >
+                📡 Filtro RC (Pasa-Bajos / Altos)
+              </Button>
             </div>
 
             <a
