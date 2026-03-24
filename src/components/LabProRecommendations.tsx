@@ -1,6 +1,11 @@
 import { ExternalLink, Wrench } from "lucide-react";
 import multimetroImg from "@/assets/multimetro.jpg";
-import soldadorImg from "@/assets/soldador.jpg";
+import anengImg from "@/assets/aneng-an8008.jpg";
+import cablesImg from "@/assets/cables-dupont.jpg";
+import resistenciasImg from "@/assets/kit-resistencias.jpg";
+import ledsImg from "@/assets/kit-leds.jpg";
+import componentesImg from "@/assets/kit-componentes.jpg";
+import soldadorImg from "@/assets/soldador-kit.jpg";
 
 type Product = {
   title: string;
