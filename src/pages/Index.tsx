@@ -414,6 +414,27 @@ const Index = () => {
               to: "/articulos/condensadores",
               tag: "Componentes",
             },
+            {
+              emoji: "💡",
+              title: "Diodos: Guía Completa",
+              desc: "Funcionamiento, tipos y aplicaciones de los diodos en circuitos electrónicos reales.",
+              to: "/articulos/diodos",
+              tag: "Componentes",
+            },
+            {
+              emoji: "📟",
+              title: "Cómo Usar un Multímetro",
+              desc: "Guía práctica para medir voltaje, resistencia y continuidad sin quemar tu tester.",
+              to: "/articulos/multimetro",
+              tag: "Equipamiento",
+            },
+            {
+              emoji: "🔗",
+              title: "Serie vs. Paralelo",
+              desc: "Diferencias clave entre circuitos en serie y paralelo con fórmulas y ejemplos prácticos.",
+              to: "/articulos/circuitos-serie-paralelo",
+              tag: "Fundamentos",
+            },
           ].map((guide) => (
             <Link
               key={guide.to}
