@@ -12,13 +12,61 @@ import RCFilterCalculator from "../components/RCFilterCalculator";
 import UnitConverter from "../components/UnitConverter";
 import AdBanner from "../components/AdBanner";
 import { Button } from "../components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../components/ui/accordion";
 import { Zap, ArrowLeft } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
+
+const CATEGORIES = [
+  {
+    id: "circuitos",
+    icon: "🧮",
+    title: "Calculadoras de Circuitos",
+    tools: [
+      { id: "ohm", label: "⚡ Ley de Ohm" },
+      { id: "divisor", label: "🔌 Divisor de Voltaje" },
+      { id: "reactancia", label: "〰️ Reactancia Capacitiva" },
+      { id: "led", label: "💡 Resistencia para LED" },
+      { id: "filtro-rc", label: "📡 Filtro RC (Pasa-Bajos / Altos)" },
+      { id: "conversor", label: "🔄 Conversor de Unidades" },
+    ],
+  },
+  {
+    id: "componentes",
+    icon: "🔌",
+    title: "Componentes y Herramientas",
+    tools: [
+      { id: "resistencias", label: "🎨 Código de Colores" },
+      { id: "colores-visual", label: "🌈 Calculadora Visual de Colores" },
+      { id: "smd", label: "🔍 Decodificador SMD" },
+      { id: "555", label: "⏱️ Temporizador 555" },
+    ],
+  },
+  {
+    id: "guias",
+    icon: "📚",
+    title: "Guías Técnicas y Tutoriales",
+    tools: [
+      { id: "link:/articulos/multimetro", label: "📏 Guía del Multímetro" },
+      { id: "link:/articulos/condensadores", label: "🔋 Condensadores" },
+      { id: "link:/articulos/circuitos-serie-paralelo", label: "🔗 Circuitos Serie vs Paralelo" },
+      { id: "link:/articulos/ley-de-ohm", label: "⚡ Ley de Ohm — Teoría" },
+      { id: "link:/articulos/codigo-colores-resistencias", label: "🎨 Código de Colores — Teoría" },
+      { id: "link:/articulos/transistores", label: "🔀 Transistores" },
+      { id: "link:/articulos/diodos", label: "💡 Diodos" },
+    ],
+  },
+];
 
 export default function Home() {
   usePageMeta({
     title: "ElectroLab Pro | Calculadoras electrónicas online",
-    description: "Herramienta online con Ley de Ohm, código de colores y calculadora de resistencia para LED.",
+    description:
+      "Herramienta online con Ley de Ohm, código de colores y calculadora de resistencia para LED.",
   });
   const [moduloActivo, setModuloActivo] = useState("menu");
 
@@ -34,201 +82,148 @@ export default function Home() {
     </Button>
   );
 
+  const renderTool = (id: string) => {
+    const map: Record<string, React.ReactNode> = {
+      ohm: <OhmCalculator />,
+      resistencias: <ResistorCalculator />,
+      led: <LedCalculator />,
+      divisor: <VoltageDividerCalculator />,
+      "555": <Timer555Calculator />,
+      smd: <SmdDecoderCalculator />,
+      reactancia: <CapacitiveReactanceCalculator />,
+      "colores-visual": <ColorBandCalculator />,
+      "filtro-rc": <RCFilterCalculator />,
+      conversor: <UnitConverter />,
+    };
+    return map[id] ?? null;
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-2xl">
-        {moduloActivo === "menu" && (
-          <div className="text-center space-y-8">
-            <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground flex items-center justify-center gap-3">
-              <Zap className="w-8 h-8 text-primary" />
-              ElectroLab Pro
-            </h1>
-            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl mx-auto">
-              ElectroLab Pro es una herramienta online gratuita para realizar cálculos electrónicos rápidos como Ley de Ohm, códigos de colores de resistencias y cálculo de resistencias para LEDs. Diseñada para estudiantes, técnicos y entusiastas de la electrónica.
-            </p>
-            <div className="grid gap-4">
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("ohm")}
+          {moduloActivo === "menu" && (
+            <div className="text-center space-y-8">
+              <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground flex items-center justify-center gap-3">
+                <Zap className="w-8 h-8 text-primary" />
+                ElectroLab Pro
+              </h1>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xl mx-auto">
+                ElectroLab Pro es una herramienta online gratuita para realizar
+                cálculos electrónicos rápidos como Ley de Ohm, códigos de
+                colores de resistencias y cálculo de resistencias para LEDs.
+                Diseñada para estudiantes, técnicos y entusiastas de la
+                electrónica.
+              </p>
+
+              <Accordion type="multiple" className="w-full space-y-3 text-left">
+                {CATEGORIES.map((cat) => (
+                  <AccordionItem
+                    key={cat.id}
+                    value={cat.id}
+                    className="border border-border/50 rounded-lg overflow-hidden bg-card/50 backdrop-blur-sm transition-colors hover:border-primary/40 hover:shadow-[var(--glow)]"
+                  >
+                    <AccordionTrigger className="px-5 py-4 text-lg font-mono font-semibold text-foreground hover:no-underline hover:text-primary transition-colors [&[data-state=open]]:text-primary [&[data-state=open]]:shadow-[var(--glow)]">
+                      <span className="flex items-center gap-3">
+                        <span className="text-2xl">{cat.icon}</span>
+                        {cat.title}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-3 pb-3">
+                      <div className="grid gap-2">
+                        {cat.tools.map((tool) =>
+                          tool.id.startsWith("link:") ? (
+                            <Link
+                              key={tool.id}
+                              to={tool.id.replace("link:", "")}
+                              className="block"
+                            >
+                              <Button
+                                variant="ghost"
+                                size="lg"
+                                className="w-full justify-start text-base font-mono gap-2 hover:bg-primary/10 hover:text-primary transition-colors"
+                              >
+                                {tool.label}
+                              </Button>
+                            </Link>
+                          ) : (
+                            <Button
+                              key={tool.id}
+                              variant="ghost"
+                              size="lg"
+                              className="w-full justify-start text-base font-mono gap-2 hover:bg-primary/10 hover:text-primary transition-colors"
+                              onClick={() => setModuloActivo(tool.id)}
+                            >
+                              {tool.label}
+                            </Button>
+                          )
+                        )}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+
+              <a
+                href="https://www.amazon.es/b?node=95175938031&linkCode=ll2&tag=electrolabpro-21&linkId=14708c1f7f2b404c346c65c73385a951&ref_=as_li_ss_tl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-2 p-3 rounded-lg border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors text-center"
               >
-                ⚡ Ley de Ohm
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("resistencias")}
-              >
-                🎨 Código de Colores
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("led")}
-              >
-                💡 Resistencia LED
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("divisor")}
-              >
-                🔌 Divisor de Voltaje
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("555")}
-              >
-                ⏱️ Temporizador 555
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("smd")}
-              >
-                🔍 Decodificador SMD
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("reactancia")}
-              >
-                〰️ Reactancia Capacitiva
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("colores-visual")}
-              >
-                🌈 Calculadora Visual de Colores
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("filtro-rc")}
-              >
-                📡 Filtro RC (Pasa-Bajos / Altos)
-              </Button>
-              <Button
-                size="lg"
-                className="w-full text-lg font-mono gap-2"
-                onClick={() => setModuloActivo("conversor")}
-              >
-                🔄 Conversor de Unidades
-              </Button>
+                <span className="text-xs font-mono uppercase tracking-wider text-primary">
+                  🛒 Tienda de Electrónica en Amazon
+                </span>
+              </a>
+
+              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
+                Estas calculadoras permiten resolver cálculos comunes en
+                electrónica de forma rápida desde el celular o la computadora.
+              </p>
             </div>
+          )}
 
-            <a
-              href="https://www.amazon.es/b?node=95175938031&linkCode=ll2&tag=electrolabpro-21&linkId=14708c1f7f2b404c346c65c73385a951&ref_=as_li_ss_tl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block mt-2 p-3 rounded-lg border border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors text-center"
-            >
-              <span className="text-xs font-mono uppercase tracking-wider text-primary">
-                🛒 Tienda de Electrónica en Amazon
-              </span>
-            </a>
-
-            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-lg mx-auto">
-              Estas calculadoras permiten resolver cálculos comunes en electrónica de forma rápida desde el celular o la computadora.
-            </p>
-          </div>
-        )}
-
-        {moduloActivo === "ohm" && (
-          <div>
-            {volverAlMenu}
-            <OhmCalculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "resistencias" && (
-          <div>
-            {volverAlMenu}
-            <ResistorCalculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "led" && (
-          <div>
-            {volverAlMenu}
-            <LedCalculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "divisor" && (
-          <div>
-            {volverAlMenu}
-            <VoltageDividerCalculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "555" && (
-          <div>
-            {volverAlMenu}
-            <Timer555Calculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "smd" && (
-          <div>
-            {volverAlMenu}
-            <SmdDecoderCalculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "reactancia" && (
-          <div>
-            {volverAlMenu}
-            <CapacitiveReactanceCalculator />
-          </div>
-        )}
-
-        {moduloActivo === "colores-visual" && (
-          <div>
-            {volverAlMenu}
-            <ColorBandCalculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "filtro-rc" && (
-          <div>
-            {volverAlMenu}
-            <RCFilterCalculator />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
-
-        {moduloActivo === "conversor" && (
-          <div>
-            {volverAlMenu}
-            <UnitConverter />
-            <AdBanner slot="3756475501" className="mt-6" />
-          </div>
-        )}
+          {moduloActivo !== "menu" && (
+            <div>
+              {volverAlMenu}
+              {renderTool(moduloActivo)}
+              {moduloActivo !== "reactancia" && (
+                <AdBanner slot="3756475501" className="mt-6" />
+              )}
+            </div>
+          )}
         </div>
       </div>
 
       <footer className="w-full py-6 border-t border-border bg-background/50">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-muted-foreground text-sm tracking-wide mb-3" style={{ fontFamily: "'Georgia', serif" }}>
-            © 2026 ElectroLab Pro | Diseñado por <span className="font-semibold">J.A. Sanchez</span>
+          <p
+            className="text-muted-foreground text-sm tracking-wide mb-3"
+            style={{ fontFamily: "'Georgia', serif" }}
+          >
+            © 2026 ElectroLab Pro | Diseñado por{" "}
+            <span className="font-semibold">J.A. Sanchez</span>
           </p>
           <div className="flex items-center justify-center gap-4">
-            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+            <Link
+              to="/privacidad"
+              className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors"
+            >
+              Privacidad
+            </Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
-            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+            <Link
+              to="/aviso-legal"
+              className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors"
+            >
+              Aviso Legal
+            </Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
-            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
+            <Link
+              to="/contacto"
+              className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors"
+            >
+              Contacto
+            </Link>
           </div>
         </div>
       </footer>
