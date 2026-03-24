@@ -8,6 +8,7 @@ import Timer555Calculator from "../components/Timer555Calculator";
 import SmdDecoderCalculator from "../components/SmdDecoderCalculator";
 import ColorBandCalculator from "../components/ColorBandCalculator";
 import CapacitiveReactanceCalculator from "../components/CapacitiveReactanceCalculator";
+import RCFilterCalculator from "../components/RCFilterCalculator";
 import AdBanner from "../components/AdBanner";
 import { Button } from "../components/ui/button";
 import { Zap, ArrowLeft } from "lucide-react";
