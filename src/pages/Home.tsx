@@ -78,6 +78,9 @@ const ARTICLE_LINKS = [
   { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
   { label: "Transistores", to: "/articulos/transistores" },
   { label: "Arduino", to: "/articulos/arduino" },
+  { label: "Osciloscopio", to: "/articulos/osciloscopio" },
+  { label: "Fuentes de Alimentación", to: "/articulos/fuentes-de-alimentacion" },
+  { label: "Soldadura", to: "/articulos/soldadura-electronica" },
 ];
 
 export default function Home() {

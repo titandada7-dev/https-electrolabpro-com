@@ -33,6 +33,9 @@ function App() {
         <Route path="/articulos/circuitos-serie-paralelo" element={<CircuitosSerieParalelo />} />
         <Route path="/articulos/transistores" element={<Transistores />} />
         <Route path="/articulos/arduino" element={<Arduino />} />
+        <Route path="/articulos/osciloscopio" element={<Osciloscopio />} />
+        <Route path="/articulos/fuentes-de-alimentacion" element={<FuentesAlimentacion />} />
+        <Route path="/articulos/soldadura-electronica" element={<Soldadura />} />
         <Route
           path="*"
           element={
