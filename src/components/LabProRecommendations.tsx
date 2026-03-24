@@ -60,7 +60,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   {
     title: "Componentes Electrónicos Surtidos",
     description: "Condensadores, transistores, diodos y más repuestos.",
-    image: multimetroImg,
+    image: componentesImg,
     link: "https://www.amazon.es/s?k=kit+componentes+electronicos+surtido&tag=electrolabpro-21",
     available: true,
     store: "amazon",
