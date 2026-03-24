@@ -95,6 +95,13 @@ export default function Home() {
               >
                 〰️ Reactancia Capacitiva
               </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("colores-visual")}
+              >
+                🌈 Calculadora Visual de Colores
+              </Button>
             </div>
 
             <a
