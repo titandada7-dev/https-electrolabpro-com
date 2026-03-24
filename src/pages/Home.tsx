@@ -9,6 +9,7 @@ import SmdDecoderCalculator from "../components/SmdDecoderCalculator";
 import ColorBandCalculator from "../components/ColorBandCalculator";
 import CapacitiveReactanceCalculator from "../components/CapacitiveReactanceCalculator";
 import RCFilterCalculator from "../components/RCFilterCalculator";
+import UnitConverter from "../components/UnitConverter";
 import AdBanner from "../components/AdBanner";
 import { Button } from "../components/ui/button";
 import { Zap, ArrowLeft } from "lucide-react";
@@ -110,6 +111,13 @@ export default function Home() {
               >
                 📡 Filtro RC (Pasa-Bajos / Altos)
               </Button>
+              <Button
+                size="lg"
+                className="w-full text-lg font-mono gap-2"
+                onClick={() => setModuloActivo("conversor")}
+              >
+                🔄 Conversor de Unidades
+              </Button>
             </div>
 
             <a
@@ -196,6 +204,14 @@ export default function Home() {
           <div>
             {volverAlMenu}
             <RCFilterCalculator />
+            <AdBanner slot="3756475501" className="mt-6" />
+          </div>
+        )}
+
+        {moduloActivo === "conversor" && (
+          <div>
+            {volverAlMenu}
+            <UnitConverter />
             <AdBanner slot="3756475501" className="mt-6" />
           </div>
         )}
