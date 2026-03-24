@@ -589,7 +589,7 @@ const Index = () => {
             Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica."
            </p>
            <div className="border-t border-white/5 pt-4 mt-2">
-             <p className="text-amber-400/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad y Responsabilidad</p>
+             <p className="text-highlight/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad y Responsabilidad</p>
              <p className="text-muted-foreground/50 text-[9px] leading-relaxed max-w-2xl mx-auto">
                Los cálculos y datos proporcionados por ElectroLab Pro son estrictamente para fines educativos y de prototipado. 
                La electrónica implica riesgos; siempre verifica los valores de componentes (resistencias, capacitores, diodos) con un multímetro real antes de energizar un circuito. 
