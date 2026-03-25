@@ -231,14 +231,22 @@ const Home = () => {
               { icon: <CircuitBoard className="w-7 h-7 text-primary" />, title: "Diseño de Circuitos", desc: "Esquemas electrónicos optimizados con calculadoras de precisión para resistencias, LEDs, filtros RC y más." },
               { icon: <Wrench className="w-7 h-7 text-primary" />, title: "Reparación Pro", desc: "Guías técnicas detalladas para diagnóstico y reparación de equipos electrónicos con herramientas profesionales." },
               { icon: <TrendingUp className="w-7 h-7 text-primary" />, title: "Optimización", desc: "Mejoramos el rendimiento de tus sistemas con tips, proyectos prácticos y recomendaciones de componentes." },
-            ].map((s) => (
-              <div key={s.title} className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+            ].map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                whileHover={{ y: -6, boxShadow: "0 10px 40px -10px hsl(var(--primary) / 0.15)" }}
+                className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-colors duration-300"
+              >
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                   {s.icon}
                 </div>
                 <h3 className="mb-2 text-lg font-semibold text-card-foreground">{s.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
