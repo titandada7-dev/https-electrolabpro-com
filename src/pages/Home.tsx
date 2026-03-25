@@ -1,177 +1,358 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { CircuitBoard, Wrench, TrendingUp, ArrowRight, Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target, ShoppingBag, Menu, X, CircuitBoard, ArrowRight } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { Button } from "@/components/ui/button";
+import ResistorCalculator from "@/components/ResistorCalculator";
+import ComponentDictionary from "@/components/ComponentDictionary";
+import OhmCalculator from "@/components/OhmCalculator";
+import LedCalculator from "@/components/LedCalculator";
+import MiniProjects from "@/components/MiniProjects";
+import { Link } from "react-router-dom";
 
-const NAV_LINKS = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Contacto", href: "/contacto" },
+const articleLinks = [
+  { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
+  { label: "Condensadores", to: "/articulos/condensadores" },
+  { label: "Diodos", to: "/articulos/diodos" },
+  { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
+  { label: "Multímetro", to: "/articulos/multimetro" },
+  { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
+  { label: "Transistores", to: "/articulos/transistores" },
+  { label: "Arduino", to: "/articulos/arduino" },
+  { label: "Osciloscopio", to: "/articulos/osciloscopio" },
+  { label: "Fuentes de Alimentación", to: "/articulos/fuentes-de-alimentacion" },
+  { label: "Soldadura", to: "/articulos/soldadura-electronica" },
 ];
 
-const SERVICES = [
-  {
-    icon: CircuitBoard,
-    title: "Diseño de Circuitos",
-    description: "Creamos esquemas electrónicos optimizados, desde prototipos hasta producción en serie.",
-  },
-  {
-    icon: Wrench,
-    title: "Reparación Pro",
-    description: "Diagnóstico y reparación de equipos electrónicos con precisión técnica garantizada.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Optimización",
-    description: "Mejoramos el rendimiento y la eficiencia de tus sistemas electrónicos existentes.",
-  },
-];
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   usePageMeta({
-    title: "ElectrolabPRO — Precisión electrónica al alcance de tu innovación",
-    description:
-      "Soluciones técnicas de alto nivel en diseño de circuitos, reparación y optimización electrónica. Sin distracciones.",
+    title: "ElectroLab Pro - Calculadora de Resistencias, Capacitores y Diodos Online",
+    description: "Calculadora de resistencias, capacitores y diodos online. Aprende electrónica desde cero con las herramientas gratuitas de ElectroLab Pro por José Andrés Sánchez.",
   });
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false);
-  };
 
   return (
     <div className="min-h-screen bg-background">
       {/* Navbar */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
         <nav className="container mx-auto flex items-center justify-between px-6 py-4">
-          <Link to="/" className="text-xl font-bold tracking-tight text-foreground">
-            Electrolab<span className="text-primary">PRO</span>
+          <Link to="/" className="flex items-center gap-2">
+            <Zap className="h-5 w-5 text-primary" />
+            <span className="text-xl font-bold tracking-tight text-foreground">
+              Electro<span className="text-primary">Lab</span> Pro
+            </span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden items-center gap-8 md:flex">
-            {NAV_LINKS.map((link) =>
-              link.href.startsWith("#") ? (
-                <button
-                  key={link.label}
-                  onClick={() => scrollTo(link.href.slice(1))}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-            <Button size="sm" onClick={() => scrollTo("servicios")}>
+          <div className="hidden items-center gap-6 md:flex">
+            <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+              Calculadoras
+            </button>
+            <button onClick={() => scrollTo("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+              Guías
+            </button>
+            <div className="relative group">
+              <button className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium flex items-center gap-1">
+                Artículos <ChevronDown className="w-3.5 h-3.5" />
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-lg border border-border bg-card shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+                {articleLinks.map((a) => (
+                  <Link key={a.to} to={a.to} className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors">
+                    {a.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <button onClick={() => scrollTo("equipamiento")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+              Herramientas
+            </button>
+            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+              Contacto
+            </Link>
+            <Button size="sm" onClick={() => scrollTo("calculadora")}>
               Empezar
             </Button>
           </div>
 
           {/* Mobile toggle */}
-          <button
-            className="md:hidden text-foreground"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menú"
-          >
+          <button className="md:hidden text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </nav>
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="border-t border-border bg-card px-6 py-4 md:hidden">
-            <div className="flex flex-col gap-4">
-              {NAV_LINKS.map((link) =>
-                link.href.startsWith("#") ? (
-                  <button
-                    key={link.label}
-                    onClick={() => scrollTo(link.href.slice(1))}
-                    className="text-left text-sm font-medium text-muted-foreground hover:text-foreground"
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    key={link.label}
-                    to={link.href}
-                    className="text-sm font-medium text-muted-foreground hover:text-foreground"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              )}
-              <Button size="sm" className="w-full" onClick={() => scrollTo("servicios")}>
-                Empezar
-              </Button>
+          <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1">
+            <button onClick={() => { scrollTo("calculadora"); setMenuOpen(false); }} className="block w-full text-left text-base text-muted-foreground hover:text-foreground py-3 px-3 rounded-lg min-h-[44px]">Calculadoras</button>
+            <button onClick={() => { scrollTo("guias"); setMenuOpen(false); }} className="block w-full text-left text-base text-muted-foreground hover:text-foreground py-3 px-3 rounded-lg min-h-[44px]">Guías</button>
+            <button onClick={() => { scrollTo("equipamiento"); setMenuOpen(false); }} className="block w-full text-left text-base text-muted-foreground hover:text-foreground py-3 px-3 rounded-lg min-h-[44px]">Herramientas</button>
+            <Link to="/contacto" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base text-muted-foreground hover:text-foreground py-3 px-3 rounded-lg min-h-[44px]">Contacto</Link>
+            <div className="border-t border-border pt-2 mt-1">
+              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-1 px-3">Artículos</p>
+              {articleLinks.map((a) => (
+                <Link key={a.to} to={a.to} onClick={() => setMenuOpen(false)} className="block w-full text-left text-sm text-muted-foreground hover:text-foreground py-2.5 px-3 rounded-lg min-h-[44px]">
+                  {a.label}
+                </Link>
+              ))}
             </div>
           </div>
         )}
       </header>
 
       {/* Hero */}
-      <section className="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
-        <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-          Precisión electrónica al alcance de tu{" "}
-          <span className="text-primary">innovación</span>
+      <section className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold tracking-wider mb-6">
+          <CircuitBoard className="w-3.5 h-3.5" />
+          PLATAFORMA DE ELECTRÓNICA
+        </div>
+        <h1 className="max-w-3xl text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-foreground">
+          Electro<span className="text-primary">Lab</span> Pro
         </h1>
-        <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-          Soluciones técnicas de alto nivel, sin distracciones
+        <p className="mt-4 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+          La suite definitiva para ingenieros y entusiastas de la electrónica. Calcula, aprende y diseña con precisión digital.
         </p>
-        <Button size="lg" className="mt-10 gap-2" onClick={() => scrollTo("servicios")}>
-          Explorar servicios <ArrowRight className="h-4 w-4" />
+        <Button size="lg" className="mt-8 gap-2" onClick={() => scrollTo("calculadora")}>
+          Empezar a Calcular <ChevronDown className="h-4 w-4" />
         </Button>
       </section>
 
-      {/* Servicios */}
-      <section id="servicios" className="py-24 px-6">
-        <div className="container mx-auto">
-          <h2 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-primary">
-            Servicios
-          </h2>
-          <p className="mx-auto mb-16 max-w-2xl text-center text-2xl font-bold text-foreground sm:text-3xl">
-            Todo lo que necesitás para tus proyectos electrónicos
-          </p>
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((service) => (
-              <div
-                key={service.title}
-                className="group rounded-2xl border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-md"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  <service.icon className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="mb-3 text-lg font-semibold text-card-foreground">
-                  {service.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {service.description}
-                </p>
+      {/* Features */}
+      <section className="py-12 sm:py-16 border-y border-border bg-card/50">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              { icon: <Zap className="w-7 h-7 text-primary" />, title: "Precisión Total", desc: "Algoritmos verificados para cálculos exactos de 4 y 5 bandas." },
+              { icon: <BookOpen className="w-7 h-7 text-primary" />, title: "Diccionario Vivo", desc: "Acceso rápido a definiciones y símbolos de componentes reales." },
+              { icon: <Cpu className="w-7 h-7 text-primary" />, title: "Modo Pro", desc: "Interfaz optimizada para ingenieros con modo oscuro de alto contraste." },
+            ].map((f) => (
+              <div key={f.title} className="group rounded-2xl border border-border bg-card p-6 text-center space-y-3 transition-shadow hover:shadow-md">
+                <div className="inline-flex p-3 rounded-xl bg-primary/10">{f.icon}</div>
+                <h3 className="text-lg font-bold text-card-foreground">{f.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Stats */}
+      <section className="py-10 border-b border-border">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
+            {[
+              { icon: <Calculator className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />, value: "+10K", valueFull: "+10,000", label: "Cálculos realizados" },
+              { icon: <Users className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />, value: "+500", valueFull: "+500", label: "Estudiantes" },
+              { icon: <Target className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />, value: "99.9%", valueFull: "99.9%", label: "Precisión" },
+            ].map((s) => (
+              <div key={s.label} className="space-y-1">
+                <div className="flex items-center justify-center gap-1 sm:gap-2">
+                  {s.icon}
+                  <span className="text-xl sm:text-3xl md:text-4xl font-bold text-primary">
+                    <span className="sm:hidden">{s.value}</span>
+                    <span className="hidden sm:inline">{s.valueFull}</span>
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Calculadora principal */}
+      <div id="calculadora" className="container mx-auto px-6 py-12 sm:py-16">
+        <ResistorCalculator />
+      </div>
+
+      {/* Guías Técnicas Destacadas */}
+      <section className="container mx-auto px-6 py-12 space-y-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-3">
+          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+          Guías Técnicas Destacadas
+        </h2>
+        <p className="text-center text-muted-foreground text-sm">Artículos esenciales para dominar los fundamentos</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {[
+            { emoji: "🔢", title: "Ley de Ohm", desc: "Aprende los fundamentos del voltaje y la corriente.", to: "/articulos/ley-de-ohm" },
+            { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
+            { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
+          ].map((guide) => (
+            <Link key={guide.to} to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="w-full h-24 sm:h-28 bg-secondary/50 flex items-center justify-center text-4xl">{guide.emoji}</div>
+              <div className="flex flex-col flex-1 p-4 space-y-2">
+                <h3 className="font-bold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{guide.desc}</p>
+                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Más calculadoras */}
+      <div className="container mx-auto px-6 space-y-16 py-12">
+        <OhmCalculator />
+        <LedCalculator />
+      </div>
+
+      {/* Diccionario */}
+      <div id="diccionario" className="container mx-auto px-6 py-12">
+        <ComponentDictionary />
+      </div>
+
+      {/* Mini Proyectos */}
+      <div id="mini-proyectos" className="container mx-auto px-6 py-12">
+        <MiniProjects />
+      </div>
+
+      {/* Tips de Electrónica */}
+      <section className="container mx-auto px-6 py-16">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
+            <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+            Tips de Electrónica
+          </h2>
+          <p className="text-center text-muted-foreground text-sm mb-8">por J.A.Sanchez</p>
+          <div className="space-y-4">
+            {[
+              { emoji: "💡", title: "El sentido del LED", text: "Recordá que los LED tienen polaridad. La pata larga es el Ánodo (+) y la corta el Cátodo (-). Si lo ponés al revés, no prenderá." },
+              { emoji: "🔗", title: "Resistencias en serie", text: "Si sumás dos resistencias una tras otra, su valor total aumenta (Rt = R1 + R2). Ideal para cuando no tenés el valor exacto que necesitás." },
+              { emoji: "⚠️", title: "Cuidado con el Protoboard", text: "Las líneas laterales (roja y azul) suelen estar conectadas a lo largo para la alimentación, pero las del medio están conectadas de forma vertical. ¡No hagas cortocircuito!" },
+              { emoji: "🔥", title: "Soldadura brillante", text: "Una buena soldadura debe quedar brillante y con forma de volcán. Si queda opaca o como una bola, es una 'soldadura fría' y fallará pronto." },
+              { emoji: "📏", title: "El truco del multímetro", text: "Siempre empezá midiendo en la escala más alta de tu tester para no quemar el fusible si no conocés el voltaje que vas a medir." },
+            ].map((tip, i) => (
+              <div key={i} className="flex gap-4 p-4 rounded-2xl border border-border bg-card hover:shadow-md transition-all duration-300 group">
+                <span className="text-2xl shrink-0 mt-0.5">{tip.emoji}</span>
+                <div>
+                  <h3 className="font-bold text-card-foreground text-sm mb-1 group-hover:text-primary transition-colors">{tip.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{tip.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Guías de Electrónica completas */}
+      <section id="guias" className="container mx-auto px-6 py-16 border-t border-border">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
+          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+          Guías de Electrónica
+        </h2>
+        <p className="text-center text-muted-foreground text-sm mb-10">Artículos esenciales para dominar los fundamentos</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            { emoji: "🔢", title: "Ley de Ohm Explicada", desc: "Domina la relación entre voltaje, corriente y resistencia con ejemplos prácticos.", to: "/articulos/ley-de-ohm", tag: "Fundamentos" },
+            { emoji: "🎨", title: "Código de Colores", desc: "Aprende a descifrar las bandas de colores de cualquier resistencia.", to: "/articulos/codigo-colores-resistencias", tag: "Componentes" },
+            { emoji: "⚡", title: "Guía de Condensadores", desc: "Electrolíticos, cerámicos y cómo leer el código de 3 números.", to: "/articulos/condensadores", tag: "Componentes" },
+            { emoji: "💡", title: "Diodos: Guía Completa", desc: "Funcionamiento, tipos y aplicaciones de los diodos.", to: "/articulos/diodos", tag: "Componentes" },
+            { emoji: "📟", title: "Cómo Usar un Multímetro", desc: "Guía práctica para medir voltaje, resistencia y continuidad.", to: "/articulos/multimetro", tag: "Equipamiento" },
+            { emoji: "🔗", title: "Serie vs. Paralelo", desc: "Diferencias clave con fórmulas y ejemplos prácticos.", to: "/articulos/circuitos-serie-paralelo", tag: "Fundamentos" },
+            { emoji: "🔌", title: "Guía de Transistores", desc: "BJT, MOSFET y Darlington: cómo funcionan y cómo usarlos.", to: "/articulos/transistores", tag: "Componentes" },
+            { emoji: "🤖", title: "Arduino para Principiantes", desc: "Primeros pasos con Arduino: instalación, código y proyectos.", to: "/articulos/arduino", tag: "Proyectos" },
+            { emoji: "📊", title: "Osciloscopios", desc: "Guía completa para entender y usar un osciloscopio.", to: "/articulos/osciloscopio", tag: "Equipamiento" },
+            { emoji: "🔋", title: "Fuentes de Alimentación", desc: "Tipos, regulación y cómo elegir la fuente correcta.", to: "/articulos/fuentes-de-alimentacion", tag: "Componentes" },
+            { emoji: "🔥", title: "Soldadura Electrónica", desc: "Técnicas, herramientas y consejos para soldar como profesional.", to: "/articulos/soldadura-electronica", tag: "Técnicas" },
+          ].map((guide) => (
+            <Link key={guide.to} to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="w-full h-28 bg-secondary/50 flex items-center justify-center text-4xl">{guide.emoji}</div>
+              <div className="flex flex-col flex-1 p-5 space-y-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-primary">{guide.tag}</span>
+                <h3 className="font-bold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{guide.desc}</p>
+                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Herramientas Recomendadas */}
+      <section className="container mx-auto px-6 py-16 border-t border-border">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
+          <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+          Herramientas Recomendadas
+        </h2>
+        <p className="text-center text-muted-foreground text-sm mb-10">El equipamiento esencial para armar tu laboratorio</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            { emoji: "📟", title: "Multímetro Digital Profesional", desc: "Ideal para medir voltaje, corriente y resistencia con alta precisión.", mlLink: "#", amzLink: "#" },
+            { emoji: "🔧", title: "Estación de Soldado", desc: "Temperatura regulable para trabajos con componentes SMD y PCB.", mlLink: "#", amzLink: "#" },
+            { emoji: "🤖", title: "Kit de Inicio Arduino", desc: "Todo lo que necesitas para empezar a programar microcontroladores.", mlLink: "#", amzLink: "#" },
+          ].map((tool) => (
+            <div key={tool.title} className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="w-full h-28 bg-secondary/50 flex items-center justify-center text-4xl">{tool.emoji}</div>
+              <div className="flex flex-col flex-1 p-5 space-y-3">
+                <h3 className="font-bold text-card-foreground text-base">{tool.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{tool.desc}</p>
+                <div className="flex gap-2 pt-2">
+                  <a href={tool.mlLink} target="_blank" rel="noopener noreferrer nofollow" className="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-bold transition-all hover:opacity-90">
+                    Ver en Mercado Libre
+                  </a>
+                  <a href={tool.amzLink} target="_blank" rel="noopener noreferrer nofollow" className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-border text-muted-foreground text-sm font-medium hover:text-foreground hover:border-foreground/50 transition-all">
+                    Amazon
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Equipa tu laboratorio */}
+      <section id="equipamiento" className="container mx-auto px-6 py-12">
+        <h2 className="text-lg sm:text-xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
+          <ShoppingBag className="w-4 h-4" />
+          Equipa tu laboratorio
+        </h2>
+        <div className="flex flex-col sm:flex-row gap-3 max-w-4xl mx-auto">
+          {[
+            { emoji: "🔧", title: "Kit de Resistencias", link: "https://www.amazon.es/s?k=kit+1000+resistencias+surtido&tag=electrolabpro-21" },
+            { emoji: "📟", title: "Multímetro Digital", link: "https://www.amazon.es/s?k=multimetro+digital+economico&tag=electrolabpro-21" },
+            { emoji: "🧪", title: "Breadboard + Cables", link: "https://www.amazon.es/s?k=breadboard+cables+jumper+kit&tag=electrolabpro-21" },
+          ].map((item) => (
+            <a key={item.title} href={item.link} target="_blank" rel="noopener noreferrer nofollow" className="flex-1 flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 hover:shadow-md transition-all duration-300 group">
+              <span className="text-xl">{item.emoji}</span>
+              <span className="text-sm font-medium text-card-foreground group-hover:text-primary transition-colors">{item.title}</span>
+              <span className="ml-auto text-xs text-muted-foreground group-hover:text-primary transition-colors">→</span>
+            </a>
+          ))}
+        </div>
+        <p className="text-center text-[10px] text-muted-foreground/50 mt-4 italic">
+          Como Afiliado de Amazon, gano por las compras adscritas que cumplen los requisitos aplicables.
+        </p>
+      </section>
+
       {/* Footer */}
-      <footer className="border-t border-border py-10 px-6">
-        <div className="container mx-auto flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
-          <span>© {new Date().getFullYear()} ElectrolabPRO. Todos los derechos reservados.</span>
-          <div className="flex gap-6">
-            <Link to="/privacidad" className="hover:text-foreground">Privacidad</Link>
-            <Link to="/aviso-legal" className="hover:text-foreground">Aviso Legal</Link>
-            <Link to="/contacto" className="hover:text-foreground">Contacto</Link>
+      <footer className="border-t border-border py-8 px-6 bg-card/50">
+        <div className="container mx-auto text-center">
+          <p className="text-muted-foreground text-xs sm:text-sm mb-4">
+            © {new Date().getFullYear()} ElectroLab Pro
+            <br className="sm:hidden" />
+            <span className="hidden sm:inline"> | </span>
+            Diseñado por <span className="font-semibold">J.A.Sanchez</span>
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
+            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Privacidad</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Contacto</Link>
+          </div>
+          <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
+            "Como Afiliado de Amazon, percibo dinero por las compras elegibles. Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica."
+          </p>
+          <div className="border-t border-border pt-4 mt-2">
+            <p className="text-primary/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad y Responsabilidad</p>
+            <p className="text-muted-foreground/50 text-[9px] leading-relaxed max-w-2xl mx-auto">
+              Los cálculos y datos proporcionados por ElectroLab Pro son estrictamente para fines educativos y de prototipado.
+              La electrónica implica riesgos; siempre verifica los valores de componentes con un multímetro real antes de energizar un circuito.
+              J.A. Sanchez y ElectroLab Pro no se hacen responsables por daños materiales o personales derivados del uso de esta herramienta.
+            </p>
           </div>
         </div>
       </footer>
