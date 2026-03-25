@@ -330,7 +330,7 @@ const Home = () => {
         <p className="text-center text-muted-foreground text-sm mb-10">Respuestas rápidas organizadas por categoría</p>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 justify-start sm:justify-center sm:flex-wrap scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0">
+        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 justify-start md:justify-center md:flex-wrap -mx-6 px-6 md:mx-0 md:px-0">
           {QA_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
