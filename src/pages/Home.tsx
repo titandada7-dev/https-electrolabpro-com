@@ -103,7 +103,7 @@ const Home = () => {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden items-center gap-5 lg:flex">
+          <div className="hidden items-center gap-5 md:flex">
             <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               Servicios
             </button>
