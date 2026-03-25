@@ -179,7 +179,7 @@ const Home = () => {
           <CircuitBoard className="w-3.5 h-3.5" />
           PLATAFORMA DE ELECTRÓNICA
         </div>
-        <h1 className="max-w-4xl text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-foreground">
+        <h1 className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground">
           Precisión electrónica al alcance de tu{" "}
           <span className="text-primary">innovación</span>
         </h1>
