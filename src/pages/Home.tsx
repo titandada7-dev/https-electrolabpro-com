@@ -103,7 +103,7 @@ const Home = () => {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden items-center gap-5 lg:flex">
+          <div className="hidden items-center gap-5 md:flex">
             <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               Servicios
             </button>
@@ -137,14 +137,14 @@ const Home = () => {
           </div>
 
           {/* Mobile toggle */}
-          <button className="lg:hidden text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
+          <button className="md:hidden text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </nav>
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="border-t border-border bg-card px-6 py-4 lg:hidden space-y-1 animate-in slide-in-from-top-2">
+          <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
               { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
@@ -179,14 +179,14 @@ const Home = () => {
           <CircuitBoard className="w-3.5 h-3.5" />
           PLATAFORMA DE ELECTRÓNICA
         </div>
-        <h1 className="max-w-4xl text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-foreground">
+        <h1 className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground">
           Precisión electrónica al alcance de tu{" "}
           <span className="text-primary">innovación</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
           Soluciones técnicas de alto nivel, sin distracciones. Calcula, aprende y diseña con la suite definitiva para ingenieros y entusiastas de la electrónica.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 mt-10">
+        <div className="flex flex-col md:flex-row gap-3 mt-10">
           <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
             Empezar a Calcular <ChevronDown className="h-4 w-4" />
           </Button>
@@ -205,7 +205,7 @@ const Home = () => {
           <p className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-12 max-w-2xl mx-auto">
             Todo lo que necesitás para tus proyectos electrónicos
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               { icon: <CircuitBoard className="w-7 h-7 text-primary" />, title: "Diseño de Circuitos", desc: "Esquemas electrónicos optimizados con calculadoras de precisión para resistencias, LEDs, filtros RC y más." },
               { icon: <Wrench className="w-7 h-7 text-primary" />, title: "Reparación Pro", desc: "Guías técnicas detalladas para diagnóstico y reparación de equipos electrónicos con herramientas profesionales." },
@@ -330,7 +330,7 @@ const Home = () => {
         <p className="text-center text-muted-foreground text-sm mb-10">Respuestas rápidas organizadas por categoría</p>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 justify-start sm:justify-center sm:flex-wrap scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0">
+        <div className="flex gap-2 mb-8 overflow-x-auto pb-2 justify-start md:justify-center md:flex-wrap -mx-6 px-6 md:mx-0 md:px-0">
           {QA_CATEGORIES.map((cat) => (
             <button
               key={cat.id}
