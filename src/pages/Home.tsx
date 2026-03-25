@@ -144,7 +144,7 @@ const Home = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="border-t border-border bg-card px-6 py-4 lg:hidden space-y-1 animate-in slide-in-from-top-2">
+          <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
               { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
