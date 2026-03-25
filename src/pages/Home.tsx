@@ -186,7 +186,7 @@ const Home = () => {
         <p className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
           Soluciones técnicas de alto nivel, sin distracciones. Calcula, aprende y diseña con la suite definitiva para ingenieros y entusiastas de la electrónica.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 mt-10">
+        <div className="flex flex-col md:flex-row gap-3 mt-10">
           <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
             Empezar a Calcular <ChevronDown className="h-4 w-4" />
           </Button>
