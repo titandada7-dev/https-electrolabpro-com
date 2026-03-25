@@ -176,25 +176,45 @@ const Home = () => {
 
       {/* ═══════════ HERO ═══════════ */}
       <section className="flex min-h-[65vh] flex-col items-center justify-center px-6 text-center py-20 sm:py-28">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-8"
+        >
           <CircuitBoard className="w-3.5 h-3.5" />
           PLATAFORMA DE ELECTRÓNICA
-        </div>
-        <h1 className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground">
+        </motion.div>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground"
+        >
           Precisión electrónica al alcance de tu{" "}
           <span className="text-primary">innovación</span>
-        </h1>
-        <p className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed"
+        >
           Soluciones técnicas de alto nivel, sin distracciones. Calcula, aprende y diseña con la suite definitiva para ingenieros y entusiastas de la electrónica.
-        </p>
-        <div className="flex flex-col md:flex-row gap-3 mt-10">
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
+          className="flex flex-col md:flex-row gap-3 mt-10"
+        >
           <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
             Empezar a Calcular <ChevronDown className="h-4 w-4" />
           </Button>
           <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
             <BookOpen className="h-4 w-4" /> Ver Guías
           </Button>
-        </div>
+        </motion.div>
       </section>
 
       {/* ═══════════ SERVICIOS (CARDS) ═══════════ */}
