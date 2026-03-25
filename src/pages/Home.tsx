@@ -205,7 +205,7 @@ const Home = () => {
           <p className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-12 max-w-2xl mx-auto">
             Todo lo que necesitás para tus proyectos electrónicos
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               { icon: <CircuitBoard className="w-7 h-7 text-primary" />, title: "Diseño de Circuitos", desc: "Esquemas electrónicos optimizados con calculadoras de precisión para resistencias, LEDs, filtros RC y más." },
               { icon: <Wrench className="w-7 h-7 text-primary" />, title: "Reparación Pro", desc: "Guías técnicas detalladas para diagnóstico y reparación de equipos electrónicos con herramientas profesionales." },
