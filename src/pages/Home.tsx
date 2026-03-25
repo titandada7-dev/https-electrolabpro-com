@@ -1,362 +1,182 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import ThemeToggle from "@/components/ThemeToggle";
-import LedCalculator from "../components/LedCalculator";
-import OhmCalculator from "../components/OhmCalculator";
-import ResistorCalculator from "../components/ResistorCalculator";
-import ShareButtons from "../components/ShareButtons";
-import VoltageDividerCalculator from "../components/VoltageDividerCalculator";
-import Timer555Calculator from "../components/Timer555Calculator";
-import SmdDecoderCalculator from "../components/SmdDecoderCalculator";
-import ColorBandCalculator from "../components/ColorBandCalculator";
-import CapacitiveReactanceCalculator from "../components/CapacitiveReactanceCalculator";
-import RCFilterCalculator from "../components/RCFilterCalculator";
-import UnitConverter from "../components/UnitConverter";
-import AdBannerDiscrete from "../components/AdBannerDiscrete";
-import LabProRecommendations from "../components/LabProRecommendations";
-import { Button } from "../components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../components/ui/accordion";
-import { Zap, ArrowLeft, Menu, X, ChevronDown } from "lucide-react";
+import { CircuitBoard, Wrench, TrendingUp, ArrowRight, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
 const NAV_LINKS = [
-  { label: "Inicio", href: "/" },
-  { label: "Calculadoras", scrollTo: "calculadoras" },
-  { label: "Blog Técnico", scrollTo: "blog" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proyectos", href: "#proyectos" },
   { label: "Contacto", href: "/contacto" },
 ];
 
-const CATEGORIES = [
+const SERVICES = [
   {
-    id: "circuitos",
-    title: "Calculadoras de Circuitos",
-    tools: [
-      { id: "ohm", label: "Ley de Ohm" },
-      { id: "divisor", label: "Divisor de Voltaje" },
-      { id: "reactancia", label: "Reactancia Capacitiva" },
-      { id: "led", label: "Resistencia para LED" },
-      { id: "filtro-rc", label: "Filtro RC" },
-      { id: "conversor", label: "Conversor de Unidades" },
-    ],
+    icon: CircuitBoard,
+    title: "Diseño de Circuitos",
+    description: "Creamos esquemas electrónicos optimizados, desde prototipos hasta producción en serie.",
   },
   {
-    id: "componentes",
-    title: "Decodificadores y Herramientas",
-    tools: [
-      { id: "resistencias", label: "Código de Colores" },
-      { id: "colores-visual", label: "Calculadora Visual" },
-      { id: "smd", label: "Decodificador SMD" },
-      { id: "555", label: "Temporizador 555" },
-    ],
+    icon: Wrench,
+    title: "Reparación Pro",
+    description: "Diagnóstico y reparación de equipos electrónicos con precisión técnica garantizada.",
   },
   {
-    id: "guias",
-    title: "Guías Técnicas",
-    tools: [
-      { id: "link:/articulos/ley-de-ohm", label: "Ley de Ohm — Teoría" },
-      { id: "link:/articulos/codigo-colores-resistencias", label: "Código de Colores" },
-      { id: "link:/articulos/condensadores", label: "Condensadores" },
-      { id: "link:/articulos/multimetro", label: "Guía del Multímetro" },
-      { id: "link:/articulos/circuitos-serie-paralelo", label: "Serie vs Paralelo" },
-      { id: "link:/articulos/transistores", label: "Transistores" },
-      { id: "link:/articulos/diodos", label: "Diodos" },
-    ],
+    icon: TrendingUp,
+    title: "Optimización",
+    description: "Mejoramos el rendimiento y la eficiencia de tus sistemas electrónicos existentes.",
   },
 ];
 
-const ARTICLE_LINKS = [
-  { label: "Ley de Ohm", to: "/articulos/ley-de-ohm" },
-  { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
-  { label: "Condensadores", to: "/articulos/condensadores" },
-  { label: "Diodos", to: "/articulos/diodos" },
-  { label: "Multímetro", to: "/articulos/multimetro" },
-  { label: "Serie vs Paralelo", to: "/articulos/circuitos-serie-paralelo" },
-  { label: "Transistores", to: "/articulos/transistores" },
-  { label: "Arduino", to: "/articulos/arduino" },
-  { label: "Osciloscopio", to: "/articulos/osciloscopio" },
-  { label: "Fuentes de Alimentación", to: "/articulos/fuentes-de-alimentacion" },
-  { label: "Soldadura", to: "/articulos/soldadura-electronica" },
-];
-
-export default function Home() {
-  usePageMeta({
-    title: "ElectroLab Pro | Calculadoras electrónicas online",
-    description:
-      "Herramienta online con Ley de Ohm, código de colores y calculadora de resistencia para LED.",
-  });
-  const [moduloActivo, setModuloActivo] = useState("menu");
+const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  usePageMeta({
+    title: "ElectrolabPRO — Precisión electrónica al alcance de tu innovación",
+    description:
+      "Soluciones técnicas de alto nivel en diseño de circuitos, reparación y optimización electrónica. Sin distracciones.",
+  });
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
 
-  const volverAlMenu = (
-    <Button
-      variant="ghost"
-      size="sm"
-      className="gap-2 font-mono mb-6 text-muted-foreground hover:text-foreground"
-      onClick={() => setModuloActivo("menu")}
-    >
-      <ArrowLeft className="w-4 h-4" />
-      Volver al menú
-    </Button>
-  );
-
-  const renderTool = (id: string) => {
-    const map: Record<string, React.ReactNode> = {
-      ohm: <OhmCalculator />,
-      resistencias: <ResistorCalculator />,
-      led: <LedCalculator />,
-      divisor: <VoltageDividerCalculator />,
-      "555": <Timer555Calculator />,
-      smd: <SmdDecoderCalculator />,
-      reactancia: <CapacitiveReactanceCalculator />,
-      "colores-visual": <ColorBandCalculator />,
-      "filtro-rc": <RCFilterCalculator />,
-      conversor: <UnitConverter />,
-    };
-    return map[id] ?? null;
-  };
-
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      {/* ─── Navigation ─── */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
-        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <Zap className="w-5 h-5 text-primary" />
-            <span className="text-base font-mono font-bold text-foreground tracking-tight">
-              ElectroLab Pro
-            </span>
+    <div className="min-h-screen bg-background">
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-md">
+        <nav className="container mx-auto flex items-center justify-between px-6 py-4">
+          <Link to="/" className="text-xl font-bold tracking-tight text-foreground">
+            Electrolab<span className="text-primary">PRO</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Desktop nav */}
+          <div className="hidden items-center gap-8 md:flex">
             {NAV_LINKS.map((link) =>
-              link.href ? (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="px-3 py-1.5 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ) : (
+              link.href.startsWith("#") ? (
                 <button
                   key={link.label}
-                  onClick={() => scrollTo(link.scrollTo!)}
-                  className="px-3 py-1.5 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => scrollTo(link.href.slice(1))}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </button>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
               )
             )}
-            <div className="relative group">
-              <button className="px-3 py-1.5 text-sm font-mono text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
-                Artículos
-                <ChevronDown className="w-3 h-3" />
-              </button>
-              <div className="absolute top-full right-0 mt-1 w-52 rounded-md border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-1 z-50">
-                {ARTICLE_LINKS.map((a) => (
-                  <Link
-                    key={a.to}
-                    to={a.to}
-                    className="block px-4 py-2 text-sm font-mono text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
-                  >
-                    {a.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <ThemeToggle />
-          </nav>
-
-          <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle />
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 text-foreground"
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+            <Button size="sm" onClick={() => scrollTo("servicios")}>
+              Empezar
+            </Button>
           </div>
-        </div>
 
+          {/* Mobile toggle */}
+          <button
+            className="md:hidden text-foreground"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menú"
+          >
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </nav>
+
+        {/* Mobile menu */}
         {menuOpen && (
-          <nav className="md:hidden border-t border-border bg-background px-4 py-2 space-y-1">
-            {NAV_LINKS.map((link) =>
-              link.href ? (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-2.5 px-3 text-sm font-mono text-muted-foreground hover:text-foreground rounded-md"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <button
-                  key={link.label}
-                  onClick={() => scrollTo(link.scrollTo!)}
-                  className="block w-full text-left py-2.5 px-3 text-sm font-mono text-muted-foreground hover:text-foreground rounded-md"
-                >
-                  {link.label}
-                </button>
-              )
-            )}
-            <div className="border-t border-border pt-2 mt-1">
-              <p className="text-[10px] text-muted-foreground/40 uppercase tracking-[0.15em] font-mono mb-1 px-3">Artículos</p>
-              {ARTICLE_LINKS.map((a) => (
-                <Link
-                  key={a.to}
-                  to={a.to}
-                  onClick={() => setMenuOpen(false)}
-                  className="block py-2.5 px-3 text-sm font-mono text-muted-foreground hover:text-foreground rounded-md"
-                >
-                  {a.label}
-                </Link>
-              ))}
+          <div className="border-t border-border bg-card px-6 py-4 md:hidden">
+            <div className="flex flex-col gap-4">
+              {NAV_LINKS.map((link) =>
+                link.href.startsWith("#") ? (
+                  <button
+                    key={link.label}
+                    onClick={() => scrollTo(link.href.slice(1))}
+                    className="text-left text-sm font-medium text-muted-foreground hover:text-foreground"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="text-sm font-medium text-muted-foreground hover:text-foreground"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+              <Button size="sm" className="w-full" onClick={() => scrollTo("servicios")}>
+                Empezar
+              </Button>
             </div>
-          </nav>
+          </div>
         )}
       </header>
 
-      {/* ─── Main ─── */}
-      <div className="flex-1 flex items-start justify-center px-4 pt-10 pb-4">
-        <div className="w-full max-w-2xl">
-          {moduloActivo === "menu" && (
-            <div className="space-y-20">
-              {/* Header */}
-              <div className="text-center space-y-4">
-                <h1 className="text-2xl md:text-4xl font-mono font-bold text-foreground tracking-tight">
-                  ElectroLab Pro
-                </h1>
-                <p className="text-muted-foreground text-sm font-mono leading-relaxed max-w-lg mx-auto">
-                  Calculadoras electrónicas online para Ley de Ohm, código de colores,
-                  resistencia para LED y más.
+      {/* Hero */}
+      <section className="flex min-h-[70vh] flex-col items-center justify-center px-6 text-center">
+        <h1 className="max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          Precisión electrónica al alcance de tu{" "}
+          <span className="text-primary">innovación</span>
+        </h1>
+        <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+          Soluciones técnicas de alto nivel, sin distracciones
+        </p>
+        <Button size="lg" className="mt-10 gap-2" onClick={() => scrollTo("servicios")}>
+          Explorar servicios <ArrowRight className="h-4 w-4" />
+        </Button>
+      </section>
+
+      {/* Servicios */}
+      <section id="servicios" className="py-24 px-6">
+        <div className="container mx-auto">
+          <h2 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-primary">
+            Servicios
+          </h2>
+          <p className="mx-auto mb-16 max-w-2xl text-center text-2xl font-bold text-foreground sm:text-3xl">
+            Todo lo que necesitás para tus proyectos electrónicos
+          </p>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((service) => (
+              <div
+                key={service.title}
+                className="group rounded-2xl border border-border bg-card p-8 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                  <service.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="mb-3 text-lg font-semibold text-card-foreground">
+                  {service.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {service.description}
                 </p>
               </div>
-
-              {/* ─── Calculadoras ─── */}
-              <section id="calculadoras">
-                <Accordion type="multiple" defaultValue={["circuitos"]} className="w-full space-y-3">
-                  {CATEGORIES.map((cat) => (
-                    <AccordionItem
-                      key={cat.id}
-                      value={cat.id}
-                      className="rounded-md border border-border bg-card/40"
-                    >
-                      <AccordionTrigger className="px-5 py-3.5 text-sm font-mono font-bold text-foreground hover:no-underline hover:text-primary transition-colors [&[data-state=open]]:text-primary">
-                        {cat.title}
-                      </AccordionTrigger>
-                      <AccordionContent className="px-3 pb-3">
-                        <div className="grid gap-0.5">
-                          {cat.tools.map((tool) =>
-                            tool.id.startsWith("link:") ? (
-                              <Link key={tool.id} to={tool.id.replace("link:", "")} className="block">
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="w-full justify-start text-sm font-mono rounded hover:bg-secondary/50 hover:text-foreground"
-                                >
-                                  {tool.label}
-                                </Button>
-                              </Link>
-                            ) : (
-                              <Button
-                                key={tool.id}
-                                variant="ghost"
-                                size="sm"
-                                className="w-full justify-start text-sm font-mono rounded hover:bg-secondary/50 hover:text-foreground"
-                                onClick={() => setModuloActivo(tool.id)}
-                              >
-                                {tool.label}
-                              </Button>
-                            )
-                          )}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </section>
-
-              {/* ─── Ad ─── */}
-              <AdBannerDiscrete slot="3756475501" format="horizontal" />
-
-              {/* ─── Blog Técnico ─── */}
-              <section id="blog" className="space-y-5">
-                <h2 className="text-base font-mono font-bold text-foreground tracking-wide uppercase">
-                  Blog Técnico
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {ARTICLE_LINKS.map((a) => (
-                    <Link
-                      key={a.to}
-                      to={a.to}
-                      className="px-3 py-2.5 rounded border border-border bg-card/30 text-xs font-mono text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all text-center"
-                    >
-                      {a.label}
-                    </Link>
-                  ))}
-                </div>
-              </section>
-
-              {/* ─── Ad ─── */}
-              <AdBannerDiscrete slot="3756475501" format="rectangle" />
-
-              {/* ─── Instrumentación Certificada ─── */}
-              <section className="space-y-4 border-t border-border pt-10">
-                <h2 className="text-xs font-mono font-bold text-muted-foreground uppercase tracking-[0.2em]">
-                  Instrumentación Certificada
-                </h2>
-                <LabProRecommendations />
-              </section>
-            </div>
-          )}
-
-          {moduloActivo !== "menu" && (
-            <div>
-              {volverAlMenu}
-              {renderTool(moduloActivo)}
-              <ShareButtons />
-              <AdBannerDiscrete slot="3756475501" className="mt-20" />
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* ─── Footer ─── */}
-      <footer className="w-full py-6 border-t border-border bg-card/20 mt-10">
-        <div className="max-w-2xl mx-auto px-4 text-center space-y-3">
-          <p className="text-muted-foreground text-[11px] font-mono tracking-wide">
-            © 2026 ElectroLab Pro — J.A. Sanchez
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <Link to="/privacidad" className="text-muted-foreground/60 text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">Privacidad</Link>
-            <span className="text-muted-foreground/20">·</span>
-            <Link to="/aviso-legal" className="text-muted-foreground/60 text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">Aviso Legal</Link>
-            <span className="text-muted-foreground/20">·</span>
-            <Link to="/contacto" className="text-muted-foreground/60 text-[10px] uppercase tracking-wider hover:text-foreground transition-colors font-mono">Contacto</Link>
+            ))}
           </div>
-          <a
-            href="mailto:contacto@electrolabpro.com"
-            className="text-muted-foreground/40 text-[10px] hover:text-foreground transition-colors block font-mono"
-          >
-            contacto@electrolabpro.com
-          </a>
-          <p className="text-muted-foreground/30 text-[9px] leading-relaxed max-w-md mx-auto font-mono">
-            En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
-          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-10 px-6">
+        <div className="container mx-auto flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
+          <span>© {new Date().getFullYear()} ElectrolabPRO. Todos los derechos reservados.</span>
+          <div className="flex gap-6">
+            <Link to="/privacidad" className="hover:text-foreground">Privacidad</Link>
+            <Link to="/aviso-legal" className="hover:text-foreground">Aviso Legal</Link>
+            <Link to="/contacto" className="hover:text-foreground">Contacto</Link>
+          </div>
         </div>
       </footer>
     </div>
   );
-}
+};
+
+export default Home;
