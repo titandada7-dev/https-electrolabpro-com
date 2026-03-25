@@ -5,7 +5,7 @@
     <link>https://electrolabpro.com</link>
     <description>Aprende electrónica desde cero: guías, calculadoras y tutoriales sobre componentes electrónicos, leyes fundamentales y mini proyectos.</description>
     <language>es</language>
-    <lastBuildDate>Mon, 17 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 25 Mar 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://electrolabpro.com/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
@@ -62,6 +62,38 @@
       <description>Aprende las diferencias entre circuitos en serie y paralelo: cálculos, ejemplos y aplicaciones.</description>
       <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
       <guid>https://electrolabpro.com/articulos/circuitos-serie-paralelo</guid>
+    </item>
+
+    <item>
+      <title>Arduino para Principiantes: Guía Completa</title>
+      <link>https://electrolabpro.com/articulos/arduino</link>
+      <description>Guía completa de Arduino para principiantes: modelos, instalación del IDE, estructura del código y proyectos prácticos paso a paso.</description>
+      <pubDate>Tue, 25 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/arduino</guid>
+    </item>
+
+    <item>
+      <title>Osciloscopios: Guía Completa</title>
+      <link>https://electrolabpro.com/articulos/osciloscopio</link>
+      <description>Todo sobre osciloscopios: tipos, controles, medición de señales y guía de compra para principiantes y profesionales.</description>
+      <pubDate>Tue, 25 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/osciloscopio</guid>
+    </item>
+
+    <item>
+      <title>Fuentes de Alimentación: Guía Completa</title>
+      <link>https://electrolabpro.com/articulos/fuentes-de-alimentacion</link>
+      <description>Guía completa sobre fuentes de alimentación: lineales vs conmutadas, regulación de voltaje, cálculos de potencia y recomendaciones.</description>
+      <pubDate>Tue, 25 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/fuentes-de-alimentacion</guid>
+    </item>
+
+    <item>
+      <title>Soldadura Electrónica: Guía Completa</title>
+      <link>https://electrolabpro.com/articulos/soldadura-electronica</link>
+      <description>Aprende técnicas de soldadura electrónica: herramientas, tipos de estaño, técnicas THT y SMD, y consejos de seguridad.</description>
+      <pubDate>Tue, 25 Mar 2026 00:00:00 GMT</pubDate>
+      <guid>https://electrolabpro.com/articulos/soldadura-electronica</guid>
     </item>
 
   </channel>
