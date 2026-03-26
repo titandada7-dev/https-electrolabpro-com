@@ -202,6 +202,14 @@ const Home = () => {
         >
           Calculá resistencias, voltajes y componentes en segundos, sin fórmulas complicadas.
         </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-2 max-w-2xl text-sm text-muted-foreground/80"
+        >
+          Ideal para calcular rápido sin usar fórmulas ni perder tiempo.
+        </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -236,7 +244,7 @@ const Home = () => {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-base sm:text-lg text-muted-foreground leading-relaxed"
           >
-            Resolvé cálculos electrónicos en segundos y aprendé con guías prácticas. Ideal para técnicos, estudiantes y entusiastas.
+            Resolvé cálculos electrónicos en segundos y aprendé con guías prácticas. No necesitás saber fórmulas, nosotros lo hacemos por vos.
           </motion.p>
         </div>
       </section>
@@ -255,12 +263,67 @@ const Home = () => {
               Ejemplo práctico
             </h3>
             <p className="text-base text-muted-foreground leading-relaxed">
-              ¿Tenés una batería de 12V y querés conectar un LED? Con nuestra calculadora obtenés la resistencia correcta en segundos y evitás quemarlo.
+              ¿Tenés una batería de 12V y querés conectar un LED? Ingresá los datos en la calculadora y obtené la resistencia correcta en segundos.
             </p>
             <Button size="lg" className="mt-6 gap-2" onClick={() => scrollTo("calculadora")}>
               Probalo ahora <ChevronDown className="h-4 w-4" />
             </Button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ CALCULADORA PRINCIPAL ═══════════ */}
+      <div id="calculadora" className="container mx-auto px-6 py-12 sm:py-16">
+        <ResistorCalculator />
+        <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
+          <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
+          <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
+        </div>
+      </div>
+
+      {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
+      <div className="container mx-auto px-6 space-y-16 py-12">
+        <div>
+          <OhmCalculator />
+          <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
+          </div>
+        </div>
+        <div>
+          <LedCalculator />
+          <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
+            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══════════ GUÍAS DESTACADAS ═══════════ */}
+      <section className="container mx-auto px-6 py-12 space-y-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-3">
+          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+          Guías Técnicas Destacadas
+        </h2>
+        <p className="text-center text-muted-foreground text-sm">Artículos esenciales para dominar los fundamentos</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {[
+            { emoji: "🔢", title: "Ley de Ohm", desc: "Aprende los fundamentos del voltaje y la corriente.", to: "/articulos/ley-de-ohm" },
+            { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
+            { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
+          ].map((guide) => (
+            <Link key={guide.to} to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
+              <div className="flex flex-col flex-1 p-4 space-y-2">
+                <h3 className="font-semibold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{guide.desc}</p>
+                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -322,42 +385,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* ═══════════ CALCULADORA PRINCIPAL ═══════════ */}
-      <div id="calculadora" className="container mx-auto px-6 py-12 sm:py-16">
-        <ResistorCalculator />
-      </div>
-
-      {/* ═══════════ GUÍAS DESTACADAS ═══════════ */}
-      <section className="container mx-auto px-6 py-12 space-y-6">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-3">
-          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-          Guías Técnicas Destacadas
-        </h2>
-        <p className="text-center text-muted-foreground text-sm">Artículos esenciales para dominar los fundamentos</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {[
-            { emoji: "🔢", title: "Ley de Ohm", desc: "Aprende los fundamentos del voltaje y la corriente.", to: "/articulos/ley-de-ohm" },
-            { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
-            { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
-          ].map((guide) => (
-            <Link key={guide.to} to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
-              <div className="flex flex-col flex-1 p-4 space-y-2">
-                <h3 className="font-semibold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{guide.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
-      <div className="container mx-auto px-6 space-y-16 py-12">
-        <OhmCalculator />
-        <LedCalculator />
-      </div>
 
       {/* ═══════════ DICCIONARIO ═══════════ */}
       <div id="diccionario" className="container mx-auto px-6 py-12">
