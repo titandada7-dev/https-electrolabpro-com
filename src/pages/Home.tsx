@@ -180,7 +180,7 @@ const Home = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg p-8 sm:p-12 text-center"
+          className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
             <CircuitBoard className="w-3.5 h-3.5" />
