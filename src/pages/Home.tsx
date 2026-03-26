@@ -210,10 +210,10 @@ const Home = () => {
           className="flex flex-col md:flex-row gap-3 mt-10"
         >
           <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-            Empezar a Calcular <ChevronDown className="h-4 w-4" />
+            Empezar a calcular <ChevronDown className="h-4 w-4" />
           </Button>
           <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
-            <BookOpen className="h-4 w-4" /> Ver Guías
+            <BookOpen className="h-4 w-4" /> Ver guías
           </Button>
         </motion.div>
       </section>
