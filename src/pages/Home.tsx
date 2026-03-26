@@ -198,10 +198,14 @@ const Home = () => {
             No necesitás saber fórmulas.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6 text-sm font-medium text-foreground">
-            <span className="flex items-center gap-1.5"><Calculator className="h-4 w-4 text-primary" /> ✔ Ley de Ohm</span>
-            <span className="flex items-center gap-1.5"><Lightbulb className="h-4 w-4 text-primary" /> ✔ Calculadora LED</span>
-            <span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-primary" /> ✔ Calculadora de resistencias</span>
+          <p className="mt-3 text-sm text-muted-foreground/80 italic">
+            Ideal para calcular rápido sin usar fórmulas ni perder tiempo.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-6 text-sm font-medium text-foreground">
+            <span className="flex items-center gap-1.5"><Calculator className="h-4 w-4 text-primary" /> ✔ Calculadora Ley de Ohm</span>
+            <span className="flex items-center gap-1.5"><Lightbulb className="h-4 w-4 text-primary" /> ✔ Cálculo de resistencia para LED</span>
+            <span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-primary" /> ✔ Código de colores de resistencias</span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
