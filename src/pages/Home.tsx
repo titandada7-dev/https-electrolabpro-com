@@ -202,6 +202,14 @@ const Home = () => {
         >
           Calculá resistencias, voltajes y componentes en segundos, sin fórmulas complicadas.
         </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-2 max-w-2xl text-sm text-muted-foreground/80"
+        >
+          Ideal para calcular rápido sin usar fórmulas ni perder tiempo.
+        </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
