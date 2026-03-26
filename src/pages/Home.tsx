@@ -191,7 +191,6 @@ const Home = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground"
         >
-          Precisión electrónica al alcance de tu{" "}
           Calculadoras y guías de electrónica en un solo{" "}
           <span className="text-primary">lugar</span>
         </motion.h1>
