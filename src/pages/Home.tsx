@@ -177,51 +177,41 @@ const Home = () => {
       {/* ═══════════ HERO ═══════════ */}
       <section className="flex min-h-[65vh] flex-col items-center justify-center px-6 text-center py-20 sm:py-28">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-8"
-        >
-          <CircuitBoard className="w-3.5 h-3.5" />
-          PLATAFORMA DE ELECTRÓNICA
-        </motion.div>
-        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground"
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg p-8 sm:p-12 text-center"
         >
-          Calculadoras y guías de electrónica en un solo{" "}
-          <span className="text-primary">lugar</span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed"
-        >
-          Calculá resistencias, voltajes y componentes en segundos, sin fórmulas complicadas.
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-2 max-w-2xl text-sm text-muted-foreground/80"
-        >
-          Ideal para calcular rápido sin usar fórmulas ni perder tiempo.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.45 }}
-          className="flex flex-col md:flex-row gap-3 mt-10"
-        >
-          <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-            Empezar a calcular <ChevronDown className="h-4 w-4" />
-          </Button>
-          <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
-            <BookOpen className="h-4 w-4" /> Ver guías
-          </Button>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
+            <CircuitBoard className="w-3.5 h-3.5" />
+            PLATAFORMA DE ELECTRÓNICA
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
+            Calculadoras y guías de electrónica en un solo{" "}
+            <span className="text-primary">lugar</span>
+          </h1>
+
+          <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            Calculá resistencias, voltajes y componentes en segundos.
+            <br />
+            No necesitás saber fórmulas.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6 text-sm font-medium text-foreground">
+            <span className="flex items-center gap-1.5"><Calculator className="h-4 w-4 text-primary" /> ✔ Ley de Ohm</span>
+            <span className="flex items-center gap-1.5"><Lightbulb className="h-4 w-4 text-primary" /> ✔ Calculadora LED</span>
+            <span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-primary" /> ✔ Calculadora de resistencias</span>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+            <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
+              Empezar a calcular <ChevronDown className="h-4 w-4" />
+            </Button>
+            <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
+              <BookOpen className="h-4 w-4" /> Ver guías
+            </Button>
+          </div>
         </motion.div>
       </section>
 
