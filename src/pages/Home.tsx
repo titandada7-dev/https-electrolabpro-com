@@ -218,6 +218,53 @@ const Home = () => {
         </motion.div>
       </section>
 
+      {/* ═══════════ ¿QUÉ PODÉS HACER? ═══════════ */}
+      <section className="py-14 sm:py-18">
+        <div className="container mx-auto px-6 text-center max-w-3xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl sm:text-3xl font-bold text-foreground mb-4"
+          >
+            ¿Qué podés hacer con ElectroLab Pro?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-base sm:text-lg text-muted-foreground leading-relaxed"
+          >
+            Resolvé cálculos electrónicos en segundos y aprendé con guías prácticas. Ideal para técnicos, estudiantes y entusiastas.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ═══════════ EJEMPLO PRÁCTICO ═══════════ */}
+      <section className="pb-14 sm:pb-18">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-primary/20 bg-primary/5 p-8 sm:p-10 text-center"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">
+              Ejemplo práctico
+            </h3>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              ¿Tenés una batería de 12V y querés conectar un LED? Con nuestra calculadora obtenés la resistencia correcta en segundos y evitás quemarlo.
+            </p>
+            <Button size="lg" className="mt-6 gap-2" onClick={() => scrollTo("calculadora")}>
+              Probalo ahora <ChevronDown className="h-4 w-4" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════════ SERVICIOS (CARDS) ═══════════ */}
       <section id="servicios" className="py-16 sm:py-20 border-y border-border bg-card/50">
         <div className="container mx-auto px-6">
