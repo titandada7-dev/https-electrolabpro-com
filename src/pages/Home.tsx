@@ -244,7 +244,7 @@ const Home = () => {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-base sm:text-lg text-muted-foreground leading-relaxed"
           >
-            Resolvé cálculos electrónicos en segundos y aprendé con guías prácticas. Ideal para técnicos, estudiantes y entusiastas.
+            Resolvé cálculos electrónicos en segundos y aprendé con guías prácticas. No necesitás saber fórmulas, nosotros lo hacemos por vos.
           </motion.p>
         </div>
       </section>
