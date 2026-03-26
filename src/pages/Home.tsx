@@ -192,7 +192,8 @@ const Home = () => {
           className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground"
         >
           Precisión electrónica al alcance de tu{" "}
-          <span className="text-primary">innovación</span>
+          Calculadoras y guías de electrónica en un solo{" "}
+          <span className="text-primary">lugar</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -200,7 +201,7 @@ const Home = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed"
         >
-          Soluciones técnicas de alto nivel, sin distracciones. Calcula, aprende y diseña con la suite definitiva para ingenieros y entusiastas de la electrónica.
+          Calculá resistencias, voltajes y componentes en segundos, sin fórmulas complicadas.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -209,12 +210,59 @@ const Home = () => {
           className="flex flex-col md:flex-row gap-3 mt-10"
         >
           <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-            Empezar a Calcular <ChevronDown className="h-4 w-4" />
+            Empezar a calcular <ChevronDown className="h-4 w-4" />
           </Button>
           <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
-            <BookOpen className="h-4 w-4" /> Ver Guías
+            <BookOpen className="h-4 w-4" /> Ver guías
           </Button>
         </motion.div>
+      </section>
+
+      {/* ═══════════ ¿QUÉ PODÉS HACER? ═══════════ */}
+      <section className="py-14 sm:py-18">
+        <div className="container mx-auto px-6 text-center max-w-3xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl sm:text-3xl font-bold text-foreground mb-4"
+          >
+            ¿Qué podés hacer con ElectroLab Pro?
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-base sm:text-lg text-muted-foreground leading-relaxed"
+          >
+            Resolvé cálculos electrónicos en segundos y aprendé con guías prácticas. Ideal para técnicos, estudiantes y entusiastas.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ═══════════ EJEMPLO PRÁCTICO ═══════════ */}
+      <section className="pb-14 sm:pb-18">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-primary/20 bg-primary/5 p-8 sm:p-10 text-center"
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">
+              Ejemplo práctico
+            </h3>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              ¿Tenés una batería de 12V y querés conectar un LED? Con nuestra calculadora obtenés la resistencia correcta en segundos y evitás quemarlo.
+            </p>
+            <Button size="lg" className="mt-6 gap-2" onClick={() => scrollTo("calculadora")}>
+              Probalo ahora <ChevronDown className="h-4 w-4" />
+            </Button>
+          </motion.div>
+        </div>
       </section>
 
       {/* ═══════════ SERVICIOS (CARDS) ═══════════ */}
