@@ -263,7 +263,7 @@ const Home = () => {
               Ejemplo práctico
             </h3>
             <p className="text-base text-muted-foreground leading-relaxed">
-              ¿Tenés una batería de 12V y querés conectar un LED? Con nuestra calculadora obtenés la resistencia correcta en segundos y evitás quemarlo.
+              ¿Tenés una batería de 12V y querés conectar un LED? Ingresá los datos en la calculadora y obtené la resistencia correcta en segundos.
             </p>
             <Button size="lg" className="mt-6 gap-2" onClick={() => scrollTo("calculadora")}>
               Probalo ahora <ChevronDown className="h-4 w-4" />
