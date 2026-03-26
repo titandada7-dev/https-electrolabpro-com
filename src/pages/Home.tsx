@@ -192,7 +192,8 @@ const Home = () => {
           className="max-w-4xl text-4xl md:text-6xl font-extrabold leading-tight tracking-tight text-foreground"
         >
           Precisión electrónica al alcance de tu{" "}
-          <span className="text-primary">innovación</span>
+          Calculadoras y guías de electrónica en un solo{" "}
+          <span className="text-primary">lugar</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -200,7 +201,7 @@ const Home = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed"
         >
-          Soluciones técnicas de alto nivel, sin distracciones. Calcula, aprende y diseña con la suite definitiva para ingenieros y entusiastas de la electrónica.
+          Calculá resistencias, voltajes y componentes en segundos, sin fórmulas complicadas.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
