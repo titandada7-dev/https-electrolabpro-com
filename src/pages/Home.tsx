@@ -180,7 +180,7 @@ const Home = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg p-8 sm:p-12 text-center"
+          className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
             <CircuitBoard className="w-3.5 h-3.5" />
@@ -198,10 +198,14 @@ const Home = () => {
             No necesitás saber fórmulas.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6 text-sm font-medium text-foreground">
-            <span className="flex items-center gap-1.5"><Calculator className="h-4 w-4 text-primary" /> ✔ Ley de Ohm</span>
-            <span className="flex items-center gap-1.5"><Lightbulb className="h-4 w-4 text-primary" /> ✔ Calculadora LED</span>
-            <span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-primary" /> ✔ Calculadora de resistencias</span>
+          <p className="mt-3 text-sm text-muted-foreground/80 italic">
+            Ideal para calcular rápido sin usar fórmulas ni perder tiempo.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-6 text-sm font-medium text-foreground">
+            <span className="flex items-center gap-1.5"><Calculator className="h-4 w-4 text-primary" /> ✔ Calculadora Ley de Ohm</span>
+            <span className="flex items-center gap-1.5"><Lightbulb className="h-4 w-4 text-primary" /> ✔ Cálculo de resistencia para LED</span>
+            <span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-primary" /> ✔ Código de colores de resistencias</span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
