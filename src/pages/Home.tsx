@@ -331,14 +331,23 @@ const Home = () => {
             { emoji: "🔢", title: "Ley de Ohm", desc: "Aprende los fundamentos del voltaje y la corriente.", to: "/articulos/ley-de-ohm" },
             { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
             { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
-          ].map((guide) => (
-            <Link key={guide.to} to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
-              <div className="flex flex-col flex-1 p-4 space-y-2">
-                <h3 className="font-semibold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{guide.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
-              </div>
+          ].map((guide, i) => (
+            <motion.div
+              key={guide.to}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.15 }}
+            >
+              <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
+                <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
+                <div className="flex flex-col flex-1 p-4 space-y-2">
+                  <h3 className="font-semibold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{guide.desc}</p>
+                  <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
+                </div>
+              </Link>
+            </motion.div>
             </Link>
           ))}
         </div>
