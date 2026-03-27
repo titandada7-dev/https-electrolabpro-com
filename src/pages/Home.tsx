@@ -267,7 +267,14 @@ const Home = () => {
       </section>
 
       {/* ═══════════ CALCULADORA PRINCIPAL ═══════════ */}
-      <div id="calculadora" className="container mx-auto px-6 py-12 sm:py-16">
+      <motion.div
+        id="calculadora"
+        className="container mx-auto px-6 py-12 sm:py-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <ResistorCalculator />
         <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
           <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
