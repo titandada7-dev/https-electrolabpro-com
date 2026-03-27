@@ -297,8 +297,13 @@ const Home = () => {
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
           </div>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <LedCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
