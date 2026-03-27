@@ -267,37 +267,60 @@ const Home = () => {
       </section>
 
       {/* ═══════════ CALCULADORA PRINCIPAL ═══════════ */}
-      <div id="calculadora" className="container mx-auto px-6 py-12 sm:py-16">
+      <motion.div
+        id="calculadora"
+        className="container mx-auto px-6 py-12 sm:py-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <ResistorCalculator />
         <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
           <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
           <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
           <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
       <div className="container mx-auto px-6 space-y-16 py-12">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <OhmCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
           </div>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <LedCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* ═══════════ GUÍAS DESTACADAS ═══════════ */}
-      <section className="container mx-auto px-6 py-12 space-y-6">
+      <motion.section
+        className="container mx-auto px-6 py-12 space-y-6"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-3">
           <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           Guías Técnicas Destacadas
@@ -319,7 +342,7 @@ const Home = () => {
             </Link>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ SERVICIOS (CARDS) ═══════════ */}
       <section id="servicios" className="py-16 sm:py-20 border-y border-border bg-card/50">
@@ -357,7 +380,13 @@ const Home = () => {
       </section>
 
       {/* ═══════════ STATS ═══════════ */}
-      <section className="py-10 sm:py-14">
+      <motion.section
+        className="py-10 sm:py-14"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
             {[
@@ -378,20 +407,40 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ DICCIONARIO ═══════════ */}
-      <div id="diccionario" className="container mx-auto px-6 py-12">
+      <motion.div
+        id="diccionario"
+        className="container mx-auto px-6 py-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <ComponentDictionary />
-      </div>
+      </motion.div>
 
       {/* ═══════════ MINI PROYECTOS ═══════════ */}
-      <div id="mini-proyectos" className="container mx-auto px-6 py-12">
+      <motion.div
+        id="mini-proyectos"
+        className="container mx-auto px-6 py-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <MiniProjects />
-      </div>
+      </motion.div>
 
       {/* ═══════════ TIPS ═══════════ */}
-      <section className="container mx-auto px-6 py-16">
+      <motion.section
+        className="container mx-auto px-6 py-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="max-w-3xl mx-auto">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
             <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -416,10 +465,17 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ FORO / Q&A CON TABS ═══════════ */}
-      <section id="foro" className="container mx-auto px-6 py-16 border-t border-border">
+      <motion.section
+        id="foro"
+        className="container mx-auto px-6 py-16 border-t border-border"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           Preguntas Frecuentes
@@ -461,10 +517,17 @@ const Home = () => {
             </details>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ GUÍAS COMPLETAS ═══════════ */}
-      <section id="guias" className="container mx-auto px-6 py-16 border-t border-border">
+      <motion.section
+        id="guias"
+        className="container mx-auto px-6 py-16 border-t border-border"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           Guías de Electrónica
@@ -495,10 +558,16 @@ const Home = () => {
             </Link>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ HERRAMIENTAS RECOMENDADAS ═══════════ */}
-      <section className="container mx-auto px-6 py-16 border-t border-border">
+      <motion.section
+        className="container mx-auto px-6 py-16 border-t border-border"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           Herramientas Recomendadas
@@ -527,10 +596,17 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ EQUIPA TU LABORATORIO ═══════════ */}
-      <section id="equipamiento" className="container mx-auto px-6 py-12 border-t border-border">
+      <motion.section
+        id="equipamiento"
+        className="container mx-auto px-6 py-12 border-t border-border"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-lg sm:text-xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
           <ShoppingBag className="w-4 h-4" />
           Equipa tu laboratorio
@@ -551,7 +627,7 @@ const Home = () => {
         <p className="text-center text-[10px] text-muted-foreground/50 mt-4 italic">
           Como Afiliado de Amazon, gano por las compras adscritas que cumplen los requisitos aplicables.
         </p>
-      </section>
+      </motion.section>
 
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="border-t border-border py-8 px-6 bg-card/50">
