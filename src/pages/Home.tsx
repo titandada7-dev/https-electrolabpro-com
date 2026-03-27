@@ -627,7 +627,7 @@ const Home = () => {
         <p className="text-center text-[10px] text-muted-foreground/50 mt-4 italic">
           Como Afiliado de Amazon, gano por las compras adscritas que cumplen los requisitos aplicables.
         </p>
-      </section>
+      </motion.section>
 
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="border-t border-border py-8 px-6 bg-card/50">
