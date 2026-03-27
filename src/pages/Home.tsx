@@ -342,7 +342,7 @@ const Home = () => {
             </Link>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ SERVICIOS (CARDS) ═══════════ */}
       <section id="servicios" className="py-16 sm:py-20 border-y border-border bg-card/50">
