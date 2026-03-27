@@ -281,7 +281,7 @@ const Home = () => {
           <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
           <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
         </div>
-      </div>
+      </motion.div>
 
       {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
       <div className="container mx-auto px-6 space-y-16 py-12">
