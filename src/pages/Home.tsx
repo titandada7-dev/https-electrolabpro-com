@@ -407,7 +407,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ DICCIONARIO ═══════════ */}
       <div id="diccionario" className="container mx-auto px-6 py-12">
