@@ -285,7 +285,12 @@ const Home = () => {
 
       {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
       <div className="container mx-auto px-6 space-y-16 py-12">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <OhmCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
