@@ -380,7 +380,13 @@ const Home = () => {
       </section>
 
       {/* ═══════════ STATS ═══════════ */}
-      <section className="py-10 sm:py-14">
+      <motion.section
+        className="py-10 sm:py-14"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
             {[
