@@ -596,10 +596,17 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* ═══════════ EQUIPA TU LABORATORIO ═══════════ */}
-      <section id="equipamiento" className="container mx-auto px-6 py-12 border-t border-border">
+      <motion.section
+        id="equipamiento"
+        className="container mx-auto px-6 py-12 border-t border-border"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-lg sm:text-xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
           <ShoppingBag className="w-4 h-4" />
           Equipa tu laboratorio
