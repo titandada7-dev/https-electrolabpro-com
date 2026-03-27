@@ -348,7 +348,6 @@ const Home = () => {
                 </div>
               </Link>
             </motion.div>
-            </Link>
           ))}
         </div>
       </motion.section>
