@@ -410,14 +410,28 @@ const Home = () => {
       </motion.section>
 
       {/* ═══════════ DICCIONARIO ═══════════ */}
-      <div id="diccionario" className="container mx-auto px-6 py-12">
+      <motion.div
+        id="diccionario"
+        className="container mx-auto px-6 py-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <ComponentDictionary />
-      </div>
+      </motion.div>
 
       {/* ═══════════ MINI PROYECTOS ═══════════ */}
-      <div id="mini-proyectos" className="container mx-auto px-6 py-12">
+      <motion.div
+        id="mini-proyectos"
+        className="container mx-auto px-6 py-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <MiniProjects />
-      </div>
+      </motion.div>
 
       {/* ═══════════ TIPS ═══════════ */}
       <section className="container mx-auto px-6 py-16">
