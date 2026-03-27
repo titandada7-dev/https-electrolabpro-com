@@ -555,16 +555,24 @@ const Home = () => {
             { emoji: "📊", title: "Osciloscopios", desc: "Guía completa para entender y usar un osciloscopio.", to: "/articulos/osciloscopio", tag: "Equipamiento" },
             { emoji: "🔋", title: "Fuentes de Alimentación", desc: "Tipos, regulación y cómo elegir la fuente correcta.", to: "/articulos/fuentes-de-alimentacion", tag: "Componentes" },
             { emoji: "🔥", title: "Soldadura Electrónica", desc: "Técnicas, herramientas y consejos para soldar como profesional.", to: "/articulos/soldadura-electronica", tag: "Técnicas" },
-          ].map((guide) => (
-            <Link key={guide.to} to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="w-full h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
-              <div className="flex flex-col flex-1 p-5 space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-primary">{guide.tag}</span>
-                <h3 className="font-semibold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed flex-1">{guide.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
-              </div>
-            </Link>
+          ].map((guide, i) => (
+            <motion.div
+              key={guide.to}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: (i % 3) * 0.15 }}
+            >
+              <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
+                <div className="w-full h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
+                <div className="flex flex-col flex-1 p-5 space-y-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-primary">{guide.tag}</span>
+                  <h3 className="font-semibold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{guide.desc}</p>
+                  <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </motion.section>
