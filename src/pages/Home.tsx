@@ -95,10 +95,7 @@ const Home = () => {
       <header className="sticky top-0 z-50 border-b border-border bg-card/90 backdrop-blur-lg">
         <nav className="container mx-auto flex items-center justify-between px-6 py-3.5">
           <Link to="/" className="flex items-center gap-3">
-            {/* Logo image placeholder */}
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Zap className="h-5 w-5" />
-            </div>
+            <img src={electrolabLogo} alt="ElectroLab Pro logo" className="h-9 w-9 rounded-lg object-cover" />
             <span className="text-lg font-bold tracking-tight text-foreground">
               Electrolab<span className="text-primary">PRO</span>
             </span>
