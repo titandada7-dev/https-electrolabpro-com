@@ -131,6 +131,7 @@ const Home = () => {
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               Contacto
             </Link>
+            <ThemeToggle />
             <Button size="sm" onClick={() => scrollTo("calculadora")}>
               Empezar
             </Button>
