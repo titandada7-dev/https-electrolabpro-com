@@ -837,6 +837,73 @@ const Home = () => {
         </p>
       </motion.section>
 
+      {/* ═══════════ ¿POR QUÉ ELEGIR ELECTROLABPRO? ═══════════ */}
+      <section className="py-14 sm:py-20 border-t border-border">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
+              ¿Por qué elegir ElectroLab Pro?
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { icon: <Zap className="h-5 w-5 text-primary" />, title: "100% gratuito", desc: "Todas las calculadoras y guías son completamente gratis, sin registro ni suscripciones ocultas." },
+                { icon: <Calculator className="h-5 w-5 text-primary" />, title: "Resultados instantáneos", desc: "Ingresá los valores y obtené el resultado en milisegundos, con explicación incluida." },
+                { icon: <BookOpen className="h-5 w-5 text-primary" />, title: "Contenido educativo", desc: "Más de 11 guías técnicas escritas en lenguaje claro, con ejemplos prácticos y diagramas." },
+                { icon: <Cpu className="h-5 w-5 text-primary" />, title: "Diseñado por un electrónico", desc: "Creado por J.A. Sanchez, técnico en electrónica con experiencia real en diseño y reparación." },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  className="flex gap-4 p-5 rounded-xl border border-border bg-card shadow-sm"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ CONTENIDO SEO ADICIONAL ═══════════ */}
+      <section className="py-14 sm:py-20 bg-card/50 border-y border-border">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="space-y-5 text-base text-muted-foreground leading-relaxed"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6">
+              Electrónica básica: todo lo que necesitás saber
+            </h2>
+            <p>
+              La <strong className="text-foreground">electrónica básica</strong> es el estudio de los circuitos eléctricos y los componentes que los conforman. Todo circuito electrónico se basa en el flujo de electrones a través de conductores, controlado por componentes como resistencias, condensadores, diodos y transistores. Comprender estos fundamentos es esencial para cualquier persona que quiera reparar dispositivos, diseñar prototipos o simplemente entender cómo funciona la tecnología que nos rodea.
+            </p>
+            <p>
+              Entre los conceptos más importantes están: la <strong className="text-foreground">Ley de Ohm</strong> (que relaciona voltaje, corriente y resistencia), las <strong className="text-foreground">leyes de Kirchhoff</strong> (que permiten analizar circuitos complejos), y los principios de <strong className="text-foreground">potencia eléctrica</strong> (que determinan cuánta energía consume o disipa un componente). En ElectroLab Pro cubrimos cada uno de estos temas con guías claras y calculadoras interactivas que te permiten practicar sin riesgo.
+            </p>
+            <p>
+              Si estás empezando, te recomendamos explorar nuestras guías sobre <Link to="/articulos/ley-de-ohm" className="text-primary hover:underline font-medium">Ley de Ohm</Link>, <Link to="/articulos/codigo-colores-resistencias" className="text-primary hover:underline font-medium">código de colores de resistencias</Link> y <Link to="/articulos/circuitos-serie-paralelo" className="text-primary hover:underline font-medium">circuitos serie y paralelo</Link>. Combinadas con nuestras calculadoras, vas a poder resolver problemas reales desde el primer día.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="border-t border-border py-8 px-6 bg-card/50">
         <div className="container mx-auto text-center">
