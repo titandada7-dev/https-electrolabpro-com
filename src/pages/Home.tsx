@@ -138,9 +138,12 @@ const Home = () => {
           </div>
 
           {/* Mobile toggle */}
-          <button className="md:hidden text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
+            <button className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
+              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile menu */}
