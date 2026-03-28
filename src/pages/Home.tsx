@@ -14,6 +14,7 @@ import OhmCalculator from "@/components/OhmCalculator";
 import LedCalculator from "@/components/LedCalculator";
 import MiniProjects from "@/components/MiniProjects";
 import { Link } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
@@ -130,15 +131,19 @@ const Home = () => {
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               Contacto
             </Link>
+            <ThemeToggle />
             <Button size="sm" onClick={() => scrollTo("calculadora")}>
               Empezar
             </Button>
           </div>
 
           {/* Mobile toggle */}
-          <button className="md:hidden text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
+            <button className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
+              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile menu */}
