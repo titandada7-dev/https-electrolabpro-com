@@ -813,7 +813,7 @@ const Home = () => {
                 { icon: <Zap className="h-5 w-5 text-primary" />, title: "100% gratuito", desc: "Todas las calculadoras y guías son completamente gratis, sin registro ni suscripciones ocultas." },
                 { icon: <Calculator className="h-5 w-5 text-primary" />, title: "Resultados instantáneos", desc: "Ingresá los valores y obtené el resultado en milisegundos, con explicación incluida." },
                 { icon: <BookOpen className="h-5 w-5 text-primary" />, title: "Contenido educativo", desc: "Más de 11 guías técnicas escritas en lenguaje claro, con ejemplos prácticos y diagramas." },
-                { icon: <Cpu className="h-5 w-5 text-primary" />, title: "Diseñado por un electrónico", desc: "Creado por J.A. Sanchez, técnico en electrónica con experiencia real en diseño y reparación." },
+                { icon: <Cpu className="h-5 w-5 text-primary" />, title: "Diseñado por un electrónico", desc: "Desarrollado por J.A. Sánchez a partir de la recopilación y adaptación de información técnica proveniente de especialistas, manuales y documentación profesional en electrónica. El objetivo de ElectroLabPro es ofrecer herramientas confiables basadas en prácticas reales utilizadas en el ámbito técnico." },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
