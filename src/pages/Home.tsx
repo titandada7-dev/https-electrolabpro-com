@@ -175,7 +175,7 @@ const Home = () => {
       </header>
 
       {/* ═══════════ HERO ═══════════ */}
-      <section className="flex min-h-[65vh] flex-col items-center justify-center px-6 text-center py-20 sm:py-28">
+      <section className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center py-20 sm:py-28">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -188,18 +188,12 @@ const Home = () => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
-            Calculadoras y guías de electrónica en un solo{" "}
-            <span className="text-primary">lugar</span>
+            ElectroLabPro – Herramientas y Calculadoras de{" "}
+            <span className="text-primary">Electrónica</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Calculá resistencias, voltajes y componentes en segundos.
-            <br />
-            No necesitás saber fórmulas.
-          </p>
-
-          <p className="mt-3 text-sm text-muted-foreground/80 italic">
-            Ideal para calcular rápido sin usar fórmulas ni perder tiempo.
+            Aprendé electrónica de forma simple con nuestras calculadoras y guías prácticas.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-6 text-sm font-medium text-foreground">
@@ -210,7 +204,7 @@ const Home = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
             <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-              Empezar a calcular <ChevronDown className="h-4 w-4" />
+              Usar calculadoras <ChevronDown className="h-4 w-4" />
             </Button>
             <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
               <BookOpen className="h-4 w-4" /> Ver guías
@@ -219,54 +213,7 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* ═══════════ ¿QUÉ PODÉS HACER? ═══════════ */}
-      <section className="py-14 sm:py-18">
-        <div className="container mx-auto px-6 text-center max-w-3xl">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl sm:text-3xl font-bold text-foreground mb-4"
-          >
-            ¿Qué podés hacer con ElectroLab Pro?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-base sm:text-lg text-muted-foreground leading-relaxed"
-          >
-            Resolvé cálculos electrónicos en segundos y aprendé con guías prácticas. No necesitás saber fórmulas, nosotros lo hacemos por vos.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ═══════════ EJEMPLO PRÁCTICO ═══════════ */}
-      <section className="pb-14 sm:pb-18">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-primary/20 bg-primary/5 p-8 sm:p-10 text-center"
-          >
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">
-              Ejemplo práctico
-            </h3>
-            <p className="text-base text-muted-foreground leading-relaxed">
-              ¿Tenés una batería de 12V y querés conectar un LED? Ingresá los datos en la calculadora y obtené la resistencia correcta en segundos.
-            </p>
-            <Button size="lg" className="mt-6 gap-2" onClick={() => scrollTo("calculadora")}>
-              Probalo ahora <ChevronDown className="h-4 w-4" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════ ¿QUÉ ES ELECTROLABPRO? ═══════════ */}
+      {/* ═══════════ INTRODUCCIÓN ═══════════ */}
       <section className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
@@ -276,17 +223,14 @@ const Home = () => {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground text-center mb-8">
-              ¿Qué es <span className="text-primary">ElectroLab Pro</span>?
+              ¿Qué es <span className="text-primary">ElectroLabPro</span>?
             </h2>
             <div className="space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
               <p>
-                <strong className="text-foreground">ElectroLab Pro</strong> es una plataforma educativa gratuita diseñada para estudiantes, técnicos y entusiastas de la electrónica. Nuestro objetivo es simplificar los cálculos electrónicos más comunes —como la Ley de Ohm, el dimensionamiento de resistencias para LEDs o el análisis de circuitos serie y paralelo— para que puedas concentrarte en lo que realmente importa: <strong className="text-foreground">aprender y construir</strong>.
+                <strong className="text-foreground">ElectroLabPro</strong> es una plataforma diseñada para estudiantes, técnicos y aficionados a la electrónica. Aquí podés encontrar herramientas útiles como calculadoras de resistencias, ley de Ohm, LEDs y más.
               </p>
               <p>
-                La electrónica es la base de prácticamente toda la tecnología moderna, desde los celulares que usamos a diario hasta los satélites en órbita. Entender conceptos básicos como voltaje, corriente, resistencia y potencia no solo te permite reparar dispositivos, sino también diseñar tus propios circuitos y dar vida a proyectos creativos. Sin embargo, muchas personas abandonan el aprendizaje por la complejidad de las fórmulas. <strong className="text-foreground">ElectroLab Pro nació para resolver ese problema</strong>: ponemos las herramientas de cálculo al alcance de un clic, con explicaciones claras y resultados instantáneos.
-              </p>
-              <p>
-                Ya sea que estés cursando una materia de electrónica, reparando un equipo en tu taller o armando tu primer proyecto con Arduino, acá vas a encontrar calculadoras precisas, guías paso a paso y un diccionario de componentes que te acompañan en cada etapa del camino.
+                Nuestro objetivo es simplificar los cálculos y ayudarte a comprender mejor los conceptos fundamentales de la electrónica, con ejemplos claros y fáciles de aplicar en la práctica.
               </p>
             </div>
           </motion.div>
@@ -312,13 +256,13 @@ const Home = () => {
             </div>
             <div className="space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
               <p>
-                La <strong className="text-foreground">Ley de Ohm</strong> es el principio fundamental de la electrónica. Establece una relación directa entre tres magnitudes: <strong className="text-foreground">voltaje (V)</strong>, <strong className="text-foreground">corriente (I)</strong> y <strong className="text-foreground">resistencia (R)</strong>. Su fórmula es simple: <code className="px-2 py-0.5 rounded bg-accent text-foreground font-mono text-sm">V = I × R</code>.
+                La ley de Ohm es una de las bases de la electrónica. Relaciona el voltaje (V), la corriente (I) y la resistencia (R) mediante la fórmula:
+              </p>
+              <p className="text-center">
+                <code className="px-4 py-2 rounded-lg bg-accent text-foreground font-mono text-lg font-bold">V = I × R</code>
               </p>
               <p>
-                En palabras simples: si conocés dos de estas tres variables, podés calcular la tercera. Por ejemplo, si tenés una fuente de 12V y una resistencia de 1kΩ, la corriente que circula es de 12mA. Este principio se aplica en absolutamente todos los circuitos electrónicos, desde un simple LED hasta un sistema industrial complejo.
-              </p>
-              <p>
-                Con la <strong className="text-foreground">calculadora de Ley de Ohm</strong> de ElectroLab Pro, solo tenés que ingresar los valores que conocés y el sistema calcula automáticamente el valor faltante, mostrándote además la potencia disipada y recomendaciones prácticas.
+                Esto significa que si conocés dos de estos valores, podés calcular el tercero fácilmente usando nuestras herramientas.
               </p>
             </div>
             <div className="mt-8 text-center">
@@ -330,7 +274,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ CÓMO USAR LA CALCULADORA ═══════════ */}
+      {/* ═══════════ CÓMO USAR LAS CALCULADORAS ═══════════ */}
       <section className="py-14 sm:py-20">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
@@ -346,20 +290,20 @@ const Home = () => {
               {[
                 {
                   step: "1",
-                  title: "Elegí tu calculadora",
-                  desc: "Seleccioná la herramienta que necesitás: Ley de Ohm, resistencia para LED, código de colores, filtro RC o divisor de voltaje.",
+                  title: "Ingresá los valores conocidos",
+                  desc: "Completá los campos con voltaje, corriente o resistencia según lo que tengas disponible.",
                   icon: <Target className="h-6 w-6 text-primary" />,
                 },
                 {
                   step: "2",
-                  title: "Ingresá los valores",
-                  desc: "Completá los campos con los datos que tenés. No necesitás recordar fórmulas: el sistema detecta qué calcular automáticamente.",
+                  title: "Seleccioná la opción de cálculo",
+                  desc: "Elegí qué querés calcular: la calculadora detecta automáticamente el valor faltante.",
                   icon: <Calculator className="h-6 w-6 text-primary" />,
                 },
                 {
                   step: "3",
-                  title: "Obtené el resultado",
-                  desc: "En milisegundos tenés el resultado con explicación clara, valor comercial más cercano y recomendaciones de uso práctico.",
+                  title: "Obtené el resultado automáticamente",
+                  desc: "Las calculadoras están diseñadas para ser rápidas, precisas y fáciles de usar.",
                   icon: <Zap className="h-6 w-6 text-primary" />,
                 },
               ].map((item, i) => (
@@ -384,7 +328,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ EJEMPLOS PRÁCTICOS EXPANDIDOS ═══════════ */}
+      {/* ═══════════ EJEMPLO PRÁCTICO ═══════════ */}
       <section className="py-14 sm:py-20 bg-card/50 border-y border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
@@ -392,68 +336,83 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-primary/20 bg-primary/5 p-8 sm:p-10"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-4">
-              Ejemplos prácticos resueltos
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6">
+              Ejemplo práctico
             </h2>
-            <p className="text-center text-muted-foreground mb-10">Casos reales que podés resolver con nuestras calculadoras</p>
-            <div className="space-y-6">
-              {[
-                {
-                  emoji: "💡",
-                  title: "Conectar un LED a 12V",
-                  problem: "Tenés una batería de 12V y querés encender un LED rojo (caída típica: 2V, corriente: 20mA).",
-                  solution: "R = (12V - 2V) / 0.02A = 500Ω → Usá una resistencia de 470Ω o 560Ω (valores comerciales más cercanos).",
-                  tip: "Usá nuestra calculadora LED para obtener este resultado en un clic.",
-                },
-                {
-                  emoji: "🔋",
-                  title: "Calcular consumo de un circuito",
-                  problem: "Tenés una fuente de 5V y una resistencia de 220Ω. ¿Cuánta corriente consume?",
-                  solution: "I = V / R = 5V / 220Ω = 22.7mA. La potencia disipada es P = V × I = 0.114W.",
-                  tip: "La calculadora de Ley de Ohm te muestra corriente, potencia y el valor comercial más cercano.",
-                },
-                {
-                  emoji: "🎨",
-                  title: "Leer una resistencia por colores",
-                  problem: "Tenés una resistencia con bandas: Marrón - Negro - Rojo - Dorado.",
-                  solution: "Marrón=1, Negro=0, Rojo=×100 → 1000Ω = 1kΩ con tolerancia del 5% (Dorado).",
-                  tip: "Usá el decodificador de colores para verificar cualquier resistencia al instante.",
-                },
-              ].map((example, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-sm"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="text-3xl shrink-0">{example.emoji}</span>
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-semibold text-foreground">{example.title}</h3>
-                      <div>
-                        <p className="text-sm font-medium text-foreground mb-1">Problema:</p>
-                        <p className="text-sm text-muted-foreground">{example.problem}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-foreground mb-1">Solución:</p>
-                        <p className="text-sm text-muted-foreground font-mono bg-accent/50 rounded-lg px-3 py-2">{example.solution}</p>
-                      </div>
-                      <p className="text-sm text-primary font-medium flex items-center gap-1.5">
-                        <Lightbulb className="h-3.5 w-3.5" /> {example.tip}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+            <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              <p>
+                Si tenés una fuente de <strong className="text-foreground">12V</strong> y querés conectar un LED que trabaja a <strong className="text-foreground">2V</strong> con una corriente de <strong className="text-foreground">20mA</strong>, necesitás calcular la resistencia adecuada.
+              </p>
+              <p>
+                Con nuestra calculadora podés hacerlo en segundos y evitar errores que puedan dañar tus componentes.
+              </p>
             </div>
-            <div className="text-center mt-8">
+            <div className="text-center mt-6">
               <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-                Probá las calculadoras <ChevronDown className="h-4 w-4" />
+                Probalo ahora <ChevronDown className="h-4 w-4" />
               </Button>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ FAQ SIMPLE ═══════════ */}
+      <section className="py-14 sm:py-20">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10 flex items-center justify-center gap-3">
+              <MessageSquare className="w-6 h-6 text-primary" />
+              Preguntas frecuentes
+            </h2>
+            <div className="space-y-4">
+              {[
+                { q: "¿Qué puedo calcular en esta web?", a: "Podés calcular resistencias, valores de la ley de Ohm y configuraciones básicas de circuitos." },
+                { q: "¿Es gratis?", a: "Sí, todas las herramientas son completamente gratuitas. No necesitás registrarte ni pagar nada." },
+                { q: "¿Necesito conocimientos previos?", a: "No, la web está pensada tanto para principiantes como para usuarios avanzados. Cada calculadora incluye explicaciones claras." },
+              ].map((item, i) => (
+                <details key={i} className="group rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+                  <summary className="flex items-center gap-3 cursor-pointer p-5 text-sm font-semibold text-card-foreground hover:text-primary transition-colors list-none">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
+                      {i + 1}
+                    </span>
+                    <span className="flex-1">{item.q}</span>
+                    <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
+                  </summary>
+                  <div className="px-5 pb-5 pl-14 text-sm text-muted-foreground leading-relaxed">
+                    {item.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ LLAMADO A LA ACCIÓN ═══════════ */}
+      <section className="py-14 sm:py-20 bg-card/50 border-y border-border">
+        <div className="container mx-auto px-6 max-w-3xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              Explorá nuestras herramientas
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
+              Empezá a calcular de forma rápida y sencilla. Sin fórmulas, sin complicaciones.
+            </p>
+            <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
+              Usar calculadoras <ChevronDown className="h-4 w-4" />
+            </Button>
           </motion.div>
         </div>
       </section>
