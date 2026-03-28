@@ -14,6 +14,7 @@ import OhmCalculator from "@/components/OhmCalculator";
 import LedCalculator from "@/components/LedCalculator";
 import MiniProjects from "@/components/MiniProjects";
 import { Link } from "react-router-dom";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
