@@ -130,7 +130,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           </article>
           <aside className="hidden lg:flex flex-col gap-6 w-64 shrink-0">
             <div className="sticky top-24 space-y-6">
-              <AdBanner slot="6666666666" format="vertical" className="min-h-[250px]" />
+              <AdBanner slot="3756475501" format="vertical" className="min-h-[250px]" />
               <div className="p-4 rounded-xl border border-border bg-card/50 space-y-3">
                 <h4 className="text-sm font-bold font-mono flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" /> Más artículos
