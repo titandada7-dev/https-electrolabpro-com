@@ -495,10 +495,10 @@ const Index = () => {
             },
             {
               emoji: "🔧",
-              title: "Estación de Soldado",
+              title: "Estación de Soldadura",
               desc: "Temperatura regulable para trabajos con componentes SMD y placas de circuito impreso.",
-              mlLink: "#",
-              amzLink: "#",
+              mlLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21",
+              amzLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21",
             },
             {
               emoji: "🤖",
