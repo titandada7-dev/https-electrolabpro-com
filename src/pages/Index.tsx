@@ -355,7 +355,7 @@ const Index = () => {
                     <p className="text-muted-foreground mt-1">El que usamos en el lab.</p>
                   </li>
                   <li className="text-xs">
-                    <a href="https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Estación de Soldado 60W</a>
+                    <a href="https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Estación de Soldadura 60W</a>
                     <p className="text-muted-foreground mt-1">Precisión para integrados.</p>
                   </li>
                 </ul>
@@ -490,22 +490,22 @@ const Index = () => {
               emoji: "📟",
               title: "Multímetro Digital Profesional",
               desc: "Ideal para medir voltaje, corriente y resistencia con alta precisión. Imprescindible en tu taller.",
-              mlLink: "#",
-              amzLink: "#",
+              mlLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21",
+              amzLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21",
             },
             {
               emoji: "🔧",
-              title: "Estación de Soldado",
+              title: "Estación de Soldadura",
               desc: "Temperatura regulable para trabajos con componentes SMD y placas de circuito impreso.",
-              mlLink: "#",
-              amzLink: "#",
+              mlLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21",
+              amzLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21",
             },
             {
               emoji: "🤖",
               title: "Kit de Inicio Arduino",
               desc: "Todo lo que necesitas para empezar a programar microcontroladores y crear proyectos reales.",
-              mlLink: "#",
-              amzLink: "#",
+              mlLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21",
+              amzLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21",
             },
           ].map((tool) => (
             <div
