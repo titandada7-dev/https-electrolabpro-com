@@ -216,8 +216,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* ═══════════ TARJETAS DE ACCESO RÁPIDO ═══════════ */}
-      <section className="py-10 sm:py-14 border-t border-border">
+      {/* ═══════════ #SERVICIOS – TARJETAS DE ACCESO RÁPIDO ═══════════ */}
+      <section id="servicios" className="py-10 sm:py-14 border-t border-border">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -225,8 +225,10 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center mb-2">Acceso Rápido</h2>
-            <p className="text-center text-muted-foreground text-sm mb-8">Navegá directamente a la sección que necesitás</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground text-center mb-2">
+              Nuestros <span className="text-primary">Servicios</span>
+            </h2>
+            <p className="text-center text-muted-foreground text-sm mb-8">Explorá nuestras categorías y accedé a la información detallada</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
               {quickAccessCards.map((card, i) => (
                 <motion.button
@@ -235,7 +237,7 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.08 }}
-                  onClick={() => scrollTo(card.target)}
+                  onClick={() => scrollTo("detalles")}
                   className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
                 >
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${card.color} transition-transform group-hover:scale-110`}>
@@ -245,6 +247,7 @@ const Home = () => {
                     <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
                     <p className="text-xs text-muted-foreground mt-1">{card.desc}</p>
                   </div>
+                  <span className="text-[10px] font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">Ver detalles ↓</span>
                 </motion.button>
               ))}
             </div>
