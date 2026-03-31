@@ -255,8 +255,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ INTRODUCCIÓN + TEORÍA (ACORDEONES) ═══════════ */}
-      <section id="teoria" className="py-14 sm:py-20 border-t border-border">
+      {/* ═══════════ #DETALLES – TODA LA INFORMACIÓN EN ACORDEONES ═══════════ */}
+      <section id="detalles" className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
