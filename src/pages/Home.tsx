@@ -114,10 +114,11 @@ const Home = () => {
 
           {/* Desktop nav */}
           <div className="hidden items-center gap-5 md:flex">
-            <button onClick={() => scrollTo("teoria")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Teoría</button>
+            <button onClick={() => scrollTo("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Inicio</button>
+            <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Servicios</button>
+            <button onClick={() => scrollTo("detalles")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Detalles</button>
             <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</button>
             <button onClick={() => scrollTo("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</button>
-            <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Servicios</button>
             <div className="relative group">
               <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
@@ -130,10 +131,9 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <button onClick={() => scrollTo("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Preguntas</button>
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contacto</Link>
             <ThemeToggle />
-            <Button size="sm" onClick={() => scrollTo("calculadora")}>Empezar</Button>
+            <Button size="sm" onClick={() => scrollTo("servicios")}>Empezar</Button>
           </div>
 
           {/* Mobile toggle */}
@@ -149,11 +149,11 @@ const Home = () => {
         {menuOpen && (
           <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
-              { label: "Teoría", action: () => { scrollTo("teoria"); setMenuOpen(false); } },
+              { label: "Inicio", action: () => { scrollTo("inicio"); setMenuOpen(false); } },
+              { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
+              { label: "Detalles", action: () => { scrollTo("detalles"); setMenuOpen(false); } },
               { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
               { label: "Guías", action: () => { scrollTo("guias"); setMenuOpen(false); } },
-              { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
-              { label: "Preguntas", action: () => { scrollTo("foro"); setMenuOpen(false); } },
             ].map((item) => (
               <button key={item.label} onClick={item.action} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
                 {item.label}
@@ -177,8 +177,8 @@ const Home = () => {
         )}
       </header>
 
-      {/* ═══════════ HERO ═══════════ */}
-      <section className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
+      {/* ═══════════ #INICIO ═══════════ */}
+      <section id="inicio" className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -206,8 +206,8 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
-            <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-              Usar calculadoras <ChevronDown className="h-4 w-4" />
+            <Button size="lg" className="gap-2" onClick={() => scrollTo("servicios")}>
+              Ver más <ChevronDown className="h-4 w-4" />
             </Button>
             <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
               <BookOpen className="h-4 w-4" /> Ver guías
@@ -216,8 +216,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* ═══════════ TARJETAS DE ACCESO RÁPIDO ═══════════ */}
-      <section className="py-10 sm:py-14 border-t border-border">
+      {/* ═══════════ #SERVICIOS – TARJETAS DE ACCESO RÁPIDO ═══════════ */}
+      <section id="servicios" className="py-10 sm:py-14 border-t border-border">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -225,8 +225,10 @@ const Home = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center mb-2">Acceso Rápido</h2>
-            <p className="text-center text-muted-foreground text-sm mb-8">Navegá directamente a la sección que necesitás</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground text-center mb-2">
+              Nuestros <span className="text-primary">Servicios</span>
+            </h2>
+            <p className="text-center text-muted-foreground text-sm mb-8">Explorá nuestras categorías y accedé a la información detallada</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
               {quickAccessCards.map((card, i) => (
                 <motion.button
@@ -235,7 +237,7 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: i * 0.08 }}
-                  onClick={() => scrollTo(card.target)}
+                  onClick={() => scrollTo("detalles")}
                   className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
                 >
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${card.color} transition-transform group-hover:scale-110`}>
@@ -245,6 +247,7 @@ const Home = () => {
                     <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
                     <p className="text-xs text-muted-foreground mt-1">{card.desc}</p>
                   </div>
+                  <span className="text-[10px] font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">Ver detalles ↓</span>
                 </motion.button>
               ))}
             </div>
@@ -252,8 +255,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ INTRODUCCIÓN + TEORÍA (ACORDEONES) ═══════════ */}
-      <section id="teoria" className="py-14 sm:py-20 border-t border-border">
+      {/* ═══════════ #DETALLES – TODA LA INFORMACIÓN EN ACORDEONES ═══════════ */}
+      <section id="detalles" className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
