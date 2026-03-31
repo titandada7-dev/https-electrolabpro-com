@@ -149,11 +149,11 @@ const Home = () => {
         {menuOpen && (
           <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
-              { label: "Teoría", action: () => { scrollTo("teoria"); setMenuOpen(false); } },
+              { label: "Inicio", action: () => { scrollTo("inicio"); setMenuOpen(false); } },
+              { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
+              { label: "Detalles", action: () => { scrollTo("detalles"); setMenuOpen(false); } },
               { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
               { label: "Guías", action: () => { scrollTo("guias"); setMenuOpen(false); } },
-              { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
-              { label: "Preguntas", action: () => { scrollTo("foro"); setMenuOpen(false); } },
             ].map((item) => (
               <button key={item.label} onClick={item.action} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
                 {item.label}
