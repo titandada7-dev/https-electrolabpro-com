@@ -504,8 +504,8 @@ const Index = () => {
               emoji: "🤖",
               title: "Kit de Inicio Arduino",
               desc: "Todo lo que necesitas para empezar a programar microcontroladores y crear proyectos reales.",
-              mlLink: "#",
-              amzLink: "#",
+              mlLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21",
+              amzLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21",
             },
           ].map((tool) => (
             <div
