@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
 import OhmCalculator from "@/components/OhmCalculator";
@@ -30,7 +31,6 @@ const articleLinks = [
   { label: "Soldadura", to: "/articulos/soldadura-electronica" },
 ];
 
-// Q&A data organized by category
 const QA_CATEGORIES = [
   {
     id: "microcontroladores",
@@ -79,6 +79,16 @@ const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
+// Quick access cards data
+const quickAccessCards = [
+  { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-primary/10 text-primary" },
+  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "11 artículos completos", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
+  { icon: <Zap className="h-6 w-6" />, title: "Teoría", desc: "Ley de Ohm, conceptos básicos", target: "teoria", color: "bg-amber-500/10 text-amber-500" },
+  { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas", desc: "FAQ por categoría", target: "foro", color: "bg-violet-500/10 text-violet-500" },
+  { icon: <ShoppingBag className="h-6 w-6" />, title: "Herramientas", desc: "Equipamiento recomendado", target: "equipamiento", color: "bg-rose-500/10 text-rose-500" },
+  { icon: <Lightbulb className="h-6 w-6" />, title: "Tips", desc: "Consejos de electrónica", target: "tips", color: "bg-cyan-500/10 text-cyan-500" },
+];
+
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeQaTab, setActiveQaTab] = useState("microcontroladores");
@@ -92,8 +102,8 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ═══════════ NAVBAR ═══════════ */}
-      <header className="sticky top-0 z-50 border-b border-border bg-card/90 backdrop-blur-lg">
+      {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
+      <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between px-6 py-3.5">
           <Link to="/" className="flex items-center gap-3">
             <img src={electrolabLogo} alt="ElectroLab Pro logo" className="h-9 w-9 rounded-lg object-cover" />
@@ -104,15 +114,10 @@ const Home = () => {
 
           {/* Desktop nav */}
           <div className="hidden items-center gap-5 md:flex">
-            <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-              Servicios
-            </button>
-            <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-              Calculadoras
-            </button>
-            <button onClick={() => scrollTo("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-              Guías
-            </button>
+            <button onClick={() => scrollTo("teoria")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Teoría</button>
+            <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</button>
+            <button onClick={() => scrollTo("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</button>
+            <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Servicios</button>
             <div className="relative group">
               <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
@@ -125,16 +130,10 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <button onClick={() => scrollTo("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-              Preguntas
-            </button>
-            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-              Contacto
-            </Link>
+            <button onClick={() => scrollTo("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Preguntas</button>
+            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contacto</Link>
             <ThemeToggle />
-            <Button size="sm" onClick={() => scrollTo("calculadora")}>
-              Empezar
-            </Button>
+            <Button size="sm" onClick={() => scrollTo("calculadora")}>Empezar</Button>
           </div>
 
           {/* Mobile toggle */}
@@ -150,9 +149,10 @@ const Home = () => {
         {menuOpen && (
           <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
-              { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
+              { label: "Teoría", action: () => { scrollTo("teoria"); setMenuOpen(false); } },
               { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
               { label: "Guías", action: () => { scrollTo("guias"); setMenuOpen(false); } },
+              { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
               { label: "Preguntas", action: () => { scrollTo("foro"); setMenuOpen(false); } },
             ].map((item) => (
               <button key={item.label} onClick={item.action} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
@@ -178,7 +178,7 @@ const Home = () => {
       </header>
 
       {/* ═══════════ HERO ═══════════ */}
-      <section className="flex min-h-[60vh] flex-col items-center justify-center px-6 text-center py-20 sm:py-28">
+      <section className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -216,153 +216,178 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* ═══════════ INTRODUCCIÓN ═══════════ */}
-      <section className="py-14 sm:py-20 border-t border-border">
-        <div className="container mx-auto px-6 max-w-4xl">
+      {/* ═══════════ TARJETAS DE ACCESO RÁPIDO ═══════════ */}
+      <section className="py-10 sm:py-14 border-t border-border">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground text-center mb-8">
-              ¿Qué es <span className="text-primary">ElectroLabPro</span>?
-            </h2>
-            <div className="space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              <p>
-                <strong className="text-foreground">ElectroLabPro</strong> es una plataforma diseñada para estudiantes, técnicos y aficionados a la electrónica. Aquí podés encontrar herramientas útiles como calculadoras de resistencias, ley de Ohm, LEDs y más.
-              </p>
-              <p>
-                Nuestro objetivo es simplificar los cálculos y ayudarte a comprender mejor los conceptos fundamentales de la electrónica, con ejemplos claros y fáciles de aplicar en la práctica.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════ ¿QUÉ ES LA LEY DE OHM? ═══════════ */}
-      <section className="py-14 sm:py-20 bg-card/50 border-y border-border">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                <Zap className="h-5 w-5 text-primary" />
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                ¿Qué es la Ley de Ohm?
-              </h2>
-            </div>
-            <div className="space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              <p>
-                La ley de Ohm es una de las bases de la electrónica. Relaciona el voltaje (V), la corriente (I) y la resistencia (R) mediante la fórmula:
-              </p>
-              <p className="text-center">
-                <code className="px-4 py-2 rounded-lg bg-accent text-foreground font-mono text-lg font-bold">V = I × R</code>
-              </p>
-              <p>
-                Esto significa que si conocés dos de estos valores, podés calcular el tercero fácilmente usando nuestras herramientas.
-              </p>
-            </div>
-            <div className="mt-8 text-center">
-              <Button variant="outline" className="gap-2" onClick={() => scrollTo("calculadora")}>
-                <Calculator className="h-4 w-4" /> Ir a la calculadora de Ley de Ohm
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════ CÓMO USAR LAS CALCULADORAS ═══════════ */}
-      <section className="py-14 sm:py-20">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
-              ¿Cómo usar las calculadoras?
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {[
-                {
-                  step: "1",
-                  title: "Ingresá los valores conocidos",
-                  desc: "Completá los campos con voltaje, corriente o resistencia según lo que tengas disponible.",
-                  icon: <Target className="h-6 w-6 text-primary" />,
-                },
-                {
-                  step: "2",
-                  title: "Seleccioná la opción de cálculo",
-                  desc: "Elegí qué querés calcular: la calculadora detecta automáticamente el valor faltante.",
-                  icon: <Calculator className="h-6 w-6 text-primary" />,
-                },
-                {
-                  step: "3",
-                  title: "Obtené el resultado automáticamente",
-                  desc: "Las calculadoras están diseñadas para ser rápidas, precisas y fáciles de usar.",
-                  icon: <Zap className="h-6 w-6 text-primary" />,
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.step}
-                  initial={{ opacity: 0, y: 20 }}
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center mb-2">Acceso Rápido</h2>
+            <p className="text-center text-muted-foreground text-sm mb-8">Navegá directamente a la sección que necesitás</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+              {quickAccessCards.map((card, i) => (
+                <motion.button
+                  key={card.target}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.15 }}
-                  className="relative rounded-2xl border border-border bg-card p-7 shadow-sm text-center"
+                  transition={{ duration: 0.3, delay: i * 0.08 }}
+                  onClick={() => scrollTo(card.target)}
+                  className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
                 >
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold shadow-md">
-                    {item.step}
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${card.color} transition-transform group-hover:scale-110`}>
+                    {card.icon}
                   </div>
-                  <div className="flex justify-center mb-4 mt-2">{item.icon}</div>
-                  <h3 className="font-semibold text-foreground text-lg mb-2">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </motion.div>
+                  <div>
+                    <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{card.desc}</p>
+                  </div>
+                </motion.button>
               ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══════════ EJEMPLO PRÁCTICO ═══════════ */}
-      <section className="py-14 sm:py-20 bg-card/50 border-y border-border">
+      {/* ═══════════ INTRODUCCIÓN + TEORÍA (ACORDEONES) ═══════════ */}
+      <section id="teoria" className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-primary/20 bg-primary/5 p-8 sm:p-10"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6">
-              Ejemplo práctico
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground text-center mb-10">
+              Aprende <span className="text-primary">Electrónica</span>
             </h2>
-            <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              <p>
-                Si tenés una fuente de <strong className="text-foreground">12V</strong> y querés conectar un LED que trabaja a <strong className="text-foreground">2V</strong> con una corriente de <strong className="text-foreground">20mA</strong>, necesitás calcular la resistencia adecuada.
-              </p>
-              <p>
-                Con nuestra calculadora podés hacerlo en segundos y evitar errores que puedan dañar tus componentes.
-              </p>
-            </div>
-            <div className="text-center mt-6">
-              <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-                Probalo ahora <ChevronDown className="h-4 w-4" />
-              </Button>
-            </div>
+
+            <Accordion type="multiple" defaultValue={["intro"]} className="space-y-4">
+              {/* Acordeón: ¿Qué es ElectroLabPro? */}
+              <AccordionItem value="intro" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+                <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                  <span className="flex items-center gap-3">
+                    <CircuitBoard className="h-5 w-5 text-primary shrink-0" />
+                    ¿Qué es ElectroLabPro?
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-base sm:text-lg text-muted-foreground leading-relaxed space-y-5 pb-6">
+                  <p>
+                    <strong className="text-foreground">ElectroLabPro</strong> es una plataforma diseñada para estudiantes, técnicos y aficionados a la electrónica. Aquí podés encontrar herramientas útiles como calculadoras de resistencias, ley de Ohm, LEDs y más.
+                  </p>
+                  <p>
+                    Nuestro objetivo es simplificar los cálculos y ayudarte a comprender mejor los conceptos fundamentales de la electrónica, con ejemplos claros y fáciles de aplicar en la práctica.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Acordeón: ¿Qué es la Ley de Ohm? */}
+              <AccordionItem value="ley-ohm" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+                <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                  <span className="flex items-center gap-3">
+                    <Zap className="h-5 w-5 text-primary shrink-0" />
+                    ¿Qué es la Ley de Ohm?
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-base sm:text-lg text-muted-foreground leading-relaxed space-y-5 pb-6">
+                  <p>
+                    La ley de Ohm es una de las bases de la electrónica. Relaciona el voltaje (V), la corriente (I) y la resistencia (R) mediante la fórmula:
+                  </p>
+                  <p className="text-center">
+                    <code className="px-4 py-2 rounded-lg bg-accent text-foreground font-mono text-lg font-bold">V = I × R</code>
+                  </p>
+                  <p>
+                    Esto significa que si conocés dos de estos valores, podés calcular el tercero fácilmente usando nuestras herramientas.
+                  </p>
+                  <div className="text-center pt-2">
+                    <Button variant="outline" className="gap-2" onClick={() => scrollTo("calculadora")}>
+                      <Calculator className="h-4 w-4" /> Ir a la calculadora de Ley de Ohm
+                    </Button>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Acordeón: ¿Cómo usar las calculadoras? */}
+              <AccordionItem value="como-usar" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+                <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                  <span className="flex items-center gap-3">
+                    <Target className="h-5 w-5 text-primary shrink-0" />
+                    ¿Cómo usar las calculadoras?
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="pb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
+                    {[
+                      { step: "1", title: "Ingresá los valores conocidos", desc: "Completá los campos con voltaje, corriente o resistencia según lo que tengas disponible.", icon: <Target className="h-6 w-6 text-primary" /> },
+                      { step: "2", title: "Seleccioná la opción de cálculo", desc: "Elegí qué querés calcular: la calculadora detecta automáticamente el valor faltante.", icon: <Calculator className="h-6 w-6 text-primary" /> },
+                      { step: "3", title: "Obtené el resultado automáticamente", desc: "Las calculadoras están diseñadas para ser rápidas, precisas y fáciles de usar.", icon: <Zap className="h-6 w-6 text-primary" /> },
+                    ].map((item) => (
+                      <div key={item.step} className="relative rounded-2xl border border-border bg-accent/30 p-7 text-center">
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold shadow-md">
+                          {item.step}
+                        </div>
+                        <div className="flex justify-center mb-4 mt-2">{item.icon}</div>
+                        <h3 className="font-semibold text-foreground text-base mb-2">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Acordeón: Ejemplo práctico */}
+              <AccordionItem value="ejemplo" className="rounded-2xl border border-primary/20 bg-primary/5 shadow-sm px-6 overflow-hidden">
+                <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                  <span className="flex items-center gap-3">
+                    <Lightbulb className="h-5 w-5 text-primary shrink-0" />
+                    Ejemplo práctico: LED con fuente de 12V
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-base sm:text-lg text-muted-foreground leading-relaxed space-y-4 pb-6">
+                  <p>
+                    Si tenés una fuente de <strong className="text-foreground">12V</strong> y querés conectar un LED que trabaja a <strong className="text-foreground">2V</strong> con una corriente de <strong className="text-foreground">20mA</strong>, necesitás calcular la resistencia adecuada.
+                  </p>
+                  <p>
+                    Con nuestra calculadora podés hacerlo en segundos y evitar errores que puedan dañar tus componentes.
+                  </p>
+                  <div className="text-center pt-2">
+                    <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
+                      Probalo ahora <ChevronDown className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Acordeón: Electrónica básica */}
+              <AccordionItem value="seo-basica" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+                <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                  <span className="flex items-center gap-3">
+                    <Cpu className="h-5 w-5 text-primary shrink-0" />
+                    Electrónica básica: todo lo que necesitás saber
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed space-y-5 pb-6">
+                  <p>
+                    La <strong className="text-foreground">electrónica básica</strong> es el estudio de los circuitos eléctricos y los componentes que los conforman. Todo circuito electrónico se basa en el flujo de electrones a través de conductores, controlado por componentes como resistencias, condensadores, diodos y transistores. Comprender estos fundamentos es esencial para cualquier persona que quiera reparar dispositivos, diseñar prototipos o simplemente entender cómo funciona la tecnología que nos rodea.
+                  </p>
+                  <p>
+                    Entre los conceptos más importantes están: la <strong className="text-foreground">Ley de Ohm</strong> (que relaciona voltaje, corriente y resistencia), las <strong className="text-foreground">leyes de Kirchhoff</strong> (que permiten analizar circuitos complejos), y los principios de <strong className="text-foreground">potencia eléctrica</strong> (que determinan cuánta energía consume o disipa un componente). En ElectroLab Pro cubrimos cada uno de estos temas con guías claras y calculadoras interactivas que te permiten practicar sin riesgo.
+                  </p>
+                  <p>
+                    Si estás empezando, te recomendamos explorar nuestras guías sobre <Link to="/articulos/ley-de-ohm" className="text-primary hover:underline font-medium">Ley de Ohm</Link>, <Link to="/articulos/codigo-colores-resistencias" className="text-primary hover:underline font-medium">código de colores de resistencias</Link> y <Link to="/articulos/circuitos-serie-paralelo" className="text-primary hover:underline font-medium">circuitos serie y paralelo</Link>. Combinadas con nuestras calculadoras, vas a poder resolver problemas reales desde el primer día.
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </motion.div>
         </div>
       </section>
 
-      {/* ═══════════ FAQ SIMPLE ═══════════ */}
-      <section className="py-14 sm:py-20">
+      {/* ═══════════ FAQ SIMPLE (ACORDEONES) ═══════════ */}
+      <section className="py-14 sm:py-20 border-t border-border bg-card/50">
         <div className="container mx-auto px-6 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -374,32 +399,33 @@ const Home = () => {
               <MessageSquare className="w-6 h-6 text-primary" />
               Preguntas frecuentes
             </h2>
-            <div className="space-y-4">
+            <Accordion type="single" collapsible className="space-y-3">
               {[
                 { q: "¿Qué puedo calcular en esta web?", a: "Podés calcular resistencias, valores de la ley de Ohm y configuraciones básicas de circuitos." },
                 { q: "¿Es gratis?", a: "Sí, todas las herramientas son completamente gratuitas. No necesitás registrarte ni pagar nada." },
                 { q: "¿Necesito conocimientos previos?", a: "No, la web está pensada tanto para principiantes como para usuarios avanzados. Cada calculadora incluye explicaciones claras." },
               ].map((item, i) => (
-                <details key={i} className="group rounded-xl border border-border bg-card shadow-sm overflow-hidden">
-                  <summary className="flex items-center gap-3 cursor-pointer p-5 text-sm font-semibold text-card-foreground hover:text-primary transition-colors list-none">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
-                      {i + 1}
+                <AccordionItem key={i} value={`faq-${i}`} className="rounded-xl border border-border bg-card shadow-sm px-5 overflow-hidden">
+                  <AccordionTrigger className="text-sm font-semibold text-card-foreground hover:no-underline py-4">
+                    <span className="flex items-center gap-3">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
+                        {i + 1}
+                      </span>
+                      {item.q}
                     </span>
-                    <span className="flex-1">{item.q}</span>
-                    <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
-                  </summary>
-                  <div className="px-5 pb-5 pl-14 text-sm text-muted-foreground leading-relaxed">
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-9 pb-4">
                     {item.a}
-                  </div>
-                </details>
+                  </AccordionContent>
+                </AccordionItem>
               ))}
-            </div>
+            </Accordion>
           </motion.div>
         </div>
       </section>
 
       {/* ═══════════ LLAMADO A LA ACCIÓN ═══════════ */}
-      <section className="py-14 sm:py-20 bg-card/50 border-y border-border">
+      <section className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-3xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -439,12 +465,7 @@ const Home = () => {
 
       {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
       <div className="container mx-auto px-6 space-y-16 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <OhmCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
@@ -452,12 +473,7 @@ const Home = () => {
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
           </div>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <LedCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
@@ -486,13 +502,7 @@ const Home = () => {
             { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
             { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
           ].map((guide, i) => (
-            <motion.div
-              key={guide.to}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.15 }}
-            >
+            <motion.div key={guide.to} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.15 }}>
               <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
                 <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
                 <div className="flex flex-col flex-1 p-4 space-y-2">
@@ -595,8 +605,9 @@ const Home = () => {
         <MiniProjects />
       </motion.div>
 
-      {/* ═══════════ TIPS ═══════════ */}
+      {/* ═══════════ TIPS DE ELECTRÓNICA ═══════════ */}
       <motion.section
+        id="tips"
         className="container mx-auto px-6 py-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -609,7 +620,8 @@ const Home = () => {
             Tips de Electrónica
           </h2>
           <p className="text-center text-muted-foreground text-sm mb-8">por J.A.Sanchez</p>
-          <div className="space-y-3">
+
+          <Accordion type="single" collapsible className="space-y-3">
             {[
               { emoji: "💡", title: "El sentido del LED", text: "Recordá que los LED tienen polaridad. La pata larga es el Ánodo (+) y la corta el Cátodo (-). Si lo ponés al revés, no prenderá." },
               { emoji: "🔗", title: "Resistencias en serie", text: "Si sumás dos resistencias una tras otra, su valor total aumenta (Rt = R1 + R2). Ideal para cuando no tenés el valor exacto que necesitás." },
@@ -617,15 +629,19 @@ const Home = () => {
               { emoji: "🔥", title: "Soldadura brillante", text: "Una buena soldadura debe quedar brillante y con forma de volcán. Si queda opaca o como una bola, es una 'soldadura fría' y fallará pronto." },
               { emoji: "📏", title: "El truco del multímetro", text: "Siempre empezá midiendo en la escala más alta de tu tester para no quemar el fusible si no conocés el voltaje que vas a medir." },
             ].map((tip, i) => (
-              <div key={i} className="flex gap-4 p-4 rounded-xl border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300 group">
-                <span className="text-2xl shrink-0 mt-0.5">{tip.emoji}</span>
-                <div>
-                  <h3 className="font-semibold text-card-foreground text-sm mb-1 group-hover:text-primary transition-colors">{tip.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{tip.text}</p>
-                </div>
-              </div>
+              <AccordionItem key={i} value={`tip-${i}`} className="rounded-xl border border-border bg-card shadow-sm px-5 overflow-hidden">
+                <AccordionTrigger className="text-sm font-semibold text-card-foreground hover:no-underline py-4">
+                  <span className="flex items-center gap-3">
+                    <span className="text-xl shrink-0">{tip.emoji}</span>
+                    {tip.title}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-9 pb-4">
+                  {tip.text}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </motion.section>
 
@@ -662,22 +678,25 @@ const Home = () => {
           ))}
         </div>
 
-        {/* Q&A items */}
-        <div className="max-w-3xl mx-auto space-y-4">
-          {activeQa?.items.map((item, i) => (
-            <details key={i} className="group rounded-xl border border-border bg-card shadow-sm overflow-hidden">
-              <summary className="flex items-center gap-3 cursor-pointer p-5 text-sm font-semibold text-card-foreground hover:text-primary transition-colors list-none">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
-                  {i + 1}
-                </span>
-                <span className="flex-1">{item.q}</span>
-                <ChevronDown className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="px-5 pb-5 pl-14 text-sm text-muted-foreground leading-relaxed">
-                {item.a}
-              </div>
-            </details>
-          ))}
+        {/* Q&A items as Accordions */}
+        <div className="max-w-3xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-3">
+            {activeQa?.items.map((item, i) => (
+              <AccordionItem key={`${activeQaTab}-${i}`} value={`qa-${i}`} className="rounded-xl border border-border bg-card shadow-sm px-5 overflow-hidden">
+                <AccordionTrigger className="text-sm font-semibold text-card-foreground hover:no-underline py-4">
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
+                      {i + 1}
+                    </span>
+                    {item.q}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-9 pb-4">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </motion.section>
 
@@ -836,32 +855,6 @@ const Home = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════ CONTENIDO SEO ADICIONAL ═══════════ */}
-      <section className="py-14 sm:py-20 bg-card/50 border-y border-border">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-5 text-base text-muted-foreground leading-relaxed"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6">
-              Electrónica básica: todo lo que necesitás saber
-            </h2>
-            <p>
-              La <strong className="text-foreground">electrónica básica</strong> es el estudio de los circuitos eléctricos y los componentes que los conforman. Todo circuito electrónico se basa en el flujo de electrones a través de conductores, controlado por componentes como resistencias, condensadores, diodos y transistores. Comprender estos fundamentos es esencial para cualquier persona que quiera reparar dispositivos, diseñar prototipos o simplemente entender cómo funciona la tecnología que nos rodea.
-            </p>
-            <p>
-              Entre los conceptos más importantes están: la <strong className="text-foreground">Ley de Ohm</strong> (que relaciona voltaje, corriente y resistencia), las <strong className="text-foreground">leyes de Kirchhoff</strong> (que permiten analizar circuitos complejos), y los principios de <strong className="text-foreground">potencia eléctrica</strong> (que determinan cuánta energía consume o disipa un componente). En ElectroLab Pro cubrimos cada uno de estos temas con guías claras y calculadoras interactivas que te permiten practicar sin riesgo.
-            </p>
-            <p>
-              Si estás empezando, te recomendamos explorar nuestras guías sobre <Link to="/articulos/ley-de-ohm" className="text-primary hover:underline font-medium">Ley de Ohm</Link>, <Link to="/articulos/codigo-colores-resistencias" className="text-primary hover:underline font-medium">código de colores de resistencias</Link> y <Link to="/articulos/circuitos-serie-paralelo" className="text-primary hover:underline font-medium">circuitos serie y paralelo</Link>. Combinadas con nuestras calculadoras, vas a poder resolver problemas reales desde el primer día.
-            </p>
           </motion.div>
         </div>
       </section>
