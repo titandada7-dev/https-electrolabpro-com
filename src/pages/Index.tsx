@@ -361,7 +361,7 @@ const Index = () => {
                 </ul>
               </div>
               {/* Banner de publicidad */}
-              <AdBanner slot="0987654321" format="vertical" className="min-h-[250px]" />
+              <AdBanner slot="3756475501" format="vertical" className="min-h-[250px]" />
             </div>
           </aside>
         </div>
