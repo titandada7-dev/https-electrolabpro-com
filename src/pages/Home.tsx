@@ -114,10 +114,11 @@ const Home = () => {
 
           {/* Desktop nav */}
           <div className="hidden items-center gap-5 md:flex">
-            <button onClick={() => scrollTo("teoria")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Teoría</button>
+            <button onClick={() => scrollTo("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Inicio</button>
+            <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Servicios</button>
+            <button onClick={() => scrollTo("detalles")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Detalles</button>
             <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</button>
             <button onClick={() => scrollTo("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</button>
-            <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Servicios</button>
             <div className="relative group">
               <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
@@ -130,10 +131,9 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <button onClick={() => scrollTo("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Preguntas</button>
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contacto</Link>
             <ThemeToggle />
-            <Button size="sm" onClick={() => scrollTo("calculadora")}>Empezar</Button>
+            <Button size="sm" onClick={() => scrollTo("servicios")}>Empezar</Button>
           </div>
 
           {/* Mobile toggle */}
