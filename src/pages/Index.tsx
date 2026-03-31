@@ -490,8 +490,8 @@ const Index = () => {
               emoji: "📟",
               title: "Multímetro Digital Profesional",
               desc: "Ideal para medir voltaje, corriente y resistencia con alta precisión. Imprescindible en tu taller.",
-              mlLink: "#",
-              amzLink: "#",
+              mlLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21",
+              amzLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21",
             },
             {
               emoji: "🔧",
