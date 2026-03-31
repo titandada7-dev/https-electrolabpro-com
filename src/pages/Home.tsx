@@ -177,8 +177,8 @@ const Home = () => {
         )}
       </header>
 
-      {/* ═══════════ HERO ═══════════ */}
-      <section className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
+      {/* ═══════════ #INICIO ═══════════ */}
+      <section id="inicio" className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -206,8 +206,8 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
-            <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-              Usar calculadoras <ChevronDown className="h-4 w-4" />
+            <Button size="lg" className="gap-2" onClick={() => scrollTo("servicios")}>
+              Ver más <ChevronDown className="h-4 w-4" />
             </Button>
             <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
               <BookOpen className="h-4 w-4" /> Ver guías
