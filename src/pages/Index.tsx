@@ -355,7 +355,7 @@ const Index = () => {
                     <p className="text-muted-foreground mt-1">El que usamos en el lab.</p>
                   </li>
                   <li className="text-xs">
-                    <a href="https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Estación de Soldado 60W</a>
+                    <a href="https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Estación de Soldadura 60W</a>
                     <p className="text-muted-foreground mt-1">Precisión para integrados.</p>
                   </li>
                 </ul>
