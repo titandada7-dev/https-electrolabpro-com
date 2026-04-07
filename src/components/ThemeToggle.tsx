@@ -11,19 +11,23 @@ export default function ThemeToggle() {
   useEffect(() => {
     const root = document.documentElement;
     if (dark) {
-      root.classList.remove("light");
+      root.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
-      root.classList.add("light");
+      root.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
   }, [dark]);
 
   // Apply on mount
   useEffect(() => {
-    if (localStorage.getItem("theme") === "light") {
-      document.documentElement.classList.add("light");
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") {
+      document.documentElement.classList.remove("dark");
       setDark(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      setDark(true);
     }
   }, []);
 
