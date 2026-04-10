@@ -20,6 +20,7 @@ import SensoresArduino from "./pages/articles/SensoresArduino";
 import PantallaOled from "./pages/articles/PantallaOled";
 import BlogPrimerLaboratorio from "./pages/articles/BlogPrimerLaboratorio";
 import BlogProyectosArduino from "./pages/articles/BlogProyectosArduino";
+import BlogDisenoPCB from "./pages/articles/BlogDisenoPCB";
 import SobreNosotros from "./pages/SobreNosotros";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/articulos/pantalla-oled-ssd1306" element={<PantallaOled />} />
         <Route path="/blog/mi-primer-laboratorio" element={<BlogPrimerLaboratorio />} />
         <Route path="/blog/mis-5-proyectos-arduino-favoritos" element={<BlogProyectosArduino />} />
+        <Route path="/blog/como-disene-mi-primer-pcb-kicad" element={<BlogDisenoPCB />} />
         <Route
           path="*"
           element={

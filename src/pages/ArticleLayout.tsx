@@ -182,6 +182,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                   </li>
                   <li><Link to="/blog/mi-primer-laboratorio" className="text-muted-foreground hover:text-primary transition-colors">Mi primer laboratorio</Link></li>
                   <li><Link to="/blog/mis-5-proyectos-arduino-favoritos" className="text-muted-foreground hover:text-primary transition-colors">5 proyectos Arduino favoritos</Link></li>
+                  <li><Link to="/blog/como-disene-mi-primer-pcb-kicad" className="text-muted-foreground hover:text-primary transition-colors">Mi primer PCB con KiCad</Link></li>
                 </ul>
               </div>
             </div>
