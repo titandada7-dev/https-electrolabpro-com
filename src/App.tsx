@@ -18,6 +18,7 @@ import Soldadura from "./pages/articles/Soldadura";
 import ProtocoloI2C from "./pages/articles/ProtocoloI2C";
 import SensoresArduino from "./pages/articles/SensoresArduino";
 import SobreNosotros from "./pages/SobreNosotros";
+import TerminosCondiciones from "./pages/TerminosCondiciones";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/aviso-legal" element={<AvisoLegal />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+        <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
         <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
         <Route path="/articulos/condensadores" element={<Condensadores />} />
         <Route path="/articulos/diodos" element={<Diodos />} />
