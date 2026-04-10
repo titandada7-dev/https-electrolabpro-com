@@ -131,6 +131,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
+            <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Sobre Nosotros</Link>
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contacto</Link>
             <ThemeToggle />
             <Button size="sm" onClick={() => scrollTo("servicios")}>Empezar</Button>
@@ -161,6 +162,9 @@ const Home = () => {
             ))}
             <Link to="/contacto" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
               Contacto
+            </Link>
+            <Link to="/sobre-nosotros" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
+              Sobre Nosotros
             </Link>
             <div className="border-t border-border pt-3 mt-2">
               <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2 px-3">Artículos</p>
@@ -877,6 +881,8 @@ const Home = () => {
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Contacto</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
           </div>
           <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
             "Como Afiliado de Amazon, percibo dinero por las compras elegibles. Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica."
