@@ -17,6 +17,7 @@ import FuentesAlimentacion from "./pages/articles/FuentesAlimentacion";
 import Soldadura from "./pages/articles/Soldadura";
 import ProtocoloI2C from "./pages/articles/ProtocoloI2C";
 import SensoresArduino from "./pages/articles/SensoresArduino";
+import PantallaOled from "./pages/articles/PantallaOled";
 import SobreNosotros from "./pages/SobreNosotros";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/articulos/soldadura-electronica" element={<Soldadura />} />
         <Route path="/articulos/protocolo-i2c" element={<ProtocoloI2C />} />
         <Route path="/articulos/sensores-arduino" element={<SensoresArduino />} />
+        <Route path="/articulos/pantalla-oled-ssd1306" element={<PantallaOled />} />
         <Route
           path="*"
           element={

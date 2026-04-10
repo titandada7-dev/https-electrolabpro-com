@@ -109,6 +109,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://electrolabpro.com/articulos/pantalla-oled-ssd1306</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://electrolabpro.com/terminos-y-condiciones</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>yearly</changefreq>
