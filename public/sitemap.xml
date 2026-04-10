@@ -2,97 +2,103 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://electrolabpro.com/</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/ley-de-ohm</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/codigo-colores-resistencias</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/condensadores</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/multimetro</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/circuitos-serie-paralelo</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/diodos</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/transistores</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/arduino</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/osciloscopio</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/fuentes-de-alimentacion</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/articulos/soldadura-electronica</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://electrolabpro.com/articulos/protocolo-i2c</loc>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/sobre-nosotros</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/contacto</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/privacidad</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://electrolabpro.com/aviso-legal</loc>
-    <lastmod>2026-03-25</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

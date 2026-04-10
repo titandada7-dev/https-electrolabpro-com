@@ -29,6 +29,7 @@ const articleLinks = [
   { label: "Osciloscopio", to: "/articulos/osciloscopio" },
   { label: "Fuentes de Alimentación", to: "/articulos/fuentes-de-alimentacion" },
   { label: "Soldadura", to: "/articulos/soldadura-electronica" },
+  { label: "Protocolo I2C", to: "/articulos/protocolo-i2c" },
 ];
 
 const QA_CATEGORIES = [
@@ -82,7 +83,7 @@ const scrollTo = (id: string) => {
 // Quick access cards data
 const quickAccessCards = [
   { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-primary/10 text-primary" },
-  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "11 artículos completos", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
+  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "12 artículos completos", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
   { icon: <Zap className="h-6 w-6" />, title: "Teoría", desc: "Ley de Ohm, conceptos básicos", target: "teoria", color: "bg-amber-500/10 text-amber-500" },
   { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas", desc: "FAQ por categoría", target: "foro", color: "bg-violet-500/10 text-violet-500" },
   { icon: <ShoppingBag className="h-6 w-6" />, title: "Herramientas", desc: "Equipamiento recomendado", target: "equipamiento", color: "bg-rose-500/10 text-rose-500" },
@@ -734,6 +735,7 @@ const Home = () => {
             { emoji: "📊", title: "Osciloscopios", desc: "Guía completa para entender y usar un osciloscopio.", to: "/articulos/osciloscopio", tag: "Equipamiento" },
             { emoji: "🔋", title: "Fuentes de Alimentación", desc: "Tipos, regulación y cómo elegir la fuente correcta.", to: "/articulos/fuentes-de-alimentacion", tag: "Componentes" },
             { emoji: "🔥", title: "Soldadura Electrónica", desc: "Técnicas, herramientas y consejos para soldar como profesional.", to: "/articulos/soldadura-electronica", tag: "Técnicas" },
+            { emoji: "🔌", title: "Protocolo I2C", desc: "Comunicación entre microcontroladores y sensores con solo 2 cables.", to: "/articulos/protocolo-i2c", tag: "Protocolos" },
           ].map((guide, i) => (
             <motion.div
               key={guide.to}
