@@ -1,8 +1,9 @@
-import { Zap, ArrowLeft, BookOpen } from "lucide-react";
+import { Zap, ArrowLeft, BookOpen, Clock, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import AdBanner from "@/components/AdBanner";
 import LabProRecommendations from "@/components/LabProRecommendations";
+import AuthorBio from "@/components/AuthorBio";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
 interface ArticleLayoutProps {
@@ -75,15 +76,31 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
               Electro<span className="text-primary">Lab</span>
             </span>
           </Link>
-          <Link
-            to="/"
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Volver al inicio
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link to="/sobre-nosotros" className="hidden md:block text-sm text-muted-foreground hover:text-foreground transition-colors">Sobre Nosotros</Link>
+            <Link
+              to="/"
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Volver al inicio
+            </Link>
+          </div>
         </div>
       </header>
+
+      {/* Breadcrumb */}
+      <div className="container mx-auto px-4 pt-4">
+        <nav className="text-xs text-muted-foreground" aria-label="Breadcrumb">
+          <ol className="flex items-center gap-1.5">
+            <li><Link to="/" className="hover:text-foreground transition-colors">Inicio</Link></li>
+            <li className="text-muted-foreground/40">/</li>
+            <li><Link to="/#guias" className="hover:text-foreground transition-colors">Artículos</Link></li>
+            <li className="text-muted-foreground/40">/</li>
+            <li className="text-foreground font-medium truncate max-w-[200px]">{title}</li>
+          </ol>
+        </nav>
+      </div>
 
       {/* Hero */}
       <section
@@ -105,6 +122,16 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
             {subtitle}
           </p>
+          <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground/60 pt-2">
+            <span className="inline-flex items-center gap-1">
+              <Calendar className="w-3 h-3" />
+              {new Date(dateModified).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </span>
+            <span className="inline-flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              Lectura de 8-12 min
+            </span>
+          </div>
         </div>
       </section>
 
@@ -117,6 +144,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
         <div className="flex flex-col lg:flex-row gap-8">
           <article className="flex-1 max-w-3xl mx-auto prose-custom space-y-6 text-muted-foreground leading-relaxed text-[15px]">
             {children}
+
+            {/* Author Bio */}
+            <AuthorBio />
 
             {/* 🔧 Laboratorio Pro */}
             <div className="mt-10 pt-6 border-t border-border">

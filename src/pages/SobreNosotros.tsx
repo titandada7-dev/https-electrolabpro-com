@@ -1,12 +1,40 @@
-import { Zap, ArrowLeft, Users, Target, Heart, Lightbulb } from "lucide-react";
+import { Zap, ArrowLeft, Users, Target, Heart, Lightbulb, BookOpen, Award, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { useEffect } from "react";
 
 const SobreNosotros = () => {
   usePageMeta({
-    title: "Sobre Nosotros | ElectroLab Pro",
-    description: "Conoce a José Andrés Sánchez, creador de ElectroLab Pro. Herramientas gratuitas de electrónica para estudiantes y entusiastas. Nuestra misión y valores.",
+    title: "Sobre Nosotros | ElectroLab Pro – Quiénes Somos",
+    description: "Conoce a J.A. Sánchez, creador de ElectroLab Pro. Plataforma educativa de electrónica con calculadoras interactivas, guías técnicas y herramientas gratuitas para estudiantes y técnicos.",
   });
+
+  useEffect(() => {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "Sobre Nosotros - ElectroLab Pro",
+      "description": "Plataforma educativa de electrónica creada por J.A. Sánchez.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "ElectroLab Pro",
+        "url": "https://electrolabpro.com",
+        "founder": {
+          "@type": "Person",
+          "name": "J.A. Sánchez"
+        }
+      }
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(jsonLd);
+    script.id = "about-jsonld";
+    const existing = document.getElementById("about-jsonld");
+    if (existing) existing.remove();
+    document.head.appendChild(script);
+    return () => { document.getElementById("about-jsonld")?.remove(); };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background bg-grid">
       {/* Header */}
@@ -43,46 +71,114 @@ const SobreNosotros = () => {
             Sobre Nosotros
           </div>
           <h1 className="text-3xl md:text-5xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent">
-            Sobre Nosotros
+            Sobre ElectroLab Pro
           </h1>
           <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
-            Conoce quiénes somos y por qué creamos ElectroLab Pro.
+            Plataforma educativa de electrónica creada para estudiantes, técnicos y entusiastas.
           </p>
         </div>
       </section>
 
       {/* Content */}
       <div className="container mx-auto px-4 py-10">
-        <div className="max-w-2xl mx-auto space-y-8">
-          {/* Main text */}
-          <div className="p-6 rounded-xl border border-border bg-card/80 backdrop-blur space-y-4">
+        <div className="max-w-3xl mx-auto space-y-10">
+
+          {/* Author Section */}
+          <section className="p-6 md:p-8 rounded-2xl border border-border bg-card/80 backdrop-blur space-y-5">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-14 h-14 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center">
+                <Award className="w-7 h-7 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold font-mono text-foreground">J.A. Sánchez</h2>
+                <p className="text-sm text-muted-foreground">Fundador y Desarrollador</p>
+              </div>
+            </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Bienvenidos a <strong className="text-foreground">ElectroLab Pro</strong>. Este proyecto educativo es una iniciativa de <strong className="text-foreground">José Andrés Sánchez</strong>, web developer y apasionado de la electrónica.
+              <strong className="text-foreground">ElectroLab Pro</strong> es un proyecto educativo desarrollado por 
+              J.A. Sánchez a partir de la recopilación y adaptación de información técnica proveniente de 
+              especialistas, manuales y documentación profesional en electrónica.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Nuestra misión es crear herramientas digitales gratuitas que ayuden a estudiantes y aficionados a identificar componentes como resistencias, capacitores y diodos sin errores.
+              Con formación en desarrollo web y electrónica práctica, J.A. Sánchez combina ambas disciplinas 
+              para crear herramientas digitales que simplifican el aprendizaje de conceptos complejos. Cada 
+              calculadora, guía y artículo publicado en la plataforma ha sido verificado contra fuentes técnicas 
+              reconocidas para garantizar la precisión de la información.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              En ElectroLab Pro, convertimos la teoría compleja en herramientas simples y visuales.
+              El objetivo de ElectroLab Pro es ofrecer herramientas confiables basadas en prácticas reales 
+              utilizadas en el ámbito técnico, haciendo la electrónica accesible para todos sin importar su 
+              nivel de experiencia.
             </p>
-          </div>
+          </section>
+
+          {/* What we offer */}
+          <section className="space-y-5">
+            <h2 className="text-lg font-bold font-mono text-foreground flex items-center gap-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              ¿Qué ofrecemos?
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { title: "Calculadoras Interactivas", desc: "Herramientas de cálculo en tiempo real para resistencias, Ley de Ohm, LEDs, filtros RC y más. Resultados instantáneos sin necesidad de registrarse." },
+                { title: "Guías Técnicas Completas", desc: "Más de 11 artículos educativos detallados que cubren desde fundamentos básicos hasta temas avanzados como osciloscopios y soldadura electrónica." },
+                { title: "Diccionario de Componentes", desc: "Base de datos de componentes electrónicos con descripciones, usos prácticos y enlaces a proveedores verificados." },
+                { title: "Proyectos Prácticos", desc: "Mini-proyectos paso a paso con diagramas, listas de materiales y explicaciones detalladas para aplicar la teoría en la práctica." },
+              ].map((item) => (
+                <div key={item.title} className="p-5 rounded-xl border border-border bg-card/60 backdrop-blur space-y-2 hover:border-primary/40 transition-all">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                    <h3 className="font-mono font-bold text-foreground text-sm">{item.title}</h3>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
 
           {/* Values */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {[
-              { icon: Target, title: "Misión", text: "Hacer la electrónica accesible para todos mediante herramientas gratuitas y contenido educativo de calidad." },
-              { icon: Heart, title: "Pasión", text: "Cada calculadora y artículo está creado con dedicación por un equipo que ama la tecnología y la enseñanza." },
-              { icon: Lightbulb, title: "Innovación", text: "Buscamos constantemente nuevas formas de simplificar conceptos complejos con herramientas interactivas." },
-            ].map((v) => (
-              <div key={v.title} className="p-5 rounded-xl border border-border bg-card/60 backdrop-blur space-y-3 text-center hover:border-primary/40 transition-all duration-300">
-                <div className="inline-flex p-3 rounded-lg bg-secondary">
-                  <v.icon className="w-5 h-5 text-primary" />
+          <section className="space-y-5">
+            <h2 className="text-lg font-bold font-mono text-foreground">Nuestros Valores</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {[
+                { icon: Target, title: "Precisión", text: "Cada herramienta y artículo se basa en fórmulas y datos verificados de documentación técnica profesional." },
+                { icon: Heart, title: "Accesibilidad", text: "Contenido 100% gratuito y sin registro. Creemos que la educación técnica debe estar al alcance de todos." },
+                { icon: Lightbulb, title: "Practicidad", text: "Priorizamos herramientas interactivas y ejemplos del mundo real sobre la teoría abstracta." },
+              ].map((v) => (
+                <div key={v.title} className="p-5 rounded-xl border border-border bg-card/60 backdrop-blur space-y-3 text-center hover:border-primary/40 transition-all duration-300">
+                  <div className="inline-flex p-3 rounded-lg bg-secondary">
+                    <v.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-mono font-bold text-foreground text-sm">{v.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{v.text}</p>
                 </div>
-                <h3 className="font-mono font-bold text-foreground text-sm">{v.title}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{v.text}</p>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Methodology */}
+          <section className="p-6 rounded-2xl border border-border bg-card/80 backdrop-blur space-y-4">
+            <h2 className="text-lg font-bold font-mono text-foreground">Nuestra Metodología</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Todo el contenido de ElectroLab Pro sigue un proceso riguroso:
+            </p>
+            <ol className="space-y-3 text-sm text-muted-foreground">
+              {[
+                "Investigación de fuentes técnicas reconocidas (hojas de datos, manuales de fabricantes, documentación IEEE).",
+                "Desarrollo de herramientas interactivas con validación matemática de fórmulas y resultados.",
+                "Redacción de contenido educativo con terminología técnica precisa en español.",
+                "Revisión y verificación cruzada de la información antes de publicar.",
+                "Actualización periódica del contenido para mantener la relevancia y precisión.",
+              ].map((step, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center">
+                    {i + 1}
+                  </span>
+                  <span className="leading-relaxed">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
 
           {/* CTA */}
           <div className="p-6 rounded-xl border border-primary/20 bg-card/80 backdrop-blur text-center space-y-3">
@@ -104,17 +200,24 @@ const SobreNosotros = () => {
       <footer className="w-full py-8 mt-auto bg-card/50 border-t border-border">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
-            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">José Andrés Sánchez</span>
+            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A. Sánchez</span>
           </p>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 mb-3">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
-            <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Sobre Nosotros</Link>
           </div>
+          <a
+            href="mailto:contacto@electrolabpro.com"
+            className="text-muted-foreground/60 text-[10px] hover:text-foreground transition-colors block mb-3"
+          >
+            contacto@electrolabpro.com
+          </a>
+          <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic">
+            "Como Afiliado de Amazon, percibo dinero por las compras elegibles."
+          </p>
         </div>
       </footer>
     </div>
