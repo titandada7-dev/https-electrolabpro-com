@@ -1,5 +1,6 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { ShoppingCart } from "lucide-react";
+import osciloscopioImg from "@/assets/osciloscopio.jpg";
 
 const Osciloscopio = () => {
   return (

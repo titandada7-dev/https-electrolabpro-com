@@ -1,5 +1,6 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
+import multimetroImg from "@/assets/multimetro.jpg";
 
 const Multimetro = () => {
   return (

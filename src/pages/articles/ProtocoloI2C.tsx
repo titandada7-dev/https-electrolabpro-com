@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import i2cImg from "@/assets/protocolo-i2c-diagram.jpg";
 
 const ProtocoloI2C = () => {
   return (

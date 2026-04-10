@@ -1,5 +1,6 @@
 import ArticleLayout from "../ArticleLayout";
 import { Link } from "react-router-dom";
+import oledImg from "@/assets/pantalla-oled-diagram.jpg";
 
 const PantallaOled = () => {
   return (

@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import arduinoImg from "@/assets/arduino-kit.jpg";
 
 const Arduino = () => {
   return (

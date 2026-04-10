@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import sensoresImg from "@/assets/sensores-arduino-diagram.jpg";
 
 const SensoresArduino = () => {
   return (

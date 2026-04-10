@@ -1,5 +1,6 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { ShoppingCart } from "lucide-react";
+import soldadorImg from "@/assets/soldador.jpg";
 
 const Soldadura = () => {
   return (

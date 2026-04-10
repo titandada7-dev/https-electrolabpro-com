@@ -1,5 +1,6 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { ShoppingCart } from "lucide-react";
+import fuenteImg from "@/assets/fuente-alimentacion-diagram.jpg";
 
 const FuentesAlimentacion = () => {
   return (
