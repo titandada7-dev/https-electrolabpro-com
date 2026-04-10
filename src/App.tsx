@@ -15,6 +15,7 @@ import Arduino from "./pages/articles/Arduino";
 import Osciloscopio from "./pages/articles/Osciloscopio";
 import FuentesAlimentacion from "./pages/articles/FuentesAlimentacion";
 import Soldadura from "./pages/articles/Soldadura";
+import ProtocoloI2C from "./pages/articles/ProtocoloI2C";
 import SobreNosotros from "./pages/SobreNosotros";
 
 function App() {
