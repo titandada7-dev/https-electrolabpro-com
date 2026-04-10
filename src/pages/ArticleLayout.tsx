@@ -181,6 +181,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                     <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-bold">Blog</span>
                   </li>
                   <li><Link to="/blog/mi-primer-laboratorio" className="text-muted-foreground hover:text-primary transition-colors">Mi primer laboratorio</Link></li>
+                  <li><Link to="/blog/mis-5-proyectos-arduino-favoritos" className="text-muted-foreground hover:text-primary transition-colors">5 proyectos Arduino favoritos</Link></li>
                 </ul>
               </div>
             </div>

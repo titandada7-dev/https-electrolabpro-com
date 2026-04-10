@@ -33,6 +33,7 @@ const articleLinks = [
   { label: "Sensores Arduino", to: "/articulos/sensores-arduino" },
   { label: "Pantalla OLED", to: "/articulos/pantalla-oled-ssd1306" },
   { label: "🔧 Mi Primer Laboratorio", to: "/blog/mi-primer-laboratorio" },
+  { label: "🤖 5 Proyectos Arduino", to: "/blog/mis-5-proyectos-arduino-favoritos" },
 ];
 
 const QA_CATEGORIES = [
