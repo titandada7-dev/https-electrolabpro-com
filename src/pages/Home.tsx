@@ -34,6 +34,7 @@ const articleLinks = [
   { label: "Pantalla OLED", to: "/articulos/pantalla-oled-ssd1306" },
   { label: "🔧 Mi Primer Laboratorio", to: "/blog/mi-primer-laboratorio" },
   { label: "🤖 5 Proyectos Arduino", to: "/blog/mis-5-proyectos-arduino-favoritos" },
+  { label: "🔌 Mi Primer PCB con KiCad", to: "/blog/como-disene-mi-primer-pcb-kicad" },
 ];
 
 const QA_CATEGORIES = [
