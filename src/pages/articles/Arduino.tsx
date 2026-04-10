@@ -1,12 +1,15 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Arduino = () => {
   return (
     <ArticleLayout
-      title="Arduino para Principiantes: Guía Completa desde Cero"
-      subtitle="Aprende qué es Arduino, cómo funciona, qué modelos existen y cómo programar tu primer proyecto paso a paso. Guía práctica con ejemplos reales."
+      title="Arduino para Principiantes: Guía Completa con Proyectos Paso a Paso"
+      subtitle="Aprende qué es Arduino, cómo funciona, qué modelos existen y cómo construir 6 proyectos reales desde cero con código, diagramas de conexión y explicaciones detalladas."
       slug="arduino"
+      datePublished="2026-03-01"
+      dateModified="2026-04-10"
     >
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es Arduino?</h2>
       <p>
@@ -175,53 +178,89 @@ void loop() {
         </table>
       </div>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Proyecto 1: LED parpadeante (Blink)</h2>
-      <p>
-        El "Hola Mundo" de Arduino. Este es el primer proyecto que todo principiante debe hacer:
-      </p>
-      <h3 className="text-lg font-mono font-semibold text-foreground mt-4">Materiales necesarios</h3>
-      <ul className="list-disc list-inside space-y-1 pl-2">
-        <li>1× Arduino UNO</li>
-        <li>1× LED de cualquier color</li>
-        <li>1× Resistencia de 220Ω</li>
-        <li>Cables de conexión (jumpers)</li>
-        <li>Protoboard</li>
-      </ul>
-      <h3 className="text-lg font-mono font-semibold text-foreground mt-4">Conexiones</h3>
-      <ol className="list-decimal list-inside space-y-1 pl-2">
-        <li>Conecta el <strong className="text-foreground">ánodo (+)</strong> del LED al pin 8 a través de la resistencia de 220Ω</li>
-        <li>Conecta el <strong className="text-foreground">cátodo (-)</strong> del LED a GND</li>
-      </ol>
-      <h3 className="text-lg font-mono font-semibold text-foreground mt-4">Código</h3>
-      <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-        <pre className="text-foreground">{`const int ledPin = 8;
+      {/* ========================= PROYECTOS ========================= */}
+
+      <div className="mt-12 pt-8 border-t border-border">
+        <h2 className="text-2xl md:text-3xl font-mono font-bold text-foreground text-center mb-2">🔬 Proyectos Paso a Paso</h2>
+        <p className="text-center text-muted-foreground text-sm mb-8">6 proyectos prácticos ordenados de menor a mayor dificultad</p>
+      </div>
+
+      {/* Proyecto 1 */}
+      <div className="p-5 rounded-xl border border-border bg-card/50">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-mono font-bold text-sm">1</span>
+          <h3 className="text-lg font-mono font-bold text-foreground">LED Parpadeante (Blink)</h3>
+          <span className="ml-auto text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full font-mono">Fácil</span>
+        </div>
+        <p className="mb-3">El "Hola Mundo" de Arduino. Aprende a controlar una salida digital encendiendo y apagando un LED.</p>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Materiales</h4>
+        <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
+          <li>1× Arduino UNO</li>
+          <li>1× LED (cualquier color)</li>
+          <li>1× Resistencia de 220Ω (<Link to="/articulos/codigo-colores-resistencias" className="text-primary hover:underline">ver código de colores</Link>)</li>
+          <li>Cables jumper y protoboard</li>
+        </ul>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Diagrama de conexión</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-xs overflow-x-auto mb-3">
+          <pre className="text-foreground">{`Arduino Pin 8 ──── Resistencia 220Ω ──── Ánodo (+) LED ──── Cátodo (-) ──── GND
+
+  [Arduino UNO]
+      Pin 8  ───┐
+                 │
+              [220Ω]
+                 │
+              [LED]
+                 │
+      GND   ───┘`}</pre>
+        </div>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Código</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+          <pre className="text-foreground">{`const int ledPin = 8;
 
 void setup() {
   pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(ledPin, HIGH);
-  delay(500);
-  digitalWrite(ledPin, LOW);
-  delay(500);
+  digitalWrite(ledPin, HIGH);  // Enciende
+  delay(500);                  // 500ms encendido
+  digitalWrite(ledPin, LOW);   // Apaga
+  delay(500);                  // 500ms apagado
 }`}</pre>
+        </div>
+        <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
+          <strong className="text-foreground">💡 ¿Qué aprendiste?</strong> A usar <span className="font-mono text-primary">pinMode()</span>, <span className="font-mono text-primary">digitalWrite()</span> y <span className="font-mono text-primary">delay()</span>. La resistencia de 220Ω limita la corriente a ~15mA, protegiendo el LED según la <Link to="/articulos/ley-de-ohm" className="text-primary hover:underline">Ley de Ohm</Link>: I = (5V - 2V) / 220Ω ≈ 13.6mA.
+        </div>
       </div>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Proyecto 2: Leer un botón</h2>
-      <p>
-        Aprende a usar entradas digitales leyendo el estado de un pulsador:
-      </p>
-      <h3 className="text-lg font-mono font-semibold text-foreground mt-4">Materiales</h3>
-      <ul className="list-disc list-inside space-y-1 pl-2">
-        <li>1× Arduino UNO</li>
-        <li>1× Pulsador (push button)</li>
-        <li>1× Resistencia de 10kΩ (pull-down)</li>
-        <li>1× LED + resistencia de 220Ω</li>
-      </ul>
-      <h3 className="text-lg font-mono font-semibold text-foreground mt-4">Código</h3>
-      <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-        <pre className="text-foreground">{`const int botonPin = 2;
+      {/* Proyecto 2 */}
+      <div className="p-5 rounded-xl border border-border bg-card/50">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-mono font-bold text-sm">2</span>
+          <h3 className="text-lg font-mono font-bold text-foreground">Control de LED con Botón</h3>
+          <span className="ml-auto text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full font-mono">Fácil</span>
+        </div>
+        <p className="mb-3">Aprende a leer entradas digitales con un pulsador y controlar una salida en consecuencia.</p>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Materiales</h4>
+        <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
+          <li>1× Arduino UNO + protoboard</li>
+          <li>1× Pulsador (push button)</li>
+          <li>1× Resistencia de 10kΩ (pull-down)</li>
+          <li>1× LED + resistencia de 220Ω</li>
+        </ul>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Diagrama de conexión</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-xs overflow-x-auto mb-3">
+          <pre className="text-foreground">{`  5V ──── [Botón] ──── Pin 2
+                   │
+                [10kΩ]  (resistencia pull-down)
+                   │
+                  GND
+
+  Pin 8 ──── [220Ω] ──── [LED] ──── GND`}</pre>
+        </div>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Código</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+          <pre className="text-foreground">{`const int botonPin = 2;
 const int ledPin = 8;
 
 void setup() {
@@ -237,17 +276,47 @@ void loop() {
     digitalWrite(ledPin, LOW);
   }
 }`}</pre>
+        </div>
+        <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
+          <strong className="text-foreground">💡 ¿Qué aprendiste?</strong> A usar <span className="font-mono text-primary">digitalRead()</span> y por qué las resistencias pull-down evitan los "pines flotantes" que generan lecturas erráticas.
+        </div>
       </div>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Proyecto 3: Sensor de temperatura con LM35</h2>
-      <p>
-        Usa una entrada analógica para leer un sensor de temperatura y mostrar los datos en el Monitor Serial:
-      </p>
-      <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-        <pre className="text-foreground">{`const int sensorPin = A0;
+      {/* Proyecto 3 */}
+      <div className="p-5 rounded-xl border border-border bg-card/50">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-mono font-bold text-sm">3</span>
+          <h3 className="text-lg font-mono font-bold text-foreground">Sensor de Temperatura con LM35</h3>
+          <span className="ml-auto text-xs bg-yellow-500/10 text-yellow-400 px-2 py-0.5 rounded-full font-mono">Intermedio</span>
+        </div>
+        <p className="mb-3">Usa una entrada analógica para leer un sensor de temperatura y visualizar los datos en el Monitor Serial en tiempo real.</p>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Materiales</h4>
+        <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
+          <li>1× Arduino UNO</li>
+          <li>1× Sensor LM35 (3 pines: VCC, VOUT, GND)</li>
+          <li>Cables jumper</li>
+        </ul>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Diagrama de conexión</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-xs overflow-x-auto mb-3">
+          <pre className="text-foreground">{`  [LM35 - vista frontal, cara plana hacia ti]
+   ┌───────┐
+   │ V G S │
+   │ C N A │
+   │ C D L │
+   └───────┘
+    │  │  │
+    │  │  └──── Arduino A0
+    │  └─────── Arduino GND
+    └────────── Arduino 5V`}</pre>
+        </div>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Código</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+          <pre className="text-foreground">{`const int sensorPin = A0;
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("Sensor LM35 - Lectura de temperatura");
+  Serial.println("------------------------------------");
 }
 
 void loop() {
@@ -255,45 +324,213 @@ void loop() {
   float voltaje = lectura * (5.0 / 1023.0);
   float temperatura = voltaje * 100.0;
   
-  Serial.print("Temperatura: ");
-  Serial.print(temperatura);
+  Serial.print("ADC: ");
+  Serial.print(lectura);
+  Serial.print(" | Voltaje: ");
+  Serial.print(voltaje, 3);
+  Serial.print("V | Temperatura: ");
+  Serial.print(temperatura, 1);
   Serial.println(" °C");
   
   delay(1000);
 }`}</pre>
+        </div>
+        <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
+          <strong className="text-foreground">💡 ¿Qué aprendiste?</strong> A usar <span className="font-mono text-primary">analogRead()</span> y el ADC de 10 bits del Arduino. El LM35 entrega 10mV/°C, así que la conversión es: temperatura = (lectura × 5.0 / 1023.0) × 100.
+        </div>
       </div>
-      <p>
-        El sensor LM35 entrega <span className="font-mono text-primary">10mV por cada °C</span>. El Arduino lee el voltaje con su ADC de 10 bits y lo convierte a temperatura con una fórmula simple.
-      </p>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">PWM: Control de brillo de un LED</h2>
-      <p>
-        La modulación por ancho de pulso (<strong className="text-foreground">PWM</strong>) permite simular una salida analógica variando el ciclo de trabajo de una señal digital. Arduino tiene pines PWM marcados con <span className="font-mono text-primary">~</span> (3, 5, 6, 9, 10, 11 en el UNO).
-      </p>
-      <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
-        <pre className="text-foreground">{`const int ledPin = 9;  // Pin PWM
+      {/* Proyecto 4 */}
+      <div className="p-5 rounded-xl border border-border bg-card/50">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-mono font-bold text-sm">4</span>
+          <h3 className="text-lg font-mono font-bold text-foreground">Control de Brillo con PWM (LED Fade)</h3>
+          <span className="ml-auto text-xs bg-yellow-500/10 text-yellow-400 px-2 py-0.5 rounded-full font-mono">Intermedio</span>
+        </div>
+        <p className="mb-3">Simula una salida analógica variando el brillo de un LED mediante modulación por ancho de pulso (PWM).</p>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Concepto clave: ¿Qué es PWM?</h4>
+        <p className="text-sm">PWM (Pulse Width Modulation) genera pulsos de 5V a alta velocidad. Al variar el porcentaje de tiempo en HIGH (duty cycle), el LED percibe diferentes intensidades. Arduino tiene pines PWM marcados con <span className="font-mono text-primary">~</span> (pines 3, 5, 6, 9, 10, 11 en el UNO).</p>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-xs overflow-x-auto my-3">
+          <pre className="text-foreground">{`  Duty Cycle 25%:  ▓░░░▓░░░▓░░░  → LED tenue
+  Duty Cycle 50%:  ▓▓░░▓▓░░▓▓░░  → LED medio
+  Duty Cycle 100%: ▓▓▓▓▓▓▓▓▓▓▓▓  → LED máximo brillo`}</pre>
+        </div>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Código</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+          <pre className="text-foreground">{`const int ledPin = 9;  // Pin PWM (~)
 
 void setup() {
   pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
-  // Aumentar brillo gradualmente
+  // Aumentar brillo gradualmente (fade in)
   for (int brillo = 0; brillo <= 255; brillo += 5) {
     analogWrite(ledPin, brillo);
     delay(30);
   }
-  // Disminuir brillo gradualmente
+  // Disminuir brillo gradualmente (fade out)
   for (int brillo = 255; brillo >= 0; brillo -= 5) {
     analogWrite(ledPin, brillo);
     delay(30);
   }
 }`}</pre>
+        </div>
+        <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
+          <strong className="text-foreground">💡 ¿Qué aprendiste?</strong> <span className="font-mono text-primary">analogWrite(pin, valor)</span> acepta 0-255. El valor 0 = LED apagado (0% duty cycle), 255 = máximo brillo (100% duty cycle). La frecuencia PWM del Arduino UNO es ~490 Hz en la mayoría de pines.
+        </div>
       </div>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Comunicación Serial</h2>
+      {/* Proyecto 5 */}
+      <div className="p-5 rounded-xl border border-border bg-card/50">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-mono font-bold text-sm">5</span>
+          <h3 className="text-lg font-mono font-bold text-foreground">Sensor de Distancia con Ultrasonido HC-SR04</h3>
+          <span className="ml-auto text-xs bg-yellow-500/10 text-yellow-400 px-2 py-0.5 rounded-full font-mono">Intermedio</span>
+        </div>
+        <p className="mb-3">Mide distancias de 2 cm a 400 cm usando ondas ultrasónicas y muestra los resultados en el Monitor Serial.</p>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Materiales</h4>
+        <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
+          <li>1× Arduino UNO</li>
+          <li>1× Sensor HC-SR04</li>
+          <li>Cables jumper</li>
+        </ul>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">¿Cómo funciona?</h4>
+        <p className="text-sm mb-3">El sensor emite un pulso ultrasónico por el pin TRIG. El sonido rebota en un objeto y vuelve al receptor (ECHO). Midiendo el tiempo de viaje y conociendo la velocidad del sonido (343 m/s), calculamos la distancia:</p>
+        <div className="bg-secondary/50 rounded-lg p-3 font-mono text-xs overflow-x-auto mb-3">
+          <pre className="text-foreground">{`Distancia = (Tiempo × Velocidad del sonido) / 2
+Distancia (cm) = duración (µs) / 58.2`}</pre>
+        </div>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Diagrama de conexión</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-xs overflow-x-auto mb-3">
+          <pre className="text-foreground">{`  HC-SR04        Arduino
+  ────────       ────────
+  VCC    ──────  5V
+  TRIG   ──────  Pin 9
+  ECHO   ──────  Pin 10
+  GND    ──────  GND`}</pre>
+        </div>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Código</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+          <pre className="text-foreground">{`const int trigPin = 9;
+const int echoPin = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  // Enviar pulso ultrasónico
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  // Medir tiempo de respuesta
+  long duracion = pulseIn(echoPin, HIGH);
+  float distancia = duracion / 58.2;
+  
+  Serial.print("Distancia: ");
+  Serial.print(distancia, 1);
+  Serial.println(" cm");
+  
+  delay(200);
+}`}</pre>
+        </div>
+        <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
+          <strong className="text-foreground">💡 ¿Qué aprendiste?</strong> A usar <span className="font-mono text-primary">pulseIn()</span> para medir tiempos de señal y <span className="font-mono text-primary">delayMicroseconds()</span> para generar pulsos precisos. Este sensor se usa en robots, alarmas y sistemas de estacionamiento.
+        </div>
+      </div>
+
+      {/* Proyecto 6 */}
+      <div className="p-5 rounded-xl border border-border bg-card/50">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-mono font-bold text-sm">6</span>
+          <h3 className="text-lg font-mono font-bold text-foreground">Semáforo Inteligente con Secuencia Temporizada</h3>
+          <span className="ml-auto text-xs bg-orange-500/10 text-orange-400 px-2 py-0.5 rounded-full font-mono">Avanzado</span>
+        </div>
+        <p className="mb-3">Combina todo lo aprendido creando un semáforo con 3 LEDs, un botón de peatón y comunicación serial para depuración.</p>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Materiales</h4>
+        <ul className="list-disc list-inside space-y-1 pl-2 text-sm">
+          <li>1× Arduino UNO + protoboard</li>
+          <li>3× LEDs (rojo, amarillo, verde)</li>
+          <li>3× Resistencias de 220Ω</li>
+          <li>1× Pulsador + resistencia 10kΩ</li>
+        </ul>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Diagrama de conexión</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-xs overflow-x-auto mb-3">
+          <pre className="text-foreground">{`  Pin 4 ── [220Ω] ── [LED Rojo]    ── GND
+  Pin 5 ── [220Ω] ── [LED Amarillo] ── GND
+  Pin 6 ── [220Ω] ── [LED Verde]   ── GND
+  5V ───── [Botón] ── Pin 2
+                  │
+               [10kΩ]
+                  │
+                 GND`}</pre>
+        </div>
+        <h4 className="text-sm font-mono font-semibold text-foreground mt-4 mb-2">Código</h4>
+        <div className="bg-secondary/50 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+          <pre className="text-foreground">{`const int rojo = 4;
+const int amarillo = 5;
+const int verde = 6;
+const int boton = 2;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(rojo, OUTPUT);
+  pinMode(amarillo, OUTPUT);
+  pinMode(verde, OUTPUT);
+  pinMode(boton, INPUT);
+  Serial.println("Semáforo iniciado");
+}
+
+void loop() {
+  // Verde (5 segundos)
+  cambiarEstado("VERDE - Paso vehicular");
+  digitalWrite(verde, HIGH);
+  
+  // Verificar botón de peatón durante verde
+  for (int i = 0; i < 50; i++) {
+    if (digitalRead(boton) == HIGH) {
+      Serial.println(">> Peatón solicita paso");
+      delay(1000);  // Esperar 1s antes de cambiar
+      break;
+    }
+    delay(100);
+  }
+  digitalWrite(verde, LOW);
+  
+  // Amarillo (2 segundos)
+  cambiarEstado("AMARILLO - Precaución");
+  digitalWrite(amarillo, HIGH);
+  delay(2000);
+  digitalWrite(amarillo, LOW);
+  
+  // Rojo (4 segundos)
+  cambiarEstado("ROJO - Alto");
+  digitalWrite(rojo, HIGH);
+  delay(4000);
+  digitalWrite(rojo, LOW);
+}
+
+void cambiarEstado(const char* estado) {
+  Serial.print("[Semáforo] ");
+  Serial.println(estado);
+}`}</pre>
+        </div>
+        <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
+          <strong className="text-foreground">💡 ¿Qué aprendiste?</strong> A combinar entradas digitales con salidas múltiples, crear funciones personalizadas (<span className="font-mono text-primary">cambiarEstado()</span>), usar bucles para polling del botón sin bloquear el programa, y depurar con el Monitor Serial.
+        </div>
+      </div>
+
+      {/* ========================= SECCIÓN EDUCATIVA ADICIONAL ========================= */}
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-12">Comunicación Serial a fondo</h2>
       <p>
-        El <strong className="text-foreground">Monitor Serial</strong> es tu mejor herramienta de depuración. Te permite enviar y recibir datos entre Arduino y tu PC:
+        El <strong className="text-foreground">Monitor Serial</strong> es tu mejor herramienta de depuración. Te permite enviar y recibir datos entre Arduino y tu PC en tiempo real:
       </p>
       <ul className="list-disc list-inside space-y-1 pl-2">
         <li><span className="font-mono text-primary">Serial.begin(9600)</span> — Inicia la comunicación a 9600 baudios</li>
@@ -301,26 +538,88 @@ void loop() {
         <li><span className="font-mono text-primary">Serial.println()</span> — Imprime con salto de línea</li>
         <li><span className="font-mono text-primary">Serial.read()</span> — Lee un byte recibido</li>
         <li><span className="font-mono text-primary">Serial.available()</span> — Verifica si hay datos disponibles</li>
+        <li><span className="font-mono text-primary">Serial.parseInt()</span> — Lee un número entero del buffer serial</li>
       </ul>
+      <p>
+        <strong className="text-foreground">Importante:</strong> Los pines 0 (RX) y 1 (TX) son compartidos con la comunicación USB. Evita usarlos para otros componentes mientras uses el Monitor Serial.
+      </p>
 
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Errores comunes de principiantes</h2>
-      <ul className="list-disc list-inside space-y-1 pl-2">
-        <li><strong className="text-foreground">LED sin resistencia</strong>: Siempre usa una resistencia limitadora (220Ω-1kΩ) para proteger el LED y el pin del Arduino</li>
-        <li><strong className="text-foreground">Pines flotantes</strong>: Los pines de entrada desconectados leen valores aleatorios. Usa resistencias pull-up o pull-down</li>
-        <li><strong className="text-foreground">Exceder 40mA por pin</strong>: Cada pin del Arduino entrega máximo 40mA. Para cargas mayores, usa un transistor o relé</li>
-        <li><strong className="text-foreground">Alimentar motores desde Arduino</strong>: Los motores necesitan su propia fuente de alimentación. Arduino solo controla la señal</li>
-        <li><strong className="text-foreground">Olvidar el GND común</strong>: Todos los componentes deben compartir la misma referencia de tierra</li>
-        <li><strong className="text-foreground">Usar delay() en exceso</strong>: Bloquea el programa. Para proyectos avanzados, usa <span className="font-mono text-primary">millis()</span></li>
-      </ul>
+      <div className="space-y-3">
+        <div className="p-4 rounded-lg border border-destructive/30 bg-destructive/5">
+          <p className="font-bold text-foreground text-sm mb-1">❌ LED sin resistencia</p>
+          <p className="text-sm">Siempre usa una resistencia limitadora (220Ω-1kΩ). Sin ella, la corriente excesiva puede quemar el LED y dañar el pin del Arduino. Calcula el valor con nuestra <Link to="/articulos/ley-de-ohm" className="text-primary hover:underline">guía de Ley de Ohm</Link>.</p>
+        </div>
+        <div className="p-4 rounded-lg border border-destructive/30 bg-destructive/5">
+          <p className="font-bold text-foreground text-sm mb-1">❌ Pines flotantes</p>
+          <p className="text-sm">Los pines de entrada desconectados leen valores aleatorios. Siempre usa resistencias pull-up (a 5V) o pull-down (a GND) para establecer un estado definido.</p>
+        </div>
+        <div className="p-4 rounded-lg border border-destructive/30 bg-destructive/5">
+          <p className="font-bold text-foreground text-sm mb-1">❌ Exceder 40mA por pin</p>
+          <p className="text-sm">Cada pin entrega máximo 40mA (recomendado: 20mA). Para cargas mayores (motores, relés), usa un <Link to="/articulos/transistores" className="text-primary hover:underline">transistor</Link> como interruptor de potencia.</p>
+        </div>
+        <div className="p-4 rounded-lg border border-destructive/30 bg-destructive/5">
+          <p className="font-bold text-foreground text-sm mb-1">❌ Alimentar motores desde Arduino</p>
+          <p className="text-sm">Los motores necesitan su propia <Link to="/articulos/fuentes-de-alimentacion" className="text-primary hover:underline">fuente de alimentación</Link>. Arduino solo controla la señal de activación.</p>
+        </div>
+        <div className="p-4 rounded-lg border border-destructive/30 bg-destructive/5">
+          <p className="font-bold text-foreground text-sm mb-1">❌ Usar delay() en exceso</p>
+          <p className="text-sm">delay() bloquea completamente el programa. Para proyectos con múltiples tareas, usa <span className="font-mono text-primary">millis()</span> para temporización no bloqueante.</p>
+        </div>
+      </div>
 
-      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Consejos para avanzar</h2>
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Librerías esenciales para explorar</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+          <thead>
+            <tr className="bg-secondary text-foreground">
+              <th className="px-4 py-2 text-left font-mono">Librería</th>
+              <th className="px-4 py-2 text-left font-mono">Uso</th>
+              <th className="px-4 py-2 text-left font-mono">Componente compatible</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-t border-border">
+              <td className="px-4 py-2 font-mono text-primary">Servo.h</td>
+              <td className="px-4 py-2">Control de servomotores</td>
+              <td className="px-4 py-2">SG90, MG996R</td>
+            </tr>
+            <tr className="border-t border-border">
+              <td className="px-4 py-2 font-mono text-primary">LiquidCrystal.h</td>
+              <td className="px-4 py-2">Pantallas LCD 16×2</td>
+              <td className="px-4 py-2">LCD 1602</td>
+            </tr>
+            <tr className="border-t border-border">
+              <td className="px-4 py-2 font-mono text-primary">Wire.h</td>
+              <td className="px-4 py-2">Comunicación I2C</td>
+              <td className="px-4 py-2">Sensores, EEPROM, RTC</td>
+            </tr>
+            <tr className="border-t border-border">
+              <td className="px-4 py-2 font-mono text-primary">DHT.h</td>
+              <td className="px-4 py-2">Sensor de temperatura y humedad</td>
+              <td className="px-4 py-2">DHT11, DHT22</td>
+            </tr>
+            <tr className="border-t border-border">
+              <td className="px-4 py-2 font-mono text-primary">SPI.h</td>
+              <td className="px-4 py-2">Comunicación SPI</td>
+              <td className="px-4 py-2">Displays OLED, tarjetas SD</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p className="text-sm mt-2">
+        Para aprender sobre la comunicación I2C en profundidad, te recomendamos nuestra <Link to="/articulos/protocolo-i2c" className="text-primary hover:underline">Guía completa del protocolo I2C</Link>.
+      </p>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Próximos pasos</h2>
       <ul className="list-disc list-inside space-y-1 pl-2">
-        <li>Empieza con proyectos simples y ve aumentando la complejidad</li>
-        <li>Aprende a usar <strong className="text-foreground">librerías</strong>: Servo.h, LiquidCrystal.h, Wire.h</li>
-        <li>Explora sensores: ultrasonido (HC-SR04), humedad (DHT11), movimiento (PIR)</li>
-        <li>Practica con el <strong className="text-foreground">Monitor Serial</strong> para depurar tus programas</li>
+        <li>Practica los 6 proyectos de esta guía y modifícalos a tu gusto</li>
+        <li>Explora sensores avanzados: ultrasonido (HC-SR04), humedad (DHT11), movimiento (PIR)</li>
+        <li>Aprende sobre protocolos de comunicación: <Link to="/articulos/protocolo-i2c" className="text-primary hover:underline">I2C</Link>, SPI y UART</li>
+        <li>Usa el <strong className="text-foreground">Monitor Serial</strong> como herramienta de depuración en cada proyecto</li>
         <li>Documenta tus proyectos y comparte con la comunidad</li>
         <li>Cuando domines lo básico, pasa a <strong className="text-foreground">ESP32</strong> para proyectos con WiFi y Bluetooth</li>
+        <li>Complementa tu conocimiento con nuestra guía de <Link to="/articulos/soldadura-electronica" className="text-primary hover:underline">soldadura electrónica</Link> para proyectos permanentes</li>
       </ul>
 
       {/* CTA Amazon */}
