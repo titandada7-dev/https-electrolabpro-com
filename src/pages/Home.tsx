@@ -737,6 +737,7 @@ const Home = () => {
             { emoji: "🔋", title: "Fuentes de Alimentación", desc: "Tipos, regulación y cómo elegir la fuente correcta.", to: "/articulos/fuentes-de-alimentacion", tag: "Componentes" },
             { emoji: "🔥", title: "Soldadura Electrónica", desc: "Técnicas, herramientas y consejos para soldar como profesional.", to: "/articulos/soldadura-electronica", tag: "Técnicas" },
             { emoji: "🔌", title: "Protocolo I2C", desc: "Comunicación entre microcontroladores y sensores con solo 2 cables.", to: "/articulos/protocolo-i2c", tag: "Protocolos" },
+            { emoji: "📡", title: "Sensores Arduino", desc: "DHT11, HC-SR04, LDR y PIR: conexión, código y proyectos prácticos.", to: "/articulos/sensores-arduino", tag: "Proyectos" },
           ].map((guide, i) => (
             <motion.div
               key={guide.to}

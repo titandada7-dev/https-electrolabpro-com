@@ -79,6 +79,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://electrolabpro.com/articulos/sensores-arduino</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://electrolabpro.com/sobre-nosotros</loc>
     <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
