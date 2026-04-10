@@ -9,6 +9,12 @@ const FuentesAlimentacion = () => {
       subtitle="Guía completa sobre fuentes de alimentación en electrónica: reguladas, conmutadas, lineales. Aprende a elegir y calcular la fuente correcta para tu proyecto."
       slug="fuentes-de-alimentacion"
     >
+      {/* Diagrama de fuente de alimentación */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={fuenteImg} alt="Diagrama de bloques de una fuente de alimentación lineal: transformador, rectificador, filtro y regulador" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={512} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Etapas de una fuente lineal — desde AC hasta DC regulado</p>
+      </div>
+
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es una fuente de alimentación?</h2>
       <p>
         Una <strong className="text-foreground">fuente de alimentación</strong> es un dispositivo que convierte la energía eléctrica de la red (220V/110V AC) en un voltaje adecuado para tus circuitos electrónicos, típicamente <strong className="text-foreground">voltaje DC (corriente continua)</strong> de 3.3V, 5V, 9V, 12V u otros valores.

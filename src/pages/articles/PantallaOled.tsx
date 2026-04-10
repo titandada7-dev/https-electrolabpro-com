@@ -11,6 +11,12 @@ const PantallaOled = () => {
       datePublished="2026-04-10"
       dateModified="2026-04-10"
     >
+      {/* Diagrama de conexión OLED */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={oledImg} alt="Diagrama de conexión de pantalla OLED SSD1306 a Arduino UNO via I2C con cables GND, VCC, SDA y SCL" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={576} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Conexión OLED SSD1306 a Arduino UNO via I2C (4 cables)</p>
+      </div>
+
       {/* ═══════════ INTRODUCCIÓN ═══════════ */}
       <section>
         <h2 className="text-xl md:text-2xl font-bold text-foreground mt-8 mb-4">

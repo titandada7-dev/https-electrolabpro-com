@@ -11,6 +11,12 @@ const Multimetro = () => {
       datePublished="2026-03-01"
       dateModified="2026-04-10"
     >
+      {/* Imagen del multímetro */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={multimetroImg} alt="Multímetro digital profesional para diagnóstico y medición de circuitos electrónicos" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={683} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Multímetro digital — herramienta imprescindible para diagnóstico de circuitos</p>
+      </div>
+
       {/* ══════ INTRODUCCIÓN ══════ */}
       <p>
         En el mundo de la electrónica, el <strong className="text-foreground">multímetro</strong> es el mejor amigo del técnico. 

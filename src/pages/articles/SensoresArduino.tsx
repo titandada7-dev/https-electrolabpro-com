@@ -12,6 +12,12 @@ const SensoresArduino = () => {
       datePublished="2026-04-10"
       dateModified="2026-04-10"
     >
+      {/* Diagrama de sensores */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={sensoresImg} alt="Diagrama de conexión de 4 sensores Arduino: DHT11, HC-SR04, LDR y PIR con pinout detallado" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={768} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Los 4 sensores más populares con Arduino y sus conexiones</p>
+      </div>
+
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">Introducción a los sensores en Arduino</h2>
       <p>
         Los <strong className="text-foreground">sensores</strong> son el puente entre el mundo físico y tu microcontrolador. Convierten magnitudes reales (temperatura, distancia, luz, movimiento) en señales eléctricas que Arduino puede leer y procesar. En esta guía cubrimos los 4 sensores más utilizados en proyectos de electrónica:

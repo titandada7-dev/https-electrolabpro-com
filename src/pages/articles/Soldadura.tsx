@@ -9,6 +9,12 @@ const Soldadura = () => {
       subtitle="Aprende a soldar componentes electrónicos correctamente. Técnicas, herramientas, tipos de estaño y errores comunes con soluciones paso a paso."
       slug="soldadura-electronica"
     >
+      {/* Imagen de soldadura */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={soldadorImg} alt="Estación de soldadura electrónica con punta fina para componentes SMD y through-hole" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={683} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Estación de soldadura — herramienta esencial para todo laboratorio de electrónica</p>
+      </div>
+
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es la soldadura electrónica?</h2>
       <p>
         La <strong className="text-foreground">soldadura electrónica</strong> es el proceso de unir componentes electrónicos a una placa de circuito impreso (PCB) usando una aleación metálica de bajo punto de fusión llamada <strong className="text-foreground">estaño de soldar</strong>. Es una habilidad fundamental que todo entusiasta y profesional de la electrónica debe dominar.

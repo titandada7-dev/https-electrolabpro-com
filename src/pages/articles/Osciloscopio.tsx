@@ -9,6 +9,12 @@ const Osciloscopio = () => {
       subtitle="Aprende qué es un osciloscopio, cómo funciona, cómo leer señales eléctricas y qué modelo elegir según tu presupuesto y nivel."
       slug="osciloscopio"
     >
+      {/* Imagen del osciloscopio */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={osciloscopioImg} alt="Osciloscopio digital mostrando formas de onda en pantalla" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={683} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Osciloscopio digital — visualización de señales eléctricas en tiempo real</p>
+      </div>
+
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es un osciloscopio?</h2>
       <p>
         El <strong className="text-foreground">osciloscopio</strong> es uno de los instrumentos más importantes en electrónica. A diferencia del multímetro, que muestra valores numéricos estáticos, el osciloscopio te permite <strong className="text-foreground">visualizar señales eléctricas en tiempo real</strong> como formas de onda en una pantalla.

@@ -12,6 +12,12 @@ const ProtocoloI2C = () => {
       datePublished="2026-04-10"
       dateModified="2026-04-10"
     >
+      {/* Diagrama I2C */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={i2cImg} alt="Diagrama del bus I2C mostrando maestro Arduino conectado a múltiples dispositivos esclavos via SDA y SCL" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={576} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Bus I2C — un maestro conectado a múltiples esclavos con solo 2 cables (SDA + SCL)</p>
+      </div>
+
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es el protocolo I2C?</h2>
       <p>
         <strong className="text-foreground">I2C</strong> (Inter-Integrated Circuit, pronunciado "I-cuadrado-C") es un protocolo de comunicación serial síncrono inventado por Philips (ahora NXP) en 1982. Permite conectar <strong className="text-foreground">múltiples dispositivos</strong> usando solo <strong className="text-foreground">2 cables</strong>, lo que lo convierte en uno de los protocolos más populares en electrónica embebida.
