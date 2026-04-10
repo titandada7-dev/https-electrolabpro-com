@@ -32,6 +32,7 @@ const articleLinks = [
   { label: "Protocolo I2C", to: "/articulos/protocolo-i2c" },
   { label: "Sensores Arduino", to: "/articulos/sensores-arduino" },
   { label: "Pantalla OLED", to: "/articulos/pantalla-oled-ssd1306" },
+  { label: "🔧 Mi Primer Laboratorio", to: "/blog/mi-primer-laboratorio" },
 ];
 
 const QA_CATEGORIES = [
