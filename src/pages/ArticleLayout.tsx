@@ -177,6 +177,10 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                   <li><Link to="/articulos/protocolo-i2c" className="text-muted-foreground hover:text-primary transition-colors">Protocolo I2C</Link></li>
                   <li><Link to="/articulos/sensores-arduino" className="text-muted-foreground hover:text-primary transition-colors">Sensores Arduino</Link></li>
                   <li><Link to="/articulos/pantalla-oled-ssd1306" className="text-muted-foreground hover:text-primary transition-colors">Pantallas OLED SSD1306</Link></li>
+                  <li className="pt-2 border-t border-border mt-2">
+                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-bold">Blog</span>
+                  </li>
+                  <li><Link to="/blog/mi-primer-laboratorio" className="text-muted-foreground hover:text-primary transition-colors">Mi primer laboratorio</Link></li>
                 </ul>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import arduinoImg from "@/assets/arduino-kit.jpg";
 
 const Arduino = () => {
   return (
@@ -11,6 +12,12 @@ const Arduino = () => {
       datePublished="2026-03-01"
       dateModified="2026-04-10"
     >
+      {/* Imagen Arduino */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={arduinoImg} alt="Kit de Arduino con placa UNO, protoboard, cables y componentes electrónicos para proyectos" className="w-full max-h-72 object-contain p-4" loading="lazy" width={1024} height={683} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Kit de Arduino — todo lo necesario para empezar con microcontroladores</p>
+      </div>
+
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es Arduino?</h2>
       <p>
         <strong className="text-foreground">Arduino</strong> es una plataforma de electrónica de código abierto basada en hardware y software fáciles de usar. Consiste en una placa con un <strong className="text-foreground">microcontrolador</strong> programable que puede leer sensores, controlar motores, encender LEDs y comunicarse con otros dispositivos.

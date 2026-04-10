@@ -1,6 +1,7 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import ohmTriangleImg from "@/assets/ley-de-ohm-triangle.jpg";
 
 const LeyDeOhm = () => {
   return (
@@ -9,6 +10,12 @@ const LeyDeOhm = () => {
       subtitle="Domina la relación entre voltaje, corriente y resistencia. Fórmulas, triángulo de Ohm, ejemplos resueltos y aplicaciones reales en electrónica."
       slug="ley-de-ohm"
     >
+      {/* Diagrama del Triángulo de Ohm */}
+      <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
+        <img src={ohmTriangleImg} alt="Triángulo de la Ley de Ohm mostrando las fórmulas V=I×R, I=V/R y R=V/I con voltaje, corriente y resistencia" className="w-full max-h-72 object-contain p-4" loading="lazy" width={800} height={800} />
+        <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: El Triángulo de Ohm — herramienta visual para recordar las tres fórmulas fundamentales</p>
+      </div>
+
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es la Ley de Ohm?</h2>
       <p>
         La <strong className="text-foreground">Ley de Ohm</strong> es la base fundamental de toda la electrónica y la electricidad. Formulada por el físico alemán Georg Simon Ohm en 1827, establece la relación matemática entre tres magnitudes eléctricas esenciales: el <strong className="text-foreground">voltaje (V)</strong>, la <strong className="text-foreground">corriente (I)</strong> y la <strong className="text-foreground">resistencia (R)</strong>.
