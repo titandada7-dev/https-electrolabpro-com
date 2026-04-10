@@ -16,6 +16,7 @@ import Osciloscopio from "./pages/articles/Osciloscopio";
 import FuentesAlimentacion from "./pages/articles/FuentesAlimentacion";
 import Soldadura from "./pages/articles/Soldadura";
 import ProtocoloI2C from "./pages/articles/ProtocoloI2C";
+import SensoresArduino from "./pages/articles/SensoresArduino";
 import SobreNosotros from "./pages/SobreNosotros";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/articulos/fuentes-de-alimentacion" element={<FuentesAlimentacion />} />
         <Route path="/articulos/soldadura-electronica" element={<Soldadura />} />
         <Route path="/articulos/protocolo-i2c" element={<ProtocoloI2C />} />
+        <Route path="/articulos/sensores-arduino" element={<SensoresArduino />} />
         <Route
           path="*"
           element={
