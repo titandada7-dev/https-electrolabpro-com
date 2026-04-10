@@ -173,6 +173,8 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                   <li><Link to="/articulos/multimetro" className="text-muted-foreground hover:text-primary transition-colors">Cómo usar un multímetro</Link></li>
                   <li><Link to="/articulos/circuitos-serie-paralelo" className="text-muted-foreground hover:text-primary transition-colors">Circuitos serie vs paralelo</Link></li>
                   <li><Link to="/articulos/transistores" className="text-muted-foreground hover:text-primary transition-colors">Guía de transistores</Link></li>
+                  <li><Link to="/articulos/arduino" className="text-muted-foreground hover:text-primary transition-colors">Arduino para principiantes</Link></li>
+                  <li><Link to="/articulos/protocolo-i2c" className="text-muted-foreground hover:text-primary transition-colors">Protocolo I2C</Link></li>
                 </ul>
               </div>
             </div>
