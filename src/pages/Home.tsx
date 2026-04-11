@@ -465,7 +465,7 @@ const Home = () => {
 
       {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
       <div className="container mx-auto px-6 space-y-16 py-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
           <OhmCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
@@ -473,7 +473,7 @@ const Home = () => {
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
           </div>
         </motion.div>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
           <LedCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
@@ -502,7 +502,7 @@ const Home = () => {
             { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
             { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
           ].map((guide, i) => (
-            <motion.div key={guide.to} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.15 }}>
+            <motion.div key={guide.to} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
               <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
                 <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
                 <div className="flex flex-col flex-1 p-4 space-y-2">
