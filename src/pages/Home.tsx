@@ -536,7 +536,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
+                transition={{ duration: 0.3 }}
                 whileHover={{ y: -6, boxShadow: "0 10px 40px -10px hsl(var(--primary) / 0.15)" }}
                 className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-colors duration-300"
               >
@@ -735,7 +735,7 @@ const Home = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: (i % 3) * 0.15 }}
+              transition={{ duration: 0.3 }}
             >
               <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
                 <div className="w-full h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
@@ -841,7 +841,7 @@ const Home = () => {
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3 }}
