@@ -256,13 +256,13 @@ const ComponentDictionary = () => {
 
               <Button
                 className="w-full gap-2 font-semibold bg-[hsl(25,95%,53%)] hover:bg-[hsl(25,95%,45%)] text-[hsl(0,0%,100%)]"
-                onClick={() => window.open(`https://www.amazon.es/s?k=${selected.amazonSearch}&tag=electrolabpro-21`, "_blank")}
+                onClick={() => window.open(`https://www.amazon.es/s?k=${selected.amazonSearch}&tag=electrolabp0c-21`, "_blank")}
               >
                 <ShoppingCart className="w-4 h-4" />
                 Comprar Kit de {selected.name}
               </Button>
               <Button variant="outline" className="w-full mt-1 gap-2" asChild>
-                <a href={`https://www.amazon.es/s?k=${selected.name}+electronics&tag=electrolabpro-21`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://www.amazon.es/s?k=${selected.name}+electronics&tag=electrolabp0c-21`} target="_blank" rel="noopener noreferrer">
                   Ver precios en Amazon
                   <ExternalLink className="w-4 h-4" />
                 </a>

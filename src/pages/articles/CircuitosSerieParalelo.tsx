@@ -116,7 +116,7 @@ const CircuitosSerieParalelo = () => {
           Practica circuitos serie y paralelo con kits de componentes surtidos.
         </p>
         <a
-          href="https://www.amazon.es/s?k=kit+resistencias+leds+electronica&tag=electrolabpro-21"
+          href="https://www.amazon.es/s?k=kit+resistencias+leds+electronica&tag=electrolabp0c-21"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"

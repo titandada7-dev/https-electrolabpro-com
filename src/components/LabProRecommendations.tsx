@@ -9,11 +9,11 @@ type Product = {
 const LAB_PRO_PRODUCTS: Product[] = [
   { title: "Tester Digital Multímetro", link: "https://meli.la/12zzemF", store: "ml" },
   { title: "Multímetro Aneng AN8008", link: "https://amzn.to/483vAWk", store: "amazon" },
-  { title: "Kit Cables Dupont", link: "https://www.amazon.es/s?k=cables+dupont+arduino&tag=electrolabpro-21", store: "amazon" },
-  { title: "Pack Resistencias 1/4W", link: "https://www.amazon.es/s?k=kit+resistencias+1%2F4w+surtido&tag=electrolabpro-21", store: "amazon" },
-  { title: "Kit LEDs 5mm", link: "https://www.amazon.es/s?k=kit+led+5mm+surtido&tag=electrolabpro-21", store: "amazon" },
-  { title: "Componentes Surtidos", link: "https://www.amazon.es/s?k=kit+componentes+electronicos+surtido&tag=electrolabpro-21", store: "amazon" },
-  { title: "Soldador 60W Kit", link: "https://www.amazon.es/s?k=soldador+esta%C3%B1o+60w+kit&tag=electrolabpro-21", store: "amazon" },
+  { title: "Kit Cables Dupont", link: "https://www.amazon.es/s?k=cables+dupont+arduino&tag=electrolabp0c-21", store: "amazon" },
+  { title: "Pack Resistencias 1/4W", link: "https://www.amazon.es/s?k=kit+resistencias+1%2F4w+surtido&tag=electrolabp0c-21", store: "amazon" },
+  { title: "Kit LEDs 5mm", link: "https://www.amazon.es/s?k=kit+led+5mm+surtido&tag=electrolabp0c-21", store: "amazon" },
+  { title: "Componentes Surtidos", link: "https://www.amazon.es/s?k=kit+componentes+electronicos+surtido&tag=electrolabp0c-21", store: "amazon" },
+  { title: "Soldador 60W Kit", link: "https://www.amazon.es/s?k=soldador+esta%C3%B1o+60w+kit&tag=electrolabp0c-21", store: "amazon" },
 ];
 
 const LabProRecommendations = () => {

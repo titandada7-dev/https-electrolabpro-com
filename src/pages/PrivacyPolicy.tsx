@@ -69,7 +69,7 @@ const PrivacyPolicy = () => {
           <p>
             ElectroLab Pro participa en el Programa de Afiliados de Amazon Services LLC. Esto significa que recibimos
             una pequeña comisión por las compras realizadas a través de nuestros enlaces de productos recomendados
-            (ID de seguimiento: <strong>electrolabpro-21</strong>), sin costo adicional para el usuario.
+            (ID de seguimiento: <strong>electrolabp0c-21</strong>), sin costo adicional para el usuario.
           </p>
         </Section>
 

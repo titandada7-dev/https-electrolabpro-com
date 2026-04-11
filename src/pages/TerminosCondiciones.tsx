@@ -99,7 +99,7 @@ const TerminosCondiciones = () => {
             <h2 className="text-xl font-semibold mb-3">6. Enlaces a terceros y programa de afiliados</h2>
             <p className="text-muted-foreground leading-relaxed mb-3">
               El Sitio puede contener enlaces a sitios web de terceros, incluyendo enlaces de afiliado
-              del Programa de Asociados de Amazon EU (ID: electrolabpro-21). Estos enlaces generan una
+              del Programa de Asociados de Amazon EU (ID: electrolabp0c-21). Estos enlaces generan una
               comisión por las compras elegibles realizadas a través de ellos, sin coste adicional para el usuario.
             </p>
             <p className="text-muted-foreground leading-relaxed">

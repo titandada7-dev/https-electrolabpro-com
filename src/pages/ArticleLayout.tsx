@@ -210,7 +210,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
             contacto@electrolabpro.com
           </a>
           <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic">
-            "Como Afiliado de Amazon, percibo dinero por las compras elegibles."
+            En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
           </p>
         </div>
       </footer>
