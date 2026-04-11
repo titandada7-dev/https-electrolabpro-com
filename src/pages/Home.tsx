@@ -256,10 +256,10 @@ const Home = () => {
       <section id="detalles" className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground text-center mb-10">
               Aprende <span className="text-primary">Electrónica</span>
@@ -390,10 +390,10 @@ const Home = () => {
       <section className="py-14 sm:py-20 border-t border-border bg-card/50">
         <div className="container mx-auto px-6 max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10 flex items-center justify-center gap-3">
               <MessageSquare className="w-6 h-6 text-primary" />
@@ -428,10 +428,10 @@ const Home = () => {
       <section className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-3xl text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               Explorá nuestras herramientas
@@ -450,10 +450,10 @@ const Home = () => {
       <motion.div
         id="calculadora"
         className="container mx-auto px-6 py-12 sm:py-16"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <ResistorCalculator />
         <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
@@ -486,10 +486,10 @@ const Home = () => {
       {/* ═══════════ GUÍAS DESTACADAS ═══════════ */}
       <motion.section
         className="container mx-auto px-6 py-12 space-y-6"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-3">
           <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -533,8 +533,8 @@ const Home = () => {
             ].map((s, i) => (
               <motion.div
                 key={s.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 whileHover={{ y: -6, boxShadow: "0 10px 40px -10px hsl(var(--primary) / 0.15)" }}
@@ -554,10 +554,10 @@ const Home = () => {
       {/* ═══════════ STATS ═══════════ */}
       <motion.section
         className="py-10 sm:py-14"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
@@ -585,10 +585,10 @@ const Home = () => {
       <motion.div
         id="diccionario"
         className="container mx-auto px-6 py-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <ComponentDictionary />
       </motion.div>
@@ -597,10 +597,10 @@ const Home = () => {
       <motion.div
         id="mini-proyectos"
         className="container mx-auto px-6 py-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <MiniProjects />
       </motion.div>
@@ -609,10 +609,10 @@ const Home = () => {
       <motion.section
         id="tips"
         className="container mx-auto px-6 py-16"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="max-w-3xl mx-auto">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
@@ -649,10 +649,10 @@ const Home = () => {
       <motion.section
         id="foro"
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -704,10 +704,10 @@ const Home = () => {
       <motion.section
         id="guias"
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -732,8 +732,8 @@ const Home = () => {
           ].map((guide, i) => (
             <motion.div
               key={guide.to}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: (i % 3) * 0.15 }}
             >
@@ -754,10 +754,10 @@ const Home = () => {
       {/* ═══════════ HERRAMIENTAS RECOMENDADAS ═══════════ */}
       <motion.section
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -793,10 +793,10 @@ const Home = () => {
       <motion.section
         id="equipamiento"
         className="container mx-auto px-6 py-12 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-lg sm:text-xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
           <ShoppingBag className="w-4 h-4" />
@@ -824,10 +824,10 @@ const Home = () => {
       <section className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
               ¿Por qué elegir ElectroLab Pro?
@@ -842,9 +842,9 @@ const Home = () => {
                 <motion.div
                   key={item.title}
                   initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  transition={{ duration: 0.3 }}
                   className="flex gap-4 p-5 rounded-xl border border-border bg-card shadow-sm"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
