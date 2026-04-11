@@ -11,7 +11,7 @@ const Transistores = () => {
       slug="transistores"
     >
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
-        <img src={transistorImg} alt="Diagrama de un transistor NPN mostrando Base, Colector y Emisor con encapsulado TO-92" className="w-full max-h-64 object-contain p-4" />
+        <img src={transistorImg} alt="Diagrama de un transistor NPN mostrando Base, Colector y Emisor con encapsulado TO-92" className="w-full max-h-64 object-contain p-4" loading="lazy" width={1024} height={683} />
         <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Transistor NPN — terminales Base, Colector y Emisor en encapsulado TO-92</p>
       </div>
 

@@ -11,7 +11,7 @@ const Diodos = () => {
       slug="diodos"
     >
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
-        <img src={diodeImg} alt="Diagrama de un diodo mostrando ánodo, cátodo, dirección de corriente y unión PN" className="w-full max-h-64 object-contain p-4" />
+        <img src={diodeImg} alt="Diagrama de un diodo mostrando ánodo, cátodo, dirección de corriente y unión PN" className="w-full max-h-64 object-contain p-4" loading="lazy" width={1024} height={683} />
         <p className="text-xs text-muted-foreground text-center pb-3 px-4">Figura: Símbolo del diodo con ánodo, cátodo y dirección de corriente en polarización directa</p>
       </div>
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es un diodo?</h2>
