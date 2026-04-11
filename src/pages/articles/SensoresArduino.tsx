@@ -694,7 +694,7 @@ float medirDistancia() {
           Consigue un pack con DHT11, HC-SR04, LDR, PIR y más de 30 sensores compatibles con Arduino para practicar todos los proyectos de esta guía.
         </p>
         <a
-          href="https://www.amazon.es/s?k=kit+sensores+arduino+37&tag=electrolabpro-21"
+          href="https://www.amazon.es/s?k=kit+sensores+arduino+37&tag=electrolabp0c-21"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"

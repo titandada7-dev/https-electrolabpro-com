@@ -144,7 +144,7 @@ const MiniProjects = () => {
                       {project.materials.map((mat, mi) => (
                         <a
                           key={mi}
-                          href={`https://www.amazon.es/s?k=${mat.amazonSearch}&tag=electrolabpro-21`}
+                          href={`https://www.amazon.es/s?k=${mat.amazonSearch}&tag=electrolabp0c-21`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center justify-between p-3 rounded-lg border border-border bg-secondary/30 hover:border-primary/40 hover:bg-secondary/60 transition-all group"
@@ -164,7 +164,7 @@ const MiniProjects = () => {
                     className="w-full gap-2 font-semibold bg-[hsl(25,95%,53%)] hover:bg-[hsl(25,95%,45%)] text-[hsl(0,0%,100%)]"
                     onClick={() =>
                       window.open(
-                        "https://www.amazon.es/s?k=kit+electronica+principiante+transistor+led&tag=electrolabpro-21",
+                        "https://www.amazon.es/s?k=kit+electronica+principiante+transistor+led&tag=electrolabp0c-21",
                         "_blank"
                       )
                     }

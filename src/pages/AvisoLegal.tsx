@@ -106,7 +106,7 @@ const AvisoLegal = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-mono font-bold text-foreground">5. Programa de Afiliados de Amazon</h2>
             <p>
-              ElectroLab Pro participa en el <strong className="text-foreground">Programa de Afiliados de Amazon EU</strong> (ID de seguimiento: electrolabpro-21), un programa de publicidad para afiliados diseñado para proporcionar a los sitios web un medio para obtener comisiones por publicidad mediante la inserción de enlaces a Amazon.es.
+              ElectroLab Pro participa en el <strong className="text-foreground">Programa de Afiliados de Amazon EU</strong> (ID de seguimiento: electrolabp0c-21), un programa de publicidad para afiliados diseñado para proporcionar a los sitios web un medio para obtener comisiones por publicidad mediante la inserción de enlaces a Amazon.es.
             </p>
             <p>
               Como Afiliado de Amazon, J.A. Sanchez obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables. Estos ingresos ayudan a mantener la plataforma gratuita para estudiantes de electrónica.

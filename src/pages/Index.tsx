@@ -351,11 +351,11 @@ const Index = () => {
                 </h4>
                 <ul className="space-y-4">
                   <li className="text-xs">
-                    <a href="https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Multímetro Digital Autorango</a>
+                    <a href="https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabp0c-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Multímetro Digital Autorango</a>
                     <p className="text-muted-foreground mt-1">El que usamos en el lab.</p>
                   </li>
                   <li className="text-xs">
-                    <a href="https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Estación de Soldadura 60W</a>
+                    <a href="https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabp0c-21" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors font-medium">Estación de Soldadura 60W</a>
                     <p className="text-muted-foreground mt-1">Precisión para integrados.</p>
                   </li>
                 </ul>
@@ -490,22 +490,22 @@ const Index = () => {
               emoji: "📟",
               title: "Multímetro Digital Profesional",
               desc: "Ideal para medir voltaje, corriente y resistencia con alta precisión. Imprescindible en tu taller.",
-              mlLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21",
-              amzLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21",
+              mlLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabp0c-21",
+              amzLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabp0c-21",
             },
             {
               emoji: "🔧",
               title: "Estación de Soldadura",
               desc: "Temperatura regulable para trabajos con componentes SMD y placas de circuito impreso.",
-              mlLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21",
-              amzLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21",
+              mlLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabp0c-21",
+              amzLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabp0c-21",
             },
             {
               emoji: "🤖",
               title: "Kit de Inicio Arduino",
               desc: "Todo lo que necesitas para empezar a programar microcontroladores y crear proyectos reales.",
-              mlLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21",
-              amzLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21",
+              mlLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabp0c-21",
+              amzLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabp0c-21",
             },
           ].map((tool) => (
             <div
@@ -550,9 +550,9 @@ const Index = () => {
         </h2>
         <div className="flex flex-col sm:flex-row gap-3 max-w-4xl mx-auto">
           {[
-            { emoji: "🔧", title: "Kit de Resistencias", link: "https://www.amazon.es/s?k=kit+1000+resistencias+surtido&tag=electrolabpro-21" },
-            { emoji: "📟", title: "Multímetro Digital", link: "https://www.amazon.es/s?k=multimetro+digital+economico&tag=electrolabpro-21" },
-            { emoji: "🧪", title: "Breadboard + Cables", link: "https://www.amazon.es/s?k=breadboard+cables+jumper+kit&tag=electrolabpro-21" },
+            { emoji: "🔧", title: "Kit de Resistencias", link: "https://www.amazon.es/s?k=kit+1000+resistencias+surtido&tag=electrolabp0c-21" },
+            { emoji: "📟", title: "Multímetro Digital", link: "https://www.amazon.es/s?k=multimetro+digital+economico&tag=electrolabp0c-21" },
+            { emoji: "🧪", title: "Breadboard + Cables", link: "https://www.amazon.es/s?k=breadboard+cables+jumper+kit&tag=electrolabp0c-21" },
           ].map((item) => (
             <a
               key={item.title}

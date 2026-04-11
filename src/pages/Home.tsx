@@ -779,9 +779,9 @@ const Home = () => {
         <p className="text-center text-muted-foreground text-sm mb-10">El equipamiento esencial para armar tu laboratorio</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[
-            { emoji: "📟", title: "Multímetro Digital Profesional", desc: "Ideal para medir voltaje, corriente y resistencia con alta precisión.", mlLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21", amzLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabpro-21" },
-            { emoji: "🔧", title: "Estación de Soldadura", desc: "Temperatura regulable para trabajos con componentes SMD y PCB.", mlLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21", amzLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabpro-21" },
-            { emoji: "🤖", title: "Kit de Inicio Arduino", desc: "Todo lo que necesitas para empezar a programar microcontroladores.", mlLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21", amzLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabpro-21" },
+            { emoji: "📟", title: "Multímetro Digital Profesional", desc: "Ideal para medir voltaje, corriente y resistencia con alta precisión.", mlLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabp0c-21", amzLink: "https://www.amazon.es/s?k=multimetro+digital+autorango&tag=electrolabp0c-21" },
+            { emoji: "🔧", title: "Estación de Soldadura", desc: "Temperatura regulable para trabajos con componentes SMD y PCB.", mlLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabp0c-21", amzLink: "https://www.amazon.es/s?k=estacion+soldadura+60w&tag=electrolabp0c-21" },
+            { emoji: "🤖", title: "Kit de Inicio Arduino", desc: "Todo lo que necesitas para empezar a programar microcontroladores.", mlLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabp0c-21", amzLink: "https://www.amazon.es/s?k=kit+arduino+starter&tag=electrolabp0c-21" },
           ].map((tool) => (
             <div key={tool.title} className="flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
               <div className="w-full h-28 bg-accent flex items-center justify-center text-4xl">{tool.emoji}</div>
@@ -817,9 +817,9 @@ const Home = () => {
         </h2>
         <div className="flex flex-col sm:flex-row gap-3 max-w-4xl mx-auto">
           {[
-            { emoji: "🔧", title: "Kit de Resistencias", link: "https://www.amazon.es/s?k=kit+1000+resistencias+surtido&tag=electrolabpro-21" },
-            { emoji: "📟", title: "Multímetro Digital", link: "https://www.amazon.es/s?k=multimetro+digital+economico&tag=electrolabpro-21" },
-            { emoji: "🧪", title: "Breadboard + Cables", link: "https://www.amazon.es/s?k=breadboard+cables+jumper+kit&tag=electrolabpro-21" },
+            { emoji: "🔧", title: "Kit de Resistencias", link: "https://www.amazon.es/s?k=kit+1000+resistencias+surtido&tag=electrolabp0c-21" },
+            { emoji: "📟", title: "Multímetro Digital", link: "https://www.amazon.es/s?k=multimetro+digital+economico&tag=electrolabp0c-21" },
+            { emoji: "🧪", title: "Breadboard + Cables", link: "https://www.amazon.es/s?k=breadboard+cables+jumper+kit&tag=electrolabp0c-21" },
           ].map((item) => (
             <a key={item.title} href={item.link} target="_blank" rel="noopener noreferrer nofollow" className="flex-1 flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 shadow-sm hover:shadow-md transition-all duration-300 group">
               <span className="text-xl">{item.emoji}</span>
