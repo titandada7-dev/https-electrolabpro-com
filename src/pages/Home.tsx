@@ -829,7 +829,7 @@ const Home = () => {
           ))}
         </div>
         <p className="text-center text-[10px] text-muted-foreground/50 mt-4 italic">
-          Como Afiliado de Amazon, gano por las compras adscritas que cumplen los requisitos aplicables.
+          En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
         </p>
       </motion.section>
 
