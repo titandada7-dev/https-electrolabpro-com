@@ -592,8 +592,7 @@ const Index = () => {
               <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link> */}
            </div>
            <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
-            "Como Afiliado de Amazon, percibo dinero por las compras elegibles. 
-            Los ingresos generados ayudan a mantener esta plataforma gratuita para estudiantes de electrónica."
+            En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
            </p>
            <div className="border-t border-white/5 pt-4 mt-2">
              <p className="text-highlight/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad y Responsabilidad</p>
