@@ -189,10 +189,7 @@ const Home = () => {
 
       {/* ═══════════ #INICIO ═══════════ */}
       <section id="inicio" className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
           className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
@@ -223,30 +220,20 @@ const Home = () => {
               <BookOpen className="h-4 w-4" /> Ver guías
             </Button>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ═══════════ #SERVICIOS – TARJETAS DE ACCESO RÁPIDO ═══════════ */}
       <section id="servicios" className="py-10 sm:py-14 border-t border-border">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground text-center mb-2">
               Nuestros <span className="text-primary">Servicios</span>
             </h2>
             <p className="text-center text-muted-foreground text-sm mb-8">Explorá nuestras categorías y accedé a la información detallada</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
               {quickAccessCards.map((card, i) => (
-                <motion.button
-                  key={card.target}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.08 }}
+                <button
                   onClick={() => scrollTo("detalles")}
                   className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
                 >
@@ -258,10 +245,10 @@ const Home = () => {
                     <p className="text-xs text-muted-foreground mt-1">{card.desc}</p>
                   </div>
                   <span className="text-[10px] font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">Ver detalles ↓</span>
-                </motion.button>
+                </button>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -269,10 +256,10 @@ const Home = () => {
       <section id="detalles" className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground text-center mb-10">
               Aprende <span className="text-primary">Electrónica</span>
@@ -403,10 +390,10 @@ const Home = () => {
       <section className="py-14 sm:py-20 border-t border-border bg-card/50">
         <div className="container mx-auto px-6 max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10 flex items-center justify-center gap-3">
               <MessageSquare className="w-6 h-6 text-primary" />
@@ -441,10 +428,10 @@ const Home = () => {
       <section className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-3xl text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               Explorá nuestras herramientas
@@ -463,10 +450,10 @@ const Home = () => {
       <motion.div
         id="calculadora"
         className="container mx-auto px-6 py-12 sm:py-16"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <ResistorCalculator />
         <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
@@ -478,7 +465,7 @@ const Home = () => {
 
       {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
       <div className="container mx-auto px-6 space-y-16 py-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
           <OhmCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
@@ -486,7 +473,7 @@ const Home = () => {
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
           </div>
         </motion.div>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
           <LedCalculator />
           <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
@@ -499,10 +486,10 @@ const Home = () => {
       {/* ═══════════ GUÍAS DESTACADAS ═══════════ */}
       <motion.section
         className="container mx-auto px-6 py-12 space-y-6"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-3">
           <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -515,7 +502,7 @@ const Home = () => {
             { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
             { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
           ].map((guide, i) => (
-            <motion.div key={guide.to} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.15 }}>
+            <motion.div key={guide.to} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
               <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
                 <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
                 <div className="flex flex-col flex-1 p-4 space-y-2">
@@ -546,10 +533,10 @@ const Home = () => {
             ].map((s, i) => (
               <motion.div
                 key={s.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
+                transition={{ duration: 0.3 }}
                 whileHover={{ y: -6, boxShadow: "0 10px 40px -10px hsl(var(--primary) / 0.15)" }}
                 className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-colors duration-300"
               >
@@ -567,10 +554,10 @@ const Home = () => {
       {/* ═══════════ STATS ═══════════ */}
       <motion.section
         className="py-10 sm:py-14"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
@@ -598,10 +585,10 @@ const Home = () => {
       <motion.div
         id="diccionario"
         className="container mx-auto px-6 py-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <ComponentDictionary />
       </motion.div>
@@ -610,10 +597,10 @@ const Home = () => {
       <motion.div
         id="mini-proyectos"
         className="container mx-auto px-6 py-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <MiniProjects />
       </motion.div>
@@ -622,10 +609,10 @@ const Home = () => {
       <motion.section
         id="tips"
         className="container mx-auto px-6 py-16"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <div className="max-w-3xl mx-auto">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
@@ -662,10 +649,10 @@ const Home = () => {
       <motion.section
         id="foro"
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -717,10 +704,10 @@ const Home = () => {
       <motion.section
         id="guias"
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -745,10 +732,10 @@ const Home = () => {
           ].map((guide, i) => (
             <motion.div
               key={guide.to}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: (i % 3) * 0.15 }}
+              transition={{ duration: 0.3 }}
             >
               <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
                 <div className="w-full h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
@@ -767,10 +754,10 @@ const Home = () => {
       {/* ═══════════ HERRAMIENTAS RECOMENDADAS ═══════════ */}
       <motion.section
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -806,10 +793,10 @@ const Home = () => {
       <motion.section
         id="equipamiento"
         className="container mx-auto px-6 py-12 border-t border-border"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
       >
         <h2 className="text-lg sm:text-xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
           <ShoppingBag className="w-4 h-4" />
@@ -837,10 +824,10 @@ const Home = () => {
       <section className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
               ¿Por qué elegir ElectroLab Pro?
@@ -854,10 +841,10 @@ const Home = () => {
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  transition={{ duration: 0.3 }}
                   className="flex gap-4 p-5 rounded-xl border border-border bg-card shadow-sm"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
