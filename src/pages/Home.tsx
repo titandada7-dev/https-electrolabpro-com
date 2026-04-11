@@ -1,5 +1,5 @@
 import { useState } from "react";
-import electrolabLogo from "@/assets/electrolab-logo.jpg";
+import electrolabLogo from "@/assets/electrolab-logo.webp";
 import { motion } from "framer-motion";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
