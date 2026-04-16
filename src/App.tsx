@@ -4,6 +4,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Contacto from "./pages/Contacto";
 import AvisoLegal from "./pages/AvisoLegal";
 import CookieBanner from "./components/CookieBanner";
+import PWAInstallPrompt from "./components/PWAInstallPrompt";
 import CodigoColoresResistencias from "./pages/articles/CodigoColoresResistencias";
 import Condensadores from "./pages/articles/Condensadores";
 import Diodos from "./pages/articles/Diodos";
