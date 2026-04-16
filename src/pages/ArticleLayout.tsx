@@ -197,11 +197,11 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A. Sanchez</span>
           </p>
           <div className="flex items-center justify-center gap-4 mb-3">
-            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
+            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors">Privacidad</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
-            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
+            <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors">Aviso Legal</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
-            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
+            <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors">Contacto</Link>
           </div>
           <a
             href="mailto:contacto@electrolabpro.com"
