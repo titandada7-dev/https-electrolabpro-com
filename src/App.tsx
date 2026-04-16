@@ -29,6 +29,7 @@ function App() {
   return (
     <BrowserRouter>
       <CookieBanner />
+      <PWAInstallPrompt />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
