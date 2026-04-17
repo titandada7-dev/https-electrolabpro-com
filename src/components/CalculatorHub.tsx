@@ -239,9 +239,9 @@ const CalculatorHub = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 lg:gap-10">
+      <div className="mx-auto w-full max-w-[1180px] grid grid-cols-1 lg:grid-cols-[360px_minmax(0,720px)] gap-6 lg:gap-8 justify-center">
         {/* ═══ CALCULADORA FÍSICA ═══ */}
-        <div className="lg:sticky lg:top-24 lg:self-start">
+        <div className="lg:sticky lg:top-24 lg:self-start mx-auto w-full max-w-[420px] lg:max-w-none">
           <div
             className="relative rounded-[28px] p-4 sm:p-5"
             style={{
