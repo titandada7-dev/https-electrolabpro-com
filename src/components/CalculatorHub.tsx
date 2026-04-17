@@ -115,7 +115,7 @@ const CalculatorHub = () => {
                 <span className="font-mono text-xs font-bold tracking-wider text-foreground">ELECTROLAB·HUB</span>
               </div>
               <div className="flex gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_hsl(var(--primary)/0.6)] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.6)] animate-pulse" />
                 <span className="w-2 h-2 rounded-full bg-primary/40" />
                 <span className="w-2 h-2 rounded-full bg-primary/20" />
               </div>
