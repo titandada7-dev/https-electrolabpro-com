@@ -430,14 +430,86 @@ const CalculatorHub = () => {
         </div>
 
         {/* ═══ PANEL DERECHO ═══ */}
-        <div ref={panelRef} className="min-w-0 scroll-mt-24">
+        <div ref={panelRef} className="min-w-0 scroll-mt-24 w-full">
+          {/* Encabezado contextual de la herramienta activa */}
+          <div
+            className="mb-4 rounded-2xl border border-border bg-card/60 backdrop-blur px-4 sm:px-5 py-3 flex items-center gap-3"
+            style={{ boxShadow: `inset 0 0 0 1px hsl(${t.accent} / 0.08)` }}
+          >
+            <div
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+              style={{
+                background: `hsl(${t.accent} / 0.12)`,
+                color: accentBg,
+                border: `1px solid hsl(${t.accent} / 0.3)`,
+              }}
+            >
+              {activeTool.icon}
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="font-display text-base sm:text-lg font-bold text-foreground leading-tight">
+                  {activeTool.label}
+                </h3>
+                <span
+                  className="font-mono text-[10px] px-1.5 py-0.5 rounded border"
+                  style={{
+                    color: accentBg,
+                    borderColor: `hsl(${t.accent} / 0.3)`,
+                    background: `hsl(${t.accent} / 0.08)`,
+                  }}
+                >
+                  {activeTool.formula}
+                </span>
+              </div>
+              <p className="text-xs sm:text-[13px] text-muted-foreground mt-0.5 leading-snug">
+                {activeTool.desc}
+              </p>
+            </div>
+          </div>
+
+          {/* Calculadora real */}
           <div className="rounded-2xl border border-border bg-card shadow-sm p-4 sm:p-6 transition-opacity duration-300 animate-in fade-in">
             <ToolPanel tool={active} />
           </div>
-          <div className="flex flex-wrap gap-4 justify-center mt-5 text-xs sm:text-sm text-muted-foreground">
+
+          {/* Beneficios */}
+          <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center mt-4 text-xs sm:text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> Resultado automático</span>
             <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> Explicación simple</span>
             <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> 100% gratis</span>
+          </div>
+
+          {/* Tips + Caso de uso */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+            <div
+              className="sm:col-span-2 rounded-xl border border-border bg-card/60 p-4"
+              style={{ boxShadow: `inset 0 0 0 1px hsl(${t.accent} / 0.06)` }}
+            >
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] mb-2"
+                style={{ color: accentBg }}
+              >
+                ▸ Tips rápidos
+              </p>
+              <ul className="space-y-1.5 text-sm text-foreground/90">
+                {activeTool.tips.map((tip, i) => (
+                  <li key={i} className="flex gap-2 leading-snug">
+                    <span className="mt-1 inline-block w-1 h-1 rounded-full shrink-0"
+                      style={{ background: accentBg, boxShadow: `0 0 4px ${accentGlow}` }}
+                    />
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-xl border border-border bg-card/60 p-4">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                ▸ Caso de uso
+              </p>
+              <p className="text-sm text-foreground/90 leading-snug">
+                {activeTool.useCase}
+              </p>
+            </div>
           </div>
         </div>
       </div>
