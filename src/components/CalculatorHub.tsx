@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import {
   Zap, Lightbulb, Palette, Divide, Filter, Timer,
-  Hash, Activity, Ruler, Cpu, ArrowDown, Sparkles
+  Hash, Activity, Ruler, ArrowDown, Sparkles
 } from "lucide-react";
 import ResistorCalculator from "@/components/ResistorCalculator";
 import OhmCalculator from "@/components/OhmCalculator";
@@ -14,20 +14,15 @@ import CapacitiveReactanceCalculator from "@/components/CapacitiveReactanceCalcu
 import UnitConverter from "@/components/UnitConverter";
 
 type ToolKey =
-  | "resistor"
-  | "ohm"
-  | "led"
-  | "divider"
-  | "rc"
-  | "timer"
-  | "smd"
-  | "reactance"
-  | "units";
+  | "resistor" | "ohm" | "led" | "divider" | "rc"
+  | "timer" | "smd" | "reactance" | "units";
+
+type ThemeKey = "blue" | "green" | "red";
 
 interface ToolDef {
   key: ToolKey;
   label: string;
-  symbol: string;          // símbolo grande estilo tecla
+  symbol: string;
   desc: string;
   icon: React.ReactNode;
   formula: string;
@@ -44,6 +39,13 @@ const TOOLS: ToolDef[] = [
   { key: "reactance",label: "Reactancia Xc",      symbol: "Xc",  desc: "Reactancia de un capacitor en AC.",     icon: <Activity className="w-4 h-4" />, formula: "Xc = 1/(2π·f·C)" },
   { key: "units",    label: "Conversor Unidades", symbol: "μ→k", desc: "mΩ, kΩ, MΩ, μF, nF, pF, mA…",           icon: <Ruler    className="w-4 h-4" />, formula: "× 10ⁿ" },
 ];
+
+// Tema scoped al hub: cada uno define HSL para "accent" + "glow"
+const THEMES: Record<ThemeKey, { name: string; accent: string; accentSoft: string; ring: string; label: string }> = {
+  blue:  { name: "Azul",  accent: "217 91% 60%",  accentSoft: "217 91% 60% / 0.15", ring: "217 91% 60%",  label: "AZL" },
+  green: { name: "Verde", accent: "152 76% 44%",  accentSoft: "152 76% 44% / 0.15", ring: "152 76% 44%",  label: "VRD" },
+  red:   { name: "Rojo",  accent: "0 84% 60%",    accentSoft: "0 84% 60% / 0.15",   ring: "0 84% 60%",    label: "RJO" },
+};
 
 const ToolPanel = ({ tool }: { tool: ToolKey }) => {
   switch (tool) {
@@ -62,11 +64,47 @@ const ToolPanel = ({ tool }: { tool: ToolKey }) => {
 
 const CalculatorHub = () => {
   const [active, setActive] = useState<ToolKey>("resistor");
+  const [theme, setTheme] = useState<ThemeKey>("blue");
+  const [bootStep, setBootStep] = useState(0); // 0=off, 1=lcd flicker, 2=keys lighting up, 3=ready
+  const [litKeyIndex, setLitKeyIndex] = useState(-1);
   const panelRef = useRef<HTMLDivElement>(null);
   const isFirstRender = useRef(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hasBooted = useRef(false);
 
   const activeTool = TOOLS.find((t) => t.key === active)!;
+  const t = THEMES[theme];
 
+  // Animación de encendido al entrar en viewport
+  useEffect(() => {
+    if (!containerRef.current || hasBooted.current) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !hasBooted.current) {
+            hasBooted.current = true;
+            obs.disconnect();
+            // Secuencia: 1) LCD parpadea, 2) teclas se iluminan en cascada, 3) listo
+            setBootStep(1);
+            setTimeout(() => setBootStep(2), 450);
+            // Cascada de teclas (50ms por tecla)
+            TOOLS.forEach((_, i) => {
+              setTimeout(() => setLitKeyIndex(i), 450 + i * 55);
+            });
+            setTimeout(() => {
+              setLitKeyIndex(-1);
+              setBootStep(3);
+            }, 450 + TOOLS.length * 55 + 200);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    obs.observe(containerRef.current);
+    return () => obs.disconnect();
+  }, []);
+
+  // Scroll al panel al cambiar tecla en mobile
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -77,15 +115,19 @@ const CalculatorHub = () => {
     }
   }, [active]);
 
+  // Estilos dinámicos según tema (sólo afectan al hub)
+  const accentBg     = `hsl(${t.accent})`;
+  const accentSoftBg = `hsl(${t.accentSoft})`;
+  const accentGlow   = `hsl(${t.accent} / 0.6)`;
+
   return (
-    <div className="relative">
-      {/* Glow neón de fondo */}
+    <div ref={containerRef} className="relative">
+      {/* Glow de fondo (cambia con el tema) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-70"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-70 transition-opacity duration-500"
         style={{
-          background:
-            "radial-gradient(60% 50% at 20% 30%, hsl(var(--primary) / 0.10), transparent 70%), radial-gradient(50% 40% at 80% 70%, hsl(190 95% 55% / 0.08), transparent 70%)",
+          background: `radial-gradient(60% 50% at 20% 30%, hsl(${t.accent} / 0.10), transparent 70%), radial-gradient(50% 40% at 80% 70%, hsl(${t.accent} / 0.08), transparent 70%)`,
         }}
       />
 
@@ -104,136 +146,151 @@ const CalculatorHub = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 lg:gap-10">
-        {/* ═══ CALCULADORA FÍSICA (PANEL IZQUIERDO) ═══ */}
+        {/* ═══ CALCULADORA FÍSICA ═══ */}
         <div className="lg:sticky lg:top-24 lg:self-start">
           <div
             className="relative rounded-[28px] p-4 sm:p-5"
             style={{
-              background:
-                "linear-gradient(160deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%)",
-              boxShadow:
-                "0 30px 60px -20px hsl(var(--primary) / 0.25), 0 10px 25px -5px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.08), inset 0 -2px 0 hsl(var(--foreground) / 0.06)",
+              background: "linear-gradient(160deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%)",
+              boxShadow: `0 30px 60px -20px ${accentGlow}, 0 10px 25px -5px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.08), inset 0 -2px 0 hsl(var(--foreground) / 0.06)`,
               border: "1px solid hsl(var(--border))",
             }}
           >
-            {/* Brand bar superior (atornillada) */}
+            {/* Brand bar + selector de tema */}
             <div className="flex items-center justify-between px-2 mb-3">
               <div className="flex items-center gap-2">
-                <div
-                  className="w-2 h-2 rounded-full"
-                  style={{
-                    background: "hsl(var(--border))",
-                    boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.3)",
-                  }}
+                <div className="w-2 h-2 rounded-full"
+                  style={{ background: "hsl(var(--border))", boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.3)" }}
                 />
                 <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
                   ELECTROLAB·HUB
                 </span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_6px_hsl(var(--primary))] animate-pulse" />
-                <span className="font-mono text-[9px] tracking-wider text-muted-foreground">PWR</span>
+              {/* Selector de color como mini-LEDs */}
+              <div className="flex items-center gap-1.5" role="group" aria-label="Color de teclas">
+                {(Object.keys(THEMES) as ThemeKey[]).map((k) => {
+                  const isOn = k === theme;
+                  return (
+                    <button
+                      key={k}
+                      onClick={() => setTheme(k)}
+                      aria-label={`Tema ${THEMES[k].name}`}
+                      aria-pressed={isOn}
+                      title={`Color: ${THEMES[k].name}`}
+                      className="relative w-3 h-3 rounded-full transition-all duration-200 hover:scale-125"
+                      style={{
+                        background: isOn ? `hsl(${THEMES[k].accent})` : `hsl(${THEMES[k].accent} / 0.25)`,
+                        boxShadow: isOn
+                          ? `0 0 8px hsl(${THEMES[k].accent}), inset 0 0 2px hsl(0 0% 100% / 0.3)`
+                          : "inset 0 1px 1px hsl(var(--foreground) / 0.3)",
+                      }}
+                    />
+                  );
+                })}
+                <span className="ml-1 font-mono text-[9px] tracking-wider text-muted-foreground w-7 text-center">
+                  {t.label}
+                </span>
               </div>
             </div>
 
-            {/* PANTALLA LCD con relieve hundido */}
+            {/* PANTALLA LCD — con animación de encendido */}
             <div
-              className="rounded-2xl px-4 py-4 mb-4"
+              className="rounded-2xl px-4 py-4 mb-4 relative overflow-hidden"
               style={{
                 background: "linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--accent)) 100%)",
-                boxShadow:
-                  "inset 0 4px 8px hsl(var(--foreground) / 0.18), inset 0 -1px 0 hsl(0 0% 100% / 0.05)",
+                boxShadow: "inset 0 4px 8px hsl(var(--foreground) / 0.18), inset 0 -1px 0 hsl(0 0% 100% / 0.05)",
                 border: "1px solid hsl(var(--border))",
               }}
             >
+              {/* Flicker overlay durante boot */}
+              {bootStep === 1 && (
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: accentBg,
+                    animation: "lcd-flicker 0.45s ease-in-out",
+                  }}
+                />
+              )}
               <div className="flex items-center justify-between mb-1.5">
                 <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
                   ▸ MODO ACTIVO
                 </span>
-                <span className="font-mono text-[9px] text-primary tracking-wider">ON</span>
+                <span className="font-mono text-[9px] tracking-wider" style={{ color: accentBg }}>
+                  {bootStep < 3 ? "BOOT" : "ON"}
+                </span>
               </div>
-              <div className="font-display text-xl sm:text-2xl font-extrabold text-foreground leading-tight">
-                {activeTool.label}
+              <div
+                className="font-display text-xl sm:text-2xl font-extrabold text-foreground leading-tight transition-opacity duration-300"
+                style={{ opacity: bootStep < 2 ? 0.3 : 1 }}
+              >
+                {bootStep === 0 ? "—" : bootStep === 1 ? "INIT…" : activeTool.label}
               </div>
-              <div className="font-mono text-xs text-primary mt-1.5 truncate">
-                {activeTool.formula}
+              <div
+                className="font-mono text-xs mt-1.5 truncate transition-opacity duration-300"
+                style={{ color: accentBg, opacity: bootStep < 3 ? 0.4 : 1 }}
+              >
+                {bootStep < 2 ? "0x00 LOADING" : activeTool.formula}
               </div>
             </div>
 
-            {/* GRID DE TECLAS 3 × 3 con relieve real */}
+            {/* GRID DE TECLAS */}
             <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
-              {TOOLS.map((tool) => {
-                const isActive = tool.key === active;
+              {TOOLS.map((tool, i) => {
+                const isActive = tool.key === active && bootStep === 3;
+                const isLighting = i === litKeyIndex;
                 return (
                   <button
                     key={tool.key}
-                    onClick={() => setActive(tool.key)}
+                    onClick={() => bootStep === 3 && setActive(tool.key)}
+                    disabled={bootStep !== 3}
                     aria-label={`Abrir ${tool.label}`}
                     aria-pressed={isActive}
-                    className="group relative aspect-square rounded-xl flex flex-col items-center justify-center gap-1 select-none transition-all duration-150 active:translate-y-[2px]"
+                    className="group relative aspect-square rounded-xl flex flex-col items-center justify-center gap-1 select-none transition-all duration-150 active:translate-y-[2px] disabled:cursor-default"
                     style={
-                      isActive
+                      isActive || isLighting
                         ? {
-                            background:
-                              "linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.85) 100%)",
-                            boxShadow:
-                              "inset 0 2px 4px hsl(var(--foreground) / 0.25), 0 0 24px -4px hsl(var(--primary) / 0.6), 0 0 0 1px hsl(var(--primary) / 0.4)",
-                            color: "hsl(var(--primary-foreground))",
-                            transform: "translateY(2px)",
+                            background: `linear-gradient(180deg, ${accentBg} 0%, hsl(${t.accent} / 0.85) 100%)`,
+                            boxShadow: `inset 0 2px 4px hsl(var(--foreground) / 0.25), 0 0 24px -4px ${accentGlow}, 0 0 0 1px hsl(${t.accent} / 0.4)`,
+                            color: "hsl(0 0% 100%)",
+                            transform: isActive ? "translateY(2px)" : "translateY(0)",
                           }
                         : {
-                            background:
-                              "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%)",
-                            boxShadow:
-                              "0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05)",
+                            background: "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%)",
+                            boxShadow: "0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05)",
                             border: "1px solid hsl(var(--border))",
+                            opacity: bootStep < 2 ? 0.3 : 1,
                           }
                     }
                   >
-                    {/* Símbolo grande tipo tecla */}
                     <span
                       className={`font-mono font-extrabold leading-none ${
                         tool.symbol.length > 2 ? "text-base sm:text-lg" : "text-2xl sm:text-3xl"
-                      } ${isActive ? "" : "text-foreground"}`}
+                      } ${isActive || isLighting ? "" : "text-foreground"}`}
                       style={
-                        isActive
+                        isActive || isLighting
                           ? { textShadow: "0 1px 2px hsl(var(--foreground) / 0.3)" }
                           : { textShadow: "0 1px 0 hsl(0 0% 100% / 0.6)" }
                       }
                     >
                       {tool.symbol}
                     </span>
-
-                    {/* Etiqueta inferior */}
                     <span
                       className={`font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase leading-none px-1 text-center ${
-                        isActive ? "opacity-95" : "text-muted-foreground group-hover:text-foreground"
+                        isActive || isLighting ? "opacity-95" : "text-muted-foreground group-hover:text-foreground"
                       }`}
                     >
-                      {tool.icon && (
-                        <span className="inline-block align-middle mr-0.5">
-                          {tool.icon}
-                        </span>
-                      )}
+                      <span className="inline-block align-middle mr-0.5">{tool.icon}</span>
                     </span>
-
-                    {/* Brillo superior (highlight) */}
-                    {!isActive && (
-                      <span
-                        aria-hidden="true"
-                        className="pointer-events-none absolute top-1 left-1 right-1 h-1/3 rounded-t-lg opacity-40"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, hsl(0 0% 100% / 0.6) 0%, transparent 100%)",
-                        }}
+                    {!isActive && !isLighting && (
+                      <span aria-hidden="true" className="pointer-events-none absolute top-1 left-1 right-1 h-1/3 rounded-t-lg opacity-40"
+                        style={{ background: "linear-gradient(180deg, hsl(0 0% 100% / 0.6) 0%, transparent 100%)" }}
                       />
                     )}
-
-                    {/* Indicador LED activo */}
                     {isActive && (
-                      <span
-                        aria-hidden="true"
-                        className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary-foreground shadow-[0_0_6px_hsl(var(--primary-foreground))] animate-pulse"
+                      <span aria-hidden="true" className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full animate-pulse"
+                        style={{ background: "hsl(0 0% 100%)", boxShadow: "0 0 6px hsl(0 0% 100%)" }}
                       />
                     )}
                   </button>
@@ -241,9 +298,8 @@ const CalculatorHub = () => {
               })}
             </div>
 
-            {/* Footer descriptivo (estilo placa) */}
-            <div
-              className="mt-4 px-3 py-2.5 rounded-lg"
+            {/* Footer descriptivo */}
+            <div className="mt-4 px-3 py-2.5 rounded-lg"
               style={{
                 background: "hsl(var(--background) / 0.5)",
                 border: "1px solid hsl(var(--border))",
@@ -256,53 +312,54 @@ const CalculatorHub = () => {
               </p>
             </div>
 
-            {/* Tornillos decorativos */}
-            <div aria-hidden="true" className="absolute top-3 left-3 w-2.5 h-2.5 rounded-full"
-              style={{
-                background: "radial-gradient(circle at 30% 30%, hsl(var(--muted-foreground)/0.6), hsl(var(--border)))",
-                boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.4)",
-              }}
-            />
-            <div aria-hidden="true" className="absolute top-3 right-3 w-2.5 h-2.5 rounded-full"
-              style={{
-                background: "radial-gradient(circle at 30% 30%, hsl(var(--muted-foreground)/0.6), hsl(var(--border)))",
-                boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.4)",
-              }}
-            />
-            <div aria-hidden="true" className="absolute bottom-3 left-3 w-2.5 h-2.5 rounded-full"
-              style={{
-                background: "radial-gradient(circle at 30% 30%, hsl(var(--muted-foreground)/0.6), hsl(var(--border)))",
-                boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.4)",
-              }}
-            />
-            <div aria-hidden="true" className="absolute bottom-3 right-3 w-2.5 h-2.5 rounded-full"
-              style={{
-                background: "radial-gradient(circle at 30% 30%, hsl(var(--muted-foreground)/0.6), hsl(var(--border)))",
-                boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.4)",
-              }}
-            />
+            {/* Tornillos */}
+            {[
+              "top-3 left-3", "top-3 right-3",
+              "bottom-3 left-3", "bottom-3 right-3",
+            ].map((pos) => (
+              <div
+                key={pos}
+                aria-hidden="true"
+                className={`absolute ${pos} w-2.5 h-2.5 rounded-full`}
+                style={{
+                  background: "radial-gradient(circle at 30% 30%, hsl(var(--muted-foreground)/0.6), hsl(var(--border)))",
+                  boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.4)",
+                }}
+              />
+            ))}
           </div>
 
-          {/* Hint mobile */}
           <p className="lg:hidden mt-3 text-center text-xs text-muted-foreground inline-flex items-center justify-center gap-1.5 w-full">
             <ArrowDown className="w-3 h-3 animate-bounce" />
             La calculadora aparece debajo
           </p>
         </div>
 
-        {/* ═══ PANEL DERECHO: HERRAMIENTA ACTIVA ═══ */}
+        {/* ═══ PANEL DERECHO ═══ */}
         <div ref={panelRef} className="min-w-0 scroll-mt-24">
           <div className="rounded-2xl border border-border bg-card shadow-sm p-4 sm:p-6 transition-opacity duration-300 animate-in fade-in">
             <ToolPanel tool={active} />
           </div>
-
           <div className="flex flex-wrap gap-4 justify-center mt-5 text-xs sm:text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> 100% gratis</span>
+            <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> Resultado automático</span>
+            <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> Explicación simple</span>
+            <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> 100% gratis</span>
           </div>
         </div>
       </div>
+
+      {/* Keyframes scoped */}
+      <style>{`
+        @keyframes lcd-flicker {
+          0%   { opacity: 0; }
+          15%  { opacity: 0.6; }
+          25%  { opacity: 0.1; }
+          40%  { opacity: 0.5; }
+          60%  { opacity: 0.2; }
+          80%  { opacity: 0.4; }
+          100% { opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 };
