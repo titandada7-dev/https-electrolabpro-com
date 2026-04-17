@@ -14,6 +14,7 @@ import ComponentDictionary from "@/components/ComponentDictionary";
 import OhmCalculator from "@/components/OhmCalculator";
 import LedCalculator from "@/components/LedCalculator";
 import MiniProjects from "@/components/MiniProjects";
+import CalculatorHub from "@/components/CalculatorHub";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -446,42 +447,145 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ CALCULADORA PRINCIPAL ═══════════ */}
+      {/* ═══════════ CALCULATOR HUB (TODO-EN-UNO) ═══════════ */}
       <motion.div
         id="calculadora"
-        className="container mx-auto px-6 py-12 sm:py-16"
+        className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.3 }}
       >
-        <ResistorCalculator />
-        <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
-          <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
-          <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
-        </div>
+        <CalculatorHub />
       </motion.div>
 
-      {/* ═══════════ MÁS CALCULADORAS ═══════════ */}
-      <div className="container mx-auto px-6 space-y-16 py-12">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
-          <OhmCalculator />
-          <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
+      {/* ═══════════ ¿PARA QUIÉN ES ELECTROLAB PRO? ═══════════ */}
+      <motion.section
+        className="py-14 sm:py-20 border-t border-border bg-card/40"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="text-center mb-10">
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+              ¿Para quién?
+            </span>
+            <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
+              ElectroLab Pro es para vos si…
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+              Una plataforma que crece con vos: desde el primer LED hasta el diseño de PCB.
+            </p>
           </div>
-        </motion.div>
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
-          <LedCalculator />
-          <div className="flex flex-wrap gap-4 justify-center mt-6 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Resultado automático</span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Explicación simple</span>
-            <span className="inline-flex items-center gap-1.5"><span className="text-primary">✔</span> Uso práctico real</span>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                icon: <Lightbulb className="w-6 h-6 text-primary" />,
+                title: "Sos aficionado",
+                bullets: [
+                  "Querés armar tus primeros circuitos sin quemar componentes.",
+                  "Necesitás respuestas claras sin teoría innecesaria.",
+                  "Buscás calculadoras que funcionen al toque.",
+                ],
+              },
+              {
+                icon: <BookOpen className="w-6 h-6 text-primary" />,
+                title: "Sos estudiante",
+                bullets: [
+                  "Estudiás electrónica, mecatrónica o ingeniería.",
+                  "Querés validar resultados de la facu en segundos.",
+                  "Necesitás un glosario y guías técnicas a mano.",
+                ],
+              },
+              {
+                icon: <Cpu className="w-6 h-6 text-primary" />,
+                title: "Sos maker / técnico",
+                bullets: [
+                  "Trabajás con Arduino, ESP32, Raspberry Pi.",
+                  "Diseñás PCBs y necesitás filtros RC, divisores, 555.",
+                  "Querés todas las calcs en una sola pantalla.",
+                ],
+              },
+            ].map((card) => (
+              <div
+                key={card.title}
+                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300"
+              >
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">
+                  {card.icon}
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-3">{card.title}</h3>
+                <ul className="space-y-2">
+                  {card.bullets.map((b, i) => (
+                    <li key={i} className="flex gap-2 text-sm text-muted-foreground leading-relaxed">
+                      <span className="text-primary mt-0.5 shrink-0">▸</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.section>
+
+      {/* ═══════════ GLOSARIO RÁPIDO DE ELECTRÓNICA ═══════════ */}
+      <motion.section
+        id="glosario"
+        className="py-14 sm:py-20 border-t border-border"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="text-center mb-10">
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+              Glosario rápido
+            </span>
+            <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
+              Términos clave que vas a escuchar
+            </h2>
+            <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+              Definiciones cortas y claras de los conceptos más usados en electrónica.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { term: "Voltaje (V)", def: "Diferencia de potencial eléctrico entre dos puntos. Se mide en voltios. Es lo que 'empuja' los electrones por el circuito." },
+              { term: "Corriente (I)", def: "Cantidad de carga eléctrica que fluye por unidad de tiempo. Se mide en amperios (A) o miliamperios (mA)." },
+              { term: "Resistencia (R)", def: "Oposición al paso de la corriente. Se mide en ohmios (Ω). A mayor R, menos corriente para un mismo voltaje." },
+              { term: "Capacitancia (C)", def: "Capacidad de almacenar carga eléctrica de un condensador. Se mide en faradios (F), normalmente en μF, nF o pF." },
+              { term: "Frecuencia (f)", def: "Cantidad de ciclos por segundo de una señal alterna. Se mide en hercios (Hz), kHz o MHz." },
+              { term: "Reactancia (X)", def: "Oposición al paso de corriente alterna que ofrecen capacitores e inductores. Depende de la frecuencia." },
+              { term: "PWM", def: "Modulación por Ancho de Pulso. Técnica para controlar potencia variando el tiempo encendido/apagado de una señal digital." },
+              { term: "GND (Tierra)", def: "Punto de referencia 0V del circuito. Todos los voltajes se miden respecto a GND." },
+              { term: "Vcc / Vdd", def: "Voltaje positivo de alimentación. Vcc es para circuitos bipolares, Vdd para CMOS, pero suelen usarse igual." },
+            ].map((item) => (
+              <div
+                key={item.term}
+                className="rounded-xl border border-border bg-card p-5 hover:border-primary/40 transition-colors"
+              >
+                <h3 className="font-mono font-bold text-primary text-sm uppercase tracking-wider mb-2">
+                  {item.term}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.def}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-xs text-muted-foreground mt-8">
+            ¿Querés profundizar?{" "}
+            <button onClick={() => scrollTo("guias")} className="text-primary hover:underline font-semibold">
+              Explorá nuestras guías técnicas →
+            </button>
+          </p>
+        </div>
+      </motion.section>
 
       {/* ═══════════ GUÍAS DESTACADAS ═══════════ */}
       <motion.section
