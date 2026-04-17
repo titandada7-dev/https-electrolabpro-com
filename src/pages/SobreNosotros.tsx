@@ -91,24 +91,32 @@ const SobreNosotros = () => {
               </div>
               <div>
                 <h2 className="text-xl font-bold font-mono text-foreground">J.A. Sánchez</h2>
-                <p className="text-sm text-muted-foreground">Fundador y Desarrollador</p>
+                <p className="text-sm text-muted-foreground">Aficionado a la electrónica y estudiante de desarrollo web</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">ElectroLab Pro</strong> es un proyecto educativo desarrollado por 
-              J.A. Sánchez a partir de la recopilación y adaptación de información técnica proveniente de 
-              especialistas, manuales y documentación profesional en electrónica.
+              Antes que nada, una aclaración honesta: <strong className="text-foreground">no soy ingeniero ni técnico 
+              electrónico de profesión</strong>. Soy aficionado al hobby de la electrónica desde hace varios años y 
+              actualmente estoy estudiando desarrollo web e informática. <strong className="text-foreground">ElectroLab Pro</strong> nació 
+              precisamente de esa intersección entre las dos cosas que me apasionan.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Con formación en desarrollo web y electrónica práctica, J.A. Sánchez combina ambas disciplinas 
-              para crear herramientas digitales que simplifican el aprendizaje de conceptos complejos. Cada 
-              calculadora, guía y artículo publicado en la plataforma ha sido verificado contra fuentes técnicas 
-              reconocidas para garantizar la precisión de la información.
+              Como me imagino que le pasa a muchos al arrancar en la electrónica, cada vez que necesitaba hacer un 
+              cálculo simple (la resistencia para un LED, un filtro RC, un divisor de tensión) terminaba abriendo 
+              cuatro o cinco páginas distintas: algunas en inglés mal traducido, otras llenas de pop-ups y otras 
+              incompletas que te daban el valor pero no el wattaje recomendado. Después de quemar varios componentes 
+              por información a medias, dije: <em>"si estoy aprendiendo a programar, puedo armar yo la herramienta que 
+              me hubiera servido cuando empecé"</em>.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              El objetivo de ElectroLab Pro es ofrecer herramientas confiables basadas en prácticas reales 
-              utilizadas en el ámbito técnico, haciendo la electrónica accesible para todos sin importar su 
-              nivel de experiencia.
+              Así nació este proyecto. Cada calculadora y cada guía publicada se contrasta con documentación técnica 
+              reconocida (hojas de datos de fabricantes, manuales y bibliografía de referencia) y se mejora con el 
+              feedback de la comunidad. Si encontrás algún error, escribime sin filtro: prefiero corregirlo a que 
+              alguien que esté arrancando reciba información equivocada.
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              El objetivo de ElectroLab Pro es simple: ofrecer en un solo lugar las herramientas gratuitas en español 
+              que a mí me hubieran ahorrado horas de búsqueda y unos cuantos componentes quemados.
             </p>
           </section>
 
