@@ -26,18 +26,112 @@ interface ToolDef {
   desc: string;
   icon: React.ReactNode;
   formula: string;
+  /** Bullets cortos con consejos prácticos / contexto técnico */
+  tips: string[];
+  /** Caso de uso real para mostrar bajo el panel */
+  useCase: string;
 }
 
 const TOOLS: ToolDef[] = [
-  { key: "resistor", label: "Resistencias",       symbol: "Ω",   desc: "Decodificá 4 y 5 bandas de colores.",   icon: <Palette  className="w-4 h-4" />, formula: "color → valor" },
-  { key: "ohm",      label: "Ley de Ohm",         symbol: "V=IR",desc: "Voltaje, corriente y resistencia.",     icon: <Zap      className="w-4 h-4" />, formula: "V = I × R" },
-  { key: "led",      label: "Resistencia LED",    symbol: "💡",  desc: "Calculá la R en serie para tu LED.",    icon: <Lightbulb className="w-4 h-4" />, formula: "R = (Vs − Vled)/I" },
-  { key: "divider",  label: "Divisor de Voltaje", symbol: "÷",   desc: "Calculá Vout con dos resistencias.",    icon: <Divide   className="w-4 h-4" />, formula: "Vo = Vi·R₂/(R₁+R₂)" },
-  { key: "rc",       label: "Filtro RC",          symbol: "ƒc",  desc: "Frecuencia de corte de un filtro.",     icon: <Filter   className="w-4 h-4" />, formula: "fc = 1/(2π·R·C)" },
-  { key: "timer",    label: "555 Timer",          symbol: "555", desc: "Astable: frecuencia y duty cycle.",     icon: <Timer    className="w-4 h-4" />, formula: "f = 1.44/((R₁+2R₂)·C)" },
-  { key: "smd",      label: "Código SMD",         symbol: "#",   desc: "Decodificá resistencias SMD 3 y 4 dígitos.", icon: <Hash className="w-4 h-4" />, formula: "ABC → AB·10^C" },
-  { key: "reactance",label: "Reactancia Xc",      symbol: "Xc",  desc: "Reactancia de un capacitor en AC.",     icon: <Activity className="w-4 h-4" />, formula: "Xc = 1/(2π·f·C)" },
-  { key: "units",    label: "Conversor Unidades", symbol: "μ→k", desc: "mΩ, kΩ, MΩ, μF, nF, pF, mA…",           icon: <Ruler    className="w-4 h-4" />, formula: "× 10ⁿ" },
+  {
+    key: "resistor", label: "Resistencias", symbol: "Ω",
+    desc: "Decodificá 4 y 5 bandas de colores.",
+    icon: <Palette className="w-4 h-4" />, formula: "color → valor",
+    tips: [
+      "4 bandas: 2 dígitos + multiplicador + tolerancia.",
+      "5 bandas: 3 dígitos + multiplicador + tolerancia (más precisión).",
+      "Lee siempre desde la banda más cercana al borde.",
+    ],
+    useCase: "Útil cuando reemplazás una resistencia quemada en una placa y solo tenés sus colores.",
+  },
+  {
+    key: "ohm", label: "Ley de Ohm", symbol: "V=IR",
+    desc: "Voltaje, corriente y resistencia.",
+    icon: <Zap className="w-4 h-4" />, formula: "V = I × R",
+    tips: [
+      "Conocés 2 valores → calculás el tercero.",
+      "Potencia: P = V × I (en watts).",
+      "Mantené el consumo por debajo del 70% de la potencia nominal.",
+    ],
+    useCase: "Base de todo cálculo eléctrico: dimensionar fuentes, fusibles y resistencias en serie.",
+  },
+  {
+    key: "led", label: "Resistencia LED", symbol: "LED",
+    desc: "Calculá la R en serie para tu LED.",
+    icon: <Lightbulb className="w-4 h-4" />, formula: "R = (Vs − Vled) / I",
+    tips: [
+      "LED rojo ≈ 2.0V · verde/amarillo ≈ 2.2V · azul/blanco ≈ 3.2V.",
+      "Corriente típica: 10–20 mA para LEDs estándar 5mm.",
+      "Elegí una resistencia de potencia ≥ 2× la calculada.",
+    ],
+    useCase: "Imprescindible para no quemar LEDs al conectarlos a 5V, 9V o 12V.",
+  },
+  {
+    key: "divider", label: "Divisor de Voltaje", symbol: "÷",
+    desc: "Calculá Vout con dos resistencias.",
+    icon: <Divide className="w-4 h-4" />, formula: "Vo = Vi · R₂ / (R₁+R₂)",
+    tips: [
+      "Sirve para reducir señales antes de un ADC (ej: 12V → 3.3V).",
+      "No uses divisores para alimentar cargas: caen bajo corriente.",
+      "Usá resistencias del orden de kΩ para no desperdiciar energía.",
+    ],
+    useCase: "Adaptar un sensor de batería de 12V para que un Arduino o ESP32 lo lea con seguridad.",
+  },
+  {
+    key: "rc", label: "Filtro RC", symbol: "ƒc",
+    desc: "Frecuencia de corte de un filtro.",
+    icon: <Filter className="w-4 h-4" />, formula: "fc = 1 / (2π · R · C)",
+    tips: [
+      "Pasa-bajos: deja pasar señales lentas (DC, audio grave).",
+      "Pasa-altos: bloquea DC, deja pasar agudos.",
+      "Pendiente: -20 dB por década (filtro de 1er orden).",
+    ],
+    useCase: "Quitar ruido de fuentes, suavizar PWM o filtrar señales de audio.",
+  },
+  {
+    key: "timer", label: "555 Timer", symbol: "555",
+    desc: "Astable: frecuencia y duty cycle.",
+    icon: <Timer className="w-4 h-4" />, formula: "f = 1.44 / ((R₁+2R₂) · C)",
+    tips: [
+      "Modo astable = oscilador continuo (LEDs, buzzers, PWM).",
+      "Modo monoestable = pulso único de duración fija.",
+      "Para duty 50% usá un diodo entre R₁ y el pin de descarga.",
+    ],
+    useCase: "Generar señales de reloj, parpadeos, alarmas o PWM sin microcontrolador.",
+  },
+  {
+    key: "smd", label: "Código SMD", symbol: "#",
+    desc: "Decodificá resistencias SMD de 3 y 4 dígitos.",
+    icon: <Hash className="w-4 h-4" />, formula: "ABC → AB · 10^C",
+    tips: [
+      "3 dígitos: ‘472’ = 47 · 10² = 4.7 kΩ.",
+      "4 dígitos: ‘4701’ = 470 · 10¹ = 4.7 kΩ (precisión 1%).",
+      "Letra R = punto decimal: ‘4R7’ = 4.7 Ω.",
+    ],
+    useCase: "Identificar componentes diminutos al reparar placas modernas (móviles, drones, PCBs SMD).",
+  },
+  {
+    key: "reactance", label: "Reactancia Xc", symbol: "Xc",
+    desc: "Reactancia de un capacitor en AC.",
+    icon: <Activity className="w-4 h-4" />, formula: "Xc = 1 / (2π · f · C)",
+    tips: [
+      "A más frecuencia, menor Xc (deja pasar más AC).",
+      "En DC (f=0) un capacitor es un circuito abierto.",
+      "Útil para diseñar filtros, acoplos y desacoples.",
+    ],
+    useCase: "Calcular el valor de capacitor para acoplar etapas de audio o filtrar fuentes conmutadas.",
+  },
+  {
+    key: "units", label: "Conversor Unidades", symbol: "μ→k",
+    desc: "mΩ, kΩ, MΩ, μF, nF, pF, mA…",
+    icon: <Ruler className="w-4 h-4" />, formula: "× 10ⁿ",
+    tips: [
+      "1 kΩ = 1000 Ω · 1 MΩ = 1.000.000 Ω.",
+      "1 μF = 1000 nF = 1.000.000 pF.",
+      "1 A = 1000 mA = 1.000.000 μA.",
+    ],
+    useCase: "Convertir rápidamente entre unidades cuando leés un datasheet o esquemático.",
+  },
 ];
 
 // Tema scoped al hub: cada uno define HSL para "accent" + "glow"
@@ -145,9 +239,9 @@ const CalculatorHub = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 lg:gap-10">
+      <div className="mx-auto w-full max-w-[1180px] grid grid-cols-1 lg:grid-cols-[360px_minmax(0,720px)] gap-6 lg:gap-8 justify-center">
         {/* ═══ CALCULADORA FÍSICA ═══ */}
-        <div className="lg:sticky lg:top-24 lg:self-start">
+        <div className="lg:sticky lg:top-24 lg:self-start mx-auto w-full max-w-[420px] lg:max-w-none">
           <div
             className="relative rounded-[28px] p-4 sm:p-5"
             style={{
@@ -336,14 +430,86 @@ const CalculatorHub = () => {
         </div>
 
         {/* ═══ PANEL DERECHO ═══ */}
-        <div ref={panelRef} className="min-w-0 scroll-mt-24">
+        <div ref={panelRef} className="min-w-0 scroll-mt-24 w-full">
+          {/* Encabezado contextual de la herramienta activa */}
+          <div
+            className="mb-4 rounded-2xl border border-border bg-card/60 backdrop-blur px-4 sm:px-5 py-3 flex items-center gap-3"
+            style={{ boxShadow: `inset 0 0 0 1px hsl(${t.accent} / 0.08)` }}
+          >
+            <div
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+              style={{
+                background: `hsl(${t.accent} / 0.12)`,
+                color: accentBg,
+                border: `1px solid hsl(${t.accent} / 0.3)`,
+              }}
+            >
+              {activeTool.icon}
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="font-display text-base sm:text-lg font-bold text-foreground leading-tight">
+                  {activeTool.label}
+                </h3>
+                <span
+                  className="font-mono text-[10px] px-1.5 py-0.5 rounded border"
+                  style={{
+                    color: accentBg,
+                    borderColor: `hsl(${t.accent} / 0.3)`,
+                    background: `hsl(${t.accent} / 0.08)`,
+                  }}
+                >
+                  {activeTool.formula}
+                </span>
+              </div>
+              <p className="text-xs sm:text-[13px] text-muted-foreground mt-0.5 leading-snug">
+                {activeTool.desc}
+              </p>
+            </div>
+          </div>
+
+          {/* Calculadora real */}
           <div className="rounded-2xl border border-border bg-card shadow-sm p-4 sm:p-6 transition-opacity duration-300 animate-in fade-in">
             <ToolPanel tool={active} />
           </div>
-          <div className="flex flex-wrap gap-4 justify-center mt-5 text-xs sm:text-sm text-muted-foreground">
+
+          {/* Beneficios */}
+          <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center mt-4 text-xs sm:text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> Resultado automático</span>
             <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> Explicación simple</span>
             <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> 100% gratis</span>
+          </div>
+
+          {/* Tips + Caso de uso */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+            <div
+              className="sm:col-span-2 rounded-xl border border-border bg-card/60 p-4"
+              style={{ boxShadow: `inset 0 0 0 1px hsl(${t.accent} / 0.06)` }}
+            >
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] mb-2"
+                style={{ color: accentBg }}
+              >
+                ▸ Tips rápidos
+              </p>
+              <ul className="space-y-1.5 text-sm text-foreground/90">
+                {activeTool.tips.map((tip, i) => (
+                  <li key={i} className="flex gap-2 leading-snug">
+                    <span className="mt-1 inline-block w-1 h-1 rounded-full shrink-0"
+                      style={{ background: accentBg, boxShadow: `0 0 4px ${accentGlow}` }}
+                    />
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-xl border border-border bg-card/60 p-4">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                ▸ Caso de uso
+              </p>
+              <p className="text-sm text-foreground/90 leading-snug">
+                {activeTool.useCase}
+              </p>
+            </div>
           </div>
         </div>
       </div>
