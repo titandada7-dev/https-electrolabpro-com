@@ -26,18 +26,112 @@ interface ToolDef {
   desc: string;
   icon: React.ReactNode;
   formula: string;
+  /** Bullets cortos con consejos prácticos / contexto técnico */
+  tips: string[];
+  /** Caso de uso real para mostrar bajo el panel */
+  useCase: string;
 }
 
 const TOOLS: ToolDef[] = [
-  { key: "resistor", label: "Resistencias",       symbol: "Ω",   desc: "Decodificá 4 y 5 bandas de colores.",   icon: <Palette  className="w-4 h-4" />, formula: "color → valor" },
-  { key: "ohm",      label: "Ley de Ohm",         symbol: "V=IR",desc: "Voltaje, corriente y resistencia.",     icon: <Zap      className="w-4 h-4" />, formula: "V = I × R" },
-  { key: "led",      label: "Resistencia LED",    symbol: "💡",  desc: "Calculá la R en serie para tu LED.",    icon: <Lightbulb className="w-4 h-4" />, formula: "R = (Vs − Vled)/I" },
-  { key: "divider",  label: "Divisor de Voltaje", symbol: "÷",   desc: "Calculá Vout con dos resistencias.",    icon: <Divide   className="w-4 h-4" />, formula: "Vo = Vi·R₂/(R₁+R₂)" },
-  { key: "rc",       label: "Filtro RC",          symbol: "ƒc",  desc: "Frecuencia de corte de un filtro.",     icon: <Filter   className="w-4 h-4" />, formula: "fc = 1/(2π·R·C)" },
-  { key: "timer",    label: "555 Timer",          symbol: "555", desc: "Astable: frecuencia y duty cycle.",     icon: <Timer    className="w-4 h-4" />, formula: "f = 1.44/((R₁+2R₂)·C)" },
-  { key: "smd",      label: "Código SMD",         symbol: "#",   desc: "Decodificá resistencias SMD 3 y 4 dígitos.", icon: <Hash className="w-4 h-4" />, formula: "ABC → AB·10^C" },
-  { key: "reactance",label: "Reactancia Xc",      symbol: "Xc",  desc: "Reactancia de un capacitor en AC.",     icon: <Activity className="w-4 h-4" />, formula: "Xc = 1/(2π·f·C)" },
-  { key: "units",    label: "Conversor Unidades", symbol: "μ→k", desc: "mΩ, kΩ, MΩ, μF, nF, pF, mA…",           icon: <Ruler    className="w-4 h-4" />, formula: "× 10ⁿ" },
+  {
+    key: "resistor", label: "Resistencias", symbol: "Ω",
+    desc: "Decodificá 4 y 5 bandas de colores.",
+    icon: <Palette className="w-4 h-4" />, formula: "color → valor",
+    tips: [
+      "4 bandas: 2 dígitos + multiplicador + tolerancia.",
+      "5 bandas: 3 dígitos + multiplicador + tolerancia (más precisión).",
+      "Lee siempre desde la banda más cercana al borde.",
+    ],
+    useCase: "Útil cuando reemplazás una resistencia quemada en una placa y solo tenés sus colores.",
+  },
+  {
+    key: "ohm", label: "Ley de Ohm", symbol: "V=IR",
+    desc: "Voltaje, corriente y resistencia.",
+    icon: <Zap className="w-4 h-4" />, formula: "V = I × R",
+    tips: [
+      "Conocés 2 valores → calculás el tercero.",
+      "Potencia: P = V × I (en watts).",
+      "Mantené el consumo por debajo del 70% de la potencia nominal.",
+    ],
+    useCase: "Base de todo cálculo eléctrico: dimensionar fuentes, fusibles y resistencias en serie.",
+  },
+  {
+    key: "led", label: "Resistencia LED", symbol: "LED",
+    desc: "Calculá la R en serie para tu LED.",
+    icon: <Lightbulb className="w-4 h-4" />, formula: "R = (Vs − Vled) / I",
+    tips: [
+      "LED rojo ≈ 2.0V · verde/amarillo ≈ 2.2V · azul/blanco ≈ 3.2V.",
+      "Corriente típica: 10–20 mA para LEDs estándar 5mm.",
+      "Elegí una resistencia de potencia ≥ 2× la calculada.",
+    ],
+    useCase: "Imprescindible para no quemar LEDs al conectarlos a 5V, 9V o 12V.",
+  },
+  {
+    key: "divider", label: "Divisor de Voltaje", symbol: "÷",
+    desc: "Calculá Vout con dos resistencias.",
+    icon: <Divide className="w-4 h-4" />, formula: "Vo = Vi · R₂ / (R₁+R₂)",
+    tips: [
+      "Sirve para reducir señales antes de un ADC (ej: 12V → 3.3V).",
+      "No uses divisores para alimentar cargas: caen bajo corriente.",
+      "Usá resistencias del orden de kΩ para no desperdiciar energía.",
+    ],
+    useCase: "Adaptar un sensor de batería de 12V para que un Arduino o ESP32 lo lea con seguridad.",
+  },
+  {
+    key: "rc", label: "Filtro RC", symbol: "ƒc",
+    desc: "Frecuencia de corte de un filtro.",
+    icon: <Filter className="w-4 h-4" />, formula: "fc = 1 / (2π · R · C)",
+    tips: [
+      "Pasa-bajos: deja pasar señales lentas (DC, audio grave).",
+      "Pasa-altos: bloquea DC, deja pasar agudos.",
+      "Pendiente: -20 dB por década (filtro de 1er orden).",
+    ],
+    useCase: "Quitar ruido de fuentes, suavizar PWM o filtrar señales de audio.",
+  },
+  {
+    key: "timer", label: "555 Timer", symbol: "555",
+    desc: "Astable: frecuencia y duty cycle.",
+    icon: <Timer className="w-4 h-4" />, formula: "f = 1.44 / ((R₁+2R₂) · C)",
+    tips: [
+      "Modo astable = oscilador continuo (LEDs, buzzers, PWM).",
+      "Modo monoestable = pulso único de duración fija.",
+      "Para duty 50% usá un diodo entre R₁ y el pin de descarga.",
+    ],
+    useCase: "Generar señales de reloj, parpadeos, alarmas o PWM sin microcontrolador.",
+  },
+  {
+    key: "smd", label: "Código SMD", symbol: "#",
+    desc: "Decodificá resistencias SMD de 3 y 4 dígitos.",
+    icon: <Hash className="w-4 h-4" />, formula: "ABC → AB · 10^C",
+    tips: [
+      "3 dígitos: ‘472’ = 47 · 10² = 4.7 kΩ.",
+      "4 dígitos: ‘4701’ = 470 · 10¹ = 4.7 kΩ (precisión 1%).",
+      "Letra R = punto decimal: ‘4R7’ = 4.7 Ω.",
+    ],
+    useCase: "Identificar componentes diminutos al reparar placas modernas (móviles, drones, PCBs SMD).",
+  },
+  {
+    key: "reactance", label: "Reactancia Xc", symbol: "Xc",
+    desc: "Reactancia de un capacitor en AC.",
+    icon: <Activity className="w-4 h-4" />, formula: "Xc = 1 / (2π · f · C)",
+    tips: [
+      "A más frecuencia, menor Xc (deja pasar más AC).",
+      "En DC (f=0) un capacitor es un circuito abierto.",
+      "Útil para diseñar filtros, acoplos y desacoples.",
+    ],
+    useCase: "Calcular el valor de capacitor para acoplar etapas de audio o filtrar fuentes conmutadas.",
+  },
+  {
+    key: "units", label: "Conversor Unidades", symbol: "μ→k",
+    desc: "mΩ, kΩ, MΩ, μF, nF, pF, mA…",
+    icon: <Ruler className="w-4 h-4" />, formula: "× 10ⁿ",
+    tips: [
+      "1 kΩ = 1000 Ω · 1 MΩ = 1.000.000 Ω.",
+      "1 μF = 1000 nF = 1.000.000 pF.",
+      "1 A = 1000 mA = 1.000.000 μA.",
+    ],
+    useCase: "Convertir rápidamente entre unidades cuando leés un datasheet o esquemático.",
+  },
 ];
 
 // Tema scoped al hub: cada uno define HSL para "accent" + "glow"
