@@ -9,10 +9,7 @@ import {
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import ResistorCalculator from "@/components/ResistorCalculator";
 import ComponentDictionary from "@/components/ComponentDictionary";
-import OhmCalculator from "@/components/OhmCalculator";
-import LedCalculator from "@/components/LedCalculator";
 import MiniProjects from "@/components/MiniProjects";
 import CalculatorHub from "@/components/CalculatorHub";
 import { Link } from "react-router-dom";
