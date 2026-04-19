@@ -2,6 +2,7 @@ import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import ohmTriangleImg from "@/assets/ley-de-ohm-triangle.jpg";
+import PlayCTA from "@/components/PlayCTA";
 
 const LeyDeOhm = () => {
   return (
@@ -54,6 +55,8 @@ const LeyDeOhm = () => {
         <li><strong className="text-foreground">Tapas I</strong> → queda V sobre R (dividir)</li>
         <li><strong className="text-foreground">Tapas R</strong> → queda V sobre I (dividir)</li>
       </ul>
+
+      <PlayCTA topic="ohm" />
 
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Ejemplos prácticos resueltos</h2>
       
