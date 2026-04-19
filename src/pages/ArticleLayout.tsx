@@ -1,10 +1,11 @@
-import { Zap, ArrowLeft, BookOpen, Clock, Calendar } from "lucide-react";
+import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AdBanner from "@/components/AdBanner";
 import LabProRecommendations from "@/components/LabProRecommendations";
 import AuthorBio from "@/components/AuthorBio";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import GlobalSearch from "@/components/GlobalSearch";
 
 interface ArticleLayoutProps {
   title: string;
