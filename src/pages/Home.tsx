@@ -101,6 +101,19 @@ const quickAccessCards = [
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeQaTab, setActiveQaTab] = useState("microcontroladores");
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Atajo de teclado Cmd/Ctrl+K para abrir el buscador
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((s) => !s);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   usePageMeta({
     title: "ElectroLab Pro - Calculadora de Resistencias, Capacitores y Diodos Online",
