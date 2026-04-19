@@ -10,6 +10,32 @@ const LeerDatasheet = () => {
       slug="leer-datasheet"
       datePublished="2026-04-19"
       dateModified="2026-04-19"
+      faqs={[
+        {
+          question: "¿Dónde descargo datasheets gratis y oficiales?",
+          answer: "Directamente del fabricante: ti.com (Texas Instruments), onsemi.com, st.com (STMicroelectronics), microchip.com. Como buscador agregador funciona muy bien alldatasheet.com y octopart.com.",
+        },
+        {
+          question: "¿Qué significa 'TBD' en un datasheet?",
+          answer: "'To Be Determined' — el fabricante todavía no caracterizó ese parámetro. Suele aparecer en datasheets preliminares. Si vas a producción, buscá la versión final del documento.",
+        },
+        {
+          question: "¿Por qué los datasheets están siempre en inglés?",
+          answer: "Es el idioma estándar de la industria electrónica. Los fabricantes solo traducen los datasheets de productos masivos para mercados estratégicos (China, Japón). Aprender el vocabulario técnico básico (voltage, current, gain, supply, output) te abre el 99% de los componentes del mundo.",
+        },
+        {
+          question: "¿Cuál es la diferencia entre LM358N, LM358P y LM358D?",
+          answer: "Las letras finales indican el encapsulado: N = PDIP-8 (through-hole), P = PDIP-8 también (variante de TI), D = SOIC-8 (SMD). Funcionalmente son el mismo chip.",
+        },
+        {
+          question: "¿El NE555 y el LM555 son lo mismo?",
+          answer: "Sí, son funcionalmente equivalentes. NE es el prefijo original de Signetics (luego Philips/NXP), LM es de National Semiconductor (hoy Texas Instruments). Ambos siguen el mismo pinout y fórmulas.",
+        },
+        {
+          question: "¿Qué hago si el datasheet no incluye un parámetro que necesito?",
+          answer: "Buscá el 'Application Note' (AN) del fabricante para esa familia de chips. Suelen tener mediciones, gráficos y casos de uso que no entran en el datasheet. Si no, preguntá en foros como EEVblog o el subreddit r/AskElectronics.",
+        },
+      ]}
     >
       {/* ============ INTRODUCCIÓN ============ */}
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es un datasheet y por qué leerlo?</h2>
