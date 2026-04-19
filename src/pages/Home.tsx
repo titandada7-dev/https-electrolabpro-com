@@ -33,6 +33,7 @@ const articleLinks = [
   { label: "🆕 Qué Arduino Comprar", to: "/articulos/que-arduino-comprar" },
   { label: "🆕 PWM Arduino", to: "/articulos/pwm-arduino" },
   { label: "🆕 Reguladores de Voltaje", to: "/articulos/reguladores-voltaje" },
+  { label: "🆕 Cómo Leer un Datasheet", to: "/articulos/leer-datasheet" },
   { label: "🔧 Mi Primer Laboratorio", to: "/blog/mi-primer-laboratorio" },
   { label: "🤖 5 Proyectos Arduino", to: "/blog/mis-5-proyectos-arduino-favoritos" },
   { label: "🔌 Mi Primer PCB con KiCad", to: "/blog/como-disene-mi-primer-pcb-kicad" },
