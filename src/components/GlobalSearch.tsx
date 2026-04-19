@@ -1,8 +1,29 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, BookOpen, Calculator, FileText, ArrowRight } from "lucide-react";
+import { Search, BookOpen, Calculator, FileText, ArrowRight, Sparkles, TrendingUp } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
+// Google Analytics tracking helper (gtag se inyecta desde index.html)
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
+const trackSearchEvent = (eventName: string, params: Record<string, unknown>) => {
+  try {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", eventName, params);
+    }
+    if (typeof window !== "undefined" && Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: eventName, ...params });
+    }
+  } catch {
+    // Silencioso: nunca rompemos UX por analytics
+  }
+};
 
 type SearchItem = {
   title: string;
@@ -63,6 +84,26 @@ const TYPE_META = {
   pagina: { label: "Páginas", icon: ArrowRight, color: "text-violet-500" },
 } as const;
 
+// Sugerencias mostradas en estado vacío y como fallback en "sin resultados"
+const POPULAR_SUGGESTIONS = [
+  "Arduino",
+  "Ley de Ohm",
+  "Resistencias",
+  "Transistores",
+  "Soldadura",
+  "555",
+  "I2C",
+  "Multímetro",
+];
+
+// Atajos rápidos a destinos clave del sitio (sin escribir nada)
+const QUICK_LINKS: SearchItem[] = [
+  { type: "articulo", title: "Arduino para Principiantes", description: "Empezá desde cero", to: "/articulos/arduino" },
+  { type: "calculadora", title: "Calculadora Ley de Ohm", description: "V = I × R", to: "/", scrollTo: "calculadora" },
+  { type: "glosario", title: "Glosario Técnico", description: "50+ términos de electrónica", to: "/glosario" },
+  { type: "articulo", title: "Cómo Leer un Datasheet", description: "LM358 y NE555", to: "/articulos/leer-datasheet" },
+];
+
 interface GlobalSearchProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -72,12 +113,15 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+  const trackedQueryRef = useRef<string>("");
 
   // Reset on open/close
   useEffect(() => {
     if (open) {
       setQuery("");
       setActiveIndex(0);
+      trackedQueryRef.current = "";
+      trackSearchEvent("search_open", { source: "global_search" });
     }
   }, [open]);
 
@@ -104,8 +148,36 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
     return order.flatMap((t) => grouped[t] || []);
   }, [grouped]);
 
+  const hasQuery = query.trim().length > 0;
+  const noResults = hasQuery && flatItems.length === 0;
+
+  // GA tracking: registramos términos buscados con debounce de 800ms
+  // (evita reportar cada tecla mientras el usuario tipea)
+  useEffect(() => {
+    const trimmed = query.trim();
+    if (!trimmed || trimmed.length < 2) return;
+    const handle = setTimeout(() => {
+      if (trackedQueryRef.current === trimmed) return;
+      trackedQueryRef.current = trimmed;
+      trackSearchEvent("search", {
+        search_term: trimmed,
+        results_count: flatItems.length,
+        has_results: flatItems.length > 0,
+      });
+    }, 800);
+    return () => clearTimeout(handle);
+  }, [query, flatItems.length]);
+
   const handleSelect = useCallback(
     (item: SearchItem) => {
+      // GA tracking: qué resultado clickeó el usuario y para qué término
+      trackSearchEvent("search_result_click", {
+        search_term: query.trim() || "(empty)",
+        result_title: item.title,
+        result_type: item.type,
+        result_to: item.to,
+        result_position: flatItems.indexOf(item) + 1,
+      });
       onOpenChange(false);
       if (item.scrollTo && window.location.pathname === item.to) {
         document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: "smooth" });
@@ -118,8 +190,13 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
         }
       }
     },
-    [navigate, onOpenChange]
+    [navigate, onOpenChange, query, flatItems]
   );
+
+  const handleSuggestionClick = useCallback((suggestion: string) => {
+    trackSearchEvent("search_suggestion_click", { suggestion });
+    setQuery(suggestion);
+  }, []);
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -169,17 +246,82 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
 
         {/* Results */}
         <div className="max-h-[60vh] overflow-y-auto py-2">
-          {flatItems.length === 0 ? (
-            <div className="px-6 py-12 text-center">
-              <Search className="w-8 h-8 text-muted-foreground/40 mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">
-                No se encontraron resultados para <span className="font-mono text-foreground">"{query}"</span>
+          {noResults ? (
+            <div className="px-6 py-10 text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted/50 mb-4">
+                <Search className="w-6 h-6 text-muted-foreground/60" />
+              </div>
+              <p className="text-base font-medium text-foreground mb-1">
+                Sin resultados para <span className="font-mono">"{query}"</span>
               </p>
-              <p className="text-xs text-muted-foreground/60 mt-2">
-                Probá con otra palabra o explorá las categorías
+              <p className="text-sm text-muted-foreground mb-6">
+                Probá con otra palabra o elegí una sugerencia popular:
               </p>
+
+              {/* Sugerencias clickeables */}
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {POPULAR_SUGGESTIONS.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => handleSuggestionClick(s)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-card hover:bg-accent hover:border-primary/40 transition-colors text-foreground"
+                  >
+                    <Sparkles className="w-3 h-3 text-primary" />
+                    {s}
+                  </button>
+                ))}
+              </div>
+
+              {/* Atajos rápidos */}
+              <div className="text-left max-w-md mx-auto border-t border-border pt-4">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-2 px-1">
+                  O explorá esto
+                </p>
+                {QUICK_LINKS.map((item) => {
+                  const meta = TYPE_META[item.type];
+                  const Icon = meta.icon;
+                  return (
+                    <button
+                      key={item.title}
+                      onClick={() => handleSelect(item)}
+                      className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent transition-colors"
+                    >
+                      <Icon className={`w-4 h-4 shrink-0 ${meta.color}`} />
+                      <div className="flex-1 min-w-0 text-left">
+                        <p className="text-sm font-medium text-foreground truncate">{item.title}</p>
+                        <p className="text-xs text-muted-foreground truncate">{item.description}</p>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-muted-foreground shrink-0" />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          ) : (
+          ) : !hasQuery ? (
+            <>
+              {/* Estado vacío inicial: sugerencias populares + categorías */}
+              <div className="px-4 py-3 border-b border-border">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-2 flex items-center gap-1.5">
+                  <TrendingUp className="w-3 h-3" />
+                  Búsquedas populares
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {POPULAR_SUGGESTIONS.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => handleSuggestionClick(s)}
+                      className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border border-border bg-card hover:bg-accent hover:border-primary/40 transition-colors text-foreground"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : null}
+
+          {!noResults && (
+
             (Object.keys(TYPE_META) as Array<keyof typeof TYPE_META>).map((type) => {
               const items = grouped[type];
               if (!items || items.length === 0) return null;
