@@ -74,8 +74,8 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           "height": 512
         }
       },
-      "datePublished": datePublished,
-      "dateModified": dateModified,
+      "datePublished": toISO8601WithTZ(datePublished),
+      "dateModified": toISO8601WithTZ(dateModified),
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": articleUrl
