@@ -40,7 +40,7 @@ const toISO8601WithTZ = (date: string): string => {
   return `${dateOnly}T10:00:00-03:00`;
 };
 
-const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps) => {
+const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   usePageMeta({
