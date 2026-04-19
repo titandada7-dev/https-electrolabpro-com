@@ -29,10 +29,13 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       "@type": "Article",
       "headline": title,
       "description": subtitle,
+      "image": [
+        "https://electrolabpro.com/og-image.jpg"
+      ],
       "author": {
         "@type": "Person",
         "name": "J.A. Sanchez",
-        "url": "https://electrolabpro.com"
+        "url": "https://electrolabpro.com/sobre-nosotros"
       },
       "publisher": {
         "@type": "Organization",
@@ -40,7 +43,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
         "url": "https://electrolabpro.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://electrolabpro.com/favicon.ico"
+          "url": "https://electrolabpro.com/pwa-icon-512.png",
+          "width": 512,
+          "height": 512
         }
       },
       "datePublished": datePublished,
