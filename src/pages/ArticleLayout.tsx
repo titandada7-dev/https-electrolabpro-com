@@ -30,6 +30,17 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         setSearchOpen((s) => !s);
+        return;
+      }
+      if (e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        const target = e.target as HTMLElement;
+        const tag = target.tagName;
+        const isEditable =
+          tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || target.isContentEditable;
+        if (!isEditable) {
+          e.preventDefault();
+          setSearchOpen(true);
+        }
       }
     };
     window.addEventListener("keydown", handler);
