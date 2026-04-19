@@ -113,14 +113,22 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
               Electro<span className="text-primary">Lab</span>
             </span>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors p-2 rounded-lg hover:bg-accent"
+              aria-label="Buscar"
+            >
+              <Search className="w-4 h-4" />
+              <kbd className="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded border border-border bg-muted text-[10px] font-mono">⌘K</kbd>
+            </button>
             <Link to="/sobre-nosotros" className="hidden md:block text-sm text-muted-foreground hover:text-foreground transition-colors">Sobre Nosotros</Link>
             <Link
               to="/"
               className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               <ArrowLeft className="w-4 h-4" />
-              Volver al inicio
+              <span className="hidden sm:inline">Volver al inicio</span>
             </Link>
           </div>
         </div>
