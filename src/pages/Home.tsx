@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import electrolabLogo from "@/assets/electrolab-logo.webp";
 import { motion } from "framer-motion";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
   ShoppingBag, Menu, X, CircuitBoard, Wrench, TrendingUp,
-  MessageSquare, Lightbulb, Battery, Microchip, Cable
+  MessageSquare, Lightbulb, Battery, Microchip, Cable, Search
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import MiniProjects from "@/components/MiniProjects";
 import CalculatorHub from "@/components/CalculatorHub";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import GlobalSearch from "@/components/GlobalSearch";
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
@@ -33,6 +34,7 @@ const articleLinks = [
   { label: "🆕 Qué Arduino Comprar", to: "/articulos/que-arduino-comprar" },
   { label: "🆕 PWM Arduino", to: "/articulos/pwm-arduino" },
   { label: "🆕 Reguladores de Voltaje", to: "/articulos/reguladores-voltaje" },
+  { label: "🆕 Cómo Leer un Datasheet", to: "/articulos/leer-datasheet" },
   { label: "🔧 Mi Primer Laboratorio", to: "/blog/mi-primer-laboratorio" },
   { label: "🤖 5 Proyectos Arduino", to: "/blog/mis-5-proyectos-arduino-favoritos" },
   { label: "🔌 Mi Primer PCB con KiCad", to: "/blog/como-disene-mi-primer-pcb-kicad" },
@@ -99,6 +101,19 @@ const quickAccessCards = [
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeQaTab, setActiveQaTab] = useState("microcontroladores");
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Atajo de teclado Cmd/Ctrl+K para abrir el buscador
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((s) => !s);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   usePageMeta({
     title: "ElectroLab Pro - Calculadora de Resistencias, Capacitores y Diodos Online",
@@ -140,12 +155,28 @@ const Home = () => {
             </div>
             <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Sobre Nosotros</Link>
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contacto</Link>
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50"
+              aria-label="Abrir buscador"
+            >
+              <Search className="w-3.5 h-3.5" />
+              <span className="hidden lg:inline">Buscar</span>
+              <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded border border-border bg-muted text-[10px] font-mono">⌘K</kbd>
+            </button>
             <ThemeToggle />
             <Button size="sm" onClick={() => scrollTo("servicios")}>Empezar</Button>
           </div>
 
           {/* Mobile toggle */}
           <div className="flex items-center gap-1 md:hidden">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors"
+              aria-label="Buscar"
+            >
+              <Search className="h-5 w-5" />
+            </button>
             <ThemeToggle />
             <button className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
               {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -1084,6 +1115,9 @@ const Home = () => {
           </div>
         </div>
       </footer>
+
+      {/* Buscador global ⌘K */}
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
     </div>
   );
 };

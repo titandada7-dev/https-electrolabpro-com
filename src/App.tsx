@@ -25,6 +25,7 @@ import BlogDisenoPCB from "./pages/articles/BlogDisenoPCB";
 import QueArduinoComprar from "./pages/articles/QueArduinoComprar";
 import PwmArduino from "./pages/articles/PwmArduino";
 import ReguladoresVoltaje from "./pages/articles/ReguladoresVoltaje";
+import LeerDatasheet from "./pages/articles/LeerDatasheet";
 import SobreNosotros from "./pages/SobreNosotros";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
 import Glosario from "./pages/Glosario";
@@ -59,6 +60,7 @@ function App() {
         <Route path="/articulos/que-arduino-comprar" element={<QueArduinoComprar />} />
         <Route path="/articulos/pwm-arduino" element={<PwmArduino />} />
         <Route path="/articulos/reguladores-voltaje" element={<ReguladoresVoltaje />} />
+        <Route path="/articulos/leer-datasheet" element={<LeerDatasheet />} />
         <Route path="/blog/mi-primer-laboratorio" element={<BlogPrimerLaboratorio />} />
         <Route path="/blog/mis-5-proyectos-arduino-favoritos" element={<BlogProyectosArduino />} />
         <Route path="/blog/como-disene-mi-primer-pcb-kicad" element={<BlogDisenoPCB />} />

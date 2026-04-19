@@ -1,10 +1,11 @@
-import { Zap, ArrowLeft, BookOpen, Clock, Calendar } from "lucide-react";
+import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AdBanner from "@/components/AdBanner";
 import LabProRecommendations from "@/components/LabProRecommendations";
 import AuthorBio from "@/components/AuthorBio";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import GlobalSearch from "@/components/GlobalSearch";
 
 interface ArticleLayoutProps {
   title: string;
@@ -16,10 +17,24 @@ interface ArticleLayoutProps {
 }
 
 const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps) => {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
     description: subtitle,
   });
+
+  // Atajo Cmd/Ctrl+K para abrir el buscador desde cualquier artículo
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((s) => !s);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   useEffect(() => {
     const articleUrl = slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com";
@@ -29,10 +44,13 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       "@type": "Article",
       "headline": title,
       "description": subtitle,
+      "image": [
+        "https://electrolabpro.com/og-image.jpg"
+      ],
       "author": {
         "@type": "Person",
         "name": "J.A. Sanchez",
-        "url": "https://electrolabpro.com"
+        "url": "https://electrolabpro.com/sobre-nosotros"
       },
       "publisher": {
         "@type": "Organization",
@@ -40,7 +58,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
         "url": "https://electrolabpro.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://electrolabpro.com/favicon.ico"
+          "url": "https://electrolabpro.com/pwa-icon-512.png",
+          "width": 512,
+          "height": 512
         }
       },
       "datePublished": datePublished,
@@ -93,14 +113,22 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
               Electro<span className="text-primary">Lab</span>
             </span>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors p-2 rounded-lg hover:bg-accent"
+              aria-label="Buscar"
+            >
+              <Search className="w-4 h-4" />
+              <kbd className="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded border border-border bg-muted text-[10px] font-mono">⌘K</kbd>
+            </button>
             <Link to="/sobre-nosotros" className="hidden md:block text-sm text-muted-foreground hover:text-foreground transition-colors">Sobre Nosotros</Link>
             <Link
               to="/"
               className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               <ArrowLeft className="w-4 h-4" />
-              Volver al inicio
+              <span className="hidden sm:inline">Volver al inicio</span>
             </Link>
           </div>
         </div>
@@ -237,6 +265,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           </div>
         </div>
       </footer>
+
+      {/* Buscador global ⌘K */}
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
     </div>
   );
 };
