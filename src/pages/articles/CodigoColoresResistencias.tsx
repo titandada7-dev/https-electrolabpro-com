@@ -2,6 +2,7 @@ import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import resistorImg from "@/assets/resistor-color-code.png";
+import PlayCTA from "@/components/PlayCTA";
 
 const CodigoColoresResistencias = () => {
   return (
@@ -53,6 +54,8 @@ const CodigoColoresResistencias = () => {
           </tbody>
         </table>
       </div>
+
+      <PlayCTA topic="resistencias" />
 
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">La anatomía de una resistencia: 4 y 5 bandas</h2>
       <p>

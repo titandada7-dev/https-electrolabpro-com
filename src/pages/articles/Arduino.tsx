@@ -2,6 +2,7 @@ import ArticleLayout from "@/pages/ArticleLayout";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import arduinoImg from "@/assets/arduino-kit.jpg";
+import PlayCTA from "@/components/PlayCTA";
 
 const Arduino = () => {
   return (
@@ -34,6 +35,8 @@ const Arduino = () => {
         <li><strong className="text-foreground">Comunidad enorme</strong>: Miles de tutoriales, librerías y proyectos disponibles</li>
         <li><strong className="text-foreground">Fácil de programar</strong>: Usa un lenguaje basado en C/C++ simplificado</li>
       </ul>
+
+      <PlayCTA topic="arduino" />
 
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Modelos de Arduino más populares</h2>
       <div className="overflow-x-auto">
