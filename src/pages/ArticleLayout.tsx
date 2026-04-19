@@ -17,10 +17,24 @@ interface ArticleLayoutProps {
 }
 
 const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps) => {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
     description: subtitle,
   });
+
+  // Atajo Cmd/Ctrl+K para abrir el buscador desde cualquier artículo
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((s) => !s);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   useEffect(() => {
     const articleUrl = slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com";
