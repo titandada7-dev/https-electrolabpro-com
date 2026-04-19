@@ -155,12 +155,28 @@ const Home = () => {
             </div>
             <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Sobre Nosotros</Link>
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contacto</Link>
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50"
+              aria-label="Abrir buscador"
+            >
+              <Search className="w-3.5 h-3.5" />
+              <span className="hidden lg:inline">Buscar</span>
+              <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded border border-border bg-muted text-[10px] font-mono">⌘K</kbd>
+            </button>
             <ThemeToggle />
             <Button size="sm" onClick={() => scrollTo("servicios")}>Empezar</Button>
           </div>
 
           {/* Mobile toggle */}
           <div className="flex items-center gap-1 md:hidden">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors"
+              aria-label="Buscar"
+            >
+              <Search className="h-5 w-5" />
+            </button>
             <ThemeToggle />
             <button className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
               {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
