@@ -84,6 +84,26 @@ const TYPE_META = {
   pagina: { label: "Páginas", icon: ArrowRight, color: "text-violet-500" },
 } as const;
 
+// Sugerencias mostradas en estado vacío y como fallback en "sin resultados"
+const POPULAR_SUGGESTIONS = [
+  "Arduino",
+  "Ley de Ohm",
+  "Resistencias",
+  "Transistores",
+  "Soldadura",
+  "555",
+  "I2C",
+  "Multímetro",
+];
+
+// Atajos rápidos a destinos clave del sitio (sin escribir nada)
+const QUICK_LINKS: SearchItem[] = [
+  { type: "articulo", title: "Arduino para Principiantes", description: "Empezá desde cero", to: "/articulos/arduino" },
+  { type: "calculadora", title: "Calculadora Ley de Ohm", description: "V = I × R", to: "/", scrollTo: "calculadora" },
+  { type: "glosario", title: "Glosario Técnico", description: "50+ términos de electrónica", to: "/glosario" },
+  { type: "articulo", title: "Cómo Leer un Datasheet", description: "LM358 y NE555", to: "/articulos/leer-datasheet" },
+];
+
 interface GlobalSearchProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -93,12 +113,15 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+  const trackedQueryRef = useRef<string>("");
 
   // Reset on open/close
   useEffect(() => {
     if (open) {
       setQuery("");
       setActiveIndex(0);
+      trackedQueryRef.current = "";
+      trackSearchEvent("search_open", { source: "global_search" });
     }
   }, [open]);
 
@@ -125,8 +148,36 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
     return order.flatMap((t) => grouped[t] || []);
   }, [grouped]);
 
+  const hasQuery = query.trim().length > 0;
+  const noResults = hasQuery && flatItems.length === 0;
+
+  // GA tracking: registramos términos buscados con debounce de 800ms
+  // (evita reportar cada tecla mientras el usuario tipea)
+  useEffect(() => {
+    const trimmed = query.trim();
+    if (!trimmed || trimmed.length < 2) return;
+    const handle = setTimeout(() => {
+      if (trackedQueryRef.current === trimmed) return;
+      trackedQueryRef.current = trimmed;
+      trackSearchEvent("search", {
+        search_term: trimmed,
+        results_count: flatItems.length,
+        has_results: flatItems.length > 0,
+      });
+    }, 800);
+    return () => clearTimeout(handle);
+  }, [query, flatItems.length]);
+
   const handleSelect = useCallback(
     (item: SearchItem) => {
+      // GA tracking: qué resultado clickeó el usuario y para qué término
+      trackSearchEvent("search_result_click", {
+        search_term: query.trim() || "(empty)",
+        result_title: item.title,
+        result_type: item.type,
+        result_to: item.to,
+        result_position: flatItems.indexOf(item) + 1,
+      });
       onOpenChange(false);
       if (item.scrollTo && window.location.pathname === item.to) {
         document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: "smooth" });
@@ -139,8 +190,13 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
         }
       }
     },
-    [navigate, onOpenChange]
+    [navigate, onOpenChange, query, flatItems]
   );
+
+  const handleSuggestionClick = useCallback((suggestion: string) => {
+    trackSearchEvent("search_suggestion_click", { suggestion });
+    setQuery(suggestion);
+  }, []);
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
