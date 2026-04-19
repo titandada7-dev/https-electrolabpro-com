@@ -13,6 +13,24 @@ const ReguladoresVoltaje = () => {
       slug="reguladores-voltaje"
       datePublished="2026-04-18"
       dateModified="2026-04-18"
+      faqs={[
+        {
+          question: "¿Puedo usar un 7805 para alimentar un Arduino UNO desde 12V?",
+          answer: "Funciona, pero el Arduino UNO ya tiene su propio regulador interno (NCP1117). Conectar 12V al jack DC ya hace lo mismo, sin capacitores extra.",
+        },
+        {
+          question: "¿Cuánta corriente entrega un 7805 sin disipador?",
+          answer: "Depende de la diferencia Vin-Vout. Con Vin=7V/Vout=5V podés sacar ~500 mA sin disipador. Con Vin=12V solo ~200 mA antes del cutoff térmico.",
+        },
+        {
+          question: "¿Los buck converters sirven para audio?",
+          answer: "Sí, pero necesitás filtrado adicional (LC pasa-bajos a la salida) y mantener la frecuencia de conmutación lejos de la banda audible. Para preamps de alta fidelidad, mejor un LDO o lineal.",
+        },
+        {
+          question: "¿Necesito disipador para el LM2596?",
+          answer: "Hasta 2A casi nunca. Por arriba de eso conviene agregar un pequeño disipador adhesivo al chip o forzar circulación de aire.",
+        },
+      ]}
     >
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es un regulador de voltaje?</h2>
       <p>
