@@ -131,11 +131,34 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
     document.getElementById("breadcrumb-jsonld")?.remove();
     document.head.appendChild(breadcrumbScript);
 
+    // FAQPage schema (opcional) — solo si el artículo pasó faqs
+    document.getElementById("faq-jsonld")?.remove();
+    if (faqs && faqs.length > 0) {
+      const faqJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((f) => ({
+          "@type": "Question",
+          "name": f.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": f.answer,
+          },
+        })),
+      };
+      const faqScript = document.createElement("script");
+      faqScript.type = "application/ld+json";
+      faqScript.id = "faq-jsonld";
+      faqScript.textContent = JSON.stringify(faqJsonLd);
+      document.head.appendChild(faqScript);
+    }
+
     return () => {
       document.getElementById("article-jsonld")?.remove();
       document.getElementById("breadcrumb-jsonld")?.remove();
+      document.getElementById("faq-jsonld")?.remove();
     };
-  }, [title, subtitle, slug, datePublished, dateModified]);
+  }, [title, subtitle, slug, datePublished, dateModified, faqs]);
 
   return (
     <div className="min-h-screen bg-background bg-grid">
