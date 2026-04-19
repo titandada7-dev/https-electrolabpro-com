@@ -16,6 +16,22 @@ interface ArticleLayoutProps {
   dateModified?: string;
 }
 
+/**
+ * Convierte una fecha (YYYY-MM-DD o ISO) a ISO 8601 completo con zona horaria.
+ * Google Rich Results requiere TZ explícita en datePublished/dateModified.
+ * Default: 10:00 hora de Argentina (UTC-03:00) — sede del autor.
+ */
+const toISO8601WithTZ = (date: string): string => {
+  if (!date) return new Date().toISOString();
+  // Si ya viene con T y offset/Z, lo respetamos
+  if (date.includes("T") && (date.includes("Z") || /[+-]\d{2}:\d{2}$/.test(date))) {
+    return date;
+  }
+  // YYYY-MM-DD → fijamos 10:00:00 hora Argentina (UTC-03:00)
+  const dateOnly = date.split("T")[0];
+  return `${dateOnly}T10:00:00-03:00`;
+};
+
 const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
 
