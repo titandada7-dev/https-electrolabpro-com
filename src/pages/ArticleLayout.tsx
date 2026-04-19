@@ -22,7 +22,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
   });
 
   useEffect(() => {
-    const jsonLd = {
+    const articleUrl = slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com";
+
+    const articleJsonLd = {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": title,
@@ -45,23 +47,38 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       "dateModified": dateModified,
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com"
+        "@id": articleUrl
       },
       "inLanguage": "es"
     };
 
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.textContent = JSON.stringify(jsonLd);
-    script.id = "article-jsonld";
-    
-    const existing = document.getElementById("article-jsonld");
-    if (existing) existing.remove();
-    document.head.appendChild(script);
+    const breadcrumbJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://electrolabpro.com" },
+        { "@type": "ListItem", "position": 2, "name": "Artículos", "item": "https://electrolabpro.com/#guias" },
+        { "@type": "ListItem", "position": 3, "name": title, "item": articleUrl }
+      ]
+    };
+
+    const articleScript = document.createElement("script");
+    articleScript.type = "application/ld+json";
+    articleScript.id = "article-jsonld";
+    articleScript.textContent = JSON.stringify(articleJsonLd);
+    document.getElementById("article-jsonld")?.remove();
+    document.head.appendChild(articleScript);
+
+    const breadcrumbScript = document.createElement("script");
+    breadcrumbScript.type = "application/ld+json";
+    breadcrumbScript.id = "breadcrumb-jsonld";
+    breadcrumbScript.textContent = JSON.stringify(breadcrumbJsonLd);
+    document.getElementById("breadcrumb-jsonld")?.remove();
+    document.head.appendChild(breadcrumbScript);
 
     return () => {
-      const el = document.getElementById("article-jsonld");
-      if (el) el.remove();
+      document.getElementById("article-jsonld")?.remove();
+      document.getElementById("breadcrumb-jsonld")?.remove();
     };
   }, [title, subtitle, slug, datePublished, dateModified]);
 
