@@ -7,6 +7,12 @@ import AuthorBio from "@/components/AuthorBio";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import GlobalSearch from "@/components/GlobalSearch";
 
+export interface FaqItem {
+  question: string;
+  /** Respuesta en texto plano (sin HTML/markdown). Google requiere texto limpio. */
+  answer: string;
+}
+
 interface ArticleLayoutProps {
   title: string;
   subtitle: string;
@@ -14,6 +20,8 @@ interface ArticleLayoutProps {
   slug?: string;
   datePublished?: string;
   dateModified?: string;
+  /** Si se pasan FAQs, se inyecta automáticamente schema.org FAQPage para Rich Results. */
+  faqs?: FaqItem[];
 }
 
 /**
