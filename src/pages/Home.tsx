@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import electrolabLogo from "@/assets/electrolab-logo.webp";
 import { motion } from "framer-motion";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
   ShoppingBag, Menu, X, CircuitBoard, Wrench, TrendingUp,
-  MessageSquare, Lightbulb, Battery, Microchip, Cable
+  MessageSquare, Lightbulb, Battery, Microchip, Cable, Search
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import MiniProjects from "@/components/MiniProjects";
 import CalculatorHub from "@/components/CalculatorHub";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import GlobalSearch from "@/components/GlobalSearch";
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
