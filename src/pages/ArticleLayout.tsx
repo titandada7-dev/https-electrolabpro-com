@@ -265,6 +265,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           </div>
         </div>
       </footer>
+
+      {/* Buscador global ⌘K */}
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
     </div>
   );
 };
