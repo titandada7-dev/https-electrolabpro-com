@@ -9,6 +9,24 @@ const PwmArduino = () => {
       slug="pwm-arduino"
       datePublished="2026-04-18"
       dateModified="2026-04-18"
+      faqs={[
+        {
+          question: "¿PWM entrega un voltaje analógico real?",
+          answer: "No. Entrega pulsos digitales de 0V/5V. Lo que percibís como 'voltaje promedio' es el efecto físico (térmico/inercial). Si necesitás voltaje analógico real usá un DAC externo (MCP4725) o un filtro RC pasa-bajos.",
+        },
+        {
+          question: "¿Puedo controlar un LED RGB con PWM?",
+          answer: "Sí. Cada color (R, G, B) va a un pin PWM diferente con su propia resistencia. Mezclando los 3 duty cycles obtenés 16.7 millones de colores.",
+        },
+        {
+          question: "¿Cuánta corriente puede entregar un pin PWM?",
+          answer: "Máximo 20 mA por pin (40 mA absoluto). Para motores, relés o tiras LED necesitás un transistor o MOSFET intermedio.",
+        },
+        {
+          question: "¿En ESP32 cómo funciona el PWM?",
+          answer: "El ESP32 usa el módulo LEDC: ledcSetup(), ledcAttachPin() y ledcWrite(). Permite resoluciones de hasta 16 bits y frecuencias hasta 40 MHz.",
+        },
+      ]}
     >
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es PWM?</h2>
       <p>
