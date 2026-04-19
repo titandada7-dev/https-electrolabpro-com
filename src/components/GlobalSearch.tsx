@@ -1,8 +1,29 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, BookOpen, Calculator, FileText, ArrowRight } from "lucide-react";
+import { Search, BookOpen, Calculator, FileText, ArrowRight, Sparkles, TrendingUp } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
+// Google Analytics tracking helper (gtag se inyecta desde index.html)
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
+const trackSearchEvent = (eventName: string, params: Record<string, unknown>) => {
+  try {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag("event", eventName, params);
+    }
+    if (typeof window !== "undefined" && Array.isArray(window.dataLayer)) {
+      window.dataLayer.push({ event: eventName, ...params });
+    }
+  } catch {
+    // Silencioso: nunca rompemos UX por analytics
+  }
+};
 
 type SearchItem = {
   title: string;
