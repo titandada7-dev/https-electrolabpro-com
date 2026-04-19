@@ -173,6 +173,9 @@ const Home = () => {
             <Link to="/sobre-nosotros" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
               Sobre Nosotros
             </Link>
+            <Link to="/glosario" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
+              📖 Glosario Técnico
+            </Link>
             <div className="border-t border-border pt-3 mt-2">
               <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2 px-3">Artículos</p>
               {articleLinks.map((a) => (
