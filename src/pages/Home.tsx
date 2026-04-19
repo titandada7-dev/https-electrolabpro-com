@@ -135,6 +135,103 @@ const Home = () => {
     description: "Calculadora de resistencias, capacitores y diodos online. Aprende electrónica desde cero con las herramientas gratuitas de ElectroLab Pro por José Andrés Sánchez.",
   });
 
+  // ═══════════ JSON-LD SCHEMAS (Organization + WebSite + ItemList) ═══════════
+  useEffect(() => {
+    const SITE_URL = "https://electrolabpro.com";
+
+    const organizationSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "ElectroLab Pro",
+      alternateName: "ElectroLabPro",
+      url: SITE_URL,
+      logo: `${SITE_URL}/electrolab-logo.webp`,
+      description:
+        "Plataforma educativa de electrónica con calculadoras interactivas, guías técnicas y herramientas para estudiantes, hobbistas y profesionales.",
+      founder: {
+        "@type": "Person",
+        name: "José Andrés Sánchez",
+      },
+      sameAs: [
+        "https://electrolabpro.com",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "contacto@electrolabpro.com",
+        availableLanguage: ["Spanish"],
+      },
+    };
+
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "ElectroLab Pro",
+      url: SITE_URL,
+      inLanguage: "es",
+      description:
+        "Calculadoras de electrónica online: Ley de Ohm, resistencias, LED, divisor de voltaje, RC, 555. Guías y artículos técnicos en español.",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_URL}/?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "ElectroLab Pro",
+        logo: {
+          "@type": "ImageObject",
+          url: `${SITE_URL}/electrolab-logo.webp`,
+        },
+      },
+    };
+
+    const itemListSchema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Artículos destacados de ElectroLab Pro",
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      numberOfItems: 8,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Cómo Leer un Datasheet", url: `${SITE_URL}/articulos/leer-datasheet` },
+        { "@type": "ListItem", position: 2, name: "Qué Arduino Comprar", url: `${SITE_URL}/articulos/que-arduino-comprar` },
+        { "@type": "ListItem", position: 3, name: "PWM con Arduino", url: `${SITE_URL}/articulos/pwm-arduino` },
+        { "@type": "ListItem", position: 4, name: "Reguladores de Voltaje", url: `${SITE_URL}/articulos/reguladores-voltaje` },
+        { "@type": "ListItem", position: 5, name: "Ley de Ohm", url: `${SITE_URL}/articulos/ley-de-ohm` },
+        { "@type": "ListItem", position: 6, name: "Código de Colores de Resistencias", url: `${SITE_URL}/articulos/codigo-colores-resistencias` },
+        { "@type": "ListItem", position: 7, name: "Sensores Arduino", url: `${SITE_URL}/articulos/sensores-arduino` },
+        { "@type": "ListItem", position: 8, name: "Protocolo I2C", url: `${SITE_URL}/articulos/protocolo-i2c` },
+      ],
+    };
+
+    const schemas = [
+      { id: "schema-organization", data: organizationSchema },
+      { id: "schema-website", data: websiteSchema },
+      { id: "schema-itemlist", data: itemListSchema },
+    ];
+
+    schemas.forEach(({ id, data }) => {
+      let script = document.getElementById(id) as HTMLScriptElement | null;
+      if (!script) {
+        script = document.createElement("script");
+        script.id = id;
+        script.type = "application/ld+json";
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(data);
+    });
+
+    return () => {
+      ["schema-organization", "schema-website", "schema-itemlist"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+      });
+    };
+  }, []);
+
   const activeQa = QA_CATEGORIES.find((c) => c.id === activeQaTab);
 
   return (
@@ -270,6 +367,25 @@ const Home = () => {
               <BookOpen className="h-4 w-4" /> Ver guías
             </Button>
           </div>
+
+          {/* CTA: Aprende Jugando — ElectroLab Play */}
+          <Link
+            to="/aprende-jugando"
+            className="group mt-6 inline-flex items-center gap-3 rounded-full border border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all hover:border-primary/60 hover:shadow-md hover:scale-[1.02]"
+            aria-label="Jugá ElectroLab Play, el quiz interactivo de electrónica"
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
+            </span>
+            <span className="text-base">🎮</span>
+            <span>
+              <span className="text-primary font-bold">Nuevo:</span> Jugá ElectroLab Play
+            </span>
+            <span className="ml-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
+              Quiz
+            </span>
+          </Link>
         </div>
       </section>
 
