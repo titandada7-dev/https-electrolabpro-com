@@ -246,17 +246,82 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
 
         {/* Results */}
         <div className="max-h-[60vh] overflow-y-auto py-2">
-          {flatItems.length === 0 ? (
-            <div className="px-6 py-12 text-center">
-              <Search className="w-8 h-8 text-muted-foreground/40 mx-auto mb-3" />
-              <p className="text-sm text-muted-foreground">
-                No se encontraron resultados para <span className="font-mono text-foreground">"{query}"</span>
+          {noResults ? (
+            <div className="px-6 py-10 text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted/50 mb-4">
+                <Search className="w-6 h-6 text-muted-foreground/60" />
+              </div>
+              <p className="text-base font-medium text-foreground mb-1">
+                Sin resultados para <span className="font-mono">"{query}"</span>
               </p>
-              <p className="text-xs text-muted-foreground/60 mt-2">
-                Probá con otra palabra o explorá las categorías
+              <p className="text-sm text-muted-foreground mb-6">
+                Probá con otra palabra o elegí una sugerencia popular:
               </p>
+
+              {/* Sugerencias clickeables */}
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {POPULAR_SUGGESTIONS.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => handleSuggestionClick(s)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-card hover:bg-accent hover:border-primary/40 transition-colors text-foreground"
+                  >
+                    <Sparkles className="w-3 h-3 text-primary" />
+                    {s}
+                  </button>
+                ))}
+              </div>
+
+              {/* Atajos rápidos */}
+              <div className="text-left max-w-md mx-auto border-t border-border pt-4">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-2 px-1">
+                  O explorá esto
+                </p>
+                {QUICK_LINKS.map((item) => {
+                  const meta = TYPE_META[item.type];
+                  const Icon = meta.icon;
+                  return (
+                    <button
+                      key={item.title}
+                      onClick={() => handleSelect(item)}
+                      className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-accent transition-colors"
+                    >
+                      <Icon className={`w-4 h-4 shrink-0 ${meta.color}`} />
+                      <div className="flex-1 min-w-0 text-left">
+                        <p className="text-sm font-medium text-foreground truncate">{item.title}</p>
+                        <p className="text-xs text-muted-foreground truncate">{item.description}</p>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-muted-foreground shrink-0" />
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          ) : (
+          ) : !hasQuery ? (
+            <>
+              {/* Estado vacío inicial: sugerencias populares + categorías */}
+              <div className="px-4 py-3 border-b border-border">
+                <p className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-muted-foreground/70 mb-2 flex items-center gap-1.5">
+                  <TrendingUp className="w-3 h-3" />
+                  Búsquedas populares
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {POPULAR_SUGGESTIONS.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => handleSuggestionClick(s)}
+                      className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border border-border bg-card hover:bg-accent hover:border-primary/40 transition-colors text-foreground"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : null}
+
+          {!noResults && (
+
             (Object.keys(TYPE_META) as Array<keyof typeof TYPE_META>).map((type) => {
               const items = grouped[type];
               if (!items || items.length === 0) return null;
