@@ -13,6 +13,24 @@ const QueArduinoComprar = () => {
       slug="que-arduino-comprar"
       datePublished="2026-04-18"
       dateModified="2026-04-18"
+      faqs={[
+        {
+          question: "¿El código de UNO funciona en Nano?",
+          answer: "Sí, son binariamente compatibles. Solo cambiás el modelo en Herramientas → Placa.",
+        },
+        {
+          question: "¿Puedo usar un sensor 5V en ESP32?",
+          answer: "Sí, pero necesitás un level shifter o divisor de tensión. Conectarlo directo puede quemar el GPIO del ESP32.",
+        },
+        {
+          question: "¿Cuál tiene mejor resolución analógica?",
+          answer: "El ESP32 con 12 bits (0-4095). Los demás Arduino tienen 10 bits (0-1023). 4× más resolución para mediciones precisas.",
+        },
+        {
+          question: "¿Necesito comprar un kit completo?",
+          answer: "Si recién empezás, sí. Un kit con protoboard, cables, LEDs, resistencias y sensores básicos te ahorra tiempo y plata. Si ya tenés componentes sueltos, solo la placa.",
+        },
+      ]}
     >
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué Arduino debería comprar?</h2>
       <p>

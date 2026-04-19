@@ -7,6 +7,12 @@ import AuthorBio from "@/components/AuthorBio";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import GlobalSearch from "@/components/GlobalSearch";
 
+export interface FaqItem {
+  question: string;
+  /** Respuesta en texto plano (sin HTML/markdown). Google requiere texto limpio. */
+  answer: string;
+}
+
 interface ArticleLayoutProps {
   title: string;
   subtitle: string;
@@ -14,6 +20,8 @@ interface ArticleLayoutProps {
   slug?: string;
   datePublished?: string;
   dateModified?: string;
+  /** Si se pasan FAQs, se inyecta automáticamente schema.org FAQPage para Rich Results. */
+  faqs?: FaqItem[];
 }
 
 /**
@@ -32,7 +40,7 @@ const toISO8601WithTZ = (date: string): string => {
   return `${dateOnly}T10:00:00-03:00`;
 };
 
-const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13" }: ArticleLayoutProps) => {
+const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   usePageMeta({
@@ -123,11 +131,34 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
     document.getElementById("breadcrumb-jsonld")?.remove();
     document.head.appendChild(breadcrumbScript);
 
+    // FAQPage schema (opcional) — solo si el artículo pasó faqs
+    document.getElementById("faq-jsonld")?.remove();
+    if (faqs && faqs.length > 0) {
+      const faqJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map((f) => ({
+          "@type": "Question",
+          "name": f.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": f.answer,
+          },
+        })),
+      };
+      const faqScript = document.createElement("script");
+      faqScript.type = "application/ld+json";
+      faqScript.id = "faq-jsonld";
+      faqScript.textContent = JSON.stringify(faqJsonLd);
+      document.head.appendChild(faqScript);
+    }
+
     return () => {
       document.getElementById("article-jsonld")?.remove();
       document.getElementById("breadcrumb-jsonld")?.remove();
+      document.getElementById("faq-jsonld")?.remove();
     };
-  }, [title, subtitle, slug, datePublished, dateModified]);
+  }, [title, subtitle, slug, datePublished, dateModified, faqs]);
 
   return (
     <div className="min-h-screen bg-background bg-grid">
