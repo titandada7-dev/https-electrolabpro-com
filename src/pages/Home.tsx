@@ -1115,6 +1115,9 @@ const Home = () => {
           </div>
         </div>
       </footer>
+
+      {/* Buscador global ⌘K */}
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
     </div>
   );
 };
