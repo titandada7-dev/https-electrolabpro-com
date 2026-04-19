@@ -139,6 +139,12 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://electrolabpro.com/glosario</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://electrolabpro.com/blog/mi-primer-laboratorio</loc>
     <lastmod>2026-04-18</lastmod>
     <changefreq>monthly</changefreq>

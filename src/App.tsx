@@ -27,6 +27,7 @@ import PwmArduino from "./pages/articles/PwmArduino";
 import ReguladoresVoltaje from "./pages/articles/ReguladoresVoltaje";
 import SobreNosotros from "./pages/SobreNosotros";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
+import Glosario from "./pages/Glosario";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/aviso-legal" element={<AvisoLegal />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
+        <Route path="/glosario" element={<Glosario />} />
         <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
         <Route path="/articulos/condensadores" element={<Condensadores />} />
         <Route path="/articulos/diodos" element={<Diodos />} />
