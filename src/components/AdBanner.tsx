@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -11,11 +11,27 @@ interface AdBannerProps {
   format?: string;
   responsive?: boolean;
   className?: string;
+  /** Reserved height on mobile (<768px) to prevent CLS. Default 100px. */
+  minHeightMobile?: number;
+  /** Reserved height on desktop (≥768px) to prevent CLS. Default 250px for vertical, 120px otherwise. */
+  minHeightDesktop?: number;
 }
 
-const AdBanner = ({ slot, format = "auto", responsive = true, className = "" }: AdBannerProps) => {
+const AdBanner = ({
+  slot,
+  format = "auto",
+  responsive = true,
+  className = "",
+  minHeightMobile,
+  minHeightDesktop,
+}: AdBannerProps) => {
   const adRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
+  const [filled, setFilled] = useState(false);
+
+  // Sensible defaults based on format to reserve space and avoid layout shift
+  const mobileH = minHeightMobile ?? (format === "vertical" ? 250 : 100);
+  const desktopH = minHeightDesktop ?? (format === "vertical" ? 600 : 120);
 
   useEffect(() => {
     if (pushed.current) return;
@@ -29,6 +45,26 @@ const AdBanner = ({ slot, format = "auto", responsive = true, className = "" }: 
         try {
           (window.adsbygoogle = window.adsbygoogle || []).push({});
           pushed.current = true;
+          // Detect when AdSense fills the slot to hide the skeleton
+          const ins = el.querySelector("ins.adsbygoogle") as HTMLElement | null;
+          if (ins) {
+            const checkFilled = () => {
+              const status = ins.getAttribute("data-ad-status");
+              if (status === "filled") {
+                setFilled(true);
+                return true;
+              }
+              return false;
+            };
+            if (!checkFilled()) {
+              const mo = new MutationObserver(() => {
+                if (checkFilled()) mo.disconnect();
+              });
+              mo.observe(ins, { attributes: true, attributeFilter: ["data-ad-status"] });
+              // Safety timeout: stop observing after 6s
+              setTimeout(() => mo.disconnect(), 6000);
+            }
+          }
         } catch (e) {
           // Silently ignore in dev/preview environments
         }
@@ -38,7 +74,6 @@ const AdBanner = ({ slot, format = "auto", responsive = true, className = "" }: 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
-          // Small delay to ensure layout is stable
           setTimeout(tryPush, 100);
           observer.disconnect();
         }
@@ -51,15 +86,36 @@ const AdBanner = ({ slot, format = "auto", responsive = true, className = "" }: 
   }, []);
 
   return (
-    <div ref={adRef} className={`w-full overflow-hidden ${className}`}>
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-9393284878747603"
-        data-ad-slot={slot}
-        data-ad-format={format}
-        data-full-width-responsive={responsive ? "true" : "false"}
-      />
+    <div
+      ref={adRef}
+      className={`relative w-full overflow-hidden ${className}`}
+      style={{
+        minHeight: `${mobileH}px`,
+      }}
+    >
+      <style>{`
+        @media (min-width: 768px) {
+          [data-adbanner="${slot}"] { min-height: ${desktopH}px; }
+        }
+      `}</style>
+      <div data-adbanner={slot} style={{ minHeight: `${mobileH}px` }}>
+        {!filled && (
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 flex items-center justify-center bg-muted/30 animate-pulse rounded-md"
+          >
+            <span className="text-xs font-mono text-muted-foreground/60">Publicidad</span>
+          </div>
+        )}
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block", minHeight: `${mobileH}px` }}
+          data-ad-client="ca-pub-9393284878747603"
+          data-ad-slot={slot}
+          data-ad-format={format}
+          data-full-width-responsive={responsive ? "true" : "false"}
+        />
+      </div>
     </div>
   );
 };

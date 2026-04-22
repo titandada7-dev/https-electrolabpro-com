@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import AdBanner from "@/components/AdBanner";
 
 const Contacto = () => {
   usePageMeta({
@@ -64,6 +65,11 @@ const Contacto = () => {
           </p>
         </div>
       </section>
+
+      {/* AdSense: Header banner */}
+      <div className="container mx-auto px-4 pt-6">
+        <AdBanner slot="3756475501" format="auto" className="min-h-[100px] md:min-h-[120px]" />
+      </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 py-10">
