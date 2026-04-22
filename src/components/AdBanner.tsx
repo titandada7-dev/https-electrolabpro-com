@@ -28,6 +28,7 @@ const AdBanner = ({
   const adRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
   const [filled, setFilled] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
 
   // Sensible defaults based on format to reserve space and avoid layout shift
   const mobileH = minHeightMobile ?? (format === "vertical" ? 250 : 100);
@@ -39,19 +40,27 @@ const AdBanner = ({
     const el = adRef.current;
     if (!el) return;
 
+    let fallbackTimer: number | undefined;
+
     const tryPush = () => {
       if (pushed.current) return;
       if (el.offsetWidth > 0) {
         try {
           (window.adsbygoogle = window.adsbygoogle || []).push({});
           pushed.current = true;
-          // Detect when AdSense fills the slot to hide the skeleton
+
+          // Fallback: if AdSense doesn't fill within 6s, switch to static placeholder
+          fallbackTimer = window.setTimeout(() => {
+            setTimedOut((prev) => (filled ? prev : true));
+          }, 6000);
+
           const ins = el.querySelector("ins.adsbygoogle") as HTMLElement | null;
           if (ins) {
             const checkFilled = () => {
               const status = ins.getAttribute("data-ad-status");
               if (status === "filled") {
                 setFilled(true);
+                if (fallbackTimer) window.clearTimeout(fallbackTimer);
                 return true;
               }
               return false;
@@ -61,16 +70,16 @@ const AdBanner = ({
                 if (checkFilled()) mo.disconnect();
               });
               mo.observe(ins, { attributes: true, attributeFilter: ["data-ad-status"] });
-              // Safety timeout: stop observing after 6s
               setTimeout(() => mo.disconnect(), 6000);
             }
           }
         } catch (e) {
-          // Silently ignore in dev/preview environments
+          setTimedOut(true);
         }
       }
     };
 
+    // Lazy-loading: only push when banner is near the viewport (200px margin)
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
@@ -78,12 +87,15 @@ const AdBanner = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.01, rootMargin: "200px" }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      if (fallbackTimer) window.clearTimeout(fallbackTimer);
+    };
+  }, [filled]);
 
   return (
     <div
