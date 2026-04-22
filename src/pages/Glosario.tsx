@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Zap, ArrowLeft, Search, BookOpen } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import AdBanner from "@/components/AdBanner";
 
 interface Term {
   term: string;
@@ -164,6 +165,11 @@ const Glosario = () => {
           </p>
         </div>
       </section>
+
+      {/* AdSense: Header banner */}
+      <div className="container mx-auto px-4 pt-6">
+        <AdBanner slot="3756475501" format="auto" className="min-h-[100px] md:min-h-[120px]" />
+      </div>
 
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         {/* Buscador */}
