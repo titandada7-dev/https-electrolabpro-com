@@ -114,7 +114,9 @@ const AdBanner = ({
         {!filled && (
           <div
             aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-center bg-muted/30 animate-pulse rounded-md"
+            className={`absolute inset-0 flex items-center justify-center bg-muted/30 rounded-md ${
+              timedOut ? "" : "animate-pulse"
+            }`}
           >
             <span className="text-xs font-mono text-muted-foreground/60">Publicidad</span>
           </div>
