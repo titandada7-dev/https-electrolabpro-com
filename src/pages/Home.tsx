@@ -1161,46 +1161,7 @@ const Home = () => {
         </p>
       </motion.section>
 
-      {/* ═══════════ ¿POR QUÉ ELEGIR ELECTROLABPRO? ═══════════ */}
-      <section className="py-14 sm:py-20 border-t border-border">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
-              ¿Por qué elegir ElectroLab Pro?
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { icon: <Zap className="h-5 w-5 text-primary" />, title: "100% gratuito", desc: "Todas las calculadoras y guías son completamente gratis, sin registro ni suscripciones ocultas." },
-                { icon: <Calculator className="h-5 w-5 text-primary" />, title: "Resultados instantáneos", desc: "Ingresá los valores y obtené el resultado en milisegundos, con explicación incluida." },
-                { icon: <BookOpen className="h-5 w-5 text-primary" />, title: "Contenido educativo", desc: "Más de 11 guías técnicas escritas en lenguaje claro, con ejemplos prácticos y diagramas." },
-                { icon: <Cpu className="h-5 w-5 text-primary" />, title: "Diseñado por un electrónico", desc: "Desarrollado por J.A. Sánchez a partir de la recopilación y adaptación de información técnica proveniente de especialistas, manuales y documentación profesional en electrónica. El objetivo de ElectroLabPro es ofrecer herramientas confiables basadas en prácticas reales utilizadas en el ámbito técnico." },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3 }}
-                  className="flex gap-4 p-5 rounded-xl border border-border bg-card shadow-sm"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* ¿Por qué elegir? — consolidado en #recursos accordion */}
 
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="border-t border-border py-8 px-6 bg-card/50">
