@@ -620,14 +620,33 @@ const DomainDebugBanner = () => {
               </select>
             </div>
             {canonical !== "off" && (
-              <div className="text-amber-300">
-                ⚠ Redirect cliente activo a{" "}
-                <span className="font-bold">
-                  {CANONICAL_OPTIONS.find((o) => o.key === canonical)?.host}
-                </span>
-                . Solo aplica entre apex/www; no afecta a lovable.app/preview.
-              </div>
+              <>
+                <div className="text-amber-300">
+                  ⚠ Redirect cliente activo a{" "}
+                  <span className="font-bold">
+                    {CANONICAL_OPTIONS.find((o) => o.key === canonical)?.host}
+                  </span>
+                  . Solo aplica entre apex/www; no afecta a lovable.app/preview.
+                </div>
+                <button
+                  onClick={purgeAndReload}
+                  className="px-2 py-1 rounded bg-red-600 hover:bg-red-500 text-white"
+                >
+                  ⟳ Purgar caché + recargar canónico
+                </button>
+              </>
             )}
+
+            <div className="flex items-center gap-2 flex-wrap">
+              <label className="flex items-center gap-1 text-slate-400 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={soundOn}
+                  onChange={(e) => setSoundOn(e.target.checked)}
+                />
+                🔔 Sonido en alertas
+              </label>
+            </div>
 
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-slate-400">Exportar:</span>
@@ -650,6 +669,101 @@ const DomainDebugBanner = () => {
                 HTML
               </button>
             </div>
+          </div>
+
+          {/* Alertas */}
+          {alerts.length > 0 && (
+            <div className="border-t border-slate-700 pt-2">
+              <div className="text-slate-300 font-semibold mb-2">⚠ Alertas activas</div>
+              <ul className="space-y-1">
+                {alerts.map((a) => (
+                  <li
+                    key={a.id}
+                    className={`rounded border p-2 flex items-start gap-2 ${
+                      a.level === "critical"
+                        ? "border-red-500 bg-red-950/40 text-red-200"
+                        : "border-amber-500 bg-amber-950/30 text-amber-200"
+                    }`}
+                  >
+                    <div className="flex-1">
+                      <div>{a.message}</div>
+                      <div className="text-[10px] opacity-70">{a.ts}</div>
+                    </div>
+                    <button
+                      onClick={() => dismissAlert(a.id)}
+                      className="opacity-70 hover:opacity-100"
+                    >
+                      ✕
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Mini-timeline historial */}
+          <div className="border-t border-slate-700 pt-2">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-slate-300 font-semibold">
+                Historial ({history.length}/{HISTORY_MAX})
+              </div>
+              {history.length > 0 && (
+                <button
+                  onClick={clearHistory}
+                  className="text-slate-400 hover:text-white text-[10px]"
+                >
+                  limpiar
+                </button>
+              )}
+            </div>
+            {history.length === 0 ? (
+              <div className="text-slate-500">Sin chequeos previos.</div>
+            ) : (
+              <div className="space-y-1">
+                {TARGETS.map((t) => {
+                  let prevBuild: string | undefined;
+                  return (
+                    <div key={t.key} className="flex items-center gap-1">
+                      <span className="text-slate-400 w-20 truncate" title={t.label}>
+                        {t.key}
+                      </span>
+                      <div className="flex gap-0.5 flex-1">
+                        {history.map((h, idx) => {
+                          const cell = h.hosts[t.key];
+                          const buildChanged =
+                            cell?.buildId &&
+                            prevBuild !== undefined &&
+                            cell.buildId !== prevBuild;
+                          if (cell?.buildId) prevBuild = cell.buildId;
+                          const color =
+                            cell?.cacheClass === "hit"
+                              ? "bg-emerald-500"
+                              : cell?.cacheClass === "miss"
+                              ? "bg-amber-500"
+                              : cell?.cacheClass === "dynamic"
+                              ? "bg-blue-500"
+                              : cell?.httpStatus
+                              ? "bg-slate-500"
+                              : "bg-slate-700";
+                          return (
+                            <div
+                              key={idx}
+                              title={`${h.ts}\nbuild: ${cell?.buildId || "?"}\ncache: ${cell?.cacheClass || "?"}\nHTTP: ${cell?.httpStatus || "?"}`}
+                              className={`flex-1 h-3 ${color} ${
+                                buildChanged ? "ring-2 ring-fuchsia-400" : ""
+                              }`}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="text-[10px] text-slate-500 mt-1">
+                  Verde=hit · Ámbar=miss · Azul=dynamic · Borde fucsia=cambio de buildId
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Resultados */}
