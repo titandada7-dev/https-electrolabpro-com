@@ -88,14 +88,14 @@ const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-// Quick access cards data
+// Quick access cards data — orden: Guías → Calculadoras → Proyectos → FAQ → Equipamiento → Tips
 const quickAccessCards = [
-  { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-primary/10 text-primary" },
-  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "14 artículos completos", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
-  { icon: <Zap className="h-6 w-6" />, title: "Teoría", desc: "Ley de Ohm, conceptos básicos", target: "teoria", color: "bg-amber-500/10 text-amber-500" },
-  { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas", desc: "FAQ por categoría", target: "foro", color: "bg-violet-500/10 text-violet-500" },
+  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "13 artículos completos", target: "guias", color: "bg-primary/10 text-primary" },
+  { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-violet-500/10 text-violet-500" },
+  { icon: <CircuitBoard className="h-6 w-6" />, title: "Mini Proyectos", desc: "Circuitos paso a paso", target: "mini-proyectos", color: "bg-emerald-500/10 text-emerald-500" },
+  { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas (FAQ)", desc: "Respuestas por categoría", target: "foro", color: "bg-amber-500/10 text-amber-500" },
   { icon: <ShoppingBag className="h-6 w-6" />, title: "Herramientas", desc: "Equipamiento recomendado", target: "equipamiento", color: "bg-rose-500/10 text-rose-500" },
-  { icon: <Lightbulb className="h-6 w-6" />, title: "Tips", desc: "Consejos de electrónica", target: "tips", color: "bg-cyan-500/10 text-cyan-500" },
+  { icon: <Lightbulb className="h-6 w-6" />, title: "Tips", desc: "Consejos prácticos", target: "tips", color: "bg-cyan-500/10 text-cyan-500" },
 ];
 
 const Home = () => {
