@@ -118,6 +118,74 @@ const LeyDeOhm = () => {
         <li>Practica con circuitos simples en una <strong className="text-foreground">protoboard</strong> antes de soldar</li>
       </ul>
 
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Historia y contexto científico de Georg Ohm</h2>
+      <p>
+        Georg Simon Ohm (1789-1854) era hijo de un cerrajero alemán autodidacta. A pesar de no contar con educación formal sólida, publicó en 1827 su obra fundamental <em>"Die galvanische Kette, mathematisch bearbeitet"</em> ("El circuito galvánico investigado matemáticamente"), donde estableció la relación matemática que hoy conocemos como Ley de Ohm. La comunidad científica de su época rechazó su trabajo durante años; recién en 1841 la Royal Society de Londres le otorgó la Medalla Copley reconociendo su aporte. Hoy, la unidad de resistencia eléctrica lleva su nombre en honor a este descubrimiento que sentó las bases de toda la electrotécnica moderna.
+      </p>
+      <p>
+        Antes del trabajo de Ohm, los científicos sabían cualitativamente que un voltaje mayor producía más corriente, pero nadie había cuantificado la relación. Ohm realizó cientos de experimentos con cables de diferentes longitudes y secciones, usando termopilas de bismuto-cobre como fuente de fuerza electromotriz estable, y midiendo la corriente con un galvanómetro de torsión que él mismo construyó. Su rigor metodológico fue extraordinario para la época.
+      </p>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Derivación física: ¿por qué V = I × R?</h2>
+      <p>
+        En un conductor metálico, los electrones libres se desplazan bajo la acción del campo eléctrico generado por una diferencia de potencial. Sin embargo, no se mueven libremente: chocan constantemente contra los iones de la red cristalina del metal. Estos choques son los que generan la <strong className="text-foreground">resistencia</strong> y disipan energía en forma de calor (efecto Joule).
+      </p>
+      <p>
+        Matemáticamente, la densidad de corriente J es proporcional al campo eléctrico E mediante la conductividad σ del material: <span className="font-mono text-primary">J = σ × E</span>. Integrando esta ecuación a lo largo de un conductor de longitud L y sección A obtenemos la forma macroscópica: <span className="font-mono text-primary">V = (L / σA) × I = R × I</span>, donde R = L/(σA) es la resistencia geométrica del conductor. Por eso un cable largo y delgado tiene más resistencia que uno corto y grueso del mismo material.
+      </p>
+      <p>
+        La constante σ depende del material: el cobre tiene σ ≈ 5.96 × 10⁷ S/m (excelente conductor), mientras que el nicromo usado en resistencias calefactoras tiene σ ≈ 9.3 × 10⁵ S/m, unas 60 veces menos. Esto explica por qué una resistencia comercial de carbón o película metálica puede tener cientos o miles de ohmios en un cuerpo de pocos milímetros.
+      </p>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Ejercicio resuelto avanzado: tira de LEDs de 12V</h2>
+      <p>
+        Querés alimentar una tira de 30 LEDs blancos en serie-paralelo desde una batería de 12V. Cada LED blanco tiene Vf = 3.2V e If = 20mA óptima. ¿Cómo agrupar y qué resistencias usar?
+      </p>
+      <ol className="list-decimal list-inside space-y-2 pl-2">
+        <li><strong className="text-foreground">Calcular grupos en serie:</strong> Con 12V disponibles, podés poner 3 LEDs en serie (3 × 3.2V = 9.6V) dejando 2.4V para la resistencia limitadora.</li>
+        <li><strong className="text-foreground">Calcular la resistencia por rama:</strong> <span className="font-mono text-primary">R = (12V - 9.6V) / 0.020A = 120Ω</span>.</li>
+        <li><strong className="text-foreground">Calcular cantidad de ramas:</strong> 30 LEDs ÷ 3 LEDs/rama = 10 ramas en paralelo.</li>
+        <li><strong className="text-foreground">Calcular potencia disipada por resistencia:</strong> <span className="font-mono text-primary">P = I² × R = 0.020² × 120 = 0.048W</span>. Una resistencia comercial de 1/4W es más que suficiente.</li>
+        <li><strong className="text-foreground">Corriente total del sistema:</strong> 10 ramas × 20mA = 200mA. La batería debe poder entregar al menos 250mA.</li>
+      </ol>
+      <p>
+        Si en lugar de 12V usaras una fuente de 5V (USB), no podrías poner 3 LEDs en serie (necesitarían 9.6V). En ese caso, conviene 1 LED por rama: <span className="font-mono text-primary">R = (5 - 3.2) / 0.020 = 90Ω</span>, valor estándar 100Ω, con 30 ramas en paralelo y un consumo total de 600mA.
+      </p>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Casos reales de fallo por aplicar mal la Ley de Ohm</h2>
+      <ul className="list-disc list-inside space-y-2 pl-2">
+        <li><strong className="text-foreground">LED quemado en 0.1 segundos:</strong> Conectar un LED de 2V directamente a 5V sin resistencia limitadora. La corriente teórica sería infinita (R interna ~10Ω); en la práctica, pasan 200-300mA y el LED se destruye instantáneamente. Solución: siempre calcular R = (Vfuente - Vled) / Iled.</li>
+        <li><strong className="text-foreground">Caída de voltaje en cable USB largo:</strong> Un cable USB de 3 metros con conductores AWG 28 tiene ~0.5Ω total. Con un dispositivo que consume 2A, la caída es V = 2 × 0.5 = 1V. El dispositivo recibe solo 4V en lugar de 5V y puede no arrancar. Solución: usar cable AWG 24 o más grueso para cargas altas.</li>
+        <li><strong className="text-foreground">Resistencia subdimensionada que se quema:</strong> Resistencia de 1kΩ a 1/4W conectada a 24V disipa P = 24²/1000 = 0.576W, más del doble de lo permitido. Se carboniza en segundos. Solución: usar 1W o más.</li>
+        <li><strong className="text-foreground">Microcontrolador resetea aleatoriamente:</strong> ESP32 alimentado por jumper delgado de 30cm tiene resistencia de ~0.3Ω. En picos de WiFi (500mA), la caída es 0.15V, suficiente para que el regulador interno entre en brownout. Solución: alimentación dedicada con cable corto y grueso.</li>
+      </ul>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Preguntas frecuentes sobre la Ley de Ohm</h2>
+      <details className="border border-border rounded-lg p-4 bg-card/30">
+        <summary className="font-semibold text-foreground cursor-pointer">¿La Ley de Ohm aplica también a corriente alterna (AC)?</summary>
+        <p className="mt-3 text-sm">
+          Sí, pero con una variante: en AC se usa la <strong>impedancia (Z)</strong> en lugar de la resistencia, porque condensadores e inductores ofrecen oposición dependiente de la frecuencia. La fórmula generalizada es V = I × Z, donde Z es un número complejo que combina resistencia (R) y reactancia (X). Para frecuencia cero (DC), Z = R y volvemos a la Ley de Ohm clásica.
+        </p>
+      </details>
+      <details className="border border-border rounded-lg p-4 bg-card/30 mt-3">
+        <summary className="font-semibold text-foreground cursor-pointer">¿Por qué los superconductores parecen "violar" la Ley de Ohm?</summary>
+        <p className="mt-3 text-sm">
+          En realidad no la violan: en un superconductor R = 0, por lo que V = I × 0 = 0 sin importar la corriente. Esto es coherente con la ley, simplemente representa el caso límite donde no hay disipación de energía. Los superconductores requieren temperaturas extremadamente bajas (típicamente bajo 90 K) para mantener este estado.
+        </p>
+      </details>
+      <details className="border border-border rounded-lg p-4 bg-card/30 mt-3">
+        <summary className="font-semibold text-foreground cursor-pointer">¿La resistencia de un cable cambia con la temperatura?</summary>
+        <p className="mt-3 text-sm">
+          Sí. En metales, la resistencia aumenta con la temperatura según R(T) = R₀(1 + α × ΔT). Para el cobre, α ≈ 0.00393 /°C. Un cable que mide 1Ω a 20°C medirá ~1.118Ω a 50°C. En aplicaciones de precisión (por ejemplo, sensores PT100), este efecto se aprovecha intencionalmente para medir temperatura.
+        </p>
+      </details>
+      <details className="border border-border rounded-lg p-4 bg-card/30 mt-3">
+        <summary className="font-semibold text-foreground cursor-pointer">¿Puedo usar la Ley de Ohm para calcular la resistencia de mi cuerpo?</summary>
+        <p className="mt-3 text-sm">
+          Sí, y es vital para entender la seguridad eléctrica. La resistencia del cuerpo humano va de 1.000Ω (mojado) a 100.000Ω (seco). Con 220V y piel mojada: I = 220/1000 = 220mA, suficiente para causar fibrilación cardíaca. Por eso jamás trabajes con la red eléctrica con manos húmedas y siempre usá disyuntor diferencial.
+        </p>
+      </details>
+
       {/* CTA Amazon */}
       <div className="mt-10 p-6 rounded-xl border border-primary/30 bg-primary/5 text-center space-y-3">
         <p className="text-foreground font-bold font-mono text-lg">🧪 Practica la Ley de Ohm con componentes reales</p>
