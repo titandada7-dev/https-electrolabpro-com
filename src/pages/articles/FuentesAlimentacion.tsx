@@ -191,6 +191,68 @@ const FuentesAlimentacion = () => {
         <li>Usa cables de sección adecuada para corrientes altas</li>
       </ul>
 
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Etapas internas de una fuente lineal: análisis profundo</h2>
+      <p>
+        Para entender cómo funciona realmente una fuente lineal, conviene analizar cada etapa por separado. La conversión de 220V AC a un voltaje DC estable involucra cuatro bloques bien definidos:
+      </p>
+      <ol className="list-decimal list-inside space-y-3 pl-2">
+        <li><strong className="text-foreground">Transformación:</strong> Un transformador con núcleo de hierro reduce la tensión de red (220V o 110V) a un valor manejable, típicamente entre 6V y 24V AC. La relación de transformación N₁/N₂ = V₁/V₂ define la salida. Por ejemplo, un transformador 220:12 tiene una relación de 18,33. Es importante tener en cuenta que el voltaje en el secundario es el valor RMS; el pico instantáneo es V_pico = V_RMS × √2.</li>
+        <li><strong className="text-foreground">Rectificación:</strong> Un puente de diodos (4 diodos en configuración Graetz) convierte la corriente alterna en pulsante. La salida ya no cambia de polaridad pero todavía oscila entre 0 y V_pico - 1.4V (los 1.4V son la caída en dos diodos). Cada diodo debe soportar al menos PIV = 2 × V_pico de tensión inversa.</li>
+        <li><strong className="text-foreground">Filtrado:</strong> Un condensador electrolítico de gran capacidad (típicamente 1.000 μF a 10.000 μF) suaviza la señal pulsante. La fórmula práctica para calcular el rizado es <span className="font-mono text-primary">V_rizado = I_carga / (2 × f × C)</span>, donde f es 100 Hz para rectificación de onda completa en 50 Hz. Para 1A de carga y 4.700μF: V_rizado = 1 / (2 × 100 × 0.0047) = 1,06V pico-pico.</li>
+        <li><strong className="text-foreground">Regulación:</strong> Un regulador lineal (78xx, LM317, etc.) absorbe las variaciones residuales y mantiene la salida constante. Internamente es un transistor en serie controlado por un lazo de retroalimentación que compara la salida con una referencia interna (típicamente un diodo Zener de banda prohibida o "bandgap").</li>
+      </ol>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Cálculo térmico de un regulador lineal: ejemplo paso a paso</h2>
+      <p>
+        Imaginá un proyecto donde necesitás 5V/500mA desde una fuente de 12V usando un LM7805. Vamos a verificar si necesita disipador y de qué tamaño:
+      </p>
+      <ol className="list-decimal list-inside space-y-2 pl-2">
+        <li><strong className="text-foreground">Potencia disipada:</strong> P = (Vin - Vout) × I = (12 - 5) × 0.5 = <span className="font-mono text-primary">3.5W</span>. Toda esa energía se convierte en calor en el encapsulado del regulador.</li>
+        <li><strong className="text-foreground">Temperatura máxima de unión:</strong> El LM7805 tiene Tj_max = 125°C. Trabajaremos con un margen, apuntando a 100°C como máximo en operación.</li>
+        <li><strong className="text-foreground">Resistencia térmica sin disipador:</strong> El TO-220 al aire libre tiene θJA ≈ 50°C/W. Con 3.5W: ΔT = 3.5 × 50 = 175°C sobre la temperatura ambiente. A 25°C ambiente, la unión llegaría a 200°C → <strong>destrucción inmediata</strong>.</li>
+        <li><strong className="text-foreground">Con disipador adecuado:</strong> Necesitamos θJA total ≤ (100 - 25) / 3.5 = 21°C/W. Como θJC del LM7805 es ~5°C/W y el contacto encapsulado-disipador suma ~1°C/W, el disipador debe tener θSA ≤ 15°C/W. Un disipador de aluminio de 30×30×15mm cumple este requisito.</li>
+      </ol>
+      <p>
+        Por estos cálculos, en cargas mayores a 200-300mA con diferencias de voltaje altas conviene siempre usar reguladores conmutados (buck) en lugar de lineales: un módulo LM2596 con eficiencia del 92% disiparía solo 0.3W en lugar de 3.5W para la misma carga.
+      </p>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Topologías de fuentes conmutadas (SMPS) explicadas</h2>
+      <p>
+        Las fuentes conmutadas modernas se clasifican según su topología. Cada una tiene ventajas para distintas aplicaciones:
+      </p>
+      <ul className="list-disc list-inside space-y-2 pl-2">
+        <li><strong className="text-foreground">Buck (reductor):</strong> Convierte un voltaje DC alto en uno menor. Eficiencia 90-97%. Usado en alimentación de microprocesadores (12V → 1.2V), cargadores USB-PD, módulos LM2596.</li>
+        <li><strong className="text-foreground">Boost (elevador):</strong> Sube el voltaje. Usado en linternas LED de batería única (1.5V → 3.3V), backlights de LCD, paneles solares pequeños. Ejemplo: módulo MT3608.</li>
+        <li><strong className="text-foreground">Buck-Boost:</strong> Permite Vout mayor o menor que Vin. Crítico cuando la batería se descarga (por ejemplo Li-Ion de 4.2V a 3.0V alimentando un sistema de 3.3V). Chips típicos: TPS63020.</li>
+        <li><strong className="text-foreground">Flyback:</strong> Topología aislada con un único transformador. Usada en cargadores de celular y fuentes de 5W-100W. Ejemplos: TNY264, UC3842.</li>
+        <li><strong className="text-foreground">Push-Pull / Half-Bridge / Full-Bridge:</strong> Topologías para alta potencia (200W+). Usadas en fuentes ATX de PC, fuentes industriales, soldadoras inverter.</li>
+      </ul>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Cómo medir el rizado real de tu fuente</h2>
+      <p>
+        El rizado (ripple) es la pequeña oscilación de voltaje superpuesta a la salida DC. Una fuente de mala calidad puede tener rizado de 100-300mVpp, suficiente para causar problemas en circuitos analógicos sensibles, audio o radio. Para medirlo:
+      </p>
+      <ol className="list-decimal list-inside space-y-2 pl-2">
+        <li>Colocá el osciloscopio en acoplamiento <strong className="text-foreground">AC</strong> (importante: si usás DC, vas a ver solo el offset constante).</li>
+        <li>Configurá la escala vertical en 10-50 mV/div.</li>
+        <li>Conectá la sonda directamente a los pines de salida con la masa lo más corta posible (idealmente cable de 5cm).</li>
+        <li>Para una fuente lineal bien diseñada deberías ver menos de 10mVpp; una conmutada típica muestra 30-100mVpp con picos de conmutación a 50-500 kHz.</li>
+      </ol>
+
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Preguntas frecuentes sobre fuentes</h2>
+      <details className="border border-border rounded-lg p-4 bg-card/30">
+        <summary className="font-semibold text-foreground cursor-pointer">¿Puedo conectar dos fuentes de 5V en paralelo para duplicar la corriente?</summary>
+        <p className="mt-3 text-sm">No directamente. Pequeñas diferencias de voltaje entre ambas fuentes harán que una "absorba" corriente de la otra, pudiendo dañarlas. Necesitás diodos de aislación (Schottky) en serie con cada salida o fuentes diseñadas específicamente para "current sharing" (como las fuentes de servidor con función droop).</p>
+      </details>
+      <details className="border border-border rounded-lg p-4 bg-card/30 mt-3">
+        <summary className="font-semibold text-foreground cursor-pointer">¿Por qué mi fuente "zumba" o emite ruido audible?</summary>
+        <p className="mt-3 text-sm">El zumbido a 50/100 Hz suele venir de laminaciones flojas del transformador (típico en fuentes lineales viejas). Un silbido agudo a 10-20 kHz es normal en fuentes conmutadas baratas: el transformador o inductor vibra a la frecuencia de conmutación. No es peligroso, pero indica componentes de baja calidad.</p>
+      </details>
+      <details className="border border-border rounded-lg p-4 bg-card/30 mt-3">
+        <summary className="font-semibold text-foreground cursor-pointer">¿Es seguro alimentar mi Arduino directamente desde un cargador de celular?</summary>
+        <p className="mt-3 text-sm">Sí, siempre que sea un cargador certificado (5V±5%, mínimo 1A). Cargadores muy baratos sin certificación pueden tener picos de hasta 6.5V o rizado excesivo que dañe el regulador interno del Arduino. Para proyectos serios, preferí siempre fuentes con marcas reconocidas (Mean Well, Phihong) o un cargador genuino de marca.</p>
+      </details>
+
       {/* CTA Amazon */}
       <div className="mt-10 p-6 rounded-xl border border-primary/30 bg-primary/5 text-center space-y-3">
         <p className="text-foreground font-bold font-mono text-lg">⚡ Equipa tu laboratorio con la fuente correcta</p>
