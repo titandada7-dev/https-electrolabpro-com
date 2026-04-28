@@ -11,7 +11,7 @@ const buildTime = new Date().toISOString();
 const versionJsonPlugin = () => ({
   name: "electrolab-version-json",
   apply: "build" as const,
-  generateBundle() {
+  generateBundle(this: any) {
     const payload = JSON.stringify({ buildId, buildTime, name: "electrolab-pro" }, null, 2);
     this.emitFile({ type: "asset", fileName: "version.json", source: payload });
   },
