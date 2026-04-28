@@ -246,18 +246,18 @@ const Home = () => {
             </span>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — orden: Hero → Guías → Calculadoras → Proyectos → FAQ */}
           <div className="hidden items-center gap-5 md:flex">
             <button onClick={() => scrollTo("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Inicio</button>
-            <button onClick={() => scrollTo("servicios")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Servicios</button>
-            <button onClick={() => scrollTo("detalles")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Detalles</button>
-            <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</button>
             <button onClick={() => scrollTo("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</button>
+            <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</button>
+            <button onClick={() => scrollTo("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Proyectos</button>
+            <button onClick={() => scrollTo("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">FAQ</button>
             <div className="relative group">
               <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+              <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 max-h-[70vh] overflow-y-auto">
                 {articleLinks.map((a) => (
                   <Link key={a.to} to={a.to} className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
                     {a.label}
@@ -277,7 +277,7 @@ const Home = () => {
               <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded border border-border bg-muted text-[10px] font-mono">⌘K</kbd>
             </button>
             <ThemeToggle />
-            <Button size="sm" onClick={() => scrollTo("servicios")}>Empezar</Button>
+            <Button size="sm" onClick={() => scrollTo("guias")}>Empezar</Button>
           </div>
 
           {/* Mobile toggle */}
@@ -301,10 +301,10 @@ const Home = () => {
           <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Inicio", action: () => { scrollTo("inicio"); setMenuOpen(false); } },
-              { label: "Servicios", action: () => { scrollTo("servicios"); setMenuOpen(false); } },
-              { label: "Detalles", action: () => { scrollTo("detalles"); setMenuOpen(false); } },
-              { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
               { label: "Guías", action: () => { scrollTo("guias"); setMenuOpen(false); } },
+              { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
+              { label: "Proyectos", action: () => { scrollTo("mini-proyectos"); setMenuOpen(false); } },
+              { label: "FAQ", action: () => { scrollTo("foro"); setMenuOpen(false); } },
             ].map((item) => (
               <button key={item.label} onClick={item.action} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
                 {item.label}
@@ -327,7 +327,7 @@ const Home = () => {
                 </Link>
               ))}
             </div>
-            <Button size="sm" className="w-full mt-3" onClick={() => { scrollTo("calculadora"); setMenuOpen(false); }}>
+            <Button size="sm" className="w-full mt-3" onClick={() => { scrollTo("guias"); setMenuOpen(false); }}>
               Empezar
             </Button>
           </div>
