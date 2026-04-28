@@ -45,6 +45,29 @@ const CANONICAL_OPTIONS = [
   { key: "www", label: "www.electrolabpro.com", host: "www.electrolabpro.com" },
 ];
 
+const HISTORY_KEY = "electrolab.domainHistory";
+const HISTORY_MAX = 20;
+
+interface HistorySnapshot {
+  ts: string;
+  hosts: Record<
+    string,
+    {
+      buildId?: string;
+      cacheClass?: UrlCheck["cacheClass"];
+      freshness?: UrlCheck["freshness"];
+      httpStatus?: number;
+    }
+  >;
+}
+
+interface AlertItem {
+  id: string;
+  ts: string;
+  level: "warn" | "critical";
+  message: string;
+}
+
 const LOCAL_BUILD_ID =
   typeof __BUILD_ID__ !== "undefined" ? __BUILD_ID__ : "dev-runtime";
 const LOCAL_BUILD_TIME =
