@@ -857,40 +857,7 @@ const Home = () => {
 
       {/* Guías Técnicas Destacadas — consolidadas en sección #guias más abajo */}
 
-      {/* ═══════════ SERVICIOS (CARDS DETALLE) ═══════════ */}
-      <section id="servicios-detalle" className="py-16 sm:py-20 border-y border-border bg-card/50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center mb-3">
-            Servicios
-          </h2>
-          <p className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-12 max-w-2xl mx-auto">
-            Todo lo que necesitás para tus proyectos electrónicos
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: <CircuitBoard className="w-7 h-7 text-primary" />, title: "Diseño de Circuitos", desc: "Esquemas electrónicos optimizados con calculadoras de precisión para resistencias, LEDs, filtros RC y más." },
-              { icon: <Wrench className="w-7 h-7 text-primary" />, title: "Reparación Pro", desc: "Guías técnicas detalladas para diagnóstico y reparación de equipos electrónicos con herramientas profesionales." },
-              { icon: <TrendingUp className="w-7 h-7 text-primary" />, title: "Optimización", desc: "Mejoramos el rendimiento de tus sistemas con tips, proyectos prácticos y recomendaciones de componentes." },
-            ].map((s, i) => (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3 }}
-                whileHover={{ y: -6, boxShadow: "0 10px 40px -10px hsl(var(--primary) / 0.15)" }}
-                className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-colors duration-300"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  {s.icon}
-                </div>
-                <h3 className="mb-2 text-lg font-semibold text-card-foreground">{s.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Servicios detalle — consolidados en #recursos accordion */}
 
       {/* ═══════════ STATS ═══════════ */}
       <motion.section
