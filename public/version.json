@@ -1,0 +1,6 @@
+{
+  "buildId": "static-fallback",
+  "buildTime": "2026-04-28T00:00:00.000Z",
+  "name": "electrolab-pro",
+  "note": "Este archivo se sobrescribe en cada build con un buildId único."
+}

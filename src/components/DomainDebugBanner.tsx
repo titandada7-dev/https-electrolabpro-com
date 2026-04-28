@@ -1,6 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type CheckStatus = "pending" | "ok" | "redirect" | "error";
+
+interface VersionInfo {
+  buildId?: string;
+  buildTime?: string;
+  name?: string;
+  env?: string;
+}
 
 interface UrlCheck {
   url: string;
@@ -10,15 +17,38 @@ interface UrlCheck {
   finalUrl?: string;
   redirected?: boolean;
   cache?: string;
+  cacheClass?: "hit" | "miss" | "dynamic" | "unknown";
   ms?: number;
   error?: string;
+  version?: VersionInfo;
+  versionAgeMs?: number;
+  freshness?: "current" | "stale" | "unknown";
+  checkedAt?: string;
 }
 
-const TARGETS: { url: string; label: string }[] = [
-  { url: "https://electrolabpro.com", label: "Dominio principal (apex)" },
-  { url: "https://www.electrolabpro.com", label: "WWW" },
-  { url: "https://ww-electrolabpro-com.lovable.app", label: "Lovable Published" },
+const TARGETS: { url: string; label: string; key: string }[] = [
+  { key: "apex", url: "https://electrolabpro.com", label: "Dominio principal (apex)" },
+  { key: "www", url: "https://www.electrolabpro.com", label: "WWW" },
+  { key: "lovable", url: "https://ww-electrolabpro-com.lovable.app", label: "Lovable Published" },
 ];
+
+const INTERVALS = [
+  { label: "15s", value: 15000 },
+  { label: "30s", value: 30000 },
+  { label: "60s", value: 60000 },
+];
+
+const CANONICAL_KEY = "electrolab.canonicalDomain";
+const CANONICAL_OPTIONS = [
+  { key: "off", label: "Desactivado", host: "" },
+  { key: "apex", label: "electrolabpro.com", host: "electrolabpro.com" },
+  { key: "www", label: "www.electrolabpro.com", host: "www.electrolabpro.com" },
+];
+
+const LOCAL_BUILD_ID =
+  typeof __BUILD_ID__ !== "undefined" ? __BUILD_ID__ : "dev-runtime";
+const LOCAL_BUILD_TIME =
+  typeof __BUILD_TIME__ !== "undefined" ? __BUILD_TIME__ : new Date().toISOString();
 
 function detectVersion() {
   const host = window.location.hostname;
@@ -30,12 +60,59 @@ function detectVersion() {
   return { kind: `Desconocido (${host})`, color: "bg-slate-500" };
 }
 
+function classifyCache(raw: string | null): { label: string; cls: UrlCheck["cacheClass"] } {
+  if (!raw) return { label: "n/a", cls: "unknown" };
+  const v = raw.toLowerCase();
+  if (v.includes("hit")) return { label: raw, cls: "hit" };
+  if (v.includes("miss")) return { label: raw, cls: "miss" };
+  if (v.includes("dynamic") || v.includes("bypass") || v.includes("expired"))
+    return { label: raw, cls: "dynamic" };
+  return { label: raw, cls: "unknown" };
+}
+
+// Canonical redirect (executed once at module load via component effect)
+function applyCanonicalRedirect() {
+  try {
+    const target = localStorage.getItem(CANONICAL_KEY);
+    if (!target) return;
+    const opt = CANONICAL_OPTIONS.find((o) => o.key === target);
+    if (!opt || !opt.host) return;
+    const host = window.location.hostname;
+    // Never redirect from preview/lovable.app envs to avoid breaking dev
+    if (host.includes("lovable.app") || host.includes("lovableproject.com")) return;
+    if (host === opt.host) return;
+    // Only redirect if currently on the other custom-domain variant
+    if (host === "electrolabpro.com" || host === "www.electrolabpro.com") {
+      const url = new URL(window.location.href);
+      url.hostname = opt.host;
+      window.location.replace(url.toString());
+    }
+  } catch {
+    // ignore
+  }
+}
+
 const DomainDebugBanner = () => {
   const [enabled, setEnabled] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [intervalMs, setIntervalMs] = useState(15000);
   const [checks, setChecks] = useState<UrlCheck[]>(
     TARGETS.map((t) => ({ ...t, status: "pending" as CheckStatus }))
   );
+  const [canonical, setCanonical] = useState<string>(() => {
+    try {
+      return localStorage.getItem(CANONICAL_KEY) || "off";
+    } catch {
+      return "off";
+    }
+  });
+  const [running, setRunning] = useState(false);
+  const timerRef = useRef<number | null>(null);
+
+  // Apply canonical redirect on mount
+  useEffect(() => {
+    applyCanonicalRedirect();
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -43,55 +120,213 @@ const DomainDebugBanner = () => {
   }, []);
 
   const version = useMemo(detectVersion, []);
-  const buildTime = useMemo(() => new Date().toISOString(), []);
 
-  useEffect(() => {
-    if (!enabled) return;
-    let cancelled = false;
-
-    const run = async () => {
-      const results = await Promise.all(
-        TARGETS.map(async (t): Promise<UrlCheck> => {
-          const start = performance.now();
-          try {
-            const res = await fetch(t.url + "/?_probe=" + Date.now(), {
+  const runChecks = useCallback(async () => {
+    setRunning(true);
+    const results = await Promise.all(
+      TARGETS.map(async (t): Promise<UrlCheck> => {
+        const start = performance.now();
+        const checkedAt = new Date().toISOString();
+        try {
+          const probe = `?_probe=${Date.now()}`;
+          const [pageRes, versionRes] = await Promise.allSettled([
+            fetch(t.url + "/" + probe, {
               method: "GET",
               redirect: "follow",
               cache: "no-store",
               mode: "cors",
-            });
-            const ms = Math.round(performance.now() - start);
-            return {
-              ...t,
-              status: res.redirected ? "redirect" : "ok",
-              httpStatus: res.status,
-              finalUrl: res.url,
-              redirected: res.redirected,
-              cache: res.headers.get("cf-cache-status") || res.headers.get("x-cache") || "n/a",
-              ms,
-            };
-          } catch (e: any) {
-            const ms = Math.round(performance.now() - start);
-            // CORS-blocked still means the server responded; mark as error w/ note
-            return {
-              ...t,
-              status: "error",
-              error: e?.message || "fetch failed (posible CORS)",
-              ms,
-            };
-          }
-        })
-      );
-      if (!cancelled) setChecks(results);
-    };
+            }),
+            fetch(t.url + "/version.json" + probe, {
+              method: "GET",
+              redirect: "follow",
+              cache: "no-store",
+              mode: "cors",
+            }),
+          ]);
+          const ms = Math.round(performance.now() - start);
 
-    run();
-    const id = setInterval(run, 15000);
+          let httpStatus: number | undefined;
+          let finalUrl: string | undefined;
+          let redirected = false;
+          let cacheRaw: string | null = null;
+          if (pageRes.status === "fulfilled") {
+            httpStatus = pageRes.value.status;
+            finalUrl = pageRes.value.url;
+            redirected = pageRes.value.redirected;
+            cacheRaw =
+              pageRes.value.headers.get("cf-cache-status") ||
+              pageRes.value.headers.get("x-cache") ||
+              pageRes.value.headers.get("age") ? `age=${pageRes.value.headers.get("age")}` : null;
+          }
+
+          let version: VersionInfo | undefined;
+          let versionAgeMs: number | undefined;
+          if (versionRes.status === "fulfilled" && versionRes.value.ok) {
+            try {
+              version = await versionRes.value.json();
+              if (version?.buildTime) {
+                versionAgeMs = Date.now() - new Date(version.buildTime).getTime();
+              }
+            } catch {
+              // not JSON
+            }
+          }
+
+          const { label: cacheLabel, cls: cacheClass } = classifyCache(cacheRaw);
+
+          return {
+            ...t,
+            status: redirected ? "redirect" : pageRes.status === "fulfilled" ? "ok" : "error",
+            httpStatus,
+            finalUrl,
+            redirected,
+            cache: cacheLabel,
+            cacheClass,
+            ms,
+            version,
+            versionAgeMs,
+            checkedAt,
+          };
+        } catch (e: any) {
+          const ms = Math.round(performance.now() - start);
+          return {
+            ...t,
+            status: "error",
+            error: e?.message || "fetch failed (posible CORS)",
+            ms,
+            checkedAt,
+          };
+        }
+      })
+    );
+
+    // Compute freshness: newest buildTime is "current"; >5 min older is "stale"
+    const times = results
+      .map((r) => (r.version?.buildTime ? new Date(r.version.buildTime).getTime() : null))
+      .filter((t): t is number => !!t);
+    const newest = times.length ? Math.max(...times) : null;
+    const annotated = results.map((r): UrlCheck => {
+      if (!r.version?.buildTime || !newest) return { ...r, freshness: "unknown" };
+      const t = new Date(r.version.buildTime).getTime();
+      if (newest - t > 5 * 60 * 1000) return { ...r, freshness: "stale" };
+      return { ...r, freshness: "current" };
+    });
+    setChecks(annotated);
+    setRunning(false);
+  }, []);
+
+  // (Re)schedule polling
+  useEffect(() => {
+    if (!enabled) return;
+    runChecks();
+    if (timerRef.current) window.clearInterval(timerRef.current);
+    timerRef.current = window.setInterval(runChecks, intervalMs);
     return () => {
-      cancelled = true;
-      clearInterval(id);
+      if (timerRef.current) window.clearInterval(timerRef.current);
     };
-  }, [enabled]);
+  }, [enabled, intervalMs, runChecks]);
+
+  const updateCanonical = (key: string) => {
+    setCanonical(key);
+    try {
+      if (key === "off") localStorage.removeItem(CANONICAL_KEY);
+      else localStorage.setItem(CANONICAL_KEY, key);
+    } catch {
+      // ignore
+    }
+  };
+
+  const exportReport = (fmt: "json" | "csv" | "html") => {
+    const ts = new Date().toISOString().replace(/[:.]/g, "-");
+    const payload = {
+      generatedAt: new Date().toISOString(),
+      currentHost: window.location.href,
+      detectedVersion: version.kind,
+      localBuild: { buildId: LOCAL_BUILD_ID, buildTime: LOCAL_BUILD_TIME },
+      intervalMs,
+      canonical,
+      checks,
+    };
+    let blob: Blob;
+    let filename: string;
+    if (fmt === "json") {
+      blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      filename = `domain-report-${ts}.json`;
+    } else if (fmt === "csv") {
+      const headers = [
+        "label",
+        "url",
+        "status",
+        "httpStatus",
+        "redirected",
+        "finalUrl",
+        "ms",
+        "cache",
+        "cacheClass",
+        "buildId",
+        "buildTime",
+        "freshness",
+        "error",
+        "checkedAt",
+      ];
+      const rows = checks.map((c) =>
+        [
+          c.label,
+          c.url,
+          c.status,
+          c.httpStatus ?? "",
+          c.redirected ?? "",
+          c.finalUrl ?? "",
+          c.ms ?? "",
+          c.cache ?? "",
+          c.cacheClass ?? "",
+          c.version?.buildId ?? "",
+          c.version?.buildTime ?? "",
+          c.freshness ?? "",
+          (c.error ?? "").replace(/[\r\n,]/g, " "),
+          c.checkedAt ?? "",
+        ]
+          .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+          .join(",")
+      );
+      blob = new Blob([[headers.join(","), ...rows].join("\n")], { type: "text/csv" });
+      filename = `domain-report-${ts}.csv`;
+    } else {
+      const rows = checks
+        .map(
+          (c) => `<tr>
+            <td>${c.label}</td><td>${c.url}</td><td>${c.status}</td>
+            <td>${c.httpStatus ?? ""}</td><td>${c.redirected ? "yes" : ""}</td>
+            <td>${c.finalUrl ?? ""}</td><td>${c.ms ?? ""}ms</td>
+            <td>${c.cache ?? ""}</td><td>${c.cacheClass ?? ""}</td>
+            <td>${c.version?.buildId ?? ""}</td><td>${c.version?.buildTime ?? ""}</td>
+            <td>${c.freshness ?? ""}</td><td>${c.error ?? ""}</td>
+          </tr>`
+        )
+        .join("");
+      const html = `<!doctype html><html><head><meta charset="utf-8"><title>ElectroLab Domain Report ${ts}</title>
+        <style>body{font-family:system-ui,sans-serif;padding:24px;background:#0f172a;color:#e2e8f0}
+        table{border-collapse:collapse;width:100%;font-size:12px}
+        th,td{border:1px solid #334155;padding:6px;text-align:left;vertical-align:top}
+        th{background:#1e293b}</style></head><body>
+        <h1>ElectroLab Pro · Reporte de dominios</h1>
+        <p>Generado: ${new Date().toISOString()}<br>Host: ${window.location.href}<br>Versión local: ${LOCAL_BUILD_ID} (${LOCAL_BUILD_TIME})</p>
+        <table><thead><tr>
+          <th>Label</th><th>URL</th><th>Status</th><th>HTTP</th><th>Redir</th><th>Final URL</th>
+          <th>ms</th><th>Cache</th><th>Class</th><th>BuildId</th><th>BuildTime</th><th>Freshness</th><th>Error</th>
+        </tr></thead><tbody>${rows}</tbody></table></body></html>`;
+      blob = new Blob([html], { type: "text/html" });
+      filename = `domain-report-${ts}.html`;
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   if (!enabled) return null;
 
@@ -102,6 +337,25 @@ const DomainDebugBanner = () => {
       redirect: "bg-amber-500",
       error: "bg-red-500",
     }[s]);
+
+  const cacheBadge = (cls: UrlCheck["cacheClass"]) => {
+    const map: Record<string, string> = {
+      hit: "bg-emerald-700 text-emerald-100",
+      miss: "bg-amber-700 text-amber-100",
+      dynamic: "bg-blue-700 text-blue-100",
+      unknown: "bg-slate-700 text-slate-200",
+    };
+    return map[cls || "unknown"];
+  };
+
+  const freshnessBadge = (f: UrlCheck["freshness"]) => {
+    const map: Record<string, string> = {
+      current: "bg-emerald-700 text-emerald-100",
+      stale: "bg-red-700 text-red-100",
+      unknown: "bg-slate-700 text-slate-200",
+    };
+    return map[f || "unknown"];
+  };
 
   return (
     <div className="fixed bottom-4 right-4 z-[9999] max-w-md w-[calc(100%-2rem)] rounded-lg border border-slate-700 bg-slate-900/95 text-slate-100 shadow-2xl backdrop-blur text-xs font-mono">
@@ -130,15 +384,91 @@ const DomainDebugBanner = () => {
       </div>
 
       {!collapsed && (
-        <div className="p-3 space-y-3 max-h-[60vh] overflow-auto">
+        <div className="p-3 space-y-3 max-h-[70vh] overflow-auto">
+          {/* Build local */}
           <div className="space-y-1">
             <div className="text-slate-400">Host actual:</div>
             <div className="text-emerald-400 break-all">{window.location.href}</div>
-            <div className="text-slate-400 mt-1">Build cargado: {buildTime}</div>
+            <div className="text-slate-400 mt-1">
+              Build local: <span className="text-slate-200">{LOCAL_BUILD_ID}</span>
+            </div>
+            <div className="text-slate-500">{LOCAL_BUILD_TIME}</div>
           </div>
 
+          {/* Controles */}
+          <div className="border-t border-slate-700 pt-2 space-y-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                onClick={runChecks}
+                disabled={running}
+                className="px-2 py-1 rounded bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white"
+              >
+                {running ? "Chequeando…" : "↻ Rechequear ahora"}
+              </button>
+              <label className="text-slate-400">Intervalo:</label>
+              <select
+                value={intervalMs}
+                onChange={(e) => setIntervalMs(Number(e.target.value))}
+                className="bg-slate-800 border border-slate-600 rounded px-2 py-1"
+              >
+                {INTERVALS.map((i) => (
+                  <option key={i.value} value={i.value}>
+                    {i.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex items-center gap-2 flex-wrap">
+              <label className="text-slate-400">Canónico:</label>
+              <select
+                value={canonical}
+                onChange={(e) => updateCanonical(e.target.value)}
+                className="bg-slate-800 border border-slate-600 rounded px-2 py-1"
+              >
+                {CANONICAL_OPTIONS.map((o) => (
+                  <option key={o.key} value={o.key}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {canonical !== "off" && (
+              <div className="text-amber-300">
+                ⚠ Redirect cliente activo a{" "}
+                <span className="font-bold">
+                  {CANONICAL_OPTIONS.find((o) => o.key === canonical)?.host}
+                </span>
+                . Solo aplica entre apex/www; no afecta a lovable.app/preview.
+              </div>
+            )}
+
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-slate-400">Exportar:</span>
+              <button
+                onClick={() => exportReport("json")}
+                className="px-2 py-1 rounded bg-slate-700 hover:bg-slate-600"
+              >
+                JSON
+              </button>
+              <button
+                onClick={() => exportReport("csv")}
+                className="px-2 py-1 rounded bg-slate-700 hover:bg-slate-600"
+              >
+                CSV
+              </button>
+              <button
+                onClick={() => exportReport("html")}
+                className="px-2 py-1 rounded bg-slate-700 hover:bg-slate-600"
+              >
+                HTML
+              </button>
+            </div>
+          </div>
+
+          {/* Resultados */}
           <div className="border-t border-slate-700 pt-2">
-            <div className="text-slate-300 font-semibold mb-2">Chequeo de URLs (cada 15s)</div>
+            <div className="text-slate-300 font-semibold mb-2">Chequeo de URLs</div>
             <ul className="space-y-2">
               {checks.map((c) => (
                 <li key={c.url} className="rounded border border-slate-700 p-2">
@@ -150,21 +480,43 @@ const DomainDebugBanner = () => {
                     )}
                   </div>
                   <div className="text-slate-400 break-all mt-1">{c.url}</div>
+
                   {c.httpStatus !== undefined && (
-                    <div className="mt-1">
-                      <span className="text-slate-400">HTTP:</span>{" "}
+                    <div className="mt-1 flex items-center gap-2 flex-wrap">
+                      <span className="text-slate-400">HTTP:</span>
                       <span className="text-emerald-400">{c.httpStatus}</span>
                       {c.redirected && (
-                        <span className="ml-2 text-amber-400">↪ redirigido</span>
+                        <span className="text-amber-400">↪ redirigido</span>
+                      )}
+                      <span className={`px-1.5 py-0.5 rounded ${cacheBadge(c.cacheClass)}`}>
+                        cache: {c.cache}
+                      </span>
+                      <span className={`px-1.5 py-0.5 rounded ${freshnessBadge(c.freshness)}`}>
+                        {c.freshness === "current"
+                          ? "✓ al día"
+                          : c.freshness === "stale"
+                          ? "⚠ versión vieja"
+                          : "? versión"}
+                      </span>
+                    </div>
+                  )}
+
+                  {c.version?.buildId && (
+                    <div className="mt-1 text-slate-300">
+                      build: <span className="text-blue-300">{c.version.buildId}</span>
+                      {c.version.buildTime && (
+                        <span className="text-slate-500">
+                          {" "}
+                          · {c.version.buildTime}
+                        </span>
                       )}
                     </div>
                   )}
-                  {c.finalUrl && c.finalUrl !== c.url + "/" && (
+
+                  {c.finalUrl && c.finalUrl.replace(/\/$/, "") !== c.url && (
                     <div className="text-amber-300 break-all mt-1">→ {c.finalUrl}</div>
                   )}
-                  {c.cache && (
-                    <div className="text-slate-400 mt-1">Cache: {c.cache}</div>
-                  )}
+
                   {c.error && (
                     <div className="text-red-400 mt-1 break-all">⚠ {c.error}</div>
                   )}
@@ -174,7 +526,8 @@ const DomainDebugBanner = () => {
           </div>
 
           <div className="text-slate-500 border-t border-slate-700 pt-2">
-            Tip: agregá <span className="text-slate-300">?debug=domains</span> a cualquier URL.
+            Tip: <span className="text-slate-300">?debug=domains</span> en cualquier URL.
+            Reporte exportable con timestamp.
           </div>
         </div>
       )}

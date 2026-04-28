@@ -1,10 +1,34 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import fs from "fs";
 import { componentTagger } from "lovable-tagger";
 import { VitePWA } from "vite-plugin-pwa";
 
+const buildId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+const buildTime = new Date().toISOString();
+
+const versionJsonPlugin = () => ({
+  name: "electrolab-version-json",
+  apply: "build" as const,
+  generateBundle(this: any) {
+    const payload = JSON.stringify({ buildId, buildTime, name: "electrolab-pro" }, null, 2);
+    this.emitFile({ type: "asset", fileName: "version.json", source: payload });
+  },
+  configureServer(server: any) {
+    server.middlewares.use("/version.json", (_req: any, res: any) => {
+      res.setHeader("Content-Type", "application/json");
+      res.setHeader("Cache-Control", "no-store");
+      res.end(JSON.stringify({ buildId, buildTime, name: "electrolab-pro", env: "dev" }));
+    });
+  },
+});
+
 export default defineConfig(({ mode }) => ({
+  define: {
+    __BUILD_ID__: JSON.stringify(buildId),
+    __BUILD_TIME__: JSON.stringify(buildTime),
+  },
   server: {
     host: "::",
     port: 8080,
@@ -14,6 +38,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    versionJsonPlugin(),
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
