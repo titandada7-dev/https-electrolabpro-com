@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
+import DomainDebugBanner from "./components/DomainDebugBanner";
 import Home from "./pages/Home";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Contacto from "./pages/Contacto";
@@ -38,6 +39,7 @@ function App() {
     <BrowserRouter>
       <CookieBanner />
       <PWAInstallPrompt />
+      <DomainDebugBanner />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
