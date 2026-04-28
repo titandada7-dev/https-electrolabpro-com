@@ -568,131 +568,209 @@ const Home = () => {
         <CalculatorHub />
       </motion.div>
 
-      {/* ═══════════ ¿PARA QUIÉN ES ELECTROLAB PRO? ═══════════ */}
+      {/* ═══════════ RECURSOS & INFORMACIÓN (ACCORDION UNIFICADO) ═══════════ */}
       <motion.section
+        id="recursos"
         className="py-14 sm:py-20 border-t border-border bg-card/40"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.3 }}
       >
-        <div className="container mx-auto px-6 max-w-5xl">
+        <div className="container mx-auto px-6 max-w-4xl">
           <div className="text-center mb-10">
             <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
-              ¿Para quién?
+              Recursos
             </span>
             <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
-              ElectroLab Pro es para vos si…
+              Recursos e <span className="text-primary">información</span>
             </h2>
             <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
-              Una plataforma que crece con vos: desde el primer LED hasta el diseño de PCB.
+              Glosario, tips, servicios y más — todo organizado en un solo lugar.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              {
-                icon: <Lightbulb className="w-6 h-6 text-primary" />,
-                title: "Sos aficionado",
-                bullets: [
-                  "Querés armar tus primeros circuitos sin quemar componentes.",
-                  "Necesitás respuestas claras sin teoría innecesaria.",
-                  "Buscás calculadoras que funcionen al toque.",
-                ],
-              },
-              {
-                icon: <BookOpen className="w-6 h-6 text-primary" />,
-                title: "Sos estudiante",
-                bullets: [
-                  "Estudiás electrónica, mecatrónica o ingeniería.",
-                  "Querés validar resultados de la facu en segundos.",
-                  "Necesitás un glosario y guías técnicas a mano.",
-                ],
-              },
-              {
-                icon: <Cpu className="w-6 h-6 text-primary" />,
-                title: "Sos maker / técnico",
-                bullets: [
-                  "Trabajás con Arduino, ESP32, Raspberry Pi.",
-                  "Diseñás PCBs y necesitás filtros RC, divisores, 555.",
-                  "Querés todas las calcs en una sola pantalla.",
-                ],
-              },
-            ].map((card) => (
-              <div
-                key={card.title}
-                className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300"
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-4">
-                  {card.icon}
-                </div>
-                <h3 className="text-lg font-bold text-foreground mb-3">{card.title}</h3>
-                <ul className="space-y-2">
-                  {card.bullets.map((b, i) => (
-                    <li key={i} className="flex gap-2 text-sm text-muted-foreground leading-relaxed">
-                      <span className="text-primary mt-0.5 shrink-0">▸</span>
-                      <span>{b}</span>
-                    </li>
+          <Accordion type="single" collapsible className="space-y-3">
+            {/* Glosario */}
+            <AccordionItem value="glosario" id="glosario" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+              <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                <span className="flex items-center gap-3">
+                  <BookOpen className="h-5 w-5 text-primary shrink-0" />
+                  Glosario rápido de electrónica
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <p className="text-sm text-muted-foreground mb-5">
+                  Definiciones cortas y claras de los conceptos más usados en electrónica.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {[
+                    { term: "Voltaje (V)", def: "Diferencia de potencial eléctrico entre dos puntos. Se mide en voltios. Es lo que 'empuja' los electrones por el circuito." },
+                    { term: "Corriente (I)", def: "Cantidad de carga eléctrica que fluye por unidad de tiempo. Se mide en amperios (A) o miliamperios (mA)." },
+                    { term: "Resistencia (R)", def: "Oposición al paso de la corriente. Se mide en ohmios (Ω). A mayor R, menos corriente para un mismo voltaje." },
+                    { term: "Capacitancia (C)", def: "Capacidad de almacenar carga eléctrica de un condensador. Se mide en faradios (F), normalmente en μF, nF o pF." },
+                    { term: "Frecuencia (f)", def: "Cantidad de ciclos por segundo de una señal alterna. Se mide en hercios (Hz), kHz o MHz." },
+                    { term: "Reactancia (X)", def: "Oposición al paso de corriente alterna que ofrecen capacitores e inductores. Depende de la frecuencia." },
+                    { term: "PWM", def: "Modulación por Ancho de Pulso. Técnica para controlar potencia variando el tiempo encendido/apagado de una señal digital." },
+                    { term: "GND (Tierra)", def: "Punto de referencia 0V del circuito. Todos los voltajes se miden respecto a GND." },
+                    { term: "Vcc / Vdd", def: "Voltaje positivo de alimentación. Vcc es para circuitos bipolares, Vdd para CMOS, pero suelen usarse igual." },
+                  ].map((item) => (
+                    <div key={item.term} className="rounded-lg border border-border/60 bg-background/50 p-4">
+                      <h4 className="font-mono font-bold text-primary text-xs uppercase tracking-wider mb-1.5">
+                        {item.term}
+                      </h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.def}</p>
+                    </div>
                   ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
 
-      {/* ═══════════ GLOSARIO RÁPIDO DE ELECTRÓNICA ═══════════ */}
-      <motion.section
-        id="glosario"
-        className="py-14 sm:py-20 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-10">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
-              Glosario rápido
-            </span>
-            <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
-              Términos clave que vas a escuchar
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
-              Definiciones cortas y claras de los conceptos más usados en electrónica.
-            </p>
-          </div>
+            {/* Tips de Electrónica */}
+            <AccordionItem value="tips" id="tips" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+              <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                <span className="flex items-center gap-3">
+                  <Lightbulb className="h-5 w-5 text-primary shrink-0" />
+                  Tips de electrónica
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6 space-y-3">
+                {[
+                  { emoji: "💡", title: "El sentido del LED", text: "Recordá que los LED tienen polaridad. La pata larga es el Ánodo (+) y la corta el Cátodo (-). Si lo ponés al revés, no prenderá." },
+                  { emoji: "🔗", title: "Resistencias en serie", text: "Si sumás dos resistencias una tras otra, su valor total aumenta (Rt = R1 + R2). Ideal para cuando no tenés el valor exacto que necesitás." },
+                  { emoji: "⚠️", title: "Cuidado con el Protoboard", text: "Las líneas laterales (roja y azul) suelen estar conectadas a lo largo para la alimentación, pero las del medio están conectadas de forma vertical. ¡No hagas cortocircuito!" },
+                  { emoji: "🔥", title: "Soldadura brillante", text: "Una buena soldadura debe quedar brillante y con forma de volcán. Si queda opaca o como una bola, es una 'soldadura fría' y fallará pronto." },
+                  { emoji: "📏", title: "El truco del multímetro", text: "Siempre empezá midiendo en la escala más alta de tu tester para no quemar el fusible si no conocés el voltaje que vas a medir." },
+                ].map((tip, i) => (
+                  <div key={i} className="flex gap-3 p-4 rounded-lg border border-border/60 bg-background/50">
+                    <span className="text-xl shrink-0">{tip.emoji}</span>
+                    <div>
+                      <h4 className="font-semibold text-foreground text-sm mb-1">{tip.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{tip.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </AccordionContent>
+            </AccordionItem>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { term: "Voltaje (V)", def: "Diferencia de potencial eléctrico entre dos puntos. Se mide en voltios. Es lo que 'empuja' los electrones por el circuito." },
-              { term: "Corriente (I)", def: "Cantidad de carga eléctrica que fluye por unidad de tiempo. Se mide en amperios (A) o miliamperios (mA)." },
-              { term: "Resistencia (R)", def: "Oposición al paso de la corriente. Se mide en ohmios (Ω). A mayor R, menos corriente para un mismo voltaje." },
-              { term: "Capacitancia (C)", def: "Capacidad de almacenar carga eléctrica de un condensador. Se mide en faradios (F), normalmente en μF, nF o pF." },
-              { term: "Frecuencia (f)", def: "Cantidad de ciclos por segundo de una señal alterna. Se mide en hercios (Hz), kHz o MHz." },
-              { term: "Reactancia (X)", def: "Oposición al paso de corriente alterna que ofrecen capacitores e inductores. Depende de la frecuencia." },
-              { term: "PWM", def: "Modulación por Ancho de Pulso. Técnica para controlar potencia variando el tiempo encendido/apagado de una señal digital." },
-              { term: "GND (Tierra)", def: "Punto de referencia 0V del circuito. Todos los voltajes se miden respecto a GND." },
-              { term: "Vcc / Vdd", def: "Voltaje positivo de alimentación. Vcc es para circuitos bipolares, Vdd para CMOS, pero suelen usarse igual." },
-            ].map((item) => (
-              <div
-                key={item.term}
-                className="rounded-xl border border-border bg-card p-5 hover:border-primary/40 transition-colors"
-              >
-                <h3 className="font-mono font-bold text-primary text-sm uppercase tracking-wider mb-2">
-                  {item.term}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.def}</p>
-              </div>
-            ))}
-          </div>
+            {/* ¿Para quién es? */}
+            <AccordionItem value="para-quien" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+              <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                <span className="flex items-center gap-3">
+                  <Users className="h-5 w-5 text-primary shrink-0" />
+                  ¿Para quién es ElectroLab Pro?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <p className="text-sm text-muted-foreground mb-5">
+                  Una plataforma que crece con vos: desde el primer LED hasta el diseño de PCB.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    {
+                      icon: <Lightbulb className="w-5 h-5 text-primary" />,
+                      title: "Sos aficionado",
+                      bullets: [
+                        "Querés armar tus primeros circuitos sin quemar componentes.",
+                        "Necesitás respuestas claras sin teoría innecesaria.",
+                        "Buscás calculadoras que funcionen al toque.",
+                      ],
+                    },
+                    {
+                      icon: <BookOpen className="w-5 h-5 text-primary" />,
+                      title: "Sos estudiante",
+                      bullets: [
+                        "Estudiás electrónica, mecatrónica o ingeniería.",
+                        "Querés validar resultados de la facu en segundos.",
+                        "Necesitás un glosario y guías técnicas a mano.",
+                      ],
+                    },
+                    {
+                      icon: <Cpu className="w-5 h-5 text-primary" />,
+                      title: "Sos maker / técnico",
+                      bullets: [
+                        "Trabajás con Arduino, ESP32, Raspberry Pi.",
+                        "Diseñás PCBs y necesitás filtros RC, divisores, 555.",
+                        "Querés todas las calcs en una sola pantalla.",
+                      ],
+                    },
+                  ].map((card) => (
+                    <div key={card.title} className="rounded-lg border border-border/60 bg-background/50 p-4">
+                      <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 mb-3">
+                        {card.icon}
+                      </div>
+                      <h4 className="text-sm font-bold text-foreground mb-2">{card.title}</h4>
+                      <ul className="space-y-1.5">
+                        {card.bullets.map((b, i) => (
+                          <li key={i} className="flex gap-2 text-xs text-muted-foreground leading-relaxed">
+                            <span className="text-primary mt-0.5 shrink-0">▸</span>
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
 
-          <p className="text-center text-xs text-muted-foreground mt-8">
-            ¿Querés profundizar?{" "}
-            <button onClick={() => scrollTo("guias")} className="text-primary hover:underline font-semibold">
-              Explorá nuestras guías técnicas →
-            </button>
-          </p>
+            {/* ¿Por qué elegirnos? */}
+            <AccordionItem value="por-que" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+              <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                <span className="flex items-center gap-3">
+                  <Zap className="h-5 w-5 text-primary shrink-0" />
+                  ¿Por qué elegir ElectroLab Pro?
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { icon: <Zap className="h-4 w-4 text-primary" />, title: "100% gratuito", desc: "Todas las calculadoras y guías son completamente gratis, sin registro ni suscripciones ocultas." },
+                    { icon: <Calculator className="h-4 w-4 text-primary" />, title: "Resultados instantáneos", desc: "Ingresá los valores y obtené el resultado en milisegundos, con explicación incluida." },
+                    { icon: <BookOpen className="h-4 w-4 text-primary" />, title: "Contenido educativo", desc: "Más de 11 guías técnicas escritas en lenguaje claro, con ejemplos prácticos y diagramas." },
+                    { icon: <Cpu className="h-4 w-4 text-primary" />, title: "Diseñado por un electrónico", desc: "Desarrollado por J.A. Sánchez a partir de la recopilación y adaptación de información técnica proveniente de especialistas, manuales y documentación profesional en electrónica." },
+                  ].map((item) => (
+                    <div key={item.title} className="flex gap-3 p-4 rounded-lg border border-border/60 bg-background/50">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-foreground text-sm mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            {/* Servicios detallados */}
+            <AccordionItem value="servicios" id="servicios-detalle" className="rounded-2xl border border-border bg-card shadow-sm px-6 overflow-hidden">
+              <AccordionTrigger className="text-base sm:text-lg font-semibold text-foreground hover:no-underline py-5">
+                <span className="flex items-center gap-3">
+                  <Wrench className="h-5 w-5 text-primary shrink-0" />
+                  Servicios detallados
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[
+                    { icon: <CircuitBoard className="w-5 h-5 text-primary" />, title: "Diseño de Circuitos", desc: "Esquemas electrónicos optimizados con calculadoras de precisión para resistencias, LEDs, filtros RC y más." },
+                    { icon: <Wrench className="w-5 h-5 text-primary" />, title: "Reparación Pro", desc: "Guías técnicas detalladas para diagnóstico y reparación de equipos electrónicos con herramientas profesionales." },
+                    { icon: <TrendingUp className="w-5 h-5 text-primary" />, title: "Optimización", desc: "Mejoramos el rendimiento de tus sistemas con tips, proyectos prácticos y recomendaciones de componentes." },
+                  ].map((s) => (
+                    <div key={s.title} className="rounded-lg border border-border/60 bg-background/50 p-4">
+                      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                        {s.icon}
+                      </div>
+                      <h4 className="mb-1.5 text-sm font-semibold text-foreground">{s.title}</h4>
+                      <p className="text-xs leading-relaxed text-muted-foreground">{s.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </motion.section>
 
@@ -779,40 +857,7 @@ const Home = () => {
 
       {/* Guías Técnicas Destacadas — consolidadas en sección #guias más abajo */}
 
-      {/* ═══════════ SERVICIOS (CARDS DETALLE) ═══════════ */}
-      <section id="servicios-detalle" className="py-16 sm:py-20 border-y border-border bg-card/50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center mb-3">
-            Servicios
-          </h2>
-          <p className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-12 max-w-2xl mx-auto">
-            Todo lo que necesitás para tus proyectos electrónicos
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              { icon: <CircuitBoard className="w-7 h-7 text-primary" />, title: "Diseño de Circuitos", desc: "Esquemas electrónicos optimizados con calculadoras de precisión para resistencias, LEDs, filtros RC y más." },
-              { icon: <Wrench className="w-7 h-7 text-primary" />, title: "Reparación Pro", desc: "Guías técnicas detalladas para diagnóstico y reparación de equipos electrónicos con herramientas profesionales." },
-              { icon: <TrendingUp className="w-7 h-7 text-primary" />, title: "Optimización", desc: "Mejoramos el rendimiento de tus sistemas con tips, proyectos prácticos y recomendaciones de componentes." },
-            ].map((s, i) => (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.3 }}
-                whileHover={{ y: -6, boxShadow: "0 10px 40px -10px hsl(var(--primary) / 0.15)" }}
-                className="group rounded-2xl border border-border bg-card p-7 shadow-sm transition-colors duration-300"
-              >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  {s.icon}
-                </div>
-                <h3 className="mb-2 text-lg font-semibold text-card-foreground">{s.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Servicios detalle — consolidados en #recursos accordion */}
 
       {/* ═══════════ STATS ═══════════ */}
       <motion.section
@@ -868,45 +913,7 @@ const Home = () => {
         <MiniProjects />
       </motion.div>
 
-      {/* ═══════════ TIPS DE ELECTRÓNICA ═══════════ */}
-      <motion.section
-        id="tips"
-        className="container mx-auto px-6 py-16"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
-            <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-            Tips de Electrónica
-          </h2>
-          <p className="text-center text-muted-foreground text-sm mb-8">por J.A.Sanchez</p>
-
-          <Accordion type="single" collapsible className="space-y-3">
-            {[
-              { emoji: "💡", title: "El sentido del LED", text: "Recordá que los LED tienen polaridad. La pata larga es el Ánodo (+) y la corta el Cátodo (-). Si lo ponés al revés, no prenderá." },
-              { emoji: "🔗", title: "Resistencias en serie", text: "Si sumás dos resistencias una tras otra, su valor total aumenta (Rt = R1 + R2). Ideal para cuando no tenés el valor exacto que necesitás." },
-              { emoji: "⚠️", title: "Cuidado con el Protoboard", text: "Las líneas laterales (roja y azul) suelen estar conectadas a lo largo para la alimentación, pero las del medio están conectadas de forma vertical. ¡No hagas cortocircuito!" },
-              { emoji: "🔥", title: "Soldadura brillante", text: "Una buena soldadura debe quedar brillante y con forma de volcán. Si queda opaca o como una bola, es una 'soldadura fría' y fallará pronto." },
-              { emoji: "📏", title: "El truco del multímetro", text: "Siempre empezá midiendo en la escala más alta de tu tester para no quemar el fusible si no conocés el voltaje que vas a medir." },
-            ].map((tip, i) => (
-              <AccordionItem key={i} value={`tip-${i}`} className="rounded-xl border border-border bg-card shadow-sm px-5 overflow-hidden">
-                <AccordionTrigger className="text-sm font-semibold text-card-foreground hover:no-underline py-4">
-                  <span className="flex items-center gap-3">
-                    <span className="text-xl shrink-0">{tip.emoji}</span>
-                    {tip.title}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-9 pb-4">
-                  {tip.text}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </motion.section>
+      {/* Tips — consolidados en #recursos accordion */}
 
       {/* ═══════════ FORO / Q&A CON TABS ═══════════ */}
       <motion.section
@@ -1083,46 +1090,7 @@ const Home = () => {
         </p>
       </motion.section>
 
-      {/* ═══════════ ¿POR QUÉ ELEGIR ELECTROLABPRO? ═══════════ */}
-      <section className="py-14 sm:py-20 border-t border-border">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10">
-              ¿Por qué elegir ElectroLab Pro?
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { icon: <Zap className="h-5 w-5 text-primary" />, title: "100% gratuito", desc: "Todas las calculadoras y guías son completamente gratis, sin registro ni suscripciones ocultas." },
-                { icon: <Calculator className="h-5 w-5 text-primary" />, title: "Resultados instantáneos", desc: "Ingresá los valores y obtené el resultado en milisegundos, con explicación incluida." },
-                { icon: <BookOpen className="h-5 w-5 text-primary" />, title: "Contenido educativo", desc: "Más de 11 guías técnicas escritas en lenguaje claro, con ejemplos prácticos y diagramas." },
-                { icon: <Cpu className="h-5 w-5 text-primary" />, title: "Diseñado por un electrónico", desc: "Desarrollado por J.A. Sánchez a partir de la recopilación y adaptación de información técnica proveniente de especialistas, manuales y documentación profesional en electrónica. El objetivo de ElectroLabPro es ofrecer herramientas confiables basadas en prácticas reales utilizadas en el ámbito técnico." },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3 }}
-                  className="flex gap-4 p-5 rounded-xl border border-border bg-card shadow-sm"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* ¿Por qué elegir? — consolidado en #recursos accordion */}
 
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="border-t border-border py-8 px-6 bg-card/50">
