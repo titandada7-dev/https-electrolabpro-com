@@ -88,14 +88,11 @@ const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-// Quick access cards data — orden: Guías → Calculadoras → Proyectos → FAQ → Equipamiento → Tips
+// Tres niveles de investigación
 const quickAccessCards = [
-  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "13 artículos completos", target: "guias", color: "bg-primary/10 text-primary" },
-  { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-violet-500/10 text-violet-500" },
-  { icon: <CircuitBoard className="h-6 w-6" />, title: "Mini Proyectos", desc: "Circuitos paso a paso", target: "mini-proyectos", color: "bg-emerald-500/10 text-emerald-500" },
-  { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas (FAQ)", desc: "Respuestas por categoría", target: "foro", color: "bg-amber-500/10 text-amber-500" },
-  { icon: <ShoppingBag className="h-6 w-6" />, title: "Herramientas", desc: "Equipamiento recomendado", target: "equipamiento", color: "bg-rose-500/10 text-rose-500" },
-  { icon: <Lightbulb className="h-6 w-6" />, title: "Tips", desc: "Consejos prácticos", target: "tips", color: "bg-cyan-500/10 text-cyan-500" },
+  { icon: <Calculator className="h-6 w-6" />, title: "Nivel 1 · Laboratorio de Cálculo", desc: "Calculadoras verificadas en banco de pruebas", target: "calculadora", color: "bg-primary/10 text-primary" },
+  { icon: <Microchip className="h-6 w-6" />, title: "Nivel 2 · Investigación de Componentes", desc: "Fichas técnicas y datasheets resumidos", target: "diccionario", color: "bg-violet-500/10 text-violet-500" },
+  { icon: <BookOpen className="h-6 w-6" />, title: "Nivel 3 · Protocolos y Guías", desc: "PWM, I2C, reguladores y más", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
 ];
 
 const Home = () => {
@@ -342,16 +339,16 @@ const Home = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
             <CircuitBoard className="w-3.5 h-3.5" />
-            PLATAFORMA DE ELECTRÓNICA
+            CENTRO DE INVESTIGACIÓN TÉCNICA
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
-            ElectroLabPro – Herramientas y Calculadoras de{" "}
-            <span className="text-gradient-primary">Electrónica</span>
+            ElectroLab Pro — Investigación, Cálculo y{" "}
+            <span className="text-gradient-primary">Documentación Electrónica</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Aprendé electrónica de forma simple con nuestras calculadoras y guías prácticas.
+            Herramientas y guías basadas en estándares internacionales de ingeniería, validadas en banco de pruebas.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-6 text-sm font-medium text-foreground">
@@ -395,10 +392,10 @@ const Home = () => {
         <div className="container mx-auto px-6">
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground text-center mb-2">
-              Nuestros <span className="text-primary">Servicios</span>
+              Niveles de <span className="text-primary">Investigación</span>
             </h2>
-            <p className="text-center text-muted-foreground text-sm mb-8">Explorá nuestras categorías y accedé a la información detallada</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+            <p className="text-center text-muted-foreground text-sm mb-8">El sitio está organizado en tres niveles según la profundidad técnica del contenido</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
               {quickAccessCards.map((card, i) => (
                 <button
                   key={card.target}
@@ -556,17 +553,28 @@ const Home = () => {
 
       {/* FAQ corto y CTA intermedio — consolidados en #foro y hero respectivamente */}
 
-      {/* ═══════════ CALCULATOR HUB (TODO-EN-UNO) ═══════════ */}
-      <motion.div
+      {/* ═══════════ NIVEL 1 · LABORATORIO DE CÁLCULO ═══════════ */}
+      <motion.section
         id="calculadora"
-        className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20"
+        className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20 border-t border-border"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.3 }}
       >
+        <div className="text-center mb-8">
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+            Nivel 1
+          </span>
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
+            Laboratorio de <span className="text-primary">Cálculo</span>
+          </h2>
+          <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+            Calculadoras interactivas verificadas: Ley de Ohm, resistencias, LED, divisor de voltaje, filtros RC y temporizador 555.
+          </p>
+        </div>
         <CalculatorHub />
-      </motion.div>
+      </motion.section>
 
       {/* ═══════════ RECURSOS & INFORMACIÓN (ACCORDION UNIFICADO) ═══════════ */}
       <motion.section
@@ -889,17 +897,28 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* ═══════════ DICCIONARIO ═══════════ */}
-      <motion.div
+      {/* ═══════════ NIVEL 2 · INVESTIGACIÓN DE COMPONENTES ═══════════ */}
+      <motion.section
         id="diccionario"
-        className="container mx-auto px-6 py-12"
+        className="container mx-auto px-6 py-12 border-t border-border"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.3 }}
       >
+        <div className="text-center mb-8">
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+            Nivel 2
+          </span>
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
+            Investigación de <span className="text-primary">Componentes</span>
+          </h2>
+          <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+            Fichas técnicas con símbolo, descripción funcional y aplicaciones prácticas verificadas.
+          </p>
+        </div>
         <ComponentDictionary />
-      </motion.div>
+      </motion.section>
 
       {/* ═══════════ MINI PROYECTOS ═══════════ */}
       <motion.div
@@ -979,11 +998,18 @@ const Home = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.3 }}
       >
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
-          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-          Guías de Electrónica
-        </h2>
-        <p className="text-center text-muted-foreground text-sm mb-10">Artículos esenciales para dominar los fundamentos</p>
+        <div className="text-center mb-10">
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+            Nivel 3
+          </span>
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground flex items-center justify-center gap-3">
+            <BookOpen className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
+            Documentación <span className="text-primary">Técnica</span>
+          </h2>
+          <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+            Protocolos, guías de componentes y procedimientos contrastados con normativas y datasheets de fabricante.
+          </p>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[
             { emoji: "🔢", title: "Ley de Ohm Explicada", desc: "Domina la relación entre voltaje, corriente y resistencia con ejemplos prácticos.", to: "/articulos/ley-de-ohm", tag: "Fundamentos" },
