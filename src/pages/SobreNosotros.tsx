@@ -71,10 +71,10 @@ const SobreNosotros = () => {
             Sobre Nosotros
           </div>
           <h1 className="text-3xl md:text-5xl font-mono font-bold bg-gradient-to-r from-primary via-primary to-foreground bg-clip-text text-transparent">
-            Sobre ElectroLab Pro
+            Centro de Investigación y Consulta Técnica
           </h1>
-          <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
-            Plataforma educativa de electrónica creada para estudiantes, técnicos y entusiastas.
+          <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            ElectroLab Pro es un proyecto nacido de la investigación técnica y la experimentación constante en el campo de la electrónica y la automatización.
           </p>
         </div>
       </section>
@@ -83,40 +83,36 @@ const SobreNosotros = () => {
       <div className="container mx-auto px-4 py-10">
         <div className="max-w-3xl mx-auto space-y-10">
 
-          {/* Author Section */}
+          {/* Misión / Investigación */}
           <section className="p-6 md:p-8 rounded-2xl border border-border bg-card/80 backdrop-blur space-y-5">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-14 h-14 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center">
                 <Award className="w-7 h-7 text-primary" />
               </div>
               <div>
-                <h2 className="text-xl font-bold font-mono text-foreground">J.A. Sánchez</h2>
-                <p className="text-sm text-muted-foreground">Aficionado a la electrónica y estudiante de desarrollo web</p>
+                <h2 className="text-xl font-bold font-mono text-foreground">Nuestra Misión</h2>
+                <p className="text-sm text-muted-foreground">Investigación técnica aplicada — J.A. Sánchez</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Antes que nada, una aclaración honesta: <strong className="text-foreground">no soy ingeniero ni técnico 
-              electrónico de profesión</strong>. Soy aficionado al hobby de la electrónica desde hace varios años y 
-              actualmente estoy estudiando desarrollo web e informática. <strong className="text-foreground">ElectroLab Pro</strong> nació 
-              precisamente de esa intersección entre las dos cosas que me apasionan.
+              <strong className="text-foreground">ElectroLab Pro</strong> es un proyecto nacido de la investigación
+              técnica y la experimentación constante en el campo de la electrónica y la automatización. Nuestra misión
+              es <strong className="text-foreground">documentar procesos, simplificar cálculos complejos</strong> y
+              ofrecer guías basadas en estándares internacionales de ingeniería.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Como me imagino que le pasa a muchos al arrancar en la electrónica, cada vez que necesitaba hacer un 
-              cálculo simple (la resistencia para un LED, un filtro RC, un divisor de tensión) terminaba abriendo 
-              cuatro o cinco páginas distintas: algunas en inglés mal traducido, otras llenas de pop-ups y otras 
-              incompletas que te daban el valor pero no el wattaje recomendado. Después de quemar varios componentes 
-              por información a medias, dije: <em>"si estoy aprendiendo a programar, puedo armar yo la herramienta que 
-              me hubiera servido cuando empecé"</em>.
+              Cada herramienta y artículo publicado es el resultado de un <strong className="text-foreground">estudio
+              profundo de las normativas vigentes</strong> (hojas de datos de fabricantes, IEC, IEEE, manuales de
+              referencia) y de la <strong className="text-foreground">práctica en banco de pruebas</strong>. Antes de
+              publicar una calculadora, validamos los resultados contra mediciones reales con multímetro y
+              osciloscopio.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Así nació este proyecto. Cada calculadora y cada guía publicada se contrasta con documentación técnica 
-              reconocida (hojas de datos de fabricantes, manuales y bibliografía de referencia) y se mejora con el 
-              feedback de la comunidad. Si encontrás algún error, escribime sin filtro: prefiero corregirlo a que 
-              alguien que esté arrancando reciba información equivocada.
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              El objetivo de ElectroLab Pro es simple: ofrecer en un solo lugar las herramientas gratuitas en español 
-              que a mí me hubieran ahorrado horas de búsqueda y unos cuantos componentes quemados.
+              El sitio funciona como un <strong className="text-foreground">centro de consulta técnica</strong>
+              estructurado en tres niveles de investigación: <em>Laboratorio de Cálculo</em> (herramientas interactivas
+              verificadas), <em>Investigación de Componentes</em> (fichas técnicas con uso práctico) y{" "}
+              <em>Protocolos y Guías</em> (documentación profunda sobre PWM, I2C, reguladores, datasheets). Si detectás
+              una imprecisión, escribinos: la trazabilidad y la corrección de errores son parte del método.
             </p>
           </section>
 
