@@ -247,8 +247,100 @@ const DomainDebugBanner = () => {
       return { ...r, freshness: "current" };
     });
     setChecks(annotated);
+
+    // ----- Historial -----
+    const snapshot: HistorySnapshot = {
+      ts: new Date().toISOString(),
+      hosts: Object.fromEntries(
+        annotated.map((r) => {
+          const key = TARGETS.find((t) => t.url === r.url)?.key || r.url;
+          return [
+            key,
+            {
+              buildId: r.version?.buildId,
+              cacheClass: r.cacheClass,
+              freshness: r.freshness,
+              httpStatus: r.httpStatus,
+            },
+          ];
+        })
+      ),
+    };
+    setHistory((prev) => {
+      const next = [...prev, snapshot].slice(-HISTORY_MAX);
+      try {
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
+      } catch {
+        // ignore quota
+      }
+      return next;
+    });
+
+    // ----- Alertas -----
+    const newAlerts: AlertItem[] = [];
+    const apex = annotated.find((r) => r.url.includes("//electrolabpro.com"));
+    const www = annotated.find((r) => r.url.includes("//www.electrolabpro.com"));
+    if (apex?.version?.buildTime && www?.version?.buildTime) {
+      const diff = Math.abs(
+        new Date(apex.version.buildTime).getTime() -
+          new Date(www.version.buildTime).getTime()
+      );
+      if (diff > 5 * 60 * 1000) {
+        newAlerts.push({
+          id: `drift-${Date.now()}`,
+          ts: new Date().toISOString(),
+          level: "critical",
+          message: `Drift de ${Math.round(diff / 60000)} min entre apex (${apex.version.buildId}) y www (${www.version.buildId}).`,
+        });
+      }
+    }
+    annotated.forEach((r) => {
+      const k = TARGETS.find((t) => t.url === r.url)?.key || r.url;
+      if (r.cacheClass === "miss" || r.cacheClass === "dynamic") {
+        missStreakRef.current[k] = (missStreakRef.current[k] || 0) + 1;
+        if (missStreakRef.current[k] >= 3) {
+          newAlerts.push({
+            id: `miss-${k}-${Date.now()}`,
+            ts: new Date().toISOString(),
+            level: "warn",
+            message: `${r.label}: ${missStreakRef.current[k]} chequeos seguidos con cache ${r.cacheClass}.`,
+          });
+        }
+      } else if (r.cacheClass === "hit") {
+        missStreakRef.current[k] = 0;
+      }
+    });
+
+    if (newAlerts.length) {
+      const sig = newAlerts.map((a) => a.message).join("|");
+      if (sig !== lastAlertSigRef.current) {
+        lastAlertSigRef.current = sig;
+        setAlerts((prev) => [...newAlerts, ...prev].slice(0, 10));
+        if (soundOn) {
+          try {
+            const ctx = new (window.AudioContext ||
+              (window as any).webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.frequency.value = newAlerts.some((a) => a.level === "critical")
+              ? 880
+              : 540;
+            gain.gain.value = 0.05;
+            osc.connect(gain).connect(ctx.destination);
+            osc.start();
+            setTimeout(() => {
+              osc.stop();
+              ctx.close();
+            }, 250);
+          } catch {
+            // audio blocked
+          }
+        }
+      }
+    }
+
     setRunning(false);
-  }, []);
+  }, [soundOn]);
 
   // (Re)schedule polling
   useEffect(() => {
