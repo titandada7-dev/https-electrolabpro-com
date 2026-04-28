@@ -401,8 +401,9 @@ const Home = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
               {quickAccessCards.map((card, i) => (
                 <button
-                  onClick={() => scrollTo("detalles")}
-                  className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
+                  key={card.target}
+                  onClick={() => scrollTo(card.target)}
+                  className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm card-glow hover:-translate-y-1 transition-all duration-300 text-center"
                 >
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${card.color} transition-transform group-hover:scale-110`}>
                     {card.icon}
@@ -411,7 +412,7 @@ const Home = () => {
                     <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
                     <p className="text-xs text-muted-foreground mt-1">{card.desc}</p>
                   </div>
-                  <span className="text-[10px] font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">Ver detalles ↓</span>
+                  <span className="text-[10px] font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">Ir a sección ↓</span>
                 </button>
               ))}
             </div>
