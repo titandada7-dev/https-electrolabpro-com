@@ -946,45 +946,7 @@ const Home = () => {
         <MiniProjects />
       </motion.div>
 
-      {/* ═══════════ TIPS DE ELECTRÓNICA ═══════════ */}
-      <motion.section
-        id="tips"
-        className="container mx-auto px-6 py-16"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
-            <Lightbulb className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-            Tips de Electrónica
-          </h2>
-          <p className="text-center text-muted-foreground text-sm mb-8">por J.A.Sanchez</p>
-
-          <Accordion type="single" collapsible className="space-y-3">
-            {[
-              { emoji: "💡", title: "El sentido del LED", text: "Recordá que los LED tienen polaridad. La pata larga es el Ánodo (+) y la corta el Cátodo (-). Si lo ponés al revés, no prenderá." },
-              { emoji: "🔗", title: "Resistencias en serie", text: "Si sumás dos resistencias una tras otra, su valor total aumenta (Rt = R1 + R2). Ideal para cuando no tenés el valor exacto que necesitás." },
-              { emoji: "⚠️", title: "Cuidado con el Protoboard", text: "Las líneas laterales (roja y azul) suelen estar conectadas a lo largo para la alimentación, pero las del medio están conectadas de forma vertical. ¡No hagas cortocircuito!" },
-              { emoji: "🔥", title: "Soldadura brillante", text: "Una buena soldadura debe quedar brillante y con forma de volcán. Si queda opaca o como una bola, es una 'soldadura fría' y fallará pronto." },
-              { emoji: "📏", title: "El truco del multímetro", text: "Siempre empezá midiendo en la escala más alta de tu tester para no quemar el fusible si no conocés el voltaje que vas a medir." },
-            ].map((tip, i) => (
-              <AccordionItem key={i} value={`tip-${i}`} className="rounded-xl border border-border bg-card shadow-sm px-5 overflow-hidden">
-                <AccordionTrigger className="text-sm font-semibold text-card-foreground hover:no-underline py-4">
-                  <span className="flex items-center gap-3">
-                    <span className="text-xl shrink-0">{tip.emoji}</span>
-                    {tip.title}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-9 pb-4">
-                  {tip.text}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </motion.section>
+      {/* Tips — consolidados en #recursos accordion */}
 
       {/* ═══════════ FORO / Q&A CON TABS ═══════════ */}
       <motion.section
