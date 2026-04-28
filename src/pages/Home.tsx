@@ -88,14 +88,11 @@ const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-// Quick access cards data — orden: Guías → Calculadoras → Proyectos → FAQ → Equipamiento → Tips
+// Tres niveles de investigación
 const quickAccessCards = [
-  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "13 artículos completos", target: "guias", color: "bg-primary/10 text-primary" },
-  { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-violet-500/10 text-violet-500" },
-  { icon: <CircuitBoard className="h-6 w-6" />, title: "Mini Proyectos", desc: "Circuitos paso a paso", target: "mini-proyectos", color: "bg-emerald-500/10 text-emerald-500" },
-  { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas (FAQ)", desc: "Respuestas por categoría", target: "foro", color: "bg-amber-500/10 text-amber-500" },
-  { icon: <ShoppingBag className="h-6 w-6" />, title: "Herramientas", desc: "Equipamiento recomendado", target: "equipamiento", color: "bg-rose-500/10 text-rose-500" },
-  { icon: <Lightbulb className="h-6 w-6" />, title: "Tips", desc: "Consejos prácticos", target: "tips", color: "bg-cyan-500/10 text-cyan-500" },
+  { icon: <Calculator className="h-6 w-6" />, title: "Nivel 1 · Laboratorio de Cálculo", desc: "Calculadoras verificadas en banco de pruebas", target: "calculadora", color: "bg-primary/10 text-primary" },
+  { icon: <Microchip className="h-6 w-6" />, title: "Nivel 2 · Investigación de Componentes", desc: "Fichas técnicas y datasheets resumidos", target: "diccionario", color: "bg-violet-500/10 text-violet-500" },
+  { icon: <BookOpen className="h-6 w-6" />, title: "Nivel 3 · Protocolos y Guías", desc: "PWM, I2C, reguladores y más", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
 ];
 
 const Home = () => {
@@ -342,16 +339,16 @@ const Home = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
             <CircuitBoard className="w-3.5 h-3.5" />
-            PLATAFORMA DE ELECTRÓNICA
+            CENTRO DE INVESTIGACIÓN TÉCNICA
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
-            ElectroLabPro – Herramientas y Calculadoras de{" "}
-            <span className="text-gradient-primary">Electrónica</span>
+            ElectroLab Pro — Investigación, Cálculo y{" "}
+            <span className="text-gradient-primary">Documentación Electrónica</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Aprendé electrónica de forma simple con nuestras calculadoras y guías prácticas.
+            Herramientas y guías basadas en estándares internacionales de ingeniería, validadas en banco de pruebas.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-6 text-sm font-medium text-foreground">
@@ -395,10 +392,10 @@ const Home = () => {
         <div className="container mx-auto px-6">
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground text-center mb-2">
-              Nuestros <span className="text-primary">Servicios</span>
+              Niveles de <span className="text-primary">Investigación</span>
             </h2>
-            <p className="text-center text-muted-foreground text-sm mb-8">Explorá nuestras categorías y accedé a la información detallada</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+            <p className="text-center text-muted-foreground text-sm mb-8">El sitio está organizado en tres niveles según la profundidad técnica del contenido</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
               {quickAccessCards.map((card, i) => (
                 <button
                   key={card.target}
