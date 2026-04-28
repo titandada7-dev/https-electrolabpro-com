@@ -531,11 +531,24 @@ const DomainDebugBanner = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] max-w-md w-[calc(100%-2rem)] rounded-lg border border-slate-700 bg-slate-900/95 text-slate-100 shadow-2xl backdrop-blur text-xs font-mono">
+    <div
+      className={`fixed bottom-4 right-4 z-[9999] max-w-md w-[calc(100%-2rem)] rounded-lg border bg-slate-900/95 text-slate-100 shadow-2xl backdrop-blur text-xs font-mono ${
+        alerts.some((a) => a.level === "critical")
+          ? "border-red-500 ring-2 ring-red-500/50 animate-pulse"
+          : alerts.length
+          ? "border-amber-500"
+          : "border-slate-700"
+      }`}
+    >
       <div className="flex items-center justify-between px-3 py-2 border-b border-slate-700">
         <div className="flex items-center gap-2">
           <span className={`inline-block w-2 h-2 rounded-full ${version.color}`} />
           <span className="font-semibold">Domain Debug</span>
+          {alerts.length > 0 && (
+            <span className="px-1.5 py-0.5 rounded bg-red-600 text-white text-[10px]">
+              {alerts.length} alerta{alerts.length > 1 ? "s" : ""}
+            </span>
+          )}
           <span className="text-slate-400">· {version.kind}</span>
         </div>
         <div className="flex gap-2">
