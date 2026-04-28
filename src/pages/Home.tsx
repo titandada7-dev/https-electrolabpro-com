@@ -88,14 +88,14 @@ const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-// Quick access cards data
+// Quick access cards data — orden: Guías → Calculadoras → Proyectos → FAQ → Equipamiento → Tips
 const quickAccessCards = [
-  { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-primary/10 text-primary" },
-  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "14 artículos completos", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
-  { icon: <Zap className="h-6 w-6" />, title: "Teoría", desc: "Ley de Ohm, conceptos básicos", target: "teoria", color: "bg-amber-500/10 text-amber-500" },
-  { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas", desc: "FAQ por categoría", target: "foro", color: "bg-violet-500/10 text-violet-500" },
+  { icon: <BookOpen className="h-6 w-6" />, title: "Guías Técnicas", desc: "13 artículos completos", target: "guias", color: "bg-primary/10 text-primary" },
+  { icon: <Calculator className="h-6 w-6" />, title: "Calculadoras", desc: "Ley de Ohm, LED, Resistencias", target: "calculadora", color: "bg-violet-500/10 text-violet-500" },
+  { icon: <CircuitBoard className="h-6 w-6" />, title: "Mini Proyectos", desc: "Circuitos paso a paso", target: "mini-proyectos", color: "bg-emerald-500/10 text-emerald-500" },
+  { icon: <MessageSquare className="h-6 w-6" />, title: "Preguntas (FAQ)", desc: "Respuestas por categoría", target: "foro", color: "bg-amber-500/10 text-amber-500" },
   { icon: <ShoppingBag className="h-6 w-6" />, title: "Herramientas", desc: "Equipamiento recomendado", target: "equipamiento", color: "bg-rose-500/10 text-rose-500" },
-  { icon: <Lightbulb className="h-6 w-6" />, title: "Tips", desc: "Consejos de electrónica", target: "tips", color: "bg-cyan-500/10 text-cyan-500" },
+  { icon: <Lightbulb className="h-6 w-6" />, title: "Tips", desc: "Consejos prácticos", target: "tips", color: "bg-cyan-500/10 text-cyan-500" },
 ];
 
 const Home = () => {
@@ -335,9 +335,10 @@ const Home = () => {
       </header>
 
       {/* ═══════════ #INICIO ═══════════ */}
-      <section id="inicio" className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
+      <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid opacity-[0.35] pointer-events-none" aria-hidden="true" />
         <div
-          className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
+          className="relative w-full max-w-3xl rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
             <CircuitBoard className="w-3.5 h-3.5" />
@@ -346,7 +347,7 @@ const Home = () => {
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
             ElectroLabPro – Herramientas y Calculadoras de{" "}
-            <span className="text-primary">Electrónica</span>
+            <span className="text-gradient-primary">Electrónica</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
@@ -360,11 +361,11 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
-            <Button size="lg" className="gap-2" onClick={() => scrollTo("servicios")}>
-              Ver más <ChevronDown className="h-4 w-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
+            <Button size="lg" className="gap-2" onClick={() => scrollTo("guias")}>
               <BookOpen className="h-4 w-4" /> Ver guías
+            </Button>
+            <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("calculadora")}>
+              <Calculator className="h-4 w-4" /> Usar calculadoras
             </Button>
           </div>
 
@@ -400,8 +401,9 @@ const Home = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
               {quickAccessCards.map((card, i) => (
                 <button
-                  onClick={() => scrollTo("detalles")}
-                  className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
+                  key={card.target}
+                  onClick={() => scrollTo(card.target)}
+                  className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm card-glow hover:-translate-y-1 transition-all duration-300 text-center"
                 >
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${card.color} transition-transform group-hover:scale-110`}>
                     {card.icon}
@@ -410,7 +412,7 @@ const Home = () => {
                     <h3 className="font-semibold text-foreground text-sm">{card.title}</h3>
                     <p className="text-xs text-muted-foreground mt-1">{card.desc}</p>
                   </div>
-                  <span className="text-[10px] font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">Ver detalles ↓</span>
+                  <span className="text-[10px] font-semibold text-primary opacity-0 group-hover:opacity-100 transition-opacity">Ir a sección ↓</span>
                 </button>
               ))}
             </div>
@@ -552,65 +554,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ FAQ SIMPLE (ACORDEONES) ═══════════ */}
-      <section className="py-14 sm:py-20 border-t border-border bg-card/50">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10 flex items-center justify-center gap-3">
-              <MessageSquare className="w-6 h-6 text-primary" />
-              Preguntas frecuentes
-            </h2>
-            <Accordion type="single" collapsible className="space-y-3">
-              {[
-                { q: "¿Qué puedo calcular en esta web?", a: "Podés calcular resistencias, valores de la ley de Ohm y configuraciones básicas de circuitos." },
-                { q: "¿Es gratis?", a: "Sí, todas las herramientas son completamente gratuitas. No necesitás registrarte ni pagar nada." },
-                { q: "¿Necesito conocimientos previos?", a: "No, la web está pensada tanto para principiantes como para usuarios avanzados. Cada calculadora incluye explicaciones claras." },
-              ].map((item, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="rounded-xl border border-border bg-card shadow-sm px-5 overflow-hidden">
-                  <AccordionTrigger className="text-sm font-semibold text-card-foreground hover:no-underline py-4">
-                    <span className="flex items-center gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
-                        {i + 1}
-                      </span>
-                      {item.q}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-9 pb-4">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════ LLAMADO A LA ACCIÓN ═══════════ */}
-      <section className="py-14 sm:py-20 border-t border-border">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              Explorá nuestras herramientas
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
-              Empezá a calcular de forma rápida y sencilla. Sin fórmulas, sin complicaciones.
-            </p>
-            <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-              Usar calculadoras <ChevronDown className="h-4 w-4" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      {/* FAQ corto y CTA intermedio — consolidados en #foro y hero respectivamente */}
 
       {/* ═══════════ CALCULATOR HUB (TODO-EN-UNO) ═══════════ */}
       <motion.div
@@ -833,41 +777,10 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* ═══════════ GUÍAS DESTACADAS ═══════════ */}
-      <motion.section
-        className="container mx-auto px-6 py-12 space-y-6"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
-      >
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center flex items-center justify-center gap-3">
-          <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-          Guías Técnicas Destacadas
-        </h2>
-        <p className="text-center text-muted-foreground text-sm">Artículos esenciales para dominar los fundamentos</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {[
-            { emoji: "🔢", title: "Ley de Ohm", desc: "Aprende los fundamentos del voltaje y la corriente.", to: "/articulos/ley-de-ohm" },
-            { emoji: "🎨", title: "Código de Colores", desc: "Guía definitiva para leer resistencias de 4 y 5 bandas.", to: "/articulos/codigo-colores-resistencias" },
-            { emoji: "⚡", title: "Condensadores", desc: "Tipos, funciones y cómo leer el código cerámico.", to: "/articulos/condensadores" },
-          ].map((guide, i) => (
-            <motion.div key={guide.to} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
-              <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
-                <div className="w-full h-24 sm:h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
-                <div className="flex flex-col flex-1 p-4 space-y-2">
-                  <h3 className="font-semibold text-card-foreground text-base group-hover:text-primary transition-colors">{guide.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{guide.desc}</p>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
+      {/* Guías Técnicas Destacadas — consolidadas en sección #guias más abajo */}
 
-      {/* ═══════════ SERVICIOS (CARDS) ═══════════ */}
-      <section id="servicios" className="py-16 sm:py-20 border-y border-border bg-card/50">
+      {/* ═══════════ SERVICIOS (CARDS DETALLE) ═══════════ */}
+      <section id="servicios-detalle" className="py-16 sm:py-20 border-y border-border bg-card/50">
         <div className="container mx-auto px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center mb-3">
             Servicios
