@@ -45,6 +45,29 @@ const CANONICAL_OPTIONS = [
   { key: "www", label: "www.electrolabpro.com", host: "www.electrolabpro.com" },
 ];
 
+const HISTORY_KEY = "electrolab.domainHistory";
+const HISTORY_MAX = 20;
+
+interface HistorySnapshot {
+  ts: string;
+  hosts: Record<
+    string,
+    {
+      buildId?: string;
+      cacheClass?: UrlCheck["cacheClass"];
+      freshness?: UrlCheck["freshness"];
+      httpStatus?: number;
+    }
+  >;
+}
+
+interface AlertItem {
+  id: string;
+  ts: string;
+  level: "warn" | "critical";
+  message: string;
+}
+
 const LOCAL_BUILD_ID =
   typeof __BUILD_ID__ !== "undefined" ? __BUILD_ID__ : "dev-runtime";
 const LOCAL_BUILD_TIME =
@@ -108,6 +131,18 @@ const DomainDebugBanner = () => {
   });
   const [running, setRunning] = useState(false);
   const timerRef = useRef<number | null>(null);
+  const [history, setHistory] = useState<HistorySnapshot[]>(() => {
+    try {
+      const raw = localStorage.getItem(HISTORY_KEY);
+      return raw ? (JSON.parse(raw) as HistorySnapshot[]) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [alerts, setAlerts] = useState<AlertItem[]>([]);
+  const [soundOn, setSoundOn] = useState(false);
+  const missStreakRef = useRef<Record<string, number>>({});
+  const lastAlertSigRef = useRef<string>("");
 
   // Apply canonical redirect on mount
   useEffect(() => {
@@ -212,8 +247,100 @@ const DomainDebugBanner = () => {
       return { ...r, freshness: "current" };
     });
     setChecks(annotated);
+
+    // ----- Historial -----
+    const snapshot: HistorySnapshot = {
+      ts: new Date().toISOString(),
+      hosts: Object.fromEntries(
+        annotated.map((r) => {
+          const key = TARGETS.find((t) => t.url === r.url)?.key || r.url;
+          return [
+            key,
+            {
+              buildId: r.version?.buildId,
+              cacheClass: r.cacheClass,
+              freshness: r.freshness,
+              httpStatus: r.httpStatus,
+            },
+          ];
+        })
+      ),
+    };
+    setHistory((prev) => {
+      const next = [...prev, snapshot].slice(-HISTORY_MAX);
+      try {
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
+      } catch {
+        // ignore quota
+      }
+      return next;
+    });
+
+    // ----- Alertas -----
+    const newAlerts: AlertItem[] = [];
+    const apex = annotated.find((r) => r.url.includes("//electrolabpro.com"));
+    const www = annotated.find((r) => r.url.includes("//www.electrolabpro.com"));
+    if (apex?.version?.buildTime && www?.version?.buildTime) {
+      const diff = Math.abs(
+        new Date(apex.version.buildTime).getTime() -
+          new Date(www.version.buildTime).getTime()
+      );
+      if (diff > 5 * 60 * 1000) {
+        newAlerts.push({
+          id: `drift-${Date.now()}`,
+          ts: new Date().toISOString(),
+          level: "critical",
+          message: `Drift de ${Math.round(diff / 60000)} min entre apex (${apex.version.buildId}) y www (${www.version.buildId}).`,
+        });
+      }
+    }
+    annotated.forEach((r) => {
+      const k = TARGETS.find((t) => t.url === r.url)?.key || r.url;
+      if (r.cacheClass === "miss" || r.cacheClass === "dynamic") {
+        missStreakRef.current[k] = (missStreakRef.current[k] || 0) + 1;
+        if (missStreakRef.current[k] >= 3) {
+          newAlerts.push({
+            id: `miss-${k}-${Date.now()}`,
+            ts: new Date().toISOString(),
+            level: "warn",
+            message: `${r.label}: ${missStreakRef.current[k]} chequeos seguidos con cache ${r.cacheClass}.`,
+          });
+        }
+      } else if (r.cacheClass === "hit") {
+        missStreakRef.current[k] = 0;
+      }
+    });
+
+    if (newAlerts.length) {
+      const sig = newAlerts.map((a) => a.message).join("|");
+      if (sig !== lastAlertSigRef.current) {
+        lastAlertSigRef.current = sig;
+        setAlerts((prev) => [...newAlerts, ...prev].slice(0, 10));
+        if (soundOn) {
+          try {
+            const ctx = new (window.AudioContext ||
+              (window as any).webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.frequency.value = newAlerts.some((a) => a.level === "critical")
+              ? 880
+              : 540;
+            gain.gain.value = 0.05;
+            osc.connect(gain).connect(ctx.destination);
+            osc.start();
+            setTimeout(() => {
+              osc.stop();
+              ctx.close();
+            }, 250);
+          } catch {
+            // audio blocked
+          }
+        }
+      }
+    }
+
     setRunning(false);
-  }, []);
+  }, [soundOn]);
 
   // (Re)schedule polling
   useEffect(() => {
@@ -328,6 +455,52 @@ const DomainDebugBanner = () => {
     URL.revokeObjectURL(url);
   };
 
+  const purgeAndReload = async () => {
+    try {
+      // localStorage (preservar config crítica del banner)
+      const keep: Record<string, string | null> = {
+        [CANONICAL_KEY]: localStorage.getItem(CANONICAL_KEY),
+      };
+      localStorage.clear();
+      Object.entries(keep).forEach(([k, v]) => v && localStorage.setItem(k, v));
+      sessionStorage.clear();
+    } catch {
+      // ignore
+    }
+    try {
+      if ("serviceWorker" in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map((r) => r.unregister()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map((k) => caches.delete(k)));
+      }
+    } catch {
+      // ignore
+    }
+    const opt = CANONICAL_OPTIONS.find((o) => o.key === canonical);
+    const target =
+      opt && opt.host
+        ? `https://${opt.host}${window.location.pathname}${window.location.search}`
+        : window.location.href;
+    const url = new URL(target);
+    url.searchParams.set("_purge", Date.now().toString());
+    window.location.replace(url.toString());
+  };
+
+  const clearHistory = () => {
+    setHistory([]);
+    try {
+      localStorage.removeItem(HISTORY_KEY);
+    } catch {
+      // ignore
+    }
+  };
+
+  const dismissAlert = (id: string) =>
+    setAlerts((prev) => prev.filter((a) => a.id !== id));
+
   if (!enabled) return null;
 
   const dot = (s: CheckStatus) =>
@@ -358,11 +531,24 @@ const DomainDebugBanner = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] max-w-md w-[calc(100%-2rem)] rounded-lg border border-slate-700 bg-slate-900/95 text-slate-100 shadow-2xl backdrop-blur text-xs font-mono">
+    <div
+      className={`fixed bottom-4 right-4 z-[9999] max-w-md w-[calc(100%-2rem)] rounded-lg border bg-slate-900/95 text-slate-100 shadow-2xl backdrop-blur text-xs font-mono ${
+        alerts.some((a) => a.level === "critical")
+          ? "border-red-500 ring-2 ring-red-500/50 animate-pulse"
+          : alerts.length
+          ? "border-amber-500"
+          : "border-slate-700"
+      }`}
+    >
       <div className="flex items-center justify-between px-3 py-2 border-b border-slate-700">
         <div className="flex items-center gap-2">
           <span className={`inline-block w-2 h-2 rounded-full ${version.color}`} />
           <span className="font-semibold">Domain Debug</span>
+          {alerts.length > 0 && (
+            <span className="px-1.5 py-0.5 rounded bg-red-600 text-white text-[10px]">
+              {alerts.length} alerta{alerts.length > 1 ? "s" : ""}
+            </span>
+          )}
           <span className="text-slate-400">· {version.kind}</span>
         </div>
         <div className="flex gap-2">
@@ -434,14 +620,33 @@ const DomainDebugBanner = () => {
               </select>
             </div>
             {canonical !== "off" && (
-              <div className="text-amber-300">
-                ⚠ Redirect cliente activo a{" "}
-                <span className="font-bold">
-                  {CANONICAL_OPTIONS.find((o) => o.key === canonical)?.host}
-                </span>
-                . Solo aplica entre apex/www; no afecta a lovable.app/preview.
-              </div>
+              <>
+                <div className="text-amber-300">
+                  ⚠ Redirect cliente activo a{" "}
+                  <span className="font-bold">
+                    {CANONICAL_OPTIONS.find((o) => o.key === canonical)?.host}
+                  </span>
+                  . Solo aplica entre apex/www; no afecta a lovable.app/preview.
+                </div>
+                <button
+                  onClick={purgeAndReload}
+                  className="px-2 py-1 rounded bg-red-600 hover:bg-red-500 text-white"
+                >
+                  ⟳ Purgar caché + recargar canónico
+                </button>
+              </>
             )}
+
+            <div className="flex items-center gap-2 flex-wrap">
+              <label className="flex items-center gap-1 text-slate-400 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={soundOn}
+                  onChange={(e) => setSoundOn(e.target.checked)}
+                />
+                🔔 Sonido en alertas
+              </label>
+            </div>
 
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-slate-400">Exportar:</span>
@@ -464,6 +669,101 @@ const DomainDebugBanner = () => {
                 HTML
               </button>
             </div>
+          </div>
+
+          {/* Alertas */}
+          {alerts.length > 0 && (
+            <div className="border-t border-slate-700 pt-2">
+              <div className="text-slate-300 font-semibold mb-2">⚠ Alertas activas</div>
+              <ul className="space-y-1">
+                {alerts.map((a) => (
+                  <li
+                    key={a.id}
+                    className={`rounded border p-2 flex items-start gap-2 ${
+                      a.level === "critical"
+                        ? "border-red-500 bg-red-950/40 text-red-200"
+                        : "border-amber-500 bg-amber-950/30 text-amber-200"
+                    }`}
+                  >
+                    <div className="flex-1">
+                      <div>{a.message}</div>
+                      <div className="text-[10px] opacity-70">{a.ts}</div>
+                    </div>
+                    <button
+                      onClick={() => dismissAlert(a.id)}
+                      className="opacity-70 hover:opacity-100"
+                    >
+                      ✕
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Mini-timeline historial */}
+          <div className="border-t border-slate-700 pt-2">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-slate-300 font-semibold">
+                Historial ({history.length}/{HISTORY_MAX})
+              </div>
+              {history.length > 0 && (
+                <button
+                  onClick={clearHistory}
+                  className="text-slate-400 hover:text-white text-[10px]"
+                >
+                  limpiar
+                </button>
+              )}
+            </div>
+            {history.length === 0 ? (
+              <div className="text-slate-500">Sin chequeos previos.</div>
+            ) : (
+              <div className="space-y-1">
+                {TARGETS.map((t) => {
+                  let prevBuild: string | undefined;
+                  return (
+                    <div key={t.key} className="flex items-center gap-1">
+                      <span className="text-slate-400 w-20 truncate" title={t.label}>
+                        {t.key}
+                      </span>
+                      <div className="flex gap-0.5 flex-1">
+                        {history.map((h, idx) => {
+                          const cell = h.hosts[t.key];
+                          const buildChanged =
+                            cell?.buildId &&
+                            prevBuild !== undefined &&
+                            cell.buildId !== prevBuild;
+                          if (cell?.buildId) prevBuild = cell.buildId;
+                          const color =
+                            cell?.cacheClass === "hit"
+                              ? "bg-emerald-500"
+                              : cell?.cacheClass === "miss"
+                              ? "bg-amber-500"
+                              : cell?.cacheClass === "dynamic"
+                              ? "bg-blue-500"
+                              : cell?.httpStatus
+                              ? "bg-slate-500"
+                              : "bg-slate-700";
+                          return (
+                            <div
+                              key={idx}
+                              title={`${h.ts}\nbuild: ${cell?.buildId || "?"}\ncache: ${cell?.cacheClass || "?"}\nHTTP: ${cell?.httpStatus || "?"}`}
+                              className={`flex-1 h-3 ${color} ${
+                                buildChanged ? "ring-2 ring-fuchsia-400" : ""
+                              }`}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+                <div className="text-[10px] text-slate-500 mt-1">
+                  Verde=hit · Ámbar=miss · Azul=dynamic · Borde fucsia=cambio de buildId
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Resultados */}
