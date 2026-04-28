@@ -866,8 +866,8 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* ═══════════ SERVICIOS (CARDS) ═══════════ */}
-      <section id="servicios" className="py-16 sm:py-20 border-y border-border bg-card/50">
+      {/* ═══════════ SERVICIOS (CARDS DETALLE) ═══════════ */}
+      <section id="servicios-detalle" className="py-16 sm:py-20 border-y border-border bg-card/50">
         <div className="container mx-auto px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center mb-3">
             Servicios
