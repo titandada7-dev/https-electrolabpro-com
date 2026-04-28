@@ -552,65 +552,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ FAQ SIMPLE (ACORDEONES) ═══════════ */}
-      <section className="py-14 sm:py-20 border-t border-border bg-card/50">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-10 flex items-center justify-center gap-3">
-              <MessageSquare className="w-6 h-6 text-primary" />
-              Preguntas frecuentes
-            </h2>
-            <Accordion type="single" collapsible className="space-y-3">
-              {[
-                { q: "¿Qué puedo calcular en esta web?", a: "Podés calcular resistencias, valores de la ley de Ohm y configuraciones básicas de circuitos." },
-                { q: "¿Es gratis?", a: "Sí, todas las herramientas son completamente gratuitas. No necesitás registrarte ni pagar nada." },
-                { q: "¿Necesito conocimientos previos?", a: "No, la web está pensada tanto para principiantes como para usuarios avanzados. Cada calculadora incluye explicaciones claras." },
-              ].map((item, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="rounded-xl border border-border bg-card shadow-sm px-5 overflow-hidden">
-                  <AccordionTrigger className="text-sm font-semibold text-card-foreground hover:no-underline py-4">
-                    <span className="flex items-center gap-3">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">
-                        {i + 1}
-                      </span>
-                      {item.q}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed pl-9 pb-4">
-                    {item.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════ LLAMADO A LA ACCIÓN ═══════════ */}
-      <section className="py-14 sm:py-20 border-t border-border">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              Explorá nuestras herramientas
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
-              Empezá a calcular de forma rápida y sencilla. Sin fórmulas, sin complicaciones.
-            </p>
-            <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
-              Usar calculadoras <ChevronDown className="h-4 w-4" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      {/* FAQ corto y CTA intermedio — consolidados en #foro y hero respectivamente */}
 
       {/* ═══════════ CALCULATOR HUB (TODO-EN-UNO) ═══════════ */}
       <motion.div
