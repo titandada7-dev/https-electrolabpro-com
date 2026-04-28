@@ -455,6 +455,52 @@ const DomainDebugBanner = () => {
     URL.revokeObjectURL(url);
   };
 
+  const purgeAndReload = async () => {
+    try {
+      // localStorage (preservar config crítica del banner)
+      const keep: Record<string, string | null> = {
+        [CANONICAL_KEY]: localStorage.getItem(CANONICAL_KEY),
+      };
+      localStorage.clear();
+      Object.entries(keep).forEach(([k, v]) => v && localStorage.setItem(k, v));
+      sessionStorage.clear();
+    } catch {
+      // ignore
+    }
+    try {
+      if ("serviceWorker" in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map((r) => r.unregister()));
+      }
+      if ("caches" in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map((k) => caches.delete(k)));
+      }
+    } catch {
+      // ignore
+    }
+    const opt = CANONICAL_OPTIONS.find((o) => o.key === canonical);
+    const target =
+      opt && opt.host
+        ? `https://${opt.host}${window.location.pathname}${window.location.search}`
+        : window.location.href;
+    const url = new URL(target);
+    url.searchParams.set("_purge", Date.now().toString());
+    window.location.replace(url.toString());
+  };
+
+  const clearHistory = () => {
+    setHistory([]);
+    try {
+      localStorage.removeItem(HISTORY_KEY);
+    } catch {
+      // ignore
+    }
+  };
+
+  const dismissAlert = (id: string) =>
+    setAlerts((prev) => prev.filter((a) => a.id !== id));
+
   if (!enabled) return null;
 
   const dot = (s: CheckStatus) =>
