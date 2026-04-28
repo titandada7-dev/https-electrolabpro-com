@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Contacto from "./pages/Contacto";
@@ -33,6 +34,7 @@ import AprendeJugando from "./pages/AprendeJugando";
 
 function App() {
   return (
+    <ErrorBoundary>
     <BrowserRouter>
       <CookieBanner />
       <PWAInstallPrompt />
@@ -80,6 +82,7 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
