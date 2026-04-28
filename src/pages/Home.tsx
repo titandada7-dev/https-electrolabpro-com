@@ -361,11 +361,11 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
-            <Button size="lg" className="gap-2" onClick={() => scrollTo("servicios")}>
-              Ver más <ChevronDown className="h-4 w-4" />
-            </Button>
-            <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("guias")}>
+            <Button size="lg" className="gap-2" onClick={() => scrollTo("guias")}>
               <BookOpen className="h-4 w-4" /> Ver guías
+            </Button>
+            <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("calculadora")}>
+              <Calculator className="h-4 w-4" /> Usar calculadoras
             </Button>
           </div>
 
