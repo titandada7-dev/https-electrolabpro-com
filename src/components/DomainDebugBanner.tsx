@@ -131,6 +131,18 @@ const DomainDebugBanner = () => {
   });
   const [running, setRunning] = useState(false);
   const timerRef = useRef<number | null>(null);
+  const [history, setHistory] = useState<HistorySnapshot[]>(() => {
+    try {
+      const raw = localStorage.getItem(HISTORY_KEY);
+      return raw ? (JSON.parse(raw) as HistorySnapshot[]) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [alerts, setAlerts] = useState<AlertItem[]>([]);
+  const [soundOn, setSoundOn] = useState(false);
+  const missStreakRef = useRef<Record<string, number>>({});
+  const lastAlertSigRef = useRef<string>("");
 
   // Apply canonical redirect on mount
   useEffect(() => {
