@@ -186,7 +186,7 @@ const Osciloscopio = () => {
       <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Mediciones avanzadas: ejemplos reales</h2>
       <h3 className="text-lg font-mono font-semibold text-foreground mt-4">1. Medir ringing en una señal digital</h3>
       <p>
-        Cuando un microcontrolador conmuta una salida rápidamente, las inductancias parásitas del PCB y las capacitancias generan oscilaciones amortiguadas (ringing) en los flancos. En el osciloscopio aparecen como "campanas" sobre el flanco de subida. Con cursores podés medir la frecuencia de oscilación (típicamente 50-300 MHz) y calcular las parásitas. Un ringing severo (>20% del voltaje) indica problemas de integridad de señal y puede causar fallos esporádicos.
+        Cuando un microcontrolador conmuta una salida rápidamente, las inductancias parásitas del PCB y las capacitancias generan oscilaciones amortiguadas (ringing) en los flancos. En el osciloscopio aparecen como "campanas" sobre el flanco de subida. Con cursores podés medir la frecuencia de oscilación (típicamente 50-300 MHz) y calcular las parásitas. Un ringing severo (mayor al 20% del voltaje) indica problemas de integridad de señal y puede causar fallos esporádicos.
       </p>
       <h3 className="text-lg font-mono font-semibold text-foreground mt-4">2. Detectar glitches con trigger por pulso</h3>
       <p>
@@ -219,7 +219,9 @@ const Osciloscopio = () => {
         <p className="mt-3 text-sm">Los analógicos dibujan la señal directamente con un haz CRT, lo que da muy buena respuesta a señales raras y "feeling" del comportamiento. Los digitales muestrean y reconstruyen, ofreciendo mediciones automáticas, almacenamiento, decodificación y conectividad. Hoy los digitales dominan; los analógicos son piezas de colección o casos de nicho específicos.</p>
       </details>
 
-      
+      {/* CTA Amazon */}
+      <div className="mt-10 p-6 rounded-xl border border-primary/30 bg-primary/5 text-center space-y-3">
+        <p className="text-foreground font-bold font-mono text-lg">📊 Consigue tu primer osciloscopio</p>
         <p className="text-muted-foreground text-sm">
           Osciloscopios digitales y portátiles para empezar a analizar señales electrónicas en tus proyectos.
         </p>
