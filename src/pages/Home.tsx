@@ -335,9 +335,10 @@ const Home = () => {
       </header>
 
       {/* ═══════════ #INICIO ═══════════ */}
-      <section id="inicio" className="flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24">
+      <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid opacity-[0.35] pointer-events-none" aria-hidden="true" />
         <div
-          className="w-full max-w-3xl rounded-2xl border border-border bg-card shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
+          className="relative w-full max-w-3xl rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
             <CircuitBoard className="w-3.5 h-3.5" />
@@ -346,7 +347,7 @@ const Home = () => {
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
             ElectroLabPro – Herramientas y Calculadoras de{" "}
-            <span className="text-primary">Electrónica</span>
+            <span className="text-gradient-primary">Electrónica</span>
           </h1>
 
           <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
