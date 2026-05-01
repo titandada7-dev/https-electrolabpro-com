@@ -126,7 +126,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://electrolabpro.com" },
-        { "@type": "ListItem", "position": 2, "name": "Artículos", "item": "https://electrolabpro.com/#guias" },
+        { "@type": "ListItem", "position": 2, "name": "Documentación Técnica", "item": "https://electrolabpro.com/documentacion-tecnica" },
         { "@type": "ListItem", "position": 3, "name": title, "item": articleUrl }
       ]
     };
