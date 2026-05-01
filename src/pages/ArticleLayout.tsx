@@ -71,6 +71,8 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
     description: subtitle,
+    canonical: slug ? `/articulos/${slug}` : undefined,
+    image,
   });
 
   // Atajo Cmd/Ctrl+K para abrir el buscador desde cualquier artículo
@@ -102,16 +104,16 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
   }, [location.pathname]);
 
   useEffect(() => {
-    const articleUrl = slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com";
+    const articleUrl = slug ? `${SITE_ORIGIN}/articulos/${slug}` : SITE_ORIGIN;
+    const articleImage = resolveArticleImage(image);
 
     const articleJsonLd = {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": title,
       "description": subtitle,
-      "image": [
-        "https://electrolabpro.com/og-image.jpg"
-      ],
+      "url": articleUrl,
+      "image": [articleImage],
       "author": {
         "@type": "Person",
         "name": "J.A. Sanchez",
