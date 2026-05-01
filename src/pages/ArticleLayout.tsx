@@ -1,11 +1,13 @@
-import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search, ArrowRight } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AdBanner from "@/components/AdBanner";
 import LabProRecommendations from "@/components/LabProRecommendations";
 import AuthorBio from "@/components/AuthorBio";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import GlobalSearch from "@/components/GlobalSearch";
+import { getRelatedArticles } from "@/data/articles";
 
 export interface FaqItem {
   question: string;
