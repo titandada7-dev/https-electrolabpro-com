@@ -24,7 +24,23 @@ interface ArticleLayoutProps {
   dateModified?: string;
   /** Si se pasan FAQs, se inyecta automáticamente schema.org FAQPage para Rich Results. */
   faqs?: FaqItem[];
+  /**
+   * Imagen específica para este artículo (Open Graph + Twitter + JSON-LD).
+   * Acepta ruta relativa ("/og-images/ohm.jpg") o URL absoluta.
+   * Si se omite, se usa el OG por defecto del sitio.
+   */
+  image?: string;
 }
+
+const SITE_ORIGIN = "https://electrolabpro.com";
+const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og-image.jpg`;
+
+/** Resuelve a URL absoluta, devolviendo el OG por defecto si no se pasa imagen. */
+const resolveArticleImage = (input?: string): string => {
+  if (!input) return DEFAULT_OG_IMAGE;
+  if (input.startsWith("http")) return input;
+  return `${SITE_ORIGIN}${input.startsWith("/") ? input : `/${input}`}`;
+};
 
 /**
  * Convierte una fecha (YYYY-MM-DD o ISO) a ISO 8601 completo con zona horaria.
@@ -42,7 +58,7 @@ const toISO8601WithTZ = (date: string): string => {
   return `${dateOnly}T10:00:00-03:00`;
 };
 
-const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
+const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs, image }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   // Memorizamos para que el filtrado de los 21 artículos solo se recalcule
