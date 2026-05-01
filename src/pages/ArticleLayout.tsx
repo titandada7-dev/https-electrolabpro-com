@@ -190,7 +190,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       document.getElementById("breadcrumb-jsonld")?.remove();
       document.getElementById("faq-jsonld")?.remove();
     };
-  }, [title, subtitle, slug, datePublished, dateModified, faqs]);
+  }, [title, subtitle, slug, datePublished, dateModified, faqs, image]);
 
   return (
     <div className="min-h-screen bg-background bg-grid">
