@@ -44,6 +44,8 @@ const toISO8601WithTZ = (date: string): string => {
 
 const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
+  const location = useLocation();
+  const relatedArticles = getRelatedArticles(location.pathname, 3);
 
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
