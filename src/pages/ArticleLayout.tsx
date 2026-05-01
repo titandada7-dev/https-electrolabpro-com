@@ -7,7 +7,7 @@ import AuthorBio from "@/components/AuthorBio";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import GlobalSearch from "@/components/GlobalSearch";
-import { getRelatedArticles } from "@/data/articles";
+import { obtenerArticulosRelacionados } from "@/data/articulos";
 
 export interface FaqItem {
   question: string;
@@ -45,7 +45,7 @@ const toISO8601WithTZ = (date: string): string => {
 const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
-  const relatedArticles = getRelatedArticles(location.pathname, 3);
+  const articulosSugeridos = obtenerArticulosRelacionados(location.pathname, 3);
 
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
@@ -245,7 +245,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
             {children}
 
             {/* Artículos relacionados — fomenta retención y rastreo interno */}
-            {relatedArticles.length > 0 && (
+            {articulosSugeridos.length > 0 && (
               <section
                 className="mt-16 pt-8 border-t border-border"
                 aria-labelledby="related-articles-heading"
@@ -258,19 +258,21 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                   Continúa aprendiendo
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {relatedArticles.map((item) => (
+                  {articulosSugeridos.map((articulo) => (
                     <Link
-                      key={item.path}
-                      to={item.path}
-                      className="group block p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-all"
+                      key={articulo.id}
+                      to={articulo.path}
+                      className="group block"
                     >
-                      <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors flex items-start justify-between gap-2">
-                        <span>{item.title}</span>
-                        <ArrowRight className="w-4 h-4 shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </h3>
-                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
-                        {item.description}
-                      </p>
+                      <article className="p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-all h-full">
+                        <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors flex items-start justify-between gap-2">
+                          <span>{articulo.titulo}</span>
+                          <ArrowRight className="w-4 h-4 shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </h3>
+                        <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                          {articulo.descripcion}
+                        </p>
+                      </article>
                     </Link>
                   ))}
                 </div>
