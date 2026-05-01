@@ -258,7 +258,7 @@ const Home = () => {
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between px-6 py-3.5">
           <Link to="/" className="flex items-center gap-3">
-            <img src={electrolabLogo} alt="ElectroLab Pro logo" className="h-9 w-9 rounded-lg object-cover" />
+            <img src={electrolabLogo} alt="ElectroLab Pro logo" width="36" height="36" className="h-9 w-9 rounded-lg object-cover" loading="eager" decoding="async" />
             <span className="text-lg font-bold tracking-tight text-foreground">
               Electrolab<span className="text-primary">PRO</span>
             </span>

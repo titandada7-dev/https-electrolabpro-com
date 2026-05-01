@@ -1,8 +1,22 @@
+# robots.txt — ElectroLab Pro
+# https://electrolabpro.com
+
 User-agent: Googlebot
+Allow: /
+Disallow: /*?q=
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
 Allow: /
 
 User-agent: Bingbot
 Allow: /
+Disallow: /*?q=
 
 User-agent: Twitterbot
 Allow: /
@@ -12,5 +26,11 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /*?q=
+Disallow: /api/
+
+# Crawl optimization
+Crawl-delay: 1
 
 Sitemap: https://electrolabpro.com/sitemap.xml
+Host: https://electrolabpro.com

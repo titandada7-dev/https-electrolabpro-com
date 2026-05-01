@@ -1,38 +1,52 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import DomainDebugBanner from "./components/DomainDebugBanner";
 import Home from "./pages/Home";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Contacto from "./pages/Contacto";
-import AvisoLegal from "./pages/AvisoLegal";
 import CookieBanner from "./components/CookieBanner";
 import PWAInstallPrompt from "./components/PWAInstallPrompt";
-import CodigoColoresResistencias from "./pages/articles/CodigoColoresResistencias";
-import Condensadores from "./pages/articles/Condensadores";
-import Diodos from "./pages/articles/Diodos";
-import LeyDeOhm from "./pages/articles/LeyDeOhm";
-import Multimetro from "./pages/articles/Multimetro";
-import CircuitosSerieParalelo from "./pages/articles/CircuitosSerieParalelo";
-import Transistores from "./pages/articles/Transistores";
-import Arduino from "./pages/articles/Arduino";
-import Osciloscopio from "./pages/articles/Osciloscopio";
-import FuentesAlimentacion from "./pages/articles/FuentesAlimentacion";
-import Soldadura from "./pages/articles/Soldadura";
-import ProtocoloI2C from "./pages/articles/ProtocoloI2C";
-import SensoresArduino from "./pages/articles/SensoresArduino";
-import PantallaOled from "./pages/articles/PantallaOled";
-import BlogPrimerLaboratorio from "./pages/articles/BlogPrimerLaboratorio";
-import BlogProyectosArduino from "./pages/articles/BlogProyectosArduino";
-import BlogDisenoPCB from "./pages/articles/BlogDisenoPCB";
-import QueArduinoComprar from "./pages/articles/QueArduinoComprar";
-import PwmArduino from "./pages/articles/PwmArduino";
-import ReguladoresVoltaje from "./pages/articles/ReguladoresVoltaje";
-import LeerDatasheet from "./pages/articles/LeerDatasheet";
-import SobreNosotros from "./pages/SobreNosotros";
-import TerminosCondiciones from "./pages/TerminosCondiciones";
-import Glosario from "./pages/Glosario";
-import AprendeJugando from "./pages/AprendeJugando";
-import DocumentacionTecnica from "./pages/DocumentacionTecnica";
+
+// Páginas legales y secundarias en lazy: reducen el JS inicial cargado en Home
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Contacto = lazy(() => import("./pages/Contacto"));
+const AvisoLegal = lazy(() => import("./pages/AvisoLegal"));
+const SobreNosotros = lazy(() => import("./pages/SobreNosotros"));
+const TerminosCondiciones = lazy(() => import("./pages/TerminosCondiciones"));
+const Glosario = lazy(() => import("./pages/Glosario"));
+const AprendeJugando = lazy(() => import("./pages/AprendeJugando"));
+const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
+
+// Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
+const CodigoColoresResistencias = lazy(() => import("./pages/articles/CodigoColoresResistencias"));
+const Condensadores = lazy(() => import("./pages/articles/Condensadores"));
+const Diodos = lazy(() => import("./pages/articles/Diodos"));
+const LeyDeOhm = lazy(() => import("./pages/articles/LeyDeOhm"));
+const Multimetro = lazy(() => import("./pages/articles/Multimetro"));
+const CircuitosSerieParalelo = lazy(() => import("./pages/articles/CircuitosSerieParalelo"));
+const Transistores = lazy(() => import("./pages/articles/Transistores"));
+const Arduino = lazy(() => import("./pages/articles/Arduino"));
+const Osciloscopio = lazy(() => import("./pages/articles/Osciloscopio"));
+const FuentesAlimentacion = lazy(() => import("./pages/articles/FuentesAlimentacion"));
+const Soldadura = lazy(() => import("./pages/articles/Soldadura"));
+const ProtocoloI2C = lazy(() => import("./pages/articles/ProtocoloI2C"));
+const SensoresArduino = lazy(() => import("./pages/articles/SensoresArduino"));
+const PantallaOled = lazy(() => import("./pages/articles/PantallaOled"));
+const BlogPrimerLaboratorio = lazy(() => import("./pages/articles/BlogPrimerLaboratorio"));
+const BlogProyectosArduino = lazy(() => import("./pages/articles/BlogProyectosArduino"));
+const BlogDisenoPCB = lazy(() => import("./pages/articles/BlogDisenoPCB"));
+const QueArduinoComprar = lazy(() => import("./pages/articles/QueArduinoComprar"));
+const PwmArduino = lazy(() => import("./pages/articles/PwmArduino"));
+const ReguladoresVoltaje = lazy(() => import("./pages/articles/ReguladoresVoltaje"));
+const LeerDatasheet = lazy(() => import("./pages/articles/LeerDatasheet"));
+
+const RouteFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="flex flex-col items-center gap-3 text-muted-foreground">
+      <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+      <p className="text-sm font-medium">Cargando contenido…</p>
+    </div>
+  </div>
+);
 
 function App() {
   return (
@@ -41,6 +55,7 @@ function App() {
       <CookieBanner />
       <PWAInstallPrompt />
       <DomainDebugBanner />
+      <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
@@ -85,6 +100,7 @@ function App() {
           }
         />
       </Routes>
+      </Suspense>
     </BrowserRouter>
     </ErrorBoundary>
   );
