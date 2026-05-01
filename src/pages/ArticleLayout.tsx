@@ -1,6 +1,6 @@
 import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search, ArrowRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AdBanner from "@/components/AdBanner";
 import LabProRecommendations from "@/components/LabProRecommendations";
 import AuthorBio from "@/components/AuthorBio";
@@ -45,7 +45,12 @@ const toISO8601WithTZ = (date: string): string => {
 const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
-  const articulosSugeridos = obtenerArticulosRelacionados(location.pathname, 3);
+  // Memorizamos para que el filtrado de los 21 artículos solo se recalcule
+  // cuando cambia la ruta, no en cada render (búsquedas, toggles, etc.).
+  const articulosSugeridos = useMemo(
+    () => obtenerArticulosRelacionados(location.pathname, 3),
+    [location.pathname],
+  );
 
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
@@ -262,6 +267,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                     <Link
                       key={articulo.id}
                       to={articulo.path}
+                      title={`Leer más sobre: ${articulo.titulo}`}
                       className="group block"
                     >
                       <article className="p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-all h-full">
