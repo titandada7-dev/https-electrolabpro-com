@@ -80,6 +80,11 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
     return () => window.removeEventListener("keydown", handler);
   }, []);
 
+  // Scroll al top al cambiar de artículo (mejora UX en navegación SPA).
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   useEffect(() => {
     const articleUrl = slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com";
 
@@ -270,7 +275,10 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                       title={`Leer más sobre: ${articulo.titulo}`}
                       className="group block"
                     >
-                      <article className="p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-all h-full">
+                      <article className="p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-all h-full flex flex-col">
+                        <span className="inline-flex self-start text-[10px] uppercase tracking-wider font-mono font-semibold text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full mb-2">
+                          {articulo.categoria}
+                        </span>
                         <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors flex items-start justify-between gap-2">
                           <span>{articulo.titulo}</span>
                           <ArrowRight className="w-4 h-4 shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
