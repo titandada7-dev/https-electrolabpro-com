@@ -196,17 +196,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
         </div>
       </header>
 
-      {/* Breadcrumb */}
+      {/* Breadcrumb dinámico (semántico para SEO) */}
       <div className="container mx-auto px-4 pt-4">
-        <nav className="text-xs text-muted-foreground" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-1.5">
-            <li><Link to="/" className="hover:text-foreground transition-colors">Inicio</Link></li>
-            <li className="text-muted-foreground/40">/</li>
-            <li><Link to="/#guias" className="hover:text-foreground transition-colors">Artículos</Link></li>
-            <li className="text-muted-foreground/40">/</li>
-            <li className="text-foreground font-medium truncate max-w-[200px]">{title}</li>
-          </ol>
-        </nav>
+        <Breadcrumbs lastLabel={title} />
       </div>
 
       {/* Hero */}
