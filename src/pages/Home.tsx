@@ -95,6 +95,16 @@ const QA_CATEGORIES = [
   },
 ];
 
+// Smooth-scroll que respeta href="#id" (mantiene navegación crawlable + UX suave)
+const handleAnchorClick = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const el = document.getElementById(id);
+  if (el) {
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth" });
+    history.replaceState(null, "", `#${id}`);
+  }
+};
+
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
@@ -254,13 +264,13 @@ const Home = () => {
             </span>
           </Link>
 
-          {/* Desktop nav — orden: Hero → Guías → Calculadoras → Proyectos → FAQ */}
+          {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
           <div className="hidden items-center gap-5 md:flex">
-            <button onClick={() => scrollTo("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Inicio</button>
-            <button onClick={() => scrollTo("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</button>
-            <button onClick={() => scrollTo("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</button>
-            <button onClick={() => scrollTo("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Proyectos</button>
-            <button onClick={() => scrollTo("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">FAQ</button>
+            <a href="#inicio" onClick={handleAnchorClick("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Inicio</a>
+            <a href="#guias" onClick={handleAnchorClick("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</a>
+            <a href="#calculadora" onClick={handleAnchorClick("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</a>
+            <a href="#mini-proyectos" onClick={handleAnchorClick("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Proyectos</a>
+            <a href="#foro" onClick={handleAnchorClick("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">FAQ</a>
             <div className="relative group">
               <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
@@ -309,15 +319,20 @@ const Home = () => {
         {menuOpen && (
           <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
-              { label: "Inicio", action: () => { scrollTo("inicio"); setMenuOpen(false); } },
-              { label: "Guías", action: () => { scrollTo("guias"); setMenuOpen(false); } },
-              { label: "Calculadoras", action: () => { scrollTo("calculadora"); setMenuOpen(false); } },
-              { label: "Proyectos", action: () => { scrollTo("mini-proyectos"); setMenuOpen(false); } },
-              { label: "FAQ", action: () => { scrollTo("foro"); setMenuOpen(false); } },
+              { label: "Inicio", id: "inicio" },
+              { label: "Guías", id: "guias" },
+              { label: "Calculadoras", id: "calculadora" },
+              { label: "Proyectos", id: "mini-proyectos" },
+              { label: "FAQ", id: "foro" },
             ].map((item) => (
-              <button key={item.label} onClick={item.action} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
+              <a
+                key={item.label}
+                href={`#${item.id}`}
+                onClick={(e) => { handleAnchorClick(item.id)(e); setMenuOpen(false); }}
+                className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors"
+              >
                 {item.label}
-              </button>
+              </a>
             ))}
             <Link to="/documentacion-tecnica" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
               📚 Documentación Técnica
