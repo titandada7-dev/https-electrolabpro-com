@@ -27,3 +27,7 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: () => {},
   }),
 });
+
+// Stub window.scrollTo: jsdom no lo implementa y ArticleLayout lo llama
+// en cada cambio de ruta. Evita ruido "Not implemented" en los tests.
+window.scrollTo = (() => {}) as typeof window.scrollTo;

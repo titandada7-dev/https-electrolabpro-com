@@ -24,7 +24,23 @@ interface ArticleLayoutProps {
   dateModified?: string;
   /** Si se pasan FAQs, se inyecta automáticamente schema.org FAQPage para Rich Results. */
   faqs?: FaqItem[];
+  /**
+   * Imagen específica para este artículo (Open Graph + Twitter + JSON-LD).
+   * Acepta ruta relativa ("/og-images/ohm.jpg") o URL absoluta.
+   * Si se omite, se usa el OG por defecto del sitio.
+   */
+  image?: string;
 }
+
+const SITE_ORIGIN = "https://electrolabpro.com";
+const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og-image.jpg`;
+
+/** Resuelve a URL absoluta, devolviendo el OG por defecto si no se pasa imagen. */
+const resolveArticleImage = (input?: string): string => {
+  if (!input) return DEFAULT_OG_IMAGE;
+  if (input.startsWith("http")) return input;
+  return `${SITE_ORIGIN}${input.startsWith("/") ? input : `/${input}`}`;
+};
 
 /**
  * Convierte una fecha (YYYY-MM-DD o ISO) a ISO 8601 completo con zona horaria.
@@ -42,7 +58,7 @@ const toISO8601WithTZ = (date: string): string => {
   return `${dateOnly}T10:00:00-03:00`;
 };
 
-const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
+const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs, image }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   // Memorizamos para que el filtrado de los 21 artículos solo se recalcule
@@ -55,6 +71,8 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
     description: subtitle,
+    canonical: slug ? `/articulos/${slug}` : undefined,
+    image,
   });
 
   // Atajo Cmd/Ctrl+K para abrir el buscador desde cualquier artículo
@@ -86,16 +104,16 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
   }, [location.pathname]);
 
   useEffect(() => {
-    const articleUrl = slug ? `https://electrolabpro.com/articulos/${slug}` : "https://electrolabpro.com";
+    const articleUrl = slug ? `${SITE_ORIGIN}/articulos/${slug}` : SITE_ORIGIN;
+    const articleImage = resolveArticleImage(image);
 
     const articleJsonLd = {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": title,
       "description": subtitle,
-      "image": [
-        "https://electrolabpro.com/og-image.jpg"
-      ],
+      "url": articleUrl,
+      "image": [articleImage],
       "author": {
         "@type": "Person",
         "name": "J.A. Sanchez",
@@ -172,7 +190,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       document.getElementById("breadcrumb-jsonld")?.remove();
       document.getElementById("faq-jsonld")?.remove();
     };
-  }, [title, subtitle, slug, datePublished, dateModified, faqs]);
+  }, [title, subtitle, slug, datePublished, dateModified, faqs, image]);
 
   return (
     <div className="min-h-screen bg-background bg-grid">
