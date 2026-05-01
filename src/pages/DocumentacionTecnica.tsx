@@ -138,7 +138,7 @@ const DocumentacionTecnica = () => {
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <div className="container mx-auto px-6 py-3.5 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img src={electrolabLogo} alt="ElectroLab Pro" className="h-9 w-9 rounded-lg object-cover" />
+            <img src={electrolabLogo} alt="ElectroLab Pro" width="36" height="36" loading="eager" decoding="async" className="h-9 w-9 rounded-lg object-cover" />
             <span className="text-lg font-bold tracking-tight text-foreground">
               Electrolab<span className="text-primary">PRO</span>
             </span>
