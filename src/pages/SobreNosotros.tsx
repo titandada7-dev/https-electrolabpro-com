@@ -114,6 +114,55 @@ const SobreNosotros = () => {
               <em>Protocolos y Guías</em> (documentación profunda sobre PWM, I2C, reguladores, datasheets). Si detectás
               una imprecisión, escribinos: la trazabilidad y la corrección de errores son parte del método.
             </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div className="rounded-lg border border-border bg-background/50 p-4">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-primary mb-1.5">
+                  Banco de pruebas
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Validación con multímetro <strong className="text-foreground">Fluke 117 (CAT III 600 V)</strong> y
+                  osciloscopio <strong className="text-foreground">Hantek DSO5102P</strong> (100 MHz, 1 GSa/s) sobre
+                  fuentes lineales y conmutadas calibradas.
+                </p>
+              </div>
+              <div className="rounded-lg border border-border bg-background/50 p-4">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-primary mb-1.5">
+                  Normativas de referencia
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">IEC 60062</strong> (marcado), <strong className="text-foreground">IEEE 315</strong> (símbolos),{" "}
+                  <strong className="text-foreground">IEC 61010-1</strong> (seguridad) y{" "}
+                  <strong className="text-foreground">NXP UM10204</strong> (I²C).
+                </p>
+              </div>
+              <div className="rounded-lg border border-border bg-background/50 p-4">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-primary mb-1.5">
+                  Bibliografía
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Sedra & Smith — <em>Microelectronic Circuits</em>; Horowitz & Hill — <em>The Art of Electronics</em>;
+                  hojas de datos de Texas Instruments, NXP, ON Semi y STMicroelectronics.
+                </p>
+              </div>
+              <div className="rounded-lg border border-border bg-background/50 p-4">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-primary mb-1.5">
+                  Autoría y trazabilidad
+                </h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Contenido firmado por <strong className="text-foreground">J.A. Sánchez</strong>. Cada artículo
+                  documenta sus fuentes y permanece abierto a corrección comunitaria vía{" "}
+                  <Link to="/contacto" className="text-primary hover:underline">contacto</Link>.
+                </p>
+              </div>
+            </div>
+            <div className="pt-2">
+              <Link
+                to="/documentacion-tecnica"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+              >
+                Visitar el centro de Documentación Técnica →
+              </Link>
+            </div>
           </section>
 
           {/* What we offer */}

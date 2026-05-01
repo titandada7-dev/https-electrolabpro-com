@@ -82,6 +82,17 @@ const QA_CATEGORIES = [
       { q: "¿Necesito un osciloscopio para empezar?", a: "No es indispensable al principio. Un multímetro es suficiente para aprender. El osciloscopio se vuelve necesario cuando trabajés con señales, PWM o debugging de comunicaciones." },
     ],
   },
+  {
+    id: "protocolos",
+    label: "Protocolos & Seguridad",
+    icon: <Zap className="w-4 h-4" />,
+    items: [
+      { q: "¿Qué frecuencia de PWM uso para controlar un motor DC? (ver guía PWM)", a: "Entre 4 kHz y 20 kHz para evitar zumbidos audibles y reducir pérdidas. Arduino UNO entrega 490 Hz por defecto en pines 3, 9, 10 y 11. Detalle completo y reconfiguración de Timers en /articulos/pwm-arduino." },
+      { q: "¿Qué pull-ups necesita el bus I²C? (ver guía I2C)", a: "Según NXP UM10204: 4.7 kΩ para Standard-mode (100 kHz) y 2.2 kΩ para Fast-mode (400 kHz) a 5 V. A 3.3 V suelen usarse 10 kΩ. Capacitancia total del bus < 400 pF. Ver /articulos/protocolo-i2c." },
+      { q: "¿Por qué se calienta el LM7805 y cómo lo dimensiono?", a: "Disipación: P = (Vin − 5 V) × Iout. Con 12 V y 500 mA disipa 3.5 W → necesita disipador. Si Vin > 9 V o Iout > 300 mA usá un buck (LM2596). Más en /articulos/reguladores-voltaje." },
+      { q: "¿Cómo mido voltaje de red de 220 V de forma segura?", a: "Multímetro CAT III/IV (IEC 61010-1), puntas con dedales aislados, una sola mano apoyada y rango VAC ya seleccionado antes de tocar. Sin formación certificada, no abras tableros." },
+    ],
+  },
 ];
 
 const scrollTo = (id: string) => {
@@ -262,6 +273,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
+            <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Documentación</Link>
             <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Sobre Nosotros</Link>
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Contacto</Link>
             <button
@@ -307,6 +319,9 @@ const Home = () => {
                 {item.label}
               </button>
             ))}
+            <Link to="/documentacion-tecnica" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
+              📚 Documentación Técnica
+            </Link>
             <Link to="/contacto" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
               Contacto
             </Link>
@@ -570,8 +585,13 @@ const Home = () => {
             Laboratorio de <span className="text-primary">Cálculo</span>
           </h2>
           <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
-            Calculadoras interactivas verificadas: Ley de Ohm, resistencias, LED, divisor de voltaje, filtros RC y temporizador 555.
+            Calculadoras interactivas verificadas en banco de pruebas con multímetro Fluke 117 y osciloscopio Hantek DSO5102P. Cada fórmula deriva de datasheets de fabricante y bibliografía de referencia (Sedra/Smith, Horowitz/Hill).
           </p>
+          <div className="mt-4 flex justify-center">
+            <Link to="/documentacion-tecnica#nivel-1" className="text-xs font-semibold text-primary hover:underline">
+              Ver metodología completa →
+            </Link>
+          </div>
         </div>
         <CalculatorHub />
       </motion.section>
@@ -914,7 +934,7 @@ const Home = () => {
             Investigación de <span className="text-primary">Componentes</span>
           </h2>
           <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
-            Fichas técnicas con símbolo, descripción funcional y aplicaciones prácticas verificadas.
+            Fichas técnicas con símbolo IEEE 315, encapsulado, parámetros eléctricos críticos (Vce/Ic max, Vf, Pd) y aplicaciones contrastadas con uso real en banco de pruebas.
           </p>
         </div>
         <ComponentDictionary />
@@ -1007,8 +1027,16 @@ const Home = () => {
             Documentación <span className="text-primary">Técnica</span>
           </h2>
           <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
-            Protocolos, guías de componentes y procedimientos contrastados con normativas y datasheets de fabricante.
+            Protocolos, guías de componentes y procedimientos contrastados con normativas vigentes (IEC 60062, IEEE 315, IEC 61010-1, NXP UM10204) y datasheets de fabricante.
           </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            <Link to="/documentacion-tecnica" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-bold hover:opacity-90 transition-opacity">
+              📚 Ver hub de Documentación Técnica
+            </Link>
+            <Link to="/documentacion-tecnica#faq-tecnica" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-border bg-card text-xs font-semibold text-foreground hover:border-primary/40 hover:text-primary transition-colors">
+              FAQ técnica avanzada →
+            </Link>
+          </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[
