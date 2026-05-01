@@ -1,11 +1,13 @@
-import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search, ArrowRight } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AdBanner from "@/components/AdBanner";
 import LabProRecommendations from "@/components/LabProRecommendations";
 import AuthorBio from "@/components/AuthorBio";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import GlobalSearch from "@/components/GlobalSearch";
+import { getRelatedArticles } from "@/data/articles";
 
 export interface FaqItem {
   question: string;
@@ -42,6 +44,8 @@ const toISO8601WithTZ = (date: string): string => {
 
 const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs }: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
+  const location = useLocation();
+  const relatedArticles = getRelatedArticles(location.pathname, 3);
 
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
@@ -192,17 +196,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
         </div>
       </header>
 
-      {/* Breadcrumb */}
+      {/* Breadcrumb dinámico (semántico para SEO) */}
       <div className="container mx-auto px-4 pt-4">
-        <nav className="text-xs text-muted-foreground" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-1.5">
-            <li><Link to="/" className="hover:text-foreground transition-colors">Inicio</Link></li>
-            <li className="text-muted-foreground/40">/</li>
-            <li><Link to="/#guias" className="hover:text-foreground transition-colors">Artículos</Link></li>
-            <li className="text-muted-foreground/40">/</li>
-            <li className="text-foreground font-medium truncate max-w-[200px]">{title}</li>
-          </ol>
-        </nav>
+        <Breadcrumbs lastLabel={title} />
       </div>
 
       {/* Hero */}
@@ -247,6 +243,39 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
         <div className="flex flex-col lg:flex-row gap-8">
           <article className="flex-1 max-w-3xl mx-auto prose-custom space-y-6 text-muted-foreground leading-relaxed text-[15px]">
             {children}
+
+            {/* Artículos relacionados — fomenta retención y rastreo interno */}
+            {relatedArticles.length > 0 && (
+              <section
+                className="mt-16 pt-8 border-t border-border"
+                aria-labelledby="related-articles-heading"
+              >
+                <h2
+                  id="related-articles-heading"
+                  className="text-xl font-mono font-bold text-foreground mb-6 flex items-center gap-2"
+                >
+                  <BookOpen className="w-5 h-5 text-primary" />
+                  Continúa aprendiendo
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {relatedArticles.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className="group block p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-all"
+                    >
+                      <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors flex items-start justify-between gap-2">
+                        <span>{item.title}</span>
+                        <ArrowRight className="w-4 h-4 shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Author Bio */}
             <AuthorBio />
