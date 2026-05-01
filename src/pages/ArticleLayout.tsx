@@ -244,6 +244,39 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           <article className="flex-1 max-w-3xl mx-auto prose-custom space-y-6 text-muted-foreground leading-relaxed text-[15px]">
             {children}
 
+            {/* Artículos relacionados — fomenta retención y rastreo interno */}
+            {relatedArticles.length > 0 && (
+              <section
+                className="mt-16 pt-8 border-t border-border"
+                aria-labelledby="related-articles-heading"
+              >
+                <h2
+                  id="related-articles-heading"
+                  className="text-xl font-mono font-bold text-foreground mb-6 flex items-center gap-2"
+                >
+                  <BookOpen className="w-5 h-5 text-primary" />
+                  Continúa aprendiendo
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {relatedArticles.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className="group block p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-all"
+                    >
+                      <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors flex items-start justify-between gap-2">
+                        <span>{item.title}</span>
+                        <ArrowRight className="w-4 h-4 shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* Author Bio */}
             <AuthorBio />
 
