@@ -32,6 +32,7 @@ import SobreNosotros from "./pages/SobreNosotros";
 import TerminosCondiciones from "./pages/TerminosCondiciones";
 import Glosario from "./pages/Glosario";
 import AprendeJugando from "./pages/AprendeJugando";
+import DocumentacionTecnica from "./pages/DocumentacionTecnica";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
         <Route path="/glosario" element={<Glosario />} />
         <Route path="/aprende-jugando" element={<AprendeJugando />} />
+        <Route path="/documentacion-tecnica" element={<DocumentacionTecnica />} />
         <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
         <Route path="/articulos/condensadores" element={<Condensadores />} />
         <Route path="/articulos/diodos" element={<Diodos />} />
