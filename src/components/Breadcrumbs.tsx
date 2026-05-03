@@ -34,6 +34,7 @@ const SLUG_LABELS: Record<string, string> = {
   diodos: "Diodos",
   condensadores: "Condensadores",
   arduino: "Arduino",
+  "guia-resistencias": "Guía de resistencias",
 };
 
 const formatSegment = (segment: string): string => {
