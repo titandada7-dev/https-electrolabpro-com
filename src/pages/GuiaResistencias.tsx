@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Zap, ArrowLeft, BookOpen, Calculator, Lightbulb, ShieldCheck, Sparkles, Download } from "lucide-react";
+import { Zap, ArrowLeft, BookOpen, Calculator, Lightbulb, ShieldCheck, Sparkles, Download, ListOrdered, GraduationCap } from "lucide-react";
 import { useEffect } from "react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import Breadcrumbs from "@/components/Breadcrumbs";
