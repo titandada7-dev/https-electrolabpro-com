@@ -582,7 +582,23 @@ const GuiaResistencias = () => {
           ]}
         />
 
-        <h2 id="conclusion" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
+        {/* FAQ visible — refleja FAQPage JSON-LD para rich results */}
+        <h2 id="faq" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Preguntas frecuentes</h2>
+        <div className="not-prose space-y-2 my-4">
+          {FAQS.map((f) => (
+            <details
+              key={f.q}
+              className="group rounded-xl border border-border bg-card/50 px-4 py-3 open:border-primary/40"
+            >
+              <summary className="cursor-pointer list-none font-semibold text-foreground flex items-start justify-between gap-3">
+                <span>{f.q}</span>
+                <span className="text-primary font-mono text-lg leading-none transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{f.a}</p>
+            </details>
+          ))}
+        </div>
+
         <p>
           Las resistencias son la base silenciosa de cualquier circuito. Saber qué hacen, cómo se leen y cómo se calculan
           te abre la puerta a entender prácticamente cualquier diseño electrónico. Empezá midiendo, probando y verificando
