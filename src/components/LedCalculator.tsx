@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Lightbulb, AlertTriangle } from "lucide-react";
+import CalculatorEduLink from "@/components/CalculatorEduLink";
 
 const LED_OPTIONS = [
   { label: "Rojo / Amarillo", voltage: 2.0 },
@@ -157,6 +158,16 @@ const LedCalculator = () => {
           </span>
         </div>
       </CardContent>
+      <div className="px-6 pb-6">
+        <CalculatorEduLink
+          intro="¿No sabés qué resistencia usar para tu LED? Profundizá la teoría con nuestras guías."
+          links={[
+            { to: "/guia-resistencias", label: "Guía completa de resistencias para LED" },
+            { to: "/articulos/ley-de-ohm", label: "Ley de Ohm explicada con ejemplos" },
+            { to: "/articulos/codigo-colores-resistencias", label: "Código de colores de resistencias paso a paso" },
+          ]}
+        />
+      </div>
     </Card>
   );
 };

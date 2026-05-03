@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import resistorImg from "@/assets/resistor-color-code.png";
 import PlayCTA from "@/components/PlayCTA";
+import AplicaloAhora from "@/components/AplicaloAhora";
 
 const CodigoColoresResistencias = () => {
   return (
@@ -160,6 +161,15 @@ const CodigoColoresResistencias = () => {
           Ver kits de resistencias en Amazon
         </a>
       </div>
+
+      <AplicaloAhora
+        tools={[
+          { to: "/#calculadora", label: "Calculadora visual de resistencias por colores", desc: "Decodificá bandas de 4 y 5 colores en tiempo real." },
+          { to: "/#calculadora", label: "Calculadora de resistencia para LED", desc: "Aplicá el valor calculado para proteger tu LED." },
+          { to: "/#calculadora", label: "Decodificador de resistencias SMD", desc: "¿Resistencias sin bandas? Decodificá el código numérico." },
+          { to: "/guia-resistencias", label: "Guía completa de resistencias", desc: "Teoría, ejemplos prácticos y casos de uso reales." },
+        ]}
+      />
     </ArticleLayout>
   );
 };

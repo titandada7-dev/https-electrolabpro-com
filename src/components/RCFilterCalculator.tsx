@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import CalculatorEduLink from "@/components/CalculatorEduLink";
 
 function formatFrequency(hz: number): string {
   if (hz >= 1_000_000) return `${+(hz / 1_000_000).toFixed(3)} MHz`;
@@ -182,6 +183,15 @@ export default function RCFilterCalculator() {
           </p>
         )}
       </div>
+
+      <CalculatorEduLink
+        intro="Los filtros RC dependen de combinar resistencia y capacitancia. Profundizá la teoría:"
+        links={[
+          { to: "/articulos/condensadores", label: "Guía completa de condensadores" },
+          { to: "/guia-resistencias", label: "Guía completa de resistencias eléctricas" },
+          { to: "/articulos/ley-de-ohm", label: "Ley de Ohm explicada con ejemplos" },
+        ]}
+      />
     </div>
   );
 }

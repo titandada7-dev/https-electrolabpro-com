@@ -94,6 +94,8 @@ function formatNum(n: number): string {
   return parseFloat(s).toString();
 }
 
+import CalculatorEduLink from "@/components/CalculatorEduLink";
+
 export default function UnitConverter() {
   const [catIdx, setCatIdx] = useState(0);
   const [value, setValue] = useState("1");
@@ -209,6 +211,15 @@ export default function UnitConverter() {
           <strong className="text-foreground">Tip:</strong> Ingresá el valor en cualquier unidad y el conversor calculará automáticamente todas las equivalencias. Ideal para pasar de <span className="text-primary font-mono">kΩ</span> a <span className="text-primary font-mono">Ω</span>, de <span className="text-primary font-mono">µF</span> a <span className="text-primary font-mono">pF</span>, o cualquier combinación que necesites en tu taller.
         </p>
       </div>
+
+      <CalculatorEduLink
+        intro="Las unidades correctas son la base de todo cálculo. Reforzá la teoría con nuestras guías:"
+        links={[
+          { to: "/guia-resistencias", label: "Guía completa de resistencias y unidades (Ω, kΩ, MΩ)" },
+          { to: "/articulos/condensadores", label: "Condensadores: pF, nF y µF explicados" },
+          { to: "/articulos/ley-de-ohm", label: "Ley de Ohm con unidades del SI" },
+        ]}
+      />
     </div>
   );
 }

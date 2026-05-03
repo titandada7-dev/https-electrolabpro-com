@@ -2,6 +2,7 @@ import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import capacitorImg from "@/assets/capacitor-types.png";
+import AplicaloAhora from "@/components/AplicaloAhora";
 
 const Condensadores = () => {
   return (
@@ -174,6 +175,15 @@ const Condensadores = () => {
           Ver kits de condensadores en Amazon
         </a>
       </div>
+
+      <AplicaloAhora
+        tools={[
+          { to: "/#calculadora", label: "Calculadora de reactancia capacitiva (Xc)", desc: "Calculá la oposición de un capacitor a la corriente alterna." },
+          { to: "/#calculadora", label: "Calculadora de filtro RC pasa-bajos / altos", desc: "Diseñá filtros con resistencia y condensador." },
+          { to: "/#calculadora", label: "Calculadora de temporizador 555", desc: "Generá frecuencias usando R y C en astable." },
+          { to: "/guia-resistencias", label: "Guía completa de resistencias", desc: "Componente clave junto al condensador en filtros y RC." },
+        ]}
+      />
     </ArticleLayout>
   );
 };
