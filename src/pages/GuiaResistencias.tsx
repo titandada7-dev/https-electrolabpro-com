@@ -1,11 +1,27 @@
 import { Link } from "react-router-dom";
-import { Zap, ArrowLeft, BookOpen, Calculator, Lightbulb, ShieldCheck, Sparkles } from "lucide-react";
+import { Zap, ArrowLeft, BookOpen, Calculator, Lightbulb, ShieldCheck, Sparkles, Download } from "lucide-react";
 import { useEffect } from "react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AuthorBio from "@/components/AuthorBio";
 import AdBanner from "@/components/AdBanner";
 import resistorImg from "@/assets/resistor-color-code.png";
+import resistorRealImg from "@/assets/resistencias-reales.webp";
+
+const COLOR_BANDS: Array<{ color: string; hex: string; digit: string; mult: string; tol: string; textDark?: boolean }> = [
+  { color: "Negro", hex: "#000000", digit: "0", mult: "×1", tol: "—" },
+  { color: "Marrón", hex: "#8B4513", digit: "1", mult: "×10", tol: "±1%" },
+  { color: "Rojo", hex: "#DC2626", digit: "2", mult: "×100", tol: "±2%" },
+  { color: "Naranja", hex: "#F97316", digit: "3", mult: "×1k", tol: "—" },
+  { color: "Amarillo", hex: "#FACC15", digit: "4", mult: "×10k", tol: "—", textDark: true },
+  { color: "Verde", hex: "#16A34A", digit: "5", mult: "×100k", tol: "±0,5%" },
+  { color: "Azul", hex: "#2563EB", digit: "6", mult: "×1M", tol: "±0,25%" },
+  { color: "Violeta", hex: "#7C3AED", digit: "7", mult: "×10M", tol: "±0,1%" },
+  { color: "Gris", hex: "#6B7280", digit: "8", mult: "—", tol: "±0,05%" },
+  { color: "Blanco", hex: "#F8FAFC", digit: "9", mult: "—", tol: "—", textDark: true },
+  { color: "Dorado", hex: "#D4AF37", digit: "—", mult: "×0,1", tol: "±5%", textDark: true },
+  { color: "Plateado", hex: "#C0C0C0", digit: "—", mult: "×0,01", tol: "±10%", textDark: true },
+];
 
 const SITE_ORIGIN = "https://electrolabpro.com";
 const PAGE_URL = `${SITE_ORIGIN}/guia-resistencias`;
