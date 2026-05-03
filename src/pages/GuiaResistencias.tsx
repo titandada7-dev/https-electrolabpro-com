@@ -223,6 +223,7 @@ const GuiaResistencias = () => {
             <li><a href="#aplicaciones" className="text-primary hover:underline">Aplicaciones reales</a></li>
             <li><a href="#errores-comunes" className="text-primary hover:underline">Errores comunes</a></li>
             <li><a href="#ejercicios" className="text-primary hover:underline">Ejercicios prácticos</a></li>
+            <li><a href="#faq" className="text-primary hover:underline">Preguntas frecuentes</a></li>
             <li><a href="#conclusion" className="text-primary hover:underline">Conclusión</a></li>
             <li><a href="#aplicalo-ahora" className="text-primary hover:underline font-semibold">⚡ Aplicalo ahora (CTA)</a></li>
           </ol>
