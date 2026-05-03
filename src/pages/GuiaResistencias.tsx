@@ -43,6 +43,33 @@ const GuiaResistencias = () => {
     image: "/og-image.jpg",
   });
 
+  const FAQS: Array<{ q: string; a: string }> = [
+    {
+      q: "¿Para qué sirve una resistencia eléctrica?",
+      a: "Una resistencia limita el paso de la corriente eléctrica en un circuito y produce una caída de tensión controlada. Se usa para proteger LEDs y semiconductores, polarizar transistores, crear divisores de tensión y definir constantes de tiempo en filtros RC.",
+    },
+    {
+      q: "¿Cómo se lee el código de colores de una resistencia de 4 bandas?",
+      a: "Las dos primeras bandas son los dígitos significativos, la tercera es el multiplicador (potencia de 10) y la cuarta es la tolerancia (dorado ±5% o plateado ±10%). Por ejemplo: Marrón-Negro-Rojo-Dorado equivale a 1 kΩ ±5%.",
+    },
+    {
+      q: "¿Cuál es la diferencia entre una resistencia de 4 y 5 bandas?",
+      a: "Las de 5 bandas tienen tres dígitos significativos en lugar de dos, lo que permite valores más precisos. La cuarta banda es el multiplicador y la quinta la tolerancia, normalmente ±1% o ±2%. Se usan en circuitos de precisión como audio profesional o instrumentación.",
+    },
+    {
+      q: "¿Cómo elijo la potencia de una resistencia?",
+      a: "Calculá la potencia disipada con P = V × I o P = I² × R y elegí una resistencia con potencia nominal mayor (idealmente al doble). Los valores típicos son 1/4 W, 1/2 W, 1 W, 2 W y 5 W. Subestimar la potencia es la causa más común de resistencias quemadas.",
+    },
+    {
+      q: "¿Cómo calculo la resistencia para un LED?",
+      a: "Restá la caída de tensión del LED al voltaje de la fuente y dividí por la corriente nominal del LED. Por ejemplo, para un LED rojo (Vled=2 V, Iled=20 mA) desde 5 V: R = (5−2)/0,02 = 150 Ω. Verificalo en la calculadora online de resistencia para LED.",
+    },
+    {
+      q: "¿Qué pasa si conecto un LED sin resistencia?",
+      a: "El LED recibe una corriente muy superior a la nominal y se quema en segundos por sobrecalentamiento de la unión semiconductora. Siempre hay que limitar la corriente con una resistencia en serie o usar un driver de corriente constante.",
+    },
+  ];
+
   useEffect(() => {
     const articleJsonLd = {
       "@context": "https://schema.org",
@@ -74,6 +101,16 @@ const GuiaResistencias = () => {
       ],
     };
 
+    const faqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    };
+
     const a = document.createElement("script");
     a.type = "application/ld+json";
     a.id = "guia-resistencias-jsonld";
@@ -88,9 +125,17 @@ const GuiaResistencias = () => {
     document.getElementById("guia-resistencias-breadcrumb-jsonld")?.remove();
     document.head.appendChild(b);
 
+    const f = document.createElement("script");
+    f.type = "application/ld+json";
+    f.id = "guia-resistencias-faq-jsonld";
+    f.textContent = JSON.stringify(faqJsonLd);
+    document.getElementById("guia-resistencias-faq-jsonld")?.remove();
+    document.head.appendChild(f);
+
     return () => {
       document.getElementById("guia-resistencias-jsonld")?.remove();
       document.getElementById("guia-resistencias-breadcrumb-jsonld")?.remove();
+      document.getElementById("guia-resistencias-faq-jsonld")?.remove();
     };
   }, []);
 
@@ -178,6 +223,7 @@ const GuiaResistencias = () => {
             <li><a href="#aplicaciones" className="text-primary hover:underline">Aplicaciones reales</a></li>
             <li><a href="#errores-comunes" className="text-primary hover:underline">Errores comunes</a></li>
             <li><a href="#ejercicios" className="text-primary hover:underline">Ejercicios prácticos</a></li>
+            <li><a href="#faq" className="text-primary hover:underline">Preguntas frecuentes</a></li>
             <li><a href="#conclusion" className="text-primary hover:underline">Conclusión</a></li>
             <li><a href="#aplicalo-ahora" className="text-primary hover:underline font-semibold">⚡ Aplicalo ahora (CTA)</a></li>
           </ol>
@@ -536,6 +582,23 @@ const GuiaResistencias = () => {
             },
           ]}
         />
+
+        {/* FAQ visible — refleja FAQPage JSON-LD para rich results */}
+        <h2 id="faq" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Preguntas frecuentes</h2>
+        <div className="not-prose space-y-2 my-4">
+          {FAQS.map((f) => (
+            <details
+              key={f.q}
+              className="group rounded-xl border border-border bg-card/50 px-4 py-3 open:border-primary/40"
+            >
+              <summary className="cursor-pointer list-none font-semibold text-foreground flex items-start justify-between gap-3">
+                <span>{f.q}</span>
+                <span className="text-primary font-mono text-lg leading-none transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{f.a}</p>
+            </details>
+          ))}
+        </div>
 
         <h2 id="conclusion" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
         <p>
