@@ -332,6 +332,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                   <BookOpen className="w-4 h-4 text-primary" /> Más artículos
                 </h4>
                 <ul className="space-y-2 text-xs">
+                  <li><Link to="/guia-resistencias" className="text-primary font-semibold hover:underline transition-colors">📘 Guía completa de resistencias</Link></li>
                   <li><Link to="/articulos/codigo-colores-resistencias" className="text-muted-foreground hover:text-primary transition-colors">Código de colores de resistencias</Link></li>
                   <li><Link to="/articulos/condensadores" className="text-muted-foreground hover:text-primary transition-colors">Qué es un condensador</Link></li>
                   <li><Link to="/articulos/diodos" className="text-muted-foreground hover:text-primary transition-colors">Guía básica de diodos</Link></li>
@@ -363,6 +364,8 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A. Sanchez</span>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
+            <Link to="/guia-resistencias" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Guía de Resistencias</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Privacidad</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
