@@ -630,7 +630,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <CalculatorHub />
+        <Suspense fallback={<SectionFallback />}><CalculatorHub /></Suspense>
       </section>
 
       {/* ═══════════ RECURSOS & INFORMACIÓN (ACCORDION UNIFICADO) ═══════════ */}
@@ -954,7 +954,7 @@ const Home = () => {
             Fichas técnicas con símbolo IEEE 315, encapsulado, parámetros eléctricos críticos (Vce/Ic max, Vf, Pd) y aplicaciones contrastadas con uso real en banco de pruebas.
           </p>
         </div>
-        <ComponentDictionary />
+        <Suspense fallback={<SectionFallback />}><ComponentDictionary /></Suspense>
       </section>
 
       {/* ═══════════ MINI PROYECTOS ═══════════ */}
@@ -962,7 +962,7 @@ const Home = () => {
         id="mini-proyectos"
         className="container mx-auto px-6 py-12"
       >
-        <MiniProjects />
+        <Suspense fallback={<SectionFallback />}><MiniProjects /></Suspense>
       </div>
 
       {/* Tips — consolidados en #recursos accordion */}
@@ -1176,7 +1176,12 @@ const Home = () => {
       </footer>
 
       {/* Buscador global ⌘K */}
-      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+      {/* Lazy: el bundle del buscador sólo se descarga cuando el usuario lo abre. */}
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+        </Suspense>
+      )}
     </div>
   );
 };
