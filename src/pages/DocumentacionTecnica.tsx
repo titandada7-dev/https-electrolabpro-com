@@ -154,14 +154,7 @@ const DocumentacionTecnica = () => {
         <Breadcrumbs />
       </div>
 
-      {/* Breadcrumb */}
-      <nav aria-label="Migas de pan" className="container mx-auto px-6 pt-6 text-xs text-muted-foreground">
-        <ol className="flex items-center gap-1.5">
-          <li><Link to="/" className="hover:text-primary">Inicio</Link></li>
-          <ChevronRight className="w-3 h-3" />
-          <li className="text-foreground font-medium">Documentación Técnica</li>
-        </ol>
-      </nav>
+      {/* Breadcrumb visible: ya renderizado por <Breadcrumbs /> arriba */}
 
       {/* Hero */}
       <section className="container mx-auto px-6 py-10 md:py-14">
