@@ -469,6 +469,46 @@ const GuiaResistencias = () => {
           <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Medir en circuito energizado.</strong> Para medir resistencia con multímetro, siempre desconectá la alimentación.</span></li>
         </ul>
 
+        <EjerciciosPracticos
+          titulo="Ejercicios prácticos · Código de colores y Ley de Ohm"
+          intro="Cinco consignas para entrenar la lectura de resistencias y el cálculo con V = I × R. Resolvé en papel y desplegá la solución para verificar."
+          ejercicios={[
+            {
+              enunciado: "¿Cuál es el valor de una resistencia con bandas Marrón – Negro – Rojo – Dorado?",
+              pista: "Las dos primeras bandas son dígitos, la tercera es el multiplicador.",
+              solucion:
+                "1 (Marrón) · 0 (Negro) → 10\n× 100 (Rojo) = 1.000 Ω = 1 kΩ\nTolerancia ±5% (Dorado) → entre 950 Ω y 1.050 Ω.",
+            },
+            {
+              enunciado: "Decodificá las bandas Amarillo – Violeta – Naranja – Dorado.",
+              pista: "Naranja como multiplicador equivale a ×1.000.",
+              solucion:
+                "4 (Amarillo) · 7 (Violeta) → 47\n× 1.000 (Naranja) = 47.000 Ω = 47 kΩ ±5%.",
+            },
+            {
+              enunciado:
+                "Tenés una fuente de 9 V y una resistencia de 470 Ω. ¿Qué corriente circula por el circuito?",
+              pista: "Aplicá I = V / R y convertí a mA.",
+              solucion:
+                "I = V / R = 9 / 470 = 0,01915 A ≈ 19,15 mA.",
+            },
+            {
+              enunciado:
+                "Querés encender un LED rojo (Vled = 2 V, Iled = 20 mA) con una fuente de 5 V. ¿Qué resistencia necesitás?",
+              pista: "Restá el voltaje del LED al de la fuente y dividí por la corriente en amperios.",
+              solucion:
+                "R = (Vfuente − Vled) / Iled\nR = (5 − 2) / 0,020 = 3 / 0,020 = 150 Ω.\nValor comercial cercano: 150 Ω o 220 Ω (más conservador).",
+            },
+            {
+              enunciado:
+                "Por una resistencia de 1 kΩ circulan 30 mA. ¿Qué potencia disipa y qué tipo de resistencia conviene usar?",
+              pista: "Usá P = I² × R y compará con 0,25 W (1/4 W).",
+              solucion:
+                "P = I² × R = (0,030)² × 1.000 = 0,0009 × 1.000 = 0,9 W.\nUna resistencia de 1/4 W se quemaría. Necesitás una de 1 W o 2 W.",
+            },
+          ]}
+        />
+
         <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
         <p>
           Las resistencias son la base silenciosa de cualquier circuito. Saber qué hacen, cómo se leen y cómo se calculan
