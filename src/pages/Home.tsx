@@ -3,7 +3,7 @@ import electrolabLogo from "@/assets/electrolab-logo.webp";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
   ShoppingBag, Menu, X, CircuitBoard, Wrench, TrendingUp,
-  MessageSquare, Lightbulb, Battery, Microchip, Cable, Search
+  MessageSquare, Lightbulb, Battery, Microchip, Cable, Search, Sparkles
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
