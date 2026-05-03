@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import electrolabLogo from "@/assets/electrolab-logo.webp";
-import { motion } from "framer-motion";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
   ShoppingBag, Menu, X, CircuitBoard, Wrench, TrendingUp,
@@ -450,11 +449,7 @@ const Home = () => {
       {/* ═══════════ #DETALLES – TODA LA INFORMACIÓN EN ACORDEONES ═══════════ */}
       <section id="detalles" className="py-14 sm:py-20 border-t border-border">
         <div className="container mx-auto px-6 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3 }}
+          <div
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground text-center mb-10">
               Aprende <span className="text-primary">Electrónica</span>
@@ -577,7 +572,7 @@ const Home = () => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -607,13 +602,9 @@ const Home = () => {
       </section>
 
       {/* ═══════════ NIVEL 1 · LABORATORIO DE CÁLCULO ═══════════ */}
-      <motion.section
+      <section
         id="calculadora"
         className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <div className="text-center mb-8">
           <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
@@ -632,16 +623,12 @@ const Home = () => {
           </div>
         </div>
         <CalculatorHub />
-      </motion.section>
+      </section>
 
       {/* ═══════════ RECURSOS & INFORMACIÓN (ACCORDION UNIFICADO) ═══════════ */}
-      <motion.section
+      <section
         id="recursos"
         className="py-14 sm:py-20 border-t border-border bg-card/40"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-6 max-w-4xl">
           <div className="text-center mb-10">
@@ -838,15 +825,11 @@ const Home = () => {
             </AccordionItem>
           </Accordion>
         </div>
-      </motion.section>
+      </section>
 
       {/* ═══════════ ARTÍCULOS RECIENTES ═══════════ */}
-      <motion.section
+      <section
         className="container mx-auto px-6 py-12 space-y-6 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <div className="text-center space-y-2">
           <span className="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
@@ -886,12 +869,8 @@ const Home = () => {
               readTime: "12 min",
             },
           ].map((article) => (
-            <motion.div
+            <div
               key={article.to}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
             >
               <Link
                 to={article.to}
@@ -916,22 +895,18 @@ const Home = () => {
                   </span>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.section>
+      </section>
 
       {/* Guías Técnicas Destacadas — consolidadas en sección #guias más abajo */}
 
       {/* Servicios detalle — consolidados en #recursos accordion */}
 
       {/* ═══════════ STATS ═══════════ */}
-      <motion.section
+      <section
         className="py-10 sm:py-14"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
@@ -953,16 +928,12 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* ═══════════ NIVEL 2 · INVESTIGACIÓN DE COMPONENTES ═══════════ */}
-      <motion.section
+      <section
         id="diccionario"
         className="container mx-auto px-6 py-12 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <div className="text-center mb-8">
           <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
@@ -976,30 +947,22 @@ const Home = () => {
           </p>
         </div>
         <ComponentDictionary />
-      </motion.section>
+      </section>
 
       {/* ═══════════ MINI PROYECTOS ═══════════ */}
-      <motion.div
+      <div
         id="mini-proyectos"
         className="container mx-auto px-6 py-12"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <MiniProjects />
-      </motion.div>
+      </div>
 
       {/* Tips — consolidados en #recursos accordion */}
 
       {/* ═══════════ FORO / Q&A CON TABS ═══════════ */}
-      <motion.section
+      <section
         id="foro"
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -1045,16 +1008,12 @@ const Home = () => {
             ))}
           </Accordion>
         </div>
-      </motion.section>
+      </section>
 
       {/* ═══════════ GUÍAS COMPLETAS ═══════════ */}
-      <motion.section
+      <section
         id="guias"
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <div className="text-center mb-10">
           <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
@@ -1092,12 +1051,8 @@ const Home = () => {
             { emoji: "🔌", title: "Protocolo I2C", desc: "Comunicación entre microcontroladores y sensores con solo 2 cables.", to: "/articulos/protocolo-i2c", tag: "Protocolos" },
             { emoji: "📡", title: "Sensores Arduino", desc: "DHT11, HC-SR04, LDR y PIR: conexión, código y proyectos prácticos.", to: "/articulos/sensores-arduino", tag: "Proyectos" },
           ].map((guide, i) => (
-            <motion.div
+            <div
               key={guide.to}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
             >
               <Link to={guide.to} className="group flex flex-col rounded-2xl border border-border bg-card overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md h-full">
                 <div className="w-full h-28 bg-accent flex items-center justify-center text-4xl">{guide.emoji}</div>
@@ -1108,18 +1063,14 @@ const Home = () => {
                   <span className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">Leer guía →</span>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.section>
+      </section>
 
       {/* ═══════════ HERRAMIENTAS RECOMENDADAS ═══════════ */}
-      <motion.section
+      <section
         className="container mx-auto px-6 py-16 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
           <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
@@ -1149,16 +1100,12 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </motion.section>
+      </section>
 
       {/* ═══════════ EQUIPA TU LABORATORIO ═══════════ */}
-      <motion.section
+      <section
         id="equipamiento"
         className="container mx-auto px-6 py-12 border-t border-border"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
       >
         <h2 className="text-lg sm:text-xl font-bold text-center mb-6 flex items-center justify-center gap-2 text-muted-foreground">
           <ShoppingBag className="w-4 h-4" />
@@ -1180,7 +1127,7 @@ const Home = () => {
         <p className="text-center text-[10px] text-muted-foreground/50 mt-4 italic">
           En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
         </p>
-      </motion.section>
+      </section>
 
       {/* ¿Por qué elegir? — consolidado en #recursos accordion */}
 
