@@ -97,6 +97,16 @@ const Timer555Calculator = () => {
           <span className="text-[11px] text-primary/70 font-mono italic">⚡ Herramienta Pro por J.A.Sanchez</span>
         </div>
       </CardContent>
+      <div className="px-6 pb-6">
+        <CalculatorEduLink
+          intro="El temporizador 555 combina resistencias y capacitores. Repasá los fundamentos:"
+          links={[
+            { to: "/articulos/condensadores", label: "Guía completa de condensadores en electrónica" },
+            { to: "/guia-resistencias", label: "Cómo elegir y leer resistencias correctamente" },
+            { to: "/articulos/pwm-arduino", label: "PWM con Arduino: alternativa digital al 555" },
+          ]}
+        />
+      </div>
     </Card>
   );
 };

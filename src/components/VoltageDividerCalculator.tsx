@@ -81,6 +81,16 @@ const VoltageDividerCalculator = () => {
           <span className="text-[11px] text-primary/70 font-mono italic">⚡ Herramienta Pro por J.A.Sanchez</span>
         </div>
       </CardContent>
+      <div className="px-6 pb-6">
+        <CalculatorEduLink
+          intro="Un divisor de tensión depende de elegir resistencias correctas. Reforzá tu base teórica:"
+          links={[
+            { to: "/guia-resistencias", label: "Guía completa de resistencias y código de colores" },
+            { to: "/articulos/ley-de-ohm", label: "Ley de Ohm aplicada a divisores de tensión" },
+            { to: "/articulos/circuitos-serie-paralelo", label: "Cómo se comportan las resistencias en serie" },
+          ]}
+        />
+      </div>
     </Card>
   );
 };

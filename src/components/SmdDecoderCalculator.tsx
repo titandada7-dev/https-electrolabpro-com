@@ -95,6 +95,16 @@ const SmdDecoderCalculator = () => {
           <span className="text-[11px] text-primary/70 font-mono italic">⚡ Herramienta Pro por J.A.Sanchez</span>
         </div>
       </CardContent>
+      <div className="px-6 pb-6">
+        <CalculatorEduLink
+          intro="¿Querés decodificar también resistencias de bandas? Mirá nuestras guías:"
+          links={[
+            { to: "/guia-resistencias", label: "Guía completa de resistencias (SMD y through-hole)" },
+            { to: "/articulos/codigo-colores-resistencias", label: "Código de colores de resistencias paso a paso" },
+            { to: "/articulos/leer-datasheet", label: "Cómo leer un datasheet de componentes" },
+          ]}
+        />
+      </div>
     </Card>
   );
 };

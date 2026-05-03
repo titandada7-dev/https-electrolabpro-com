@@ -115,6 +115,16 @@ const CapacitiveReactanceCalculator = () => {
           <span className="text-[11px] text-primary/70 font-mono italic">⚡ Herramienta Pro por J.A.Sanchez</span>
         </div>
       </CardContent>
+      <div className="px-6 pb-6">
+        <CalculatorEduLink
+          intro="Aprendé cómo se comportan los condensadores en circuitos AC y de filtrado:"
+          links={[
+            { to: "/articulos/condensadores", label: "Guía completa de condensadores y sus aplicaciones" },
+            { to: "/articulos/ley-de-ohm", label: "Ley de Ohm aplicada a corriente alterna" },
+            { to: "/guia-resistencias", label: "Guía completa de resistencias para filtros RC" },
+          ]}
+        />
+      </div>
     </Card>
   );
 };

@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Zap } from "lucide-react";
+import CalculatorEduLink from "@/components/CalculatorEduLink";
 
 const OhmCalculator = () => {
   const [voltage, setVoltage] = useState("");
@@ -101,6 +102,16 @@ const OhmCalculator = () => {
           </span>
         </div>
       </CardContent>
+      <div className="px-6 pb-6">
+        <CalculatorEduLink
+          intro="¿Querés entender la teoría detrás de V = I × R? Aprendé con nuestras guías técnicas."
+          links={[
+            { to: "/articulos/ley-de-ohm", label: "Guía completa de la Ley de Ohm con ejemplos resueltos" },
+            { to: "/guia-resistencias", label: "Guía completa de resistencias eléctricas" },
+            { to: "/articulos/circuitos-serie-paralelo", label: "Circuitos en serie vs paralelo" },
+          ]}
+        />
+      </div>
     </Card>
   );
 };
