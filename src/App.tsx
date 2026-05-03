@@ -14,8 +14,9 @@ const shouldLoadDomainDebug = (() => {
 const DomainDebugBanner = shouldLoadDomainDebug
   ? lazy(() => import("./components/DomainDebugBanner"))
   : null;
-import CookieBanner from "./components/CookieBanner";
-import PWAInstallPrompt from "./components/PWAInstallPrompt";
+// Banners no críticos: lazy para no bloquear el render inicial / LCP de Home.
+const CookieBanner = lazy(() => import("./components/CookieBanner"));
+const PWAInstallPrompt = lazy(() => import("./components/PWAInstallPrompt"));
 
 // Páginas legales y secundarias en lazy: reducen el JS inicial cargado en Home
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -64,8 +65,10 @@ function App() {
   return (
     <ErrorBoundary>
     <BrowserRouter>
-      <CookieBanner />
-      <PWAInstallPrompt />
+      <Suspense fallback={null}>
+        <CookieBanner />
+        <PWAInstallPrompt />
+      </Suspense>
       {DomainDebugBanner && (
         <Suspense fallback={null}>
           <DomainDebugBanner />
