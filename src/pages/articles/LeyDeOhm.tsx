@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
 import ohmTriangleImg from "@/assets/ley-de-ohm-triangle.jpg";
 import PlayCTA from "@/components/PlayCTA";
+import AplicaloAhora from "@/components/AplicaloAhora";
 
 const LeyDeOhm = () => {
   return (
@@ -202,6 +203,15 @@ const LeyDeOhm = () => {
           Ver kits en Amazon
         </a>
       </div>
+
+      <AplicaloAhora
+        tools={[
+          { to: "/#calculadora", label: "Calculadora de Ley de Ohm online", desc: "Resolvé V = I × R en segundos ingresando dos valores." },
+          { to: "/#calculadora", label: "Calculadora de resistencia para LED", desc: "Calculá el valor exacto de R para proteger tu LED." },
+          { to: "/guia-resistencias", label: "Guía completa de resistencias", desc: "Aprendé a leer, calcular y elegir resistencias paso a paso." },
+          { to: "/articulos/circuitos-serie-paralelo", label: "Circuitos en serie y paralelo", desc: "Cómo se combinan resistencias en circuitos reales." },
+        ]}
+      />
     </ArticleLayout>
   );
 };
