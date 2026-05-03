@@ -92,15 +92,8 @@ const GuiaResistencias = () => {
       inLanguage: "es",
     };
 
-    const breadcrumbJsonLd = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_ORIGIN },
-        { "@type": "ListItem", position: 2, name: "Guía de resistencias", item: PAGE_URL },
-      ],
-    };
-
+    // Nota: el JSON-LD del BreadcrumbList lo inyecta el componente <Breadcrumbs />.
+    // Mantenemos solo Article + FAQPage acá, con upsert estable (sin re-crear nodos).
     const faqJsonLd = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -111,30 +104,23 @@ const GuiaResistencias = () => {
       })),
     };
 
-    const a = document.createElement("script");
-    a.type = "application/ld+json";
-    a.id = "guia-resistencias-jsonld";
-    a.textContent = JSON.stringify(articleJsonLd);
-    document.getElementById("guia-resistencias-jsonld")?.remove();
-    document.head.appendChild(a);
+    const upsertJsonLd = (id: string, payload: object) => {
+      const serialized = JSON.stringify(payload);
+      let script = document.getElementById(id) as HTMLScriptElement | null;
+      if (!script) {
+        script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.id = id;
+        document.head.appendChild(script);
+      }
+      if (script.textContent !== serialized) script.textContent = serialized;
+    };
 
-    const b = document.createElement("script");
-    b.type = "application/ld+json";
-    b.id = "guia-resistencias-breadcrumb-jsonld";
-    b.textContent = JSON.stringify(breadcrumbJsonLd);
-    document.getElementById("guia-resistencias-breadcrumb-jsonld")?.remove();
-    document.head.appendChild(b);
-
-    const f = document.createElement("script");
-    f.type = "application/ld+json";
-    f.id = "guia-resistencias-faq-jsonld";
-    f.textContent = JSON.stringify(faqJsonLd);
-    document.getElementById("guia-resistencias-faq-jsonld")?.remove();
-    document.head.appendChild(f);
+    upsertJsonLd("guia-resistencias-jsonld", articleJsonLd);
+    upsertJsonLd("guia-resistencias-faq-jsonld", faqJsonLd);
 
     return () => {
       document.getElementById("guia-resistencias-jsonld")?.remove();
-      document.getElementById("guia-resistencias-breadcrumb-jsonld")?.remove();
       document.getElementById("guia-resistencias-faq-jsonld")?.remove();
     };
   }, []);

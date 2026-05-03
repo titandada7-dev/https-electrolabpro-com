@@ -5,10 +5,9 @@ import DocumentacionTecnica from "@/pages/DocumentacionTecnica";
 
 /**
  * Test de integración: renderiza /documentacion-tecnica y valida que el
- * JSON-LD REAL inyectado en <head> cumpla el contrato de BreadcrumbList:
- * URLs absolutas, indexables (sin #/?), posiciones consecutivas y nombres
- * exactos. Cubre regresiones que un test puramente unitario no detecta
- * (por ejemplo, si alguien cambia el efecto que inyecta los <script>).
+ * JSON-LD REAL inyectado en <head> cumpla el contrato de BreadcrumbList
+ * (jerárquico, URLs absolutas, posiciones consecutivas) y que también
+ * existan los schemas CollectionPage + FAQPage.
  */
 
 const SITE = "https://electrolabpro.com";
@@ -26,33 +25,31 @@ const readJsonLd = (id: string) => {
   }
 };
 
+const renderPage = () =>
+  render(
+    <MemoryRouter initialEntries={["/documentacion-tecnica"]}>
+      <DocumentacionTecnica />
+    </MemoryRouter>,
+  );
+
 describe("DocumentacionTecnica — JSON-LD renderizado en <head>", () => {
   afterEach(() => {
     cleanup();
-    // Limpieza explícita de los scripts inyectados por el efecto
-    ["doc-tec-faq", "doc-tec-collection", "doc-tec-breadcrumb"].forEach((id) =>
+    ["doc-tec-faq", "doc-tec-collection", "breadcrumbs-jsonld"].forEach((id) =>
       document.getElementById(id)?.remove(),
     );
   });
 
-  it("inyecta script BreadcrumbList con id 'doc-tec-breadcrumb'", () => {
-    render(
-      <MemoryRouter initialEntries={["/documentacion-tecnica"]}>
-        <DocumentacionTecnica />
-      </MemoryRouter>,
-    );
-    const schema = readJsonLd("doc-tec-breadcrumb");
+  it("inyecta script BreadcrumbList con id estable 'breadcrumbs-jsonld'", () => {
+    renderPage();
+    const schema = readJsonLd("breadcrumbs-jsonld");
     expect(schema).not.toBeNull();
     expect(schema["@type"]).toBe("BreadcrumbList");
   });
 
   it("BreadcrumbList: todas las URLs son absolutas e indexables", () => {
-    render(
-      <MemoryRouter initialEntries={["/documentacion-tecnica"]}>
-        <DocumentacionTecnica />
-      </MemoryRouter>,
-    );
-    const schema = readJsonLd("doc-tec-breadcrumb");
+    renderPage();
+    const schema = readJsonLd("breadcrumbs-jsonld");
     expect(Array.isArray(schema.itemListElement)).toBe(true);
     schema.itemListElement.forEach((item: { item: string }) => {
       expect(isIndexableUrl(item.item)).toBe(true);
@@ -60,12 +57,8 @@ describe("DocumentacionTecnica — JSON-LD renderizado en <head>", () => {
   });
 
   it("BreadcrumbList: position 2 apunta a /documentacion-tecnica con nombre correcto", () => {
-    render(
-      <MemoryRouter initialEntries={["/documentacion-tecnica"]}>
-        <DocumentacionTecnica />
-      </MemoryRouter>,
-    );
-    const schema = readJsonLd("doc-tec-breadcrumb");
+    renderPage();
+    const schema = readJsonLd("breadcrumbs-jsonld");
     const node = schema.itemListElement.find(
       (i: { position: number }) => i.position === 2,
     );
@@ -74,12 +67,8 @@ describe("DocumentacionTecnica — JSON-LD renderizado en <head>", () => {
   });
 
   it("BreadcrumbList: posiciones consecutivas empezando en 1", () => {
-    render(
-      <MemoryRouter initialEntries={["/documentacion-tecnica"]}>
-        <DocumentacionTecnica />
-      </MemoryRouter>,
-    );
-    const schema = readJsonLd("doc-tec-breadcrumb");
+    renderPage();
+    const schema = readJsonLd("breadcrumbs-jsonld");
     const positions = schema.itemListElement.map(
       (i: { position: number }) => i.position,
     );
@@ -87,11 +76,7 @@ describe("DocumentacionTecnica — JSON-LD renderizado en <head>", () => {
   });
 
   it("también inyecta CollectionPage y FAQPage con URLs limpias", () => {
-    render(
-      <MemoryRouter initialEntries={["/documentacion-tecnica"]}>
-        <DocumentacionTecnica />
-      </MemoryRouter>,
-    );
+    renderPage();
     const collection = readJsonLd("doc-tec-collection");
     const faq = readJsonLd("doc-tec-faq");
     expect(collection["@type"]).toBe("CollectionPage");

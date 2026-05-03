@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { ArrowLeft, Shield, Cookie, Eye, Mail } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
@@ -20,6 +21,10 @@ const PrivacyPolicy = () => {
           </span>
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       <main className="container mx-auto px-4 py-10 max-w-3xl">
         <p className="text-muted-foreground mb-6">

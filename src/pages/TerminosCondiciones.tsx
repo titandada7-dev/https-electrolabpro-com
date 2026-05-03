@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { FileText, ArrowLeft } from "lucide-react";
 
@@ -19,6 +20,10 @@ const TerminosCondiciones = () => {
           </Link>
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       <main className="container mx-auto px-6 py-12 max-w-3xl">
         <div className="flex items-center gap-3 mb-8">

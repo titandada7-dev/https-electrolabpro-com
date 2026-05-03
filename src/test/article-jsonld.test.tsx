@@ -35,7 +35,7 @@ const renderArticle = () =>
 describe("Article JSON-LD — render real desde ArticleLayout", () => {
   afterEach(() => {
     cleanup();
-    ["article-jsonld", "breadcrumb-jsonld", "faq-jsonld"].forEach((id) =>
+    ["article-jsonld", "faq-jsonld"].forEach((id) =>
       document.getElementById(id)?.remove(),
     );
   });

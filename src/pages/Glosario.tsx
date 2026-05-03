@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { Zap, ArrowLeft, Search, BookOpen } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
@@ -146,6 +147,10 @@ const Glosario = () => {
           </Link>
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       <section
         className="relative overflow-hidden py-12 md:py-16"

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft, Calculator, Microchip, BookOpen, Zap, ShieldCheck,
@@ -102,19 +103,11 @@ const DocumentacionTecnica = () => {
       author: { "@type": "Person", name: "J.A. Sánchez" },
     };
 
-    const breadcrumbSchema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "Documentación Técnica", item: `${SITE_URL}/documentacion-tecnica` },
-      ],
-    };
+    // BreadcrumbList lo emite el componente <Breadcrumbs /> con id estable.
 
     const schemas = [
       { id: "doc-tec-faq", data: faqSchema },
       { id: "doc-tec-collection", data: collectionSchema },
-      { id: "doc-tec-breadcrumb", data: breadcrumbSchema },
     ];
     schemas.forEach(({ id, data }) => {
       let script = document.getElementById(id) as HTMLScriptElement | null;
@@ -149,14 +142,11 @@ const DocumentacionTecnica = () => {
         </div>
       </header>
 
-      {/* Breadcrumb */}
-      <nav aria-label="Migas de pan" className="container mx-auto px-6 pt-6 text-xs text-muted-foreground">
-        <ol className="flex items-center gap-1.5">
-          <li><Link to="/" className="hover:text-primary">Inicio</Link></li>
-          <ChevronRight className="w-3 h-3" />
-          <li className="text-foreground font-medium">Documentación Técnica</li>
-        </ol>
-      </nav>
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
+
+      {/* Breadcrumb visible: ya renderizado por <Breadcrumbs /> arriba */}
 
       {/* Hero */}
       <section className="container mx-auto px-6 py-10 md:py-14">

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -136,6 +137,10 @@ const AprendeJugando = () => {
           <ThemeToggle />
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className="container mx-auto px-4 pt-4 text-xs text-muted-foreground">

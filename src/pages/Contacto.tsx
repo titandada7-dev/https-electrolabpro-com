@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Zap, ArrowLeft, Mail, MessageSquare, Send } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -48,6 +49,10 @@ const Contacto = () => {
           </Link>
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       {/* Hero */}
       <section className="relative overflow-hidden py-16 md:py-20" style={{ background: "linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(0 0% 4%) 100%)" }}>
