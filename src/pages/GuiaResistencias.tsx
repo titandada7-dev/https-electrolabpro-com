@@ -304,19 +304,69 @@ const GuiaResistencias = () => {
           calculadoras interactivas para validar el resultado antes de soldar nada.
         </p>
 
-        {/* CTA a calculadora */}
-        <div className="not-prose rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 my-8 text-center space-y-3">
-          <Calculator className="w-8 h-8 text-primary mx-auto" />
-          <h3 className="text-lg font-bold text-foreground">Calculá el valor de tu resistencia ahora</h3>
-          <p className="text-sm text-muted-foreground">
-            Usá nuestra calculadora visual de código de colores para 4 y 5 bandas.
-          </p>
-          <Link
-            to="/#calculadora"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
-          >
-            <Lightbulb className="w-4 h-4" /> Ir a la calculadora
-          </Link>
+        {/* Aplicalo ahora — enlaces internos a herramientas */}
+        <div className="not-prose rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 my-8 space-y-4">
+          <div className="text-center space-y-2">
+            <Calculator className="w-8 h-8 text-primary mx-auto" />
+            <h2 className="text-xl font-bold text-foreground">Aplicalo ahora</h2>
+            <p className="text-sm text-muted-foreground">
+              Pasá de la teoría a la práctica con nuestras herramientas online gratuitas:
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Link
+              to="/#calculadora"
+              className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors"
+              aria-label="Abrir la calculadora visual de código de colores de resistencias"
+            >
+              <Lightbulb className="w-5 h-5 text-primary shrink-0" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">Calculadora de resistencias online</p>
+                <p className="text-xs text-muted-foreground">Decodificá 4 y 5 bandas en segundos</p>
+              </div>
+            </Link>
+            <Link
+              to="/articulos/ley-de-ohm"
+              className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors"
+              aria-label="Leer la guía completa de la Ley de Ohm"
+            >
+              <Zap className="w-5 h-5 text-primary shrink-0" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">Guía de la Ley de Ohm</p>
+                <p className="text-xs text-muted-foreground">V = I × R con ejemplos prácticos</p>
+              </div>
+            </Link>
+            <Link
+              to="/articulos/codigo-colores-resistencias"
+              className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors"
+              aria-label="Aprender el código de colores de resistencias paso a paso"
+            >
+              <BookOpen className="w-5 h-5 text-primary shrink-0" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">Código de colores explicado</p>
+                <p className="text-xs text-muted-foreground">Estándar IEC 60062 paso a paso</p>
+              </div>
+            </Link>
+            <Link
+              to="/articulos/multimetro"
+              className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors"
+              aria-label="Cómo medir resistencias con un multímetro digital"
+            >
+              <Calculator className="w-5 h-5 text-primary shrink-0" />
+              <div>
+                <p className="font-semibold text-foreground text-sm">Cómo usar un multímetro</p>
+                <p className="text-xs text-muted-foreground">Medí resistencias con seguridad</p>
+              </div>
+            </Link>
+          </div>
+          <div className="text-center pt-2">
+            <Link
+              to="/#calculadora"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+            >
+              <Lightbulb className="w-4 h-4" /> Probar la calculadora ahora
+            </Link>
+          </div>
         </div>
 
         <AuthorBio />
@@ -328,9 +378,15 @@ const GuiaResistencias = () => {
             © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A. Sanchez</span>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4">
-            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Privacidad</Link>
+            <Link to="/guia-resistencias" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Guía de resistencias</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/#calculadora" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Calculadoras</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/glosario" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Glosario</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Contacto</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Privacidad</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Sobre Nosotros</Link>
           </div>

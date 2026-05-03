@@ -3,7 +3,7 @@ import electrolabLogo from "@/assets/electrolab-logo.webp";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
   ShoppingBag, Menu, X, CircuitBoard, Wrench, TrendingUp,
-  MessageSquare, Lightbulb, Battery, Microchip, Cable, Search
+  MessageSquare, Lightbulb, Battery, Microchip, Cable, Search, Sparkles
 } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
@@ -274,6 +274,7 @@ const Home = () => {
           {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
           <div className="hidden items-center gap-5 md:flex">
             <a href="#inicio" onClick={handleAnchorClick("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Inicio</a>
+            <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Aprender</a>
             <a href="#guias" onClick={handleAnchorClick("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</a>
             <a href="#calculadora" onClick={handleAnchorClick("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</a>
             <a href="#mini-proyectos" onClick={handleAnchorClick("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Proyectos</a>
@@ -283,6 +284,9 @@ const Home = () => {
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
               </button>
               <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 max-h-[70vh] overflow-y-auto">
+                <Link to="/guia-resistencias" className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-accent transition-colors border-b border-border mb-1">
+                  📘 Guía completa de resistencias
+                </Link>
                 {articleLinks.map((a) => (
                   <Link key={a.to} to={a.to} className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
                     {a.label}
@@ -327,6 +331,7 @@ const Home = () => {
           <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Inicio", id: "inicio" },
+              { label: "Aprender", id: "aprender" },
               { label: "Guías", id: "guias" },
               { label: "Calculadoras", id: "calculadora" },
               { label: "Proyectos", id: "mini-proyectos" },
@@ -341,6 +346,9 @@ const Home = () => {
                 {item.label}
               </a>
             ))}
+            <Link to="/guia-resistencias" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-semibold text-primary hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
+              📘 Guía completa de resistencias
+            </Link>
             <Link to="/documentacion-tecnica" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
               📚 Documentación Técnica
             </Link>
@@ -586,26 +594,148 @@ const Home = () => {
 
       {/* FAQ corto y CTA intermedio — consolidados en #foro y hero respectivamente */}
 
-      {/* ═══════════ CTA EDUCATIVO · GUÍA DE RESISTENCIAS ═══════════ */}
-      <section className="container mx-auto px-4 sm:px-6 py-10 sm:py-14 border-t border-border">
-        <div className="max-w-3xl mx-auto rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 sm:p-8 text-center space-y-4">
+      {/* ═══════════ #APRENDER · HUB EDUCATIVO ═══════════ */}
+      <section
+        id="aprender"
+        className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20 border-t border-border"
+      >
+        <div className="text-center mb-10 max-w-3xl mx-auto">
           <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
-            Aprendé desde cero
+            Aprendé electrónica
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
-            Aprendé electrónica desde cero
+          <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
+            Guías educativas <span className="text-primary">paso a paso</span>
           </h2>
-          <p className="text-base text-muted-foreground max-w-xl mx-auto">
-            Empezá por la base: qué son las resistencias, cómo funcionan, cómo se leen sus colores y cómo calcular su valor con la Ley de Ohm. Una guía clara, con ejemplos y enlaces a nuestras calculadoras.
+          <p className="mt-3 text-base text-muted-foreground">
+            Recursos pensados para principiantes y estudiantes: empezá por la base y combiná cada guía con nuestras calculadoras interactivas online.
           </p>
-          <div className="pt-2">
-            <Link
-              to="/guia-resistencias"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {/* Card destacada: guía completa de resistencias */}
+          <Link
+            to="/guia-resistencias"
+            className="group flex flex-col rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 shadow-sm hover:shadow-md hover:border-primary transition-all duration-300"
+            aria-label="Leer la guía completa de resistencias paso a paso"
+          >
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/15 px-2 py-0.5 rounded-full">
+                ⭐ Destacado
+              </span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                +1.200 palabras
+              </span>
+            </div>
+            <BookOpen className="w-7 h-7 text-primary mb-3" />
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+              Guía completa de resistencias
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 flex-1">
+              Qué son, cómo funcionan, código de colores y cómo calcular su valor con la Ley de Ohm.
+            </p>
+            <span className="inline-flex items-center gap-1.5 mt-4 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
+              Leer guía de resistencias online →
+            </span>
+          </Link>
+
+          {/* Card: Ley de Ohm */}
+          <Link
+            to="/articulos/ley-de-ohm"
+            className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300"
+            aria-label="Leer la guía explicativa de la Ley de Ohm"
+          >
+            <Zap className="w-7 h-7 text-primary mb-3" />
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+              Ley de Ohm explicada
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 flex-1">
+              Voltaje, corriente y resistencia: la fórmula V = I × R con ejemplos prácticos.
+            </p>
+            <span className="inline-flex items-center gap-1.5 mt-4 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
+              Aprender la Ley de Ohm →
+            </span>
+          </Link>
+
+          {/* Card: Código de colores */}
+          <Link
+            to="/articulos/codigo-colores-resistencias"
+            className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300"
+            aria-label="Aprender a leer el código de colores de resistencias"
+          >
+            <Lightbulb className="w-7 h-7 text-primary mb-3" />
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+              Código de colores de resistencias
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 flex-1">
+              Cómo decodificar resistencias de 4 y 5 bandas según el estándar IEC 60062.
+            </p>
+            <span className="inline-flex items-center gap-1.5 mt-4 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
+              Ver código de colores →
+            </span>
+          </Link>
+
+          {/* Card: Multímetro */}
+          <Link
+            to="/articulos/multimetro"
+            className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300"
+            aria-label="Cómo usar un multímetro digital paso a paso"
+          >
+            <Calculator className="w-7 h-7 text-primary mb-3" />
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+              Cómo usar un multímetro
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 flex-1">
+              Medí voltaje, corriente, resistencia y continuidad sin dañar tu instrumento.
+            </p>
+            <span className="inline-flex items-center gap-1.5 mt-4 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
+              Guía del multímetro →
+            </span>
+          </Link>
+
+          {/* Card: Arduino */}
+          <Link
+            to="/articulos/arduino"
+            className="group flex flex-col rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300"
+            aria-label="Curso introductorio de Arduino para principiantes"
+          >
+            <Cpu className="w-7 h-7 text-primary mb-3" />
+            <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+              Arduino para principiantes
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2 flex-1">
+              Instalación del IDE, primer sketch, Blink y proyectos básicos paso a paso.
+            </p>
+            <span className="inline-flex items-center gap-1.5 mt-4 text-sm text-primary font-semibold group-hover:gap-2.5 transition-all">
+              Empezar con Arduino →
+            </span>
+          </Link>
+
+          {/* Card: Próximamente */}
+          <div className="flex flex-col rounded-2xl border border-dashed border-border bg-muted/30 p-6 text-center justify-center">
+            <Sparkles className="w-7 h-7 text-muted-foreground mx-auto mb-3" />
+            <h3 className="text-base font-bold text-foreground">
+              Próximas guías
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed mt-2">
+              Curso básico de electrónica, condensadores y diodos en preparación.
+            </p>
+            <a
+              href="#guias"
+              onClick={handleAnchorClick("guias")}
+              className="inline-flex items-center gap-1.5 mt-4 text-sm text-primary font-semibold hover:underline justify-center"
             >
-              <BookOpen className="w-4 h-4" /> Ver guía de resistencias
-            </Link>
+              Ver todas las guías técnicas →
+            </a>
           </div>
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            to="/guia-resistencias"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+          >
+            <BookOpen className="w-4 h-4" /> Empezar por la guía de resistencias
+          </Link>
         </div>
       </section>
 
@@ -1149,6 +1279,8 @@ const Home = () => {
             Diseñado por <span className="font-semibold">J.A.Sanchez</span>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
+            <Link to="/guia-resistencias" className="text-primary text-[10px] uppercase tracking-wider hover:underline font-semibold transition-colors min-h-[36px] flex items-center">📘 Guía de resistencias</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Privacidad</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>

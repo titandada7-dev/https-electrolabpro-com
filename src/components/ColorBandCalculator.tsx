@@ -119,8 +119,9 @@ export default function ColorBandCalculator() {
         🎨 Calculadora de Colores
       </h2>
       <p className="text-center text-xs sm:text-sm">
+        ¿No sabés qué valor usar?{" "}
         <a href="/guia-resistencias" className="text-primary hover:underline font-medium">
-          ¿No sabés qué valor usar? Mirá nuestra guía completa de resistencias →
+          Leé nuestra guía completa de resistencias online →
         </a>
       </p>
 
