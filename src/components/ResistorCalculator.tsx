@@ -97,6 +97,14 @@ const ResistorCalculator = () => {
         <p className="text-muted-foreground text-xs sm:text-sm md:text-base">
           Sigue los 4 pasos para identificar el valor de tu resistencia
         </p>
+        <p className="text-xs sm:text-sm">
+          <a
+            href="/guia-resistencias"
+            className="text-primary hover:underline font-medium"
+          >
+            ¿No sabés qué valor usar? Mirá nuestra guía completa de resistencias →
+          </a>
+        </p>
       </div>
 
       {/* SVG Resistor - Interactive */}

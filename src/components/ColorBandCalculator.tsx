@@ -118,6 +118,11 @@ export default function ColorBandCalculator() {
       <h2 className="text-xl sm:text-2xl font-mono font-bold text-foreground text-center">
         🎨 Calculadora de Colores
       </h2>
+      <p className="text-center text-xs sm:text-sm">
+        <a href="/guia-resistencias" className="text-primary hover:underline font-medium">
+          ¿No sabés qué valor usar? Mirá nuestra guía completa de resistencias →
+        </a>
+      </p>
 
       {/* Band count toggle */}
       <div className="flex justify-center gap-2">

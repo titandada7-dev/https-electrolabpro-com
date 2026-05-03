@@ -583,6 +583,29 @@ const Home = () => {
 
       {/* FAQ corto y CTA intermedio — consolidados en #foro y hero respectivamente */}
 
+      {/* ═══════════ CTA EDUCATIVO · GUÍA DE RESISTENCIAS ═══════════ */}
+      <section className="container mx-auto px-4 sm:px-6 py-10 sm:py-14 border-t border-border">
+        <div className="max-w-3xl mx-auto rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 sm:p-8 text-center space-y-4">
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+            Aprendé desde cero
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
+            Aprendé electrónica desde cero
+          </h2>
+          <p className="text-base text-muted-foreground max-w-xl mx-auto">
+            Empezá por la base: qué son las resistencias, cómo funcionan, cómo se leen sus colores y cómo calcular su valor con la Ley de Ohm. Una guía clara, con ejemplos y enlaces a nuestras calculadoras.
+          </p>
+          <div className="pt-2">
+            <Link
+              to="/guia-resistencias"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+            >
+              <BookOpen className="w-4 h-4" /> Ver guía de resistencias
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════ NIVEL 1 · LABORATORIO DE CÁLCULO ═══════════ */}
       <motion.section
         id="calculadora"
