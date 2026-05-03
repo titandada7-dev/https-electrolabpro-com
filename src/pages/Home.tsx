@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import electrolabLogo from "@/assets/electrolab-logo.webp";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
@@ -8,12 +8,20 @@ import {
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import ComponentDictionary from "@/components/ComponentDictionary";
-import MiniProjects from "@/components/MiniProjects";
-import CalculatorHub from "@/components/CalculatorHub";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
-import GlobalSearch from "@/components/GlobalSearch";
+
+// Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
+const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
+const MiniProjects = lazy(() => import("@/components/MiniProjects"));
+const CalculatorHub = lazy(() => import("@/components/CalculatorHub"));
+const GlobalSearch = lazy(() => import("@/components/GlobalSearch"));
+
+const SectionFallback = () => (
+  <div className="flex justify-center py-10" aria-hidden="true">
+    <div className="h-6 w-6 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+);
 
 const articleLinks = [
   { label: "Código de Colores", to: "/articulos/codigo-colores-resistencias" },
