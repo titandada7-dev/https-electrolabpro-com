@@ -94,6 +94,8 @@ function formatNum(n: number): string {
   return parseFloat(s).toString();
 }
 
+import CalculatorEduLink from "@/components/CalculatorEduLink";
+
 export default function UnitConverter() {
   const [catIdx, setCatIdx] = useState(0);
   const [value, setValue] = useState("1");
