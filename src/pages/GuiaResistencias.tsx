@@ -599,6 +599,7 @@ const GuiaResistencias = () => {
           ))}
         </div>
 
+        <h2 id="conclusion" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
         <p>
           Las resistencias son la base silenciosa de cualquier circuito. Saber qué hacen, cómo se leen y cómo se calculan
           te abre la puerta a entender prácticamente cualquier diseño electrónico. Empezá midiendo, probando y verificando
