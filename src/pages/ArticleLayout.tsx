@@ -139,55 +139,41 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       "inLanguage": "es"
     };
 
-    const breadcrumbJsonLd = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://electrolabpro.com" },
-        { "@type": "ListItem", "position": 2, "name": "Documentación Técnica", "item": "https://electrolabpro.com/documentacion-tecnica" },
-        { "@type": "ListItem", "position": 3, "name": title, "item": articleUrl }
-      ]
+    // Article JSON-LD: actualizar el mismo nodo en lugar de remove+append
+    // para evitar parpadeos y "cambios de IDs" entre re-renders.
+    const upsertJsonLd = (id: string, payload: object) => {
+      const serialized = JSON.stringify(payload);
+      let script = document.getElementById(id) as HTMLScriptElement | null;
+      if (!script) {
+        script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.id = id;
+        document.head.appendChild(script);
+      }
+      if (script.textContent !== serialized) script.textContent = serialized;
     };
 
-    const articleScript = document.createElement("script");
-    articleScript.type = "application/ld+json";
-    articleScript.id = "article-jsonld";
-    articleScript.textContent = JSON.stringify(articleJsonLd);
-    document.getElementById("article-jsonld")?.remove();
-    document.head.appendChild(articleScript);
+    upsertJsonLd("article-jsonld", articleJsonLd);
 
-    const breadcrumbScript = document.createElement("script");
-    breadcrumbScript.type = "application/ld+json";
-    breadcrumbScript.id = "breadcrumb-jsonld";
-    breadcrumbScript.textContent = JSON.stringify(breadcrumbJsonLd);
-    document.getElementById("breadcrumb-jsonld")?.remove();
-    document.head.appendChild(breadcrumbScript);
-
-    // FAQPage schema (opcional) — solo si el artículo pasó faqs
-    document.getElementById("faq-jsonld")?.remove();
+    // FAQPage schema (opcional) — solo si el artículo pasó faqs.
+    // Si no hay faqs, removemos el nodo previo para no dejar schemas obsoletos.
     if (faqs && faqs.length > 0) {
       const faqJsonLd = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": faqs.map((f) => ({
+        mainEntity: faqs.map((f) => ({
           "@type": "Question",
-          "name": f.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": f.answer,
-          },
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
         })),
       };
-      const faqScript = document.createElement("script");
-      faqScript.type = "application/ld+json";
-      faqScript.id = "faq-jsonld";
-      faqScript.textContent = JSON.stringify(faqJsonLd);
-      document.head.appendChild(faqScript);
+      upsertJsonLd("faq-jsonld", faqJsonLd);
+    } else {
+      document.getElementById("faq-jsonld")?.remove();
     }
 
     return () => {
       document.getElementById("article-jsonld")?.remove();
-      document.getElementById("breadcrumb-jsonld")?.remove();
       document.getElementById("faq-jsonld")?.remove();
     };
   }, [title, subtitle, slug, datePublished, dateModified, faqs, image]);
