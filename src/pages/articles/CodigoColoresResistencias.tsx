@@ -145,6 +145,35 @@ const CodigoColoresResistencias = () => {
         Memorizar la tabla de colores lleva tiempo y práctica. Si estás en medio de un proyecto y necesitas estar 100% seguro del valor de un componente antes de soldarlo, recuerda que en la página principal de ElectroLab Pro tienes nuestra <Link to="/" className="text-primary hover:underline font-semibold">Calculadora de Resistencias interactiva</Link>. Solo selecciona los colores que ves en tu componente y el sistema hará el cálculo matemático por ti con precisión absoluta.
       </p>
 
+      {/* CTA fijo: ir directo a la herramienta o al diccionario */}
+      <div className="not-prose mt-8 rounded-2xl border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-5 sm:p-6">
+        <p className="text-sm font-mono font-bold uppercase tracking-wider text-primary mb-2">
+          ⚡ Aplicalo ahora mismo
+        </p>
+        <h3 className="text-lg sm:text-xl font-bold text-foreground mb-3">
+          Pasá del código de colores a la práctica
+        </h3>
+        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+          Decodificá cualquier resistencia en segundos o consultá su hoja técnica en nuestro diccionario de componentes.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link
+            to="/#calculadora"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:opacity-90 transition-opacity"
+            aria-label="Abrir la calculadora visual de resistencias por colores"
+          >
+            🎨 Calculadora Visual de Resistencias
+          </Link>
+          <Link
+            to="/#diccionario"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border-2 border-primary text-primary font-bold text-sm hover:bg-primary/10 transition-colors"
+            aria-label="Consultar el diccionario de componentes electrónicos"
+          >
+            📖 Diccionario de Componentes
+          </Link>
+        </div>
+      </div>
+
       {/* CTA Amazon */}
       <div className="mt-10 p-6 rounded-xl border border-primary/30 bg-primary/5 text-center space-y-3">
         <p className="text-foreground font-bold font-mono text-lg">📦 Kit de Resistencias Surtidas</p>
