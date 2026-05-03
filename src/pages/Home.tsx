@@ -1279,6 +1279,8 @@ const Home = () => {
             Diseñado por <span className="font-semibold">J.A.Sanchez</span>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
+            <Link to="/guia-resistencias" className="text-primary text-[10px] uppercase tracking-wider hover:underline font-semibold transition-colors min-h-[36px] flex items-center">📘 Guía de resistencias</Link>
+            <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Privacidad</Link>
             <span className="text-muted-foreground/40 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
