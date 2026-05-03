@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Zap, ArrowLeft, BookOpen, Calculator, Lightbulb, ShieldCheck, Sparkles, Download } from "lucide-react";
+import { Zap, ArrowLeft, BookOpen, Calculator, Lightbulb, ShieldCheck, Sparkles, Download, ListOrdered, GraduationCap } from "lucide-react";
 import { useEffect } from "react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -156,7 +156,34 @@ const GuiaResistencias = () => {
           </p>
         </div>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es una resistencia?</h2>
+        {/* Tabla de contenidos (jump links) */}
+        <nav
+          aria-label="Tabla de contenidos"
+          className="not-prose rounded-xl border border-primary/20 bg-card/60 p-5 my-2"
+        >
+          <p className="font-mono font-bold text-foreground flex items-center gap-2 mb-3">
+            <ListOrdered className="w-5 h-5 text-primary" />
+            Tabla de contenidos
+          </p>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 text-sm list-decimal list-inside marker:text-primary marker:font-mono">
+            <li><a href="#que-es" className="text-primary hover:underline">¿Qué es una resistencia?</a></li>
+            <li><a href="#como-funciona" className="text-primary hover:underline">Cómo funciona</a></li>
+            <li><a href="#ley-ohm" className="text-primary hover:underline">Ley de Ohm aplicada</a></li>
+            <li><a href="#ejemplos-paso-a-paso" className="text-primary hover:underline">Ejemplos paso a paso</a></li>
+            <li><a href="#codigo-colores" className="text-primary hover:underline">Código de colores</a></li>
+            <li><a href="#tabla-colores" className="text-primary hover:underline">Tabla del código de colores</a></li>
+            <li><a href="#valores-tipicos" className="text-primary hover:underline">10 valores típicos</a></li>
+            <li><a href="#tipos" className="text-primary hover:underline">Tipos de resistencias</a></li>
+            <li><a href="#serie-paralelo" className="text-primary hover:underline">Serie y paralelo</a></li>
+            <li><a href="#aplicaciones" className="text-primary hover:underline">Aplicaciones reales</a></li>
+            <li><a href="#errores-comunes" className="text-primary hover:underline">Errores comunes</a></li>
+            <li><a href="#ejercicios" className="text-primary hover:underline">Ejercicios prácticos</a></li>
+            <li><a href="#conclusion" className="text-primary hover:underline">Conclusión</a></li>
+            <li><a href="#aplicalo-ahora" className="text-primary hover:underline font-semibold">⚡ Aplicalo ahora (CTA)</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="que-es" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es una resistencia?</h2>
         <p>
           Una <strong className="text-foreground">resistencia</strong> es uno de los componentes más simples y, al mismo tiempo, más
           importantes de la electrónica. Su función principal es <strong className="text-foreground">limitar el paso de la corriente</strong> en
@@ -170,7 +197,7 @@ const GuiaResistencias = () => {
           de alambre bobinado para alta potencia, y resistencias variables como el potenciómetro o el reóstato.
         </p>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">¿Cómo funciona una resistencia?</h2>
+        <h2 id="como-funciona" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">¿Cómo funciona una resistencia?</h2>
         <p>
           Una resistencia funciona oponiéndose al flujo de los electrones. Cuando una corriente eléctrica intenta atravesar
           el componente, los electrones deben "abrirse paso" a través del material resistivo (carbón, película metálica o
@@ -197,7 +224,7 @@ const GuiaResistencias = () => {
           <li>1 mΩ (miliohmio) = 0,001 Ω</li>
         </ul>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">La Ley de Ohm aplicada a resistencias</h2>
+        <h2 id="ley-ohm" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">La Ley de Ohm aplicada a resistencias</h2>
         <p>
           La <Link to="/articulos/ley-de-ohm" className="text-primary hover:underline">Ley de Ohm</Link> es la base para
           trabajar con resistencias. Se expresa con tres fórmulas equivalentes:
@@ -212,7 +239,7 @@ const GuiaResistencias = () => {
           esas magnitudes, siempre podés calcular la tercera.
         </p>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Ejemplos prácticos paso a paso</h2>
+        <h2 id="ejemplos-paso-a-paso" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Ejemplos prácticos paso a paso</h2>
         <p>
           La mejor forma de entender una resistencia es viéndola en acción. Estos tres ejemplos resueltos cubren el 90 % de
           las situaciones que te vas a encontrar en cualquier proyecto de electrónica de hobbista o profesional.
@@ -268,7 +295,7 @@ const GuiaResistencias = () => {
 
         <AdBanner slot="3756475501" format="auto" className="min-h-[90px] my-6" />
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Código de colores: cómo leer una resistencia</h2>
+        <h2 id="codigo-colores" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Código de colores: cómo leer una resistencia</h2>
         <p>
           Como las resistencias son demasiado pequeñas para imprimir un número legible, la industria adoptó un código de
           colores universal estandarizado por la <strong className="text-foreground">IEC 60062</strong>. Hay dos formatos comunes:
@@ -306,7 +333,7 @@ const GuiaResistencias = () => {
         </div>
 
         {/* Tabla visual del código de colores */}
-        <h3 className="text-lg font-bold text-foreground mt-8">Tabla visual del código de colores</h3>
+        <h3 id="tabla-colores" className="scroll-mt-24 text-lg font-bold text-foreground mt-8">Tabla visual del código de colores</h3>
         <p>
           Resumen completo de los 12 colores del estándar IEC 60062 con su dígito, multiplicador y tolerancia. Útil como
           referencia rápida cuando estás soldando.
@@ -349,7 +376,7 @@ const GuiaResistencias = () => {
         </p>
 
         {/* Tabla: 10 valores típicos con paso a paso */}
-        <h3 className="text-lg md:text-xl font-mono font-bold text-foreground mt-8">10 ejemplos típicos: del código al valor</h3>
+        <h3 id="valores-tipicos" className="scroll-mt-24 text-lg md:text-xl font-mono font-bold text-foreground mt-8">10 ejemplos típicos: del código al valor</h3>
         <p>
           Esta tabla cubre los valores más usados en proyectos reales (pull-up I²C, limitadores de LED, divisores de tensión). Cada fila incluye el paso a paso para que entrenes el método.
         </p>
@@ -423,7 +450,7 @@ const GuiaResistencias = () => {
         </div>
 
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Tipos de resistencias más usados</h2>
+        <h2 id="tipos" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Tipos de resistencias más usados</h2>
         <ul className="list-disc list-inside space-y-1">
           <li><strong className="text-foreground">De carbón:</strong> baratas, tolerancia ±5%, ideales para hobbistas.</li>
           <li><strong className="text-foreground">De película metálica:</strong> mayor precisión (±1%), bajo ruido, recomendadas en audio.</li>
@@ -432,7 +459,7 @@ const GuiaResistencias = () => {
           <li><strong className="text-foreground">Variables:</strong> potenciómetros y trimmers para ajustar volumen, brillo o calibración.</li>
         </ul>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Resistencias en serie y en paralelo</h2>
+        <h2 id="serie-paralelo" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Resistencias en serie y en paralelo</h2>
         <p>
           Combinar resistencias permite obtener valores que no existen comercialmente. Las dos configuraciones básicas son:
         </p>
@@ -445,7 +472,7 @@ const GuiaResistencias = () => {
           <Link to="/articulos/circuitos-serie-paralelo" className="text-primary hover:underline">circuitos serie y paralelo</Link>.
         </p>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Aplicaciones reales</h2>
+        <h2 id="aplicaciones" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Aplicaciones reales</h2>
         <ul className="list-disc list-inside space-y-1">
           <li>Limitar la corriente de LEDs y diodos.</li>
           <li>Polarizar transistores BJT y MOSFET.</li>
@@ -455,7 +482,7 @@ const GuiaResistencias = () => {
           <li>Resistencias de descarga en condensadores de fuentes de alta tensión.</li>
         </ul>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Errores comunes al usar resistencias</h2>
+        <h2 id="errores-comunes" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Errores comunes al usar resistencias</h2>
         <p>
           Estos son los fallos que más vemos en consultas de usuarios principiantes (y también en circuitos profesionales mal
           diseñados). Evitarlos te va a ahorrar componentes quemados y horas de debug.
@@ -469,6 +496,7 @@ const GuiaResistencias = () => {
           <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Medir en circuito energizado.</strong> Para medir resistencia con multímetro, siempre desconectá la alimentación.</span></li>
         </ul>
 
+        <div id="ejercicios" className="scroll-mt-24" />
         <EjerciciosPracticos
           titulo="Ejercicios prácticos · Código de colores y Ley de Ohm"
           intro="Cinco consignas para entrenar la lectura de resistencias y el cálculo con V = I × R. Resolvé en papel y desplegá la solución para verificar."
@@ -509,7 +537,7 @@ const GuiaResistencias = () => {
           ]}
         />
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
+        <h2 id="conclusion" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
         <p>
           Las resistencias son la base silenciosa de cualquier circuito. Saber qué hacen, cómo se leen y cómo se calculan
           te abre la puerta a entender prácticamente cualquier diseño electrónico. Empezá midiendo, probando y verificando
@@ -521,7 +549,7 @@ const GuiaResistencias = () => {
         </p>
 
         {/* Aplicalo ahora — enlaces internos a herramientas */}
-        <div className="not-prose rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 my-8 space-y-4">
+        <div id="aplicalo-ahora" className="scroll-mt-24 not-prose rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-6 my-8 space-y-4">
           <div className="text-center space-y-2">
             <Calculator className="w-8 h-8 text-primary mx-auto" />
             <h2 className="text-xl font-bold text-foreground">Aplicalo ahora</h2>
