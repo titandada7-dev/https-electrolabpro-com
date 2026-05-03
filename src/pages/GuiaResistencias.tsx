@@ -304,6 +304,84 @@ const GuiaResistencias = () => {
           </p>
         </div>
 
+        {/* Tabla visual del código de colores */}
+        <h3 className="text-lg font-bold text-foreground mt-8">Tabla visual del código de colores</h3>
+        <p>
+          Resumen completo de los 12 colores del estándar IEC 60062 con su dígito, multiplicador y tolerancia. Útil como
+          referencia rápida cuando estás soldando.
+        </p>
+        <div className="not-prose overflow-x-auto rounded-xl border border-border bg-card/40 my-4">
+          <table className="w-full text-sm min-w-[480px]">
+            <thead className="bg-card/80 text-foreground">
+              <tr>
+                <th className="text-left px-3 py-2 font-semibold">Color</th>
+                <th className="text-center px-3 py-2 font-semibold">Dígito (b1–b3)</th>
+                <th className="text-center px-3 py-2 font-semibold">Multiplicador (b3/b4)</th>
+                <th className="text-center px-3 py-2 font-semibold">Tolerancia (b4/b5)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COLOR_BANDS.map((b) => (
+                <tr key={b.color} className="border-t border-border">
+                  <td className="px-3 py-2">
+                    <span className="inline-flex items-center gap-2">
+                      <span
+                        className="inline-block w-4 h-4 rounded-sm border border-border"
+                        style={{ backgroundColor: b.hex }}
+                        aria-hidden="true"
+                      />
+                      <span className="text-foreground font-medium">{b.color}</span>
+                    </span>
+                  </td>
+                  <td className="text-center px-3 py-2 font-mono">{b.digit}</td>
+                  <td className="text-center px-3 py-2 font-mono">{b.mult}</td>
+                  <td className="text-center px-3 py-2 font-mono">{b.tol}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-muted-foreground">
+          Ejemplos rápidos: <strong className="text-foreground">Marrón-Negro-Rojo-Dorado</strong> = 1 kΩ ±5% ·{" "}
+          <strong className="text-foreground">Amarillo-Violeta-Marrón-Dorado</strong> = 470 Ω ±5% ·{" "}
+          <strong className="text-foreground">Rojo-Violeta-Naranja-Dorado</strong> = 27 kΩ ±5%.
+        </p>
+
+        {/* Imagen real de resistencias */}
+        <figure className="not-prose my-6 rounded-xl overflow-hidden border border-border bg-card/50">
+          <img
+            src={resistorRealImg}
+            alt="Resistencias axiales reales con bandas de colores visibles sobre fondo blanco"
+            className="w-full max-h-72 object-contain p-4"
+            loading="lazy"
+            width={896}
+            height={512}
+          />
+          <figcaption className="text-xs text-muted-foreground text-center pb-3 px-4">
+            Figura 2: Resistencias axiales reales — observá las bandas y la posición de la tolerancia al extremo.
+          </figcaption>
+        </figure>
+
+        {/* Recurso descargable */}
+        <div className="not-prose rounded-xl border border-primary/30 bg-primary/5 p-5 my-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <Download className="w-8 h-8 text-primary shrink-0" />
+          <div className="flex-1">
+            <p className="font-semibold text-foreground">Guía rápida en PDF</p>
+            <p className="text-sm text-muted-foreground">
+              Descargá el resumen con la tabla del código de colores, fórmulas y ejemplos para tener offline.
+            </p>
+          </div>
+          <a
+            href="/guia-resistencias-resumen.pdf"
+            download
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
+            aria-label="Descargar guía rápida de resistencias en PDF"
+          >
+            <Download className="w-4 h-4" /> Descargar PDF
+          </a>
+        </div>
+
+
         <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Tipos de resistencias más usados</h2>
         <ul className="list-disc list-inside space-y-1">
           <li><strong className="text-foreground">De carbón:</strong> baratas, tolerancia ±5%, ideales para hobbistas.</li>
