@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Zap } from "lucide-react";
+import CalculatorEduLink from "@/components/CalculatorEduLink";
 
 function formatResistance(ohms: number): string {
   if (ohms >= 1_000_000) return `${(ohms / 1_000_000).toFixed(ohms % 1_000_000 === 0 ? 0 : 2)} MΩ`;
