@@ -1,8 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
-import DomainDebugBanner from "./components/DomainDebugBanner";
 import Home from "./pages/Home";
+
+// Debug banner: solo se descarga si la URL contiene ?debug=domains o si estamos
+// en un host de preview de Lovable. En producción no entra al bundle inicial.
+const shouldLoadDomainDebug = (() => {
+  if (typeof window === "undefined") return false;
+  const host = window.location.hostname;
+  if (host.includes("lovable.app") || host.includes("lovableproject.com")) return true;
+  return new URLSearchParams(window.location.search).get("debug") === "domains";
+})();
+const DomainDebugBanner = shouldLoadDomainDebug
+  ? lazy(() => import("./components/DomainDebugBanner"))
+  : null;
 import CookieBanner from "./components/CookieBanner";
 import PWAInstallPrompt from "./components/PWAInstallPrompt";
 
@@ -54,7 +65,11 @@ function App() {
     <BrowserRouter>
       <CookieBanner />
       <PWAInstallPrompt />
-      <DomainDebugBanner />
+      {DomainDebugBanner && (
+        <Suspense fallback={null}>
+          <DomainDebugBanner />
+        </Suspense>
+      )}
       <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route path="/" element={<Home />} />
