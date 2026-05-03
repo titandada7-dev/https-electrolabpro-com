@@ -156,7 +156,34 @@ const GuiaResistencias = () => {
           </p>
         </div>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es una resistencia?</h2>
+        {/* Tabla de contenidos (jump links) */}
+        <nav
+          aria-label="Tabla de contenidos"
+          className="not-prose rounded-xl border border-primary/20 bg-card/60 p-5 my-2"
+        >
+          <p className="font-mono font-bold text-foreground flex items-center gap-2 mb-3">
+            <ListOrdered className="w-5 h-5 text-primary" />
+            Tabla de contenidos
+          </p>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 text-sm list-decimal list-inside marker:text-primary marker:font-mono">
+            <li><a href="#que-es" className="text-primary hover:underline">¿Qué es una resistencia?</a></li>
+            <li><a href="#como-funciona" className="text-primary hover:underline">Cómo funciona</a></li>
+            <li><a href="#ley-ohm" className="text-primary hover:underline">Ley de Ohm aplicada</a></li>
+            <li><a href="#ejemplos-paso-a-paso" className="text-primary hover:underline">Ejemplos paso a paso</a></li>
+            <li><a href="#codigo-colores" className="text-primary hover:underline">Código de colores</a></li>
+            <li><a href="#tabla-colores" className="text-primary hover:underline">Tabla del código de colores</a></li>
+            <li><a href="#valores-tipicos" className="text-primary hover:underline">10 valores típicos</a></li>
+            <li><a href="#tipos" className="text-primary hover:underline">Tipos de resistencias</a></li>
+            <li><a href="#serie-paralelo" className="text-primary hover:underline">Serie y paralelo</a></li>
+            <li><a href="#aplicaciones" className="text-primary hover:underline">Aplicaciones reales</a></li>
+            <li><a href="#errores-comunes" className="text-primary hover:underline">Errores comunes</a></li>
+            <li><a href="#ejercicios" className="text-primary hover:underline">Ejercicios prácticos</a></li>
+            <li><a href="#conclusion" className="text-primary hover:underline">Conclusión</a></li>
+            <li><a href="#aplicalo-ahora" className="text-primary hover:underline font-semibold">⚡ Aplicalo ahora (CTA)</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="que-es" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground">¿Qué es una resistencia?</h2>
         <p>
           Una <strong className="text-foreground">resistencia</strong> es uno de los componentes más simples y, al mismo tiempo, más
           importantes de la electrónica. Su función principal es <strong className="text-foreground">limitar el paso de la corriente</strong> en
