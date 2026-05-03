@@ -1,85 +1,93 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, afterEach } from "vitest";
+import { render, cleanup } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 /**
  * Garantiza que el JSON-LD del BreadcrumbList SIEMPRE apunte a URLs
  * indexables (rutas reales) y nunca a anclas o fragmentos del tipo
  * "/#guias", que Google trata como duplicados de la home.
  *
- * Si en el futuro se añade un breadcrumb que use un ancla, este test
- * fallará y obligará a corregir la URL antes del deploy.
+ * Además valida que el componente <Breadcrumbs /> inyecte un único
+ * nodo con id estable ("breadcrumbs-jsonld") y posiciones consecutivas
+ * empezando en 1 ("Inicio").
  */
 
 const SITE = "https://electrolabpro.com";
 
-// Réplica determinista del schema generado por ArticleLayout.tsx (líneas 124-132)
-const buildArticleBreadcrumb = (title: string, slug: string) => ({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Inicio", item: SITE },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Documentación Técnica",
-      item: `${SITE}/documentacion-tecnica`,
-    },
-    { "@type": "ListItem", position: 3, name: title, item: `${SITE}/articulos/${slug}` },
-  ],
-});
-
-// Réplica del schema de DocumentacionTecnica.tsx (líneas 105-112)
-const docTecBreadcrumb = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Inicio", item: SITE },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Documentación Técnica",
-      item: `${SITE}/documentacion-tecnica`,
-    },
-  ],
-};
-
 const isIndexableUrl = (url: string): boolean => {
   if (!url.startsWith("https://")) return false;
-  // No se permiten anclas (#) ni querystrings de tracking en breadcrumbs
   if (url.includes("#")) return false;
   if (url.includes("?")) return false;
   return true;
 };
 
-describe("BreadcrumbList JSON-LD — URLs indexables", () => {
-  it("Article breadcrumb: ningún item usa anclas tipo /#guias", () => {
-    const schema = buildArticleBreadcrumb("Ley de Ohm", "ley-de-ohm");
-    schema.itemListElement.forEach((item) => {
-      expect(item.item).not.toMatch(/#/);
-      expect(isIndexableUrl(item.item)).toBe(true);
-    });
+const readBreadcrumbSchema = () => {
+  const node = document.getElementById("breadcrumbs-jsonld") as HTMLScriptElement | null;
+  if (!node) return null;
+  try {
+    return JSON.parse(node.textContent || "");
+  } catch {
+    return null;
+  }
+};
+
+const renderAt = (pathname: string, lastLabel?: string) =>
+  render(
+    <MemoryRouter initialEntries={[pathname]}>
+      <Breadcrumbs lastLabel={lastLabel} />
+    </MemoryRouter>,
+  );
+
+describe("Breadcrumbs — JSON-LD jerárquico", () => {
+  afterEach(() => {
+    cleanup();
+    document.getElementById("breadcrumbs-jsonld")?.remove();
   });
 
-  it("Article breadcrumb: position 2 apunta a /documentacion-tecnica (no a /#guias)", () => {
-    const schema = buildArticleBreadcrumb("Protocolo I2C", "protocolo-i2c");
-    const docNode = schema.itemListElement.find((i) => i.position === 2)!;
-    expect(docNode.item).toBe(`${SITE}/documentacion-tecnica`);
-    expect(docNode.name).toBe("Documentación Técnica");
-  });
-
-  it("DocumentacionTecnica breadcrumb: todas las URLs son absolutas e indexables", () => {
-    docTecBreadcrumb.itemListElement.forEach((item) => {
-      expect(isIndexableUrl(item.item)).toBe(true);
-    });
-  });
-
-  it("Posiciones del BreadcrumbList son consecutivas empezando en 1", () => {
-    const schema = buildArticleBreadcrumb("Diodos", "diodos");
-    const positions = schema.itemListElement.map((i) => i.position);
+  it("Article: emite Home > Artículos > Página con URLs indexables", () => {
+    renderAt("/articulos/ley-de-ohm", "Ley de Ohm explicada");
+    const schema = readBreadcrumbSchema()!;
+    expect(schema["@type"]).toBe("BreadcrumbList");
+    const positions = schema.itemListElement.map((i: any) => i.position);
     expect(positions).toEqual([1, 2, 3]);
+    expect(schema.itemListElement[0].name).toBe("Inicio");
+    expect(schema.itemListElement[1].name).toBe("Artículos");
+    expect(schema.itemListElement[2].item).toBe(`${SITE}/articulos/ley-de-ohm`);
+    schema.itemListElement.forEach((item: any) => {
+      expect(isIndexableUrl(item.item)).toBe(true);
+    });
   });
 
-  it("Detecta como inválida cualquier URL con ancla (regresión guard)", () => {
-    expect(isIndexableUrl("https://electrolabpro.com/#guias")).toBe(false);
-    expect(isIndexableUrl("https://electrolabpro.com/documentacion-tecnica")).toBe(true);
+  it("Blog: emite Home > Blog > Post", () => {
+    renderAt("/blog/mi-primer-laboratorio");
+    const schema = readBreadcrumbSchema()!;
+    expect(schema.itemListElement[1].name).toBe("Blog");
+    expect(schema.itemListElement[2].item).toBe(`${SITE}/blog/mi-primer-laboratorio`);
+  });
+
+  it("Glosario: emite Home > Glosario", () => {
+    renderAt("/glosario");
+    const schema = readBreadcrumbSchema()!;
+    expect(schema.itemListElement.map((i: any) => i.name)).toEqual(["Inicio", "Glosario"]);
+  });
+
+  it("Guía de resistencias: incluye sección padre 'Recursos'", () => {
+    renderAt("/guia-resistencias");
+    const schema = readBreadcrumbSchema()!;
+    const names = schema.itemListElement.map((i: any) => i.name);
+    expect(names).toContain("Recursos");
+    expect(names[names.length - 1]).toBe("Guía de resistencias");
+  });
+
+  it("Mantiene id estable y un único script al re-renderizar", () => {
+    const { rerender } = renderAt("/articulos/diodos", "Diodos");
+    rerender(
+      <MemoryRouter initialEntries={["/articulos/diodos"]}>
+        <Breadcrumbs lastLabel="Diodos" />
+      </MemoryRouter>,
+    );
+    const scripts = document.querySelectorAll("script#breadcrumbs-jsonld");
+    expect(scripts.length).toBe(1);
   });
 });
