@@ -12,6 +12,7 @@ import Timer555Calculator from "@/components/Timer555Calculator";
 import SmdDecoderCalculator from "@/components/SmdDecoderCalculator";
 import CapacitiveReactanceCalculator from "@/components/CapacitiveReactanceCalculator";
 import UnitConverter from "@/components/UnitConverter";
+import { ToolSeoSection } from "@/data/toolSeoContent";
 
 type ToolKey =
   | "resistor" | "ohm" | "led" | "divider" | "rc"
@@ -511,6 +512,9 @@ const CalculatorHub = () => {
               </p>
             </div>
           </div>
+
+          {/* SEO content block — descripción extensa, ejemplos y enlaces internos */}
+          <ToolSeoSection toolKey={active} />
         </div>
       </div>
 
