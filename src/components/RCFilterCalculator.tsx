@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import CalculatorEduLink from "@/components/CalculatorEduLink";
 
 function formatFrequency(hz: number): string {
   if (hz >= 1_000_000) return `${+(hz / 1_000_000).toFixed(3)} MHz`;
