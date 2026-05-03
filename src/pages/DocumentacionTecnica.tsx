@@ -103,19 +103,11 @@ const DocumentacionTecnica = () => {
       author: { "@type": "Person", name: "J.A. Sánchez" },
     };
 
-    const breadcrumbSchema = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "Documentación Técnica", item: `${SITE_URL}/documentacion-tecnica` },
-      ],
-    };
+    // BreadcrumbList lo emite el componente <Breadcrumbs /> con id estable.
 
     const schemas = [
       { id: "doc-tec-faq", data: faqSchema },
       { id: "doc-tec-collection", data: collectionSchema },
-      { id: "doc-tec-breadcrumb", data: breadcrumbSchema },
     ];
     schemas.forEach(({ id, data }) => {
       let script = document.getElementById(id) as HTMLScriptElement | null;
