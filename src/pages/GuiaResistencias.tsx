@@ -101,6 +101,16 @@ const GuiaResistencias = () => {
       ],
     };
 
+    const faqJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    };
+
     const a = document.createElement("script");
     a.type = "application/ld+json";
     a.id = "guia-resistencias-jsonld";
@@ -115,9 +125,17 @@ const GuiaResistencias = () => {
     document.getElementById("guia-resistencias-breadcrumb-jsonld")?.remove();
     document.head.appendChild(b);
 
+    const f = document.createElement("script");
+    f.type = "application/ld+json";
+    f.id = "guia-resistencias-faq-jsonld";
+    f.textContent = JSON.stringify(faqJsonLd);
+    document.getElementById("guia-resistencias-faq-jsonld")?.remove();
+    document.head.appendChild(f);
+
     return () => {
       document.getElementById("guia-resistencias-jsonld")?.remove();
       document.getElementById("guia-resistencias-breadcrumb-jsonld")?.remove();
+      document.getElementById("guia-resistencias-faq-jsonld")?.remove();
     };
   }, []);
 
