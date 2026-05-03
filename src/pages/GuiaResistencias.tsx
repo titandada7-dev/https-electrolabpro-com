@@ -5,6 +5,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AuthorBio from "@/components/AuthorBio";
 import AdBanner from "@/components/AdBanner";
+import EjerciciosPracticos from "@/components/EjerciciosPracticos";
 import resistorImg from "@/assets/resistor-color-code.png";
 import resistorRealImg from "@/assets/resistencias-reales.webp";
 
@@ -347,6 +348,46 @@ const GuiaResistencias = () => {
           <strong className="text-foreground">Rojo-Violeta-Naranja-Dorado</strong> = 27 kΩ ±5%.
         </p>
 
+        {/* Tabla: 10 valores típicos con paso a paso */}
+        <h3 className="text-lg md:text-xl font-mono font-bold text-foreground mt-8">10 ejemplos típicos: del código al valor</h3>
+        <p>
+          Esta tabla cubre los valores más usados en proyectos reales (pull-up I²C, limitadores de LED, divisores de tensión). Cada fila incluye el paso a paso para que entrenes el método.
+        </p>
+        <div className="not-prose overflow-x-auto rounded-xl border border-border my-4">
+          <table className="w-full text-sm">
+            <thead className="bg-secondary text-foreground">
+              <tr>
+                <th className="px-3 py-2 text-left font-mono">Bandas</th>
+                <th className="px-3 py-2 text-left font-mono">Valor</th>
+                <th className="px-3 py-2 text-left font-mono">Paso a paso</th>
+              </tr>
+            </thead>
+            <tbody className="font-mono text-xs sm:text-sm">
+              {[
+                { b: "Marrón · Negro · Marrón · Dorado", v: "100 Ω ±5%", p: "1 0 → 10, ×10 = 100 Ω" },
+                { b: "Marrón · Negro · Rojo · Dorado", v: "1 kΩ ±5%", p: "1 0 → 10, ×100 = 1.000 Ω = 1 kΩ" },
+                { b: "Rojo · Rojo · Marrón · Dorado", v: "220 Ω ±5%", p: "2 2 → 22, ×10 = 220 Ω (ideal LED)" },
+                { b: "Naranja · Naranja · Marrón · Dorado", v: "330 Ω ±5%", p: "3 3 → 33, ×10 = 330 Ω" },
+                { b: "Amarillo · Violeta · Marrón · Dorado", v: "470 Ω ±5%", p: "4 7 → 47, ×10 = 470 Ω" },
+                { b: "Verde · Azul · Rojo · Dorado", v: "5,6 kΩ ±5%", p: "5 6 → 56, ×100 = 5.600 Ω = 5,6 kΩ" },
+                { b: "Marrón · Negro · Naranja · Dorado", v: "10 kΩ ±5%", p: "1 0 → 10, ×1k = 10.000 Ω = 10 kΩ" },
+                { b: "Rojo · Violeta · Naranja · Dorado", v: "27 kΩ ±5%", p: "2 7 → 27, ×1k = 27.000 Ω = 27 kΩ" },
+                { b: "Amarillo · Violeta · Naranja · Dorado", v: "47 kΩ ±5%", p: "4 7 → 47, ×1k = 47.000 Ω = 47 kΩ" },
+                { b: "Marrón · Negro · Verde · Dorado", v: "1 MΩ ±5%", p: "1 0 → 10, ×100k = 1.000.000 Ω = 1 MΩ" },
+              ].map((row) => (
+                <tr key={row.b} className="border-t border-border">
+                  <td className="px-3 py-2">{row.b}</td>
+                  <td className="px-3 py-2 text-primary font-bold">{row.v}</td>
+                  <td className="px-3 py-2 text-muted-foreground">{row.p}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-muted-foreground italic">
+          Validá cualquiera de estos valores en segundos con la <Link to="/#calculadora" className="text-primary hover:underline font-semibold">calculadora visual de resistencias por colores</Link>.
+        </p>
+
         {/* Imagen real de resistencias */}
         <figure className="not-prose my-6 rounded-xl overflow-hidden border border-border bg-card/50">
           <img
@@ -427,6 +468,46 @@ const GuiaResistencias = () => {
           <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Confundir kΩ con Ω.</strong> Un cero de más o de menos cambia el comportamiento del circuito por completo.</span></li>
           <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Medir en circuito energizado.</strong> Para medir resistencia con multímetro, siempre desconectá la alimentación.</span></li>
         </ul>
+
+        <EjerciciosPracticos
+          titulo="Ejercicios prácticos · Código de colores y Ley de Ohm"
+          intro="Cinco consignas para entrenar la lectura de resistencias y el cálculo con V = I × R. Resolvé en papel y desplegá la solución para verificar."
+          ejercicios={[
+            {
+              enunciado: "¿Cuál es el valor de una resistencia con bandas Marrón – Negro – Rojo – Dorado?",
+              pista: "Las dos primeras bandas son dígitos, la tercera es el multiplicador.",
+              solucion:
+                "1 (Marrón) · 0 (Negro) → 10\n× 100 (Rojo) = 1.000 Ω = 1 kΩ\nTolerancia ±5% (Dorado) → entre 950 Ω y 1.050 Ω.",
+            },
+            {
+              enunciado: "Decodificá las bandas Amarillo – Violeta – Naranja – Dorado.",
+              pista: "Naranja como multiplicador equivale a ×1.000.",
+              solucion:
+                "4 (Amarillo) · 7 (Violeta) → 47\n× 1.000 (Naranja) = 47.000 Ω = 47 kΩ ±5%.",
+            },
+            {
+              enunciado:
+                "Tenés una fuente de 9 V y una resistencia de 470 Ω. ¿Qué corriente circula por el circuito?",
+              pista: "Aplicá I = V / R y convertí a mA.",
+              solucion:
+                "I = V / R = 9 / 470 = 0,01915 A ≈ 19,15 mA.",
+            },
+            {
+              enunciado:
+                "Querés encender un LED rojo (Vled = 2 V, Iled = 20 mA) con una fuente de 5 V. ¿Qué resistencia necesitás?",
+              pista: "Restá el voltaje del LED al de la fuente y dividí por la corriente en amperios.",
+              solucion:
+                "R = (Vfuente − Vled) / Iled\nR = (5 − 2) / 0,020 = 3 / 0,020 = 150 Ω.\nValor comercial cercano: 150 Ω o 220 Ω (más conservador).",
+            },
+            {
+              enunciado:
+                "Por una resistencia de 1 kΩ circulan 30 mA. ¿Qué potencia disipa y qué tipo de resistencia conviene usar?",
+              pista: "Usá P = I² × R y compará con 0,25 W (1/4 W).",
+              solucion:
+                "P = I² × R = (0,030)² × 1.000 = 0,0009 × 1.000 = 0,9 W.\nUna resistencia de 1/4 W se quemaría. Necesitás una de 1 W o 2 W.",
+            },
+          ]}
+        />
 
         <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
         <p>
