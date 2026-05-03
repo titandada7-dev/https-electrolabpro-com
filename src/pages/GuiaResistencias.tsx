@@ -195,24 +195,59 @@ const GuiaResistencias = () => {
           esas magnitudes, siempre podés calcular la tercera.
         </p>
 
-        <h3 className="text-lg font-bold text-foreground mt-6">Ejemplo práctico 1: encender un LED</h3>
+        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Ejemplos prácticos paso a paso</h2>
         <p>
-          Querés encender un LED rojo desde una fuente de 5 V. El LED tiene una caída de tensión típica de 2 V y necesita
-          unos 20 mA (0,02 A) para brillar de forma segura. ¿Qué resistencia necesitás?
-        </p>
-        <p className="font-mono text-foreground">R = (5 V − 2 V) / 0,02 A = 150 Ω</p>
-        <p>
-          Una resistencia de 150 Ω, 1/4 W, en serie con el LED, hace el trabajo. Si te animás, podés verificarlo en la{" "}
-          <Link to="/#calculadora" className="text-primary hover:underline">calculadora interactiva de la home</Link>.
+          La mejor forma de entender una resistencia es viéndola en acción. Estos tres ejemplos resueltos cubren el 90 % de
+          las situaciones que te vas a encontrar en cualquier proyecto de electrónica de hobbista o profesional.
         </p>
 
-        <h3 className="text-lg font-bold text-foreground mt-6">Ejemplo práctico 2: divisor de tensión</h3>
+        <h3 className="text-lg font-bold text-foreground mt-6">Ejemplo 1 · Resistencia para un LED</h3>
         <p>
-          Dos resistencias en serie pueden usarse para reducir un voltaje. Si tenés 12 V y querés obtener 5 V para alimentar
-          la entrada de un microcontrolador, podés usar R1 = 7 kΩ y R2 = 5 kΩ. La fórmula del divisor es:
+          Querés encender un LED rojo desde una fuente de 5 V. Datos del datasheet del LED:
         </p>
-        <p className="font-mono text-foreground">V_out = V_in × R2 / (R1 + R2)</p>
-        <p>V_out = 12 × 5.000 / 12.000 = <strong className="text-foreground">5 V</strong>. Sencillo y exacto.</p>
+        <ul className="list-disc list-inside space-y-1">
+          <li>Caída de tensión típica (V_LED): <strong className="text-foreground">2 V</strong></li>
+          <li>Corriente nominal (I_LED): <strong className="text-foreground">20 mA = 0,02 A</strong></li>
+        </ul>
+        <p>Aplicamos la Ley de Ohm a la resistencia, que cae los 3 V restantes:</p>
+        <div className="rounded-xl border border-primary/20 bg-card/60 p-4 my-3 font-mono text-foreground text-sm">
+          <p>R = (V_fuente − V_LED) / I_LED</p>
+          <p>R = (5 − 2) / 0,02 = <strong>150 Ω</strong></p>
+          <p>P = (V_fuente − V_LED) × I = 3 × 0,02 = 0,06 W → 1/4 W es suficiente</p>
+        </div>
+        <p>
+          Verificalo en segundos con nuestra{" "}
+          <Link to="/#calculadora" className="text-primary hover:underline">calculadora de resistencia para LED online</Link>.
+        </p>
+
+        <h3 className="text-lg font-bold text-foreground mt-6">Ejemplo 2 · Cálculo básico con la Ley de Ohm</h3>
+        <p>
+          Tenés una resistencia de <strong className="text-foreground">220 Ω</strong> conectada a una pila de 9 V. ¿Cuánta
+          corriente circula y cuánta potencia disipa?
+        </p>
+        <div className="rounded-xl border border-primary/20 bg-card/60 p-4 my-3 font-mono text-foreground text-sm">
+          <p>I = V / R = 9 / 220 ≈ <strong>0,041 A = 41 mA</strong></p>
+          <p>P = V × I = 9 × 0,041 ≈ <strong>0,37 W</strong></p>
+        </div>
+        <p>
+          Conclusión: una resistencia de <strong className="text-foreground">1/4 W (0,25 W) se quemaría</strong>. Necesitás
+          al menos <strong className="text-foreground">1/2 W</strong>. Probalo en la{" "}
+          <Link to="/#calculadora" className="text-primary hover:underline">calculadora de Ley de Ohm</Link>.
+        </p>
+
+        <h3 className="text-lg font-bold text-foreground mt-6">Ejemplo 3 · Divisor de tensión</h3>
+        <p>
+          De 12 V querés obtener 5 V para una entrada analógica. Con R1 = 7 kΩ y R2 = 5 kΩ:
+        </p>
+        <div className="rounded-xl border border-primary/20 bg-card/60 p-4 my-3 font-mono text-foreground text-sm">
+          <p>V_out = V_in × R2 / (R1 + R2)</p>
+          <p>V_out = 12 × 5.000 / 12.000 = <strong>5 V</strong></p>
+        </div>
+        <p>
+          Ajustá los valores con la{" "}
+          <Link to="/#calculadora" className="text-primary hover:underline">calculadora de divisor de tensión</Link> y comprobá
+          que la corriente quede por debajo de 5 mA para no malgastar batería.
+        </p>
 
         <AdBanner slot="3756475501" format="auto" className="min-h-[90px] my-6" />
 
@@ -285,12 +320,18 @@ const GuiaResistencias = () => {
           <li>Resistencias de descarga en condensadores de fuentes de alta tensión.</li>
         </ul>
 
-        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Errores frecuentes al usarlas</h2>
-        <ul className="list-disc list-inside space-y-1 flex flex-col">
-          <li><ShieldCheck className="inline w-4 h-4 text-primary mr-1" /> No calcular la potencia y elegir 1/4 W cuando hace falta 1 W o más.</li>
-          <li><ShieldCheck className="inline w-4 h-4 text-primary mr-1" /> Confundir el orden de las bandas (leer al revés).</li>
-          <li><ShieldCheck className="inline w-4 h-4 text-primary mr-1" /> Usar resistencias de tolerancia ±10% en circuitos de precisión.</li>
-          <li><ShieldCheck className="inline w-4 h-4 text-primary mr-1" /> Olvidar la resistencia de protección al alimentar un LED.</li>
+        <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Errores comunes al usar resistencias</h2>
+        <p>
+          Estos son los fallos que más vemos en consultas de usuarios principiantes (y también en circuitos profesionales mal
+          diseñados). Evitarlos te va a ahorrar componentes quemados y horas de debug.
+        </p>
+        <ul className="space-y-2">
+          <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">No calcular la potencia.</strong> Elegir 1/4 W cuando hace falta 1 W o más es la causa #1 de resistencias quemadas.</span></li>
+          <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Leer las bandas al revés.</strong> Siempre empezá por el lado opuesto a la banda dorada o plateada.</span></li>
+          <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Tolerancia inadecuada.</strong> Usar ±10 % en un circuito de precisión (sensores, audio) provoca derivas inaceptables.</span></li>
+          <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Olvidar la resistencia de protección del LED.</strong> Conectar un LED directo a 5 V lo destruye en segundos.</span></li>
+          <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Confundir kΩ con Ω.</strong> Un cero de más o de menos cambia el comportamiento del circuito por completo.</span></li>
+          <li className="flex gap-2"><ShieldCheck className="w-4 h-4 text-primary mt-1 shrink-0" /><span><strong className="text-foreground">Medir en circuito energizado.</strong> Para medir resistencia con multímetro, siempre desconectá la alimentación.</span></li>
         </ul>
 
         <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Conclusión</h2>
