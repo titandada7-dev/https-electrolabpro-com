@@ -14,10 +14,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="alternate" type="application/rss+xml" title="ElectroLab Pro Feed" href="/feed.xml" />
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" /></noscript>
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://fundingchoicesmessages.google.com" />
+    <!-- Subset reducido a pesos realmente usados (400/600/700) para reducir CSS/woff -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;600;700&display=swap" /></noscript>
     <title>ElectroLab Pro | Calculadoras de Electrónica y Tutoriales Arduino</title>
     <meta name="description" content="Calculadoras online de Ley de Ohm, código de colores de resistencias, LED, condensadores y filtros RC. Tutoriales de Arduino, multímetro y soldadura electrónica en español.">
     <meta name="author" content="J.A.Sanchez">
@@ -80,13 +82,31 @@
     "sameAs": []
   }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FERLETZ4V5"></script>
-  
   <script>
+    // GA4: cargado tras 'load' o tras la primera interacción del usuario,
+    // lo que ocurra primero. Reduce JS de tercero bloqueando el LCP.
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-FERLETZ4V5');
+    (function(){
+      var loaded = false;
+      function loadGA(){
+        if (loaded) return; loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FERLETZ4V5';
+        document.head.appendChild(s);
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(loadGA, 1500);
+      } else {
+        window.addEventListener('load', function(){ setTimeout(loadGA, 1500); }, { once: true });
+      }
+      ['scroll','keydown','pointerdown','touchstart'].forEach(function(ev){
+        window.addEventListener(ev, loadGA, { once: true, passive: true });
+      });
+    })();
   </script>
   </head>
 
