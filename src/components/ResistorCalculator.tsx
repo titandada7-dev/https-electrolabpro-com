@@ -98,11 +98,12 @@ const ResistorCalculator = () => {
           Sigue los 4 pasos para identificar el valor de tu resistencia
         </p>
         <p className="text-xs sm:text-sm">
+          ¿No sabés qué valor usar?{" "}
           <a
             href="/guia-resistencias"
             className="text-primary hover:underline font-medium"
           >
-            ¿No sabés qué valor usar? Mirá nuestra guía completa de resistencias →
+            Mirá nuestra guía completa de resistencias online →
           </a>
         </p>
       </div>
