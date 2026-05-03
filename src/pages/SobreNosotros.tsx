@@ -1,4 +1,5 @@
 import { Zap, ArrowLeft, Users, Target, Heart, Lightbulb, BookOpen, Award, CheckCircle2 } from "lucide-react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { useEffect } from "react";
@@ -55,6 +56,10 @@ const SobreNosotros = () => {
           </Link>
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       {/* Hero */}
       <section

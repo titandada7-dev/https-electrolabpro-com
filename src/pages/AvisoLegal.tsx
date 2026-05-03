@@ -1,4 +1,5 @@
 import { Zap, ArrowLeft, Scale } from "lucide-react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
@@ -27,6 +28,10 @@ const AvisoLegal = () => {
           </Link>
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       {/* Hero */}
       <section

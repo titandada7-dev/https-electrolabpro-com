@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft, Calculator, Microchip, BookOpen, Zap, ShieldCheck,
@@ -148,6 +149,10 @@ const DocumentacionTecnica = () => {
           </Link>
         </div>
       </header>
+
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumbs />
+      </div>
 
       {/* Breadcrumb */}
       <nav aria-label="Migas de pan" className="container mx-auto px-6 pt-6 text-xs text-muted-foreground">
