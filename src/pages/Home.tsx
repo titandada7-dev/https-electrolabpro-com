@@ -274,6 +274,7 @@ const Home = () => {
           {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
           <div className="hidden items-center gap-5 md:flex">
             <a href="#inicio" onClick={handleAnchorClick("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Inicio</a>
+            <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Aprender</a>
             <a href="#guias" onClick={handleAnchorClick("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Guías</a>
             <a href="#calculadora" onClick={handleAnchorClick("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Calculadoras</a>
             <a href="#mini-proyectos" onClick={handleAnchorClick("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">Proyectos</a>
@@ -283,6 +284,9 @@ const Home = () => {
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
               </button>
               <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 max-h-[70vh] overflow-y-auto">
+                <Link to="/guia-resistencias" className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-accent transition-colors border-b border-border mb-1">
+                  📘 Guía completa de resistencias
+                </Link>
                 {articleLinks.map((a) => (
                   <Link key={a.to} to={a.to} className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
                     {a.label}
@@ -327,6 +331,7 @@ const Home = () => {
           <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Inicio", id: "inicio" },
+              { label: "Aprender", id: "aprender" },
               { label: "Guías", id: "guias" },
               { label: "Calculadoras", id: "calculadora" },
               { label: "Proyectos", id: "mini-proyectos" },
@@ -341,6 +346,9 @@ const Home = () => {
                 {item.label}
               </a>
             ))}
+            <Link to="/guia-resistencias" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-semibold text-primary hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
+              📘 Guía completa de resistencias
+            </Link>
             <Link to="/documentacion-tecnica" onClick={() => setMenuOpen(false)} className="block w-full text-left text-base font-medium text-muted-foreground hover:text-foreground hover:bg-accent py-3 px-3 rounded-lg min-h-[44px] transition-colors">
               📚 Documentación Técnica
             </Link>
