@@ -122,6 +122,7 @@ function App() {
         />
       </Routes>
       </Suspense>
+      <NavButtons />
     </BrowserRouter>
     </ErrorBoundary>
   );
