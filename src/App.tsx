@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
+import NavButtons from "./components/NavButtons";
 
 // Debug banner: solo se descarga si la URL contiene ?debug=domains o si estamos
 // en un host de preview de Lovable. En producción no entra al bundle inicial.
