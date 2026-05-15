@@ -304,10 +304,23 @@ const Home = () => {
       ],
     };
 
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: QA_CATEGORIES.flatMap((cat) =>
+        cat.questions.map((qa) => ({
+          "@type": "Question",
+          name: qa.q,
+          acceptedAnswer: { "@type": "Answer", text: qa.a },
+        })),
+      ),
+    };
+
     const schemas = [
       { id: "schema-organization", data: organizationSchema },
       { id: "schema-website", data: websiteSchema },
       { id: "schema-itemlist", data: itemListSchema },
+      { id: "schema-faqpage", data: faqSchema },
     ];
 
     schemas.forEach(({ id, data }) => {
@@ -322,7 +335,7 @@ const Home = () => {
     });
 
     return () => {
-      ["schema-organization", "schema-website", "schema-itemlist"].forEach((id) => {
+      ["schema-organization", "schema-website", "schema-itemlist", "schema-faqpage"].forEach((id) => {
         const el = document.getElementById(id);
         if (el) el.remove();
       });
