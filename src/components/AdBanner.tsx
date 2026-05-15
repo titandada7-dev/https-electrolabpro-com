@@ -62,7 +62,6 @@ const AdBanner = ({
 
   const showDiag = showDiagnostics ?? isDev;
   const filled = status === "filled";
-  const timedOut = status === "timeout";
 
   const mobileH = minHeightMobile ?? (format === "vertical" ? 250 : 100);
   const desktopH = minHeightDesktop ?? (format === "vertical" ? 600 : 120);
@@ -159,26 +158,49 @@ const AdBanner = ({
     };
   }, []);
 
+  // Si AdSense no respondió (timeout) o el script está bloqueado/falló,
+  // ocultamos el <ins> para que no pelee con la altura reservada y dejamos
+  // visible el placeholder. Así la caja conserva exactamente la altura
+  // mínima en todos los breakpoints y no hay CLS.
+  const failed = status === "timeout" || status === "blocked" || status === "error";
+
   return (
     <div
       ref={adRef}
       className={`relative w-full overflow-hidden ${className}`}
-      style={{ minHeight: `${mobileH}px` }}
+      style={{
+        minHeight: `${mobileH}px`,
+        // contain: layout evita que cualquier reflow del iframe interno
+        // empuje contenido vecino mientras AdSense pinta.
+        contain: "layout",
+      }}
     >
       <style>{`
         @media (min-width: 768px) {
-          [data-adbanner="${slot}"] { min-height: ${desktopH}px; }
+          [data-adbanner="${slot}"],
+          [data-adbanner="${slot}"] > ins.adsbygoogle {
+            min-height: ${desktopH}px;
+          }
+          [data-adbanner-wrap="${slot}"] {
+            min-height: ${desktopH}px;
+          }
         }
       `}</style>
-      <div data-adbanner={slot} style={{ minHeight: `${mobileH}px` }}>
+      <div
+        data-adbanner-wrap={slot}
+        data-adbanner={slot}
+        style={{ minHeight: `${mobileH}px`, position: "relative" }}
+      >
         {!filled && (
           <div
             aria-hidden="true"
             className={`absolute inset-0 flex items-center justify-center bg-muted/30 rounded-md ${
-              timedOut || status === "blocked" || status === "error" ? "" : "animate-pulse"
+              failed ? "" : "animate-pulse"
             }`}
           >
-            <span className="text-xs font-mono text-muted-foreground/60">Publicidad</span>
+            <span className="text-xs font-mono text-muted-foreground/60">
+              {failed ? "Espacio publicitario" : "Publicidad"}
+            </span>
           </div>
         )}
 
@@ -195,7 +217,10 @@ const AdBanner = ({
 
         <ins
           className="adsbygoogle"
-          style={{ display: "block", minHeight: `${mobileH}px` }}
+          style={{
+            display: failed ? "none" : "block",
+            minHeight: `${mobileH}px`,
+          }}
           data-ad-client="ca-pub-9393284878747603"
           data-ad-slot={slot}
           data-ad-format={format}
