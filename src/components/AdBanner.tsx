@@ -193,14 +193,27 @@ const AdBanner = ({
       >
         {!filled && (
           <div
-            aria-hidden="true"
-            className={`absolute inset-0 flex items-center justify-center bg-muted/30 rounded-md ${
+            role={failed ? "status" : undefined}
+            aria-live={failed ? "polite" : undefined}
+            aria-hidden={failed ? undefined : "true"}
+            className={`absolute inset-0 flex flex-col items-center justify-center gap-1 px-3 text-center bg-muted/30 rounded-md border border-dashed border-border/40 ${
               failed ? "" : "animate-pulse"
             }`}
           >
-            <span className="text-xs font-mono text-muted-foreground/60">
-              {failed ? "Espacio publicitario" : "Publicidad"}
-            </span>
+            {failed ? (
+              <>
+                <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground/70">
+                  Anuncio no disponible
+                </span>
+                <span className="text-[10px] text-muted-foreground/50 max-w-[260px] leading-snug">
+                  El espacio publicitario no se cargó. Si usas un bloqueador, considera apoyarnos desactivándolo en electrolabpro.com.
+                </span>
+              </>
+            ) : (
+              <span className="text-xs font-mono text-muted-foreground/60">
+                Publicidad
+              </span>
+            )}
           </div>
         )}
 
