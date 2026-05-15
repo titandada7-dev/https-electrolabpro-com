@@ -68,6 +68,7 @@ function App() {
   return (
     <ErrorBoundary>
     <BrowserRouter>
+      <SplashScreen />
       <Suspense fallback={null}>
         <CookieBanner />
         <PWAInstallPrompt />
