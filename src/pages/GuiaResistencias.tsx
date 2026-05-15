@@ -36,7 +36,7 @@ const PAGE_URL = `${SITE_ORIGIN}/guia-resistencias`;
  */
 const GuiaResistencias = () => {
   usePageMeta({
-    title: "Guía completa de resistencias – qué son, cómo funcionan y cómo calcularlas",
+    title: "Guía de Resistencias: qué son y cómo calcularlas | ElectroLab",
     description:
       "Aprendé qué son las resistencias, cómo funcionan y cómo calcular su valor paso a paso con ejemplos simples, código de colores y ley de Ohm.",
     canonical: "/guia-resistencias",
