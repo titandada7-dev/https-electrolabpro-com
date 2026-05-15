@@ -114,16 +114,9 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false,
     rollupOptions: {
       output: {
-        // Vendor splitting para mejorar caché y reducir JS inicial parseado.
-        manualChunks(id) {
-          if (!id.includes("node_modules")) return;
-          if (id.includes("react-dom") || id.includes("react/") || id.includes("react-router"))
-            return "react-vendor";
-          if (id.includes("@radix-ui")) return "radix";
-          if (id.includes("lucide-react")) return "icons";
-          if (id.includes("recharts") || id.includes("d3-")) return "charts";
-          return "vendor";
-        },
+        // Sin manualChunks: Rollup gestiona el orden de evaluación de React
+        // y evita el bug "Cannot read properties of undefined (reading 'useLayoutEffect')"
+        // que aparecía al separar react/react-dom de librerías que dependen de él.
       },
     },
   },
