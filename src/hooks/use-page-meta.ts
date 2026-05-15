@@ -13,7 +13,7 @@ interface PageMeta {
   ogType?: "website" | "article";
 }
 
-const SITE_ORIGIN = "https://electrolabpro.com";
+const SITE_ORIGIN = "https://www.electrolabpro.com";
 const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og-image.jpg`;
 
 function resolveCanonical(input?: string): string {
