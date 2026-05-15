@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 declare global {
   interface Window {
@@ -19,7 +20,31 @@ interface AdBannerProps {
   minHeightDesktop?: number;
   /** Show diagnostic overlay (loading/filled/timeout/blocked + reason). Defaults to dev only. */
   showDiagnostics?: boolean;
+  /**
+   * URL de respaldo cuando el anuncio no carga (timeout / blocked / error).
+   * Si se omite o el destino no es válido, se redirige a la página principal "/".
+   */
+  fallbackUrl?: string;
+  /** Texto opcional del enlace de respaldo. */
+  fallbackLabel?: string;
 }
+
+/** Garantiza una URL utilizable; si no es válida, devuelve "/" (home). */
+const resolveFallbackUrl = (url?: string): string => {
+  if (!url || typeof url !== "string") return "/";
+  const trimmed = url.trim();
+  if (!trimmed) return "/";
+  // Rutas internas
+  if (trimmed.startsWith("/")) return trimmed;
+  // URLs absolutas: validar
+  try {
+    const u = new URL(trimmed);
+    if (u.protocol === "http:" || u.protocol === "https:") return u.toString();
+  } catch {
+    /* inválida → fallback */
+  }
+  return "/";
+};
 
 const STATUS_LABEL: Record<AdStatus, string> = {
   idle: "Esperando viewport",
