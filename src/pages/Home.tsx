@@ -453,6 +453,18 @@ const Home = () => {
         )}
       </header>
 
+      {/* ═══════════ AD SLOT BAJO EL HEADER (con altura reservada anti-CLS) ═══════════ */}
+      <div className="border-b border-border bg-background">
+        <div className="container mx-auto px-4 sm:px-6 py-2">
+          <AdBanner
+            slot="3756475501"
+            format="auto"
+            minHeightMobile={90}
+            minHeightDesktop={100}
+          />
+        </div>
+      </div>
+
       {/* ═══════════ #INICIO ═══════════ */}
       <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid opacity-[0.35] pointer-events-none" aria-hidden="true" />
