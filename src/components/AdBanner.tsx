@@ -235,8 +235,25 @@ const AdBanner = ({
                   Anuncio no disponible
                 </span>
                 <span className="text-[10px] text-muted-foreground/50 max-w-[260px] leading-snug">
-                  El espacio publicitario no se cargó. Si usas un bloqueador, considera apoyarnos desactivándolo en electrolabpro.com.
+                  El espacio publicitario no se cargó. Mientras tanto, podés seguir explorando ElectroLab Pro.
                 </span>
+                {isInternalFallback ? (
+                  <Link
+                    to={resolvedFallback}
+                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                  >
+                    {fallbackLabel} →
+                  </Link>
+                ) : (
+                  <a
+                    href={resolvedFallback}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                  >
+                    {fallbackLabel} →
+                  </a>
+                )}
               </>
             ) : (
               <span className="text-xs font-mono text-muted-foreground/60">
