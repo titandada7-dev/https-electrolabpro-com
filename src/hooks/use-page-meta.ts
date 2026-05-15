@@ -9,6 +9,8 @@ interface PageMeta {
   image?: string;
   /** Twitter card type. Defaults to "summary_large_image". */
   twitterCard?: "summary" | "summary_large_image";
+  /** og:type override. Defaults to "website". Use "article" for tutorials/blog posts. */
+  ogType?: "website" | "article";
 }
 
 const SITE_ORIGIN = "https://electrolabpro.com";
