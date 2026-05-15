@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 declare global {
   interface Window {
@@ -19,7 +20,31 @@ interface AdBannerProps {
   minHeightDesktop?: number;
   /** Show diagnostic overlay (loading/filled/timeout/blocked + reason). Defaults to dev only. */
   showDiagnostics?: boolean;
+  /**
+   * URL de respaldo cuando el anuncio no carga (timeout / blocked / error).
+   * Si se omite o el destino no es válido, se redirige a la página principal "/".
+   */
+  fallbackUrl?: string;
+  /** Texto opcional del enlace de respaldo. */
+  fallbackLabel?: string;
 }
+
+/** Garantiza una URL utilizable; si no es válida, devuelve "/" (home). */
+const resolveFallbackUrl = (url?: string): string => {
+  if (!url || typeof url !== "string") return "/";
+  const trimmed = url.trim();
+  if (!trimmed) return "/";
+  // Rutas internas
+  if (trimmed.startsWith("/")) return trimmed;
+  // URLs absolutas: validar
+  try {
+    const u = new URL(trimmed);
+    if (u.protocol === "http:" || u.protocol === "https:") return u.toString();
+  } catch {
+    /* inválida → fallback */
+  }
+  return "/";
+};
 
 const STATUS_LABEL: Record<AdStatus, string> = {
   idle: "Esperando viewport",
@@ -54,6 +79,8 @@ const AdBanner = ({
   minHeightMobile,
   minHeightDesktop,
   showDiagnostics,
+  fallbackUrl,
+  fallbackLabel = "Volver al inicio",
 }: AdBannerProps) => {
   const adRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
@@ -62,6 +89,8 @@ const AdBanner = ({
 
   const showDiag = showDiagnostics ?? isDev;
   const filled = status === "filled";
+  const resolvedFallback = resolveFallbackUrl(fallbackUrl);
+  const isInternalFallback = resolvedFallback.startsWith("/");
 
   const mobileH = minHeightMobile ?? (format === "vertical" ? 250 : 100);
   const desktopH = minHeightDesktop ?? (format === "vertical" ? 600 : 120);
@@ -206,8 +235,25 @@ const AdBanner = ({
                   Anuncio no disponible
                 </span>
                 <span className="text-[10px] text-muted-foreground/50 max-w-[260px] leading-snug">
-                  El espacio publicitario no se cargó. Si usas un bloqueador, considera apoyarnos desactivándolo en electrolabpro.com.
+                  El espacio publicitario no se cargó. Mientras tanto, podés seguir explorando ElectroLab Pro.
                 </span>
+                {isInternalFallback ? (
+                  <Link
+                    to={resolvedFallback}
+                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                  >
+                    {fallbackLabel} →
+                  </Link>
+                ) : (
+                  <a
+                    href={resolvedFallback}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                  >
+                    {fallbackLabel} →
+                  </a>
+                )}
               </>
             ) : (
               <span className="text-xs font-mono text-muted-foreground/60">
