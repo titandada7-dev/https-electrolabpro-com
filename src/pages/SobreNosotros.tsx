@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const SobreNosotros = () => {
   usePageMeta({
     title: "Sobre Nosotros | ElectroLab Pro – Quiénes Somos",
-    description: "ElectroLab Pro es un proyecto personal de J.A. Sánchez, aficionado a la electrónica y estudiante de desarrollo web. Calculadoras y guías gratuitas en español hechas por y para la comunidad maker.",
+    description: "Proyecto personal de J.A. Sánchez: calculadoras y guías gratuitas de electrónica en español, hechas por y para la comunidad maker.",
   });
 
   useEffect(() => {
