@@ -8,8 +8,16 @@ import {
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import AdBanner from "@/components/AdBanner";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
