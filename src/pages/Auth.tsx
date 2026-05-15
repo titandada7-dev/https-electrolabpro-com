@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import usePageMeta from "@/hooks/use-page-meta";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 const GoogleIcon = () => (
   <svg className="h-5 w-5" viewBox="0 0 48 48" aria-hidden="true">
