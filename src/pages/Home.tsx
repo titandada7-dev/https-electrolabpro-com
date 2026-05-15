@@ -228,8 +228,8 @@ const Home = () => {
   }, []);
 
   usePageMeta({
-    title: "ElectroLab Pro - Calculadora de Resistencias, Capacitores y Diodos Online",
-    description: "Calculadora de resistencias, capacitores y diodos online. Aprende electrónica desde cero con las herramientas gratuitas de ElectroLab Pro por José Andrés Sánchez.",
+    title: "ElectroLab Pro | Calculadoras y Tutoriales de Electrónica",
+    description: "Calculadoras de resistencias, capacitores y diodos online. Aprende electrónica desde cero con las herramientas gratuitas de ElectroLab Pro.",
   });
 
   // ═══════════ JSON-LD SCHEMAS (Organization + WebSite + ItemList) ═══════════
