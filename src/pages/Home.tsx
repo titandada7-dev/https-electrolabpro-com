@@ -510,6 +510,7 @@ const Home = () => {
             minHeightMobile={100}
             minHeightDesktop={100}
             className="max-w-[970px] mx-auto"
+            fallbackUrl="/"
           />
         </div>
       </div>
