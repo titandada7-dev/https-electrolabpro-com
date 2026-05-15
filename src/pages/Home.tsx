@@ -405,7 +405,7 @@ const Home = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
+          <div id="mobile-menu" className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Inicio", id: "inicio" },
               { label: "Aprender", id: "aprender" },
