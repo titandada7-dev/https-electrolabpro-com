@@ -22,7 +22,10 @@ const CookieBanner = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 p-4 animate-in slide-in-from-bottom duration-500">
+    <div
+      className="fixed bottom-0 inset-x-0 z-50 px-4 pt-4 animate-in slide-in-from-bottom duration-500"
+      style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}
+    >
       <div className="max-w-3xl mx-auto rounded-xl border border-border bg-card/95 backdrop-blur-md p-5 shadow-2xl">
         {!showConfig ? (
           <>
