@@ -170,6 +170,36 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Soporte de deep-links con hash (#aprender, #guias, etc.):
+  // - En el load inicial hace scroll suave a la sección correspondiente.
+  // - Reacciona a hashchange (navegación del navegador o links externos).
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = window.location.hash.replace(/^#/, "");
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      requestAnimationFrame(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        if ((NAV_SECTIONS as readonly string[]).includes(id)) {
+          setActiveSection(id as NavSection);
+        }
+      });
+    };
+
+    // Reintentos por si la sección está montada vía lazy/Suspense.
+    scrollToHash();
+    const t1 = window.setTimeout(scrollToHash, 300);
+    const t2 = window.setTimeout(scrollToHash, 800);
+
+    window.addEventListener("hashchange", scrollToHash);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.removeEventListener("hashchange", scrollToHash);
+    };
+  }, []);
+
   // Atajo de teclado Cmd/Ctrl+K para abrir el buscador
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
