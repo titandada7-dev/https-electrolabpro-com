@@ -131,10 +131,44 @@ const quickAccessCards = [
   { icon: <BookOpen className="h-6 w-6" />, title: "Nivel 3 · Protocolos y Guías", desc: "PWM, I2C, reguladores y más", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
 ];
 
+const NAV_SECTIONS = ["inicio", "aprender", "guias", "calculadora", "mini-proyectos", "foro"] as const;
+type NavSection = typeof NAV_SECTIONS[number];
+
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeQaTab, setActiveQaTab] = useState("microcontroladores");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<NavSection | null>(null);
+
+  // Resaltado del enlace activo según la sección visible.
+  // IntersectionObserver con rootMargin para considerar "activa" la sección
+  // que está justo debajo del navbar sticky.
+  useEffect(() => {
+    const sections = NAV_SECTIONS
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Tomamos la sección más arriba que esté intersectando.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]?.target.id) {
+          setActiveSection(visible[0].target.id as NavSection);
+        }
+      },
+      {
+        // Considera "activa" la sección a partir de unos 80px bajo el navbar
+        rootMargin: "-80px 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
   // Atajo de teclado Cmd/Ctrl+K para abrir el buscador
   useEffect(() => {
