@@ -262,8 +262,8 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
-      <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl mx-0 my-0 px-0 py-0 mr-[2px] mb-px pr-[11px] pb-[10px]">
-        <nav className="container mx-auto flex items-center justify-between my-0 px-[147px] py-[95px]">
+      <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
+        <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5">
           <Link to="/" className="flex items-center gap-3">
             <img src={electrolabLogo} alt="ElectroLab Pro logo" width="36" height="36" className="h-9 w-9 rounded-lg object-cover" loading="eager" decoding="async" />
             <span className="text-lg font-bold tracking-tight text-foreground">
@@ -272,18 +272,18 @@ const Home = () => {
           </Link>
 
           {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
-          <div className="hidden items-center gap-5 md:flex mx-0">
-            <a href="#inicio" onClick={handleAnchorClick("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Inicio</a>
-            <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Aprender</a>
-            <a href="#guias" onClick={handleAnchorClick("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Guías</a>
-            <a href="#calculadora" onClick={handleAnchorClick("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Calculadoras</a>
-            <a href="#mini-proyectos" onClick={handleAnchorClick("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Proyectos</a>
-            <a href="#foro" onClick={handleAnchorClick("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">FAQ</a>
+          <div className="hidden items-center gap-5 md:flex">
+            <a href="#inicio" onClick={handleAnchorClick("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Inicio</a>
+            <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Aprender</a>
+            <a href="#guias" onClick={handleAnchorClick("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Guías</a>
+            <a href="#calculadora" onClick={handleAnchorClick("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Calculadoras</a>
+            <a href="#mini-proyectos" onClick={handleAnchorClick("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Proyectos</a>
+            <a href="#foro" onClick={handleAnchorClick("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">FAQ</a>
             <div className="relative group">
-              <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">
+              <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
               </button>
-              <div className="absolute top-full left-0 mt-2 w-56 rounded-xl border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 max-h-[70vh] overflow-y-auto">
+              <div className="absolute top-full right-0 mt-2 w-56 rounded-xl border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 max-h-[70vh] overflow-y-auto">
                 <Link to="/guia-resistencias" className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-accent transition-colors border-b border-border mb-1">
                   📘 Guía completa de resistencias
                 </Link>
@@ -294,9 +294,9 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Documentación</Link>
-            <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Sobre Nosotros</Link>
-            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground my-0 px-[72px]">Contacto</Link>
+            <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Documentación</Link>
+            <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Sobre Nosotros</Link>
+            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Contacto</Link>
             <button
               onClick={() => setSearchOpen(true)}
               className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50"

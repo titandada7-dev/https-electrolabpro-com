@@ -1,29 +1,57 @@
+## Diagnóstico
+
+Las clases que se aplicaron en el turno anterior rompieron el navbar:
+
+- `<nav>` recibió `px-[147px] py-[95px]` → barra de ~190 px de alto y márgenes laterales gigantes que en mobile sacan el contenido fuera de pantalla.
+- Cada link recibió `px-[72px]` → 144 px de padding horizontal por enlace, lo que hace que la fila no entre ni en desktop 1359 px.
+- `<header>` recibió combinaciones contradictorias (`px-0 py-0` + `pr-[11px] pb-[10px] mr-[2px] mb-px`) que solo agregan ruido sin aportar diseño.
+- El dropdown de "Artículos" sigue con `w-56` y `left-0`, así que con los nuevos paddings se desborda por la derecha en pantallas chicas.
+
 ## Objetivo
-Deshabilitar los botones "Atrás" y "Adelante" del `NavButtons` global cuando no haya historial disponible, para evitar clics que no llevan a ningún lado.
 
-## Problema
-React Router (v6) y la History API del navegador **no exponen directamente** si hay entradas anteriores o siguientes en el stack. Hay que rastrearlo manualmente.
+Unificar paddings/márgenes del navbar a valores razonables, alineados con el patrón limpio del proyecto (memoria *Navbar Rules* + *Clean Engineering Style*), y arreglar el dropdown para que no se salga del viewport.
 
-## Enfoque
-Mantener un contador de posición dentro del historial de la sesión usando `history.state` + un índice propio:
+## Cambios propuestos
 
-1. Al montar `NavButtons`, leer/inicializar un índice en `window.history.state` (ej: `{ idx: 0 }`).
-2. Escuchar cambios de ruta con `useLocation()`:
-   - Si es navegación nueva (PUSH) → incrementar índice y conocer el "tope".
-   - Si es POP (atrás/adelante) → leer el índice del nuevo `history.state`.
-3. Guardar en estado React: `canGoBack = idx > 0` y `canGoForward = idx < maxIdx`.
-4. Aplicar `disabled` + estilos (`opacity-50 cursor-not-allowed`) a los botones cuando no aplique. Botón "Inicio" siempre activo.
+### 1. `<header>` (Home.tsx línea 265)
+Volver al estilo original limpio, sin paddings/márgenes residuales:
+```
+sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl
+```
 
-## Detalles técnicos
-- Usar `useNavigationType()` de `react-router-dom` para distinguir PUSH / POP / REPLACE.
-- Mantener `maxIdx` en un `useRef` para no perderlo entre renders.
-- Tras un PUSH nuevo, `maxIdx = idx` (se trunca el "adelante" como hace el navegador).
-- Limitación conocida: si el usuario entra directo a una URL profunda, el índice arranca en 0 y "Atrás" quedará deshabilitado hasta que navegue. Es el comportamiento correcto (no hay historial real dentro de la app).
-- Accesibilidad: usar atributo `disabled` real + `aria-disabled="true"` para lectores de pantalla.
+### 2. `<nav>` contenedor (línea 266)
+Usar padding responsive estándar en lugar de los 147/95 px absolutos:
+```
+container mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5
+```
+
+### 3. Wrapper de links desktop (línea 275)
+Quitar `mx-0` redundante:
+```
+hidden items-center gap-5 md:flex
+```
+
+### 4. Enlaces del menú (líneas 276-281, 283, 297-299)
+Unificar a un padding pequeño y consistente, sin `px-[72px]`. El espaciado entre items ya lo da `gap-5` del wrapper:
+```
+text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md
+```
+Aplicar exactamente la misma clase a los 9 links + al `<button>` de "Artículos" para alineación uniforme.
+
+### 5. Dropdown "Artículos" (línea 286)
+Para que no se desborde en pantallas medianas:
+- Cambiar `left-0` por `right-0` (ancla a la derecha del trigger, que está más cerca del centro/derecha del navbar).
+- Mantener `w-56 max-h-[70vh] overflow-y-auto` que ya estaba bien.
+
+### 6. Verificación
+Tras aplicar los cambios, capturar screenshot del navbar en desktop (1359 px, viewport actual) y mobile (375 px) para confirmar:
+- Logo + links + botones caben en una línea en desktop.
+- En mobile el menú desktop se oculta correctamente (`md:flex`) y solo queda el logo.
+- El dropdown de Artículos no desborda por la derecha al hacer hover.
 
 ## Archivos a modificar
-- `src/components/NavButtons.tsx` — añadir lógica de tracking de historial y estado `disabled` en los botones Atrás/Adelante.
+- `src/pages/Home.tsx` (líneas 265–299, solo clases CSS)
 
 ## Sin cambios
-- `src/App.tsx` y el resto del sitio quedan igual.
-- No se cambian estilos base ni la posición del componente.
+- Lógica de navegación, handlers, rutas, estructura DOM.
+- Otros componentes (`DocumentacionTecnica.tsx` mantiene su header propio).
