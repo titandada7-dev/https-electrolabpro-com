@@ -168,7 +168,7 @@ const GuiaResistencias = () => {
       </section>
 
       <div className="container mx-auto px-4 pt-6">
-        <AdBanner slot="3756475501" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+        <AdBanner slot="3756475501" format="auto" className="min-h-[90px] md:min-h-[100px]" fallbackUrl="/" />
       </div>
 
       <article className="container mx-auto px-4 py-10 max-w-3xl prose-custom space-y-6 text-muted-foreground leading-relaxed text-[15px]">
