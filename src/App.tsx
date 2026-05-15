@@ -79,6 +79,7 @@ function App() {
       <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/aviso-legal" element={<AvisoLegal />} />
