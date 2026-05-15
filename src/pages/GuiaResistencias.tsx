@@ -325,7 +325,7 @@ const GuiaResistencias = () => {
           que la corriente quede por debajo de 5 mA para no malgastar batería.
         </p>
 
-        <AdBanner slot="3756475501" format="auto" className="min-h-[90px] my-6" />
+        <AdBanner slot="3756475501" format="auto" className="min-h-[90px] my-6" fallbackUrl="/" />
 
         <h2 id="codigo-colores" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Código de colores: cómo leer una resistencia</h2>
         <p>
