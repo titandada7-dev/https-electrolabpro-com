@@ -55,9 +55,9 @@ const benefits = [
 
 const AprendeJugando = () => {
   usePageMeta({
-    title: "Aprende Jugando — ElectroLab Play | Quiz de Electrónica Online",
+    title: "ElectroLab Play | Quiz de Electrónica Online Gratis",
     description:
-      "Jugá ElectroLab Play: quiz interactivo gratis de electrónica con preguntas sobre Arduino, resistencias, Ley de Ohm y más. 3 niveles, sistema XP, ranking y multijugador.",
+      "Quiz interactivo gratis de electrónica: Arduino, resistencias, Ley de Ohm y más. 3 niveles, sistema XP, ranking y multijugador.",
   });
 
   // JSON-LD: Game schema

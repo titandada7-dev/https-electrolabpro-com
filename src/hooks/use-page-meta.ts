@@ -9,6 +9,8 @@ interface PageMeta {
   image?: string;
   /** Twitter card type. Defaults to "summary_large_image". */
   twitterCard?: "summary" | "summary_large_image";
+  /** og:type override. Defaults to "website". Use "article" for tutorials/blog posts. */
+  ogType?: "website" | "article";
 }
 
 const SITE_ORIGIN = "https://electrolabpro.com";
@@ -41,13 +43,14 @@ function setMeta(selector: string, attr: "name" | "property", key: string, value
   el.content = value;
 }
 
-export function usePageMeta({ title, description, canonical, image, twitterCard = "summary_large_image" }: PageMeta) {
+export function usePageMeta({ title, description, canonical, image, twitterCard = "summary_large_image", ogType = "website" }: PageMeta) {
   useEffect(() => {
     document.title = title;
 
     setMeta('meta[name="description"]', "name", "description", description);
     setMeta('meta[property="og:title"]', "property", "og:title", title);
     setMeta('meta[property="og:description"]', "property", "og:description", description);
+    setMeta('meta[property="og:type"]', "property", "og:type", ogType);
     setMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
     setMeta('meta[name="twitter:description"]', "name", "twitter:description", description);
 
@@ -70,5 +73,5 @@ export function usePageMeta({ title, description, canonical, image, twitterCard 
     setMeta('meta[property="og:image:alt"]', "property", "og:image:alt", title);
     setMeta('meta[name="twitter:image"]', "name", "twitter:image", imageUrl);
     setMeta('meta[name="twitter:card"]', "name", "twitter:card", twitterCard);
-  }, [title, description, canonical, image, twitterCard]);
+  }, [title, description, canonical, image, twitterCard, ogType]);
 }

@@ -228,8 +228,8 @@ const Home = () => {
   }, []);
 
   usePageMeta({
-    title: "ElectroLab Pro - Calculadora de Resistencias, Capacitores y Diodos Online",
-    description: "Calculadora de resistencias, capacitores y diodos online. Aprende electrónica desde cero con las herramientas gratuitas de ElectroLab Pro por José Andrés Sánchez.",
+    title: "ElectroLab Pro | Calculadoras y Tutoriales de Electrónica",
+    description: "Calculadoras de resistencias, capacitores y diodos online. Aprende electrónica desde cero con las herramientas gratuitas de ElectroLab Pro.",
   });
 
   // ═══════════ JSON-LD SCHEMAS (Organization + WebSite + ItemList) ═══════════
@@ -304,10 +304,23 @@ const Home = () => {
       ],
     };
 
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: QA_CATEGORIES.flatMap((cat) =>
+        cat.items.map((qa) => ({
+          "@type": "Question",
+          name: qa.q,
+          acceptedAnswer: { "@type": "Answer", text: qa.a },
+        })),
+      ),
+    };
+
     const schemas = [
       { id: "schema-organization", data: organizationSchema },
       { id: "schema-website", data: websiteSchema },
       { id: "schema-itemlist", data: itemListSchema },
+      { id: "schema-faqpage", data: faqSchema },
     ];
 
     schemas.forEach(({ id, data }) => {
@@ -322,7 +335,7 @@ const Home = () => {
     });
 
     return () => {
-      ["schema-organization", "schema-website", "schema-itemlist"].forEach((id) => {
+      ["schema-organization", "schema-website", "schema-itemlist", "schema-faqpage"].forEach((id) => {
         const el = document.getElementById(id);
         if (el) el.remove();
       });

@@ -7,8 +7,8 @@ import PlayCTA from "@/components/PlayCTA";
 const Arduino = () => {
   return (
     <ArticleLayout
-      title="Arduino para Principiantes: Guía Completa con Proyectos Paso a Paso"
-      subtitle="Aprende qué es Arduino, cómo funciona, qué modelos existen y cómo construir 6 proyectos reales desde cero con código, diagramas de conexión y explicaciones detalladas."
+      title="Arduino para Principiantes: Guía Completa"
+      subtitle="Aprende qué es Arduino, cómo funciona y construí 6 proyectos reales desde cero con código, diagramas de conexión y explicaciones."
       slug="arduino"
       datePublished="2026-03-01"
       dateModified="2026-04-10"

@@ -1,0 +1,42 @@
+# ElectroLab Pro
+
+> Laboratorio online gratuito de electrónica en español: calculadoras interactivas, guías técnicas y tutoriales de Arduino para estudiantes, makers y técnicos.
+
+ElectroLab Pro ofrece herramientas verificadas para calcular resistencias, LED, filtros RC, divisores de tensión, temporizador 555 y códigos SMD, junto con artículos educativos sobre Arduino, multímetro, soldadura electrónica y diseño de PCB. Autor: J.A. Sánchez.
+
+## Páginas principales
+
+- [Inicio](/): Calculadoras y panel de herramientas de electrónica.
+- [Documentación técnica](/documentacion-tecnica): Centro de calculadoras, fichas y guías.
+- [Glosario](/glosario): 50+ términos técnicos de electrónica explicados.
+- [Guía de resistencias](/guia-resistencias): Qué son, código de colores y cálculo paso a paso.
+- [Aprende jugando](/aprende-jugando): Quiz interactivo de electrónica.
+- [Sobre nosotros](/sobre-nosotros): Quién está detrás del proyecto.
+- [Contacto](/contacto): Cómo escribirnos.
+
+## Tutoriales y artículos
+
+- [Ley de Ohm](/articulos/ley-de-ohm): V = I × R explicada con casos prácticos.
+- [Código de colores de resistencias](/articulos/codigo-colores-resistencias): Tabla y ejemplos.
+- [Condensadores](/articulos/condensadores): Tipos, lectura y aplicaciones.
+- [Diodos](/articulos/diodos): Funcionamiento y casos de uso.
+- [Transistores](/articulos/transistores): NPN, PNP, MOSFET.
+- [Multímetro](/articulos/multimetro): Cómo medir voltaje, corriente y continuidad.
+- [Osciloscopio](/articulos/osciloscopio): Lectura de señales paso a paso.
+- [Fuentes de alimentación](/articulos/fuentes-de-alimentacion): Lineales vs conmutadas.
+- [Reguladores de voltaje](/articulos/reguladores-voltaje): LM7805, LM2596 y más.
+- [PWM con Arduino](/articulos/pwm-arduino): Frecuencia, duty cycle y timers.
+- [Protocolo I2C](/articulos/protocolo-i2c): Pull-ups, direcciones y debugging.
+- [Sensores Arduino](/articulos/sensores-arduino): DHT, ultrasonido, LDR.
+- [Pantalla OLED SSD1306](/articulos/pantalla-oled-ssd1306): Conexión y librerías.
+- [Soldadura electrónica](/articulos/soldadura-electronica): Técnica y seguridad.
+- [Cómo leer un datasheet](/articulos/leer-datasheet): Metodología práctica.
+- [Qué Arduino comprar](/articulos/que-arduino-comprar): Comparativa de modelos.
+- [Arduino para principiantes](/articulos/arduino): Guía completa con proyectos.
+- [Circuitos serie y paralelo](/articulos/circuitos-serie-paralelo): Fundamentos.
+
+## Optional
+
+- [Política de privacidad](/privacidad)
+- [Aviso legal](/aviso-legal)
+- [Términos y condiciones](/terminos-y-condiciones)

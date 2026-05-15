@@ -96,8 +96,8 @@ const Glosario = () => {
   const [activeCat, setActiveCat] = useState<string>("Todas");
 
   usePageMeta({
-    title: "Glosario de Electrónica: 50+ Términos Técnicos Explicados | ElectroLab Pro",
-    description: "Diccionario completo de términos de electrónica: resistencia, condensador, MOSFET, PWM, microcontrolador, PCB y más. Definiciones claras en español por J.A. Sánchez.",
+    title: "Glosario de Electrónica: 50+ Términos Técnicos | ElectroLab",
+    description: "Diccionario de términos de electrónica: resistencia, condensador, MOSFET, PWM, microcontrolador, PCB y más. Definiciones claras en español.",
   });
 
   useEffect(() => {
