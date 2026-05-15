@@ -71,7 +71,8 @@ const NavButtons = () => {
   return (
     <nav
       aria-label="Navegación rápida"
-      className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2"
+      className="fixed left-1/2 -translate-x-1/2 z-40 flex items-center gap-2"
+      style={{ bottom: "calc(1rem + env(safe-area-inset-bottom))" }}
     >
       <button
         type="button"
