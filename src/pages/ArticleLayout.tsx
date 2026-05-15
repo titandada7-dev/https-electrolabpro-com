@@ -251,7 +251,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
 
       {/* AdSense: Después del hero en artículos */}
       <div className="container mx-auto px-4 pt-6">
-        <AdBanner slot="3756475501" format="auto" className="min-h-[90px] md:min-h-[100px]" />
+        <AdBanner slot="3756475501" format="auto" className="min-h-[90px] md:min-h-[100px]" fallbackUrl="/" />
       </div>
 
       <div className="container mx-auto px-4 py-10">
