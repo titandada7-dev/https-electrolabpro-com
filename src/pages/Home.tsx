@@ -8,8 +8,16 @@ import {
 import { usePageMeta } from "@/hooks/use-page-meta";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
+import AdBanner from "@/components/AdBanner";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
@@ -123,10 +131,44 @@ const quickAccessCards = [
   { icon: <BookOpen className="h-6 w-6" />, title: "Nivel 3 · Protocolos y Guías", desc: "PWM, I2C, reguladores y más", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
 ];
 
+const NAV_SECTIONS = ["inicio", "aprender", "guias", "calculadora", "mini-proyectos", "foro"] as const;
+type NavSection = typeof NAV_SECTIONS[number];
+
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeQaTab, setActiveQaTab] = useState("microcontroladores");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<NavSection | null>(null);
+
+  // Resaltado del enlace activo según la sección visible.
+  // IntersectionObserver con rootMargin para considerar "activa" la sección
+  // que está justo debajo del navbar sticky.
+  useEffect(() => {
+    const sections = NAV_SECTIONS
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Tomamos la sección más arriba que esté intersectando.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]?.target.id) {
+          setActiveSection(visible[0].target.id as NavSection);
+        }
+      },
+      {
+        // Considera "activa" la sección a partir de unos 80px bajo el navbar
+        rootMargin: "-80px 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
   // Atajo de teclado Cmd/Ctrl+K para abrir el buscador
   useEffect(() => {
@@ -272,28 +314,57 @@ const Home = () => {
           </Link>
 
           {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
-          <div className="hidden items-center gap-5 md:flex">
-            <a href="#inicio" onClick={handleAnchorClick("inicio")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Inicio</a>
-            <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Aprender</a>
-            <a href="#guias" onClick={handleAnchorClick("guias")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Guías</a>
-            <a href="#calculadora" onClick={handleAnchorClick("calculadora")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Calculadoras</a>
-            <a href="#mini-proyectos" onClick={handleAnchorClick("mini-proyectos")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Proyectos</a>
-            <a href="#foro" onClick={handleAnchorClick("foro")} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">FAQ</a>
-            <div className="relative group">
-              <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">
+          <div className="hidden items-center gap-5 md:flex" role="menubar" aria-label="Navegación principal">
+            {[
+              { id: "inicio", label: "Inicio" },
+              { id: "aprender", label: "Aprender" },
+              { id: "guias", label: "Guías" },
+              { id: "calculadora", label: "Calculadoras" },
+              { id: "mini-proyectos", label: "Proyectos" },
+              { id: "foro", label: "FAQ" },
+            ].map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={handleAnchorClick(item.id)}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`text-sm font-medium transition-colors px-2 py-1 rounded-md ${
+                    isActive
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-foreground"
+                aria-label="Menú de artículos"
+              >
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-              <div className="absolute top-full right-0 mt-2 w-56 rounded-xl border border-border bg-card shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 max-h-[70vh] overflow-y-auto">
-                <Link to="/guia-resistencias" className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-accent transition-colors border-b border-border mb-1">
-                  📘 Guía completa de resistencias
-                </Link>
-                {articleLinks.map((a) => (
-                  <Link key={a.to} to={a.to} className="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
-                    {a.label}
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                sideOffset={8}
+                className="w-64 max-h-[70vh] overflow-y-auto"
+              >
+                <DropdownMenuItem asChild>
+                  <Link to="/guia-resistencias" className="font-semibold text-primary cursor-pointer">
+                    📘 Guía completa de resistencias
                   </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                {articleLinks.map((a) => (
+                  <DropdownMenuItem key={a.to} asChild>
+                    <Link to={a.to} className="cursor-pointer">{a.label}</Link>
+                  </DropdownMenuItem>
                 ))}
-              </div>
-            </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Documentación</Link>
             <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Sobre Nosotros</Link>
             <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Contacto</Link>
@@ -320,7 +391,13 @@ const Home = () => {
               <Search className="h-5 w-5" />
             </button>
             <ThemeToggle />
-            <button className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menú">
+            <button
+              className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+            >
               {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
@@ -328,7 +405,7 @@ const Home = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
+          <div id="mobile-menu" className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Inicio", id: "inicio" },
               { label: "Aprender", id: "aprender" },
@@ -375,6 +452,18 @@ const Home = () => {
           </div>
         )}
       </header>
+
+      {/* ═══════════ AD SLOT BAJO EL HEADER (con altura reservada anti-CLS) ═══════════ */}
+      <div className="border-b border-border bg-background">
+        <div className="container mx-auto px-4 sm:px-6 py-2">
+          <AdBanner
+            slot="3756475501"
+            format="auto"
+            minHeightMobile={90}
+            minHeightDesktop={100}
+          />
+        </div>
+      </div>
 
       {/* ═══════════ #INICIO ═══════════ */}
       <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
