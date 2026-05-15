@@ -75,7 +75,7 @@ const DocumentacionTecnica = () => {
   usePageMeta({
     title: "Documentación Técnica de Electrónica | ElectroLab Pro",
     description:
-      "Centro de documentación técnica: calculadoras verificadas, fichas de componentes y guías sobre PWM, I2C, reguladores y mediciones seguras. Basado en datasheets, IEC e IEEE.",
+      "Centro de documentación: calculadoras verificadas, fichas de componentes y guías sobre PWM, I2C, reguladores y mediciones seguras.",
   });
 
   // JSON-LD: FAQPage + CollectionPage
