@@ -73,6 +73,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
     description: subtitle,
     canonical: slug ? `/articulos/${slug}` : undefined,
     image,
+    ogType: "article",
   });
 
   // Atajo Cmd/Ctrl+K para abrir el buscador desde cualquier artículo
