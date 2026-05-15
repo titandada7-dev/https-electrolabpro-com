@@ -29,6 +29,7 @@ const Glosario = lazy(() => import("./pages/Glosario"));
 const AprendeJugando = lazy(() => import("./pages/AprendeJugando"));
 const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
 const GuiaResistencias = lazy(() => import("./pages/GuiaResistencias"));
+const Auth = lazy(() => import("./pages/Auth"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
 const CodigoColoresResistencias = lazy(() => import("./pages/articles/CodigoColoresResistencias"));
@@ -78,6 +79,7 @@ function App() {
       <Suspense fallback={<RouteFallback />}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/aviso-legal" element={<AvisoLegal />} />
