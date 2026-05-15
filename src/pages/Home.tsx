@@ -308,7 +308,7 @@ const Home = () => {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: QA_CATEGORIES.flatMap((cat) =>
-        cat.questions.map((qa) => ({
+        cat.items.map((qa) => ({
           "@type": "Question",
           name: qa.q,
           acceptedAnswer: { "@type": "Answer", text: qa.a },
