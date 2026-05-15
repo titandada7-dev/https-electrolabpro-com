@@ -62,7 +62,6 @@ const AdBanner = ({
 
   const showDiag = showDiagnostics ?? isDev;
   const filled = status === "filled";
-  const timedOut = status === "timeout";
 
   const mobileH = minHeightMobile ?? (format === "vertical" ? 250 : 100);
   const desktopH = minHeightDesktop ?? (format === "vertical" ? 600 : 120);
