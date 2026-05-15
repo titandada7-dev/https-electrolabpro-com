@@ -453,14 +453,20 @@ const Home = () => {
         )}
       </header>
 
-      {/* ═══════════ AD SLOT BAJO EL HEADER (con altura reservada anti-CLS) ═══════════ */}
+      {/* ═══════════ AD SLOT BAJO EL HEADER (con altura reservada anti-CLS) ═══════════
+          Usamos format="horizontal" para que AdSense devuelva un banner de altura
+          predecible (~90-100px) en cualquier ancho. Reservamos exactamente esa altura
+          en mobile (≤767px) y desktop (≥768px). El AdBanner ya bloquea el slot con
+          min-height antes y después del fill, evitando saltos de layout. */}
       <div className="border-b border-border bg-background">
         <div className="container mx-auto px-4 sm:px-6 py-2">
           <AdBanner
             slot="3756475501"
-            format="auto"
-            minHeightMobile={90}
+            format="horizontal"
+            responsive
+            minHeightMobile={100}
             minHeightDesktop={100}
+            className="max-w-[970px] mx-auto"
           />
         </div>
       </div>
