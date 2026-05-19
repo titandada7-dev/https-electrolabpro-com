@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
-import AdBanner from "@/components/AdBanner";
+import AdSenseSlot from "@/components/AdSenseSlot";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
@@ -496,24 +496,8 @@ const Home = () => {
         )}
       </header>
 
-      {/* ═══════════ AD SLOT BAJO EL HEADER (con altura reservada anti-CLS) ═══════════
-          Usamos format="horizontal" para que AdSense devuelva un banner de altura
-          predecible (~90-100px) en cualquier ancho. Reservamos exactamente esa altura
-          en mobile (≤767px) y desktop (≥768px). El AdBanner ya bloquea el slot con
-          min-height antes y después del fill, evitando saltos de layout. */}
-      <div className="border-b border-border bg-background">
-        <div className="container mx-auto px-4 sm:px-6 py-2">
-          <AdBanner
-            slot="3756475501"
-            format="horizontal"
-            responsive
-            minHeightMobile={100}
-            minHeightDesktop={100}
-            className="max-w-[970px] mx-auto"
-            fallbackUrl="/"
-          />
-        </div>
-      </div>
+      {/* ═══════════ AD SLOT BAJO EL HEADER (anti-CLS, vía AdSenseSlot) ═══════════ */}
+      <AdSenseSlot slot="3756475501" variant="header" fallbackUrl="/" />
 
       {/* ═══════════ #INICIO ═══════════ */}
       <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
