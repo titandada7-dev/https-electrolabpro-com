@@ -27,11 +27,52 @@ jobs:
       - name: Check dependencies
         run: node scripts/check-deps.mjs
 
-      - name: Lint
-        run: bun run lint
+      - name: Prepare reports directory
+        run: mkdir -p reports
 
-      - name: Test
-        run: bun run test
+      - name: Lint (report)
+        id: lint
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          bun run lint -- --format json --output-file reports/lint-report.json
+          bun run lint | tee reports/lint-report.txt
+
+      - name: Test (report)
+        id: test
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          bunx vitest run \
+            --reporter=default \
+            --reporter=junit --outputFile=reports/test-results.junit.xml \
+            --reporter=json --outputFile=reports/test-results.json \
+            | tee reports/test-output.txt
+
+      - name: Upload lint & test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-test-reports
+          path: reports/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Fail if lint or tests failed
+        if: steps.lint.outcome == 'failure' || steps.test.outcome == 'failure'
+        run: |
+          echo "Lint outcome: ${{ steps.lint.outcome }}"
+          echo "Test outcome: ${{ steps.test.outcome }}"
+          exit 1
 
       - name: Build
         run: bun run build
+
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-dist
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14
