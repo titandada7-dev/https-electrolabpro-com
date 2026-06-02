@@ -93,6 +93,7 @@ function App() {
         <Route path="/aprende-jugando" element={<AprendeJugando />} />
         <Route path="/documentacion-tecnica" element={<DocumentacionTecnica />} />
         <Route path="/guia-resistencias" element={<GuiaResistencias />} />
+        <Route path="/guia-multimetro" element={<GuiaMultimetro />} />
         <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
         <Route path="/articulos/condensadores" element={<Condensadores />} />
         <Route path="/articulos/diodos" element={<Diodos />} />
