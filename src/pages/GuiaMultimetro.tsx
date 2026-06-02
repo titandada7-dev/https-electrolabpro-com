@@ -20,6 +20,8 @@ import {
   RotateCw,
   MonitorSmartphone,
   Cable,
+  GitMerge,
+  PowerOff,
 } from "lucide-react";
 
 type PartId = "screen" | "selector" | "com" | "vomega" | "amp10";
