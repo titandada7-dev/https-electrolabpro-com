@@ -556,6 +556,44 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ═══════════ FEATURED – GUÍA INTERACTIVA DEL MULTÍMETRO ═══════════ */}
+      <section
+        aria-label="Destacado: Guía interactiva del multímetro"
+        className="py-10 sm:py-14 border-t border-border bg-gradient-to-br from-primary/10 via-background to-cyan-500/5"
+      >
+        <div className="container mx-auto px-6">
+          <Link
+            to="/guia-multimetro"
+            className="group relative block overflow-hidden rounded-3xl border-2 border-primary/40 bg-card/80 backdrop-blur p-6 sm:p-10 shadow-lg hover:shadow-2xl hover:border-primary transition-all duration-300"
+            aria-label="Abrir Guía Definitiva del Multímetro interactiva"
+          >
+            <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-primary/20 blur-3xl opacity-60 group-hover:opacity-90 transition-opacity" />
+            <div className="relative grid md:grid-cols-[auto_1fr_auto] items-center gap-6">
+              <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-primary/15 border border-primary/30 shrink-0">
+                <Calculator className="w-9 h-9 sm:w-11 sm:h-11 text-primary" />
+              </div>
+              <div className="min-w-0">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary bg-primary/10 border border-primary/30 rounded-full px-3 py-1 mb-3">
+                  <Sparkles className="w-3 h-3" /> Nuevo · Interactivo
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground group-hover:text-primary transition-colors">
+                  Guía Definitiva del Multímetro
+                </h2>
+                <p className="text-sm sm:text-base text-muted-foreground mt-2 leading-relaxed">
+                  Aprende a usar el tester desde cero: voltaje, resistencia, continuidad y corriente. Modelos recomendados, anatomía interactiva y reglas de seguridad.
+                </p>
+              </div>
+              <span className="hidden md:inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-primary-foreground font-semibold shadow-md group-hover:gap-3 transition-all whitespace-nowrap">
+                Abrir guía →
+              </span>
+            </div>
+            <span className="md:hidden mt-5 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold shadow-md w-full justify-center">
+              Abrir guía interactiva →
+            </span>
+          </Link>
+        </div>
+      </section>
+
       {/* ═══════════ #SERVICIOS – TARJETAS DE ACCESO RÁPIDO ═══════════ */}
       <section id="servicios" className="py-10 sm:py-14 border-t border-border">
         <div className="container mx-auto px-6">
