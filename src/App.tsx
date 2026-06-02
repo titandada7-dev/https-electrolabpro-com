@@ -31,6 +31,7 @@ const Glosario = lazy(() => import("./pages/Glosario"));
 const AprendeJugando = lazy(() => import("./pages/AprendeJugando"));
 const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
 const GuiaResistencias = lazy(() => import("./pages/GuiaResistencias"));
+const GuiaMultimetro = lazy(() => import("./pages/GuiaMultimetro"));
 const Auth = lazy(() => import("./pages/Auth"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
