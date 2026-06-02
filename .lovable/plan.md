@@ -1,22 +1,38 @@
-## Objetivo
-Evitar que los botones y banners fijos en la parte inferior queden ocultos bajo la home-indicator del iPhone u otros dispositivos con notch, usando `env(safe-area-inset-bottom)`.
+## Contexto
 
-## Archivos a modificar
+La página `/guia-multimetro` ya existe con: hero, tabs (Digital/Analógico/Pinza), tarjetas DT830B/AN8008/Fluke 101, tabla de simbología, anatomía interactiva y alertas de seguridad.
 
-1. **`src/components/NavButtons.tsx`** (línea 74) — barra flotante Atrás/Inicio/Adelante.
-   - Cambiar `bottom-4` por `style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom))' }}`.
+El PDF adjunto aporta **contenido nuevo** que aún no está en la página: guías paso a paso de medición. Propongo ampliar la página existente (no recrearla) integrando ese material.
 
-2. **`src/components/CookieBanner.tsx`** (línea 25) — banner GDPR `fixed bottom-0`.
-   - Añadir `style={{ paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))' }}` al contenedor (o ajustar el padding existente sumando la safe-area).
+## Cambios en `src/pages/GuiaMultimetro.tsx`
 
-3. **`src/components/PWAInstallPrompt.tsx`** (línea 50) — prompt de instalación PWA `bottom-4`.
-   - Misma técnica: `style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom))' }}`.
+1. **Nueva sección "Cómo medir Voltaje paso a paso"** (después de la simbología)
+   - 4 pasos visuales en cards numeradas con iconos Lucide (`Cable`, `RotateCw`, `Gauge`, `GitMerge`):
+     1. Conectar cable negro a COM, rojo a VΩmA.
+     2. Seleccionar V⎓ (baterías) o V~ (red).
+     3. Si es manual, empezar por el rango más alto.
+     4. Conectar **en paralelo** sobre los terminales.
 
-4. **`index.html`** — verificar que el `<meta name="viewport">` incluya `viewport-fit=cover`. Si no, añadirlo; sin esto, `env(safe-area-inset-*)` siempre devuelve `0` en iOS.
+2. **Nueva sección "Medir Resistencia (Ω)"** con bloque destacado
+   - Regla de oro: circuito **desenergizado** y de preferencia desoldado.
+   - Caja visual con el símbolo `OL` explicando "Open Loop / circuito abierto".
+   - Icono `PowerOff` + `Sigma`.
+
+3. **Nueva sección "Continuidad y Corriente"** en dos columnas
+   - Columna 1 — Chicharra de continuidad: pitido cuando R < 30–50 Ω, ideal para cables rotos o cortocircuitos. Icono `Volume2`.
+   - Columna 2 — Amperaje: medir **siempre en serie**, nunca en paralelo. Reforzar con badge de peligro. Icono `AlertTriangle`.
+
+4. **Ajuste del CTA final**: mantener las 3 alertas de seguridad existentes al final, después de las nuevas secciones, como cierre.
+
+## Detalles técnicos
+
+- Reutilizar componentes ya en uso: `Card`, `Alert`, `Badge` de shadcn.
+- Mantener el sistema de diseño actual: tokens semánticos (`bg-card`, `text-foreground`, `text-primary`), acentos cian/verde con `text-cyan-400` / `border-cyan-500/30` ya presentes en el archivo.
+- Solo iconos de `lucide-react` (añadir `GitMerge`, `PowerOff` al import existente).
+- Sin cambios en `App.tsx`, `Home.tsx` ni en rutas — la página ya está enlazada.
+- Sin tocar lógica, backend ni SEO meta (ya configurados vía `ArticleLayout`).
 
 ## Fuera de alcance
-- `DomainDebugBanner.tsx`: solo se carga en hosts de preview de Lovable, no necesita ajuste para producción.
-- Toasts (`ui/toast.tsx`) y drawer (`ui/drawer.tsx`): componentes shadcn estándar; no se tocan salvo que se reporte un problema.
 
-## Verificación
-- Abrir la preview en viewport móvil (iPhone) y comprobar que los tres elementos quedan por encima de la zona segura.
+- No se importan imágenes del PDF (son fotos de stock con copyright externo).
+- No se modifica el resto del sitio.

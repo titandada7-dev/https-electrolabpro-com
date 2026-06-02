@@ -20,6 +20,8 @@ import {
   RotateCw,
   MonitorSmartphone,
   Cable,
+  GitMerge,
+  PowerOff,
 } from "lucide-react";
 
 type PartId = "screen" | "selector" | "com" | "vomega" | "amp10";
@@ -339,6 +341,89 @@ const GuiaMultimetro = () => {
               Tocá otra parte del tester →
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* MEDICIÓN DE VOLTAJE PASO A PASO */}
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-12">Cómo medir Voltaje paso a paso</h2>
+      <p>El voltaje es la medición más frecuente. Seguí estos cuatro pasos en orden para hacerla de forma segura:</p>
+
+      <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+        {[
+          { n: 1, icon: Cable, title: "Conectá las puntas", desc: "Cable negro al puerto COM, cable rojo al puerto VΩmA." },
+          { n: 2, icon: RotateCw, title: "Elegí el tipo de tensión", desc: "V⎓ para pilas y baterías (DC) o V~ para enchufes y red domiciliaria (AC)." },
+          { n: 3, icon: Gauge, title: "Seleccioná el rango", desc: "Si tu tester es manual y no conocés el voltaje, empezá por la escala más alta para proteger el equipo." },
+          { n: 4, icon: GitMerge, title: "Conectá en paralelo", desc: "Apoyá las puntas directamente sobre los terminales sin interrumpir el circuito." },
+        ].map(({ n, icon: Icon, title, desc }) => (
+          <div key={n} className="rounded-xl border border-slate-700 bg-slate-900/60 p-5 hover:border-cyan-500/40 transition-colors">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-cyan-500/15 border border-cyan-400/30 font-mono text-cyan-300 font-bold">
+                {n}
+              </span>
+              <Icon className="h-5 w-5 text-emerald-300" />
+              <h3 className="text-white font-semibold m-0">{title}</h3>
+            </div>
+            <p className="text-slate-300 text-sm leading-relaxed m-0">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* MEDIR RESISTENCIA */}
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-12">Medir Resistencia (Ω)</h2>
+      <div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+        <div className="md:col-span-2 rounded-xl border border-amber-500/40 bg-amber-500/5 p-6">
+          <div className="flex items-center gap-3 mb-3">
+            <PowerOff className="h-6 w-6 text-amber-300" />
+            <h3 className="text-amber-100 font-bold text-lg m-0">Regla de oro en Ohmios</h3>
+          </div>
+          <p className="text-slate-200 leading-relaxed m-0">
+            El componente bajo prueba <strong className="text-amber-200">debe estar completamente desenergizado</strong> y,
+            de preferencia, desoldado del circuito. Medir resistencia con tensión presente distorsiona el valor leído
+            y puede dañar la etapa de entrada del multímetro.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-cyan-500/40 bg-slate-900 p-6 flex flex-col items-center justify-center text-center">
+          <span className="font-mono text-5xl text-cyan-300 mb-2"
+            style={{ textShadow: "0 0 14px hsl(180 100% 50% / 0.7)" }}>
+            OL
+          </span>
+          <p className="text-xs uppercase tracking-widest text-cyan-200/80 font-mono m-0">Open Loop</p>
+          <p className="text-slate-400 text-sm mt-3 m-0">
+            Aparece cuando las puntas no tocan nada o cuando la resistencia excede el rango seleccionado.
+          </p>
+        </div>
+      </div>
+
+      {/* CONTINUIDAD Y CORRIENTE */}
+      <h2 className="text-xl md:text-2xl font-mono font-bold text-foreground mt-12">Continuidad y Corriente</h2>
+
+      <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+        <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/5 p-6">
+          <div className="flex items-center gap-3 mb-3">
+            <Volume2 className="h-6 w-6 text-emerald-300" />
+            <h3 className="text-emerald-100 font-bold text-lg m-0">Chicharra de continuidad</h3>
+          </div>
+          <p className="text-slate-200 leading-relaxed text-sm">
+            Diagnóstico rápido para verificar si un cable está roto por dentro o si dos pistas están en cortocircuito.
+            El tester emite un <strong className="text-emerald-200">pitido audible</strong> cuando la resistencia entre
+            los puntos medidos es muy baja (típicamente menor a 30–50 Ω).
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-red-500/50 bg-red-500/5 p-6">
+          <div className="flex items-center gap-3 mb-3">
+            <AlertTriangle className="h-6 w-6 text-red-300" />
+            <h3 className="text-red-100 font-bold text-lg m-0">Medición de amperaje</h3>
+            <span className="text-[10px] uppercase tracking-widest font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-200 border border-red-500/40 ml-auto">
+              Peligro
+            </span>
+          </div>
+          <p className="text-slate-200 leading-relaxed text-sm">
+            La corriente se mide <strong className="text-red-200">siempre en serie</strong>, interrumpiendo el cable y
+            haciendo pasar todo el flujo por el interior del tester. Nunca lo conectes en paralelo: provocarías un
+            cortocircuito instantáneo y la voladura del fusible.
+          </p>
         </div>
       </div>
 
