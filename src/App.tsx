@@ -31,6 +31,7 @@ const Glosario = lazy(() => import("./pages/Glosario"));
 const AprendeJugando = lazy(() => import("./pages/AprendeJugando"));
 const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
 const GuiaResistencias = lazy(() => import("./pages/GuiaResistencias"));
+const GuiaMultimetro = lazy(() => import("./pages/GuiaMultimetro"));
 const Auth = lazy(() => import("./pages/Auth"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
@@ -92,6 +93,7 @@ function App() {
         <Route path="/aprende-jugando" element={<AprendeJugando />} />
         <Route path="/documentacion-tecnica" element={<DocumentacionTecnica />} />
         <Route path="/guia-resistencias" element={<GuiaResistencias />} />
+        <Route path="/guia-multimetro" element={<GuiaMultimetro />} />
         <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
         <Route path="/articulos/condensadores" element={<Condensadores />} />
         <Route path="/articulos/diodos" element={<Diodos />} />
