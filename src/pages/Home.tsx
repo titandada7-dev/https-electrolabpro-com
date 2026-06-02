@@ -23,6 +23,7 @@ import AdSenseSlot from "@/components/AdSenseSlot";
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
 const MiniProjects = lazy(() => import("@/components/MiniProjects"));
 const CalculatorHub = lazy(() => import("@/components/CalculatorHub"));
+const InteractiveMultimeter = lazy(() => import("@/components/InteractiveMultimeter"));
 const GlobalSearch = lazy(() => import("@/components/GlobalSearch"));
 
 const SectionFallback = () => (
