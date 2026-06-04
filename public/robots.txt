@@ -28,6 +28,7 @@ User-agent: *
 Allow: /
 Disallow: /*?q=
 Disallow: /api/
+Disallow: /auth
 
 # Crawl optimization
 Crawl-delay: 1
