@@ -122,7 +122,7 @@ const GuiaMultimetro = () => {
     <ArticleLayout
       title="Aprende a usar el Multímetro (Tester) desde cero"
       subtitle="Guía Definitiva del Multímetro: tipos, modelos populares, simbología, anatomía interactiva y reglas de seguridad imprescindibles."
-      slug="guia-multimetro"
+      slug="/guia-multimetro"
       datePublished="2026-06-02"
       dateModified="2026-06-02"
     >
