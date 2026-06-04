@@ -112,7 +112,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
   }, [location.pathname]);
 
   useEffect(() => {
-    const articleUrl = slug ? `${SITE_ORIGIN}/articulos/${slug}` : SITE_ORIGIN;
+    const articleUrl = articlePath ? `${SITE_ORIGIN}${articlePath}` : SITE_ORIGIN;
     const articleImage = resolveArticleImage(image);
 
     const articleJsonLd = {
