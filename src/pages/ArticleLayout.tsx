@@ -68,10 +68,17 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
     [location.pathname],
   );
 
+  // Permitir slugs absolutos (ej. "/guia-multimetro") para páginas fuera de /articulos
+  const articlePath = slug
+    ? slug.startsWith("/")
+      ? slug
+      : `/articulos/${slug}`
+    : undefined;
+
   usePageMeta({
     title: `${title} | ElectroLab Pro`,
     description: subtitle,
-    canonical: slug ? `/articulos/${slug}` : undefined,
+    canonical: articlePath,
     image,
     ogType: "article",
   });
