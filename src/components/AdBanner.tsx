@@ -192,14 +192,21 @@ const AdBanner = ({
   // mínima en todos los breakpoints y no hay CLS.
   const failed = status === "timeout" || status === "blocked" || status === "error";
 
+  // En producción, si el anuncio no carga (timeout/blocked/error) colapsamos
+  // la caja entera: sin altura mínima, sin borde, sin texto. Así no aparece
+  // el cartel "Anuncio no disponible" molestando al usuario.
+  // En modo debug (?debug=ads o localhost) mantenemos el contenedor visible
+  // con el overlay de estado para poder diagnosticar.
+  if (failed && !showDiag) {
+    return <div ref={adRef} className={className} aria-hidden="true" />;
+  }
+
   return (
     <div
       ref={adRef}
       className={`relative w-full overflow-hidden ${className}`}
       style={{
         minHeight: `${mobileH}px`,
-        // contain: layout evita que cualquier reflow del iframe interno
-        // empuje contenido vecino mientras AdSense pinta.
         contain: "layout",
       }}
     >
@@ -219,46 +226,14 @@ const AdBanner = ({
         data-adbanner={slot}
         style={{ minHeight: `${mobileH}px`, position: "relative" }}
       >
-        {!filled && (
+        {!filled && !failed && (
           <div
-            role={failed ? "status" : undefined}
-            aria-live={failed ? "polite" : undefined}
-            aria-hidden={failed ? undefined : "true"}
-            className={`absolute inset-0 flex flex-col items-center justify-center gap-1 px-3 text-center bg-muted/30 rounded-md border border-dashed border-border/40 ${
-              failed ? "" : "animate-pulse"
-            }`}
+            aria-hidden="true"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-1 px-3 text-center bg-muted/30 rounded-md border border-dashed border-border/40 animate-pulse"
           >
-            {failed ? (
-              <>
-                <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground/70">
-                  Anuncio no disponible
-                </span>
-                <span className="text-[10px] text-muted-foreground/50 max-w-[260px] leading-snug">
-                  El espacio publicitario no se cargó. Mientras tanto, podés seguir explorando ElectroLab Pro.
-                </span>
-                {isInternalFallback ? (
-                  <Link
-                    to={resolvedFallback}
-                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
-                  >
-                    {fallbackLabel} →
-                  </Link>
-                ) : (
-                  <a
-                    href={resolvedFallback}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
-                  >
-                    {fallbackLabel} →
-                  </a>
-                )}
-              </>
-            ) : (
-              <span className="text-xs font-mono text-muted-foreground/60">
-                Publicidad
-              </span>
-            )}
+            <span className="text-xs font-mono text-muted-foreground/60">
+              Publicidad
+            </span>
           </div>
         )}
 
