@@ -258,7 +258,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
 
       {/* AdSense: Después del hero en artículos */}
       <div className="container mx-auto px-4 pt-6">
-        <AdBanner slot="3756475501" format="auto" className="min-h-[90px] md:min-h-[100px]" fallbackUrl="/" />
+        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[90px] md:min-h-[100px]" fallbackUrl="/" />
       </div>
 
       <div className="container mx-auto px-4 py-10">
@@ -315,12 +315,12 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
 
             {/* AdSense: Después del contenido del artículo */}
             <div className="mt-6">
-              <AdBanner slot="3756475501" format="auto" className="min-h-[90px] md:min-h-[250px]" fallbackUrl="/" />
+              <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[90px] md:min-h-[250px]" fallbackUrl="/" />
             </div>
           </article>
           <aside className="hidden lg:flex flex-col gap-6 w-64 shrink-0">
             <div className="sticky top-24 space-y-6">
-              <AdBanner slot="3756475501" format="vertical" className="min-h-[250px]" fallbackUrl="/" />
+              <AdBanner slot={AD_SLOT_SIDEBAR} format="vertical" className="min-h-[250px]" fallbackUrl="/" />
               <div className="p-4 rounded-xl border border-border bg-card/50 space-y-3">
                 <h4 className="text-sm font-bold font-mono flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" /> Más artículos
