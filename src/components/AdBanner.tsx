@@ -78,8 +78,8 @@ const AdBanner = ({
   minHeightMobile,
   minHeightDesktop,
   showDiagnostics,
-  fallbackUrl,
-  fallbackLabel = "Volver al inicio",
+  fallbackUrl: _fallbackUrl,
+  fallbackLabel: _fallbackLabel,
 }: AdBannerProps) => {
   const adRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
@@ -88,8 +88,6 @@ const AdBanner = ({
 
   const showDiag = showDiagnostics ?? isDev;
   const filled = status === "filled";
-  const resolvedFallback = resolveFallbackUrl(fallbackUrl);
-  const isInternalFallback = resolvedFallback.startsWith("/");
 
   const mobileH = minHeightMobile ?? (format === "vertical" ? 250 : 100);
   const desktopH = minHeightDesktop ?? (format === "vertical" ? 600 : 120);
