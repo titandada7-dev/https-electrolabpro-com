@@ -28,22 +28,7 @@ interface AdBannerProps {
   fallbackLabel?: string;
 }
 
-/** Garantiza una URL utilizable; si no es válida, devuelve "/" (home). */
-const resolveFallbackUrl = (url?: string): string => {
-  if (!url || typeof url !== "string") return "/";
-  const trimmed = url.trim();
-  if (!trimmed) return "/";
-  // Rutas internas
-  if (trimmed.startsWith("/")) return trimmed;
-  // URLs absolutas: validar
-  try {
-    const u = new URL(trimmed);
-    if (u.protocol === "http:" || u.protocol === "https:") return u.toString();
-  } catch {
-    /* inválida → fallback */
-  }
-  return "/";
-};
+
 
 const STATUS_LABEL: Record<AdStatus, string> = {
   idle: "Esperando viewport",
