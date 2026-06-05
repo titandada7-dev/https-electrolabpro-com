@@ -132,10 +132,10 @@ const AdBanner = ({
         fallbackTimer = window.setTimeout(() => {
           setStatus((prev) => {
             if (prev === "filled") return prev;
-            setReason("Sin respuesta de AdSense en 6s (sin fill o bloqueado)");
+            setReason("Sin respuesta de AdSense en 12s (sin fill o bloqueado)");
             return "timeout";
           });
-        }, 6000);
+        }, 12000);
 
         const ins = el.querySelector("ins.adsbygoogle") as HTMLElement | null;
         if (ins) {
