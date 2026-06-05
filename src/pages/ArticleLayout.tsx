@@ -2,6 +2,7 @@ import { Zap, ArrowLeft, BookOpen, Clock, Calendar, Search, ArrowRight } from "l
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import AdBanner from "@/components/AdBanner";
+import { AD_SLOT_INLINE, AD_SLOT_SIDEBAR } from "@/config/adsense";
 import LabProRecommendations from "@/components/LabProRecommendations";
 import AuthorBio from "@/components/AuthorBio";
 import Breadcrumbs from "@/components/Breadcrumbs";

@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import AdBanner from "@/components/AdBanner";
+import { AD_SLOT_INLINE } from "@/config/adsense";
 
 const Contacto = () => {
   usePageMeta({

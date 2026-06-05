@@ -5,6 +5,7 @@ import { usePageMeta } from "@/hooks/use-page-meta";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import AuthorBio from "@/components/AuthorBio";
 import AdBanner from "@/components/AdBanner";
+import { AD_SLOT_INLINE } from "@/config/adsense";
 import EjerciciosPracticos from "@/components/EjerciciosPracticos";
 import resistorImg from "@/assets/resistor-color-code.png";
 import resistorRealImg from "@/assets/resistencias-reales.webp";

@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Zap } from "lucide-react";
 import CalculatorEduLink from "@/components/CalculatorEduLink";
 import AdBanner from "./AdBanner";
+import { AD_SLOT_INLINE } from "@/config/adsense";
 
 const capUnits = [
   { label: "F", factor: 1 },

@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
 import AdSenseSlot from "@/components/AdSenseSlot";
+import { AD_SLOT_HEADER } from "@/config/adsense";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
