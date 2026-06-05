@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Zap } from "lucide-react";
 import CalculatorEduLink from "@/components/CalculatorEduLink";
 import AdBanner from "./AdBanner";
+import { AD_SLOT_INLINE } from "@/config/adsense";
 
 const capUnits = [
   { label: "F", factor: 1 },
@@ -100,7 +101,7 @@ const CapacitiveReactanceCalculator = () => {
               <p className="text-3xl font-mono font-bold text-primary">{xc} Ω</p>
             </div>
 
-            <AdBanner slot="3756475501" className="mt-2" fallbackUrl="/" />
+            <AdBanner slot={AD_SLOT_INLINE} className="mt-2" fallbackUrl="/" />
 
             <div className="p-4 rounded-lg bg-secondary/20 border border-border space-y-2">
               <p className="text-sm font-mono font-semibold text-foreground">📘 ¿Qué es la reactancia capacitiva?</p>

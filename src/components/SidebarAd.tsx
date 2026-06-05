@@ -1,15 +1,11 @@
 import AdSenseSlot from "./AdSenseSlot";
+import { AD_SLOT_SIDEBAR } from "@/config/adsense";
 
 /**
  * Anuncio lateral derecho (rascacielos vertical 160x600).
- * Wrapper fino sobre AdSenseSlot variant="sidebar" para mantener compatibilidad
- * con los imports existentes en App.tsx.
- *
- * Para reemplazar el slot: cambiá SIDEBAR_SLOT por el ID real generado en
- * AdSense → Anuncios → Por unidad → Display (formato vertical/skyscraper).
+ * Wrapper sobre AdSenseSlot variant="sidebar".
+ * El ID del slot vive en src/config/adsense.ts.
  */
-const SIDEBAR_SLOT = "3756475501"; // TODO: reemplazar por slot vertical real
-
-const SidebarAd = () => <AdSenseSlot slot={SIDEBAR_SLOT} variant="sidebar" />;
+const SidebarAd = () => <AdSenseSlot slot={AD_SLOT_SIDEBAR} variant="sidebar" />;
 
 export default SidebarAd;

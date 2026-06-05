@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import AdBanner from "@/components/AdBanner";
+import { AD_SLOT_INLINE } from "@/config/adsense";
 
 const Contacto = () => {
   usePageMeta({
@@ -73,7 +74,7 @@ const Contacto = () => {
 
       {/* AdSense: Header banner */}
       <div className="container mx-auto px-4 pt-6">
-        <AdBanner slot="3756475501" format="auto" className="min-h-[100px] md:min-h-[120px]" fallbackUrl="/" />
+        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[100px] md:min-h-[120px]" fallbackUrl="/" />
       </div>
 
       {/* Content */}

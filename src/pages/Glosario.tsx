@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Zap, ArrowLeft, Search, BookOpen } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import AdBanner from "@/components/AdBanner";
+import { AD_SLOT_INLINE } from "@/config/adsense";
 
 interface Term {
   term: string;
@@ -173,7 +174,7 @@ const Glosario = () => {
 
       {/* AdSense: Header banner */}
       <div className="container mx-auto px-4 pt-6">
-        <AdBanner slot="3756475501" format="auto" className="min-h-[100px] md:min-h-[120px]" fallbackUrl="/" />
+        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[100px] md:min-h-[120px]" fallbackUrl="/" />
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-5xl">

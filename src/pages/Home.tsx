@@ -18,6 +18,7 @@ import {
 import { Link } from "react-router-dom";
 import ThemeToggle from "@/components/ThemeToggle";
 import AdSenseSlot from "@/components/AdSenseSlot";
+import { AD_SLOT_HEADER } from "@/config/adsense";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
@@ -499,7 +500,7 @@ const Home = () => {
       </header>
 
       {/* ═══════════ AD SLOT BAJO EL HEADER (anti-CLS, vía AdSenseSlot) ═══════════ */}
-      <AdSenseSlot slot="3756475501" variant="header" fallbackUrl="/" />
+      <AdSenseSlot slot={AD_SLOT_HEADER} variant="header" fallbackUrl="/" />
 
       {/* ═══════════ #INICIO ═══════════ */}
       <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
