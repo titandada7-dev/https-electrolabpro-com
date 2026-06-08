@@ -351,16 +351,16 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
-        <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={electrolabLogo} alt="ElectroLab Pro logo" width="36" height="36" className="h-9 w-9 rounded-lg object-cover" loading="eager" decoding="async" />
-            <span className="text-lg font-bold tracking-tight text-foreground">
-              Electrolab<span className="text-primary">PRO</span>
+        <nav className="container mx-auto flex items-center justify-between gap-4 px-4 sm:px-6 py-3.5">
+          <Link to="/" className="flex items-center gap-3 shrink-0 min-w-0">
+            <img src={electrolabLogo} alt="ElectroLab Pro logo" width="36" height="36" className="h-9 w-9 rounded-lg object-cover shrink-0" loading="eager" decoding="async" />
+            <span className="text-lg font-bold tracking-tight truncate bg-gradient-to-r from-slate-300 via-sky-400 to-slate-500 bg-clip-text text-transparent dark:from-slate-200 dark:via-sky-300 dark:to-slate-400">
+              Electrolab<span className="bg-gradient-to-r from-sky-500 via-blue-600 to-sky-700 bg-clip-text text-transparent">PRO</span>
             </span>
           </Link>
 
           {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
-          <div className="hidden items-center gap-5 md:flex" role="menubar" aria-label="Navegación principal">
+          <div className="hidden items-center gap-4 lg:gap-5 md:flex min-w-0" role="menubar" aria-label="Navegación principal">
             {[
               { id: "inicio", label: "Inicio" },
               { id: "aprender", label: "Aprender" },
