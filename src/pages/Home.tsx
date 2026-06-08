@@ -506,7 +506,7 @@ const Home = () => {
       <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid opacity-[0.35] pointer-events-none" aria-hidden="true" />
         <div
-          className="relative w-full max-w-3xl rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
+          className="relative w-full max-w-3xl rounded-2xl border border-border/60 bg-background/70 dark:bg-card/40 backdrop-blur-sm shadow-md hover:shadow-lg transition-shadow duration-300 p-8 sm:p-12 text-center"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
             <CircuitBoard className="w-3.5 h-3.5" />
