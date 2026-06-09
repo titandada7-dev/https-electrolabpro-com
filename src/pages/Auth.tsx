@@ -54,7 +54,7 @@ const Auth = () => {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-sm">
         <h1 className="text-2xl font-bold text-foreground mb-2 text-center">Iniciar sesión</h1>
         <p className="text-sm text-muted-foreground text-center mb-8">
@@ -71,7 +71,7 @@ const Auth = () => {
           {loading ? "Conectando…" : "Continuar con Google"}
         </Button>
       </div>
-    </main>
+    </div>
   );
 };
 

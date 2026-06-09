@@ -203,7 +203,7 @@ const AdBanner = ({
             aria-hidden="true"
             className="absolute inset-0 flex flex-col items-center justify-center gap-1 px-3 text-center bg-muted/30 rounded-md border border-dashed border-border/40 animate-pulse"
           >
-            <span className="text-xs font-mono text-muted-foreground/60">
+            <span className="text-xs font-mono text-muted-foreground/80">
               Publicidad
             </span>
           </div>

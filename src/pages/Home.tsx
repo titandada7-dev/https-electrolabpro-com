@@ -485,7 +485,7 @@ const Home = () => {
               📖 Glosario Técnico
             </Link>
             <div className="border-t border-border pt-3 mt-2">
-              <p className="text-xs text-muted-foreground/60 uppercase tracking-wider font-semibold mb-2 px-3">Artículos</p>
+              <p className="text-xs text-muted-foreground/80 uppercase tracking-wider font-semibold mb-2 px-3">Artículos</p>
               {articleLinks.map((a) => (
                 <Link key={a.to} to={a.to} onClick={() => setMenuOpen(false)} className="block w-full text-left text-sm text-muted-foreground hover:text-foreground hover:bg-accent py-2.5 px-3 rounded-lg min-h-[40px] transition-colors">
                   {a.label}
@@ -1446,7 +1446,7 @@ const Home = () => {
             </a>
           ))}
         </div>
-        <p className="text-center text-[10px] text-muted-foreground/50 mt-4 italic">
+        <p className="text-center text-[10px] text-muted-foreground/80 mt-4 italic">
           En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
         </p>
       </section>
@@ -1464,25 +1464,25 @@ const Home = () => {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
             <Link to="/guia-resistencias" className="text-primary text-[10px] uppercase tracking-wider hover:underline font-semibold transition-colors min-h-[36px] flex items-center">📘 Guía de resistencias</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Privacidad</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Contacto</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/glosario" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Glosario</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/terminos-y-condiciones" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Términos</Link>
           </div>
-          <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
+          <p className="text-muted-foreground/80 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
             En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
           </p>
           <div className="border-t border-border pt-4 mt-2">
             <p className="text-primary/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad y Responsabilidad</p>
-            <p className="text-muted-foreground/50 text-[9px] leading-relaxed max-w-2xl mx-auto">
+            <p className="text-muted-foreground/80 text-[9px] leading-relaxed max-w-2xl mx-auto">
               Los cálculos y datos proporcionados por ElectroLab Pro son estrictamente para fines educativos y de prototipado.
               La electrónica implica riesgos; siempre verifica los valores de componentes con un multímetro real antes de energizar un circuito.
               J.A. Sanchez y ElectroLab Pro no se hacen responsables por daños materiales o personales derivados del uso de esta herramienta.

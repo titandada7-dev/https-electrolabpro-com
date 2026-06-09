@@ -244,7 +244,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
             {subtitle}
           </p>
-          <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground/60 pt-2">
+          <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground/80 pt-2">
             <span className="inline-flex items-center gap-1">
               <Calendar className="w-3 h-3" />
               {new Date(dateModified).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -340,7 +340,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
                   <li><Link to="/articulos/sensores-arduino" className="text-muted-foreground hover:text-primary transition-colors">Sensores Arduino</Link></li>
                   <li><Link to="/articulos/pantalla-oled-ssd1306" className="text-muted-foreground hover:text-primary transition-colors">Pantallas OLED SSD1306</Link></li>
                   <li className="pt-2 border-t border-border mt-2">
-                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-bold">Blog</span>
+                    <span className="text-[10px] uppercase tracking-wider text-muted-foreground/80 font-bold">Blog</span>
                   </li>
                   <li><Link to="/blog/mi-primer-laboratorio" className="text-muted-foreground hover:text-primary transition-colors">Mi primer laboratorio</Link></li>
                   <li><Link to="/blog/mis-5-proyectos-arduino-favoritos" className="text-muted-foreground hover:text-primary transition-colors">5 proyectos Arduino favoritos</Link></li>
@@ -360,25 +360,25 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
             <Link to="/guia-resistencias" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Guía de Resistencias</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Privacidad</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Contacto</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/glosario" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Glosario</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/terminos-y-condiciones" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Términos</Link>
           </div>
-          <p className="text-muted-foreground/60 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
+          <p className="text-muted-foreground/80 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
             En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
           </p>
           <div className="border-t border-border pt-4 mt-2">
             <p className="text-primary/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad</p>
-            <p className="text-muted-foreground/50 text-[9px] leading-relaxed max-w-2xl mx-auto">
+            <p className="text-muted-foreground/80 text-[9px] leading-relaxed max-w-2xl mx-auto">
               La electrónica implica riesgos inherentes. Siempre verifica los valores de los componentes con un multímetro real antes de energizar un circuito para evitar daños personales o materiales.
             </p>
           </div>

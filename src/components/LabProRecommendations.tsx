@@ -33,7 +33,7 @@ const LabProRecommendations = () => {
           </a>
         ))}
       </div>
-      <p className="text-[9px] text-muted-foreground/30 font-mono">
+      <p className="text-[9px] text-muted-foreground/70 font-mono">
         Enlaces de afiliado · Sin costo adicional para vos
       </p>
     </div>

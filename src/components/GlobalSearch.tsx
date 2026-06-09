@@ -249,7 +249,7 @@ const GlobalSearch = ({ open, onOpenChange }: GlobalSearchProps) => {
           {noResults ? (
             <div className="px-6 py-10 text-center">
               <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-muted/50 mb-4">
-                <Search className="w-6 h-6 text-muted-foreground/60" />
+                <Search className="w-6 h-6 text-muted-foreground/80" />
               </div>
               <p className="text-base font-medium text-foreground mb-1">
                 Sin resultados para <span className="font-mono">"{query}"</span>

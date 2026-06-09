@@ -260,13 +260,13 @@ const Glosario = () => {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Privacidad</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Aviso Legal</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Contacto</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/terminos-y-condiciones" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Términos</Link>
           </div>
         </div>

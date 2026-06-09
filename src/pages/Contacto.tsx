@@ -163,11 +163,11 @@ const Contacto = () => {
           </p>
           <div className="flex items-center justify-center gap-4">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Privacidad</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/aviso-legal" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Aviso Legal</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Contacto</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-foreground transition-colors">Sobre Nosotros</Link>
           </div>
         </div>

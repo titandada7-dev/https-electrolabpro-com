@@ -25,7 +25,7 @@ const TerminosCondiciones = () => {
         <Breadcrumbs />
       </div>
 
-      <main className="container mx-auto px-6 py-12 max-w-3xl">
+      <div className="container mx-auto px-6 py-12 max-w-3xl">
         <div className="flex items-center gap-3 mb-8">
           <FileText className="w-8 h-8 text-primary" />
           <h1 className="text-3xl font-bold">Términos y Condiciones de Uso</h1>
@@ -166,7 +166,7 @@ const TerminosCondiciones = () => {
             <ArrowLeft className="w-4 h-4" /> Volver a ElectroLab Pro
           </Link>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
