@@ -2,9 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Size-adjusted fallback fonts to minimize CLS when Google Fonts swap in.
+   Metrics tuned so Arial matches Inter / Space Grotesk dimensions. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  src: local('Arial');
+  size-adjust: 105%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
 html {
   scroll-behavior: smooth;
 }
+
 
 @layer base {
   :root {
