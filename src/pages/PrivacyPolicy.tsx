@@ -26,7 +26,7 @@ const PrivacyPolicy = () => {
         <Breadcrumbs />
       </div>
 
-      <main className="container mx-auto px-4 py-10 max-w-3xl">
+      <div className="container mx-auto px-4 py-10 max-w-3xl">
         <p className="text-muted-foreground mb-6">
           En ElectroLab Pro, gestionado por <strong>J.A. Sanchez</strong>, la privacidad de nuestros visitantes es
           una prioridad. Esta página detalla cómo se recopila y utiliza la información.
@@ -91,7 +91,7 @@ const PrivacyPolicy = () => {
             </Link>.
           </p>
         </Section>
-      </main>
+      </div>
 
       <footer className="w-full py-8 mt-auto bg-card/50 border-t border-border">
         <div className="container mx-auto px-4 text-center">
