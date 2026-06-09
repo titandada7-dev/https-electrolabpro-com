@@ -28,8 +28,8 @@ html {
 
 @layer base {
   :root {
-    /* Cloud White palette — airy SaaS, blue-tinted whites + electric blue accent */
-    --background: 210 40% 99%;
+    /* Cloud White palette — airy SaaS, brighter, more luminous */
+    --background: 210 60% 99.5%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -38,25 +38,24 @@ html {
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Blue 500 #3B82F6 — brighter, more luminous than indigo */
-    --primary: 217 91% 60%;
+    --primary: 217 91% 58%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 199 89% 74%;
+    --primary-glow: 199 95% 70%;
 
-    --secondary: 214 32% 94%;
+    --secondary: 214 50% 96%;
     --secondary-foreground: 222 40% 22%;
 
-    --muted: 214 32% 94%;
+    --muted: 214 45% 96%;
     --muted-foreground: 215 16% 42%;
 
-    --accent: 213 94% 95%;
+    --accent: 213 100% 94%;
     --accent-foreground: 217 91% 45%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 28% 88%;
-    --input: 214 28% 88%;
+    --border: 214 32% 90%;
+    --input: 214 32% 90%;
     --ring: 217 91% 60%;
 
     --highlight: 217 91% 60%;
@@ -67,9 +66,9 @@ html {
     --sidebar-foreground: 222 47% 11%;
     --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 213 94% 95%;
+    --sidebar-accent: 213 100% 94%;
     --sidebar-accent-foreground: 217 91% 45%;
-    --sidebar-border: 214 28% 88%;
+    --sidebar-border: 214 32% 90%;
     --sidebar-ring: 217 91% 60%;
   }
 
