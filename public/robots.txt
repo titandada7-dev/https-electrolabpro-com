@@ -33,5 +33,5 @@ Disallow: /auth
 # Crawl optimization
 Crawl-delay: 1
 
-Sitemap: https://www.electrolabpro.com/sitemap.xml
+Sitemap: https://electrolabpro.com/sitemap.xml
 Host: https://www.electrolabpro.com
