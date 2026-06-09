@@ -22,11 +22,24 @@ const isIndexableUrl = (url: string): boolean => {
   return true;
 };
 
-const readBreadcrumbSchema = () => {
+interface BreadcrumbItem {
+  "@type": "ListItem";
+  position: number;
+  name: string;
+  item: string;
+}
+
+interface BreadcrumbSchema {
+  "@context": string;
+  "@type": "BreadcrumbList";
+  itemListElement: BreadcrumbItem[];
+}
+
+const readBreadcrumbSchema = (): BreadcrumbSchema | null => {
   const node = document.getElementById("breadcrumbs-jsonld") as HTMLScriptElement | null;
   if (!node) return null;
   try {
-    return JSON.parse(node.textContent || "");
+    return JSON.parse(node.textContent || "") as BreadcrumbSchema;
   } catch {
     return null;
   }
@@ -49,12 +62,12 @@ describe("Breadcrumbs — JSON-LD jerárquico", () => {
     renderAt("/articulos/ley-de-ohm", "Ley de Ohm explicada");
     const schema = readBreadcrumbSchema()!;
     expect(schema["@type"]).toBe("BreadcrumbList");
-    const positions = schema.itemListElement.map((i: any) => i.position);
+    const positions = schema.itemListElement.map((i) => i.position);
     expect(positions).toEqual([1, 2, 3]);
     expect(schema.itemListElement[0].name).toBe("Inicio");
     expect(schema.itemListElement[1].name).toBe("Artículos");
     expect(schema.itemListElement[2].item).toBe(`${SITE}/articulos/ley-de-ohm`);
-    schema.itemListElement.forEach((item: any) => {
+    schema.itemListElement.forEach((item) => {
       expect(isIndexableUrl(item.item)).toBe(true);
     });
   });
@@ -69,13 +82,13 @@ describe("Breadcrumbs — JSON-LD jerárquico", () => {
   it("Glosario: emite Home > Glosario", () => {
     renderAt("/glosario");
     const schema = readBreadcrumbSchema()!;
-    expect(schema.itemListElement.map((i: any) => i.name)).toEqual(["Inicio", "Glosario"]);
+    expect(schema.itemListElement.map((i) => i.name)).toEqual(["Inicio", "Glosario"]);
   });
 
   it("Guía de resistencias: incluye sección padre 'Recursos'", () => {
     renderAt("/guia-resistencias");
     const schema = readBreadcrumbSchema()!;
-    const names = schema.itemListElement.map((i: any) => i.name);
+    const names = schema.itemListElement.map((i) => i.name);
     expect(names).toContain("Recursos");
     expect(names[names.length - 1]).toBe("Guía de resistencias");
   });

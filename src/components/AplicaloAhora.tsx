@@ -28,7 +28,7 @@ const AplicaloAhora = ({ title = "Aplicalo ahora con nuestras herramientas", too
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {tools.map((t) => (
         <Link
-          key={t.to}
+          key={`${t.to}-${t.label}`}
           to={t.to}
           className="group block p-4 rounded-xl border border-border bg-background/60 hover:border-primary/50 hover:bg-card transition-all"
         >
