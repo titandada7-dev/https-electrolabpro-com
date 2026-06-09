@@ -20,7 +20,7 @@ const AdBannerDiscrete = ({
         <p className="text-[9px] text-muted-foreground/35 uppercase tracking-[0.2em] font-mono mb-2 text-center select-none">
           Publicidad
         </p>
-        <AdBanner slot={slot} format={format} fallbackUrl={fallbackUrl} />
+        <AdBanner slot={slot} format={format} />
       </div>
     </div>
   );

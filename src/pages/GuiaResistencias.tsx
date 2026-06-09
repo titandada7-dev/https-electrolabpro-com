@@ -169,7 +169,7 @@ const GuiaResistencias = () => {
       </section>
 
       <div className="container mx-auto px-4 pt-6">
-        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[90px] md:min-h-[100px]" fallbackUrl="/" />
+        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[90px] md:min-h-[100px]" />
       </div>
 
       <article className="container mx-auto px-4 py-10 max-w-3xl prose-custom space-y-6 text-muted-foreground leading-relaxed text-[15px]">
@@ -326,7 +326,7 @@ const GuiaResistencias = () => {
           que la corriente quede por debajo de 5 mA para no malgastar batería.
         </p>
 
-        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[90px] my-6" fallbackUrl="/" />
+        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[90px] my-6" />
 
         <h2 id="codigo-colores" className="scroll-mt-24 text-xl md:text-2xl font-mono font-bold text-foreground mt-8">Código de colores: cómo leer una resistencia</h2>
         <p>

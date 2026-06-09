@@ -10,6 +10,7 @@ import { toast } from "@/hooks/use-toast";
 import { usePageMeta } from "@/hooks/use-page-meta";
 import AdBanner from "@/components/AdBanner";
 import { AD_SLOT_INLINE } from "@/config/adsense";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contacto = () => {
   usePageMeta({
@@ -19,18 +20,27 @@ const Contacto = () => {
   const [formData, setFormData] = useState({ nombre: "", email: "", asunto: "", mensaje: "" });
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.nombre.trim() || !formData.email.trim() || !formData.asunto.trim() || !formData.mensaje.trim()) {
       toast({ title: "Error", description: "Por favor completa todos los campos.", variant: "destructive" });
       return;
     }
     setSending(true);
-    const mailtoLink = `mailto:titandada7@gmail.com?subject=${encodeURIComponent(formData.asunto)}&body=${encodeURIComponent(`Nombre: ${formData.nombre}\nEmail: ${formData.email}\n\n${formData.mensaje}`)}`;
-    window.open(mailtoLink, "_blank");
-    setSending(false);
-    toast({ title: "¡Gracias!", description: "Se ha abierto tu cliente de correo para enviar el mensaje." });
-    setFormData({ nombre: "", email: "", asunto: "", mensaje: "" });
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact", {
+        body: formData,
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      toast({ title: "¡Mensaje enviado!", description: "Recibimos tu mensaje y te responderemos lo antes posible." });
+      setFormData({ nombre: "", email: "", asunto: "", mensaje: "" });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Hubo un problema al enviar el mensaje.";
+      toast({ title: "Error", description: msg, variant: "destructive" });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -74,7 +84,7 @@ const Contacto = () => {
 
       {/* AdSense: Header banner */}
       <div className="container mx-auto px-4 pt-6">
-        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[100px] md:min-h-[120px]" fallbackUrl="/" />
+        <AdBanner slot={AD_SLOT_INLINE} format="auto" className="min-h-[100px] md:min-h-[120px]" />
       </div>
 
       {/* Content */}

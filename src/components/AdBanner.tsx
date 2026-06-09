@@ -19,16 +19,11 @@ interface AdBannerProps {
   minHeightDesktop?: number;
   /** Show diagnostic overlay (loading/filled/timeout/blocked + reason). Defaults to dev only. */
   showDiagnostics?: boolean;
-  /**
-   * URL de respaldo cuando el anuncio no carga (timeout / blocked / error).
-   * Si se omite o el destino no es válido, se redirige a la página principal "/".
-   */
+  /** @deprecated kept for backwards-compat with existing callers; ignored. */
   fallbackUrl?: string;
-  /** Texto opcional del enlace de respaldo. */
+  /** @deprecated kept for backwards-compat with existing callers; ignored. */
   fallbackLabel?: string;
 }
-
-
 
 const STATUS_LABEL: Record<AdStatus, string> = {
   idle: "Esperando viewport",
@@ -51,8 +46,6 @@ const STATUS_COLOR: Record<AdStatus, string> = {
 const isDev =
   typeof window !== "undefined" &&
   (window.location.hostname === "localhost" ||
-    window.location.hostname.includes("lovableproject.com") ||
-    window.location.hostname.includes("lovable.app") ||
     window.location.search.includes("debug=ads"));
 
 const AdBanner = ({
@@ -93,13 +86,6 @@ const AdBanner = ({
         return;
       }
 
-      // Detect AdSense script presence
-      const hasScript =
-        typeof window !== "undefined" &&
-        Array.isArray(window.adsbygoogle) === false
-          ? !!window.adsbygoogle
-          : true;
-
       if (typeof window === "undefined" || !window.adsbygoogle) {
         setReason("Script adsbygoogle no disponible (posible AdBlock)");
         setStatus("blocked");
@@ -110,7 +96,7 @@ const AdBanner = ({
         setStatus("loading");
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         pushed.current = true;
-        void hasScript;
+        
 
         fallbackTimer = window.setTimeout(() => {
           setStatus((prev) => {

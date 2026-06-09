@@ -33,6 +33,7 @@ const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
 const GuiaResistencias = lazy(() => import("./pages/GuiaResistencias"));
 const GuiaMultimetro = lazy(() => import("./pages/GuiaMultimetro"));
 const Auth = lazy(() => import("./pages/Auth"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
 const CodigoColoresResistencias = lazy(() => import("./pages/articles/CodigoColoresResistencias"));
@@ -115,18 +116,7 @@ function App() {
         <Route path="/blog/mi-primer-laboratorio" element={<BlogPrimerLaboratorio />} />
         <Route path="/blog/mis-5-proyectos-arduino-favoritos" element={<BlogProyectosArduino />} />
         <Route path="/blog/como-disene-mi-primer-pcb-kicad" element={<BlogDisenoPCB />} />
-        <Route
-          path="*"
-          element={
-            <div className="min-h-screen flex flex-col items-center justify-center text-center p-6">
-              <h1 className="text-3xl font-bold mb-4">404</h1>
-              <p className="mb-6">La página que buscas no existe.</p>
-              <a href="/" className="text-primary underline">
-                Volver a ElectroLab Pro
-              </a>
-            </div>
-          }
-        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       </Suspense>
       <NavButtons />
