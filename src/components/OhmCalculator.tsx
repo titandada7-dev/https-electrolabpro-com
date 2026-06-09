@@ -11,33 +11,33 @@ const OhmCalculator = () => {
   const [current, setCurrent] = useState("");
   const [resistance, setResistance] = useState("");
 
-  const calculate = (field: "V" | "I" | "R", v: string, i: string, r: string) => {
-    const V = parseFloat(v);
-    const I = parseFloat(i);
-    const R = parseFloat(r);
-
-    if (field === "V" && !isNaN(I) && !isNaN(R)) {
-      setVoltage((I * R).toFixed(4));
-    } else if (field === "I" && !isNaN(V) && !isNaN(R) && R !== 0) {
-      setCurrent((V / R).toFixed(4));
-    } else if (field === "R" && !isNaN(V) && !isNaN(I) && I !== 0) {
-      setResistance((V / I).toFixed(4));
-    }
-  };
-
   const handleChange = (field: "V" | "I" | "R", value: string) => {
-    if (field === "V") {
-      setVoltage(value);
-      calculate("I", value, current, resistance);
-      calculate("R", value, current, resistance);
-    } else if (field === "I") {
-      setCurrent(value);
-      calculate("V", voltage, value, resistance);
-      calculate("R", voltage, value, resistance);
-    } else {
-      setResistance(value);
-      calculate("V", voltage, current, value);
-      calculate("I", voltage, current, value);
+    // Set the field being edited and compute the single missing one.
+    // Never recompute a field the user already filled — that overwrote
+    // user input previously and could loop.
+    const next = { V: voltage, I: current, R: resistance, [field]: value };
+    const V = parseFloat(next.V);
+    const I = parseFloat(next.I);
+    const R = parseFloat(next.R);
+
+    // Persist the edited field first.
+    if (field === "V") setVoltage(value);
+    else if (field === "I") setCurrent(value);
+    else setResistance(value);
+
+    // Determine which of the other two is empty and compute it.
+    const emptyOthers = (["V", "I", "R"] as const).filter(
+      (k) => k !== field && next[k].trim() === ""
+    );
+    if (emptyOthers.length !== 1) return; // need exactly two filled inputs
+
+    const target = emptyOthers[0];
+    if (target === "V" && !isNaN(I) && !isNaN(R)) {
+      setVoltage((I * R).toFixed(4));
+    } else if (target === "I" && !isNaN(V) && !isNaN(R) && R !== 0) {
+      setCurrent((V / R).toFixed(4));
+    } else if (target === "R" && !isNaN(V) && !isNaN(I) && I !== 0) {
+      setResistance((V / I).toFixed(4));
     }
   };
 
