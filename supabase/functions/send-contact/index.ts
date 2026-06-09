@@ -25,11 +25,14 @@ function escapeHtml(s: string): string {
 }
 
 function toBase64Url(s: string): string {
-  // btoa on UTF-8 safe string
   const bytes = new TextEncoder().encode(s);
   let bin = "";
   for (const b of bytes) bin += String.fromCharCode(b);
   return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function encodeSubject(s: string): string {
+  return `=?UTF-8?B?${btoa(unescape(encodeURIComponent(s)))}?=`;
 }
 
 function buildRawEmail(opts: {
@@ -43,7 +46,7 @@ function buildRawEmail(opts: {
   const headers = [
     `To: ${opts.to}`,
     `Reply-To: ${opts.replyTo}`,
-    `Subject: =?UTF-8?B?${btoa(unescape(encodeURIComponent(opts.subject)))}?=`,
+    `Subject: ${encodeSubject(opts.subject)}`,
     "MIME-Version: 1.0",
     `Content-Type: multipart/alternative; boundary="${boundary}"`,
   ].join("\r\n");
@@ -177,4 +180,36 @@ Deno.serve(async (req) => {
   });
 
   const ip =
-    req.headers.get("c
+    req.headers.get("cf-connecting-ip") ??
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    null;
+  const userAgent = req.headers.get("user-agent")?.slice(0, 500) ?? null;
+
+  const { error } = await supabase.from("contact_submissions").insert({
+    nombre,
+    email,
+    asunto,
+    mensaje,
+    ip,
+    user_agent: userAgent,
+  });
+
+  if (error) {
+    console.error("contact insert failed", error);
+    return new Response(JSON.stringify({ error: "No pudimos guardar tu mensaje. Probá de nuevo." }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
+  try {
+    await sendGmailNotification({ nombre, email, asunto, mensaje, ip });
+  } catch (e) {
+    console.error("notification error", e);
+  }
+
+  return new Response(JSON.stringify({ ok: true }), {
+    status: 200,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+});
