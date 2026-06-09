@@ -96,7 +96,7 @@ const AdBanner = ({
         setStatus("loading");
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         pushed.current = true;
-        void hasScript;
+        
 
         fallbackTimer = window.setTimeout(() => {
           setStatus((prev) => {
