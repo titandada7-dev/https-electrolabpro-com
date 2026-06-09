@@ -11,6 +11,8 @@ type AdStatus = "idle" | "loading" | "filled" | "timeout" | "blocked" | "error";
 interface AdBannerProps {
   slot: string;
   format?: string;
+  /** AdSense layout hint, e.g. "in-article". Required cuando format="fluid". */
+  layout?: string;
   responsive?: boolean;
   className?: string;
   /** Reserved height on mobile (<768px) to prevent CLS. Default 100px. */
@@ -51,6 +53,7 @@ const isDev =
 const AdBanner = ({
   slot,
   format = "auto",
+  layout,
   responsive = true,
   className = "",
   minHeightMobile,
@@ -222,10 +225,12 @@ const AdBanner = ({
           style={{
             display: failed ? "none" : "block",
             minHeight: `${mobileH}px`,
+            textAlign: layout === "in-article" ? "center" : undefined,
           }}
           data-ad-client="ca-pub-9393284878747603"
           data-ad-slot={slot}
           data-ad-format={format}
+          {...(layout ? { "data-ad-layout": layout } : {})}
           data-full-width-responsive={responsive ? "true" : "false"}
         />
       </div>

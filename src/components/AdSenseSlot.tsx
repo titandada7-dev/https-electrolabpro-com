@@ -71,14 +71,14 @@ const AdSenseSlot = ({
     );
   }
 
-  // inline
+  // inline (in-article)
   return (
     <div className={`w-full py-6 ${className}`}>
       <div className="rounded-md border border-border/40 bg-muted/20 p-3">
         <p className="text-[9px] text-muted-foreground/35 uppercase tracking-[0.2em] font-mono mb-2 text-center select-none">
           Publicidad
         </p>
-        <AdBanner slot={slot} format="auto" />
+        <AdBanner slot={slot} format="fluid" layout="in-article" responsive={false} />
       </div>
     </div>
   );
