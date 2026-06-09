@@ -101,7 +101,7 @@ const CapacitiveReactanceCalculator = () => {
               <p className="text-3xl font-mono font-bold text-primary">{xc} Ω</p>
             </div>
 
-            <AdBanner slot={AD_SLOT_INLINE} className="mt-2" fallbackUrl="/" />
+            <AdBanner slot={AD_SLOT_INLINE} className="mt-2" />
 
             <div className="p-4 rounded-lg bg-secondary/20 border border-border space-y-2">
               <p className="text-sm font-mono font-semibold text-foreground">📘 ¿Qué es la reactancia capacitiva?</p>
