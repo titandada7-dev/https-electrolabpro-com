@@ -19,16 +19,7 @@ interface AdBannerProps {
   minHeightDesktop?: number;
   /** Show diagnostic overlay (loading/filled/timeout/blocked + reason). Defaults to dev only. */
   showDiagnostics?: boolean;
-  /**
-   * URL de respaldo cuando el anuncio no carga (timeout / blocked / error).
-   * Si se omite o el destino no es válido, se redirige a la página principal "/".
-   */
-  fallbackUrl?: string;
-  /** Texto opcional del enlace de respaldo. */
-  fallbackLabel?: string;
 }
-
-
 
 const STATUS_LABEL: Record<AdStatus, string> = {
   idle: "Esperando viewport",
@@ -51,8 +42,6 @@ const STATUS_COLOR: Record<AdStatus, string> = {
 const isDev =
   typeof window !== "undefined" &&
   (window.location.hostname === "localhost" ||
-    window.location.hostname.includes("lovableproject.com") ||
-    window.location.hostname.includes("lovable.app") ||
     window.location.search.includes("debug=ads"));
 
 const AdBanner = ({

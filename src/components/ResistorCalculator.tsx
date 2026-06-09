@@ -34,6 +34,7 @@ const TOLERANCE_COLORS = [
 ];
 
 function formatResistance(ohms: number): string {
+  if (ohms === 0) return "0 Ω";
   if (ohms >= 1_000_000_000) return `${(ohms / 1_000_000_000).toFixed(ohms % 1_000_000_000 === 0 ? 0 : 1)} GΩ`;
   if (ohms >= 1_000_000) return `${(ohms / 1_000_000).toFixed(ohms % 1_000_000 === 0 ? 0 : 1)} MΩ`;
   if (ohms >= 1_000) return `${(ohms / 1_000).toFixed(ohms % 1_000 === 0 ? 0 : 1)} kΩ`;
