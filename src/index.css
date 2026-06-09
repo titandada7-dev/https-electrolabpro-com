@@ -28,49 +28,49 @@ html {
 
 @layer base {
   :root {
-    /* Modern Indigo + Slate palette (Linear/Vercel inspired) */
-    --background: 220 25% 98%;
-    --foreground: 224 47% 9%;
+    /* Cloud White palette — airy SaaS, blue-tinted whites + electric blue accent */
+    --background: 210 40% 99%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 47% 9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 47% 9%;
+    --popover-foreground: 222 47% 11%;
 
-    /* Indigo 500 #6366F1 */
-    --primary: 239 84% 67%;
+    /* Blue 500 #3B82F6 — brighter, more luminous than indigo */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 250 91% 76%;
+    --primary-glow: 199 89% 74%;
 
-    --secondary: 220 20% 95%;
-    --secondary-foreground: 224 30% 25%;
+    --secondary: 214 32% 94%;
+    --secondary-foreground: 222 40% 22%;
 
-    --muted: 220 20% 95%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 214 32% 94%;
+    --muted-foreground: 215 16% 42%;
 
-    --accent: 239 84% 96%;
-    --accent-foreground: 239 84% 40%;
+    --accent: 213 94% 95%;
+    --accent-foreground: 217 91% 45%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 18% 90%;
-    --input: 220 18% 90%;
-    --ring: 239 84% 67%;
+    --border: 214 28% 88%;
+    --input: 214 28% 88%;
+    --ring: 217 91% 60%;
 
-    --highlight: 239 84% 67%;
+    --highlight: 217 91% 60%;
 
     --radius: 0.875rem;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 224 47% 9%;
-    --sidebar-primary: 239 84% 67%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 239 84% 96%;
-    --sidebar-accent-foreground: 239 84% 40%;
-    --sidebar-border: 220 18% 90%;
-    --sidebar-ring: 239 84% 67%;
+    --sidebar-accent: 213 94% 95%;
+    --sidebar-accent-foreground: 217 91% 45%;
+    --sidebar-border: 214 28% 88%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
@@ -162,8 +162,8 @@ html {
 /* Subtle radial gradient backdrop for hero/feature sections */
 .bg-hero-gradient {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.12), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, hsl(var(--primary-glow) / 0.08), transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.18), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, hsl(var(--primary-glow) / 0.14), transparent 70%),
     hsl(var(--background));
 }
 
