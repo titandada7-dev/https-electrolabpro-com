@@ -19,6 +19,10 @@ interface AdBannerProps {
   minHeightDesktop?: number;
   /** Show diagnostic overlay (loading/filled/timeout/blocked + reason). Defaults to dev only. */
   showDiagnostics?: boolean;
+  /** @deprecated kept for backwards-compat with existing callers; ignored. */
+  fallbackUrl?: string;
+  /** @deprecated kept for backwards-compat with existing callers; ignored. */
+  fallbackLabel?: string;
 }
 
 const STATUS_LABEL: Record<AdStatus, string> = {
@@ -81,13 +85,6 @@ const AdBanner = ({
         setStatus("error");
         return;
       }
-
-      // Detect AdSense script presence
-      const hasScript =
-        typeof window !== "undefined" &&
-        Array.isArray(window.adsbygoogle) === false
-          ? !!window.adsbygoogle
-          : true;
 
       if (typeof window === "undefined" || !window.adsbygoogle) {
         setReason("Script adsbygoogle no disponible (posible AdBlock)");
