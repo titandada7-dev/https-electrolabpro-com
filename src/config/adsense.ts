@@ -9,6 +9,6 @@
  * - SIDEBAR: rascacielos vertical (160x600) fijo a la derecha en xl+.
  * - INLINE: bloque in-article (auto) dentro del contenido.
  */
-export const AD_SLOT_HEADER = "3756475501";
-export const AD_SLOT_SIDEBAR = "3756475501";
-export const AD_SLOT_INLINE = "3756475501";
+export const AD_SLOT_HEADER = "4474857232";
+export const AD_SLOT_SIDEBAR = "5732098588";
+export const AD_SLOT_INLINE = "5010919563";
