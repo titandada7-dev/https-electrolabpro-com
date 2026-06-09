@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(() => {
-    if (typeof window === "undefined") return true;
-    return localStorage.getItem("theme") !== "light";
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem("theme") === "dark";
   });
 
   useEffect(() => {
@@ -22,12 +22,12 @@ export default function ThemeToggle() {
   // Apply on mount
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-    if (saved === "light") {
-      document.documentElement.classList.remove("dark");
-      setDark(false);
-    } else {
+    if (saved === "dark") {
       document.documentElement.classList.add("dark");
       setDark(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setDark(false);
     }
   }, []);
 
