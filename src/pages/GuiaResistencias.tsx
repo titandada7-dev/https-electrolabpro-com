@@ -673,15 +673,15 @@ const GuiaResistencias = () => {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4">
             <Link to="/guia-resistencias" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Guía de resistencias</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/#calculadora" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Calculadoras</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/glosario" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Glosario</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/contacto" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Contacto</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Privacidad</Link>
-            <span className="text-muted-foreground/40 text-[10px]">|</span>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary transition-colors">Sobre Nosotros</Link>
           </div>
         </div>

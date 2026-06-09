@@ -55,7 +55,7 @@ const AdSenseSlot = ({
         className={`hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 z-30 w-[160px] ${className}`}
       >
         <div className="rounded-md border border-border/40 bg-muted/20 p-2">
-          <p className="text-[9px] text-muted-foreground/40 uppercase tracking-[0.2em] font-mono mb-1 text-center select-none">
+          <p className="text-[9px] text-muted-foreground/70 uppercase tracking-[0.2em] font-mono mb-1 text-center select-none">
             Publicidad
           </p>
           <AdBanner

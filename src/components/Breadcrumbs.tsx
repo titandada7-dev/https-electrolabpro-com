@@ -158,7 +158,7 @@ const Breadcrumbs = ({ lastLabel, className = "", injectJsonLd = true }: Breadcr
         </li>
         {crumbs.map((c) => (
           <li key={c.to} className="flex items-center gap-1.5">
-            <ChevronRight className="w-3 h-3 text-muted-foreground/40" aria-hidden="true" />
+            <ChevronRight className="w-3 h-3 text-muted-foreground/70" aria-hidden="true" />
             {c.isLast ? (
               <span
                 className="text-foreground font-medium truncate max-w-[220px]"
