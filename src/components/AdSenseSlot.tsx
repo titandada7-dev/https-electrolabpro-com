@@ -41,7 +41,7 @@ const AdSenseSlot = ({
             minHeightMobile={100}
             minHeightDesktop={100}
             className="max-w-[970px] mx-auto"
-            fallbackUrl={fallbackUrl}
+           
           />
         </div>
       </div>
@@ -64,7 +64,7 @@ const AdSenseSlot = ({
             responsive={false}
             minHeightMobile={600}
             minHeightDesktop={600}
-            fallbackUrl={fallbackUrl}
+           
           />
         </div>
       </aside>
@@ -78,7 +78,7 @@ const AdSenseSlot = ({
         <p className="text-[9px] text-muted-foreground/35 uppercase tracking-[0.2em] font-mono mb-2 text-center select-none">
           Publicidad
         </p>
-        <AdBanner slot={slot} format="auto" fallbackUrl={fallbackUrl} />
+        <AdBanner slot={slot} format="auto" />
       </div>
     </div>
   );
