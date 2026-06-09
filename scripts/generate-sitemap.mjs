@@ -14,6 +14,7 @@ const entries = [
   { path: "/documentacion-tecnica", changefreq: "weekly", priority: "0.95" },
   { path: "/aprende-jugando", changefreq: "weekly", priority: "0.9" },
   { path: "/guia-resistencias", changefreq: "monthly", priority: "0.9" },
+  { path: "/guia-multimetro", changefreq: "monthly", priority: "0.9" },
   { path: "/glosario", changefreq: "monthly", priority: "0.7" },
   { path: "/sobre-nosotros", changefreq: "monthly", priority: "0.5" },
   { path: "/contacto", changefreq: "monthly", priority: "0.5" },
