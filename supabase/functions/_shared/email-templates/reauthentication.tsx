@@ -7,8 +7,10 @@ import {
   Container,
   Head,
   Heading,
+  Hr,
   Html,
   Preview,
+  Section,
   Text,
 } from 'npm:@react-email/components@0.0.22'
 
@@ -17,17 +19,22 @@ interface ReauthenticationEmailProps {
 }
 
 export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => (
-  <Html lang="en" dir="ltr">
+  <Html lang="es" dir="ltr">
     <Head />
-    <Preview>Your verification code</Preview>
+    <Preview>Tu código de verificación de ElectroLab Pro</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Heading style={h1}>Confirm reauthentication</Heading>
-        <Text style={text}>Use the code below to confirm your identity:</Text>
-        <Text style={codeStyle}>{token}</Text>
+        <Section style={brandSection}>
+          <Text style={brand}>ElectroLab Pro</Text>
+        </Section>
+        <Heading style={h1}>Confirmá tu identidad</Heading>
+        <Text style={text}>Usá este código para confirmar la operación:</Text>
+        <Section style={{ textAlign: 'center' as const, margin: '0 0 24px' }}>
+          <Text style={codeStyle}>{token}</Text>
+        </Section>
+        <Hr style={hr} />
         <Text style={footer}>
-          This code will expire shortly. If you didn't request this, you can
-          safely ignore this email.
+          El código expira en unos minutos. Si no fuiste vos, podés ignorar este correo.
         </Text>
       </Container>
     </Body>
@@ -36,25 +43,12 @@ export const ReauthenticationEmail = ({ token }: ReauthenticationEmailProps) => 
 
 export default ReauthenticationEmail
 
-const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
-const container = { padding: '20px 25px' }
-const h1 = {
-  fontSize: '22px',
-  fontWeight: 'bold' as const,
-  color: '#000000',
-  margin: '0 0 20px',
-}
-const text = {
-  fontSize: '14px',
-  color: '#55575d',
-  lineHeight: '1.5',
-  margin: '0 0 25px',
-}
-const codeStyle = {
-  fontFamily: 'Courier, monospace',
-  fontSize: '22px',
-  fontWeight: 'bold' as const,
-  color: '#000000',
-  margin: '0 0 30px',
-}
-const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
+const main = { backgroundColor: '#ffffff', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' }
+const container = { padding: '32px 28px', maxWidth: '560px' }
+const brandSection = { borderBottom: '1px solid #e5e7eb', paddingBottom: '16px', marginBottom: '24px' }
+const brand = { fontSize: '16px', fontWeight: 700 as const, color: '#6366F1', margin: 0, letterSpacing: '-0.01em' }
+const h1 = { fontSize: '24px', fontWeight: 700 as const, color: '#0B1428', margin: '0 0 16px', letterSpacing: '-0.02em' }
+const text = { fontSize: '15px', color: '#374151', lineHeight: '1.6', margin: '0 0 16px' }
+const codeStyle = { fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace', fontSize: '32px', fontWeight: 700 as const, color: '#0B1428', letterSpacing: '0.3em', backgroundColor: '#F3F4F6', borderRadius: '14px', padding: '18px 24px', display: 'inline-block', margin: 0 }
+const hr = { borderColor: '#e5e7eb', margin: '24px 0' }
+const footer = { fontSize: '12px', color: '#9CA3AF', margin: 0, lineHeight: '1.5' }
