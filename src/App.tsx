@@ -82,6 +82,7 @@ function App() {
         </Suspense>
       )}
       <Suspense fallback={<RouteFallback />}>
+      <main id="main-content">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
@@ -118,6 +119,7 @@ function App() {
         <Route path="/blog/como-disene-mi-primer-pcb-kicad" element={<BlogDisenoPCB />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </main>
       </Suspense>
       <NavButtons />
       <SidebarAd />
