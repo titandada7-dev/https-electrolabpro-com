@@ -1,6 +1,8 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { readFileSync, existsSync } from "node:fs";
+import { resolve as resolvePath } from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { componentTagger } from "lovable-tagger";
 import { VitePWA } from "vite-plugin-pwa";
@@ -23,6 +25,21 @@ const versionJsonPlugin = (): Plugin => ({
   },
 });
 
+// Salvaguarda: emite sitemap.xml directamente en dist/ aunque el hook
+// `prebuild` no se haya ejecutado (algunos entornos de hosting compilan
+// sin invocar los scripts npm pre/post).
+const sitemapPlugin = (): Plugin => ({
+  name: "electrolab-sitemap",
+  generateBundle() {
+    const sitemapPath = resolvePath("public/sitemap.xml");
+    if (!existsSync(sitemapPath)) return;
+    const source = readFileSync(sitemapPath, "utf-8");
+    this.emitFile({ type: "asset", fileName: "sitemap.xml", source });
+  },
+});
+
+
+
 export default defineConfig(({ mode }) => ({
   define: {
     __BUILD_ID__: JSON.stringify(buildId),
@@ -38,6 +55,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     versionJsonPlugin(),
+    sitemapPlugin(),
     mode === "development" && componentTagger(),
     VitePWA({
       registerType: "autoUpdate",
