@@ -222,12 +222,13 @@ const DomainDebugBanner = () => {
             versionAgeMs,
             checkedAt,
           };
-        } catch (e: any) {
+        } catch (e: unknown) {
           const ms = Math.round(performance.now() - start);
+          const message = e instanceof Error ? e.message : "fetch failed (posible CORS)";
           return {
             ...t,
             status: "error",
-            error: e?.message || "fetch failed (posible CORS)",
+            error: message,
             ms,
             checkedAt,
           };
@@ -318,8 +319,10 @@ const DomainDebugBanner = () => {
         setAlerts((prev) => [...newAlerts, ...prev].slice(0, 10));
         if (soundOn) {
           try {
-            const ctx = new (window.AudioContext ||
-              (window as any).webkitAudioContext)();
+            const w = window as Window & { webkitAudioContext?: typeof AudioContext };
+            const AudioCtx = window.AudioContext || w.webkitAudioContext;
+            if (!AudioCtx) throw new Error("no AudioContext");
+            const ctx = new AudioCtx();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.frequency.value = newAlerts.some((a) => a.level === "critical")
