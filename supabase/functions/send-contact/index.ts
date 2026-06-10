@@ -24,6 +24,10 @@ function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function sanitizeHeader(s: string): string {
+  return s.replace(/[\r\n]+/g, " ").trim();
+}
+
 function toBase64Url(s: string): string {
   const bytes = new TextEncoder().encode(s);
   let bin = "";
