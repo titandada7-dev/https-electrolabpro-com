@@ -24,6 +24,10 @@ function escapeHtml(s: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function sanitizeHeader(s: string): string {
+  return s.replace(/[\r\n]+/g, " ").trim();
+}
+
 function toBase64Url(s: string): string {
   const bytes = new TextEncoder().encode(s);
   let bin = "";
@@ -108,7 +112,7 @@ async function sendGmailNotification(payload: {
 
   const raw = buildRawEmail({
     to: "me",
-    replyTo: `${payload.nombre} <${payload.email}>`,
+    replyTo: `${sanitizeHeader(payload.nombre)} <${sanitizeHeader(payload.email)}>`,
     subject: `[ElectroLab Pro] ${payload.asunto}`,
     text,
     html,
