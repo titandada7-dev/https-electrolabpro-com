@@ -8,92 +8,93 @@ html {
 
 @layer base {
   :root {
-    /* Modern Indigo + Slate palette (Linear/Vercel inspired) */
-    --background: 220 25% 98%;
-    --foreground: 224 47% 9%;
+    /* CAMBIADO: Fondo verde flúor metálico de alto impacto y mucha luz */
+    --background: 100 100% 65%;
+    --foreground: 140 60% 5%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 224 47% 9%;
+    --card: 100 100% 75%;
+    --card-foreground: 140 60% 5%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 47% 9%;
+    --popover: 100 100% 75%;
+    --popover-foreground: 140 60% 5%;
 
-    /* Indigo 500 #6366F1 */
-    --primary: 239 84% 67%;
+    /* CAMBIADO: Elementos principales y destellos en verde eléctrico */
+    --primary: 110 100% 40%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 250 91% 76%;
+    --primary-glow: 95 100% 70%;
 
-    --secondary: 220 20% 95%;
-    --secondary-foreground: 224 30% 25%;
+    --secondary: 100 60% 55%;
+    --secondary-foreground: 140 60% 5%;
 
-    --muted: 220 20% 95%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 100 40% 55%;
+    --muted-foreground: 140 30% 20%;
 
-    --accent: 239 84% 96%;
-    --accent-foreground: 239 84% 40%;
+    --accent: 110 100% 50%;
+    --accent-foreground: 110 100% 20%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 18% 90%;
-    --input: 220 18% 90%;
-    --ring: 239 84% 67%;
+    --border: 110 50% 45%;
+    --input: 110 50% 45%;
+    --ring: 110 100% 40%;
 
-    --highlight: 239 84% 67%;
+    --highlight: 110 100% 40%;
 
     --radius: 0.875rem;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 224 47% 9%;
-    --sidebar-primary: 239 84% 67%;
+    --sidebar-background: 100 100% 70%;
+    --sidebar-foreground: 140 60% 5%;
+    --sidebar-primary: 110 100% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 239 84% 96%;
-    --sidebar-accent-foreground: 239 84% 40%;
-    --sidebar-border: 220 18% 90%;
-    --sidebar-ring: 239 84% 67%;
+    --sidebar-accent: 110 100% 50%;
+    --sidebar-accent-foreground: 110 100% 20%;
+    --sidebar-border: 110 50% 45%;
+    --sidebar-ring: 110 100% 40%;
   }
 
   .dark {
-    --background: 224 47% 5%;
-    --foreground: 220 20% 96%;
+    /* CAMBIADO: Fondo oscuro con potente reflejo de neón verde */
+    --background: 140 60% 4%;
+    --foreground: 100 100% 75%;
 
-    --card: 224 40% 9%;
-    --card-foreground: 220 20% 94%;
+    --card: 140 50% 8%;
+    --card-foreground: 100 100% 70%;
 
-    --popover: 224 40% 9%;
-    --popover-foreground: 220 20% 94%;
+    --popover: 140 50% 8%;
+    --popover-foreground: 100 100% 70%;
 
-    /* Indigo 400 brighter for dark mode */
-    --primary: 238 90% 72%;
-    --primary-foreground: 224 47% 5%;
-    --primary-glow: 250 95% 80%;
+    /* CAMBIADO: Botones y luces flúor puro para modo oscuro */
+    --primary: 100 100% 50%;
+    --primary-foreground: 140 60% 4%;
+    --primary-glow: 105 100% 60%;
 
-    --secondary: 224 30% 13%;
-    --secondary-foreground: 220 15% 75%;
+    --secondary: 140 30% 13%;
+    --secondary-foreground: 100 80% 65%;
 
-    --muted: 224 30% 13%;
-    --muted-foreground: 220 14% 65%;
+    --muted: 140 30% 13%;
+    --muted-foreground: 140 20% 55%;
 
-    --accent: 238 50% 18%;
-    --accent-foreground: 238 90% 80%;
+    --accent: 100 60% 20%;
+    --accent-foreground: 100 100% 80%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 224 25% 17%;
-    --input: 224 25% 17%;
-    --ring: 238 90% 72%;
+    --border: 140 40% 18%;
+    --input: 140 40% 18%;
+    --ring: 100 100% 50%;
 
-    --highlight: 238 90% 72%;
+    --highlight: 100 100% 50%;
 
-    --sidebar-background: 224 40% 7%;
-    --sidebar-foreground: 220 20% 94%;
-    --sidebar-primary: 238 90% 72%;
-    --sidebar-primary-foreground: 224 47% 5%;
-    --sidebar-accent: 224 30% 13%;
-    --sidebar-accent-foreground: 220 20% 94%;
-    --sidebar-border: 224 25% 17%;
-    --sidebar-ring: 238 90% 72%;
+    --sidebar-background: 140 45% 7%;
+    --sidebar-foreground: 100 100% 70%;
+    --sidebar-primary: 100 100% 50%;
+    --sidebar-primary-foreground: 140 60% 4%;
+    --sidebar-accent: 140 30% 13%;
+    --sidebar-accent-foreground: 100 100% 70%;
+    --sidebar-border: 140 40% 18%;
+    --sidebar-ring: 100 100% 50%;
   }
 }
 
@@ -137,13 +138,13 @@ html {
   transform: scale(0.98);
 }
 
-/* ============ Modern visual utilities (Indigo + Slate) ============ */
+/* ============ Modern visual utilities (Modificado a Verde Flúor) ============ */
 
 /* Subtle radial gradient backdrop for hero/feature sections */
 .bg-hero-gradient {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.12), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, hsl(var(--primary-glow) / 0.08), transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.15), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, hsl(var(--primary-glow) / 0.12), transparent 70%),
     hsl(var(--background));
 }
 
@@ -160,8 +161,8 @@ html {
   transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 .card-glow:hover {
-  box-shadow: 0 8px 30px -8px hsl(var(--primary) / 0.25);
-  border-color: hsl(var(--primary) / 0.35);
+  box-shadow: 0 8px 30px -8px hsl(var(--primary) / 0.35);
+  border-color: hsl(var(--primary) / 0.5);
 }
 
 /* Faint dotted grid for technical sections */
