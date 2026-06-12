@@ -11,102 +11,99 @@ html {
 
 @layer base {
   :root {
-    /* --- Colores de Fondo y Texto Principal --- */
-    --background: 140 60% 4%;
-    /* OPTIMIZADO: Más luz para que el texto principal resalte con total nitidez */
-    --foreground: 100 100% 95%; 
-
-    /* --- Componentes de Interfaz (Cards & Popovers) --- */
-    --card: 140 50% 8%;
-    /* OPTIMIZADO: Mayor contraste dentro de las tarjetas */
-    --card-foreground: 100 100% 90%;
+    /* ==========================================================================
+       PALETA PREMIUM: METALES PULIDOS & LABORATORIO TECNOLÓGICO (MODO OSCURO)
+       ========================================================================== */
     
-    --popover: 140 50% 8%;
-    --popover-foreground: 100 100% 90%;
-
-    /* --- Elementos de Acción e Identidad (Verde Flúor) --- */
-    --primary: 100 100% 50%;
-    --primary-foreground: 140 60% 4%;
-    --primary-glow: 105 100% 60%;
-
-    --secondary: 140 30% 13%;
-    --secondary-foreground: 100 100% 85%;
-
-    /* --- Estados, Bordes y Feedback --- */
-    --muted: 140 30% 13%;
-    /* OPTIMIZADO: Subimos a 75% de luminosidad para que las descripciones no queden difusas */
-    --muted-foreground: 140 25% 75%; 
+    /* --- FONDO ULTRA PREMIUM (Gris Grafito Oscuro / Metalizado) --- */
+    --background: 220 15% 5%; 
     
-    --accent: 100 60% 20%;
-    --accent-foreground: 100 100% 90%;
+    /* --- TEXTOS PRINCIPALES Y DATOS (Claridad Absoluta y Máxima Nitidez) --- */
+    --foreground: 210 40% 98%; 
+    --muted-foreground: 218 15% 75%; /* Gris plata claro para descripciones */
+
+    /* --- VENTANAS Y CARDS (Efecto Aluminio Anodizado Oscuro) --- */
+    --card: 220 12% 10%; 
+    --card-foreground: 210 40% 98%; 
+    
+    --popover: 220 12% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* --- DETALLES DE ACCIÓN (El Azul Cobalto Metálico Vibrante) --- */
+    --primary: 210 100% 50%; 
+    --primary-foreground: 210 40% 98%; 
+    --primary-glow: 210 100% 65%;
+
+    /* --- SEGUNDO ACENTO (El Oro / Bronce Técnico de Ingeniería) --- */
+    --secondary: 40 40% 15%; 
+    --secondary-foreground: 42 80% 65%; 
+
+    /* --- BORDES, INPUTS Y ENFOQUES (Estilo Acero Inoxidable) --- */
+    --border: 220 10% 18%; 
+    --input: 220 10% 18%;
+    --ring: 210 100% 50%;
+    --highlight: 42 80% 65%;
+
+    /* --- Estructura Estándar --- */
+    --radius: 0.875rem;
+    
+    /* --- Panel Lateral de Navegación (Sidebar) --- */
+    --sidebar-background: 220 12% 8%;
+    --sidebar-foreground: 218 15% 85%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 220 10% 14%;
+    --sidebar-accent-foreground: 42 80% 65%;
+    --sidebar-border: 220 10% 15%;
+    --sidebar-ring: 210 100% 50%;
+  }
+
+  .light {
+    /* --- MODO CLARO (Opcional, Adaptado a Estilo Aluminio Pulido Claro) --- */
+    --background: 210 20% 96%;
+    --foreground: 220 15% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 10%;
+
+    --primary: 210 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 100% 55%;
+
+    --secondary: 42 40% 90%;
+    --secondary-foreground: 42 70% 35%;
+
+    --muted: 210 20% 90%;
+    --muted-foreground: 220 10% 40%;
+    
+    --accent: 210 100% 95%;
+    --accent-foreground: 210 100% 40%;
     
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 140 40% 18%;
-    --input: 140 40% 18%;
-    --ring: 100 100% 50%;
-    --highlight: 100 100% 50%;
+    --border: 210 20% 85%;
+    --input: 210 20% 85%;
+    --ring: 210 100% 45%;
+    --highlight: 42 70% 35%;
 
-    /* --- Estructura y Bordes --- */
-    --radius: 0.875rem;
-
-    /* --- Panel de Navegación Lateral (Sidebar) --- */
-    --sidebar-background: 140 45% 7%;
-    --sidebar-foreground: 100 100% 85%;
-    --sidebar-primary: 100 100% 50%;
-    --sidebar-primary-foreground: 140 60% 4%;
-    --sidebar-accent: 140 30% 13%;
-    --sidebar-accent-foreground: 100 100% 85%;
-    --sidebar-border: 140 40% 18%;
-    --sidebar-ring: 100 100% 50%;
-  }
-
-  .light {
-    /* El resto del código de .light sigue igual abajo... */
-    /* ==========================================================================
-       MODO CLARO (Opcional, si el usuario cambia el switch a "sol")
-       Fondo verde flúor metálico suavizado para que sea legible y no canse la vista
-       ========================================================================== */
-    --background: 100 40% 94%; /* Fondo claro sutil con un tinte verdoso muy limpio */
-    --foreground: 140 60% 5%;
-
-    --card: 100 60% 88%;
-    --card-foreground: 140 60% 5%;
-
-    --popover: 100 60% 88%;
-    --popover-foreground: 140 60% 5%;
-
-    --primary: 140 60% 15%; /* Texto u oscuro para contraste en modo claro */
-    --primary-foreground: 100 100% 95%;
-    --primary-glow: 110 100% 40%;
-
-    --secondary: 100 40% 75%;
-    --secondary-foreground: 140 60% 5%;
-
-    --muted: 100 30% 70%;
-    --muted-foreground: 140 30% 20%;
-
-    --accent: 110 100% 35%;
-    --accent-foreground: 110 100% 95%;
-
-    --border: 110 30% 70%;
-    --input: 110 30% 70%;
-    --ring: 110 100% 35%;
-
-    --highlight: 110 100% 35%;
-
-    --sidebar-background: 100 50% 85%;
-    --sidebar-foreground: 140 60% 5%;
-    --sidebar-primary: 140 60% 15%;
+    --sidebar-background: 210 20% 93%;
+    --sidebar-foreground: 220 15% 15%;
+    --sidebar-primary: 210 100% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 110 100% 35%;
-    --sidebar-accent-foreground: 110 100% 95%;
-    --sidebar-border: 110 30% 70%;
-    --sidebar-ring: 110 100% 35%;
+    --sidebar-accent: 210 20% 88%;
+    --sidebar-accent-foreground: 210 100% 40%;
+    --sidebar-border: 210 20% 82%;
+    --sidebar-ring: 210 100% 45%;
   }
 }
 
+/* ==========================================================================
+   RESETS Y ESTILOS BASE DE ELEMENTOS
+   ========================================================================== */
 @layer base {
   * {
     @apply border-border;
@@ -117,7 +114,9 @@ html {
   }
 }
 
-/* Estilos específicos para herramientas interactivas */
+/* ==========================================================================
+   COMPONENTES: HERRAMIENTAS INTERACTIVAS (CALCULADORAS E INPUTS)
+   ========================================================================== */
 .tool-interactive input,
 .tool-interactive select {
   width: 100%;
@@ -128,6 +127,14 @@ html {
   border: 1px solid hsl(var(--border));
   background-color: hsl(var(--card));
   color: hsl(var(--foreground));
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-interactive input:focus,
+.tool-interactive select:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.25);
 }
 
 .tool-interactive button {
@@ -135,47 +142,64 @@ html {
   padding: 12px;
   margin-top: 10px;
   font-size: 16px;
+  font-weight: bold;
   border-radius: 8px;
   border: none;
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
-  font-weight: bold;
   cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.tool-interactive button:hover {
+  filter: brightness(1.15); /* Efecto de brillo metálico al pasar el mouse */
 }
 
 .tool-interactive button:active {
   transform: scale(0.98);
 }
 
-/* ============ Modern visual utilities (Verde Flúor Cyberpunk) ============ */
+/* ==========================================================================
+   UTILIDADES VISUALES: DEGRADADOS METÁLICOS (AZUL COBALTO Y ORO)
+   ========================================================================== */
 
-/* Subtle radial gradient backdrop for hero/feature sections */
+/* Fondo con destello radial premium de laboratorio técnico */
 .bg-hero-gradient {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.15), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, hsl(var(--primary-glow) / 0.12), transparent 70%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, hsl(var(--primary) / 0.12), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%, hsl(var(--secondary) / 0.08), transparent 70%),
     hsl(var(--background));
 }
 
-/* Neon gradient text accent */
+/* EFECTO AZUL COBALTO METÁLICO (Para usar en títulos destacados del Home) */
 .text-gradient-primary {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-glow)) 100%);
+  background: linear-gradient(90deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Card hover with soft green glow */
+/* EFECTO ORO PULIDO (Para tags premium, insignias "PRO" o textos dorados) */
+.text-gradient-gold {
+  background: linear-gradient(90deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Tarjetas con reflejo metálico azul expansivo al pasar el mouse */
 .card-glow {
   transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
+
 .card-glow:hover {
-  box-shadow: 0 8px 30px -8px hsl(var(--primary) / 0.35);
-  border-color: hsl(var(--primary) / 0.5);
+  transform: translateY(-2px);
+  border-color: hsl(var(--primary) / 0.4);
+  box-shadow: 0 8px 30px -8px hsl(var(--primary) / 0.25);
 }
 
-/* Faint dotted grid for technical sections */
+/* Grilla técnica de puntos (Estilo instrumental de medición o laboratorio) */
 .bg-dot-grid {
-  background-image: radial-gradient(hsl(var(--border)) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image: radial-gradient(hsl(var(--border)) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
 }
