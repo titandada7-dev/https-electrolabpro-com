@@ -34,9 +34,9 @@ const HomeServices = ({ scrollTo }: HomeServicesProps) => {
       <div className="container mx-auto px-6">
         <div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground text-center mb-2">
-            Niveles de <span className="text-primary">Investigación</span>
+            Niveles de <span className="text-gradient-primary">Investigación</span>
           </h2>
-          <p className="text-center text-muted-foreground text-sm mb-8">
+          <p className="text-center text-sm mb-8 text-gradient-silver">
             El sitio está organizado en tres niveles según la profundidad técnica del contenido
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
@@ -44,7 +44,7 @@ const HomeServices = ({ scrollTo }: HomeServicesProps) => {
               <button
                 key={card.target}
                 onClick={() => scrollTo(card.target)}
-                className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card shadow-sm card-glow hover:-translate-y-1 transition-all duration-300 text-center"
+                className="group flex flex-col items-center gap-3 p-5 rounded-2xl border border-border bg-card bg-dot-grid shadow-sm card-glow hover:-translate-y-1 transition-all duration-300 text-center"
               >
                 <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${card.color} transition-transform group-hover:scale-110`}>
                   {card.icon}

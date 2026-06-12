@@ -63,13 +63,13 @@ const HomeEducation = ({ scrollTo, handleAnchorClick }: HomeEducationProps) => {
       className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20 border-t border-border"
     >
       <div className="text-center mb-10 max-w-3xl mx-auto">
-        <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+        <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-gradient-gold">
           Aprendé electrónica
         </span>
         <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
-          Guías educativas <span className="text-primary">paso a paso</span>
+          Guías educativas <span className="text-gradient-primary">paso a paso</span>
         </h2>
-        <p className="mt-3 text-base text-muted-foreground">
+        <p className="mt-3 text-base text-gradient-silver">
           Recursos pensados para principiantes y estudiantes: empezá por la base y combiná cada guía con nuestras calculadoras interactivas online.
         </p>
       </div>
@@ -96,16 +96,16 @@ const HomeEducation = ({ scrollTo, handleAnchorClick }: HomeEducationProps) => {
             <Link
               key={card.to}
               to={card.to}
-              className={`group flex flex-col rounded-2xl border overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 p-6 ${
+              className={`card-glow bg-dot-grid group flex flex-col rounded-2xl border overflow-hidden shadow-sm p-6 ${
                 card.highlighted
-                  ? "border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent hover:-translate-y-1 hover:border-primary"
-                  : "border border-border bg-card hover:-translate-y-1 hover:border-primary/40"
+                  ? "border-2 border-primary/40 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent"
+                  : "border border-border bg-card"
               }`}
               aria-label={`Leer ${card.title}`}
             >
               {card.highlighted && (
                 <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/15 px-2 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-gradient-gold bg-primary/15 px-2 py-0.5 rounded-full">
                     ⭐ Destacado
                   </span>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">

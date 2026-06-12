@@ -57,9 +57,9 @@ const HomeHero = ({ scrollTo }: HomeHeroProps) => {
           </span>
           <span className="text-base">🎮</span>
           <span>
-            <span className="text-primary font-bold">Nuevo:</span> Jugá ElectroLab Play
+            <span className="text-gradient-gold font-bold">Nuevo:</span> Jugá ElectroLab Play
           </span>
-          <span className="ml-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
+          <span className="ml-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gradient-gold">
             Quiz
           </span>
         </Link>
