@@ -2,61 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   CONFIGURACIÓN GLOBAL
+   ========================================================================== */
 html {
   scroll-behavior: smooth;
 }
 
 @layer base {
   :root {
-    /* ==========================================================================
-       MODO OSCURO PREDETERMINADO (Para que se vea como en tus capturas)
-       Fondo oscuro profundo con potente reflejo de neón verde
-       ========================================================================== */
+    /* --- Colores de Fondo y Texto Principal --- */
     --background: 140 60% 4%;
-    --foreground: 100 100% 75%;
+    /* OPTIMIZADO: Más luz para que el texto principal resalte con total nitidez */
+    --foreground: 100 100% 95%; 
 
+    /* --- Componentes de Interfaz (Cards & Popovers) --- */
     --card: 140 50% 8%;
-    --card-foreground: 100 100% 70%;
-
+    /* OPTIMIZADO: Mayor contraste dentro de las tarjetas */
+    --card-foreground: 100 100% 90%;
+    
     --popover: 140 50% 8%;
-    --popover-foreground: 100 100% 70%;
+    --popover-foreground: 100 100% 90%;
 
-    /* Botones y luces flúor puro */
+    /* --- Elementos de Acción e Identidad (Verde Flúor) --- */
     --primary: 100 100% 50%;
     --primary-foreground: 140 60% 4%;
     --primary-glow: 105 100% 60%;
 
     --secondary: 140 30% 13%;
-    --secondary-foreground: 100 80% 65%;
+    --secondary-foreground: 100 100% 85%;
 
+    /* --- Estados, Bordes y Feedback --- */
     --muted: 140 30% 13%;
-    --muted-foreground: 140 20% 55%;
-
+    /* OPTIMIZADO: Subimos a 75% de luminosidad para que las descripciones no queden difusas */
+    --muted-foreground: 140 25% 75%; 
+    
     --accent: 100 60% 20%;
-    --accent-foreground: 100 100% 80%;
-
+    --accent-foreground: 100 100% 90%;
+    
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 140 40% 18%;
     --input: 140 40% 18%;
     --ring: 100 100% 50%;
-
     --highlight: 100 100% 50%;
 
+    /* --- Estructura y Bordes --- */
     --radius: 0.875rem;
 
+    /* --- Panel de Navegación Lateral (Sidebar) --- */
     --sidebar-background: 140 45% 7%;
-    --sidebar-foreground: 100 100% 70%;
+    --sidebar-foreground: 100 100% 85%;
     --sidebar-primary: 100 100% 50%;
     --sidebar-primary-foreground: 140 60% 4%;
     --sidebar-accent: 140 30% 13%;
-    --sidebar-accent-foreground: 100 100% 70%;
+    --sidebar-accent-foreground: 100 100% 85%;
     --sidebar-border: 140 40% 18%;
     --sidebar-ring: 100 100% 50%;
   }
 
   .light {
+    /* El resto del código de .light sigue igual abajo... */
     /* ==========================================================================
        MODO CLARO (Opcional, si el usuario cambia el switch a "sol")
        Fondo verde flúor metálico suavizado para que sea legible y no canse la vista
