@@ -75,9 +75,9 @@ const HomeFaq = ({ activeQaTab, onTabChange }: HomeFaqProps) => {
     <section id="foro" className="container mx-auto px-6 py-16 border-t border-border">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 flex items-center justify-center gap-3">
         <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-        Preguntas Frecuentes
+        <span className="text-gradient-primary">Preguntas Frecuentes</span>
       </h2>
-      <p className="text-center text-muted-foreground text-sm mb-10">Respuestas rápidas organizadas por categoría</p>
+      <p className="text-center text-sm mb-10 text-gradient-silver">Respuestas rápidas organizadas por categoría</p>
 
       {/* Tabs */}
       <div className="flex gap-2 mb-8 overflow-x-auto pb-2 justify-start md:justify-center md:flex-wrap -mx-6 px-6 md:mx-0 md:px-0">

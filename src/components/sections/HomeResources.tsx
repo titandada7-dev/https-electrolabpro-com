@@ -6,13 +6,13 @@ const HomeResources = () => {
     <section id="recursos" className="py-14 sm:py-20 border-t border-border bg-card/40">
       <div className="container mx-auto px-6 max-w-4xl">
         <div className="text-center mb-10">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-primary">
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-gradient-gold">
             Recursos
           </span>
           <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground">
-            Recursos e <span className="text-primary">información</span>
+            Recursos e <span className="text-gradient-primary">información</span>
           </h2>
-          <p className="mt-3 text-base text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-3 text-base max-w-2xl mx-auto text-gradient-silver">
             Glosario, tips, servicios y más — todo organizado en un solo lugar.
           </p>
         </div>

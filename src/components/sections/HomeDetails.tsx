@@ -12,7 +12,7 @@ const HomeDetails = ({ scrollTo }: HomeDetailsProps) => {
     <section id="detalles" className="py-14 sm:py-20 border-t border-border">
       <div className="container mx-auto px-6 max-w-4xl">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground text-center mb-10">
-          Aprende <span className="text-primary">Electrónica</span>
+          Aprende <span className="text-gradient-primary">Electrónica</span>
         </h2>
 
         <Accordion type="multiple" defaultValue={["intro"]} className="space-y-4">
