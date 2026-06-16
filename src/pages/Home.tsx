@@ -115,14 +115,12 @@ const handleAnchorClick = (id: string) => (e: React.MouseEvent<HTMLAnchorElement
   const el = document.getElementById(id);
   if (el) {
     e.preventDefault();
-    el.scrollIntoView({ behavior: "smooth" });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
     history.replaceState(null, "", `#${id}`);
   }
 };
 
-const scrollTo = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-};
+// scrollTo se redefine dentro del componente para poder actualizar el estado activo.
 
 // Tres niveles de investigación
 const quickAccessCards = [
@@ -139,6 +137,18 @@ const Home = () => {
   const [activeQaTab, setActiveQaTab] = useState("microcontroladores");
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<NavSection | null>(null);
+
+  // scrollTo: navega suavemente y marca la sección como activa de inmediato
+  // (sin esperar al IntersectionObserver), además de actualizar el hash.
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", `#${id}`);
+    if ((NAV_SECTIONS as readonly string[]).includes(id)) {
+      setActiveSection(id as NavSection);
+    }
+  };
 
   // Resaltado del enlace activo según la sección visible.
   // IntersectionObserver con rootMargin para considerar "activa" la sección
@@ -345,7 +355,7 @@ const Home = () => {
   const activeQa = QA_CATEGORIES.find((c) => c.id === activeQaTab);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-28 md:pb-0">
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5">
@@ -500,12 +510,13 @@ const Home = () => {
       <AdSenseSlot slot="3756475501" variant="header" fallbackUrl="/" />
 
       {/* ═══════════ #INICIO ═══════════ */}
-      <section id="inicio" className="relative px-4 sm:px-6 py-10 sm:py-14 overflow-hidden">
+      <section id="inicio" className="relative px-4 sm:px-6 py-8 sm:py-12 overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid opacity-[0.2] pointer-events-none" aria-hidden="true" />
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:auto-rows-[160px] gap-4">
+        <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:auto-rows-[minmax(160px,auto)] gap-3 sm:gap-4">
+
 
           {/* HERO — tile principal */}
-          <div className="md:col-span-8 md:row-span-2 bg-card rounded-3xl p-8 sm:p-10 flex flex-col justify-end relative overflow-hidden card-glow border border-border">
+          <div className="md:col-span-8 md:row-span-2 min-h-[260px] bg-card rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-end relative overflow-hidden card-glow border border-border">
             <div className="absolute top-6 right-6 text-highlight opacity-20" aria-hidden="true">
               <CircuitBoard className="w-32 h-32" strokeWidth={1} />
             </div>
@@ -532,7 +543,7 @@ const Home = () => {
           {/* CALCULADORAS */}
           <button
             onClick={() => scrollTo("calculadora")}
-            className="md:col-span-4 md:row-span-1 bg-primary rounded-3xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer text-left group"
+            className="md:col-span-4 md:row-span-1 min-h-[140px] bg-primary rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer text-left group"
           >
             <div className="flex justify-between items-start">
               <div className="p-2 bg-white/10 rounded-lg">
@@ -546,7 +557,7 @@ const Home = () => {
           {/* DICCIONARIO */}
           <button
             onClick={() => scrollTo("diccionario")}
-            className="md:col-span-4 md:row-span-1 bg-card border border-highlight/30 rounded-3xl p-6 flex flex-col justify-between hover:bg-card/70 transition-colors cursor-pointer text-left card-glow"
+            className="md:col-span-4 md:row-span-1 min-h-[140px] bg-card border border-highlight/30 rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:bg-card/70 transition-colors cursor-pointer text-left card-glow"
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-highlight animate-pulse" />
@@ -559,7 +570,7 @@ const Home = () => {
           </button>
 
           {/* HERRAMIENTAS */}
-          <div className="md:col-span-3 md:row-span-2 bg-card rounded-3xl p-6 flex flex-col border border-border card-glow">
+          <div className="md:col-span-3 md:row-span-2 min-h-[260px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col border border-border card-glow">
             <h3 className="text-lg font-bold text-foreground mb-4">Herramientas</h3>
             <ul className="space-y-2 flex-1">
               {[
@@ -583,7 +594,7 @@ const Home = () => {
           </div>
 
           {/* ARTÍCULOS RECIENTES */}
-          <div className="md:col-span-6 md:row-span-2 bg-background border border-border rounded-3xl p-6 overflow-hidden flex flex-col card-glow">
+          <div className="md:col-span-6 md:row-span-2 min-h-[260px] bg-background border border-border rounded-3xl p-5 sm:p-6 overflow-hidden flex flex-col card-glow">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-bold text-foreground">Artículos Recientes</h3>
               <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-highlight text-sm font-medium hover:underline">
@@ -612,7 +623,7 @@ const Home = () => {
           {/* EDUCACIÓN */}
           <button
             onClick={() => scrollTo("aprender")}
-            className="md:col-span-3 md:row-span-1 bg-card rounded-3xl p-6 flex flex-col justify-center border border-border card-glow text-left"
+            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col justify-center border border-border card-glow text-left"
           >
             <span className="text-highlight font-bold text-2xl">21+</span>
             <p className="text-foreground font-medium">Guías técnicas</p>
@@ -622,7 +633,7 @@ const Home = () => {
           {/* PLAY */}
           <Link
             to="/aprende-jugando"
-            className="md:col-span-3 md:row-span-1 bg-highlight rounded-3xl p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform"
+            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-highlight rounded-3xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform"
             aria-label="Jugá ElectroLab Play"
           >
             <div className="flex justify-between items-start">
@@ -638,13 +649,13 @@ const Home = () => {
           {/* FAQ */}
           <button
             onClick={() => scrollTo("foro")}
-            className="md:col-span-9 md:row-span-1 bg-card rounded-3xl p-6 flex items-center justify-between border border-border card-glow text-left"
+            className="md:col-span-9 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-border card-glow text-left"
           >
             <div>
               <h3 className="text-xl font-bold text-foreground">Preguntas Frecuentes</h3>
               <p className="text-muted-foreground">Resolvé dudas sobre componentes, fuentes y protocolos.</p>
             </div>
-            <span className="px-5 py-2 bg-primary text-primary-foreground rounded-full font-bold text-sm hover:bg-highlight transition-colors">
+            <span className="px-5 py-2 bg-primary text-primary-foreground rounded-full font-bold text-sm hover:bg-highlight transition-colors whitespace-nowrap shrink-0">
               Abrir FAQ
             </span>
           </button>
