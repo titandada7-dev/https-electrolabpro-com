@@ -76,6 +76,7 @@ const isDev =
 const AdBanner = ({
   slot,
   format = "auto",
+  layoutKey,
   responsive = true,
   className = "",
   minHeightMobile,
