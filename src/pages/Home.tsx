@@ -655,7 +655,7 @@ const Home = () => {
               <h3 className="text-xl font-bold text-foreground">Preguntas Frecuentes</h3>
               <p className="text-muted-foreground">Resolvé dudas sobre componentes, fuentes y protocolos.</p>
             </div>
-            <span className="px-5 py-2 bg-primary text-primary-foreground rounded-full font-bold text-sm hover:bg-highlight transition-colors">
+            <span className="px-5 py-2 bg-primary text-primary-foreground rounded-full font-bold text-sm hover:bg-highlight transition-colors whitespace-nowrap shrink-0">
               Abrir FAQ
             </span>
           </button>
