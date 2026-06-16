@@ -623,7 +623,7 @@ const Home = () => {
           {/* EDUCACIÓN */}
           <button
             onClick={() => scrollTo("aprender")}
-            className="md:col-span-3 md:row-span-1 bg-card rounded-3xl p-6 flex flex-col justify-center border border-border card-glow text-left"
+            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col justify-center border border-border card-glow text-left"
           >
             <span className="text-highlight font-bold text-2xl">21+</span>
             <p className="text-foreground font-medium">Guías técnicas</p>
