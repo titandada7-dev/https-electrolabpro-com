@@ -14,6 +14,8 @@ interface AdBannerProps {
   format?: string;
   /** AdSense in-feed/in-article layout key (only when format="fluid"). */
   layoutKey?: string;
+  /** AdSense layout preset (e.g. "in-article"). */
+  layout?: string;
   responsive?: boolean;
   className?: string;
   /** Reserved height on mobile (<768px) to prevent CLS. Default 100px. */
