@@ -1,17 +1,24 @@
 import AdSenseSlot from "./AdSenseSlot";
 
 /**
- * Anuncio lateral derecho (rascacielos vertical 160x600).
- * Wrapper fino sobre AdSenseSlot variant="sidebar" para mantener compatibilidad
- * con los imports existentes en App.tsx.
+ * Anuncio lateral derecho (rascacielos vertical 160x600 / 300x600).
  *
- * Para reemplazar el slot: cambiá SIDEBAR_SLOT por el ID real generado en
- * AdSense → Anuncios → Por unidad → Display (formato vertical/skyscraper).
+ * Configuración del slot:
+ * 1) Crear en AdSense → Anuncios → Por unidad → Display, formato
+ *    "vertical" o "skyscraper" (NO el mismo slot horizontal del header,
+ *    porque reusarlo causa "unfilled" permanente).
+ * 2) Copiar el `data-ad-slot` (10 dígitos) y exponerlo como
+ *    `VITE_ADSENSE_SIDEBAR_SLOT` en `.env` (recomendado) o reemplazar
+ *    SIDEBAR_SLOT_FALLBACK abajo.
+ *
+ * Mientras no exista un slot real, el componente reserva el espacio
+ * (min-height) para evitar CLS y el placeholder se mantiene silencioso
+ * en producción (ver AdBanner).
  */
-// IMPORTANTE: este slot debe ser uno DISTINTO al del header, creado en
-// AdSense → Anuncios → Por unidad → Display con formato vertical/skyscraper.
-// Reusar el mismo slot del header (horizontal) causa "unfilled" permanente.
-const SIDEBAR_SLOT = "1234567890"; // TODO: reemplazar por slot vertical real
+const SIDEBAR_SLOT_FALLBACK = "1234567890"; // TODO: reemplazar por slot vertical real
+const SIDEBAR_SLOT =
+  (import.meta.env.VITE_ADSENSE_SIDEBAR_SLOT as string | undefined)?.trim() ||
+  SIDEBAR_SLOT_FALLBACK;
 
 const SidebarAd = () => <AdSenseSlot slot={SIDEBAR_SLOT} variant="sidebar" />;
 

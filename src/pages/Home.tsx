@@ -150,11 +150,15 @@ const Home = () => {
     }
   };
 
-  // Clases comunes para foco visible y resaltado activo en tiles del bento.
+  // Foco y resaltado activo: usamos `outline` (no ocupa caja) + `box-shadow`
+  // glow para evitar reflow/layout-shift y mantener consistencia entre
+  // teclado, touch y desktop. La transición se limita a box-shadow/outline.
   const tileFocus =
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-shadow";
+    "outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight focus-visible:shadow-[0_0_0_4px_hsl(var(--highlight)/0.18)] transition-[box-shadow,outline-color] duration-150";
   const tileActive = (id: string) =>
-    activeSection === id ? "ring-2 ring-highlight/70 ring-offset-2 ring-offset-background" : "";
+    activeSection === id
+      ? "outline outline-2 outline-offset-2 outline-highlight/80 shadow-[0_0_0_4px_hsl(var(--highlight)/0.15)]"
+      : "";
 
   // Resaltado del enlace activo según la sección visible.
   // IntersectionObserver con rootMargin para considerar "activa" la sección
