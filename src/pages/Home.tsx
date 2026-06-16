@@ -129,7 +129,7 @@ const quickAccessCards = [
   { icon: <BookOpen className="h-6 w-6" />, title: "Nivel 3 · Protocolos y Guías", desc: "PWM, I2C, reguladores y más", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
 ];
 
-const NAV_SECTIONS = ["inicio", "aprender", "guias", "calculadora", "mini-proyectos", "foro"] as const;
+const NAV_SECTIONS = ["inicio", "aprender", "guias", "calculadora", "diccionario", "mini-proyectos", "foro", "recursos"] as const;
 type NavSection = typeof NAV_SECTIONS[number];
 
 const Home = () => {
