@@ -16,7 +16,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
-import ThemeToggle from "@/components/ThemeToggle";
 import AdSenseSlot from "@/components/AdSenseSlot";
 import HomeAd from "@/components/sections/HomeAd";
 
@@ -441,7 +440,6 @@ const Home = () => {
               <span className="hidden lg:inline">Buscar</span>
               <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded border border-border bg-muted text-[10px] font-mono">⌘K</kbd>
             </button>
-            <ThemeToggle />
             <Button size="sm" onClick={() => scrollTo("guias")}>Empezar</Button>
           </div>
 
@@ -454,7 +452,6 @@ const Home = () => {
             >
               <Search className="h-5 w-5" />
             </button>
-            <ThemeToggle />
             <button
               className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
