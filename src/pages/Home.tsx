@@ -150,6 +150,12 @@ const Home = () => {
     }
   };
 
+  // Clases comunes para foco visible y resaltado activo en tiles del bento.
+  const tileFocus =
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-shadow";
+  const tileActive = (id: string) =>
+    activeSection === id ? "ring-2 ring-highlight/70 ring-offset-2 ring-offset-background" : "";
+
   // Resaltado del enlace activo según la sección visible.
   // IntersectionObserver con rootMargin para considerar "activa" la sección
   // que está justo debajo del navbar sticky.
