@@ -152,6 +152,7 @@ const AdBanner = ({
       if (typeof window === "undefined" || !window.adsbygoogle) {
         setReason("Script adsbygoogle no disponible (posible AdBlock)");
         setStatus("blocked");
+        trackAdEvent("ad_blocked", slot, { ad_format: format });
         return;
       }
 
