@@ -177,11 +177,13 @@ const AdBanner = ({
               setStatus("filled");
               setReason("");
               if (fallbackTimer) window.clearTimeout(fallbackTimer);
+              trackAdEvent("ad_impression", slot, { ad_format: format });
               return true;
             }
             if (adStatus === "unfilled") {
               setReason("AdSense respondió sin anuncio (unfilled)");
               setStatus("timeout");
+              trackAdEvent("ad_unfilled", slot, { ad_format: format });
               return true;
             }
             return false;
@@ -211,12 +213,32 @@ const AdBanner = ({
     );
 
     observer.observe(el);
+
+    // Click-tracking proxy: cuando el usuario hace clic en un iframe de
+    // AdSense, el iframe gana focus y `window` recibe `blur`. Si en ese
+    // momento el activeElement es un iframe dentro de nuestro contenedor,
+    // contamos el clic. Es la técnica estándar para anuncios cross-origin.
+    const onBlur = () => {
+      window.setTimeout(() => {
+        const active = document.activeElement;
+        if (
+          active &&
+          active.tagName === "IFRAME" &&
+          el.contains(active)
+        ) {
+          trackAdEvent("ad_click", slot, { ad_format: format });
+        }
+      }, 0);
+    };
+    window.addEventListener("blur", onBlur);
+
     return () => {
       observer.disconnect();
       mo?.disconnect();
       if (fallbackTimer) window.clearTimeout(fallbackTimer);
+      window.removeEventListener("blur", onBlur);
     };
-  }, []);
+  }, [slot, format]);
 
   // Si AdSense no respondió (timeout) o el script está bloqueado/falló,
   // ocultamos el <ins> para que no pelee con la altura reservada y dejamos
