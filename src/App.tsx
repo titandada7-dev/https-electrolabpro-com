@@ -19,6 +19,7 @@ const DomainDebugBanner = shouldLoadDomainDebug
   : null;
 // Banners no críticos: lazy para no bloquear el render inicial / LCP de Home.
 const CookieBanner = lazy(() => import("./components/CookieBanner"));
+const AdSenseConsentBanner = lazy(() => import("./components/AdSenseConsentBanner"));
 const PWAInstallPrompt = lazy(() => import("./components/PWAInstallPrompt"));
 
 // Páginas legales y secundarias en lazy: reducen el JS inicial cargado en Home
@@ -72,6 +73,7 @@ function App() {
       <SplashScreen />
       <Suspense fallback={null}>
         <CookieBanner />
+        <AdSenseConsentBanner />
         <PWAInstallPrompt />
       </Suspense>
       {DomainDebugBanner && (

@@ -26,8 +26,10 @@
     <meta name="google-site-verification" content="ueUKlSFQj1LdIzSBwlCCGmz-zQ8uOXYkcGPgHj1YKkU" />
     <meta name="google-adsense-account" content="ca-pub-9393284878747603" />
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9393284878747603" crossorigin="anonymous"></script>
+    <!-- Google AdSense: el script se carga de forma diferida desde
+         src/lib/adsenseLoader.ts solo tras el consentimiento del usuario
+         y cuando un AdBanner entra cerca del viewport. Esto mejora LCP/FID. -->
+
     
     <script async src="https://fundingchoicesmessages.google.com/i/pub-9393284878747603?ers=1"></script>
     <script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
