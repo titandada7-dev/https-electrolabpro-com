@@ -570,7 +570,7 @@ const Home = () => {
           </button>
 
           {/* HERRAMIENTAS */}
-          <div className="md:col-span-3 md:row-span-2 bg-card rounded-3xl p-6 flex flex-col border border-border card-glow">
+          <div className="md:col-span-3 md:row-span-2 min-h-[260px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col border border-border card-glow">
             <h3 className="text-lg font-bold text-foreground mb-4">Herramientas</h3>
             <ul className="space-y-2 flex-1">
               {[
