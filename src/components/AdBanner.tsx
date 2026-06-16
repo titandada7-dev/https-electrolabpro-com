@@ -14,6 +14,8 @@ interface AdBannerProps {
   format?: string;
   /** AdSense in-feed/in-article layout key (only when format="fluid"). */
   layoutKey?: string;
+  /** AdSense layout preset (e.g. "in-article"). */
+  layout?: string;
   responsive?: boolean;
   className?: string;
   /** Reserved height on mobile (<768px) to prevent CLS. Default 100px. */
@@ -77,6 +79,7 @@ const AdBanner = ({
   slot,
   format = "auto",
   layoutKey,
+  layout,
   responsive = true,
   className = "",
   minHeightMobile,
@@ -286,10 +289,12 @@ const AdBanner = ({
           style={{
             display: failed ? "none" : "block",
             minHeight: `${mobileH}px`,
+            ...(layout === "in-article" ? { textAlign: "center" as const } : {}),
           }}
           data-ad-client="ca-pub-9393284878747603"
           data-ad-slot={slot}
           data-ad-format={format}
+          {...(layout ? { "data-ad-layout": layout } : {})}
           {...(layoutKey ? { "data-ad-layout-key": layoutKey } : {})}
           {...(format === "fluid" ? {} : { "data-full-width-responsive": responsive ? "true" : "false" })}
         />
