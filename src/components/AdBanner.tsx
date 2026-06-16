@@ -4,8 +4,33 @@ import { Link } from "react-router-dom";
 declare global {
   interface Window {
     adsbygoogle: unknown[];
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
 }
+
+/** Envía un evento a GA4 (gtag) y a dataLayer (GTM) si están disponibles. */
+const trackAdEvent = (
+  action: "ad_impression" | "ad_click" | "ad_unfilled" | "ad_blocked",
+  slot: string,
+  extra: Record<string, unknown> = {}
+) => {
+  if (typeof window === "undefined") return;
+  const payload = {
+    event_category: "adsense",
+    event_label: slot,
+    ad_slot: slot,
+    ad_client: "ca-pub-9393284878747603",
+    non_interaction: action !== "ad_click",
+    ...extra,
+  };
+  try {
+    window.gtag?.("event", action, payload);
+    (window.dataLayer = window.dataLayer || []).push({ event: action, ...payload });
+  } catch {
+    /* tracking opcional, nunca debe romper el render */
+  }
+};
 
 type AdStatus = "idle" | "loading" | "filled" | "timeout" | "blocked" | "error";
 
@@ -127,6 +152,7 @@ const AdBanner = ({
       if (typeof window === "undefined" || !window.adsbygoogle) {
         setReason("Script adsbygoogle no disponible (posible AdBlock)");
         setStatus("blocked");
+        trackAdEvent("ad_blocked", slot, { ad_format: format });
         return;
       }
 
@@ -152,11 +178,13 @@ const AdBanner = ({
               setStatus("filled");
               setReason("");
               if (fallbackTimer) window.clearTimeout(fallbackTimer);
+              trackAdEvent("ad_impression", slot, { ad_format: format });
               return true;
             }
             if (adStatus === "unfilled") {
               setReason("AdSense respondió sin anuncio (unfilled)");
               setStatus("timeout");
+              trackAdEvent("ad_unfilled", slot, { ad_format: format });
               return true;
             }
             return false;
@@ -186,12 +214,32 @@ const AdBanner = ({
     );
 
     observer.observe(el);
+
+    // Click-tracking proxy: cuando el usuario hace clic en un iframe de
+    // AdSense, el iframe gana focus y `window` recibe `blur`. Si en ese
+    // momento el activeElement es un iframe dentro de nuestro contenedor,
+    // contamos el clic. Es la técnica estándar para anuncios cross-origin.
+    const onBlur = () => {
+      window.setTimeout(() => {
+        const active = document.activeElement;
+        if (
+          active &&
+          active.tagName === "IFRAME" &&
+          el.contains(active)
+        ) {
+          trackAdEvent("ad_click", slot, { ad_format: format });
+        }
+      }, 0);
+    };
+    window.addEventListener("blur", onBlur);
+
     return () => {
       observer.disconnect();
       mo?.disconnect();
       if (fallbackTimer) window.clearTimeout(fallbackTimer);
+      window.removeEventListener("blur", onBlur);
     };
-  }, []);
+  }, [slot, format]);
 
   // Si AdSense no respondió (timeout) o el script está bloqueado/falló,
   // ocultamos el <ins> para que no pelee con la altura reservada y dejamos
