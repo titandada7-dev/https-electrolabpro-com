@@ -649,7 +649,7 @@ const Home = () => {
           {/* FAQ */}
           <button
             onClick={() => scrollTo("foro")}
-            className="md:col-span-9 md:row-span-1 bg-card rounded-3xl p-6 flex items-center justify-between border border-border card-glow text-left"
+            className="md:col-span-9 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-border card-glow text-left"
           >
             <div>
               <h3 className="text-xl font-bold text-foreground">Preguntas Frecuentes</h3>
