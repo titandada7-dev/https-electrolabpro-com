@@ -19,81 +19,52 @@ html {
        ========================================================================== */
 
     /* 1. BASE: Navy profundo */
-    --background: 213 68% 15%;
+    --background: 213 68% 13%;
 
-    /* 2. TEXTO: Blanco con leve frío oceánico */
-    --foreground: 178 30% 96%;
-    --muted-foreground: 188 30% 75%;
+    /* 2. TEXTO: contraste AA reforzado */
+    --foreground: 0 0% 100%;
+    --muted-foreground: 188 35% 84%;
 
-    /* 3. SUPERFICIES: Azul aluminio */
-    --card: 206 62% 27%;
-    --card-foreground: 178 30% 96%;
-    --popover: 206 62% 27%;
-    --popover-foreground: 178 30% 96%;
-    --muted: 206 50% 22%;
+    /* 3. SUPERFICIES */
+    --card: 206 62% 24%;
+    --card-foreground: 0 0% 100%;
+    --popover: 206 62% 24%;
+    --popover-foreground: 0 0% 100%;
+    --muted: 206 50% 20%;
 
-    /* 4. PRIMARIO: Teal técnico */
-    --primary: 190 56% 40%;
-    --primary-foreground: 213 68% 12%;
-    --primary-glow: 178 44% 55%;
+    /* 4. PRIMARIO: Teal técnico más luminoso */
+    --primary: 188 65% 55%;
+    --primary-foreground: 213 68% 10%;
+    --primary-glow: 178 60% 65%;
 
-    /* 5. HIGHLIGHT: Phosphor teal */
-    --secondary: 178 44% 55%;
-    --secondary-foreground: 213 68% 12%;
-    --highlight: 178 44% 55%;
-    --accent: 178 44% 55%;
-    --accent-foreground: 213 68% 12%;
+    /* 5. HIGHLIGHT */
+    --secondary: 178 55% 62%;
+    --secondary-foreground: 213 68% 10%;
+    --highlight: 178 55% 62%;
+    --accent: 178 55% 62%;
+    --accent-foreground: 213 68% 10%;
 
-    /* 6. BORDES */
-    --border: 206 50% 30%;
+    /* 6. BORDES (más visibles) */
+    --border: 206 45% 38%;
     --input: 206 50% 22%;
-    --ring: 178 44% 55%;
+    --ring: 178 55% 62%;
 
-    --destructive: 0 70% 50%;
+    --destructive: 0 75% 58%;
     --destructive-foreground: 0 0% 100%;
 
     --radius: 1rem;
 
     /* Sidebar */
-    --sidebar-background: 213 68% 12%;
-    --sidebar-foreground: 178 30% 90%;
-    --sidebar-primary: 190 56% 40%;
-    --sidebar-primary-foreground: 213 68% 12%;
+    --sidebar-background: 213 68% 10%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 188 65% 55%;
+    --sidebar-primary-foreground: 213 68% 10%;
     --sidebar-accent: 206 50% 22%;
-    --sidebar-accent-foreground: 178 44% 55%;
-    --sidebar-border: 206 50% 26%;
-    --sidebar-ring: 178 44% 55%;
+    --sidebar-accent-foreground: 178 55% 62%;
+    --sidebar-border: 206 50% 30%;
+    --sidebar-ring: 178 55% 62%;
   }
 
-  .light {
-    --background: 188 40% 96%;
-    --foreground: 213 68% 12%;
-    --card: 0 0% 100%;
-    --card-foreground: 213 68% 12%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 213 68% 12%;
-    --primary: 206 62% 27%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 190 56% 40%;
-    --secondary: 178 44% 55%;
-    --secondary-foreground: 213 68% 12%;
-    --muted: 188 30% 92%;
-    --muted-foreground: 206 30% 35%;
-    --border: 188 30% 84%;
-    --input: 188 30% 88%;
-    --ring: 190 56% 40%;
-    --highlight: 190 56% 40%;
-    --accent: 178 44% 55%;
-    --accent-foreground: 213 68% 12%;
-    --sidebar-background: 188 40% 94%;
-    --sidebar-foreground: 213 68% 15%;
-    --sidebar-primary: 206 62% 27%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 188 30% 88%;
-    --sidebar-accent-foreground: 206 62% 27%;
-    --sidebar-border: 188 30% 82%;
-    --sidebar-ring: 190 56% 40%;
-  }
 }
 
 @layer base {
