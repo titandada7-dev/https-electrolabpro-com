@@ -9,9 +9,11 @@ declare global {
   }
 }
 
-/** Envía un evento a GA4 (gtag) y a dataLayer (GTM) si están disponibles. */
+/** Envía un evento a GA4 (gtag) y a dataLayer (GTM) si están disponibles,
+ *  y emite un `console.warn` en producción para que quede traza en herramientas
+ *  de monitoreo (Sentry, session replay, etc.). */
 const trackAdEvent = (
-  action: "ad_impression" | "ad_click" | "ad_unfilled" | "ad_blocked",
+  action: "ad_impression" | "ad_click" | "ad_unfilled" | "ad_blocked" | "ad_timeout" | "ad_error",
   slot: string,
   extra: Record<string, unknown> = {}
 ) => {
@@ -22,11 +24,20 @@ const trackAdEvent = (
     ad_slot: slot,
     ad_client: "ca-pub-9393284878747603",
     non_interaction: action !== "ad_click",
+    page_path: typeof location !== "undefined" ? location.pathname : undefined,
     ...extra,
   };
   try {
     window.gtag?.("event", action, payload);
     (window.dataLayer = window.dataLayer || []).push({ event: action, ...payload });
+    // Log estructurado para depuración en producción (session replay / Sentry).
+    if (action === "ad_unfilled" || action === "ad_timeout" || action === "ad_blocked" || action === "ad_error") {
+      // eslint-disable-next-line no-console
+      console.warn(`[AdSense] ${action}`, payload);
+    } else if (action === "ad_impression") {
+      // eslint-disable-next-line no-console
+      console.info(`[AdSense] ${action}`, payload);
+    }
   } catch {
     /* tracking opcional, nunca debe romper el render */
   }
