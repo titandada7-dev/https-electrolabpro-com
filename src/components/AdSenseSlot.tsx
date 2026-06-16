@@ -33,17 +33,21 @@ const AdSenseSlot = ({
   variant = "inline",
   fallbackUrl = "/",
   className = "",
+  format,
+  layoutKey,
 }: AdSenseSlotProps) => {
   if (variant === "header") {
+    const isFluid = format === "fluid";
     return (
       <div className={`border-b border-border bg-background ${className}`}>
         <div className="container mx-auto px-4 sm:px-6 py-2">
           <AdBanner
             slot={slot}
-            format="horizontal"
-            responsive
+            format={format ?? "horizontal"}
+            layoutKey={layoutKey}
+            responsive={!isFluid}
             minHeightMobile={100}
-            minHeightDesktop={100}
+            minHeightDesktop={isFluid ? 120 : 100}
             className="max-w-[970px] mx-auto"
             fallbackUrl={fallbackUrl}
           />
