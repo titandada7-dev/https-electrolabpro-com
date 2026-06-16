@@ -147,9 +147,10 @@ const AdBanner = ({
 
     let fallbackTimer: number | undefined;
     let mo: MutationObserver | undefined;
+    let cancelled = false;
 
-    const tryPush = () => {
-      if (pushed.current) return;
+    const tryPush = async () => {
+      if (pushed.current || cancelled) return;
       if (el.offsetWidth === 0) {
         setReason("Contenedor con ancho 0");
         setStatus("error");
@@ -157,25 +158,37 @@ const AdBanner = ({
         return;
       }
 
-      // Detect AdSense script presence
-      const hasScript =
-        typeof window !== "undefined" &&
-        Array.isArray(window.adsbygoogle) === false
-          ? !!window.adsbygoogle
-          : true;
-
-      if (typeof window === "undefined" || !window.adsbygoogle) {
-        setReason("Script adsbygoogle no disponible (posible AdBlock)");
+      // Gate por consentimiento: el script se carga de forma diferida (lazy)
+      // y solo después de que el usuario acepte el banner de AdSense.
+      const consent = getAdsenseConsent();
+      if (consent === "denied") {
+        setReason("Publicidad rechazada por el usuario");
         setStatus("blocked");
-        trackAdEvent("ad_blocked", slot, { ad_format: format });
+        trackAdEvent("ad_blocked", slot, { ad_format: format, reason: "consent_denied" });
         return;
       }
+      if (consent === "pending") {
+        setReason("Esperando consentimiento de cookies");
+        setStatus("idle");
+        return; // re-intenta al recibir "adsense-consent-changed"
+      }
+
+      try {
+        await loadAdsense();
+      } catch (e) {
+        if (cancelled) return;
+        const msg = e instanceof Error ? e.message : String(e);
+        setReason(`Script bloqueado: ${msg}`);
+        setStatus("blocked");
+        trackAdEvent("ad_blocked", slot, { ad_format: format, reason: msg });
+        return;
+      }
+      if (cancelled || pushed.current) return;
 
       try {
         setStatus("loading");
         (window.adsbygoogle = window.adsbygoogle || []).push({});
         pushed.current = true;
-        void hasScript;
 
         const startedAt = performance.now();
         fallbackTimer = window.setTimeout(() => {
@@ -245,6 +258,18 @@ const AdBanner = ({
 
     observer.observe(el);
 
+    // Si el usuario acepta el banner mientras este slot ya entró al viewport
+    // pero quedó en "idle" por falta de consentimiento, reintentamos.
+    const offConsent = onAdsenseConsentChange((state) => {
+      if (state === "granted" && !pushed.current) {
+        tryPush();
+      } else if (state === "denied" && !pushed.current) {
+        setReason("Publicidad rechazada por el usuario");
+        setStatus("blocked");
+        trackAdEvent("ad_blocked", slot, { ad_format: format, reason: "consent_denied" });
+      }
+    });
+
     // Click-tracking proxy: cuando el usuario hace clic en un iframe de
     // AdSense, el iframe gana focus y `window` recibe `blur`. Si en ese
     // momento el activeElement es un iframe dentro de nuestro contenedor,
@@ -264,12 +289,16 @@ const AdBanner = ({
     window.addEventListener("blur", onBlur);
 
     return () => {
+      cancelled = true;
       observer.disconnect();
       mo?.disconnect();
       if (fallbackTimer) window.clearTimeout(fallbackTimer);
       window.removeEventListener("blur", onBlur);
+      offConsent();
     };
   }, [slot, format]);
+
+
 
   // Si AdSense no respondió (timeout) o el script está bloqueado/falló,
   // ocultamos el <ins> para que no pelee con la altura reservada y dejamos
