@@ -308,7 +308,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
 
             {/* AdSense: Después del contenido del artículo */}
             <div className="mt-6">
-              <AdBanner slot="5010919563" format="fluid" layout="in-article" className="min-h-[90px] md:min-h-[250px]" fallbackUrl="/" />
+              <AdBanner slot="5010919563" format="fluid" layout="in-article" minHeightMobile={250} minHeightDesktop={280} fallbackUrl="/" />
             </div>
           </article>
           <aside className="hidden lg:flex flex-col gap-6 w-64 shrink-0">
