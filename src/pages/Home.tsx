@@ -516,7 +516,7 @@ const Home = () => {
 
 
           {/* HERO — tile principal */}
-          <div className="md:col-span-8 md:row-span-2 bg-card rounded-3xl p-8 sm:p-10 flex flex-col justify-end relative overflow-hidden card-glow border border-border">
+          <div className="md:col-span-8 md:row-span-2 min-h-[260px] bg-card rounded-3xl p-6 sm:p-8 md:p-10 flex flex-col justify-end relative overflow-hidden card-glow border border-border">
             <div className="absolute top-6 right-6 text-highlight opacity-20" aria-hidden="true">
               <CircuitBoard className="w-32 h-32" strokeWidth={1} />
             </div>
