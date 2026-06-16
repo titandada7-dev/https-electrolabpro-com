@@ -60,8 +60,8 @@ const AdSenseSlot = ({
           </p>
           <AdBanner
             slot={slot}
-            format="vertical"
-            responsive={false}
+            format="auto"
+            responsive
             minHeightMobile={600}
             minHeightDesktop={600}
             fallbackUrl={fallbackUrl}
