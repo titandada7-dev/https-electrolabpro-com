@@ -112,12 +112,13 @@ const STATUS_LABEL: Record<AdStatus, string> = {
 
 const STATUS_COLOR: Record<AdStatus, string> = {
   idle: "bg-muted text-muted-foreground",
-  loading: "bg-blue-500/20 text-blue-700 dark:text-blue-300",
-  filled: "bg-emerald-500/20 text-emerald-700 dark:text-emerald-300",
-  timeout: "bg-amber-500/20 text-amber-700 dark:text-amber-300",
-  blocked: "bg-red-500/20 text-red-700 dark:text-red-300",
-  error: "bg-red-500/20 text-red-700 dark:text-red-300",
+  loading: "bg-primary/25 text-primary-foreground border-primary/40",
+  filled: "bg-emerald-400/25 text-emerald-100 border-emerald-400/40",
+  timeout: "bg-amber-400/25 text-amber-100 border-amber-400/40",
+  blocked: "bg-destructive/30 text-destructive-foreground border-destructive/50",
+  error: "bg-destructive/30 text-destructive-foreground border-destructive/50",
 };
+
 
 // Diagnóstico solo visible si se añade explícitamente ?debug=ads=1 (o =true) en la URL.
 // En preview/producción permanece oculto por defecto para no confundir al usuario.
@@ -358,16 +359,16 @@ const AdBanner = ({
             {failed ? (
               showDiag ? (
                 <>
-                  <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground/70">
+                  <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground">
                     Anuncio no disponible
                   </span>
-                  <span className="text-[10px] text-muted-foreground/50 max-w-[260px] leading-snug">
+                  <span className="text-[10px] text-muted-foreground/80 max-w-[260px] leading-snug">
                     El espacio publicitario no se cargó.
                   </span>
                   {isInternalFallback ? (
                     <Link
                       to={resolvedFallback}
-                      className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                      className="mt-1 text-[11px] font-mono text-primary hover:text-primary-foreground hover:bg-primary px-2 py-0.5 rounded underline underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       {fallbackLabel} →
                     </Link>
@@ -376,7 +377,7 @@ const AdBanner = ({
                       href={resolvedFallback}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                      className="mt-1 text-[11px] font-mono text-primary hover:text-primary-foreground hover:bg-primary px-2 py-0.5 rounded underline underline-offset-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       {fallbackLabel} →
                     </a>
@@ -384,10 +385,11 @@ const AdBanner = ({
                 </>
               ) : null
             ) : (
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground/40">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground/80">
                 Publicidad
               </span>
             )}
+
           </div>
         )}
 
