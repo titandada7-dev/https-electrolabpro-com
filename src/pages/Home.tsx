@@ -633,7 +633,7 @@ const Home = () => {
           {/* PLAY */}
           <Link
             to="/aprende-jugando"
-            className="md:col-span-3 md:row-span-1 bg-highlight rounded-3xl p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform"
+            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-highlight rounded-3xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform"
             aria-label="Jugá ElectroLab Play"
           >
             <div className="flex justify-between items-start">
