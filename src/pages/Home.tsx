@@ -591,7 +591,7 @@ const Home = () => {
                 <li key={t.label}>
                   <button
                     onClick={() => scrollTo(t.id)}
-                    className="w-full flex items-center gap-3 text-muted-foreground hover:text-foreground text-sm p-2 rounded-xl bg-background/40 hover:bg-background/70 transition-colors text-left"
+                    className="w-full flex items-center gap-3 text-muted-foreground hover:text-foreground text-sm p-2 rounded-xl bg-background/40 hover:bg-background/70 transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                     {t.label}
