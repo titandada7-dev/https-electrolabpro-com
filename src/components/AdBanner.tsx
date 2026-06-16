@@ -289,10 +289,12 @@ const AdBanner = ({
           style={{
             display: failed ? "none" : "block",
             minHeight: `${mobileH}px`,
+            ...(layout === "in-article" ? { textAlign: "center" as const } : {}),
           }}
           data-ad-client="ca-pub-9393284878747603"
           data-ad-slot={slot}
           data-ad-format={format}
+          {...(layout ? { "data-ad-layout": layout } : {})}
           {...(layoutKey ? { "data-ad-layout-key": layoutKey } : {})}
           {...(format === "fluid" ? {} : { "data-full-width-responsive": responsive ? "true" : "false" })}
         />
