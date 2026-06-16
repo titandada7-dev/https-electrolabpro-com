@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePageMeta } from "@/hooks/use-page-meta";
-import ThemeToggle from "@/components/ThemeToggle";
 
 const GAME_URL = "https://smart-shuffle.lovable.app";
 
@@ -134,7 +133,6 @@ const AprendeJugando = () => {
             <ArrowLeft className="h-4 w-4" />
             Volver a ElectroLab Pro
           </Link>
-          <ThemeToggle />
         </div>
       </header>
 
