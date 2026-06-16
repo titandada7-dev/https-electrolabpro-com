@@ -500,58 +500,155 @@ const Home = () => {
       <AdSenseSlot slot="3756475501" variant="header" fallbackUrl="/" />
 
       {/* ═══════════ #INICIO ═══════════ */}
-      <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
-        <div className="absolute inset-0 bg-dot-grid opacity-[0.35] pointer-events-none" aria-hidden="true" />
-        <div
-          className="relative w-full max-w-3xl rounded-2xl border border-border bg-card/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 sm:p-12 text-center"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider mb-6">
-            <CircuitBoard className="w-3.5 h-3.5" />
-            CENTRO DE INVESTIGACIÓN TÉCNICA
+      <section id="inicio" className="relative px-4 sm:px-6 py-10 sm:py-14 overflow-hidden">
+        <div className="absolute inset-0 bg-dot-grid opacity-[0.2] pointer-events-none" aria-hidden="true" />
+        <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:auto-rows-[160px] gap-4">
+
+          {/* HERO — tile principal */}
+          <div className="md:col-span-8 md:row-span-2 bg-card rounded-3xl p-8 sm:p-10 flex flex-col justify-end relative overflow-hidden card-glow border border-border">
+            <div className="absolute top-6 right-6 text-highlight opacity-20" aria-hidden="true">
+              <CircuitBoard className="w-32 h-32" strokeWidth={1} />
+            </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-highlight/30 bg-highlight/10 text-highlight text-[11px] font-bold tracking-wider uppercase mb-4 w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-highlight" /> Centro de Investigación Técnica
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-foreground mb-3">
+              ElectroLab Pro — Investigación,<br />
+              Cálculo y <span className="text-gradient-primary">Documentación</span>
+            </h1>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-xl">
+              Herramientas y guías basadas en estándares internacionales de ingeniería, validadas en banco de pruebas.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 mt-5">
+              <Button size="lg" className="gap-2" onClick={() => scrollTo("calculadora")}>
+                <Calculator className="h-4 w-4" /> Usar calculadoras
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2 border-highlight/40 text-highlight hover:bg-highlight/10 hover:text-highlight" onClick={() => scrollTo("guias")}>
+                <BookOpen className="h-4 w-4" /> Ver guías
+              </Button>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-foreground">
-            ElectroLab Pro — Investigación, Cálculo y{" "}
-            <span className="text-gradient-primary">Documentación Electrónica</span>
-          </h1>
+          {/* CALCULADORAS */}
+          <button
+            onClick={() => scrollTo("calculadora")}
+            className="md:col-span-4 md:row-span-1 bg-primary rounded-3xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer text-left group"
+          >
+            <div className="flex justify-between items-start">
+              <div className="p-2 bg-white/10 rounded-lg">
+                <Calculator className="w-6 h-6 text-primary-foreground" />
+              </div>
+              <span className="text-primary-foreground/70 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+            <h3 className="text-xl font-bold text-primary-foreground">Calculadoras de Ingeniería</h3>
+          </button>
 
-          <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Herramientas y guías basadas en estándares internacionales de ingeniería, validadas en banco de pruebas.
-          </p>
+          {/* DICCIONARIO */}
+          <button
+            onClick={() => scrollTo("diccionario")}
+            className="md:col-span-4 md:row-span-1 bg-card border border-highlight/30 rounded-3xl p-6 flex flex-col justify-between hover:bg-card/70 transition-colors cursor-pointer text-left card-glow"
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-highlight animate-pulse" />
+              <span className="text-highlight text-[10px] font-bold uppercase tracking-wider">Base de datos</span>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">Diccionario de Componentes</h3>
+              <p className="text-muted-foreground text-sm">Fichas y datasheets resumidos</p>
+            </div>
+          </button>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-6 text-sm font-medium text-foreground">
-            <span className="flex items-center gap-1.5"><Calculator className="h-4 w-4 text-primary" /> ✔ Calculadora Ley de Ohm</span>
-            <span className="flex items-center gap-1.5"><Lightbulb className="h-4 w-4 text-primary" /> ✔ Cálculo de resistencia para LED</span>
-            <span className="flex items-center gap-1.5"><Cpu className="h-4 w-4 text-primary" /> ✔ Código de colores de resistencias</span>
+          {/* HERRAMIENTAS */}
+          <div className="md:col-span-3 md:row-span-2 bg-card rounded-3xl p-6 flex flex-col border border-border card-glow">
+            <h3 className="text-lg font-bold text-foreground mb-4">Herramientas</h3>
+            <ul className="space-y-2 flex-1">
+              {[
+                { label: "Ley de Ohm", id: "calculadora" },
+                { label: "Resistencia LED", id: "calculadora" },
+                { label: "Código de colores", id: "calculadora" },
+                { label: "Divisor de voltaje", id: "calculadora" },
+                { label: "Filtro RC / 555", id: "calculadora" },
+              ].map((t) => (
+                <li key={t.label}>
+                  <button
+                    onClick={() => scrollTo(t.id)}
+                    className="w-full flex items-center gap-3 text-muted-foreground hover:text-foreground text-sm p-2 rounded-xl bg-background/40 hover:bg-background/70 transition-colors text-left"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    {t.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
-            <Button size="lg" className="gap-2" onClick={() => scrollTo("guias")}>
-              <BookOpen className="h-4 w-4" /> Ver guías
-            </Button>
-            <Button size="lg" variant="outline" className="gap-2" onClick={() => scrollTo("calculadora")}>
-              <Calculator className="h-4 w-4" /> Usar calculadoras
-            </Button>
+          {/* ARTÍCULOS RECIENTES */}
+          <div className="md:col-span-6 md:row-span-2 bg-background border border-border rounded-3xl p-6 overflow-hidden flex flex-col card-glow">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-foreground">Artículos Recientes</h3>
+              <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-highlight text-sm font-medium hover:underline">
+                Ver todo →
+              </a>
+            </div>
+            <div className="space-y-3 flex-1">
+              {[
+                { t: "Cómo Leer un Datasheet", s: "Guía técnica · 10 min", to: "/articulos/leer-datasheet" },
+                { t: "Qué Arduino Comprar", s: "Comparativa · 8 min", to: "/articulos/que-arduino-comprar" },
+                { t: "PWM con Arduino", s: "Tutorial · 12 min", to: "/articulos/pwm-arduino" },
+              ].map((a) => (
+                <Link key={a.to} to={a.to} className="flex gap-4 p-3 rounded-2xl bg-card/50 hover:bg-card transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex-shrink-0 flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-highlight" />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-foreground font-medium text-sm truncate">{a.t}</h4>
+                    <p className="text-muted-foreground/70 text-xs mt-1">{a.s}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
 
-          {/* CTA: Aprende Jugando — ElectroLab Play */}
+          {/* EDUCACIÓN */}
+          <button
+            onClick={() => scrollTo("aprender")}
+            className="md:col-span-3 md:row-span-1 bg-card rounded-3xl p-6 flex flex-col justify-center border border-border card-glow text-left"
+          >
+            <span className="text-highlight font-bold text-2xl">21+</span>
+            <p className="text-foreground font-medium">Guías técnicas</p>
+            <p className="text-muted-foreground/70 text-xs">De principiante a profesional</p>
+          </button>
+
+          {/* PLAY */}
           <Link
             to="/aprende-jugando"
-            className="group mt-6 inline-flex items-center gap-3 rounded-full border border-primary/30 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all hover:border-primary/60 hover:shadow-md hover:scale-[1.02]"
-            aria-label="Jugá ElectroLab Play, el quiz interactivo de electrónica"
+            className="md:col-span-3 md:row-span-1 bg-highlight rounded-3xl p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform"
+            aria-label="Jugá ElectroLab Play"
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
-            </span>
-            <span className="text-base">🎮</span>
-            <span>
-              <span className="text-primary font-bold">Nuevo:</span> Jugá ElectroLab Play
-            </span>
-            <span className="ml-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
-              Quiz
-            </span>
+            <div className="flex justify-between items-start">
+              <Sparkles className="w-6 h-6 text-background" />
+              <span className="text-background/70 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+            <h3 className="text-lg font-bold text-background leading-tight">
+              🎮 ElectroLab Play
+              <span className="block text-xs font-medium opacity-80">Quiz interactivo</span>
+            </h3>
           </Link>
+
+          {/* FAQ */}
+          <button
+            onClick={() => scrollTo("foro")}
+            className="md:col-span-9 md:row-span-1 bg-card rounded-3xl p-6 flex items-center justify-between border border-border card-glow text-left"
+          >
+            <div>
+              <h3 className="text-xl font-bold text-foreground">Preguntas Frecuentes</h3>
+              <p className="text-muted-foreground">Resolvé dudas sobre componentes, fuentes y protocolos.</p>
+            </div>
+            <span className="px-5 py-2 bg-primary text-primary-foreground rounded-full font-bold text-sm hover:bg-highlight transition-colors">
+              Abrir FAQ
+            </span>
+          </button>
+
         </div>
       </section>
 
