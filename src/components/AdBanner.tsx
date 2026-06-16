@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  getAdsenseConsent,
+  loadAdsense,
+  onAdsenseConsentChange,
+} from "@/lib/adsenseLoader";
 
 declare global {
   interface Window {
-    adsbygoogle: unknown[];
     gtag?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
   }
