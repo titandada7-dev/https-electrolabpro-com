@@ -543,7 +543,7 @@ const Home = () => {
           {/* CALCULADORAS */}
           <button
             onClick={() => scrollTo("calculadora")}
-            className="md:col-span-4 md:row-span-1 bg-primary rounded-3xl p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer text-left group"
+            className="md:col-span-4 md:row-span-1 min-h-[140px] bg-primary rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer text-left group"
           >
             <div className="flex justify-between items-start">
               <div className="p-2 bg-white/10 rounded-lg">
