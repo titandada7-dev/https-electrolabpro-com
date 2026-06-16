@@ -177,9 +177,9 @@ html {
     hsl(var(--background));
 }
 
-/* EFECTO TEXTO AZUL METÁLICO (Para usar en los títulos principales H1/H2 del Home) */
+/* EFECTO TEXTO TEAL OCEAN DEEP (para títulos H1/H2 del Home) */
 .text-gradient-primary {
-  background: linear-gradient(90deg, #0052D4 0%, #4364F7 50%, #6FB1FC 100%);
+  background: linear-gradient(90deg, #2d8a9e 0%, #5cbdb9 50%, #a7e2dd 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
