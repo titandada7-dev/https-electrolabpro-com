@@ -150,6 +150,7 @@ const AdBanner = ({
       if (el.offsetWidth === 0) {
         setReason("Contenedor con ancho 0");
         setStatus("error");
+        trackAdEvent("ad_error", slot, { ad_format: format, reason: "container_width_0" });
         return;
       }
 
