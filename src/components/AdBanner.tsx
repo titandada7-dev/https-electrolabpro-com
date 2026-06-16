@@ -104,12 +104,11 @@ const STATUS_COLOR: Record<AdStatus, string> = {
   error: "bg-red-500/20 text-red-700 dark:text-red-300",
 };
 
+// Diagnóstico solo visible si se añade explícitamente ?debug=ads=1 (o =true) en la URL.
+// En preview/producción permanece oculto por defecto para no confundir al usuario.
 const isDev =
   typeof window !== "undefined" &&
-  (window.location.hostname === "localhost" ||
-    window.location.hostname.includes("lovableproject.com") ||
-    window.location.hostname.includes("lovable.app") ||
-    window.location.search.includes("debug=ads"));
+  /[?&]debug=ads=(1|true)\b/.test(window.location.search);
 
 const AdBanner = ({
   slot,
