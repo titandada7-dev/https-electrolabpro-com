@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ==========================================================================
-   CONFIGURACIÓN GLOBAL
+   CONFIGURACIÓN GLOBAL — Ocean Deep palette
    ========================================================================== */
 html {
   scroll-behavior: smooth;
@@ -12,78 +14,95 @@ html {
 @layer base {
   :root {
     /* ==========================================================================
-       SISTEMA DE ASIGNACIÓN METÁLICA (ROLES DE COLOR FIX - MODO OSCURO)
+       OCEAN DEEP — Paleta técnica náutica
+       #0c2340 base · #1a4a6e surface · #2d8a9e primary · #5cbdb9 highlight
        ========================================================================== */
-    
-    /* 1. LA BASE: Gris Grafito Oscuro (Fondo neutro de laboratorio) */
-    --background: 220 12% 5%; 
-    
-    /* 2. LAS LETRAS: Blanco Titanio y Gris Plata (Contraste láser ultra claro) */
-    --foreground: 210 40% 98%; 
-    --muted-foreground: 215 12% 80%; /* Letras secundarias en plata suave */
 
-    /* 3. LAS VENTANAS: Aluminio Anodizado (Cajas que contienen las herramientas) */
-    --card: 220 10% 10%; 
-    --card-foreground: 210 40% 98%; 
-    --popover: 220 10% 10%;
-    --popover-foreground: 210 40% 98%;
+    /* 1. BASE: Navy profundo */
+    --background: 213 68% 15%;
 
-    /* 4. LOS BOTONES: Azul Cobalto Espejado (Fuerza visual para hacer clic) */
-    --primary: 212 100% 48%; 
-    --primary-foreground: 210 40% 98%; 
-    --primary-glow: 212 100% 65%;
+    /* 2. TEXTO: Blanco con leve frío oceánico */
+    --foreground: 178 30% 96%;
+    --muted-foreground: 188 30% 75%;
 
-    /* 5. LOS EFECTOS Y DESTACADOS: Oro Pulido (Solo para llamar la atención) */
-    --secondary: 42 50% 12%; 
-    --secondary-foreground: 42 75% 58%; /* Oro brillante de tu captura */
-    --highlight: 42 75% 58%; 
+    /* 3. SUPERFICIES: Azul aluminio */
+    --card: 206 62% 27%;
+    --card-foreground: 178 30% 96%;
+    --popover: 206 62% 27%;
+    --popover-foreground: 178 30% 96%;
+    --muted: 206 50% 22%;
 
-    /* 6. LOS SEPARADORES: Acero / Plata Pulida (Líneas divisorias de secciones) */
-    --border: 220 8% 18%; 
-    --input: 220 8% 16%;
-    --ring: 212 100% 48%; /* El foco del teclado se ilumina en azul */
+    /* 4. PRIMARIO: Teal técnico */
+    --primary: 190 56% 40%;
+    --primary-foreground: 213 68% 12%;
+    --primary-glow: 178 44% 55%;
 
-    /* --- Estructura --- */
-    --radius: 0.875rem;
-    
-    /* --- Panel Lateral (Sidebar Ordenado) --- */
-    --sidebar-background: 220 12% 8%;
-    --sidebar-foreground: 215 12% 85%;
-    --sidebar-primary: 212 100% 48%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 42 50% 10%;
-    --sidebar-accent-foreground: 42 75% 58%;
-    --sidebar-border: 220 8% 14%;
-    --sidebar-ring: 212 100% 48%;
+    /* 5. HIGHLIGHT: Phosphor teal */
+    --secondary: 178 44% 55%;
+    --secondary-foreground: 213 68% 12%;
+    --highlight: 178 44% 55%;
+    --accent: 178 44% 55%;
+    --accent-foreground: 213 68% 12%;
+
+    /* 6. BORDES */
+    --border: 206 50% 30%;
+    --input: 206 50% 22%;
+    --ring: 178 44% 55%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --radius: 1rem;
+
+    /* Sidebar */
+    --sidebar-background: 213 68% 12%;
+    --sidebar-foreground: 178 30% 90%;
+    --sidebar-primary: 190 56% 40%;
+    --sidebar-primary-foreground: 213 68% 12%;
+    --sidebar-accent: 206 50% 22%;
+    --sidebar-accent-foreground: 178 44% 55%;
+    --sidebar-border: 206 50% 26%;
+    --sidebar-ring: 178 44% 55%;
   }
 
   .light {
-    /* --- MODO CLARO (Opcional, Estilo Aluminio Pulido Claro) --- */
-    --background: 210 20% 95%;
-    --foreground: 220 15% 10%;
+    --background: 188 40% 96%;
+    --foreground: 213 68% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 10%;
+    --card-foreground: 213 68% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 10%;
-    --primary: 212 100% 45%;
+    --popover-foreground: 213 68% 12%;
+    --primary: 206 62% 27%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 212 100% 55%;
-    --secondary: 42 40% 90%;
-    --secondary-foreground: 42 60% 35%;
-    --muted: 210 20% 88%;
-    --muted-foreground: 220 10% 42%;
-    --border: 210 20% 84%;
-    --input: 210 20% 84%;
-    --ring: 212 100% 45%;
-    --highlight: 42 60% 35%;
-    --sidebar-background: 210 20% 92%;
-    --sidebar-foreground: 220 15% 15%;
-    --sidebar-primary: 212 100% 45%;
+    --primary-glow: 190 56% 40%;
+    --secondary: 178 44% 55%;
+    --secondary-foreground: 213 68% 12%;
+    --muted: 188 30% 92%;
+    --muted-foreground: 206 30% 35%;
+    --border: 188 30% 84%;
+    --input: 188 30% 88%;
+    --ring: 190 56% 40%;
+    --highlight: 190 56% 40%;
+    --accent: 178 44% 55%;
+    --accent-foreground: 213 68% 12%;
+    --sidebar-background: 188 40% 94%;
+    --sidebar-foreground: 213 68% 15%;
+    --sidebar-primary: 206 62% 27%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 20% 86%;
-    --sidebar-accent-foreground: 212 100% 45%;
-    --sidebar-border: 210 20% 80%;
-    --sidebar-ring: 212 100% 45%;
+    --sidebar-accent: 188 30% 88%;
+    --sidebar-accent-foreground: 206 62% 27%;
+    --sidebar-border: 188 30% 82%;
+    --sidebar-ring: 190 56% 40%;
+  }
+}
+
+@layer base {
+  body {
+    font-family: 'Figtree', system-ui, -apple-system, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', system-ui, sans-serif;
+    letter-spacing: -0.01em;
   }
 }
 
