@@ -594,7 +594,7 @@ const Home = () => {
           </div>
 
           {/* ARTÍCULOS RECIENTES */}
-          <div className="md:col-span-6 md:row-span-2 bg-background border border-border rounded-3xl p-6 overflow-hidden flex flex-col card-glow">
+          <div className="md:col-span-6 md:row-span-2 min-h-[260px] bg-background border border-border rounded-3xl p-5 sm:p-6 overflow-hidden flex flex-col card-glow">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-bold text-foreground">Artículos Recientes</h3>
               <a href="#aprender" onClick={handleAnchorClick("aprender")} className="text-highlight text-sm font-medium hover:underline">
