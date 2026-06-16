@@ -631,7 +631,8 @@ const Home = () => {
           {/* EDUCACIÓN */}
           <button
             onClick={() => scrollTo("aprender")}
-            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col justify-center border border-border card-glow text-left"
+            aria-current={activeSection === "aprender" ? "true" : undefined}
+            className={`md:col-span-3 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col justify-center border border-border card-glow text-left ${tileFocus} ${tileActive("aprender")}`}
           >
             <span className="text-highlight font-bold text-2xl">21+</span>
             <p className="text-foreground font-medium">Guías técnicas</p>
@@ -641,7 +642,7 @@ const Home = () => {
           {/* PLAY */}
           <Link
             to="/aprende-jugando"
-            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-highlight rounded-3xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform"
+            className={`md:col-span-3 md:row-span-1 min-h-[120px] bg-highlight rounded-3xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform ${tileFocus}`}
             aria-label="Jugá ElectroLab Play"
           >
             <div className="flex justify-between items-start">
@@ -657,7 +658,8 @@ const Home = () => {
           {/* FAQ */}
           <button
             onClick={() => scrollTo("foro")}
-            className="md:col-span-9 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-border card-glow text-left"
+            aria-current={activeSection === "foro" ? "true" : undefined}
+            className={`md:col-span-9 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-border card-glow text-left ${tileFocus} ${tileActive("foro")}`}
           >
             <div>
               <h3 className="text-xl font-bold text-foreground">Preguntas Frecuentes</h3>
