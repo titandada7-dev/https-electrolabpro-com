@@ -115,14 +115,12 @@ const handleAnchorClick = (id: string) => (e: React.MouseEvent<HTMLAnchorElement
   const el = document.getElementById(id);
   if (el) {
     e.preventDefault();
-    el.scrollIntoView({ behavior: "smooth" });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
     history.replaceState(null, "", `#${id}`);
   }
 };
 
-const scrollTo = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-};
+// scrollTo se redefine dentro del componente para poder actualizar el estado activo.
 
 // Tres niveles de investigación
 const quickAccessCards = [
