@@ -203,7 +203,11 @@ const AdBanner = ({
               setReason("AdSense respondió sin anuncio (unfilled)");
               setStatus("timeout");
               if (fallbackTimer) window.clearTimeout(fallbackTimer);
-              trackAdEvent("ad_unfilled", slot, { ad_format: format });
+              trackAdEvent("ad_unfilled", slot, {
+                ad_format: format,
+                elapsed_ms: Math.round(performance.now() - startedAt),
+                reason: "adsense_unfilled",
+              });
               return true;
             }
             return false;
