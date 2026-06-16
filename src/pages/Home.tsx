@@ -510,9 +510,10 @@ const Home = () => {
       <AdSenseSlot slot="3756475501" variant="header" fallbackUrl="/" />
 
       {/* ═══════════ #INICIO ═══════════ */}
-      <section id="inicio" className="relative px-4 sm:px-6 py-10 sm:py-14 overflow-hidden">
+      <section id="inicio" className="relative px-4 sm:px-6 py-8 sm:py-12 overflow-hidden">
         <div className="absolute inset-0 bg-dot-grid opacity-[0.2] pointer-events-none" aria-hidden="true" />
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:auto-rows-[160px] gap-4">
+        <div className="relative max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 md:auto-rows-[minmax(160px,auto)] gap-3 sm:gap-4">
+
 
           {/* HERO — tile principal */}
           <div className="md:col-span-8 md:row-span-2 bg-card rounded-3xl p-8 sm:p-10 flex flex-col justify-end relative overflow-hidden card-glow border border-border">
