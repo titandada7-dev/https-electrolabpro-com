@@ -9,9 +9,11 @@ declare global {
   }
 }
 
-/** Envía un evento a GA4 (gtag) y a dataLayer (GTM) si están disponibles. */
+/** Envía un evento a GA4 (gtag) y a dataLayer (GTM) si están disponibles,
+ *  y emite un `console.warn` en producción para que quede traza en herramientas
+ *  de monitoreo (Sentry, session replay, etc.). */
 const trackAdEvent = (
-  action: "ad_impression" | "ad_click" | "ad_unfilled" | "ad_blocked",
+  action: "ad_impression" | "ad_click" | "ad_unfilled" | "ad_blocked" | "ad_timeout" | "ad_error",
   slot: string,
   extra: Record<string, unknown> = {}
 ) => {
@@ -22,11 +24,20 @@ const trackAdEvent = (
     ad_slot: slot,
     ad_client: "ca-pub-9393284878747603",
     non_interaction: action !== "ad_click",
+    page_path: typeof location !== "undefined" ? location.pathname : undefined,
     ...extra,
   };
   try {
     window.gtag?.("event", action, payload);
     (window.dataLayer = window.dataLayer || []).push({ event: action, ...payload });
+    // Log estructurado para depuración en producción (session replay / Sentry).
+    if (action === "ad_unfilled" || action === "ad_timeout" || action === "ad_blocked" || action === "ad_error") {
+      // eslint-disable-next-line no-console
+      console.warn(`[AdSense] ${action}`, payload);
+    } else if (action === "ad_impression") {
+      // eslint-disable-next-line no-console
+      console.info(`[AdSense] ${action}`, payload);
+    }
   } catch {
     /* tracking opcional, nunca debe romper el render */
   }
@@ -139,6 +150,7 @@ const AdBanner = ({
       if (el.offsetWidth === 0) {
         setReason("Contenedor con ancho 0");
         setStatus("error");
+        trackAdEvent("ad_error", slot, { ad_format: format, reason: "container_width_0" });
         return;
       }
 
@@ -162,10 +174,16 @@ const AdBanner = ({
         pushed.current = true;
         void hasScript;
 
+        const startedAt = performance.now();
         fallbackTimer = window.setTimeout(() => {
           setStatus((prev) => {
             if (prev === "filled") return prev;
             setReason("Sin respuesta de AdSense en 6s (sin fill o bloqueado)");
+            trackAdEvent("ad_timeout", slot, {
+              ad_format: format,
+              elapsed_ms: Math.round(performance.now() - startedAt),
+              reason: "no_response_6s",
+            });
             return "timeout";
           });
         }, 6000);
@@ -178,13 +196,21 @@ const AdBanner = ({
               setStatus("filled");
               setReason("");
               if (fallbackTimer) window.clearTimeout(fallbackTimer);
-              trackAdEvent("ad_impression", slot, { ad_format: format });
+              trackAdEvent("ad_impression", slot, {
+                ad_format: format,
+                elapsed_ms: Math.round(performance.now() - startedAt),
+              });
               return true;
             }
             if (adStatus === "unfilled") {
               setReason("AdSense respondió sin anuncio (unfilled)");
               setStatus("timeout");
-              trackAdEvent("ad_unfilled", slot, { ad_format: format });
+              if (fallbackTimer) window.clearTimeout(fallbackTimer);
+              trackAdEvent("ad_unfilled", slot, {
+                ad_format: format,
+                elapsed_ms: Math.round(performance.now() - startedAt),
+                reason: "adsense_unfilled",
+              });
               return true;
             }
             return false;
@@ -200,6 +226,7 @@ const AdBanner = ({
         const msg = e instanceof Error ? e.message : String(e);
         setReason(msg);
         setStatus("error");
+        trackAdEvent("ad_error", slot, { ad_format: format, reason: msg });
       }
     };
 
