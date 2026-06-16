@@ -355,7 +355,7 @@ const Home = () => {
   const activeQa = QA_CATEGORIES.find((c) => c.id === activeQaTab);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-28 md:pb-0">
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5">
