@@ -129,7 +129,7 @@ const quickAccessCards = [
   { icon: <BookOpen className="h-6 w-6" />, title: "Nivel 3 · Protocolos y Guías", desc: "PWM, I2C, reguladores y más", target: "guias", color: "bg-emerald-500/10 text-emerald-500" },
 ];
 
-const NAV_SECTIONS = ["inicio", "aprender", "guias", "calculadora", "mini-proyectos", "foro"] as const;
+const NAV_SECTIONS = ["inicio", "aprender", "guias", "calculadora", "diccionario", "mini-proyectos", "foro", "recursos"] as const;
 type NavSection = typeof NAV_SECTIONS[number];
 
 const Home = () => {
@@ -149,6 +149,12 @@ const Home = () => {
       setActiveSection(id as NavSection);
     }
   };
+
+  // Clases comunes para foco visible y resaltado activo en tiles del bento.
+  const tileFocus =
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-shadow";
+  const tileActive = (id: string) =>
+    activeSection === id ? "ring-2 ring-highlight/70 ring-offset-2 ring-offset-background" : "";
 
   // Resaltado del enlace activo según la sección visible.
   // IntersectionObserver con rootMargin para considerar "activa" la sección
@@ -543,7 +549,8 @@ const Home = () => {
           {/* CALCULADORAS */}
           <button
             onClick={() => scrollTo("calculadora")}
-            className="md:col-span-4 md:row-span-1 min-h-[140px] bg-primary rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer text-left group"
+            aria-current={activeSection === "calculadora" ? "true" : undefined}
+            className={`md:col-span-4 md:row-span-1 min-h-[140px] bg-primary rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer text-left group ${tileFocus} ${tileActive("calculadora")}`}
           >
             <div className="flex justify-between items-start">
               <div className="p-2 bg-white/10 rounded-lg">
@@ -557,7 +564,8 @@ const Home = () => {
           {/* DICCIONARIO */}
           <button
             onClick={() => scrollTo("diccionario")}
-            className="md:col-span-4 md:row-span-1 min-h-[140px] bg-card border border-highlight/30 rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:bg-card/70 transition-colors cursor-pointer text-left card-glow"
+            aria-current={activeSection === "diccionario" ? "true" : undefined}
+            className={`md:col-span-4 md:row-span-1 min-h-[140px] bg-card border border-highlight/30 rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:bg-card/70 transition-colors cursor-pointer text-left card-glow ${tileFocus} ${tileActive("diccionario")}`}
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-highlight animate-pulse" />
@@ -583,7 +591,7 @@ const Home = () => {
                 <li key={t.label}>
                   <button
                     onClick={() => scrollTo(t.id)}
-                    className="w-full flex items-center gap-3 text-muted-foreground hover:text-foreground text-sm p-2 rounded-xl bg-background/40 hover:bg-background/70 transition-colors text-left"
+                    className="w-full flex items-center gap-3 text-muted-foreground hover:text-foreground text-sm p-2 rounded-xl bg-background/40 hover:bg-background/70 transition-colors text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                     {t.label}
@@ -623,7 +631,8 @@ const Home = () => {
           {/* EDUCACIÓN */}
           <button
             onClick={() => scrollTo("aprender")}
-            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col justify-center border border-border card-glow text-left"
+            aria-current={activeSection === "aprender" ? "true" : undefined}
+            className={`md:col-span-3 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col justify-center border border-border card-glow text-left ${tileFocus} ${tileActive("aprender")}`}
           >
             <span className="text-highlight font-bold text-2xl">21+</span>
             <p className="text-foreground font-medium">Guías técnicas</p>
@@ -633,7 +642,7 @@ const Home = () => {
           {/* PLAY */}
           <Link
             to="/aprende-jugando"
-            className="md:col-span-3 md:row-span-1 min-h-[120px] bg-highlight rounded-3xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform"
+            className={`md:col-span-3 md:row-span-1 min-h-[120px] bg-highlight rounded-3xl p-5 sm:p-6 flex flex-col justify-between group cursor-pointer hover:scale-[1.02] transition-transform ${tileFocus}`}
             aria-label="Jugá ElectroLab Play"
           >
             <div className="flex justify-between items-start">
@@ -649,7 +658,8 @@ const Home = () => {
           {/* FAQ */}
           <button
             onClick={() => scrollTo("foro")}
-            className="md:col-span-9 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-border card-glow text-left"
+            aria-current={activeSection === "foro" ? "true" : undefined}
+            className={`md:col-span-9 md:row-span-1 min-h-[120px] bg-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-border card-glow text-left ${tileFocus} ${tileActive("foro")}`}
           >
             <div>
               <h3 className="text-xl font-bold text-foreground">Preguntas Frecuentes</h3>
