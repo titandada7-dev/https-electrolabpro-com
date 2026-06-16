@@ -290,7 +290,8 @@ const AdBanner = ({
           data-ad-client="ca-pub-9393284878747603"
           data-ad-slot={slot}
           data-ad-format={format}
-          data-full-width-responsive={responsive ? "true" : "false"}
+          {...(layoutKey ? { "data-ad-layout-key": layoutKey } : {})}
+          {...(format === "fluid" ? {} : { "data-full-width-responsive": responsive ? "true" : "false" })}
         />
       </div>
     </div>
