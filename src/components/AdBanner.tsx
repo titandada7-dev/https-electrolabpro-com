@@ -196,7 +196,10 @@ const AdBanner = ({
               setStatus("filled");
               setReason("");
               if (fallbackTimer) window.clearTimeout(fallbackTimer);
-              trackAdEvent("ad_impression", slot, { ad_format: format });
+              trackAdEvent("ad_impression", slot, {
+                ad_format: format,
+                elapsed_ms: Math.round(performance.now() - startedAt),
+              });
               return true;
             }
             if (adStatus === "unfilled") {
