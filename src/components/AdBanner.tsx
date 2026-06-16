@@ -174,10 +174,16 @@ const AdBanner = ({
         pushed.current = true;
         void hasScript;
 
+        const startedAt = performance.now();
         fallbackTimer = window.setTimeout(() => {
           setStatus((prev) => {
             if (prev === "filled") return prev;
             setReason("Sin respuesta de AdSense en 6s (sin fill o bloqueado)");
+            trackAdEvent("ad_timeout", slot, {
+              ad_format: format,
+              elapsed_ms: Math.round(performance.now() - startedAt),
+              reason: "no_response_6s",
+            });
             return "timeout";
           });
         }, 6000);
