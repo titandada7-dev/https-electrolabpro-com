@@ -33,6 +33,7 @@ const AprendeJugando = lazy(() => import("./pages/AprendeJugando"));
 const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
 const GuiaResistencias = lazy(() => import("./pages/GuiaResistencias"));
 const Auth = lazy(() => import("./pages/Auth"));
+const AdminAds = lazy(() => import("./pages/AdminAds"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
 const CodigoColoresResistencias = lazy(() => import("./pages/articles/CodigoColoresResistencias"));
@@ -85,6 +86,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/admin/ads" element={<AdminAds />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/aviso-legal" element={<AvisoLegal />} />

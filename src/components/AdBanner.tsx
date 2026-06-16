@@ -5,6 +5,7 @@ import {
   loadAdsense,
   onAdsenseConsentChange,
 } from "@/lib/adsenseLoader";
+import { recordAdMetric, isAdsTestMode, type AdMetricAction } from "@/lib/adMetrics";
 
 declare global {
   interface Window {
@@ -34,6 +35,14 @@ const trackAdEvent = (
   try {
     window.gtag?.("event", action, payload);
     (window.dataLayer = window.dataLayer || []).push({ event: action, ...payload });
+    // Métricas locales para el panel /admin/ads (persistidas en localStorage).
+    recordAdMetric({
+      slot,
+      action: action as AdMetricAction,
+      ts: Date.now(),
+      reason: typeof extra.reason === "string" ? extra.reason : undefined,
+      elapsed_ms: typeof extra.elapsed_ms === "number" ? extra.elapsed_ms : undefined,
+    });
     // Log estructurado para depuración en producción (session replay / Sentry).
     if (action === "ad_unfilled" || action === "ad_timeout" || action === "ad_blocked" || action === "ad_error") {
       // eslint-disable-next-line no-console
@@ -46,6 +55,8 @@ const trackAdEvent = (
     /* tracking opcional, nunca debe romper el render */
   }
 };
+
+const adsTestEnabled = isAdsTestMode();
 
 type AdStatus = "idle" | "loading" | "filled" | "timeout" | "blocked" | "error";
 
@@ -401,10 +412,16 @@ const AdBanner = ({
           data-ad-client="ca-pub-9393284878747603"
           data-ad-slot={slot}
           data-ad-format={format}
+          {...(adsTestEnabled ? { "data-adtest": "on" } : {})}
           {...(layout ? { "data-ad-layout": layout } : {})}
           {...(layoutKey ? { "data-ad-layout-key": layoutKey } : {})}
           {...(format === "fluid" ? {} : { "data-full-width-responsive": responsive ? "true" : "false" })}
         />
+        {adsTestEnabled && (
+          <div className="absolute bottom-1 left-1 z-10 text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/90 text-black uppercase tracking-wider">
+            test
+          </div>
+        )}
       </div>
     </div>
   );
