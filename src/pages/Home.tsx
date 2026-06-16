@@ -557,7 +557,7 @@ const Home = () => {
           {/* DICCIONARIO */}
           <button
             onClick={() => scrollTo("diccionario")}
-            className="md:col-span-4 md:row-span-1 bg-card border border-highlight/30 rounded-3xl p-6 flex flex-col justify-between hover:bg-card/70 transition-colors cursor-pointer text-left card-glow"
+            className="md:col-span-4 md:row-span-1 min-h-[140px] bg-card border border-highlight/30 rounded-3xl p-5 sm:p-6 flex flex-col justify-between hover:bg-card/70 transition-colors cursor-pointer text-left card-glow"
           >
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-highlight animate-pulse" />
