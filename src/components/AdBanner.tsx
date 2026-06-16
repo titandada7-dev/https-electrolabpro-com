@@ -222,41 +222,45 @@ const AdBanner = ({
       >
         {!filled && (
           <div
-            role={failed ? "status" : undefined}
-            aria-live={failed ? "polite" : undefined}
-            aria-hidden={failed ? undefined : "true"}
-            className={`absolute inset-0 flex flex-col items-center justify-center gap-1 px-3 text-center bg-muted/30 rounded-md border border-dashed border-border/40 ${
-              failed ? "" : "animate-pulse"
+            role={failed && showDiag ? "status" : undefined}
+            aria-live={failed && showDiag ? "polite" : undefined}
+            aria-hidden="true"
+            className={`absolute inset-0 flex flex-col items-center justify-center gap-1 px-3 text-center rounded-md ${
+              failed
+                ? "bg-transparent border-0"
+                : "bg-muted/20 border border-dashed border-border/30 animate-pulse"
             }`}
           >
             {failed ? (
-              <>
-                <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground/70">
-                  Anuncio no disponible
-                </span>
-                <span className="text-[10px] text-muted-foreground/50 max-w-[260px] leading-snug">
-                  El espacio publicitario no se cargó. Mientras tanto, podés seguir explorando ElectroLab Pro.
-                </span>
-                {isInternalFallback ? (
-                  <Link
-                    to={resolvedFallback}
-                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
-                  >
-                    {fallbackLabel} →
-                  </Link>
-                ) : (
-                  <a
-                    href={resolvedFallback}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
-                  >
-                    {fallbackLabel} →
-                  </a>
-                )}
-              </>
+              showDiag ? (
+                <>
+                  <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground/70">
+                    Anuncio no disponible
+                  </span>
+                  <span className="text-[10px] text-muted-foreground/50 max-w-[260px] leading-snug">
+                    El espacio publicitario no se cargó.
+                  </span>
+                  {isInternalFallback ? (
+                    <Link
+                      to={resolvedFallback}
+                      className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                    >
+                      {fallbackLabel} →
+                    </Link>
+                  ) : (
+                    <a
+                      href={resolvedFallback}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 text-[11px] font-mono text-primary/80 hover:text-primary underline underline-offset-2 transition-colors"
+                    >
+                      {fallbackLabel} →
+                    </a>
+                  )}
+                </>
+              ) : null
             ) : (
-              <span className="text-xs font-mono text-muted-foreground/60">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground/40">
                 Publicidad
               </span>
             )}
