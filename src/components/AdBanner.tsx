@@ -79,6 +79,7 @@ const AdBanner = ({
   slot,
   format = "auto",
   layoutKey,
+  layout,
   responsive = true,
   className = "",
   minHeightMobile,
