@@ -138,6 +138,18 @@ const Home = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<NavSection | null>(null);
 
+  // scrollTo: navega suavemente y marca la sección como activa de inmediato
+  // (sin esperar al IntersectionObserver), además de actualizar el hash.
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", `#${id}`);
+    if ((NAV_SECTIONS as readonly string[]).includes(id)) {
+      setActiveSection(id as NavSection);
+    }
+  };
+
   // Resaltado del enlace activo según la sección visible.
   // IntersectionObserver con rootMargin para considerar "activa" la sección
   // que está justo debajo del navbar sticky.
