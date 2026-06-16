@@ -516,8 +516,8 @@ const Home = () => {
         )}
       </header>
 
-      {/* ═══════════ AD SLOT BAJO EL HEADER (anti-CLS, vía AdSenseSlot) ═══════════ */}
-      <AdSenseSlot slot="3756475501" variant="header" fallbackUrl="/" />
+      {/* ═══════════ AD SLOT BAJO EL HEADER (anti-CLS, vía HomeAd) ═══════════ */}
+      <HomeAd />
 
       {/* ═══════════ #INICIO ═══════════ */}
       <section id="inicio" className="relative px-4 sm:px-6 py-8 sm:py-12 overflow-hidden">
