@@ -11,6 +11,10 @@ interface AdSenseSlotProps {
   fallbackUrl?: string;
   /** Clase opcional para el contenedor externo. */
   className?: string;
+  /** Override del formato AdSense (ej. "fluid" para unidades in-feed). */
+  format?: string;
+  /** Clave de layout para unidades in-feed/in-article (format="fluid"). */
+  layoutKey?: string;
 }
 
 /**
