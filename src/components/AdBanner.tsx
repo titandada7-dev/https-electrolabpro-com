@@ -12,6 +12,8 @@ type AdStatus = "idle" | "loading" | "filled" | "timeout" | "blocked" | "error";
 interface AdBannerProps {
   slot: string;
   format?: string;
+  /** AdSense in-feed/in-article layout key (only when format="fluid"). */
+  layoutKey?: string;
   responsive?: boolean;
   className?: string;
   /** Reserved height on mobile (<768px) to prevent CLS. Default 100px. */
