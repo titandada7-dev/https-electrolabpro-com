@@ -374,7 +374,7 @@ const CalculatorHub = () => {
                     </span>
                     <span
                       className={`font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase leading-none px-1 text-center ${
-                        isActive || isLighting ? "opacity-95" : "text-muted-foreground group-hover:text-foreground"
+                        isActive || isLighting ? "opacity-95" : "text-foreground/85 group-hover:text-foreground"
                       }`}
                     >
                       <span className="inline-block align-middle mr-0.5">{tool.icon}</span>
