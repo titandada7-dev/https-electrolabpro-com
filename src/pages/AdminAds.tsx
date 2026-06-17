@@ -62,8 +62,30 @@ const AdminAds = () => {
   };
 
   const email = session?.user?.email ?? null;
-  const authorized = isAdminEmail(email);
   const adsTest = isAdsTestMode();
+
+  // Verificación de admin server-side vía RLS: select sobre user_roles
+  // sólo devuelve filas si el usuario tiene rol 'admin'.
+  useEffect(() => {
+    let cancelled = false;
+    if (!session?.user?.id) {
+      setAuthorized(null);
+      return;
+    }
+    setAuthorized(null);
+    supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .eq("role", "admin")
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!cancelled) setAuthorized(!!data);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [session?.user?.id]);
 
   if (loadingAuth) {
     return (
