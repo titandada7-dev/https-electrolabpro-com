@@ -6,13 +6,12 @@ import NavButtons from "./components/NavButtons";
 import SplashScreen from "./components/SplashScreen";
 import SidebarAd from "./components/SidebarAd";
 
-// Debug banner: solo se descarga si la URL contiene ?debug=domains o si estamos
-// en un host de preview de Lovable. En producción no entra al bundle inicial.
+// Debug banner: solo en hosts de preview de Lovable. Eliminado el gate público
+// `?debug=domains` para no exponer metadatos de infraestructura a visitantes.
 const shouldLoadDomainDebug = (() => {
   if (typeof window === "undefined") return false;
   const host = window.location.hostname;
-  if (host.includes("lovable.app") || host.includes("lovableproject.com")) return true;
-  return new URLSearchParams(window.location.search).get("debug") === "domains";
+  return host.includes("lovable.app") || host.includes("lovableproject.com");
 })();
 const DomainDebugBanner = shouldLoadDomainDebug
   ? lazy(() => import("./components/DomainDebugBanner"))
