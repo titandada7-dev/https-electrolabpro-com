@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   CONFIGURACIÓN GLOBAL — Ocean Deep palette
+   CONFIGURACIÓN GLOBAL — Glass Aurora palette
    ========================================================================== */
 html {
   scroll-behavior: smooth;
@@ -14,55 +14,55 @@ html {
 @layer base {
   :root {
     /* ==========================================================================
-       OCEAN DEEP — Paleta técnica náutica
-       #0c2340 base · #1a4a6e surface · #2d8a9e primary · #5cbdb9 highlight
+       GLASS AURORA — Oscuro translúcido con auroras verde/púrpura
+       #1a1a2e base · #16213e surface · #4ade80 primary · #a78bfa accent
        ========================================================================== */
 
-    /* 1. BASE: Navy profundo */
-    --background: 213 68% 13%;
+    /* 1. BASE: Midnight aurora */
+    --background: 240 28% 14%;
 
     /* 2. TEXTO: contraste AA reforzado */
     --foreground: 0 0% 100%;
-    --muted-foreground: 188 35% 84%;
+    --muted-foreground: 230 25% 82%;
 
     /* 3. SUPERFICIES */
-    --card: 206 62% 24%;
+    --card: 219 49% 17%;
     --card-foreground: 0 0% 100%;
-    --popover: 206 62% 24%;
+    --popover: 219 49% 17%;
     --popover-foreground: 0 0% 100%;
-    --muted: 206 50% 20%;
+    --muted: 222 40% 20%;
 
-    /* 4. PRIMARIO: Teal técnico más luminoso */
-    --primary: 188 65% 55%;
-    --primary-foreground: 213 68% 10%;
-    --primary-glow: 178 60% 65%;
+    /* 4. PRIMARIO: Aurora green */
+    --primary: 142 71% 58%;
+    --primary-foreground: 240 30% 10%;
+    --primary-glow: 142 80% 70%;
 
-    /* 5. HIGHLIGHT */
-    --secondary: 178 55% 62%;
-    --secondary-foreground: 213 68% 10%;
-    --highlight: 178 55% 62%;
-    --accent: 178 55% 62%;
-    --accent-foreground: 213 68% 10%;
+    /* 5. ACENTO: Aurora purple */
+    --secondary: 255 92% 76%;
+    --secondary-foreground: 240 30% 10%;
+    --highlight: 255 92% 76%;
+    --accent: 255 92% 76%;
+    --accent-foreground: 240 30% 10%;
 
     /* 6. BORDES (más visibles) */
-    --border: 206 45% 38%;
-    --input: 206 50% 22%;
-    --ring: 178 55% 62%;
+    --border: 230 35% 32%;
+    --input: 222 40% 22%;
+    --ring: 142 71% 58%;
 
-    --destructive: 0 75% 58%;
+    --destructive: 0 75% 62%;
     --destructive-foreground: 0 0% 100%;
 
     --radius: 1rem;
 
     /* Sidebar */
-    --sidebar-background: 213 68% 10%;
+    --sidebar-background: 240 30% 11%;
     --sidebar-foreground: 0 0% 96%;
-    --sidebar-primary: 188 65% 55%;
-    --sidebar-primary-foreground: 213 68% 10%;
-    --sidebar-accent: 206 50% 22%;
-    --sidebar-accent-foreground: 178 55% 62%;
-    --sidebar-border: 206 50% 30%;
-    --sidebar-ring: 178 55% 62%;
+    --sidebar-primary: 142 71% 58%;
+    --sidebar-primary-foreground: 240 30% 10%;
+    --sidebar-accent: 222 40% 22%;
+    --sidebar-accent-foreground: 255 92% 76%;
+    --sidebar-border: 230 35% 28%;
+    --sidebar-ring: 142 71% 58%;
   }
 
 }
@@ -188,9 +188,9 @@ html {
     hsl(var(--background));
 }
 
-/* EFECTO TEXTO TEAL OCEAN DEEP (para títulos H1/H2 del Home) */
+/* EFECTO TEXTO AURORA (verde → cian → púrpura) */
 .text-gradient-primary {
-  background: linear-gradient(90deg, #2d8a9e 0%, #5cbdb9 50%, #a7e2dd 100%);
+  background: linear-gradient(90deg, #4ade80 0%, #67e8f9 50%, #a78bfa 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
