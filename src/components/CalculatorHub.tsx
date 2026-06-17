@@ -331,11 +331,23 @@ const CalculatorHub = () => {
             </div>
 
             {/* GRID DE TECLAS */}
-            <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {TOOLS.map((tool, i) => {
                 const isActive = tool.key === active && bootStep === 3;
                 const isLighting = i === litKeyIndex;
                 const lit = isActive || isLighting;
+                // Etiquetas cortas para que no se trunquen en 390px.
+                const SHORT: Record<ToolKey, string> = {
+                  resistor: "Resist.",
+                  ohm: "Ley Ohm",
+                  led: "Res. LED",
+                  divider: "Divisor V",
+                  rc: "Filtro RC",
+                  timer: "555",
+                  smd: "SMD",
+                  reactance: "React. Xc",
+                  units: "Unidades",
+                };
                 return (
                   <button
                     key={tool.key}
@@ -343,12 +355,11 @@ const CalculatorHub = () => {
                     disabled={bootStep !== 3}
                     aria-label={`Abrir ${tool.label}`}
                     aria-pressed={isActive}
-                    className="group relative aspect-square rounded-xl flex flex-col items-center justify-center gap-1 px-1.5 py-2 select-none transition-all duration-150 active:translate-y-[2px] disabled:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-card focus-visible:ring-ring hover:-translate-y-[1px]"
+                    title={tool.label}
+                    className="group relative aspect-square rounded-xl flex flex-col items-center justify-center gap-0.5 sm:gap-1 px-1 sm:px-1.5 py-1.5 sm:py-2 select-none transition-all duration-150 active:translate-y-[2px] disabled:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-card focus-visible:ring-ring hover:-translate-y-[1px] overflow-hidden"
                     style={
                       lit
                         ? {
-                            // Fondo activo: gradiente del color del tema mezclado con negro
-                            // para garantizar contraste AA con texto blanco en cualquier tema.
                             background: `linear-gradient(180deg, hsl(${t.accent}) 0%, color-mix(in srgb, hsl(${t.accent}) 55%, #000) 100%)`,
                             boxShadow: `inset 0 2px 4px hsl(0 0% 0% / 0.35), 0 0 28px -4px ${accentGlow}, 0 0 0 1.5px hsl(0 0% 100% / 0.5)`,
                             color: "hsl(0 0% 100%)",
@@ -365,7 +376,7 @@ const CalculatorHub = () => {
                   >
                     <span
                       className={`font-mono font-extrabold leading-none ${
-                        tool.symbol.length > 2 ? "text-lg sm:text-xl" : "text-2xl sm:text-3xl"
+                        tool.symbol.length > 2 ? "text-base sm:text-xl" : "text-xl sm:text-3xl"
                       }`}
                       style={
                         lit
@@ -376,13 +387,31 @@ const CalculatorHub = () => {
                       {tool.symbol}
                     </span>
                     <span
-                      className={`font-sans text-[10px] sm:text-[11px] font-semibold tracking-tight leading-tight text-center line-clamp-2 ${
+                      className={`font-sans text-[9px] sm:text-[11px] font-semibold tracking-tight leading-[1.1] text-center break-words hyphens-auto px-0.5 ${
                         lit ? "" : "text-foreground/85 group-hover:text-foreground"
                       }`}
                       style={lit ? { color: "hsl(0 0% 100%)", textShadow: "0 1px 1px hsl(0 0% 0% / 0.5)" } : undefined}
                     >
-                      {tool.label}
+                      <span className="sm:hidden">{SHORT[tool.key]}</span>
+                      <span className="hidden sm:inline">{tool.label}</span>
                     </span>
+
+                    {/* Indicador de foco/hover/activo: barra inferior animada */}
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-1 h-[2px] rounded-full transition-all duration-200 ${
+                        lit
+                          ? "w-3/4 opacity-100"
+                          : "w-0 opacity-0 group-hover:w-2/3 group-hover:opacity-90 group-focus-visible:w-2/3 group-focus-visible:opacity-100"
+                      }`}
+                      style={{
+                        background: lit ? "hsl(0 0% 100%)" : `hsl(${t.accent})`,
+                        boxShadow: lit
+                          ? "0 0 6px hsl(0 0% 100% / 0.7)"
+                          : `0 0 6px hsl(${t.accent} / 0.6)`,
+                      }}
+                    />
+
                     {!lit && (
                       <span aria-hidden="true" className="pointer-events-none absolute top-1 left-1 right-1 h-1/3 rounded-t-lg opacity-40"
                         style={{ background: "linear-gradient(180deg, hsl(0 0% 100% / 0.6) 0%, transparent 100%)" }}
