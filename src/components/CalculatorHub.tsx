@@ -272,12 +272,12 @@ const CalculatorHub = () => {
                       aria-label={`Tema ${THEMES[k].name}`}
                       aria-pressed={isOn}
                       title={`Color: ${THEMES[k].name}`}
-                      className="relative w-3 h-3 rounded-full transition-all duration-200 hover:scale-125"
+                      className="relative w-4 h-4 rounded-full transition-all duration-200 hover:scale-125 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-card focus-visible:ring-ring"
                       style={{
-                        background: isOn ? `hsl(${THEMES[k].accent})` : `hsl(${THEMES[k].accent} / 0.25)`,
+                        background: isOn ? `hsl(${THEMES[k].accent})` : `hsl(${THEMES[k].accent} / 0.35)`,
                         boxShadow: isOn
-                          ? `0 0 8px hsl(${THEMES[k].accent}), inset 0 0 2px hsl(0 0% 100% / 0.3)`
-                          : "inset 0 1px 1px hsl(var(--foreground) / 0.3)",
+                          ? `0 0 10px hsl(${THEMES[k].accent}), inset 0 0 2px hsl(0 0% 100% / 0.4), 0 0 0 1.5px hsl(0 0% 100% / 0.7)`
+                          : "inset 0 1px 1px hsl(var(--foreground) / 0.3), 0 0 0 1px hsl(var(--border))",
                       }}
                     />
                   );
