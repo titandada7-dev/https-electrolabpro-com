@@ -257,7 +257,7 @@ const CalculatorHub = () => {
                 <div className="w-2 h-2 rounded-full"
                   style={{ background: "hsl(var(--border))", boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.3)" }}
                 />
-                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
+                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-foreground/80">
                   ELECTROLAB·HUB
                 </span>
               </div>
@@ -282,7 +282,7 @@ const CalculatorHub = () => {
                     />
                   );
                 })}
-                <span className="ml-1 font-mono text-[9px] tracking-wider text-muted-foreground w-7 text-center">
+                <span className="ml-1 font-mono text-[9px] tracking-wider text-foreground/75 w-7 text-center">
                   {t.label}
                 </span>
               </div>
@@ -309,7 +309,7 @@ const CalculatorHub = () => {
                 />
               )}
               <div className="flex items-center justify-between mb-1.5">
-                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/75">
                   ▸ MODO ACTIVO
                 </span>
                 <span className="font-mono text-[9px] tracking-wider" style={{ color: accentBg }}>
@@ -352,10 +352,11 @@ const CalculatorHub = () => {
                             transform: isActive ? "translateY(2px)" : "translateY(0)",
                           }
                         : {
-                            background: "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%)",
-                            boxShadow: "0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05)",
+                            background: "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)",
+                            boxShadow: `0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05), 0 0 0 1px hsl(${t.accent} / 0.18)`,
                             border: "1px solid hsl(var(--border))",
-                            opacity: bootStep < 2 ? 0.3 : 1,
+                            color: "hsl(var(--foreground))",
+                            opacity: bootStep < 2 ? 0.45 : 1,
                           }
                     }
                   >
@@ -373,7 +374,7 @@ const CalculatorHub = () => {
                     </span>
                     <span
                       className={`font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase leading-none px-1 text-center ${
-                        isActive || isLighting ? "opacity-95" : "text-muted-foreground group-hover:text-foreground"
+                        isActive || isLighting ? "opacity-95" : "text-foreground/85 group-hover:text-foreground"
                       }`}
                     >
                       <span className="inline-block align-middle mr-0.5">{tool.icon}</span>
