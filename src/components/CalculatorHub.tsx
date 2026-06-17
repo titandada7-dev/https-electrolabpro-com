@@ -257,7 +257,7 @@ const CalculatorHub = () => {
                 <div className="w-2 h-2 rounded-full"
                   style={{ background: "hsl(var(--border))", boxShadow: "inset 0 1px 1px hsl(var(--foreground)/0.3)" }}
                 />
-                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-muted-foreground">
+                <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-foreground/80">
                   ELECTROLAB·HUB
                 </span>
               </div>
