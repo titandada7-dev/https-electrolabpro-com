@@ -352,10 +352,11 @@ const CalculatorHub = () => {
                             transform: isActive ? "translateY(2px)" : "translateY(0)",
                           }
                         : {
-                            background: "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--accent)) 100%)",
-                            boxShadow: "0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05)",
+                            background: "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)",
+                            boxShadow: `0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05), 0 0 0 1px hsl(${t.accent} / 0.18)`,
                             border: "1px solid hsl(var(--border))",
-                            opacity: bootStep < 2 ? 0.3 : 1,
+                            color: "hsl(var(--foreground))",
+                            opacity: bootStep < 2 ? 0.45 : 1,
                           }
                     }
                   >
