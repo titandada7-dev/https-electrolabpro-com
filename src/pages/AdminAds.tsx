@@ -19,6 +19,7 @@ const AdminAds = () => {
   const [signingIn, setSigningIn] = useState(false);
   const [error, setError] = useState<string>("");
   const [tick, setTick] = useState(0);
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
 
   // Auth: escuchar cambios y luego leer sesión actual.
   useEffect(() => {
