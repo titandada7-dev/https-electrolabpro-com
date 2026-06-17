@@ -309,7 +309,7 @@ const CalculatorHub = () => {
                 />
               )}
               <div className="flex items-center justify-between mb-1.5">
-                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-foreground/75">
                   ▸ MODO ACTIVO
                 </span>
                 <span className="font-mono text-[9px] tracking-wider" style={{ color: accentBg }}>
