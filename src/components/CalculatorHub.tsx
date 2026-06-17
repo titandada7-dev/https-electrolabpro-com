@@ -282,7 +282,7 @@ const CalculatorHub = () => {
                     />
                   );
                 })}
-                <span className="ml-1 font-mono text-[9px] tracking-wider text-muted-foreground w-7 text-center">
+                <span className="ml-1 font-mono text-[9px] tracking-wider text-foreground/75 w-7 text-center">
                   {t.label}
                 </span>
               </div>
