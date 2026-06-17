@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import type { Session } from "@supabase/supabase-js";
-import { isAdminEmail, ADMIN_EMAILS } from "@/lib/adminConfig";
 import {
   readAdMetrics,
   onAdMetric,
