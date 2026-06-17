@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import type { Session } from "@supabase/supabase-js";
-import { isAdminEmail, ADMIN_EMAILS } from "@/lib/adminConfig";
 import {
   readAdMetrics,
   onAdMetric,
@@ -20,6 +19,7 @@ const AdminAds = () => {
   const [signingIn, setSigningIn] = useState(false);
   const [error, setError] = useState<string>("");
   const [tick, setTick] = useState(0);
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
 
   // Auth: escuchar cambios y luego leer sesión actual.
   useEffect(() => {
@@ -62,8 +62,30 @@ const AdminAds = () => {
   };
 
   const email = session?.user?.email ?? null;
-  const authorized = isAdminEmail(email);
   const adsTest = isAdsTestMode();
+
+  // Verificación de admin server-side vía RLS: select sobre user_roles
+  // sólo devuelve filas si el usuario tiene rol 'admin'.
+  useEffect(() => {
+    let cancelled = false;
+    if (!session?.user?.id) {
+      setAuthorized(null);
+      return;
+    }
+    setAuthorized(null);
+    supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .eq("role", "admin")
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!cancelled) setAuthorized(!!data);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [session?.user?.id]);
 
   if (loadingAuth) {
     return (
@@ -98,21 +120,27 @@ const AdminAds = () => {
     );
   }
 
-  // Autenticado pero email no autorizado
+  // Esperando comprobación de rol
+  if (authorized === null) {
+    return (
+      <main className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground text-sm">Verificando permisos…</p>
+      </main>
+    );
+  }
+
+  // Autenticado pero sin rol admin
   if (!authorized) {
     return (
       <main className="min-h-screen bg-background flex items-center justify-center px-4">
         <div className="w-full max-w-md border border-destructive/40 rounded-lg p-6 bg-card">
           <h1 className="text-xl font-semibold mb-2">Acceso denegado</h1>
           <p className="text-sm text-muted-foreground mb-2">
-            La cuenta <span className="font-mono">{email}</span> no está en la lista de administradores.
+            La cuenta <span className="font-mono">{email}</span> no tiene rol de administrador.
           </p>
-          {ADMIN_EMAILS.length === 0 && (
-            <p className="text-xs text-amber-600 dark:text-amber-400 mb-3">
-              ⚠️ <span className="font-mono">ADMIN_EMAILS</span> está vacío en{" "}
-              <span className="font-mono">src/lib/adminConfig.ts</span>. Añade tu email allí.
-            </p>
-          )}
+          <p className="text-xs text-muted-foreground mb-3">
+            Los permisos se gestionan en la tabla <span className="font-mono">user_roles</span> del backend.
+          </p>
           <div className="flex gap-2 mt-3">
             <button
               onClick={handleSignOut}
