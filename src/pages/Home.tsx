@@ -1512,7 +1512,12 @@ const Home = () => {
 
       {/* ¿Por qué elegir? — consolidado en #recursos accordion */}
 
-      {/* ═══════════ FOOTER ═══════════ */}
+      {/* ═══════════ AD SLOT SECUNDARIO — Banner_Principal_ElectroLab (3756475501) ═══════════ */}
+      <div className="container mx-auto px-4 sm:px-6 my-6">
+        <AdSenseSlot slot="3756475501" variant="inline" fallbackUrl="/" />
+      </div>
+
+
       <footer className="border-t border-border py-8 px-6 bg-card/50">
         <div className="container mx-auto text-center">
           <p className="text-muted-foreground text-xs sm:text-sm mb-4">
