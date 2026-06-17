@@ -21,6 +21,7 @@ const DomainDebugBanner = shouldLoadDomainDebug
 const CookieBanner = lazy(() => import("./components/CookieBanner"));
 const AdSenseConsentBanner = lazy(() => import("./components/AdSenseConsentBanner"));
 const PWAInstallPrompt = lazy(() => import("./components/PWAInstallPrompt"));
+const AdSlotMonitor = lazy(() => import("./components/AdSlotMonitor"));
 
 // Páginas legales y secundarias en lazy: reducen el JS inicial cargado en Home
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
@@ -76,6 +77,7 @@ function App() {
         <CookieBanner />
         <AdSenseConsentBanner />
         <PWAInstallPrompt />
+        <AdSlotMonitor />
       </Suspense>
       {DomainDebugBanner && (
         <Suspense fallback={null}>
