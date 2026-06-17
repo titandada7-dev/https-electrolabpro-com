@@ -272,12 +272,12 @@ const CalculatorHub = () => {
                       aria-label={`Tema ${THEMES[k].name}`}
                       aria-pressed={isOn}
                       title={`Color: ${THEMES[k].name}`}
-                      className="relative w-3 h-3 rounded-full transition-all duration-200 hover:scale-125"
+                      className="relative w-4 h-4 rounded-full transition-all duration-200 hover:scale-125 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-card focus-visible:ring-ring"
                       style={{
-                        background: isOn ? `hsl(${THEMES[k].accent})` : `hsl(${THEMES[k].accent} / 0.25)`,
+                        background: isOn ? `hsl(${THEMES[k].accent})` : `hsl(${THEMES[k].accent} / 0.35)`,
                         boxShadow: isOn
-                          ? `0 0 8px hsl(${THEMES[k].accent}), inset 0 0 2px hsl(0 0% 100% / 0.3)`
-                          : "inset 0 1px 1px hsl(var(--foreground) / 0.3)",
+                          ? `0 0 10px hsl(${THEMES[k].accent}), inset 0 0 2px hsl(0 0% 100% / 0.4), 0 0 0 1.5px hsl(0 0% 100% / 0.7)`
+                          : "inset 0 1px 1px hsl(var(--foreground) / 0.3), 0 0 0 1px hsl(var(--border))",
                       }}
                     />
                   );
@@ -335,6 +335,7 @@ const CalculatorHub = () => {
               {TOOLS.map((tool, i) => {
                 const isActive = tool.key === active && bootStep === 3;
                 const isLighting = i === litKeyIndex;
+                const lit = isActive || isLighting;
                 return (
                   <button
                     key={tool.key}
@@ -342,18 +343,20 @@ const CalculatorHub = () => {
                     disabled={bootStep !== 3}
                     aria-label={`Abrir ${tool.label}`}
                     aria-pressed={isActive}
-                    className="group relative aspect-square rounded-xl flex flex-col items-center justify-center gap-1 select-none transition-all duration-150 active:translate-y-[2px] disabled:cursor-default"
+                    className="group relative aspect-square rounded-xl flex flex-col items-center justify-center gap-1 px-1.5 py-2 select-none transition-all duration-150 active:translate-y-[2px] disabled:cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-card focus-visible:ring-ring hover:-translate-y-[1px]"
                     style={
-                      isActive || isLighting
+                      lit
                         ? {
-                            background: `linear-gradient(180deg, ${accentBg} 0%, hsl(${t.accent} / 0.85) 100%)`,
-                            boxShadow: `inset 0 2px 4px hsl(var(--foreground) / 0.25), 0 0 24px -4px ${accentGlow}, 0 0 0 1px hsl(${t.accent} / 0.4)`,
+                            // Fondo activo: gradiente del color del tema mezclado con negro
+                            // para garantizar contraste AA con texto blanco en cualquier tema.
+                            background: `linear-gradient(180deg, hsl(${t.accent}) 0%, color-mix(in srgb, hsl(${t.accent}) 55%, #000) 100%)`,
+                            boxShadow: `inset 0 2px 4px hsl(0 0% 0% / 0.35), 0 0 28px -4px ${accentGlow}, 0 0 0 1.5px hsl(0 0% 100% / 0.5)`,
                             color: "hsl(0 0% 100%)",
                             transform: isActive ? "translateY(2px)" : "translateY(0)",
                           }
                         : {
                             background: "linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%)",
-                            boxShadow: `0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05), 0 0 0 1px hsl(${t.accent} / 0.18)`,
+                            boxShadow: `0 4px 0 hsl(var(--border)), 0 5px 8px -2px hsl(var(--foreground) / 0.15), inset 0 1px 0 hsl(0 0% 100% / 0.6), inset 0 -1px 0 hsl(var(--foreground) / 0.05), 0 0 0 1px hsl(${t.accent} / 0.22)`,
                             border: "1px solid hsl(var(--border))",
                             color: "hsl(var(--foreground))",
                             opacity: bootStep < 2 ? 0.45 : 1,
@@ -362,24 +365,25 @@ const CalculatorHub = () => {
                   >
                     <span
                       className={`font-mono font-extrabold leading-none ${
-                        tool.symbol.length > 2 ? "text-base sm:text-lg" : "text-2xl sm:text-3xl"
-                      } ${isActive || isLighting ? "" : "text-foreground"}`}
+                        tool.symbol.length > 2 ? "text-lg sm:text-xl" : "text-2xl sm:text-3xl"
+                      }`}
                       style={
-                        isActive || isLighting
-                          ? { textShadow: "0 1px 2px hsl(var(--foreground) / 0.3)" }
+                        lit
+                          ? { color: "hsl(0 0% 100%)", textShadow: "0 1px 2px hsl(0 0% 0% / 0.55)" }
                           : { textShadow: "0 1px 0 hsl(0 0% 100% / 0.6)" }
                       }
                     >
                       {tool.symbol}
                     </span>
                     <span
-                      className={`font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase leading-none px-1 text-center ${
-                        isActive || isLighting ? "opacity-95" : "text-foreground/85 group-hover:text-foreground"
+                      className={`font-sans text-[10px] sm:text-[11px] font-semibold tracking-tight leading-tight text-center line-clamp-2 ${
+                        lit ? "" : "text-foreground/85 group-hover:text-foreground"
                       }`}
+                      style={lit ? { color: "hsl(0 0% 100%)", textShadow: "0 1px 1px hsl(0 0% 0% / 0.5)" } : undefined}
                     >
-                      <span className="inline-block align-middle mr-0.5">{tool.icon}</span>
+                      {tool.label}
                     </span>
-                    {!isActive && !isLighting && (
+                    {!lit && (
                       <span aria-hidden="true" className="pointer-events-none absolute top-1 left-1 right-1 h-1/3 rounded-t-lg opacity-40"
                         style={{ background: "linear-gradient(180deg, hsl(0 0% 100% / 0.6) 0%, transparent 100%)" }}
                       />
