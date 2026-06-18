@@ -428,9 +428,9 @@ const Home = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Documentación</Link>
-            <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Sobre Nosotros</Link>
-            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Contacto</Link>
+            <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md">Documentación</Link>
+            <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md">Sobre Nosotros</Link>
+            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md">Contacto</Link>
             <button
               onClick={() => setSearchOpen(true)}
               className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50"
