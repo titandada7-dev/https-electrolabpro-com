@@ -205,6 +205,9 @@ const AdminAds = () => {
           </div>
         </header>
 
+        {/* Diagnóstico de consentimiento / script AdSense */}
+        <DiagnosticsPanel />
+
         {slots.length === 0 ? (
           <div className="border border-dashed border-border rounded-lg p-8 text-center text-sm text-muted-foreground">
             Aún no hay métricas. Navega por el sitio (en otra pestaña) para que los slots de AdSense se registren.
@@ -273,3 +276,95 @@ const AdminAds = () => {
 };
 
 export default AdminAds;
+
+// ---------------------------------------------------------------------------
+// Panel de diagnóstico de consentimiento + carga del script de AdSense
+// ---------------------------------------------------------------------------
+const DiagnosticsPanel = () => {
+  const [diag, setDiag] = useState(() => getAdsenseDiagnostics());
+
+  useEffect(() => {
+    const id = window.setInterval(() => setDiag(getAdsenseDiagnostics()), 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const reloadWithTest = () => {
+    try {
+      // Reseteamos flags de "ya logueado" para volver a medir la latencia.
+      const w = window as unknown as Record<string, boolean | undefined>;
+      w.__electrolab_ads_loaded_logged = false;
+      w.__electrolab_ads_script_failure_logged = false;
+    } catch {
+      /* noop */
+    }
+    const url = new URL(window.location.href);
+    url.searchParams.set("adstest", "1");
+    url.hash = "";
+    window.location.href = url.toString();
+  };
+
+  const resetConsent = () => {
+    clearAdsenseConsent();
+    setDiag(getAdsenseDiagnostics());
+  };
+
+  const grant = () => {
+    setAdsenseConsent("granted");
+    setDiag(getAdsenseDiagnostics());
+  };
+
+  const Pill = ({ ok, label }: { ok: boolean; label: string }) => (
+    <span
+      className={
+        "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium border " +
+        (ok
+          ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
+          : "bg-muted text-muted-foreground border-border")
+      }
+    >
+      <span className={"w-1.5 h-1.5 rounded-full " + (ok ? "bg-emerald-500" : "bg-muted-foreground/40")} />
+      {label}
+    </span>
+  );
+
+  return (
+    <section className="mb-6 border border-border rounded-lg p-4 bg-card">
+      <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
+        <div>
+          <h2 className="text-sm font-semibold">Diagnóstico AdSense</h2>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Estado del consentimiento y carga del script en esta pestaña.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={reloadWithTest}
+            className="text-xs px-3 py-1.5 rounded border border-border hover:bg-muted"
+            title="Recarga la página con data-adtest=on para mostrar anuncios de prueba sin riesgo de violaciones"
+          >
+            Forzar recarga (test ads)
+          </button>
+          <button
+            onClick={grant}
+            className="text-xs px-3 py-1.5 rounded border border-border hover:bg-muted"
+          >
+            Aceptar consent
+          </button>
+          <button
+            onClick={resetConsent}
+            className="text-xs px-3 py-1.5 rounded border border-border hover:bg-muted"
+          >
+            Reset consent
+          </button>
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <Pill ok={diag.consent === "granted"} label={`consent: ${diag.consent}`} />
+        <Pill ok={diag.scriptInjected} label="script inyectado" />
+        <Pill ok={diag.adsbygoogleReady} label="adsbygoogle listo" />
+        <Pill ok={diag.firstImpressionLogged} label="ads_loaded_after_consent" />
+        <Pill ok={!diag.scriptFailure} label={diag.scriptFailure ? "script error ⚠️" : "sin errores"} />
+      </div>
+    </section>
+  );
+};
