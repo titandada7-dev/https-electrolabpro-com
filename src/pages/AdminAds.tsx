@@ -10,6 +10,11 @@ import {
   isAdsTestMode,
   type SlotCounters,
 } from "@/lib/adMetrics";
+import {
+  getAdsenseDiagnostics,
+  clearAdsenseConsent,
+  setAdsenseConsent,
+} from "@/lib/adsenseLoader";
 
 const SLOT_LABEL = "Slot";
 

@@ -50,6 +50,49 @@ export const setAdsenseConsent = (state: "granted" | "denied") => {
   }
 };
 
+/**
+ * Borra la decisión almacenada para que el banner de consentimiento
+ * vuelva a aparecer en la próxima carga (útil para QA/incognito-like).
+ */
+export const clearAdsenseConsent = () => {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(CONSENT_KEY);
+  } catch {
+    /* ignore */
+  }
+  try {
+    window.dispatchEvent(
+      new CustomEvent("adsense-consent-changed", { detail: "pending" })
+    );
+  } catch {
+    /* ignore */
+  }
+};
+
+/**
+ * Diagnóstico actual del loader (lectura síncrona).
+ */
+export const getAdsenseDiagnostics = () => {
+  if (typeof window === "undefined") {
+    return {
+      consent: "pending" as ConsentState,
+      scriptInjected: false,
+      adsbygoogleReady: false,
+      scriptFailure: false,
+      firstImpressionLogged: false,
+    };
+  }
+  const w = window as unknown as Record<string, unknown>;
+  return {
+    consent: getAdsenseConsent(),
+    scriptInjected: !!document.querySelector('script[data-adsense-loader="1"]'),
+    adsbygoogleReady: Array.isArray((window as Window).adsbygoogle),
+    scriptFailure: !!w.__electrolab_ads_script_failure_logged,
+    firstImpressionLogged: !!w.__electrolab_ads_loaded_logged,
+  };
+};
+
 export const onAdsenseConsentChange = (
   handler: (state: ConsentState) => void
 ): (() => void) => {
