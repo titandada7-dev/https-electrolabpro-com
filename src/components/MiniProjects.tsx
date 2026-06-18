@@ -44,13 +44,17 @@ const MiniProjects = () => {
 
   return (
     <section className="space-y-6">
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
-        <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
-        Mini Proyectos
-      </h2>
-      <p className="text-center text-muted-foreground text-xs sm:text-sm">
-        Aprende construyendo — circuitos simples con componentes reales
-      </p>
+      <div className="rounded-2xl border border-border/60 bg-card/50 p-5 sm:p-6 space-y-2">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-center flex items-center justify-center gap-3">
+          <span className="inline-flex items-center justify-center p-2 rounded-xl bg-primary/10 border border-primary/20">
+            <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-primary glow-icon" />
+          </span>
+          Mini Proyectos
+        </h2>
+        <p className="text-center text-muted-foreground text-xs sm:text-sm">
+          Aprende construyendo — circuitos simples con componentes reales
+        </p>
+      </div>
 
       <div className="space-y-4">
         {PROJECTS.map((project, i) => {
