@@ -6,6 +6,7 @@ import {
   onAdsenseConsentChange,
 } from "@/lib/adsenseLoader";
 import { recordAdMetric, isAdsTestMode, type AdMetricAction } from "@/lib/adMetrics";
+import { trackAdsLoadedAfterConsent } from "@/lib/consentAnalytics";
 
 declare global {
   interface Window {
@@ -224,10 +225,12 @@ const AdBanner = ({
               setStatus("filled");
               setReason("");
               if (fallbackTimer) window.clearTimeout(fallbackTimer);
+              const elapsed = Math.round(performance.now() - startedAt);
               trackAdEvent("ad_impression", slot, {
                 ad_format: format,
-                elapsed_ms: Math.round(performance.now() - startedAt),
+                elapsed_ms: elapsed,
               });
+              trackAdsLoadedAfterConsent(slot, elapsed);
               return true;
             }
             if (adStatus === "unfilled") {
