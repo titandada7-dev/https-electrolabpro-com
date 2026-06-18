@@ -369,15 +369,15 @@ const Home = () => {
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5">
-          <Link to="/" className="flex items-center gap-3 px-2.5 py-1.5 rounded-xl hover:bg-primary/5 transition-colors duration-200">
-            <img src={electrolabLogo} alt="ElectrolabPRO logo" width="36" height="36" className="h-9 w-9 rounded-lg object-cover" loading="eager" decoding="async" />
-            <span className="inline-flex items-center text-lg font-bold tracking-tight text-foreground px-2 py-1 rounded-lg bg-primary/5 border border-primary/10">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-xl hover:bg-primary/10 transition-colors duration-200 shrink-0">
+            <img src={electrolabLogo} alt="ElectrolabPRO logo" width="36" height="36" className="h-8 w-8 sm:h-9 sm:w-9 rounded-lg object-cover" loading="eager" decoding="async" />
+            <span className="inline-flex items-center text-base sm:text-lg font-bold tracking-tight text-foreground px-1.5 py-1 sm:px-2 rounded-md sm:rounded-lg bg-primary/10 border border-primary/20">
               Electrolab<span className="text-primary">PRO</span>
             </span>
           </Link>
 
           {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
-          <div className="hidden items-center gap-5 md:flex" role="menubar" aria-label="Navegación principal">
+          <div className="hidden items-center gap-5 lg:flex" role="menubar" aria-label="Navegación principal">
             {[
               { id: "inicio", label: "Inicio" },
               { id: "aprender", label: "Aprender" },
@@ -396,7 +396,7 @@ const Home = () => {
                   className={`text-sm font-medium transition-colors px-2 py-1 rounded-md ${
                     isActive
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
                   }`}
                 >
                   {item.label}
@@ -405,7 +405,7 @@ const Home = () => {
             })}
             <DropdownMenu>
               <DropdownMenuTrigger
-                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-foreground"
+                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-foreground"
                 aria-label="Menú de artículos"
               >
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
@@ -428,12 +428,12 @@ const Home = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Documentación</Link>
-            <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Sobre Nosotros</Link>
-            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md">Contacto</Link>
+            <Link to="/documentacion-tecnica" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md">Documentación</Link>
+            <Link to="/sobre-nosotros" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md">Sobre Nosotros</Link>
+            <Link to="/contacto" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md">Contacto</Link>
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg border border-border hover:border-primary/40 hover:bg-accent/50"
+              className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors px-3 py-1.5 rounded-lg border border-border hover:border-primary/40 hover:bg-primary/10"
               aria-label="Abrir buscador"
             >
               <Search className="w-3.5 h-3.5" />
@@ -444,7 +444,7 @@ const Home = () => {
           </div>
 
           {/* Mobile toggle */}
-          <div className="flex items-center gap-1 md:hidden">
+          <div className="flex items-center gap-1 lg:hidden">
             <button
               onClick={() => setSearchOpen(true)}
               className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors"
@@ -466,7 +466,7 @@ const Home = () => {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div id="mobile-menu" className="border-t border-border bg-card px-6 py-4 md:hidden space-y-1 animate-in slide-in-from-top-2">
+          <div id="mobile-menu" className="border-t border-border bg-card px-6 py-4 lg:hidden space-y-1 animate-in slide-in-from-top-2">
             {[
               { label: "Inicio", id: "inicio" },
               { label: "Aprender", id: "aprender" },
