@@ -99,6 +99,10 @@ export const loadAdsense = (): Promise<void> => {
     };
     s.onerror = () => {
       loadingPromise = null;
+      // Carga diferida para evitar ciclo de dependencias.
+      import("./consentAnalytics").then(({ logAdsenseScriptFailure }) => {
+        logAdsenseScriptFailure("script_error");
+      }).catch(() => { /* noop */ });
       reject(new Error("script_error"));
     };
     document.head.appendChild(s);

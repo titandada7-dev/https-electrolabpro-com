@@ -6,6 +6,7 @@ import {
   setAdsenseConsent,
   type ConsentState,
 } from "@/lib/adsenseLoader";
+import { trackConsentDecision } from "@/lib/consentAnalytics";
 
 /**
  * Banner dedicado al consentimiento de AdSense.
@@ -29,6 +30,7 @@ const AdSenseConsentBanner = () => {
   const handle = (decision: "granted" | "denied") => {
     setAdsenseConsent(decision);
     setConsent(decision);
+    trackConsentDecision("adsense_banner", decision === "granted" ? "accept_all" : "reject_all");
   };
 
   return (
