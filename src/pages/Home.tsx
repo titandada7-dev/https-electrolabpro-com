@@ -369,9 +369,9 @@ const Home = () => {
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3.5">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={electrolabLogo} alt="ElectroLab Pro logo" width="36" height="36" className="h-9 w-9 rounded-lg object-cover" loading="eager" decoding="async" />
-            <span className="text-lg font-bold tracking-tight text-foreground">
+          <Link to="/" className="flex items-center gap-3 px-2.5 py-1.5 rounded-xl hover:bg-primary/5 transition-colors duration-200">
+            <img src={electrolabLogo} alt="ElectrolabPRO logo" width="36" height="36" className="h-9 w-9 rounded-lg object-cover" loading="eager" decoding="async" />
+            <span className="inline-flex items-center text-lg font-bold tracking-tight text-foreground px-2 py-1 rounded-lg bg-primary/5 border border-primary/10">
               Electrolab<span className="text-primary">PRO</span>
             </span>
           </Link>
