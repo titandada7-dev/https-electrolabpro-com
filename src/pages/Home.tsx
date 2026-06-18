@@ -377,7 +377,7 @@ const Home = () => {
           </Link>
 
           {/* Desktop nav — anchors reales para que AdSense / Googlebot los rastreen */}
-          <div className="hidden items-center gap-5 md:flex" role="menubar" aria-label="Navegación principal">
+          <div className="hidden items-center gap-5 lg:flex" role="menubar" aria-label="Navegación principal">
             {[
               { id: "inicio", label: "Inicio" },
               { id: "aprender", label: "Aprender" },
@@ -396,7 +396,7 @@ const Home = () => {
                   className={`text-sm font-medium transition-colors px-2 py-1 rounded-md ${
                     isActive
                       ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-primary/10"
                   }`}
                 >
                   {item.label}
