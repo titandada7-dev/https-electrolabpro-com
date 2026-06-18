@@ -26,12 +26,13 @@
     <meta name="google-site-verification" content="ueUKlSFQj1LdIzSBwlCCGmz-zQ8uOXYkcGPgHj1YKkU" />
     <meta name="google-adsense-account" content="ca-pub-9393284878747603" />
 
-    <!-- Google AdSense (auto ads + verificación de sitio).
-         Requerido por Google en <head> de todas las páginas. El render real
-         de unidades de anuncio sigue gestionado por nuestro consentimiento
-         (src/components/AdSenseConsentBanner.tsx + src/lib/adsenseLoader.ts). -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9393284878747603"
-            crossorigin="anonymous" data-adsense-loader="1"></script>
+    <!-- Google AdSense: la verificación de propiedad del sitio se hace mediante
+         <meta name="google-adsense-account"> arriba. El script pagead2 NO se
+         carga aquí — se inyecta de forma diferida desde src/lib/adsenseLoader.ts
+         únicamente cuando el usuario otorga consentimiento ("granted") y un
+         AdBanner/AdSenseSlot entra en viewport. Esto garantiza que banner,
+         sidebar e inline solo se carguen tras aceptar, y evita duplicar el
+         script en navegación SPA (el loader detecta script[data-adsense-loader="1"]). -->
 
 
 
