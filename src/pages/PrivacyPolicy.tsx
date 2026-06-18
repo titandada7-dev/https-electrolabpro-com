@@ -52,16 +52,25 @@ const PrivacyPolicy = () => {
           </p>
         </Section>
 
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="2. Google AdSense">
+        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="2. Google AdSense y consentimiento publicitario">
           <p>
             Google, como proveedor de terceros, utiliza cookies para publicar anuncios en nuestro sitio. El uso de
             la cookie de publicidad de Google permite a Google y a sus socios publicar anuncios basados en las visitas
-            de los usuarios a nuestro sitio y a otros sitios de Internet.
+            de los usuarios a nuestro sitio y a otros sitios de Internet. Nuestro ID de editor es{" "}
+            <strong>pub-9393284878747603</strong>.
           </p>
           <p>
-            Nuestro ID de editor es: <strong>pub-9393284878747603</strong>. Para usuarios del EEE, Reino Unido y Suiza
-            utilizamos el mensaje de consentimiento de Google (Funding Choices) para cumplir con el RGPD y la
-            Directiva ePrivacy. Los usuarios pueden inhabilitar la publicidad personalizada visitando la{" "}
+            <strong>Mensaje de privacidad propio:</strong> antes de cargar el script de Google AdSense
+            (<code className="text-xs bg-muted px-1 py-0.5 rounded">pagead2.googlesyndication.com</code>) mostramos un
+            banner propio donde podés <strong>Aceptar</strong> o <strong>Rechazar</strong> la publicidad personalizada.
+            Mientras la decisión esté pendiente o sea "Rechazar", el script de AdSense no se inyecta y no se descargan
+            cookies publicitarias de Google. Si aceptás, el script se carga de forma diferida cuando un slot entra cerca
+            del viewport. Tu decisión se guarda en{" "}
+            <code className="text-xs bg-muted px-1 py-0.5 rounded">localStorage["adsense-consent"]</code> y podés
+            cambiarla en cualquier momento borrando las cookies y datos del sitio en tu navegador.
+          </p>
+          <p>
+            Para gestionar tus preferencias de publicidad a nivel de Google podés visitar la{" "}
             <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
               Configuración de anuncios de Google
             </a>{" "}
