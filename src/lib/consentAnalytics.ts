@@ -80,6 +80,7 @@ export const trackAdsLoadedAfterConsent = (slot: string, elapsedMs?: number) => 
  */
 export const logAdsenseScriptFailure = (reason: string) => {
   if (typeof window === "undefined") return;
+  const key = "__electrolab_ads_script_failure_logged";
   const w = window as unknown as Record<string, boolean>;
   if (w[key]) return;
   w[key] = true;
