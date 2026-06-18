@@ -19,6 +19,11 @@ const CookieBanner = () => {
     setVisible(false);
   };
 
+  const rejectAll = () => {
+    localStorage.setItem("cookie-consent", JSON.stringify({ analytics: false, ads: false }));
+    setVisible(false);
+  };
+
   if (!visible) return null;
 
   return (
@@ -30,11 +35,14 @@ const CookieBanner = () => {
         {!showConfig ? (
           <>
             <p className="text-sm text-foreground/90 leading-relaxed mb-4">
-              🍪 Utilizamos cookies para mejorar tu experiencia y mostrarte anuncios personalizados.
-              Al continuar navegando en <span className="font-semibold text-primary">ElectroLab Pro</span>,
-              aceptas nuestra <Link to="/privacidad" className="text-primary underline hover:text-primary/80">política de cookies</Link> y el uso de afiliados de Amazon.
+              🍪 Utilizamos cookies propias y de terceros (Google AdSense, Analytics) para mejorar tu experiencia y mostrar anuncios.
+              Podés aceptar, rechazar o configurar tus preferencias. Más detalles en nuestra{" "}
+              <Link to="/privacidad" className="text-primary underline hover:text-primary/80">política de cookies</Link>.
             </p>
-            <div className="flex gap-3 justify-end">
+            <div className="flex flex-wrap gap-2 justify-end">
+              <Button variant="ghost" size="sm" onClick={rejectAll} aria-label="Rechazar todas las cookies no esenciales">
+                Rechazar
+              </Button>
               <Button variant="outline" size="sm" onClick={() => setShowConfig(true)}>
                 Configurar
               </Button>

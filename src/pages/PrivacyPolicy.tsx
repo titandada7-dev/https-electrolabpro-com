@@ -37,11 +37,18 @@ const PrivacyPolicy = () => {
         </h1>
         <p className="text-muted-foreground text-sm mb-8">Última actualización: 9 de marzo de 2026</p>
 
-        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="1. Uso de Cookies">
+        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="1. Uso de Cookies y Consentimiento">
           <p>
-            Este sitio utiliza cookies para mejorar la experiencia del usuario, permitir el correcto funcionamiento
-            de nuestras herramientas interactivas (calculadoras, diccionario de componentes) y para mostrar anuncios
-            relevantes a través de servicios de publicidad de terceros.
+            Este sitio utiliza cookies propias y de terceros para mejorar la experiencia del usuario, permitir el
+            correcto funcionamiento de nuestras herramientas interactivas (calculadoras, diccionario de componentes)
+            y mostrar anuncios relevantes mediante servicios de publicidad de terceros.
+          </p>
+          <p>
+            En tu primera visita mostramos un banner donde podés <strong>Aceptar</strong>, <strong>Rechazar</strong> o
+            <strong> Configurar</strong> el uso de cookies analíticas y publicitarias. Las cookies estrictamente
+            necesarias siempre están activas porque permiten que la web funcione. Si rechazás las cookies de
+            publicidad, los anuncios personalizados de Google AdSense no se cargarán. Podés cambiar tu decisión en
+            cualquier momento borrando las cookies del navegador.
           </p>
         </Section>
 
@@ -52,11 +59,22 @@ const PrivacyPolicy = () => {
             de los usuarios a nuestro sitio y a otros sitios de Internet.
           </p>
           <p>
-            Nuestro ID de editor es: <strong>pub-9393284878747603</strong>. Los usuarios pueden inhabilitar la
-            publicidad personalizada visitando la{" "}
+            Nuestro ID de editor es: <strong>pub-9393284878747603</strong>. Para usuarios del EEE, Reino Unido y Suiza
+            utilizamos el mensaje de consentimiento de Google (Funding Choices) para cumplir con el RGPD y la
+            Directiva ePrivacy. Los usuarios pueden inhabilitar la publicidad personalizada visitando la{" "}
             <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
               Configuración de anuncios de Google
+            </a>{" "}
+            o consultar las{" "}
+            <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              políticas de partners de Google
             </a>.
+          </p>
+          <p>
+            Los anuncios se ubican únicamente en zonas de contenido (encabezados de página, dentro de artículos
+            educativos y barras laterales). <strong>Nunca</strong> colocamos anuncios dentro de las calculadoras
+            interactivas, encima de botones o en lugares donde puedan inducir clics accidentales, conforme a las
+            políticas del programa AdSense.
           </p>
         </Section>
 
