@@ -444,7 +444,7 @@ const Home = () => {
           </div>
 
           {/* Mobile toggle */}
-          <div className="flex items-center gap-1 md:hidden">
+          <div className="flex items-center gap-1 lg:hidden">
             <button
               onClick={() => setSearchOpen(true)}
               className="text-foreground p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-accent transition-colors"
