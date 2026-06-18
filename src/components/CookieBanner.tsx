@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { trackConsentDecision } from "@/lib/consentAnalytics";
 
 const CookieBanner = () => {
   const [visible, setVisible] = useState(false);
@@ -17,11 +18,17 @@ const CookieBanner = () => {
     const value = all ? "all" : JSON.stringify({ analytics, ads });
     localStorage.setItem("cookie-consent", value);
     setVisible(false);
+    trackConsentDecision(
+      "cookie_banner",
+      all ? "accept_all" : "custom",
+      all ? {} : { analytics, ads }
+    );
   };
 
   const rejectAll = () => {
     localStorage.setItem("cookie-consent", JSON.stringify({ analytics: false, ads: false }));
     setVisible(false);
+    trackConsentDecision("cookie_banner", "reject_all");
   };
 
   if (!visible) return null;
