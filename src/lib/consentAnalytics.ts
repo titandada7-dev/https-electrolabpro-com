@@ -80,11 +80,9 @@ export const trackAdsLoadedAfterConsent = (slot: string, elapsedMs?: number) => 
  */
 export const logAdsenseScriptFailure = (reason: string) => {
   if (typeof window === "undefined") return;
-  const key = "__electrolab_ads_script_failure_logged";
-  // @ts-expect-error key dinámica de diagnóstico
-  if (window[key]) return;
-  // @ts-expect-error key dinámica de diagnóstico
-  window[key] = true;
+  const w = window as unknown as Record<string, boolean>;
+  if (w[key]) return;
+  w[key] = true;
   // eslint-disable-next-line no-console
   console.warn(
     `[AdSense] ⚠️ El script de Google AdSense no pudo cargarse (${reason}). ` +
