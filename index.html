@@ -35,6 +35,35 @@
          propio AdSenseConsentBanner (src/components/AdSenseConsentBanner.tsx).
          No cargamos el script de Google Funding Choices para evitar dobles
          diálogos de consentimiento. -->
+
+    <!--
+      Content Security Policy (NO enforced — documentación de referencia).
+      El hosting actual no inyecta un CSP estricto. Si en el futuro se añade
+      uno (vía headers del CDN o <meta http-equiv>), estos orígenes son
+      necesarios para que AdSense, GTM/GA y Supabase funcionen sin bloqueos:
+
+        script-src 'self' 'unsafe-inline'
+          https://pagead2.googlesyndication.com
+          https://*.googlesyndication.com
+          https://www.googletagmanager.com
+          https://www.google-analytics.com
+          https://fundingchoicesmessages.google.com
+          https://*.adtrafficquality.google ;
+        frame-src https://googleads.g.doubleclick.net
+          https://*.googlesyndication.com
+          https://*.google.com
+          https://*.adtrafficquality.google ;
+        img-src 'self' data: https: ;
+        connect-src 'self'
+          https://*.googlesyndication.com
+          https://*.google-analytics.com
+          https://*.adtrafficquality.google
+          https://*.supabase.co wss://*.supabase.co ;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ;
+        font-src 'self' data: https://fonts.gstatic.com ;
+    -->
+
+    
     
     
     <link rel="canonical" href="https://www.electrolabpro.com/" />
