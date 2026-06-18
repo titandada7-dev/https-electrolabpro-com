@@ -405,7 +405,7 @@ const Home = () => {
             })}
             <DropdownMenu>
               <DropdownMenuTrigger
-                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground px-2 py-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-foreground"
+                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-primary/10 px-2 py-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:text-foreground"
                 aria-label="Menú de artículos"
               >
                 Artículos <ChevronDown className="w-3.5 h-3.5" />
