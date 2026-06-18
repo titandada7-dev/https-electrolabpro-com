@@ -91,22 +91,73 @@ const MiniProjects = () => {
               {/* Body */}
               {isOpen && (
                 <div className="px-4 sm:px-5 pb-5 space-y-5 border-t border-border pt-4">
-                  {/* Circuit diagram placeholder */}
-                  <div className="p-4 rounded-lg bg-secondary text-center">
-                    <p className="text-xs text-muted-foreground mb-2">Esquema del circuito</p>
-                    <pre className="font-mono text-primary text-xs sm:text-sm whitespace-pre leading-relaxed">
-{`     +9V
-      │
-    [330Ω]
-      │
-    [LED]
-      │
-      C
-  B ──┤ 2N2222
-      E
-      │
-     GND`}
-                    </pre>
+                  {/* Circuit diagram (SVG) */}
+                  <div className="p-4 rounded-lg bg-secondary">
+                    <p className="text-xs text-muted-foreground mb-3 text-center">Esquema del circuito</p>
+                    <div className="flex justify-center">
+                      <svg
+                        viewBox="0 0 260 320"
+                        className="w-full max-w-[240px] h-auto"
+                        role="img"
+                        aria-label="Esquema: batería 9V, resistencia 330 ohm, LED y transistor 2N2222 en configuración emisor común"
+                      >
+                        <defs>
+                          <style>{`
+                            .wire { stroke: hsl(var(--primary)); stroke-width: 2; fill: none; stroke-linecap: round; }
+                            .lbl { fill: hsl(var(--foreground)); font: 600 11px ui-monospace, monospace; }
+                            .pin { fill: hsl(var(--muted-foreground)); font: 600 10px ui-monospace, monospace; }
+                            .body { fill: hsl(var(--card)); stroke: hsl(var(--primary)); stroke-width: 2; }
+                            .led-body { fill: hsl(var(--primary) / 0.15); stroke: hsl(var(--primary)); stroke-width: 2; }
+                          `}</style>
+                        </defs>
+
+                        {/* +9V rail */}
+                        <text x="130" y="16" textAnchor="middle" className="lbl">+9V</text>
+                        <line className="wire" x1="130" y1="22" x2="130" y2="55" />
+
+                        {/* Resistor 330Ω (zig-zag) */}
+                        <polyline className="wire" points="130,55 120,60 140,68 120,76 140,84 120,92 130,97" />
+                        <text x="150" y="80" className="lbl">330Ω</text>
+
+                        <line className="wire" x1="130" y1="97" x2="130" y2="120" />
+
+                        {/* LED: triangle + bar */}
+                        <polygon className="led-body" points="118,120 142,120 130,140" />
+                        <line className="wire" x1="118" y1="140" x2="142" y2="140" />
+                        {/* arrows */}
+                        <line className="wire" x1="146" y1="124" x2="154" y2="118" />
+                        <polyline className="wire" points="151,118 154,118 154,121" />
+                        <line className="wire" x1="148" y1="132" x2="156" y2="126" />
+                        <polyline className="wire" points="153,126 156,126 156,129" />
+                        <text x="162" y="135" className="lbl">LED</text>
+
+                        <line className="wire" x1="130" y1="140" x2="130" y2="175" />
+
+                        {/* Transistor 2N2222 (NPN) */}
+                        <circle className="body" cx="130" cy="210" r="28" />
+                        {/* Base line */}
+                        <line className="wire" x1="100" y1="210" x2="118" y2="210" />
+                        <line className="wire" x1="118" y1="195" x2="118" y2="225" />
+                        {/* Collector (top) */}
+                        <line className="wire" x1="118" y1="200" x2="130" y2="188" />
+                        <line className="wire" x1="130" y1="188" x2="130" y2="175" />
+                        {/* Emitter (bottom) with arrow */}
+                        <line className="wire" x1="118" y1="220" x2="130" y2="232" />
+                        <polyline className="wire" points="124,230 130,232 128,226" />
+                        <line className="wire" x1="130" y1="232" x2="130" y2="265" />
+
+                        <text x="88" y="206" textAnchor="end" className="pin">B</text>
+                        <text x="138" y="184" className="pin">C</text>
+                        <text x="138" y="240" className="pin">E</text>
+                        <text x="165" y="214" className="lbl">2N2222</text>
+
+                        {/* GND */}
+                        <line className="wire" x1="115" y1="265" x2="145" y2="265" />
+                        <line className="wire" x1="120" y1="272" x2="140" y2="272" />
+                        <line className="wire" x1="125" y1="279" x2="135" y2="279" />
+                        <text x="130" y="300" textAnchor="middle" className="lbl">GND</text>
+                      </svg>
+                    </div>
                   </div>
 
                   {/* Steps */}
