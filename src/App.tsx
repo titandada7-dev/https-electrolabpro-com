@@ -96,6 +96,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/premium" element={<Premium />} />
+        <Route path="/premium/contenido" element={<PremiumHub />} />
+        <Route path="/premium/simulador-circuitos" element={<PremiumSimulador />} />
+        <Route path="/premium/calculadoras-avanzadas" element={<PremiumCalculadoras />} />
+        <Route path="/premium/biblioteca" element={<PremiumBiblioteca />} />
         <Route path="/account" element={<Account />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
