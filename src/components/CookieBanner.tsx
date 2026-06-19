@@ -16,6 +16,11 @@ const CookieBanner = () => {
   const accept = (all?: boolean) => {
     const value = all ? "all" : JSON.stringify({ analytics, ads });
     localStorage.setItem("cookie-consent", value);
+    // Notifica a index.html para que cargue AdSense / GA4 según consentimiento
+    const detail = all
+      ? { analytics: true, ads: true }
+      : { analytics, ads };
+    window.dispatchEvent(new CustomEvent("consent-update", { detail }));
     setVisible(false);
   };
 
