@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ArrowLeft, Shield, Cookie, Eye, Mail } from "lucide-react";
+import { ArrowLeft, Shield, Cookie, Eye, Mail, Database, Scale, Clock, UserCheck, Lock, Globe, CreditCard } from "lucide-react";
 import { usePageMeta } from "@/hooks/use-page-meta";
 
 const PrivacyPolicy = () => {
   usePageMeta({
     title: "Política de Privacidad | ElectroLab Pro",
-    description: "Conoce cómo ElectroLab Pro protege tus datos personales, el uso de cookies, Google Analytics y publicidad de Google AdSense en nuestro sitio.",
+    description:
+      "Política de privacidad de ElectroLab Pro: base legal RGPD, datos recopilados, Paddle como procesador de pagos, cookies, Google AdSense, derechos del usuario y conservación de datos.",
   });
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -27,68 +28,149 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="container mx-auto px-4 py-10 max-w-3xl">
-        <p className="text-muted-foreground mb-6">
-          En ElectroLab Pro, gestionado por <strong>J.A. Sanchez</strong>, la privacidad de nuestros visitantes es
-          una prioridad. Esta página detalla cómo se recopila y utiliza la información.
-        </p>
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
           <Shield className="w-8 h-8 text-primary" />
-          Política de Privacidad - ElectroLab Pro
+          Política de Privacidad
         </h1>
-        <p className="text-muted-foreground text-sm mb-8">Última actualización: 9 de marzo de 2026</p>
+        <p className="text-muted-foreground text-sm mb-8">Última actualización: 19 de junio de 2026</p>
 
-        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="1. Uso de Cookies">
+        <p className="text-muted-foreground leading-relaxed mb-8">
+          En ElectroLab Pro, gestionado por <strong>J.A. Sánchez</strong> (responsable del tratamiento, en
+          adelante "nosotros"), la privacidad de nuestros visitantes y suscriptores es una prioridad.
+          Esta política explica qué datos recopilamos, con qué base legal, con quién los compartimos
+          (incluido <strong>Paddle</strong> como procesador de pagos) y cuáles son tus derechos.
+          Contacto: <a href="mailto:contacto@electrolabpro.com" className="text-primary underline hover:text-primary/80">contacto@electrolabpro.com</a>.
+        </p>
+
+        <Section icon={<Database className="w-5 h-5 text-primary" />} title="1. Categorías de datos que recopilamos">
+          <p>Tratamos distintas categorías de datos según el tipo de usuario:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Visitantes anónimos:</strong> datos técnicos del dispositivo (IP truncada, navegador, sistema operativo, idioma), páginas visitadas y métricas agregadas de uso vía Google Analytics y Google AdSense.</li>
+            <li><strong>Usuarios registrados:</strong> dirección de correo electrónico, identificador de usuario, fecha de registro, preferencias de notificaciones y progreso en el contenido Premium.</li>
+            <li><strong>Suscriptores Premium (de pago):</strong> identificador de cliente de Paddle, identificador de suscripción, estado de la suscripción (activa, cancelada, en periodo de gracia), fechas de inicio y fin del periodo de facturación y plan contratado. <strong>No almacenamos números de tarjeta ni datos bancarios</strong>: esa información la recoge y custodia directamente Paddle.</li>
+            <li><strong>Comunicaciones:</strong> contenido de los mensajes que nos envías por el formulario de contacto o por correo.</li>
+          </ul>
+        </Section>
+
+        <Section icon={<Scale className="w-5 h-5 text-primary" />} title="2. Finalidades y base legal (RGPD)">
+          <ul className="list-disc pl-5 space-y-2">
+            <li><strong>Prestación del servicio gratuito</strong> (acceso a calculadoras, guías, cuenta de usuario) — <em>ejecución de contrato</em> (art. 6.1.b RGPD).</li>
+            <li><strong>Gestión de la suscripción Premium</strong> (alta, renovaciones, cancelaciones, control de acceso) — <em>ejecución de contrato</em> (art. 6.1.b).</li>
+            <li><strong>Cobro y facturación</strong> a través de Paddle — <em>ejecución de contrato</em> y <em>obligación legal</em> (art. 6.1.b y 6.1.c).</li>
+            <li><strong>Envío de correos transaccionales</strong> (bienvenida Premium, cambios de suscripción, recuperación de contraseña) — <em>ejecución de contrato</em>.</li>
+            <li><strong>Notificaciones de contenido Premium nuevo</strong> — <em>consentimiento</em> explícito (art. 6.1.a), revocable en cualquier momento desde el Hub Premium o el enlace de baja del correo.</li>
+            <li><strong>Cookies analíticas y publicitarias</strong> (Google Analytics, AdSense) — <em>consentimiento</em> gestionado en el banner de cookies.</li>
+            <li><strong>Seguridad, prevención del fraude y registro de auditoría</strong> — <em>interés legítimo</em> (art. 6.1.f) en proteger el servicio.</li>
+          </ul>
+        </Section>
+
+        <Section icon={<CreditCard className="w-5 h-5 text-primary" />} title="3. Paddle como procesador de pagos (Merchant of Record)">
           <p>
-            Este sitio utiliza cookies para mejorar la experiencia del usuario, permitir el correcto funcionamiento
-            de nuestras herramientas interactivas (calculadoras, diccionario de componentes) y para mostrar anuncios
-            relevantes a través de servicios de publicidad de terceros.
+            Los pagos de la suscripción Premium son procesados por <strong>Paddle.com Market Limited</strong>,
+            que actúa como nuestro <em>Merchant of Record</em> (vendedor registrado) y como responsable
+            independiente del tratamiento para fines de cumplimiento fiscal, antifraude y facturación.
+          </p>
+          <p>
+            Cuando realizas una compra, compartimos con Paddle: tu dirección de correo electrónico,
+            el identificador interno de tu cuenta y el plan seleccionado. Paddle recoge directamente
+            de ti los datos de pago (tarjeta, dirección de facturación, país, identificadores fiscales
+            cuando aplique) y nos devuelve únicamente metadatos de la transacción (estado, importe, fechas,
+            identificadores de cliente y de suscripción). Puedes consultar su política en{" "}
+            <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              paddle.com/legal/privacy
+            </a>.
           </p>
         </Section>
 
-        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="2. Google AdSense">
+        <Section icon={<Eye className="w-5 h-5 text-primary" />} title="4. Destinatarios y encargados del tratamiento">
+          <p>Tus datos pueden ser tratados por los siguientes proveedores, todos ellos sujetos a contratos de tratamiento de datos:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Paddle</strong> — procesamiento de pagos, suscripciones, facturación y cumplimiento fiscal.</li>
+            <li><strong>Supabase</strong> (Lovable Cloud) — alojamiento de la base de datos, autenticación y funciones de backend.</li>
+            <li><strong>Resend</strong> — envío de correos transaccionales y notificaciones de contenido.</li>
+            <li><strong>Google Analytics y Google AdSense</strong> — analítica y publicidad personalizada (sujeto al consentimiento de cookies). ID de editor: <strong>pub-9393284878747603</strong>.</li>
+            <li><strong>Programa de Afiliados de Amazon</strong> — seguimiento de clics en enlaces de afiliado (ID: <strong>electrolabp0c-21</strong>).</li>
+            <li>Autoridades públicas cuando exista obligación legal de comunicación.</li>
+          </ul>
+        </Section>
+
+        <Section icon={<Globe className="w-5 h-5 text-primary" />} title="5. Transferencias internacionales">
           <p>
-            Google, como proveedor de terceros, utiliza cookies para publicar anuncios en nuestro sitio. El uso de
-            la cookie de publicidad de Google permite a Google y a sus socios publicar anuncios basados en las visitas
-            de los usuarios a nuestro sitio y a otros sitios de Internet.
+            Algunos de los proveedores anteriores están ubicados fuera del Espacio Económico Europeo
+            (principalmente EE. UU. y Reino Unido). Cuando esto ocurre, las transferencias se amparan
+            en las <strong>Cláusulas Contractuales Tipo</strong> aprobadas por la Comisión Europea o en
+            decisiones de adecuación (p. ej. el marco UE-EE. UU. de Privacidad de Datos).
           </p>
+        </Section>
+
+        <Section icon={<Clock className="w-5 h-5 text-primary" />} title="6. Plazos de conservación">
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Datos de cuenta:</strong> mientras la cuenta permanezca activa. Tras su cancelación, se eliminan en un plazo máximo de 30 días, salvo obligación legal de conservación.</li>
+            <li><strong>Datos de facturación y suscripción:</strong> 6 años desde el final de la relación contractual, conforme a las obligaciones mercantiles y fiscales aplicables.</li>
+            <li><strong>Comunicaciones por correo o contacto:</strong> hasta 2 años desde el último intercambio.</li>
+            <li><strong>Logs técnicos y de seguridad:</strong> hasta 12 meses.</li>
+            <li><strong>Cookies analíticas y publicitarias:</strong> según el plazo declarado por cada proveedor (máx. 24 meses) o hasta que retires el consentimiento.</li>
+          </ul>
+        </Section>
+
+        <Section icon={<UserCheck className="w-5 h-5 text-primary" />} title="7. Tus derechos (RGPD)">
+          <p>Puedes ejercer en cualquier momento los siguientes derechos escribiendo a <a href="mailto:contacto@electrolabpro.com" className="text-primary underline hover:text-primary/80">contacto@electrolabpro.com</a>:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Acceso a tus datos personales.</li>
+            <li>Rectificación de datos inexactos.</li>
+            <li>Supresión ("derecho al olvido").</li>
+            <li>Limitación del tratamiento.</li>
+            <li>Portabilidad de los datos que nos hayas facilitado.</li>
+            <li>Oposición al tratamiento basado en interés legítimo.</li>
+            <li>Retirada del consentimiento (cookies, notificaciones) sin efecto retroactivo.</li>
+            <li>Presentar una reclamación ante la <strong>Agencia Española de Protección de Datos</strong> (<a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">aepd.es</a>).</li>
+          </ul>
+          <p>Responderemos a tu solicitud en un plazo máximo de 1 mes.</p>
+        </Section>
+
+        <Section icon={<Lock className="w-5 h-5 text-primary" />} title="8. Medidas de seguridad">
           <p>
-            Nuestro ID de editor es: <strong>pub-9393284878747603</strong>. Los usuarios pueden inhabilitar la
-            publicidad personalizada visitando la{" "}
+            Aplicamos medidas técnicas y organizativas razonables: cifrado TLS en todas las comunicaciones,
+            cifrado en reposo de la base de datos, autenticación con contraseñas <em>hash</em>, políticas
+            de acceso por filas (RLS) en backend, registro de auditoría de accesos y principio de mínimo
+            privilegio para las claves de servicio.
+          </p>
+        </Section>
+
+        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="9. Cookies, Google AdSense y cookie DART">
+          <p>
+            Utilizamos cookies esenciales (necesarias para el funcionamiento del sitio), analíticas y publicitarias.
+            Google, como proveedor de terceros, utiliza la cookie <strong>DART</strong> para publicar anuncios
+            basados en tu visita a este y otros sitios. Puedes gestionar tus preferencias en el banner de cookies
+            o desactivar la publicidad personalizada en{" "}
             <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
               Configuración de anuncios de Google
-            </a>.
-          </p>
-        </Section>
-
-        <Section icon={<Shield className="w-5 h-5 text-primary" />} title="3. Cookie DART">
-          <p>
-            Google utiliza la cookie DART para mostrar anuncios a los usuarios en función de su visita a nuestro sitio
-            y a otros sitios de Internet. Los usuarios pueden inhabilitar el uso de la cookie de DART a través de la{" "}
-            <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
-              política de privacidad de la red de anuncios y contenido de Google
-            </a>.
-          </p>
-        </Section>
-
-        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="4. Programa de Afiliados de Amazon">
-          <p>
-            ElectroLab Pro participa en el Programa de Afiliados de Amazon Services LLC. Esto significa que recibimos
-            una pequeña comisión por las compras realizadas a través de nuestros enlaces de productos recomendados
-            (ID de seguimiento: <strong>electrolabp0c-21</strong>), sin costo adicional para el usuario.
-          </p>
-        </Section>
-
-        <Section icon={<Mail className="w-5 h-5 text-primary" />} title="5. Contacto">
-          <p>
-            El responsable de este sitio web es <strong>J.A. Sanchez</strong>. Para cualquier duda sobre esta política,
-            puedes contactarnos a través de nuestra web oficial:{" "}
-            <a href="https://electrolabpro.com" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
-              electrolabpro.com
             </a>{" "}
-            o visitando nuestra{" "}
-            <Link to="/contacto" className="text-primary underline hover:text-primary/80">
-              página de contacto
-            </Link>.
+            y en la{" "}
+            <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              política de anuncios de Google
+            </a>.
+          </p>
+        </Section>
+
+        <Section icon={<Cookie className="w-5 h-5 text-primary" />} title="10. Programa de Afiliados de Amazon">
+          <p>
+            ElectroLab Pro participa en el Programa de Afiliados de Amazon Services LLC. Recibimos una pequeña
+            comisión por las compras elegibles realizadas a través de nuestros enlaces (ID de seguimiento:{" "}
+            <strong>electrolabp0c-21</strong>), sin coste adicional para el usuario.
+          </p>
+        </Section>
+
+        <Section icon={<Mail className="w-5 h-5 text-primary" />} title="11. Contacto y cambios en esta política">
+          <p>
+            Responsable del tratamiento: <strong>J.A. Sánchez</strong> · ElectroLab Pro ·{" "}
+            <a href="mailto:contacto@electrolabpro.com" className="text-primary underline hover:text-primary/80">contacto@electrolabpro.com</a>{" "}
+            ·{" "}
+            <Link to="/contacto" className="text-primary underline hover:text-primary/80">página de contacto</Link>.
+          </p>
+          <p>
+            Si actualizamos materialmente esta política, te avisaremos por correo o mediante un aviso destacado
+            en el sitio antes de que los cambios entren en vigor.
           </p>
         </Section>
       </div>
@@ -96,7 +178,7 @@ const PrivacyPolicy = () => {
       <footer className="w-full py-8 mt-auto bg-card/50 border-t border-border">
         <div className="container mx-auto px-4 text-center">
           <p className="text-muted-foreground text-sm tracking-wide mb-4" style={{ fontFamily: "'Georgia', serif" }}>
-            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A. Sanchez</span>
+            © 2026 ElectroLab Pro | Diseñado y Desarrollado por <span className="font-semibold">J.A. Sánchez</span>
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 sm:gap-4 mb-3">
             <Link to="/privacidad" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Privacidad</Link>
@@ -108,15 +190,8 @@ const PrivacyPolicy = () => {
             <Link to="/sobre-nosotros" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Sobre Nosotros</Link>
             <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/terminos-y-condiciones" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Términos</Link>
-          </div>
-          <p className="text-muted-foreground/80 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
-            En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
-          </p>
-          <div className="border-t border-border pt-4 mt-2">
-            <p className="text-primary/80 text-[10px] font-semibold uppercase tracking-wider mb-1">⚠️ Aviso de Seguridad</p>
-            <p className="text-muted-foreground/80 text-[9px] leading-relaxed max-w-2xl mx-auto">
-              La electrónica implica riesgos inherentes. Siempre verifica los valores de los componentes con un multímetro real antes de energizar un circuito para evitar daños personales o materiales.
-            </p>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
+            <Link to="/politica-reembolsos" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Reembolsos</Link>
           </div>
         </div>
       </footer>
@@ -130,7 +205,7 @@ const Section = ({ icon, title, children }: { icon: React.ReactNode; title: stri
       {icon}
       {title}
     </h2>
-    <div className="text-muted-foreground leading-relaxed space-y-2 pl-7">
+    <div className="text-muted-foreground leading-relaxed space-y-3 pl-7">
       {children}
     </div>
   </section>
