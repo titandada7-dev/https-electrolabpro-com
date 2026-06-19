@@ -23,10 +23,9 @@ export async function logAuthEvent(
 ): Promise<void> {
   try {
     // Fire-and-forget; never throw into the UI.
-    // @ts-expect-error rpc function name is generated after types regenerate
     await supabase.rpc("log_auth_event", {
       _event_type: eventType,
-      _metadata: metadata,
+      _metadata: metadata as never,
       _target_table: targetTable ?? null,
       _target_id: targetId ?? null,
     });
