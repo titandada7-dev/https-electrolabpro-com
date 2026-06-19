@@ -1328,6 +1328,11 @@ const Home = () => {
           </p>
         </div>
         <Suspense fallback={<SectionFallback />}><ComponentDictionary /></Suspense>
+
+        {/* FAQ para principiantes: resistencias, capacitores y transistores */}
+        <div className="mt-16">
+          <Suspense fallback={<SectionFallback />}><BeginnerFaq /></Suspense>
+        </div>
       </section>
 
       {/* ═══════════ MINI PROYECTOS ═══════════ */}
