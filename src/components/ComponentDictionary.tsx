@@ -35,8 +35,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Limita el flujo de corriente eléctrica en un circuito según la Ley de Ohm (V = I × R).",
     details:
       "Se mide en ohmios (Ω). Su valor se identifica por bandas de colores (4 o 5 bandas) o por código numérico SMD. Parámetros clave a considerar: valor nominal, tolerancia (típicamente ±1%, ±5%) y potencia disipable (1/8W, 1/4W, 1/2W, 1W). Aplicaciones típicas: limitar corriente en LEDs, divisores de tensión, polarización de transistores y pull-up / pull-down en entradas digitales.",
+    highlights: ["Unidad: ohmio (Ω)", "Tolerancia típica: ±5%", "Potencia: 1/4 W estándar"],
     amazonSearch: "resistencias+electronica+kit",
     category: "Pasivos",
+    banner: "linear-gradient(135deg, hsl(25 95% 53% / 0.35), hsl(45 95% 53% / 0.15))",
   },
   {
     name: "Condensador",
@@ -45,8 +47,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Almacena energía en un campo eléctrico entre dos placas y la libera cuando la tensión cae.",
     details:
       "Se mide en faradios (F), normalmente en μF, nF o pF. Tipos principales: cerámicos (no polarizados, alta frecuencia), electrolíticos (polarizados, alta capacidad), tantalio (estables, compactos) y de poliéster. Usos clave: filtrado de fuentes (desacoplo de Vcc con 100 nF cerca de cada IC), acoplo de señal AC, temporización en circuitos RC y arranque de motores monofásicos. Atención a la tensión máxima — exceder Vmax destruye el dieléctrico.",
+    highlights: ["Unidad: faradio (F)", "Tipos: cerámico, electrolítico, tantalio", "Polaridad: depende del tipo"],
     amazonSearch: "capacitores+electronica+kit",
     category: "Pasivos",
+    banner: "linear-gradient(135deg, hsl(210 95% 55% / 0.35), hsl(190 95% 55% / 0.15))",
   },
   {
     name: "Diodo LED",
@@ -55,8 +59,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Diodo semiconductor que emite luz cuando circula corriente directa a través de la juntura P-N.",
     details:
       "Tiene polaridad: ánodo (+) es la pata larga, cátodo (–) la corta y suele tener un chaflán plano en la cápsula. Caída de tensión típica (Vf): 1.8–2.2 V (rojo), 2.0–2.4 V (amarillo), 3.0–3.4 V (azul/blanco/verde). Corriente nominal estándar: 20 mA. SIEMPRE requiere resistencia limitadora calculada como R = (Vfuente − Vf) / If. Para alta potencia (1 W+) se necesita disipador térmico.",
+    highlights: ["Corriente típica: 20 mA", "Vf: 1.8 – 3.4 V", "Requiere resistencia limitadora"],
     amazonSearch: "led+electronica+kit+colores",
     category: "Activos",
+    banner: "linear-gradient(135deg, hsl(0 95% 60% / 0.35), hsl(45 95% 60% / 0.15))",
   },
   {
     name: "Transistor NPN 2N2222",
@@ -65,8 +71,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Transistor bipolar (BJT) de silicio de baja potencia para amplificación lineal y conmutación.",
     details:
       "Parámetros (encapsulado TO-92): Vce máx = 40 V, Ic máx = 800 mA, hFE típico 100–300, fT ≈ 250 MHz. Pinout visto de frente (lado plano hacia vos): 1) Emisor, 2) Base, 3) Colector. Aplicaciones: driver de relés (con diodo de rueda libre), amplificador de pequeña señal, oscilador, conmutación de cargas inductivas de baja potencia. Para corrientes mayores usar TIP120 (Darlington) o un MOSFET tipo IRLZ44N.",
+    highlights: ["Ic máx: 800 mA", "Vce máx: 40 V", "hFE: 100 – 300"],
     amazonSearch: "2n2222+transistor",
     category: "Activos",
+    banner: "linear-gradient(135deg, hsl(270 80% 60% / 0.35), hsl(210 80% 55% / 0.15))",
   },
   {
     name: "Circuito Integrado 555",
@@ -75,8 +83,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Temporizador y oscilador integrado, uno de los IC más utilizados en electrónica analógica.",
     details:
       "Encapsulado DIP-8. Funciona en tres modos: monoestable (genera un pulso de duración T = 1.1·R·C), astable (oscilador con frecuencia f = 1.44 / ((R1 + 2·R2) · C)) y biestable (flip-flop por entradas SET/RESET). Alimentación 4.5–15 V, corriente de salida hasta 200 mA — puede manejar LEDs y relés directamente. Versión CMOS (TLC555, ICM7555) consume menos y opera desde 2 V.",
+    highlights: ["Encapsulado: DIP-8", "Alimentación: 4.5 – 15 V", "Modos: astable, monoestable, biestable"],
     amazonSearch: "ne555+temporizador",
     category: "Activos",
+    banner: "linear-gradient(135deg, hsl(160 80% 45% / 0.35), hsl(200 80% 55% / 0.15))",
   },
   {
     name: "Fotorresistencia (LDR)",
@@ -85,8 +95,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Resistencia variable cuyo valor disminuye al aumentar la iluminación incidente.",
     details:
       "También llamada LDR (Light Dependent Resistor). Resistencia típica: 1 MΩ en oscuridad total, 5–20 kΩ a luz ambiente, < 1 kΩ con luz directa. Material habitual: sulfuro de cadmio (CdS), espectro de respuesta similar al ojo humano (pico ≈ 550 nm). Se usa en divisores de tensión leídos por ADC para detección de luz, control automático de iluminación, robots seguidores de línea y crepusculares. Tiempo de respuesta lento (decenas de ms): no apta para señales rápidas — para eso usar fotodiodo o fototransistor.",
+    highlights: ["Oscuridad: ~1 MΩ", "Luz directa: < 1 kΩ", "Espectro: visible (550 nm)"],
     amazonSearch: "fotoresistencia+ldr+electronica",
     category: "Sensores",
+    banner: "linear-gradient(135deg, hsl(45 95% 55% / 0.35), hsl(25 95% 50% / 0.15))",
   },
   {
     name: "Termistor NTC",
@@ -95,8 +107,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Resistencia cuyo valor disminuye al aumentar la temperatura (coeficiente negativo).",
     details:
       "Valor común: 10 kΩ a 25 °C. Su comportamiento se modela con la ecuación de Steinhart-Hart o, de forma simplificada, con el parámetro Beta (β ≈ 3950 K para NTCs típicos). Aplicaciones: medición de temperatura en impresoras 3D (hotend, cama caliente), protección térmica de fuentes y baterías, compensación térmica de circuitos. Para lectura con Arduino se conecta en divisor con una resistencia fija de 10 kΩ y se lee por ADC.",
+    highlights: ["10 kΩ @ 25 °C", "Beta típico: 3950 K", "Uso: impresoras 3D, baterías"],
     amazonSearch: "termistor+ntc+10k+electronica",
     category: "Sensores",
+    banner: "linear-gradient(135deg, hsl(350 80% 55% / 0.35), hsl(20 80% 55% / 0.15))",
   },
   {
     name: "Multímetro Digital",
@@ -105,8 +119,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Instrumento esencial para medir magnitudes eléctricas en cualquier diagnóstico de circuito.",
     details:
       "Funciones básicas obligatorias: tensión DC/AC, corriente DC (mA y A), resistencia, continuidad con buzzer y prueba de diodos. Funciones recomendadas: capacitancia, frecuencia (Hz) y temperatura con termopar tipo K. Precisión típica de gama media: ±0.5 % en DCV. Categorías de seguridad (CAT II, III, IV) — para mediciones en red eléctrica usar siempre un multímetro CAT III 600 V o superior. Marcas confiables: Fluke, UNI-T, Brymen, Aneng (gama económica).",
+    highlights: ["Mide: V, A, Ω, continuidad", "Precisión: ±0.5 % DCV", "Seguridad: CAT III para red"],
     amazonSearch: "multimetro+digital+autorango",
     category: "Herramientas",
+    banner: "linear-gradient(135deg, hsl(140 60% 45% / 0.35), hsl(180 60% 45% / 0.15))",
   },
   {
     name: "Protoboard (Breadboard)",
@@ -115,8 +131,10 @@ const COMPONENTS: ComponentInfo[] = [
     description: "Placa de prototipado sin soldadura para armar y modificar circuitos rápidamente.",
     details:
       "Estructura interna: las dos filas laterales (rieles rojo y azul) están conectadas horizontalmente y se usan como buses de alimentación (Vcc y GND). Las columnas centrales están conectadas verticalmente en grupos de 5 contactos, separadas por un canal central que permite insertar circuitos integrados DIP. Limitaciones: corriente máxima ≈ 1 A por contacto, capacitancia parásita entre filas que afecta a señales > 10 MHz. No apta para circuitos definitivos — pasar a perfboard o PCB para diseños finales.",
+    highlights: ["Sin soldadura", "Corriente máx: ~1 A/contacto", "Ideal para prototipos rápidos"],
     amazonSearch: "protoboard+830+puntos+kit",
     category: "Herramientas",
+    banner: "linear-gradient(135deg, hsl(280 60% 55% / 0.35), hsl(320 60% 55% / 0.15))",
   },
 ];
 
