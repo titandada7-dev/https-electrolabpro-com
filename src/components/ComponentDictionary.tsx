@@ -13,8 +13,10 @@ interface ComponentInfo {
   symbol: string;
   description: string;
   details: string;
+  highlights: string[];
   amazonSearch: string;
   category: Category;
+  banner: string; // gradiente CSS para el hero del modal
 }
 
 const CATEGORIES: { label: Category; icon: React.ReactNode }[] = [
