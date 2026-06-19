@@ -67,18 +67,81 @@ const PrivacyPolicy = () => {
         <Section icon={<CreditCard className="w-5 h-5 text-primary" />} title="3. Paddle como procesador de pagos (Merchant of Record)">
           <p>
             Los pagos de la suscripción Premium son procesados por <strong>Paddle.com Market Limited</strong>,
-            que actúa como nuestro <em>Merchant of Record</em> (vendedor registrado) y como responsable
-            independiente del tratamiento para fines de cumplimiento fiscal, antifraude y facturación.
+            con sede en Irlanda, que actúa como nuestro <em>Merchant of Record</em> (vendedor registrado).
+            Esto significa que Paddle es el comerciante oficial de registro para cada transacción: gestiona
+            el cobro, la facturación, el cálculo y la declaración de impuestos, el cumplimiento fiscal y
+            la atención al comprador relacionada con el pedido. A efectos de privacidad, Paddle actúa como
+            responsable independiente del tratamiento de los datos de pago que recoge directamente de ti.
           </p>
+          <p><strong>3.1. Datos de pago que compartimos con Paddle</strong></p>
           <p>
-            Cuando realizas una compra, compartimos con Paddle: tu dirección de correo electrónico,
-            el identificador interno de tu cuenta y el plan seleccionado. Paddle recoge directamente
-            de ti los datos de pago (tarjeta, dirección de facturación, país, identificadores fiscales
-            cuando aplique) y nos devuelve únicamente metadatos de la transacción (estado, importe, fechas,
-            identificadores de cliente y de suscripción). Puedes consultar su política en{" "}
+            Cuando inicias una suscripción Premium, Electrolab Pro transmite a Paddle los datos necesarios
+            para vincular tu cuenta con el pedido y activar tu acceso:
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Identidad de contacto:</strong> nombre completo y dirección de correo electrónico asociados a tu cuenta.</li>
+            <li><strong>Identificador de cuenta:</strong> identificador interno de tu usuario en ElectroLab Pro, para poder activar o desactivar el acceso Premium.</li>
+            <li><strong>Plan contratado:</strong> nombre del plan, periodicidad (mensual/anual) y precio acordado en el momento de la compra.</li>
+            <li><strong>Dirección IP:</strong> dirección IP desde la que se realiza la compra, usada por Paddle para seguridad, antifraude y determinación fiscal.</li>
+          </ul>
+          <p>
+            Además, Paddle recoge directamente de ti —a través de su pasarela de pago segura— la siguiente
+            información sensible, que <strong>ElectroLab Pro no almacena ni puede acceder</strong>:
+          </p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Datos de facturación:</strong> dirección postal, ciudad, provincia, código postal, país y, cuando sea obligatorio, número de identificación fiscal (NIF/CIF/VAT).</li>
+            <li><strong>Datos del método de pago:</strong> número de tarjeta completo, fecha de caducidad, CVV, token de pago o datos de PayPal/Apple Pay/Google Pay. Paddle custodia estos datos con proveedores acreditados de tokenización y cumplimiento PCI-DSS.</li>
+            <li><strong>Últimos 4 dígitos de la tarjeta y red de pago:</strong> visibles en tu factura y en el resumen de pago, sin que Electrolab Pro los guarde.</li>
+            <li><strong>Importes y referencias de la transacción:</strong> importe cobrado, moneda, comisiones, impuestos aplicados, número de pedido y referencias de suscripción.</li>
+          </ul>
+          <p><strong>3.2. Finalidades del tratamiento de datos de pago</strong></p>
+          <p>Paddle trata los datos anteriores para:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Procesar el cobro</strong> de la suscripción y gestionar renovaciones, pagos fallidos, periodos de gracia y cancelaciones.</li>
+            <li><strong>Emitir facturas</strong> conforme a la legislación fiscal del país del comprador.</li>
+            <li><strong>Calcular, recaudar y declarar impuestos</strong> (IVA, GST, sales tax u otros tributos aplicables).</li>
+            <li><strong>Prevenir fraudes</strong> mediante verificación de identidad, análisis de riesgo y cumplimiento normativo.</li>
+            <li><strong>Ofrecer atención al comprador</strong> sobre pedidos, reembolsos, actualizaciones de método de pago y gestión del portal de cliente.</li>
+          </ul>
+          <p><strong>3.3. Base legal</strong></p>
+          <p>
+            El tratamiento de tus datos de pago por Paddle se ampara en la <em>ejecución del contrato</em>
+            (art. 6.1.b RGPD) —pagar la suscripción y activar el acceso Premium— y en el <em>cumplimiento
+            de obligaciones legales</em> (art. 6.1.c RGPD) en materia fiscal, contable y de lucha contra el fraude.
+          </p>
+          <p><strong>3.4. Qué datos recibe Electrolab Pro</strong></p>
+          <p>
+            Una vez completado el pedido, Paddle notifica a ElectroLab Pro únicamente los metadatos necesarios
+            para gestionar tu acceso: identificador de cliente de Paddle, identificador de suscripción, estado
+            de la suscripción (activa, pasada por pagos, cancelada, etc.), fechas de inicio y fin del periodo de
+            facturación, plan contratado e importe. No recibimos ni almacenamos tu número de tarjeta completo
+            ni tus datos bancarios.
+          </p>
+          <p><strong>3.5. Conservación de los datos de pago</strong></p>
+          <p>
+            Los datos de pago gestionados por Paddle se conservan durante el tiempo necesario para cumplir con
+            las obligaciones legales y contractuales de Paddle, incluyendo el periodo de facturación vigente y
+            los plazos de conservación fiscal aplicables. Para más detalles, consulta la política de privacidad de
+            Paddle en{" "}
             <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
               paddle.com/legal/privacy
+            </a>{" "}
+            y sus{" "}
+            <a href="https://www.paddle.com/legal/checkout-buyer-terms" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              términos para compradores
             </a>.
+          </p>
+          <p><strong>3.6. Ejercicio de derechos sobre tus datos de pago</strong></p>
+          <p>
+            Puedes ejercer tus derechos de acceso, rectificación, supresión u oposición sobre los datos directamente
+            gestionados por Paddle a través de su portal de cliente (accesible desde el enlace de gestión de
+            suscripción dentro del Hub Premium) o contactando con Paddle en{" "}
+            <a href="https://www.paddle.com/help" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">
+              paddle.com/help
+            </a>.
+            Para cualquier cuestión relacionada con el acceso a contenido Premium, sigue siendo válido el
+            contacto con ElectroLab Pro en{" "}
+            <a href="mailto:contacto@electrolabpro.com" className="text-primary underline hover:text-primary/80">contacto@electrolabpro.com</a>.
           </p>
         </Section>
 
