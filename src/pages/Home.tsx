@@ -349,6 +349,9 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* ═══════════ AD SLOT SUPERIOR (anti-CLS, vía AdSenseSlot) ═══════════ */}
+      <AdSenseSlot slot={AD_SLOT_HEADER} variant="header" />
+
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between gap-4 px-4 sm:px-6 py-3.5">
