@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";
 import { Check, Loader2, Crown, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +17,7 @@ export default function Premium() {
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setEmail(data.user?.email ?? null));
+    document.title = "Premium · ElectroLab Pro";
   }, []);
 
   useEffect(() => {
@@ -53,11 +53,6 @@ export default function Premium() {
 
   return (
     <>
-      <Helmet>
-        <title>Premium · ElectroLab Pro</title>
-        <meta name="description" content="Suscríbete a ElectroLab Pro Premium: sin anuncios, calculadoras avanzadas y contenido exclusivo de electrónica." />
-        <link rel="canonical" href="https://electrolabpro.com/premium" />
-      </Helmet>
       <PaymentTestModeBanner />
       <div className="min-h-screen bg-background">
         <div className="container mx-auto max-w-5xl px-4 py-12">
