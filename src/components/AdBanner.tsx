@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useSubscription } from "@/hooks/useSubscription";
 
 declare global {
   interface Window {
@@ -62,6 +63,7 @@ const AdBanner = ({
   fallbackUrl: _fallbackUrl,
   fallbackLabel: _fallbackLabel,
 }: AdBannerProps) => {
+  const { isActive: isPremium } = useSubscription();
   const adRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
   const [status, setStatus] = useState<AdStatus>("idle");
@@ -74,6 +76,7 @@ const AdBanner = ({
   const desktopH = minHeightDesktop ?? (format === "vertical" ? 600 : 120);
 
   useEffect(() => {
+    if (isPremium) return;
     if (pushed.current) return;
     const el = adRef.current;
     if (!el) return;
@@ -170,6 +173,9 @@ const AdBanner = ({
   // En modo debug (?debug=ads o localhost) mantenemos el contenedor visible
   // con el overlay de estado para poder diagnosticar.
   if (failed && !showDiag) {
+  if (isPremium) return null;
+
+  if (!showDiag) {
     return <div ref={adRef} className={className} aria-hidden="true" />;
   }
 
