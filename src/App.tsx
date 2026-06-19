@@ -38,6 +38,10 @@ const Premium = lazy(() => import("./pages/Premium"));
 const Account = lazy(() => import("./pages/Account"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const PremiumHub = lazy(() => import("./pages/premium/PremiumHub"));
+const PremiumSimulador = lazy(() => import("./pages/premium/SimuladorCircuitos"));
+const PremiumCalculadoras = lazy(() => import("./pages/premium/CalculadorasAvanzadas"));
+const PremiumBiblioteca = lazy(() => import("./pages/premium/Biblioteca"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
 const CodigoColoresResistencias = lazy(() => import("./pages/articles/CodigoColoresResistencias"));
@@ -92,6 +96,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/premium" element={<Premium />} />
+        <Route path="/premium/contenido" element={<PremiumHub />} />
+        <Route path="/premium/simulador-circuitos" element={<PremiumSimulador />} />
+        <Route path="/premium/calculadoras-avanzadas" element={<PremiumCalculadoras />} />
+        <Route path="/premium/biblioteca" element={<PremiumBiblioteca />} />
         <Route path="/account" element={<Account />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
