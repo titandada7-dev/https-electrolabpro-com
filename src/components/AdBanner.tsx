@@ -167,17 +167,17 @@ const AdBanner = ({
   // mínima en todos los breakpoints y no hay CLS.
   const failed = status === "timeout" || status === "blocked" || status === "error";
 
+  if (isPremium) return null;
+
   // En producción, si el anuncio no carga (timeout/blocked/error) colapsamos
   // la caja entera: sin altura mínima, sin borde, sin texto. Así no aparece
   // el cartel "Anuncio no disponible" molestando al usuario.
   // En modo debug (?debug=ads o localhost) mantenemos el contenedor visible
   // con el overlay de estado para poder diagnosticar.
   if (failed && !showDiag) {
-  if (isPremium) return null;
-
-  if (!showDiag) {
     return <div ref={adRef} className={className} aria-hidden="true" />;
   }
+
 
   return (
     <div
