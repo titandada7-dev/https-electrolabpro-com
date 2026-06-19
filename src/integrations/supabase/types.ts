@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      auth_audit_log: {
+        Row: {
+          actor_role: string | null
+          created_at: string
+          event_type: string
+          id: string
+          ip: string | null
+          metadata: Json
+          target_id: string | null
+          target_table: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          actor_role?: string | null
+          created_at?: string
+          event_type: string
+          id?: string
+          ip?: string | null
+          metadata?: Json
+          target_id?: string | null
+          target_table?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          actor_role?: string | null
+          created_at?: string
+          event_type?: string
+          id?: string
+          ip?: string | null
+          metadata?: Json
+          target_id?: string | null
+          target_table?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           asunto: string
@@ -198,6 +237,15 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      log_auth_event: {
+        Args: {
+          _event_type: string
+          _metadata?: Json
+          _target_id?: string
+          _target_table?: string
+        }
+        Returns: string
       }
       move_to_dlq: {
         Args: {
