@@ -28,6 +28,7 @@ const Contacto = lazy(() => import("./pages/Contacto"));
 const AvisoLegal = lazy(() => import("./pages/AvisoLegal"));
 const SobreNosotros = lazy(() => import("./pages/SobreNosotros"));
 const TerminosCondiciones = lazy(() => import("./pages/TerminosCondiciones"));
+const PoliticaReembolsos = lazy(() => import("./pages/PoliticaReembolsos"));
 const Glosario = lazy(() => import("./pages/Glosario"));
 const AprendeJugando = lazy(() => import("./pages/AprendeJugando"));
 const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
@@ -107,6 +108,7 @@ function App() {
         <Route path="/aviso-legal" element={<AvisoLegal />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="/terminos-y-condiciones" element={<TerminosCondiciones />} />
+        <Route path="/politica-reembolsos" element={<PoliticaReembolsos />} />
         <Route path="/glosario" element={<Glosario />} />
         <Route path="/aprende-jugando" element={<AprendeJugando />} />
         <Route path="/documentacion-tecnica" element={<DocumentacionTecnica />} />

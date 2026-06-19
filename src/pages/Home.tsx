@@ -1476,6 +1476,8 @@ const Home = () => {
             <Link to="/glosario" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Glosario</Link>
             <span className="text-muted-foreground/70 text-[10px]">|</span>
             <Link to="/terminos-y-condiciones" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Términos</Link>
+            <span className="text-muted-foreground/70 text-[10px]">|</span>
+            <Link to="/politica-reembolsos" className="text-muted-foreground text-[10px] uppercase tracking-wider hover:text-primary hover:underline transition-colors min-h-[36px] flex items-center">Reembolsos</Link>
           </div>
           <p className="text-muted-foreground/80 text-[10px] leading-relaxed max-w-xl mx-auto italic mb-4">
             En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables.
