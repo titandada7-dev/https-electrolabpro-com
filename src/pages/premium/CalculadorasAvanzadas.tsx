@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Calculator, Activity, Sigma } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import PremiumGate from "@/components/PremiumGate";
+import { useMarkPremiumVisited } from "@/hooks/usePremiumProgress";
 
 function TransformerCalc() {
   const [vp, setVp] = useState("220");
@@ -166,6 +167,7 @@ function AllCalculators() {
 }
 
 export default function CalculadorasAvanzadas() {
+  useMarkPremiumVisited("calculadoras-avanzadas");
   useEffect(() => {
     document.title = "Calculadoras avanzadas · Premium · ElectroLab Pro";
   }, []);
