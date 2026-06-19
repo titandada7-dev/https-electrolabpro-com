@@ -26,11 +26,68 @@
     <meta name="google-site-verification" content="ueUKlSFQj1LdIzSBwlCCGmz-zQ8uOXYkcGPgHj1YKkU" />
     <meta name="google-adsense-account" content="ca-pub-9393284878747603" />
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9393284878747603" crossorigin="anonymous"></script>
-    
-    <script async src="https://fundingchoicesmessages.google.com/i/pub-9393284878747603?ers=1"></script>
-    <script>(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
+    <!-- Google AdSense: cargado SOLO tras consentimiento de publicidad (GDPR / Consent Mode v2) -->
+    <script>
+      (function () {
+        var ADSENSE_SRC = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9393284878747603';
+        var FC_SRC = 'https://fundingchoicesmessages.google.com/i/pub-9393284878747603?ers=1';
+        var loaded = false;
+
+        function hasAdsConsent() {
+          try {
+            var c = localStorage.getItem('cookie-consent');
+            if (!c) return false;
+            if (c === 'all') return true;
+            try { var parsed = JSON.parse(c); return !!(parsed && parsed.ads); } catch (e) { return false; }
+          } catch (e) { return false; }
+        }
+
+        function loadAdSense() {
+          if (loaded) return;
+          if (!hasAdsConsent()) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.crossOrigin = 'anonymous';
+          s.src = ADSENSE_SRC;
+          document.head.appendChild(s);
+
+          var fc = document.createElement('script');
+          fc.async = true;
+          fc.src = FC_SRC;
+          document.head.appendChild(fc);
+
+          (function () {
+            function signalGooglefcPresent() {
+              if (!window.frames['googlefcPresent']) {
+                if (document.body) {
+                  var iframe = document.createElement('iframe');
+                  iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;';
+                  iframe.style.display = 'none';
+                  iframe.name = 'googlefcPresent';
+                  document.body.appendChild(iframe);
+                } else {
+                  setTimeout(signalGooglefcPresent, 0);
+                }
+              }
+            }
+            signalGooglefcPresent();
+          })();
+        }
+
+        // Carga inmediata si el usuario ya aceptó en una visita previa
+        if (hasAdsConsent()) {
+          if (document.readyState === 'complete') loadAdSense();
+          else window.addEventListener('load', loadAdSense, { once: true });
+        }
+
+        // Carga reactiva cuando el banner de cookies dispara consentimiento
+        window.addEventListener('consent-update', loadAdSense);
+        window.addEventListener('storage', function (e) {
+          if (e.key === 'cookie-consent') loadAdSense();
+        });
+      })();
+    </script>
     
     <!-- Canonical: cada ruta define el suyo vía usePageMeta (no hardcodeamos para evitar duplicados) -->
 
