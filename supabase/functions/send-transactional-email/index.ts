@@ -25,9 +25,22 @@ function generateToken(): string {
     .join('')
 }
 
-// Auth note: this function uses verify_jwt = true in config.toml, so Supabase's
-// gateway validates the caller's JWT (anon or service_role) before the request
-// reaches this code. No in-function auth check is needed.
+// Auth: verify_jwt = true only ensures a valid JWT is present (anon counts).
+// We additionally require the caller to be either service_role (server-to-server
+// from other edge functions) or an authenticated user with the 'admin' role.
+// This prevents anonymous visitors from using the public anon key to send
+// branded platform emails to arbitrary addresses.
+
+function decodeJwtPayload(token: string): Record<string, unknown> | null {
+  try {
+    const part = token.split('.')[1]
+    if (!part) return null
+    const padded = part.replace(/-/g, '+').replace(/_/g, '/').padEnd(part.length + ((4 - (part.length % 4)) % 4), '=')
+    return JSON.parse(atob(padded))
+  } catch {
+    return null
+  }
+}
 
 Deno.serve(async (req) => {
   // Handle CORS preflight
@@ -37,8 +50,9 @@ Deno.serve(async (req) => {
 
   const supabaseUrl = Deno.env.get('SUPABASE_URL')
   const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+  const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')
 
-  if (!supabaseUrl || !supabaseServiceKey) {
+  if (!supabaseUrl || !supabaseServiceKey || !supabaseAnonKey) {
     console.error('Missing required environment variables')
     return new Response(
       JSON.stringify({ error: 'Server configuration error' }),
@@ -46,6 +60,39 @@ Deno.serve(async (req) => {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
+    )
+  }
+
+  // Authorize caller: must be service_role or admin user.
+  const authHeader = req.headers.get('Authorization') ?? ''
+  const token = authHeader.replace(/^Bearer\s+/i, '')
+  const claims = token ? decodeJwtPayload(token) : null
+  const role = (claims?.role as string | undefined) ?? null
+  let authorized = role === 'service_role'
+
+  if (!authorized && role === 'authenticated') {
+    try {
+      const userClient = createClient(supabaseUrl, supabaseAnonKey, {
+        global: { headers: { Authorization: authHeader } },
+      })
+      const { data: userData } = await userClient.auth.getUser()
+      if (userData?.user) {
+        const adminClient = createClient(supabaseUrl, supabaseServiceKey)
+        const { data: isAdmin } = await adminClient.rpc('has_role', {
+          _user_id: userData.user.id,
+          _role: 'admin',
+        })
+        authorized = !!isAdmin
+      }
+    } catch (err) {
+      console.error('Authorization check failed', { err })
+    }
+  }
+
+  if (!authorized) {
+    return new Response(
+      JSON.stringify({ error: 'forbidden' }),
+      { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   }
 

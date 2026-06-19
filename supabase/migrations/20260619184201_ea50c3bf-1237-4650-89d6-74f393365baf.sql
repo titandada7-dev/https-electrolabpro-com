@@ -1,0 +1,1 @@
+revoke execute on function public.enforce_premium_subscriber_email() from public, anon, authenticated;
