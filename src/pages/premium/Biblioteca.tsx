@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { BookMarked, Search, ExternalLink, FileText, Wrench } from "lucide-react";
 import PremiumGate from "@/components/PremiumGate";
+import { useMarkPremiumVisited } from "@/hooks/usePremiumProgress";
 
 type Item = {
   kind: "datasheet" | "proyecto";
@@ -103,6 +104,7 @@ function Library() {
 }
 
 export default function Biblioteca() {
+  useMarkPremiumVisited("biblioteca");
   useEffect(() => {
     document.title = "Biblioteca técnica · Premium · ElectroLab Pro";
   }, []);
