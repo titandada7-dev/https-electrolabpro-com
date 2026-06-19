@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Cpu, AlertTriangle, Zap } from "lucide-react";
 import PremiumGate from "@/components/PremiumGate";
+import { useMarkPremiumVisited } from "@/hooks/usePremiumProgress";
 
 /**
  * Premium-only: interactive LED + resistor circuit simulator.
@@ -129,6 +130,7 @@ function Alert({ kind, children }: { kind: "ok" | "error"; children: React.React
 }
 
 export default function SimuladorCircuitos() {
+  useMarkPremiumVisited("simulador-circuitos");
   useEffect(() => {
     document.title = "Simulador de circuitos · Premium · ElectroLab Pro";
   }, []);
