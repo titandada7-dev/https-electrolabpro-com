@@ -21,6 +21,7 @@ import HomeAd from "@/components/sections/HomeAd";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
+const BeginnerFaq = lazy(() => import("@/components/BeginnerFaq"));
 const MiniProjects = lazy(() => import("@/components/MiniProjects"));
 const CalculatorHub = lazy(() => import("@/components/CalculatorHub"));
 const GlobalSearch = lazy(() => import("@/components/GlobalSearch"));
