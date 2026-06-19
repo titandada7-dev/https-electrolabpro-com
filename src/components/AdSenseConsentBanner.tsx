@@ -30,6 +30,16 @@ const AdSenseConsentBanner = () => {
   const handle = (decision: "granted" | "denied") => {
     setAdsenseConsent(decision);
     setConsent(decision);
+    // Propagar al Consent Mode v2 de GA4 (gating de ads).
+    try {
+      window.dispatchEvent(
+        new CustomEvent("consent-update", {
+          detail: { ads: decision === "granted" },
+        })
+      );
+    } catch {
+      /* noop */
+    }
     trackConsentDecision("adsense_banner", decision === "granted" ? "accept_all" : "reject_all");
   };
 
