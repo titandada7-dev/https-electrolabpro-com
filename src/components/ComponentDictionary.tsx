@@ -221,46 +221,79 @@ const ComponentDictionary = () => {
 
       {/* Modal */}
       <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-        <DialogContent className="bg-card border-border max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-mono text-primary flex items-center gap-2">
-              {selected?.icon}
-              {selected?.name}
-            </DialogTitle>
-          </DialogHeader>
+        <DialogContent className="bg-card border-border max-w-lg p-0 overflow-hidden">
           {selected && (
-            <div className="space-y-4">
-              <div className="p-4 rounded-lg bg-secondary text-center">
-                <p className="text-xs text-muted-foreground mb-1">Símbolo electrónico</p>
-                <pre className="font-mono text-primary text-lg whitespace-pre">{selected.symbol}</pre>
+            <>
+              {/* Hero visual: gradiente temático + icono grande como "imagen" */}
+              <div
+                className="relative h-36 w-full flex items-center justify-center border-b border-border"
+                style={{ background: selected.banner }}
+                role="img"
+                aria-label={`Ilustración representativa de ${selected.name}`}
+              >
+                <div className="absolute inset-0 opacity-20 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle at 1px 1px, hsl(var(--foreground) / 0.4) 1px, transparent 0)",
+                    backgroundSize: "16px 16px",
+                  }}
+                />
+                <div className="relative p-5 rounded-2xl bg-card/70 backdrop-blur-sm text-primary scale-150">
+                  {selected.icon}
+                </div>
+                <Badge variant="outline" className="absolute top-3 right-3 bg-card/80 backdrop-blur-sm text-[10px]">
+                  {selected.category}
+                </Badge>
               </div>
 
-              <div className="space-y-2">
-                <h4 className="font-semibold text-foreground">¿Para qué sirve?</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">{selected.description}</p>
-                <p className="text-muted-foreground text-sm leading-relaxed">{selected.details}</p>
-              </div>
+              <div className="p-6 space-y-4">
+                <DialogHeader>
+                  <DialogTitle className="text-xl font-mono text-primary">
+                    {selected.name}
+                  </DialogTitle>
+                </DialogHeader>
 
-              <div className="p-3 rounded-lg bg-secondary/50 border border-border">
-                <p className="text-xs text-muted-foreground text-center">
-                  ⭐ Recomendado para tus proyectos: <span className="text-foreground font-medium">Kit de inicio para principiantes</span>
+                <div className="p-3 rounded-lg bg-secondary text-center">
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">
+                    Símbolo electrónico
+                  </p>
+                  <pre className="font-mono text-primary text-base whitespace-pre">{selected.symbol}</pre>
+                </div>
+
+                {/* Highlights rápidos */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  {selected.highlights.map((h) => (
+                    <div
+                      key={h}
+                      className="text-[11px] text-center px-2 py-2 rounded-md bg-secondary/60 border border-border text-foreground/80"
+                    >
+                      {h}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-foreground text-sm">¿Para qué sirve?</h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{selected.description}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{selected.details}</p>
+                </div>
+
+                <a
+                  href={`https://www.amazon.es/s?k=${selected.amazonSearch}&tag=electrolabp0c-21`}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="flex items-center justify-center gap-2 w-full font-semibold rounded-md h-11 px-4 bg-[hsl(25,95%,53%)] hover:bg-[hsl(25,95%,45%)] text-white transition-colors"
+                  aria-label={`Ver ${selected.name} en Amazon (enlace afiliado)`}
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  Ver en Amazon
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
+                <p className="text-[10px] text-center text-muted-foreground">
+                  Enlace afiliado de Amazon · sin costo adicional para vos
                 </p>
               </div>
-
-              <Button
-                className="w-full gap-2 font-semibold bg-[hsl(25,95%,53%)] hover:bg-[hsl(25,95%,45%)] text-[hsl(0,0%,100%)]"
-                onClick={() => window.open(`https://www.amazon.es/s?k=${selected.amazonSearch}&tag=electrolabp0c-21`, "_blank")}
-              >
-                <ShoppingCart className="w-4 h-4" />
-                Comprar Kit de {selected.name}
-              </Button>
-              <Button variant="outline" className="w-full mt-1 gap-2" asChild>
-                <a href={`https://www.amazon.es/s?k=${selected.name}+electronics&tag=electrolabp0c-21`} target="_blank" rel="noopener noreferrer">
-                  Ver precios en Amazon
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </Button>
-            </div>
+            </>
           )}
         </DialogContent>
       </Dialog>
