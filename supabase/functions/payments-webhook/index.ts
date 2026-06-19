@@ -1,5 +1,5 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
-import { verifyWebhook, EventName, type PaddleEnv } from '../_shared/paddle.ts';
+import { verifyWebhook, EventName, getPaddleClient, type PaddleEnv } from '../_shared/paddle.ts';
 
 let _supabase: ReturnType<typeof createClient> | null = null;
 function getSupabase() {
@@ -10,6 +10,49 @@ function getSupabase() {
     );
   }
   return _supabase;
+}
+
+const PLAN_NAMES: Record<string, string> = {
+  premium_monthly: 'Premium mensual',
+  premium_yearly: 'Premium anual',
+};
+
+async function sendWelcomeEmail(userId: string, priceId: string) {
+  try {
+    const { data: userResp } = await getSupabase().auth.admin.getUserById(userId);
+    const email = (userResp as any)?.user?.email;
+    if (!email) {
+      console.warn('No email for user, skipping welcome', { userId });
+      return;
+    }
+    const name =
+      (userResp as any)?.user?.user_metadata?.full_name ||
+      (userResp as any)?.user?.user_metadata?.name ||
+      undefined;
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const res = await fetch(`${supabaseUrl}/functions/v1/send-transactional-email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${serviceKey}`,
+        apikey: serviceKey,
+      },
+      body: JSON.stringify({
+        templateName: 'welcome-premium',
+        recipientEmail: email,
+        idempotencyKey: `welcome-premium-${userId}-${priceId}`,
+        templateData: {
+          name,
+          plan: PLAN_NAMES[priceId] || 'Premium',
+          manageUrl: 'https://electrolabpro.com/account',
+        },
+      }),
+    });
+    if (!res.ok) console.warn('send-transactional-email failed', res.status, await res.text());
+  } catch (e) {
+    console.error('sendWelcomeEmail error', e);
+  }
 }
 
 async function handleSubscriptionCreated(data: any, env: PaddleEnv) {
@@ -23,6 +66,12 @@ async function handleSubscriptionCreated(data: any, env: PaddleEnv) {
     console.warn('Skipping subscription: missing importMeta.externalId');
     return;
   }
+  const { data: existing } = await getSupabase()
+    .from('subscriptions')
+    .select('id')
+    .eq('paddle_subscription_id', id)
+    .maybeSingle();
+  const isNew = !existing;
   await getSupabase().from('subscriptions').upsert({
     user_id: userId,
     paddle_subscription_id: id,
@@ -35,6 +84,9 @@ async function handleSubscriptionCreated(data: any, env: PaddleEnv) {
     environment: env,
     updated_at: new Date().toISOString(),
   }, { onConflict: 'paddle_subscription_id' });
+  if (isNew && (status === 'active' || status === 'trialing')) {
+    await sendWelcomeEmail(userId, priceId);
+  }
 }
 
 async function handleSubscriptionUpdated(data: any, env: PaddleEnv) {
@@ -51,6 +103,8 @@ async function handleSubscriptionUpdated(data: any, env: PaddleEnv) {
 async function handleSubscriptionCanceled(data: any, env: PaddleEnv) {
   await getSupabase().from('subscriptions').update({
     status: 'canceled',
+    cancel_at_period_end: true,
+    current_period_end: data.currentBillingPeriod?.endsAt ?? data.canceledAt,
     updated_at: new Date().toISOString(),
   }).eq('paddle_subscription_id', data.id).eq('environment', env);
 }

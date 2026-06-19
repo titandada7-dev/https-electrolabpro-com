@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useSubscription } from "@/hooks/useSubscription";
 
 declare global {
   interface Window {
@@ -62,6 +63,7 @@ const AdBanner = ({
   fallbackUrl: _fallbackUrl,
   fallbackLabel: _fallbackLabel,
 }: AdBannerProps) => {
+  const { isActive: isPremium } = useSubscription();
   const adRef = useRef<HTMLDivElement>(null);
   const pushed = useRef(false);
   const [status, setStatus] = useState<AdStatus>("idle");
@@ -74,6 +76,7 @@ const AdBanner = ({
   const desktopH = minHeightDesktop ?? (format === "vertical" ? 600 : 120);
 
   useEffect(() => {
+    if (isPremium) return;
     if (pushed.current) return;
     const el = adRef.current;
     if (!el) return;
@@ -164,6 +167,8 @@ const AdBanner = ({
   // mínima en todos los breakpoints y no hay CLS.
   const failed = status === "timeout" || status === "blocked" || status === "error";
 
+  if (isPremium) return null;
+
   // En producción, si el anuncio no carga (timeout/blocked/error) colapsamos
   // la caja entera: sin altura mínima, sin borde, sin texto. Así no aparece
   // el cartel "Anuncio no disponible" molestando al usuario.
@@ -172,6 +177,7 @@ const AdBanner = ({
   if (failed && !showDiag) {
     return <div ref={adRef} className={className} aria-hidden="true" />;
   }
+
 
   return (
     <div
