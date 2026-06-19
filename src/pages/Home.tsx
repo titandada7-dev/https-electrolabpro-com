@@ -349,6 +349,9 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* ═══════════ AD SLOT SUPERIOR (anti-CLS, vía AdSenseSlot) ═══════════ */}
+      <AdSenseSlot slot={AD_SLOT_HEADER} variant="header" />
+
       {/* ═══════════ NAVBAR (STICKY + BACKDROP BLUR) ═══════════ */}
       <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl">
         <nav className="container mx-auto flex items-center justify-between gap-4 px-4 sm:px-6 py-3.5">
@@ -499,8 +502,6 @@ const Home = () => {
         )}
       </header>
 
-      {/* ═══════════ AD SLOT BAJO EL HEADER (anti-CLS, vía AdSenseSlot) ═══════════ */}
-      <AdSenseSlot slot={AD_SLOT_HEADER} variant="header" />
 
       {/* ═══════════ #INICIO ═══════════ */}
       <section id="inicio" className="relative flex min-h-[55vh] flex-col items-center justify-center px-6 text-center py-16 sm:py-24 bg-hero-gradient overflow-hidden">
