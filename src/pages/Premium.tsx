@@ -69,14 +69,26 @@ export default function Premium() {
           </div>
 
           {isActive && (
-            <Card className="p-6 mb-8 border-primary/40 bg-primary/5">
+            <Card className="p-6 mb-8 border-primary/40 bg-primary/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <ShieldCheck className="h-6 w-6 text-primary" />
                 <div>
                   <p className="font-semibold">Ya eres Premium 🎉</p>
-                  <p className="text-sm text-muted-foreground">Gracias por apoyar ElectroLab Pro.</p>
+                  <p className="text-sm text-muted-foreground">Accede al contenido exclusivo cuando quieras.</p>
                 </div>
               </div>
+              <Button asChild>
+                <Link to="/premium/contenido">Ir al contenido Premium</Link>
+              </Button>
+            </Card>
+          )}
+
+          {!isActive && (
+            <Card className="p-5 mb-8 bg-muted/40">
+              <p className="text-sm">
+                <strong>¿Qué incluye?</strong> Simulador interactivo de circuitos, calculadoras avanzadas (transformador, RLC, impedancia) y biblioteca de datasheets/proyectos.{" "}
+                <Link to="/premium/contenido" className="underline text-primary">Ver vista previa</Link>.
+              </p>
             </Card>
           )}
 
