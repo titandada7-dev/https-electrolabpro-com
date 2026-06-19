@@ -21,6 +21,7 @@ import HomeAd from "@/components/sections/HomeAd";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
 const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
+const BeginnerFaq = lazy(() => import("@/components/BeginnerFaq"));
 const MiniProjects = lazy(() => import("@/components/MiniProjects"));
 const CalculatorHub = lazy(() => import("@/components/CalculatorHub"));
 const GlobalSearch = lazy(() => import("@/components/GlobalSearch"));
@@ -1328,6 +1329,11 @@ const Home = () => {
           </p>
         </div>
         <Suspense fallback={<SectionFallback />}><ComponentDictionary /></Suspense>
+
+        {/* FAQ para principiantes: resistencias, capacitores y transistores */}
+        <div className="mt-16">
+          <Suspense fallback={<SectionFallback />}><BeginnerFaq /></Suspense>
+        </div>
       </section>
 
       {/* ═══════════ MINI PROYECTOS ═══════════ */}

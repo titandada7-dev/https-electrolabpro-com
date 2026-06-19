@@ -14,10 +14,23 @@ const CookieBanner = () => {
     if (!consent) setVisible(true);
   }, []);
 
+  const dispatchConsent = (analyticsOk: boolean, adsOk: boolean) => {
+    try {
+      window.dispatchEvent(
+        new CustomEvent("consent-update", {
+          detail: { analytics: analyticsOk, ads: adsOk },
+        })
+      );
+    } catch {
+      /* noop */
+    }
+  };
+
   const accept = (all?: boolean) => {
     const value = all ? "all" : JSON.stringify({ analytics, ads });
     localStorage.setItem("cookie-consent", value);
     setVisible(false);
+    dispatchConsent(all ? true : analytics, all ? true : ads);
     trackConsentDecision(
       "cookie_banner",
       all ? "accept_all" : "custom",
@@ -28,6 +41,7 @@ const CookieBanner = () => {
   const rejectAll = () => {
     localStorage.setItem("cookie-consent", JSON.stringify({ analytics: false, ads: false }));
     setVisible(false);
+    dispatchConsent(false, false);
     trackConsentDecision("cookie_banner", "reject_all");
   };
 

@@ -121,12 +121,70 @@
   }
   </script>
   <script>
-    // GA4: cargado tras 'load' o tras la primera interacción del usuario,
-    // lo que ocurra primero. Reduce JS de tercero bloqueando el LCP.
+    // ─── GA4 con Google Consent Mode v2 ───────────────────────────────────
+    // 1) Definimos consentimiento por DEFECTO como "denied" para TODOS los
+    //    storages antes de que cualquier evento se envíe. Con esto GA4
+    //    NO escribe cookies ni envía hits identificables hasta que el
+    //    usuario acepte mediante el CookieBanner / AdSenseConsentBanner.
+    // 2) gtag('config') se llama, pero gracias a consent=denied solo se
+    //    enviarán "cookieless pings" anónimos (sin _ga, sin page_view real).
+    // 3) Si ya hay un consentimiento previo guardado en localStorage,
+    //    actualizamos a "granted" inmediatamente para preservar la sesión.
+    // 4) La app actualiza el consentimiento en runtime disparando el evento
+    //    `window` "consent-update" desde CookieBanner / AdSenseConsentBanner.
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+
+    // (1) Defaults en DENIED — debe ir antes del config.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
+
     gtag('js', new Date());
-    gtag('config', 'G-FERLETZ4V5');
+    gtag('config', 'G-FERLETZ4V5', { anonymize_ip: true });
+
+    // (3) Re-hidratar consentimiento previo (usuarios que ya aceptaron).
+    try {
+      var prevCookie = localStorage.getItem('cookie-consent');
+      var prevAds = localStorage.getItem('adsense-consent');
+      var analyticsOk = false, adsOk = false;
+      if (prevCookie === 'all') { analyticsOk = true; adsOk = true; }
+      else if (prevCookie) {
+        try {
+          var parsed = JSON.parse(prevCookie);
+          analyticsOk = !!parsed.analytics;
+          adsOk = !!parsed.ads;
+        } catch(e) {}
+      }
+      if (prevAds === 'granted') adsOk = true;
+      if (analyticsOk || adsOk) {
+        gtag('consent', 'update', {
+          analytics_storage: analyticsOk ? 'granted' : 'denied',
+          ad_storage: adsOk ? 'granted' : 'denied',
+          ad_user_data: adsOk ? 'granted' : 'denied',
+          ad_personalization: adsOk ? 'granted' : 'denied'
+        });
+      }
+    } catch(e) { /* storage no disponible */ }
+
+    // (4) Escuchar updates en runtime desde React.
+    window.addEventListener('consent-update', function(e){
+      var d = (e && e.detail) || {};
+      gtag('consent', 'update', {
+        analytics_storage: d.analytics ? 'granted' : 'denied',
+        ad_storage: d.ads ? 'granted' : 'denied',
+        ad_user_data: d.ads ? 'granted' : 'denied',
+        ad_personalization: d.ads ? 'granted' : 'denied'
+      });
+    });
+
+    // Carga diferida del loader de gtag.js (tras load o primera interacción).
     (function(){
       var loaded = false;
       function loadGA(){
