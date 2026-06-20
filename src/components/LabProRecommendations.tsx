@@ -1,5 +1,5 @@
 import { ExternalLink, ChevronLeft, ChevronRight, Wrench } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Product = {
   title: string;
@@ -35,6 +35,8 @@ const ITEMS_PER_PAGE = {
   desktop: 3,
 };
 
+const LAZY_ROOT_MARGIN = "100px";
+
 function useItemsPerPage() {
   const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE.desktop);
 
@@ -56,6 +58,78 @@ function useItemsPerPage() {
   }, []);
 
   return itemsPerPage;
+}
+
+function SkeletonCard() {
+  return (
+    <div className="flex flex-col justify-between p-4 rounded-xl border border-border bg-card/50 h-full animate-pulse" aria-hidden="true">
+      <div className="flex items-start justify-between gap-2">
+        <span className="h-4 w-16 rounded-full bg-muted" />
+        <span className="h-3.5 w-3.5 rounded-full bg-muted shrink-0" />
+      </div>
+      <div className="mt-3 space-y-2">
+        <span className="block h-4 w-3/4 rounded bg-muted" />
+        <span className="block h-3 w-1/2 rounded bg-muted" />
+      </div>
+    </div>
+  );
+}
+
+function ProductCard({ product }: { product: Product }) {
+  return (
+    <a
+      href={product.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-col justify-between p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-colors h-full"
+    >
+      <div className="flex items-start justify-between gap-2">
+        <span className="text-[10px] uppercase tracking-wider font-mono font-semibold text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full">
+          {product.store}
+        </span>
+        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-40 group-hover:opacity-100 transition-opacity shrink-0" />
+      </div>
+      <div className="mt-3">
+        <h4 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-tight">
+          {product.title}
+        </h4>
+        {product.category && (
+          <p className="text-[10px] text-muted-foreground/70 mt-1 font-mono">
+            {product.category}
+          </p>
+        )}
+      </div>
+    </a>
+  );
+}
+
+function LazyProductCard({ product }: { product: Product }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: LAZY_ROOT_MARGIN }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="h-full">
+      {isVisible ? <ProductCard product={product} /> : <SkeletonCard />}
+    </div>
+  );
 }
 
 const LabProRecommendations = () => {
@@ -140,7 +214,7 @@ const LabProRecommendations = () => {
 
       <div className="overflow-hidden">
         <div
-          className="flex motion-safe:transition-transform motion-reduce:transition-none duration-300 ease-out"
+          className="flex motion-safe:transition-transform motion-reduce:transition-none duration-300 ease-out will-change-transform"
           style={{ transform: `translateX(-${currentPage * 100}%)` }}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
@@ -153,30 +227,7 @@ const LabProRecommendations = () => {
               style={{ gridTemplateColumns: `repeat(${itemsPerPage}, minmax(0, 1fr))` }}
             >
               {slide.map((product) => (
-                <a
-                  key={product.title}
-                  href={product.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col justify-between p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 hover:bg-card transition-colors h-full"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-[10px] uppercase tracking-wider font-mono font-semibold text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full">
-                      {product.store}
-                    </span>
-                    <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-40 group-hover:opacity-100 transition-opacity shrink-0" />
-                  </div>
-                  <div className="mt-3">
-                    <h4 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-tight">
-                      {product.title}
-                    </h4>
-                    {product.category && (
-                      <p className="text-[10px] text-muted-foreground/70 mt-1 font-mono">
-                        {product.category}
-                      </p>
-                    )}
-                  </div>
-                </a>
+                <LazyProductCard key={product.title} product={product} />
               ))}
             </div>
           ))}
