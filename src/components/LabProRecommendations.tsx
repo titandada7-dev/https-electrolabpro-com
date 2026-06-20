@@ -142,6 +142,9 @@ const LabProRecommendations = () => {
         <div
           className="flex motion-safe:transition-transform motion-reduce:transition-none duration-300 ease-out"
           style={{ transform: `translateX(-${currentPage * 100}%)` }}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
           {slides.map((slide, pageIndex) => (
             <div
