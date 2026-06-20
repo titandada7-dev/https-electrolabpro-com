@@ -14,6 +14,7 @@ const LAB_PRO_PRODUCTS: Product[] = [
   { title: "Kit LEDs 5mm", link: "https://www.amazon.es/s?k=kit+led+5mm+surtido&tag=electrolabp0c-21", store: "amazon" },
   { title: "Componentes Surtidos", link: "https://www.amazon.es/s?k=kit+componentes+electronicos+surtido&tag=electrolabp0c-21", store: "amazon" },
   { title: "Soldador 60W Kit", link: "https://www.amazon.es/s?k=soldador+esta%C3%B1o+60w+kit&tag=electrolabp0c-21", store: "amazon" },
+  { title: "Amazon Prime Business", link: "https://amzn.to/4oEknCE", store: "amazon" },
 ];
 
 const LabProRecommendations = () => {
