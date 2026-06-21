@@ -171,10 +171,7 @@ export default function PalettePreview() {
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
-      <Helmet>
-        <title>Vista previa de la paleta · ElectroLab Pro</title>
-        <meta name="robots" content="noindex" />
-      </Helmet>
+
 
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
