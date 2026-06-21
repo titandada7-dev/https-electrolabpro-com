@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Helmet } from "react-helmet";
+
 import { ArrowLeft, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -84,8 +84,9 @@ function relativeLuminance(r: number, g: number, b: number): number {
 }
 
 function contrastRatio(rgb1: [number, number, number], rgb2: [number, number, number]): number {
-  const l1 = relativeLuminance(rgb1);
-  const l2 = relativeLuminance(rgb2);
+  const l1 = relativeLuminance(...rgb1);
+  const l2 = relativeLuminance(...rgb2);
+
   const lighter = Math.max(l1, l2);
   const darker = Math.min(l1, l2);
   return (lighter + 0.05) / (darker + 0.05);
