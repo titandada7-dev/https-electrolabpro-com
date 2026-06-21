@@ -169,6 +169,18 @@ export default function PalettePreview() {
     }));
   }, [mounted, isDark]);
 
+  useEffect(() => {
+    document.title = "Vista previa de la paleta · ElectroLab Pro";
+    const meta = document.createElement("meta");
+    meta.name = "robots";
+    meta.content = "noindex";
+    document.head.appendChild(meta);
+    return () => {
+      document.title = "ElectroLab Pro";
+      document.head.removeChild(meta);
+    };
+  }, []);
+
   return (
     <div className="min-h-dvh bg-background text-foreground">
 
