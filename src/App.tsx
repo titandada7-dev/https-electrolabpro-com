@@ -43,6 +43,7 @@ const PremiumHub = lazy(() => import("./pages/premium/PremiumHub"));
 const PremiumSimulador = lazy(() => import("./pages/premium/SimuladorCircuitos"));
 const PremiumCalculadoras = lazy(() => import("./pages/premium/CalculadorasAvanzadas"));
 const PremiumBiblioteca = lazy(() => import("./pages/premium/Biblioteca"));
+const PalettePreview = lazy(() => import("./pages/PalettePreview"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
 const CodigoColoresResistencias = lazy(() => import("./pages/articles/CodigoColoresResistencias"));
@@ -114,6 +115,7 @@ function App() {
         <Route path="/documentacion-tecnica" element={<DocumentacionTecnica />} />
         <Route path="/guia-resistencias" element={<GuiaResistencias />} />
         <Route path="/guia-multimetro" element={<GuiaMultimetro />} />
+        <Route path="/paleta" element={<PalettePreview />} />
         <Route path="/articulos/codigo-colores-resistencias" element={<CodigoColoresResistencias />} />
         <Route path="/articulos/condensadores" element={<Condensadores />} />
         <Route path="/articulos/diodos" element={<Diodos />} />
