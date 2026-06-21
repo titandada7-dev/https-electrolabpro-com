@@ -147,6 +147,10 @@ export default function PalettePreview() {
     return () => observer.disconnect();
   }, []);
 
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   const swatches: { group: string; items: SwatchData[] }[] = useMemo(() => {
     if (!mounted) return [];
     const root = document.documentElement;
@@ -199,7 +203,7 @@ export default function PalettePreview() {
             <span className="text-sm text-muted-foreground">
               Modo: {isDark ? "Oscuro" : "Claro"}
             </span>
-            <Button variant="outline" size="sm" onClick={() => setIsDark((d) => !d)}>
+            <Button variant="outline" size="sm" onClick={toggleTheme}>
               {isDark ? "Probar claro" : "Probar oscuro"}
             </Button>
             <Button variant="ghost" size="sm" asChild>
