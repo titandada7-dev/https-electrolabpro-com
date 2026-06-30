@@ -253,7 +253,7 @@ const ArticleLayout = ({
       document.getElementById("article-jsonld")?.remove();
       document.getElementById("faq-jsonld")?.remove();
     };
-  }, [title, subtitle, slug, datePublished, dateModified, faqs, image]);
+  }, [title, subtitle, slug, datePublished, dateModified, faqs, image, schemaType, proficiencyLevel, steps, tools, supplies, estimatedTime]);
 
   return (
     <div className="min-h-screen bg-background bg-grid">
