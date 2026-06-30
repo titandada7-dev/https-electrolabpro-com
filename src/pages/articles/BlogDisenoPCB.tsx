@@ -11,6 +11,31 @@ const BlogDisenoPCB = () => {
       slug="como-disene-mi-primer-pcb-kicad"
       datePublished="2026-04-10"
       dateModified="2026-04-10"
+      schemaType="HowTo"
+      estimatedTime="PT14D"
+      tools={[
+        "KiCad 8.x (editor de esquemáticos y PCB, gratuito)",
+        "Computadora Windows, macOS o Linux",
+        "Multímetro digital",
+        "Estación de soldadura regulable",
+        "Fuente de alimentación de laboratorio con límite de corriente",
+        "Lupa o microscopio para inspección",
+      ]}
+      supplies={[
+        "Archivos Gerber generados desde KiCad",
+        "Componentes del BOM (LM7805, AMS1117-3.3, condensadores, LEDs, jack DC, headers)",
+        "Estaño 60/40 con flux",
+        "Pedido de PCB a fabricante (JLCPCB, PCBWay u OSHPARK)",
+      ]}
+      steps={[
+        { name: "Define la idea del circuito", text: "Elige un circuito que ya domines en protoboard. En este caso, una fuente regulada con salidas de 5V y 3.3V a partir de 7-12V DC." },
+        { name: "Diseña el esquemático en KiCad", text: "Coloca símbolos (tecla A), conecta con cables (tecla W), añade etiquetas de potencia, anota componentes y ejecuta el ERC hasta tener 0 errores." },
+        { name: "Asigna footprints a cada componente", text: "Verifica cada footprint contra el datasheet del fabricante. Mezcla through-hole y SMD 0805 para facilitar la soldadura manual." },
+        { name: "Diseña el layout del PCB", text: "Actualiza el PCB desde el esquemático, ubica los conectores en los bordes, rutea primero la alimentación (0.5-1mm) y luego las señales (0.25mm), y añade un plano de masa." },
+        { name: "Ejecuta el DRC y genera los Gerber", text: "Corre el Design Rules Check hasta 0 errores y 0 warnings. Genera los archivos Gerber y el drill file desde Archivo → Fabricación." },
+        { name: "Envía el pedido al fabricante", text: "Comprime los Gerber en un ZIP, súbelo a JLCPCB/PCBWay, selecciona 2 capas, 1.6mm, HASL y paga. Espera entre 10 y 15 días." },
+        { name: "Inspecciona, suelda y prueba la placa", text: "Verifica continuidad con el multímetro, suelda primero los componentes más bajos, alimenta con fuente de laboratorio limitada a 100mA y mide las salidas." },
+      ]}
     >
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
         <img src={pcbImg} alt="Flujo de diseño de PCB: del esquemático a la fabricación" className="w-full max-h-72 object-cover" loading="lazy" width={1024} height={576} />
