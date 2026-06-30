@@ -16,6 +16,15 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface HowToStep {
+  name: string;
+  text: string;
+  /** URL opcional al ancla del paso. Si se omite, se genera `${articleUrl}#step-N`. */
+  url?: string;
+  /** Imagen ilustrativa del paso (absoluta o relativa al sitio). */
+  image?: string;
+}
+
 interface ArticleLayoutProps {
   title: string;
   subtitle: string;
@@ -31,6 +40,23 @@ interface ArticleLayoutProps {
    * Si se omite, se usa el OG por defecto del sitio.
    */
   image?: string;
+  /**
+   * Tipo de schema.org a inyectar:
+   *  - "Article"     → default genérico (no romper artículos existentes).
+   *  - "TechArticle" → tutoriales técnicos / educativos (recomendado).
+   *  - "HowTo"       → guías paso a paso con pasos, herramientas y tiempo.
+   */
+  schemaType?: "Article" | "TechArticle" | "HowTo";
+  /** Solo para TechArticle. Nivel técnico del lector. */
+  proficiencyLevel?: "Beginner" | "Intermediate" | "Expert";
+  /** Solo para HowTo. Lista ordenada de pasos. */
+  steps?: HowToStep[];
+  /** Solo para HowTo. Herramientas necesarias. */
+  tools?: string[];
+  /** Solo para HowTo. Materiales/insumos consumibles. */
+  supplies?: string[];
+  /** Solo para HowTo. Duración estimada en formato ISO 8601 (ej. "PT20M"). */
+  estimatedTime?: string;
 }
 
 const SITE_ORIGIN = "https://electrolabpro.com";
