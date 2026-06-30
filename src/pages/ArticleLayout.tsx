@@ -157,9 +157,9 @@ const ArticleLayout = ({
     const articleUrl = articlePath ? `${SITE_ORIGIN}${articlePath}` : SITE_ORIGIN;
     const articleImage = resolveArticleImage(image);
 
-    const articleJsonLd = {
+    const articleJsonLd: Record<string, unknown> = {
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": schemaType,
       "headline": title,
       "description": subtitle,
       "url": articleUrl,
@@ -188,6 +188,33 @@ const ArticleLayout = ({
       },
       "inLanguage": "es"
     };
+
+    // TechArticle → expone el nivel técnico para que Google clasifique el
+    // contenido como tutorial educativo (vs. una nota de blog genérica).
+    if (schemaType === "TechArticle" && proficiencyLevel) {
+      articleJsonLd.proficiencyLevel = proficiencyLevel;
+    }
+
+    // HowTo → agregamos pasos, herramientas, materiales y tiempo total.
+    // Google requiere al menos `step` para mostrar Rich Results de HowTo.
+    if (schemaType === "HowTo") {
+      if (estimatedTime) articleJsonLd.totalTime = estimatedTime;
+      if (tools && tools.length > 0) {
+        articleJsonLd.tool = tools.map((t) => ({ "@type": "HowToTool", name: t }));
+      }
+      if (supplies && supplies.length > 0) {
+        articleJsonLd.supply = supplies.map((s) => ({ "@type": "HowToSupply", name: s }));
+      }
+      if (steps && steps.length > 0) {
+        articleJsonLd.step = steps.map((step, index) => ({
+          "@type": "HowToStep",
+          url: step.url || `${articleUrl}#step-${index + 1}`,
+          name: step.name,
+          text: step.text,
+          ...(step.image ? { image: resolveArticleImage(step.image) } : {}),
+        }));
+      }
+    }
 
     // Article JSON-LD: actualizar el mismo nodo en lugar de remove+append
     // para evitar parpadeos y "cambios de IDs" entre re-renders.
