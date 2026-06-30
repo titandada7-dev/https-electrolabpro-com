@@ -16,6 +16,15 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface HowToStep {
+  name: string;
+  text: string;
+  /** URL opcional al ancla del paso. Si se omite, se genera `${articleUrl}#step-N`. */
+  url?: string;
+  /** Imagen ilustrativa del paso (absoluta o relativa al sitio). */
+  image?: string;
+}
+
 interface ArticleLayoutProps {
   title: string;
   subtitle: string;
@@ -31,6 +40,23 @@ interface ArticleLayoutProps {
    * Si se omite, se usa el OG por defecto del sitio.
    */
   image?: string;
+  /**
+   * Tipo de schema.org a inyectar:
+   *  - "Article"     → default genérico (no romper artículos existentes).
+   *  - "TechArticle" → tutoriales técnicos / educativos (recomendado).
+   *  - "HowTo"       → guías paso a paso con pasos, herramientas y tiempo.
+   */
+  schemaType?: "Article" | "TechArticle" | "HowTo";
+  /** Solo para TechArticle. Nivel técnico del lector. */
+  proficiencyLevel?: "Beginner" | "Intermediate" | "Expert";
+  /** Solo para HowTo. Lista ordenada de pasos. */
+  steps?: HowToStep[];
+  /** Solo para HowTo. Herramientas necesarias. */
+  tools?: string[];
+  /** Solo para HowTo. Materiales/insumos consumibles. */
+  supplies?: string[];
+  /** Solo para HowTo. Duración estimada en formato ISO 8601 (ej. "PT20M"). */
+  estimatedTime?: string;
 }
 
 const SITE_ORIGIN = "https://electrolabpro.com";
@@ -59,7 +85,22 @@ const toISO8601WithTZ = (date: string): string => {
   return `${dateOnly}T10:00:00-03:00`;
 };
 
-const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-03-01", dateModified = "2026-03-13", faqs, image }: ArticleLayoutProps) => {
+const ArticleLayout = ({
+  title,
+  subtitle,
+  children,
+  slug,
+  datePublished = "2026-03-01",
+  dateModified = "2026-03-13",
+  faqs,
+  image,
+  schemaType = "Article",
+  proficiencyLevel,
+  steps,
+  tools,
+  supplies,
+  estimatedTime,
+}: ArticleLayoutProps) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   // Memorizamos para que el filtrado de los 21 artículos solo se recalcule
@@ -116,9 +157,9 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
     const articleUrl = articlePath ? `${SITE_ORIGIN}${articlePath}` : SITE_ORIGIN;
     const articleImage = resolveArticleImage(image);
 
-    const articleJsonLd = {
+    const articleJsonLd: Record<string, unknown> = {
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": schemaType,
       "headline": title,
       "description": subtitle,
       "url": articleUrl,
@@ -147,6 +188,33 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       },
       "inLanguage": "es"
     };
+
+    // TechArticle → expone el nivel técnico para que Google clasifique el
+    // contenido como tutorial educativo (vs. una nota de blog genérica).
+    if (schemaType === "TechArticle" && proficiencyLevel) {
+      articleJsonLd.proficiencyLevel = proficiencyLevel;
+    }
+
+    // HowTo → agregamos pasos, herramientas, materiales y tiempo total.
+    // Google requiere al menos `step` para mostrar Rich Results de HowTo.
+    if (schemaType === "HowTo") {
+      if (estimatedTime) articleJsonLd.totalTime = estimatedTime;
+      if (tools && tools.length > 0) {
+        articleJsonLd.tool = tools.map((t) => ({ "@type": "HowToTool", name: t }));
+      }
+      if (supplies && supplies.length > 0) {
+        articleJsonLd.supply = supplies.map((s) => ({ "@type": "HowToSupply", name: s }));
+      }
+      if (steps && steps.length > 0) {
+        articleJsonLd.step = steps.map((step, index) => ({
+          "@type": "HowToStep",
+          url: step.url || `${articleUrl}#step-${index + 1}`,
+          name: step.name,
+          text: step.text,
+          ...(step.image ? { image: resolveArticleImage(step.image) } : {}),
+        }));
+      }
+    }
 
     // Article JSON-LD: actualizar el mismo nodo en lugar de remove+append
     // para evitar parpadeos y "cambios de IDs" entre re-renders.
@@ -185,7 +253,7 @@ const ArticleLayout = ({ title, subtitle, children, slug, datePublished = "2026-
       document.getElementById("article-jsonld")?.remove();
       document.getElementById("faq-jsonld")?.remove();
     };
-  }, [title, subtitle, slug, datePublished, dateModified, faqs, image]);
+  }, [title, subtitle, slug, datePublished, dateModified, faqs, image, schemaType, proficiencyLevel, steps, tools, supplies, estimatedTime]);
 
   return (
     <div className="min-h-screen bg-background bg-grid">
