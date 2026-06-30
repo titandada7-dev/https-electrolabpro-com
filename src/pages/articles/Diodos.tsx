@@ -9,6 +9,8 @@ const Diodos = () => {
       title="Guía Básica de Diodos para Principiantes"
       subtitle="Todo lo que necesitas saber sobre los diodos: qué son, cómo funcionan, tipos principales y cómo usarlos en tus circuitos."
       slug="diodos"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
         <img src={diodeImg} alt="Diagrama de un diodo mostrando ánodo, cátodo, dirección de corriente y unión PN" className="w-full max-h-64 object-contain p-4" loading="lazy" width={1024} height={683} />

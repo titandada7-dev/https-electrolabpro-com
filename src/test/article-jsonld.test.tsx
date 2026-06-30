@@ -44,7 +44,8 @@ describe("Article JSON-LD — render real desde ArticleLayout", () => {
     renderArticle();
     const schema = readJsonLd("article-jsonld");
     expect(schema).not.toBeNull();
-    expect(schema["@type"]).toBe("Article");
+    // Ley de Ohm migró a TechArticle para que Google lo clasifique como tutorial.
+    expect(schema["@type"]).toBe("TechArticle");
   });
 
   it("incluye headline no vacío que coincide con el título del artículo", () => {

@@ -11,6 +11,37 @@ const BlogPrimerLaboratorio = () => {
       slug="mi-primer-laboratorio"
       datePublished="2026-04-10"
       dateModified="2026-04-10"
+      schemaType="HowTo"
+      estimatedTime="PT3H"
+      tools={[
+        "Multímetro digital True RMS (ej. ANENG AN8008)",
+        "Estación de soldadura regulable 200-450°C",
+        "Protoboard de 830 puntos",
+        "Set de cables Dupont (macho-macho, macho-hembra, hembra-hembra)",
+        "Tercera mano con lupa",
+        "Lámpara LED de escritorio con brazo articulado",
+        "Alfombrilla de silicona resistente al calor",
+        "Pulsera antiestática (ESD)",
+      ]}
+      supplies={[
+        "Kit surtido de resistencias (10Ω a 1MΩ)",
+        "Kit de condensadores cerámicos y electrolíticos",
+        "Diodos 1N4007 y diodos Zener",
+        "LEDs de colores variados",
+        "Transistores NPN/PNP (2N2222, 2N2907)",
+        "Estaño 60/40 con flux",
+        "Módulo de fuente para protoboard (5V / 3.3V)",
+        "Cajas organizadoras con compartimentos y etiquetas",
+      ]}
+      steps={[
+        { name: "Define tu presupuesto y espacio", text: "Reserva un escritorio fijo y elige nivel inicial: básico (€50-€80), intermedio (€150-€250) o avanzado (€400-€700)." },
+        { name: "Compra las herramientas esenciales", text: "Empieza por multímetro digital, estación de soldadura regulable, protoboard, cables Dupont y un módulo de fuente para protoboard." },
+        { name: "Adquiere un kit de componentes básicos", text: "Un kit surtido con resistencias, condensadores, diodos, LEDs y transistores cubre el 80% de los proyectos de principiante." },
+        { name: "Organiza el espacio de trabajo", text: "Separa resistencias por valor en sobres etiquetados, usa cajas con compartimentos, ilumina con LED de 800 lúmenes y protege la mesa con alfombrilla de silicona." },
+        { name: "Aplica las reglas de seguridad", text: "No trabajes con más de 50V DC, ventila al soldar, usa gafas de protección, lávate las manos después de soldar y mantén un extintor accesible." },
+        { name: "Realiza el circuito de verificación", text: "Monta un LED rojo con resistencia de 330Ω a 9V, mide voltaje y corriente, y comprueba que coincidan con la Ley de Ohm (I ≈ 21.8 mA)." },
+        { name: "Suelda y documenta el proyecto", text: "Pasa el circuito a placa perforada para practicar la técnica de soldadura y fotografía cada paso para crear tu cuaderno de laboratorio." },
+      ]}
     >
       {/* Imagen principal */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">

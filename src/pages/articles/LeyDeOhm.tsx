@@ -11,6 +11,8 @@ const LeyDeOhm = () => {
       title="Ley de Ohm: Guía Completa con Ejemplos Prácticos"
       subtitle="Domina la relación entre voltaje, corriente y resistencia. Fórmulas, triángulo de Ohm, ejemplos resueltos y aplicaciones reales en electrónica."
       slug="ley-de-ohm"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       {/* Diagrama del Triángulo de Ohm */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">

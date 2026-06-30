@@ -9,6 +9,8 @@ const BlogProyectosArduino = () => {
       title="Mis 5 Proyectos Arduino Favoritos para Principiantes"
       subtitle="Experiencia real: los proyectos que más me enseñaron cuando empecé con Arduino. Dificultad progresiva, lecciones aprendidas y código incluido."
       slug="mis-5-proyectos-arduino-favoritos"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-10"
       dateModified="2026-04-10"
     >

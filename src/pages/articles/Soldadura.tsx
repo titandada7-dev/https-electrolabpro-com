@@ -8,6 +8,32 @@ const Soldadura = () => {
       title="Soldadura Electrónica: Guía Completa para Principiantes"
       subtitle="Aprende a soldar componentes electrónicos correctamente. Técnicas, herramientas, tipos de estaño y errores comunes con soluciones paso a paso."
       slug="soldadura-electronica"
+      schemaType="HowTo"
+      estimatedTime="PT30M"
+      tools={[
+        "Estación de soldadura regulable 60W con punta fina",
+        "Bomba desoldadora o malla de cobre",
+        "Tercera mano con lupa y pinzas cocodrilo",
+        "Esponja o lana de latón para limpiar la punta",
+        "Pinzas de precisión",
+        "Lentes de seguridad",
+      ]}
+      supplies={[
+        "Estaño 60/40 con núcleo de flux, 0.8mm",
+        "Flux en pasta o líquido",
+        "PCB con componentes a soldar",
+        "Alfombrilla de silicona resistente al calor",
+      ]}
+      steps={[
+        { name: "Prepara la superficie", text: "Limpia los pads de la PCB y los terminales del componente. Las superficies oxidadas no sueldan bien." },
+        { name: "Calienta el soldador", text: "Configúralo a 350-380°C para estaño con plomo, o 380-420°C para sin plomo." },
+        { name: "Limpia y estaña la punta", text: "Pásala por la lana de latón hasta que esté brillante y cubierta con una capa fina de estaño." },
+        { name: "Coloca el componente", text: "Inserta el componente en la PCB y dóblale ligeramente las patas para fijarlo en su lugar." },
+        { name: "Aplica calor a la unión", text: "Toca simultáneamente el pad de la PCB y el terminal del componente con la punta del soldador durante 1-2 segundos." },
+        { name: "Aplica estaño", text: "Toca el estaño contra la unión (no contra la punta). El estaño debe fluir por capilaridad alrededor del pin." },
+        { name: "Retira estaño y soldador", text: "Primero retira el hilo de estaño y después el soldador. Todo el proceso debe durar entre 2 y 4 segundos." },
+        { name: "Inspecciona la soldadura", text: "Una buena soldadura tiene forma de cono volcán, superficie brillante y cubre el pad uniformemente." },
+      ]}
     >
       {/* Imagen de soldadura */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">

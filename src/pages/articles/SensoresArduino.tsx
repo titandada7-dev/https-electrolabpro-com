@@ -9,6 +9,8 @@ const SensoresArduino = () => {
       title="Sensores con Arduino: DHT11, HC-SR04, LDR y PIR – Guía Práctica"
       subtitle="Aprende a conectar y programar los 4 sensores más populares de Arduino con diagramas de conexión, código completo, explicaciones técnicas y proyectos funcionales."
       slug="sensores-arduino"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-10"
       dateModified="2026-04-10"
     >

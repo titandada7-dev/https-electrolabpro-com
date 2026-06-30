@@ -8,6 +8,8 @@ const FuentesAlimentacion = () => {
       title="Fuentes de Alimentación: Tipos, Funcionamiento y Cálculos"
       subtitle="Guía completa sobre fuentes de alimentación en electrónica: reguladas, conmutadas, lineales. Aprende a elegir y calcular la fuente correcta para tu proyecto."
       slug="fuentes-de-alimentacion"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       {/* Diagrama de fuente de alimentación */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">

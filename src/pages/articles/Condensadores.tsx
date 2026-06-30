@@ -10,6 +10,8 @@ const Condensadores = () => {
       title="Guía de Condensadores: Tipos, Funciones y Cómo Leerlos"
       subtitle="Aprende qué es un condensador, cómo identificar sus tipos y descifrar el código cerámico de 3 números."
       slug="condensadores"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       {/* Imagen de tipos de condensadores */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">

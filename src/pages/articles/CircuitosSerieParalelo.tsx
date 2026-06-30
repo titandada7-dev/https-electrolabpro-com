@@ -9,6 +9,8 @@ const CircuitosSerieParalelo = () => {
       title="Circuitos en Serie vs. Paralelo: Diferencias y Reglas Clave"
       subtitle="Domina las dos arquitecturas fundamentales de la electrónica: cómo se comportan el voltaje y la corriente en cada configuración."
       slug="circuitos-serie-paralelo"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       {/* Diagrama técnico */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">

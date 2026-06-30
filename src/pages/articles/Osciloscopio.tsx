@@ -8,6 +8,8 @@ const Osciloscopio = () => {
       title="Osciloscopio: Guía Completa para Principiantes"
       subtitle="Aprende qué es un osciloscopio, cómo funciona, cómo leer señales eléctricas y qué modelo elegir según tu presupuesto y nivel."
       slug="osciloscopio"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       {/* Imagen del osciloscopio */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">

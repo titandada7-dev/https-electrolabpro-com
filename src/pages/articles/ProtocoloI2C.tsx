@@ -9,6 +9,8 @@ const ProtocoloI2C = () => {
       title="Protocolo I2C: Comunicación entre Microcontroladores y Sensores"
       subtitle="Guía completa del protocolo I2C (Inter-Integrated Circuit): cómo funciona, direccionamiento, conexión de múltiples dispositivos con Arduino, y proyectos prácticos paso a paso."
       slug="protocolo-i2c"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-10"
       dateModified="2026-04-10"
     >

@@ -9,6 +9,8 @@ const Transistores = () => {
       title="Guía Completa de Transistores para Principiantes"
       subtitle="Aprende qué es un transistor, cómo funciona, los tipos principales (BJT y MOSFET) y cómo usarlos en tus proyectos de electrónica."
       slug="transistores"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
         <img src={transistorImg} alt="Diagrama de un transistor NPN mostrando Base, Colector y Emisor con encapsulado TO-92" className="w-full max-h-64 object-contain p-4" loading="lazy" width={1024} height={683} />

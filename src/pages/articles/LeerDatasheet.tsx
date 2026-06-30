@@ -8,6 +8,8 @@ const LeerDatasheet = () => {
       title="Cómo Leer un Datasheet de Componentes Electrónicos: Guía Práctica"
       subtitle="Aprende a interpretar datasheets paso a paso con ejemplos reales del LM358 (amplificador operacional) y NE555 (timer). Encontrá pinout, ratings absolutos, características eléctricas y más."
       slug="leer-datasheet"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-19"
       dateModified="2026-04-19"
       faqs={[

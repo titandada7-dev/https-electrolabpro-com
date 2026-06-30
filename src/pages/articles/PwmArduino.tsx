@@ -7,6 +7,8 @@ const PwmArduino = () => {
       title="PWM Explicado: Cómo Controlar Motores y LEDs con Arduino"
       subtitle="Guía completa de PWM (Pulse Width Modulation): teoría, función analogWrite(), 3 ejemplos prácticos con código y diagramas para dimmers, servos y motores DC."
       slug="pwm-arduino"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-18"
       dateModified="2026-04-18"
       faqs={[

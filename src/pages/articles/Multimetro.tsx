@@ -8,6 +8,8 @@ const Multimetro = () => {
       title="Guía de Diagnóstico y Reparación de Circuitos con Multímetro"
       subtitle="Aprende a usar tu multímetro para diagnosticar fallas reales en circuitos: pruebas de continuidad, medición de voltajes, prueba de semiconductores y errores comunes que debes evitar."
       slug="multimetro"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-03-01"
       dateModified="2026-04-10"
     >
