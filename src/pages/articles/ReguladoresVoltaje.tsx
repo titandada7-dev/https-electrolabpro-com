@@ -11,6 +11,8 @@ const ReguladoresVoltaje = () => {
       title="Reguladores de Voltaje: 7805, LM317 y Buck Converters Explicados"
       subtitle="Aprende a elegir entre reguladores lineales y conmutados. Cálculos térmicos, esquemáticos completos, fórmulas reales y cuándo usar cada tipo en tus proyectos."
       slug="reguladores-voltaje"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-18"
       dateModified="2026-04-18"
       faqs={[

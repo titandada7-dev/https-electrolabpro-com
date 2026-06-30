@@ -11,6 +11,8 @@ const QueArduinoComprar = () => {
       title="Cómo Elegir un Arduino: UNO vs Nano vs Mega vs ESP32 (Guía 2025)"
       subtitle="Comparativa completa de las 4 placas Arduino más populares: especificaciones, precios actuales, casos de uso reales y la elección correcta según tu proyecto."
       slug="que-arduino-comprar"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-18"
       dateModified="2026-04-18"
       faqs={[

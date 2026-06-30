@@ -8,6 +8,8 @@ const PantallaOled = () => {
       title="Pantallas OLED SSD1306 con Arduino"
       subtitle="Guía completa para conectar, programar y crear proyectos de visualización con pantallas OLED I2C de 0.96 pulgadas usando Arduino y la librería Adafruit."
       slug="pantalla-oled-ssd1306"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
       datePublished="2026-04-10"
       dateModified="2026-04-10"
     >

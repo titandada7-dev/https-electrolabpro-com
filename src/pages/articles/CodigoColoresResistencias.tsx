@@ -11,6 +11,8 @@ const CodigoColoresResistencias = () => {
       title="Guía Definitiva: Cómo Leer el Código de Colores de las Resistencias"
       subtitle="Aprende a descifrar las bandas de colores de cualquier resistencia de 4 y 5 bandas con ejemplos prácticos paso a paso."
       slug="codigo-colores-resistencias"
+      schemaType="TechArticle"
+      proficiencyLevel="Beginner"
     >
       {/* Imagen de referencia */}
       <div className="rounded-xl overflow-hidden border border-border bg-card/50 mb-8">
