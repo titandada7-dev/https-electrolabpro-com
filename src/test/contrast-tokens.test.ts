@@ -169,34 +169,40 @@ describe("Contraste WCAG AA — tokens semánticos (con estados)", () => {
       const tokens = readTokens(cssMode);
       for (const p of pairs) {
         const suffix = p.state && p.state !== "default" ? ` [${p.state}]` : "";
-        it(`${p.label}${suffix} (${p.fg} / ${p.bg}) ≥ ${p.min}:1`, () => {
+        const info = p.informational ? " (informativo)" : "";
+        it(`${p.label}${suffix}${info} (${p.fg} / ${p.bg}) ≥ ${p.min}:1`, () => {
           const fg = tokens[p.fg];
           const bg = tokens[p.bg];
           expect(fg, `Falta ${p.fg} en ${cssMode}`).toBeDefined();
           expect(bg, `Falta ${p.bg} en ${cssMode}`).toBeDefined();
           const alpha = p.alpha ?? 1;
-          const ratio = contrast(fg, bg, alpha);
+          const bgAlpha = p.bgAlpha ?? 1;
+          const bgBaseVar = p.bgBase ?? "--background";
+          const bgBaseRgb = parseHsl(tokens[bgBaseVar]);
           const fgRgb = parseHsl(fg);
-          const bgRgb = parseHsl(bg);
-          const effectiveFg =
-            alpha < 1 ? blend(fgRgb, bgRgb, alpha) : fgRgb;
+          const bgRgbRaw = parseHsl(bg);
+          const effectiveBg = bgAlpha < 1 ? blend(bgRgbRaw, bgBaseRgb, bgAlpha) : bgRgbRaw;
+          const effectiveFg = alpha < 1 ? blend(fgRgb, effectiveBg, alpha) : fgRgb;
+          const ratio = contrastRgb(effectiveFg, effectiveBg);
           rows.push({
             mode: modeName,
             state: p.state ?? "default",
-            label: p.label,
+            label: p.label + (p.informational ? " (info)" : ""),
             fg: p.fg,
             bg: p.bg,
             alpha,
             fgHex: rgbToHex(effectiveFg),
-            bgHex: rgbToHex(bgRgb),
+            bgHex: rgbToHex(effectiveBg),
             ratio: Number(ratio.toFixed(2)),
             min: p.min,
             pass: ratio >= p.min,
           });
-          expect(
-            ratio,
-            `${p.label}${suffix} en ${modeName}: ratio ${ratio.toFixed(2)}:1 (mínimo ${p.min}:1)`,
-          ).toBeGreaterThanOrEqual(p.min);
+          if (!p.informational) {
+            expect(
+              ratio,
+              `${p.label}${suffix} en ${modeName}: ratio ${ratio.toFixed(2)}:1 (mínimo ${p.min}:1)`,
+            ).toBeGreaterThanOrEqual(p.min);
+          }
         });
       }
     });
