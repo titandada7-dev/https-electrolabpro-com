@@ -68,6 +68,17 @@ const PwmArduino = lazy(() => import("./pages/articles/PwmArduino"));
 const ReguladoresVoltaje = lazy(() => import("./pages/articles/ReguladoresVoltaje"));
 const LeerDatasheet = lazy(() => import("./pages/articles/LeerDatasheet"));
 
+// Calculadoras con URL propia (SEO + metadatos por página + prerender SSG)
+const OhmCalculatorPage = lazy(() => import("./pages/calculators/OhmCalculatorPage"));
+const LedCalculatorPage = lazy(() => import("./pages/calculators/LedCalculatorPage"));
+const ResistorCalculatorPage = lazy(() => import("./pages/calculators/ResistorCalculatorPage"));
+const VoltageDividerPage = lazy(() => import("./pages/calculators/VoltageDividerPage"));
+const RCFilterPage = lazy(() => import("./pages/calculators/RCFilterPage"));
+const Timer555Page = lazy(() => import("./pages/calculators/Timer555Page"));
+const SmdDecoderPage = lazy(() => import("./pages/calculators/SmdDecoderPage"));
+const CapacitiveReactancePage = lazy(() => import("./pages/calculators/CapacitiveReactancePage"));
+const UnitConverterPage = lazy(() => import("./pages/calculators/UnitConverterPage"));
+
 const RouteFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <div className="flex flex-col items-center gap-3 text-muted-foreground">
@@ -137,6 +148,18 @@ function App() {
         <Route path="/blog/mi-primer-laboratorio" element={<BlogPrimerLaboratorio />} />
         <Route path="/blog/mis-5-proyectos-arduino-favoritos" element={<BlogProyectosArduino />} />
         <Route path="/blog/como-disene-mi-primer-pcb-kicad" element={<BlogDisenoPCB />} />
+
+        {/* Calculadoras con URL propia (SEO SEA/AdSense) */}
+        <Route path="/ley-de-ohm" element={<OhmCalculatorPage />} />
+        <Route path="/calculadora-led" element={<LedCalculatorPage />} />
+        <Route path="/calculadora-resistencias" element={<ResistorCalculatorPage />} />
+        <Route path="/divisor-de-voltaje" element={<VoltageDividerPage />} />
+        <Route path="/filtro-rc" element={<RCFilterPage />} />
+        <Route path="/temporizador-555" element={<Timer555Page />} />
+        <Route path="/decodificador-smd" element={<SmdDecoderPage />} />
+        <Route path="/reactancia-capacitiva" element={<CapacitiveReactancePage />} />
+        <Route path="/conversor-unidades" element={<UnitConverterPage />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       </main>

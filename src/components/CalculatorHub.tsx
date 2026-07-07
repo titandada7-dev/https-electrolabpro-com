@@ -13,6 +13,8 @@ import SmdDecoderCalculator from "@/components/SmdDecoderCalculator";
 import CapacitiveReactanceCalculator from "@/components/CapacitiveReactanceCalculator";
 import UnitConverter from "@/components/UnitConverter";
 import { ToolSeoSection } from "@/data/toolSeoContent";
+import { CALCULATOR_ROUTES } from "@/data/calculatorRoutes";
+import { Link } from "react-router-dom";
 
 type ToolKey =
   | "resistor" | "ohm" | "led" | "divider" | "rc"
@@ -473,6 +475,22 @@ const CalculatorHub = () => {
           <div className="rounded-2xl border border-border bg-card shadow-sm p-4 sm:p-6 transition-opacity duration-300 animate-in fade-in">
             <ToolPanel tool={active} />
           </div>
+
+          {/* CTA hacia la URL propia de la calculadora (SEO + rastreo interno) */}
+          {(() => {
+            const routeMeta = CALCULATOR_ROUTES.find((r) => r.toolKey === active);
+            if (!routeMeta) return null;
+            return (
+              <div className="mt-3 flex justify-center">
+                <Link
+                  to={routeMeta.slug}
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary hover:underline"
+                >
+                  Abrir {routeMeta.shortLabel} en su propia página →
+                </Link>
+              </div>
+            );
+          })()}
 
           {/* Beneficios */}
           <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center mt-4 text-xs sm:text-sm text-muted-foreground">
