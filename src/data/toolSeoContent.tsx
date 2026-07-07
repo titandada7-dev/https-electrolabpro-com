@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { BookOpen, Lightbulb, ArrowRight, Cpu, Wrench, HelpCircle, Sigma } from "lucide-react";
 
 export interface ToolSeoSectionBlock {
