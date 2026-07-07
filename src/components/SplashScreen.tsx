@@ -47,9 +47,9 @@ const SplashScreen = () => {
           </div>
         </div>
         <div className="text-center">
-          <h1 className="text-xl font-bold tracking-tight text-foreground">
+          <p className="text-xl font-bold tracking-tight text-foreground" role="text" aria-label="ElectroLab Pro">
             ElectroLab Pro
-          </h1>
+          </p>
           <p className="mt-1 text-xs text-muted-foreground">
             Electrónica al alcance de todos
           </p>
