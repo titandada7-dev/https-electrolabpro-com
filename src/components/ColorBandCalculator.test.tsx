@@ -12,10 +12,11 @@ import ColorBandCalculator from "./ColorBandCalculator";
 // Locate the band section by its label text, then return the color button
 // with the given aria-label (which encodes "<Color> (<value or label>)").
 function selectColor(sectionLabel: RegExp, colorAriaLabel: RegExp) {
-  const label = screen.getByText(sectionLabel).closest("div")!;
-  const btn = within(label.parentElement as HTMLElement).getByRole("button", {
-    name: colorAriaLabel,
-  });
+  // Section = the <label> element itself; its parent is the section wrapper
+  // that contains only that band's color buttons.
+  const label = screen.getByText(sectionLabel).closest("label") as HTMLElement;
+  const section = label.parentElement as HTMLElement;
+  const btn = within(section).getByRole("button", { name: colorAriaLabel });
   fireEvent.click(btn);
 }
 
