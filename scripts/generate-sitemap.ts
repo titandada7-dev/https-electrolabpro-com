@@ -50,6 +50,17 @@ const entries: SitemapEntry[] = [
   { path: "/blog/mi-primer-laboratorio", changefreq: "monthly", priority: "0.8" },
   { path: "/blog/mis-5-proyectos-arduino-favoritos", changefreq: "monthly", priority: "0.8" },
   { path: "/blog/como-disene-mi-primer-pcb-kicad", changefreq: "monthly", priority: "0.8" },
+
+  // Calculadoras con URL propia (SEO + AdSense — HTML pre-renderizado)
+  { path: "/ley-de-ohm", changefreq: "monthly", priority: "0.9" },
+  { path: "/calculadora-led", changefreq: "monthly", priority: "0.9" },
+  { path: "/calculadora-resistencias", changefreq: "monthly", priority: "0.9" },
+  { path: "/divisor-de-voltaje", changefreq: "monthly", priority: "0.9" },
+  { path: "/filtro-rc", changefreq: "monthly", priority: "0.9" },
+  { path: "/temporizador-555", changefreq: "monthly", priority: "0.9" },
+  { path: "/decodificador-smd", changefreq: "monthly", priority: "0.9" },
+  { path: "/reactancia-capacitiva", changefreq: "monthly", priority: "0.9" },
+  { path: "/conversor-unidades", changefreq: "monthly", priority: "0.9" },
 ];
 
 function generateSitemap(items: SitemapEntry[]) {
