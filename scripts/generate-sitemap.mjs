@@ -57,6 +57,12 @@ const entries = [
   { path: "/decodificador-smd", changefreq: "monthly", priority: "0.9" },
   { path: "/reactancia-capacitiva", changefreq: "monthly", priority: "0.9" },
   { path: "/conversor-unidades", changefreq: "monthly", priority: "0.9" },
+
+  // Premium
+  { path: "/premium", changefreq: "monthly", priority: "0.6" },
+  { path: "/premium/contenido", changefreq: "monthly", priority: "0.6" },
+  { path: "/premium/simulador-circuitos", changefreq: "monthly", priority: "0.6" },
+  { path: "/premium/calculadoras-avanzadas", changefreq: "monthly", priority: "0.6" },
 ];
 
 function generateSitemap(items) {
