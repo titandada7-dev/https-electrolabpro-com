@@ -1,48 +1,67 @@
+# Plan: rutas propias + prerender por calculadora
+
 ## Objetivo
 
-Eliminar el cartel persistente de "Anuncio no disponible" y dejar el sistema de anuncios más robusto, con diagnóstico real y slots correctos por formato.
+Cada calculadora deja de vivir solo como pestaña en `/` y pasa a tener su propia URL con:
+- `<title>`, `<meta description>`, OpenGraph y Twitter Card únicos.
+- HTML pre-renderizado en build (visible para Bing, DuckDuckGo, GPTBot, LinkedIn/Slack).
+- Canonical y `og:url` autorreferentes.
+- JSON-LD `SoftwareApplication` + `FAQPage` + `BreadcrumbList` en el HTML estático.
 
-## Pasos (en orden)
+El home `/` mantiene el hub con tabs para no romper la UX actual; los tabs pasan a ser enlaces internos a las nuevas rutas (mejor rastreo + más "pageviews" por sesión).
 
-### 1. Verificar estado real en producción
-- Abrir `https://electrolabpro.com/?debug=ads` y revisar el overlay de diagnóstico que ya existe en `AdBanner.tsx` (estados `loading` / `filled` / `timeout` / `blocked`).
-- Confirmar si el problema es: dominio no aprobado, AdBlock, unfilled real, o slot mal configurado.
-- Entregable: reporte breve por cada slot (`3756475501` y demás) con el estado observado.
+## Rutas nuevas
 
-### 2. Separar slots por formato
-Hoy `3756475501` se reusa como vertical (sidebar) y como auto/horizontal (calculadoras, inline). AdSense lo crea con un formato fijo y devuelve `unfilled` si no coincide.
+| Ruta | Calculadora |
+|------|-------------|
+| `/ley-de-ohm` | Ley de Ohm (V = I × R) |
+| `/calculadora-led` | Resistencia para LED |
+| `/calculadora-resistencias` | Código de colores (4/5 bandas) |
+| `/divisor-de-voltaje` | Divisor de voltaje |
+| `/filtro-rc` | Filtro RC (fc) |
+| `/temporizador-555` | Astable 555 |
+| `/decodificador-smd` | Decodificador SMD |
+| `/reactancia-capacitiva` | Reactancia Xc |
+| `/conversor-unidades` | Conversor de unidades |
 
-- Definir 3 constantes de slot en un único archivo `src/config/adsense.ts`:
-  - `AD_SLOT_HEADER` (horizontal, 970x90 / responsive)
-  - `AD_SLOT_SIDEBAR` (vertical, 160x600)
-  - `AD_SLOT_INLINE`  (auto / in-article)
-- Reemplazar los usos hardcodeados en:
-  - `src/components/SidebarAd.tsx`
-  - `src/components/AdSenseSlot.tsx` (cuando se llama sin slot explícito)
-  - `src/components/CapacitiveReactanceCalculator.tsx` y resto de calculadoras que tengan `<AdBanner slot="3756475501" />`
-- Por ahora los 3 IDs apuntan al mismo `3756475501` como placeholder; el usuario los reemplaza luego con los IDs reales generados en AdSense → Anuncios → Por unidad.
+Sin colisión con artículos (viven bajo `/articulos/…`).
 
-### 3. Suavizar el fallback visual
-En `AdBanner.tsx`, cuando el estado sea `timeout` / `blocked` / `error`:
+## Cambios técnicos
 
-- Opción A (recomendada): **colapsar la caja entera** (sin altura mínima, sin borde, sin texto) para que no quede el cartel "Anuncio no disponible" visible.
-- Mantener el overlay de diagnóstico solo cuando `?debug=ads` esté activo.
-- Quitar el `<Link>` de "Volver al inicio" del fallback (ruido visual innecesario en producción).
+1. **Dependencias**: `bun add vite-react-ssg react-helmet-async`.
+2. **`src/main.tsx`**: envolver `<App />` con `HelmetProvider`. Exportar `createRoot` como named export `entry-client` compatible con `vite-react-ssg`.
+3. **Nuevo componente reusable** `src/pages/calculators/CalculatorRoutePage.tsx`: layout con Header + Breadcrumbs + Calculadora + `ToolSeoSection` + `<Helmet>` con title/desc/canonical/og/twitter + JSON-LD `SoftwareApplication`. Recibe `toolKey`.
+4. **Nueve páginas finas** en `src/pages/calculators/` (una por ruta) que importan `CalculatorRoutePage` con el `toolKey` correspondiente y los metadatos SEO específicos.
+5. **`src/App.tsx`**: registrar las 9 rutas nuevas dentro del `BrowserRouter` existente.
+6. **`src/components/CalculatorHub.tsx`**: los tabs siguen cambiando el tab activo por defecto, pero cada tab también expone un enlace "Abrir en su propia página" que apunta a la ruta correspondiente (mejora rastreo interno). No rompe UX actual.
+7. **`vite.config.ts`**: agregar plugin de `vite-react-ssg` con la lista de rutas a prerenderizar (9 calculadoras + rutas ya existentes que se beneficien).
+8. **`public/robots.txt` + `public/sitemap.xml`**: agregar las 9 URLs nuevas con prioridad 0.8.
+9. **`scripts/generate-sitemap.ts`**: sumar las 9 rutas a la generación automática.
+10. **Redirects/canonicals**: no rompe rutas viejas; el home sigue existiendo. Cada calculadora nueva tiene canonical self-referente; el home mantiene su canonical propio.
 
-### 4. Subir el timeout de detección
-En `AdBanner.tsx`:
+## Metadatos por calculadora (ejemplo Ley de Ohm)
 
-- Cambiar el `setTimeout` de **6000 ms → 12000 ms** para reducir falsos negativos en conexiones lentas o cuando AdSense tarda en responder con `data-ad-status`.
-- Mantener el `MutationObserver` que ya marca `filled` apenas llega el anuncio.
+```
+<title>Calculadora Ley de Ohm — V = I × R online | ElectroLab Pro</title>
+<meta name="description" content="Calculadora online de la Ley de Ohm. Ingresa dos valores (V, I o R) y obtén el tercero al instante. Con ejemplos, potencia y FAQ técnica.">
+<link rel="canonical" href="https://www.electrolabpro.com/ley-de-ohm">
+<meta property="og:title" ...>
+<meta name="twitter:card" content="summary_large_image">
+```
 
-## Detalles técnicos
+Los otros 8 siguen el mismo patrón con keyword propia.
 
-- Archivos tocados: `src/components/AdBanner.tsx`, `src/components/SidebarAd.tsx`, `src/components/AdSenseSlot.tsx`, calculadoras con slot hardcodeado, nuevo `src/config/adsense.ts`.
-- No se tocan: `public/ads.txt`, IDs de Analytics, script de AdSense en `index.html`, ni el patrón `.tool-interactive`.
-- Sin cambios de diseño ni de rutas. Sin migraciones de DB.
-- Respeta la memoria: dominio `electrolabpro.com`, no alterar tracking IDs, no romper calculadoras.
+## Riesgos y notas
+
+- **Prerender = build más lento**: cada ruta se renderiza en Node headless al hacer `npm run build`. Suma ~30–60 s.
+- **Hidratación**: `vite-react-ssg` hidrata el bundle sobre el HTML pre-renderizado. Si hay `useEffect` con `window`, sigue funcionando (corre client-side). Componentes que dependen de APIs de navegador durante SSR se envuelven con guardas `typeof window !== "undefined"`.
+- **Analytics/AdSense**: los scripts se cargan client-side igual que hoy; el prerender solo afecta al HTML/head, no altera GTM/AdSense/Amazon.
+- **URLs viejas del home siguen funcionando**: el usuario que llegue a `/` con `?tab=ohm` u otro estado no rompe nada.
+- **Sitemap y feed.xml** se regeneran para incluir las nuevas URLs.
+- **og:image**: sin imagen propia por calculadora, Lovable hosting sirve la del proyecto. Si querés generar una imagen social por calculadora, se puede hacer después.
 
 ## Fuera de alcance
 
-- Crear los slots reales en la cuenta de AdSense (lo hace el usuario y me pasa los IDs).
-- Cambios en el CMP de cookies o en el script global de AdSense.
+- No migro artículos ni guías (ya tienen sus propias rutas y `ArticleLayout` con JSON-LD).
+- No cambio Analytics, AdSense ni Cookie Banner.
+- No genero imágenes OG específicas por calculadora (podemos hacerlo en un paso posterior si querés).
