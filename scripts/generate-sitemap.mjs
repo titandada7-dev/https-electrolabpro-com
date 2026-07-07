@@ -1,11 +1,11 @@
 // Genera public/sitemap.xml antes de `vite dev` y `vite build`.
-// Usa dominio canónico https://electrolabpro.com (sin www).
+// Usa dominio canónico https://www.electrolabpro.com (con www).
 // Para añadir/eliminar páginas, edita el array `entries` más abajo.
 
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const BASE_URL = "https://electrolabpro.com";
+const BASE_URL = "https://www.electrolabpro.com";
 
 // Rutas indexables. Excluidas: /auth, *, /not-found, /lovable/*.
 /** @type {{path:string, changefreq?:string, priority?:string}[]} */
