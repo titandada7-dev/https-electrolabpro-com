@@ -14,10 +14,10 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
 .stat b{font-size:22px;display:block}
 </style></head><body>
 <h1>Reporte de contraste WCAG AA</h1>
-<p>Generado 2026-07-07T04:26:15.424Z · tokens de <code>src/index.css</code></p>
+<p>Generado 2026-07-07T04:27:10.260Z · tokens de <code>src/index.css</code></p>
 <div class="stats">
-  <div class="stat"><b>38</b>pares evaluados</div>
-  <div class="stat" style="color:#b91c1c"><b>3</b>fallos</div>
+  <div class="stat"><b>40</b>pares evaluados</div>
+  <div class="stat" style="color:#b91c1c"><b>4</b>fallos</div>
 </div>
 <table><thead><tr>
 <th>Modo</th><th>Estado</th><th>Par</th><th>Tokens</th><th>α</th><th>FG</th><th>BG</th><th>Ratio</th><th>Mínimo</th><th>WCAG</th>
@@ -134,10 +134,10 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
       <td>hover</td>
       <td>botón primario hover</td>
       <td><code>--primary-foreground</code> / <code>--primary</code></td>
-      <td>0.9</td>
-      <td><span class="swatch" style="background:#ebf2fe;color:#327df5">Aa</span> <code>#ebf2fe</code></td>
-      <td><span class="swatch" style="background:#327df5;color:#ebf2fe">Aa</span> <code>#327df5</code></td>
-      <td><strong>3.46:1</strong></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#ffffff;color:#468af6">Aa</span> <code>#ffffff</code></td>
+      <td><span class="swatch" style="background:#468af6;color:#ffffff">Aa</span> <code>#468af6</code></td>
+      <td><strong>3.37:1</strong></td>
       <td>3:1</td>
       <td>✅</td>
     </tr>
@@ -146,24 +146,24 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
       <td>hover</td>
       <td>botón destructive hover</td>
       <td><code>--destructive-foreground</code> / <code>--destructive</code></td>
-      <td>0.9</td>
-      <td><span class="swatch" style="background:#f7e5e5;color:#dc2828">Aa</span> <code>#f7e5e5</code></td>
-      <td><span class="swatch" style="background:#dc2828;color:#f7e5e5">Aa</span> <code>#dc2828</code></td>
-      <td><strong>3.95:1</strong></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#fafafa;color:#df3d3d">Aa</span> <code>#fafafa</code></td>
+      <td><span class="swatch" style="background:#df3d3d;color:#fafafa">Aa</span> <code>#df3d3d</code></td>
+      <td><strong>4.13:1</strong></td>
       <td>3:1</td>
       <td>✅</td>
     </tr>
-<tr class="fail">
+<tr class="pass">
       <td>light</td>
       <td>hover</td>
-      <td>acento hover</td>
-      <td><code>--accent-foreground</code> / <code>--accent</code></td>
-      <td>0.9</td>
-      <td><span class="swatch" style="background:#1f69df;color:#e0eeff">Aa</span> <code>#1f69df</code></td>
-      <td><span class="swatch" style="background:#e0eeff;color:#1f69df">Aa</span> <code>#e0eeff</code></td>
-      <td><strong>4.31:1</strong></td>
+      <td>botón secundario hover</td>
+      <td><code>--secondary-foreground</code> / <code>--secondary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#222f4f;color:#f3f6fb">Aa</span> <code>#222f4f</code></td>
+      <td><span class="swatch" style="background:#f3f6fb;color:#222f4f">Aa</span> <code>#f3f6fb</code></td>
+      <td><strong>12.21:1</strong></td>
       <td>4.5:1</td>
-      <td>❌</td>
+      <td>✅</td>
     </tr>
 <tr class="pass">
       <td>light</td>
@@ -189,10 +189,22 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
       <td>3:1</td>
       <td>✅</td>
     </tr>
+<tr class="fail">
+      <td>light</td>
+      <td>default</td>
+      <td>borde sobre fondo (info)</td>
+      <td><code>--border</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#dde4ee;color:#fdfefe">Aa</span> <code>#dde4ee</code></td>
+      <td><span class="swatch" style="background:#fdfefe;color:#dde4ee">Aa</span> <code>#fdfefe</code></td>
+      <td><strong>1.27:1</strong></td>
+      <td>3:1</td>
+      <td>❌</td>
+    </tr>
 <tr class="pass">
       <td>light</td>
       <td>disabled</td>
-      <td>texto deshabilitado</td>
+      <td>texto deshabilitado (info)</td>
       <td><code>--foreground</code> / <code>--background</code></td>
       <td>0.5</td>
       <td><span class="swatch" style="background:#868b94;color:#fdfefe">Aa</span> <code>#868b94</code></td>
@@ -204,7 +216,7 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
 <tr class="fail">
       <td>light</td>
       <td>disabled</td>
-      <td>primario deshabilitado</td>
+      <td>primario deshabilitado (info)</td>
       <td><code>--primary-foreground</code> / <code>--primary</code></td>
       <td>0.5</td>
       <td><span class="swatch" style="background:#99befa;color:#327df5">Aa</span> <code>#99befa</code></td>
@@ -362,10 +374,10 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
       <td>hover</td>
       <td>botón primario hover</td>
       <td><code>--primary-foreground</code> / <code>--primary</code></td>
-      <td>0.9</td>
-      <td><span class="swatch" style="background:#12152a;color:#777cf8">Aa</span> <code>#12152a</code></td>
-      <td><span class="swatch" style="background:#777cf8;color:#12152a">Aa</span> <code>#777cf8</code></td>
-      <td><strong>5.16:1</strong></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#070a13;color:#6c71e1">Aa</span> <code>#070a13</code></td>
+      <td><span class="swatch" style="background:#6c71e1;color:#070a13">Aa</span> <code>#6c71e1</code></td>
+      <td><strong>4.79:1</strong></td>
       <td>3:1</td>
       <td>✅</td>
     </tr>
@@ -374,22 +386,22 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
       <td>hover</td>
       <td>botón destructive hover</td>
       <td><code>--destructive-foreground</code> / <code>--destructive</code></td>
-      <td>0.9</td>
-      <td><span class="swatch" style="background:#f7e5e5;color:#dc2828">Aa</span> <code>#f7e5e5</code></td>
-      <td><span class="swatch" style="background:#dc2828;color:#f7e5e5">Aa</span> <code>#dc2828</code></td>
-      <td><strong>3.95:1</strong></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#fafafa;color:#c72526">Aa</span> <code>#fafafa</code></td>
+      <td><span class="swatch" style="background:#c72526;color:#fafafa">Aa</span> <code>#c72526</code></td>
+      <td><strong>5.41:1</strong></td>
       <td>3:1</td>
       <td>✅</td>
     </tr>
 <tr class="pass">
       <td>dark</td>
       <td>hover</td>
-      <td>acento hover</td>
-      <td><code>--accent-foreground</code> / <code>--accent</code></td>
-      <td>0.9</td>
-      <td><span class="swatch" style="background:#9193e8;color:#171845">Aa</span> <code>#9193e8</code></td>
-      <td><span class="swatch" style="background:#171845;color:#9193e8">Aa</span> <code>#171845</code></td>
-      <td><strong>6.02:1</strong></td>
+      <td>botón secundario hover</td>
+      <td><code>--secondary-foreground</code> / <code>--secondary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#b6bcc9;color:#141926">Aa</span> <code>#b6bcc9</code></td>
+      <td><span class="swatch" style="background:#141926;color:#b6bcc9">Aa</span> <code>#141926</code></td>
+      <td><strong>9.21:1</strong></td>
       <td>4.5:1</td>
       <td>✅</td>
     </tr>
@@ -417,10 +429,22 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
       <td>3:1</td>
       <td>✅</td>
     </tr>
+<tr class="fail">
+      <td>dark</td>
+      <td>default</td>
+      <td>borde sobre fondo (info)</td>
+      <td><code>--border</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#212636;color:#070a13">Aa</span> <code>#212636</code></td>
+      <td><span class="swatch" style="background:#070a13;color:#212636">Aa</span> <code>#070a13</code></td>
+      <td><strong>1.31:1</strong></td>
+      <td>3:1</td>
+      <td>❌</td>
+    </tr>
 <tr class="pass">
       <td>dark</td>
       <td>disabled</td>
-      <td>texto deshabilitado</td>
+      <td>texto deshabilitado (info)</td>
       <td><code>--foreground</code> / <code>--background</code></td>
       <td>0.5</td>
       <td><span class="swatch" style="background:#7d7f85;color:#070a13">Aa</span> <code>#7d7f85</code></td>
@@ -432,7 +456,7 @@ code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
 <tr class="fail">
       <td>dark</td>
       <td>disabled</td>
-      <td>primario deshabilitado</td>
+      <td>primario deshabilitado (info)</td>
       <td><code>--primary-foreground</code> / <code>--primary</code></td>
       <td>0.5</td>
       <td><span class="swatch" style="background:#3f4386;color:#777cf8">Aa</span> <code>#3f4386</code></td>
