@@ -100,8 +100,14 @@ interface Pair {
   bg: string;
   min: number;
   label: string;
+  /** alpha del FG (texto semitransparente, p.ej. disabled) */
   alpha?: number;
+  /** alpha del BG sobre --background (p.ej. hover:bg-primary/90 de shadcn) */
+  bgAlpha?: number;
+  bgBase?: string;
   state?: "default" | "hover" | "focus" | "disabled";
+  /** informativo: no se afirma con expect, solo se registra en el reporte */
+  informational?: boolean;
 }
 
 const pairs: Pair[] = [
@@ -118,22 +124,23 @@ const pairs: Pair[] = [
   { fg: "--accent-foreground", bg: "--accent", min: AA_NORMAL, label: "acento", state: "default" },
   { fg: "--destructive-foreground", bg: "--destructive", min: AA_LARGE, label: "botón destructive", state: "default" },
 
-  // ------ Hover (shadcn usa /90 sobre el fondo del botón; texto se mantiene) ------
-  // El texto sigue siendo *-foreground contra el color base — nuestra medición no cambia
-  // pero validamos también contra el color mezclado al 90% para simular el hover.
-  { fg: "--primary-foreground", bg: "--primary", alpha: 0.9, min: AA_LARGE, label: "botón primario hover", state: "hover" },
-  { fg: "--destructive-foreground", bg: "--destructive", alpha: 0.9, min: AA_LARGE, label: "botón destructive hover", state: "hover" },
-  { fg: "--accent-foreground", bg: "--accent", alpha: 0.9, min: AA_NORMAL, label: "acento hover", state: "hover" },
+  // ------ Hover: shadcn aplica hover:bg-<color>/90 → BG mezclado con background ------
+  { fg: "--primary-foreground", bg: "--primary", bgAlpha: 0.9, bgBase: "--background", min: AA_LARGE, label: "botón primario hover", state: "hover" },
+  { fg: "--destructive-foreground", bg: "--destructive", bgAlpha: 0.9, bgBase: "--background", min: AA_LARGE, label: "botón destructive hover", state: "hover" },
+  { fg: "--secondary-foreground", bg: "--secondary", bgAlpha: 0.8, bgBase: "--background", min: AA_NORMAL, label: "botón secundario hover", state: "hover" },
 
-  // ------ Focus ring (contorno UI, requisito 1.4.11 → 3:1) ------
+  // ------ Focus ring (contorno UI, WCAG 1.4.11 → 3:1) ------
   { fg: "--ring", bg: "--background", min: AA_LARGE, label: "focus ring sobre fondo", state: "focus" },
   { fg: "--ring", bg: "--card", min: AA_LARGE, label: "focus ring sobre tarjeta", state: "focus" },
 
-  // ------ Disabled (texto al 50% de opacidad) ------
-  { fg: "--foreground", bg: "--background", alpha: 0.5, min: AA_LARGE, label: "texto deshabilitado", state: "disabled" },
-  { fg: "--primary-foreground", bg: "--primary", alpha: 0.5, min: AA_LARGE, label: "primario deshabilitado", state: "disabled" },
+  // ------ Bordes (UI, 3:1 solo si transmiten información — informativo) ------
+  { fg: "--border", bg: "--background", min: AA_LARGE, label: "borde sobre fondo", state: "default", informational: true },
 
-  // ------ Sidebar (superficie usada por shadcn Sidebar) ------
+  // ------ Disabled: WCAG 1.4.3 exime componentes inactivos, se reporta como informativo ------
+  { fg: "--foreground", bg: "--background", alpha: 0.5, min: AA_LARGE, label: "texto deshabilitado", state: "disabled", informational: true },
+  { fg: "--primary-foreground", bg: "--primary", alpha: 0.5, min: AA_LARGE, label: "primario deshabilitado", state: "disabled", informational: true },
+
+  // ------ Sidebar (shadcn Sidebar) ------
   { fg: "--sidebar-foreground", bg: "--sidebar-background", min: AA_NORMAL, label: "texto sidebar", state: "default" },
   { fg: "--sidebar-primary-foreground", bg: "--sidebar-primary", min: AA_LARGE, label: "botón primario sidebar", state: "default" },
   { fg: "--sidebar-accent-foreground", bg: "--sidebar-accent", min: AA_NORMAL, label: "acento sidebar", state: "default" },
