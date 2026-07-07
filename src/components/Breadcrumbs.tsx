@@ -39,8 +39,8 @@ const SLUG_LABELS: Record<string, string> = {
   "mi-primer-laboratorio": "Mi primer laboratorio",
   "mis-5-proyectos-arduino-favoritos": "5 proyectos Arduino favoritos",
   "como-disene-mi-primer-pcb-kicad": "Mi primer PCB con KiCad",
-  // Calculadoras con URL propia
-  "ley-de-ohm": "Calculadora Ley de Ohm",
+  // Calculadoras con URL propia (el título completo lo suele setear cada
+  // página vía `lastLabel`; los defaults acá cubren la segmentación URL).
   "calculadora-led": "Calculadora Resistencia LED",
   "calculadora-resistencias": "Calculadora de Resistencias",
   "divisor-de-voltaje": "Divisor de Voltaje",
