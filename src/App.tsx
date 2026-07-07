@@ -148,6 +148,18 @@ function App() {
         <Route path="/blog/mi-primer-laboratorio" element={<BlogPrimerLaboratorio />} />
         <Route path="/blog/mis-5-proyectos-arduino-favoritos" element={<BlogProyectosArduino />} />
         <Route path="/blog/como-disene-mi-primer-pcb-kicad" element={<BlogDisenoPCB />} />
+
+        {/* Calculadoras con URL propia (SEO SEA/AdSense) */}
+        <Route path="/ley-de-ohm" element={<OhmCalculatorPage />} />
+        <Route path="/calculadora-led" element={<LedCalculatorPage />} />
+        <Route path="/calculadora-resistencias" element={<ResistorCalculatorPage />} />
+        <Route path="/divisor-de-voltaje" element={<VoltageDividerPage />} />
+        <Route path="/filtro-rc" element={<RCFilterPage />} />
+        <Route path="/temporizador-555" element={<Timer555Page />} />
+        <Route path="/decodificador-smd" element={<SmdDecoderPage />} />
+        <Route path="/reactancia-capacitiva" element={<CapacitiveReactancePage />} />
+        <Route path="/conversor-unidades" element={<UnitConverterPage />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       </main>
