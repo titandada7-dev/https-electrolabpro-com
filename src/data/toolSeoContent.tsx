@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { BookOpen, Lightbulb, ArrowRight, Cpu, Wrench, HelpCircle, Sigma } from "lucide-react";
 
 export interface ToolSeoSectionBlock {
@@ -419,7 +420,43 @@ export const TOOL_SEO: Record<string, ToolSeoBlock> = {
 
 export const ToolSeoSection = ({ toolKey }: { toolKey: string }) => {
   const c = TOOL_SEO[toolKey];
+
+  // Inyectar JSON-LD FAQPage con las preguntas frecuentes de la calculadora activa.
+  // Se re-genera al cambiar de herramienta; se elimina al desmontar.
+  useEffect(() => {
+    if (!c) return;
+    const scriptId = "tool-faq-jsonld";
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      name: c.title,
+      mainEntity: c.faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: f.a,
+        },
+      })),
+    };
+    const serialized = JSON.stringify(jsonLd);
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.id = scriptId;
+      document.head.appendChild(script);
+    }
+    if (script.textContent !== serialized) {
+      script.textContent = serialized;
+    }
+    return () => {
+      document.getElementById(scriptId)?.remove();
+    };
+  }, [toolKey, c]);
+
   if (!c) return null;
+
   return (
     <section
       className="mt-8 rounded-2xl border border-border bg-card/40 p-5 sm:p-7 space-y-8"
