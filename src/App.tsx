@@ -68,6 +68,17 @@ const PwmArduino = lazy(() => import("./pages/articles/PwmArduino"));
 const ReguladoresVoltaje = lazy(() => import("./pages/articles/ReguladoresVoltaje"));
 const LeerDatasheet = lazy(() => import("./pages/articles/LeerDatasheet"));
 
+// Calculadoras con URL propia (SEO + metadatos por página + prerender SSG)
+const OhmCalculatorPage = lazy(() => import("./pages/calculators/OhmCalculatorPage"));
+const LedCalculatorPage = lazy(() => import("./pages/calculators/LedCalculatorPage"));
+const ResistorCalculatorPage = lazy(() => import("./pages/calculators/ResistorCalculatorPage"));
+const VoltageDividerPage = lazy(() => import("./pages/calculators/VoltageDividerPage"));
+const RCFilterPage = lazy(() => import("./pages/calculators/RCFilterPage"));
+const Timer555Page = lazy(() => import("./pages/calculators/Timer555Page"));
+const SmdDecoderPage = lazy(() => import("./pages/calculators/SmdDecoderPage"));
+const CapacitiveReactancePage = lazy(() => import("./pages/calculators/CapacitiveReactancePage"));
+const UnitConverterPage = lazy(() => import("./pages/calculators/UnitConverterPage"));
+
 const RouteFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <div className="flex flex-col items-center gap-3 text-muted-foreground">
