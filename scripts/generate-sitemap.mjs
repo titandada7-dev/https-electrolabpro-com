@@ -7,7 +7,28 @@ import { resolve } from "node:path";
 
 const BASE_URL = "https://www.electrolabpro.com";
 
-// Rutas indexables. Excluidas: /auth, *, /not-found, /lovable/*.
+// -----------------------------------------------------------------------------
+// REGLAS DE INDEXACIÓN
+// -----------------------------------------------------------------------------
+// INCLUIR (100 % públicas, sin sesión):
+//   - Home, guías, glosario, documentación técnica, aprende jugando
+//   - Todos los /articulos/* y /blog/*
+//   - Todas las calculadoras con URL propia
+//   - Páginas de autoridad y legales (privacidad, aviso legal, términos,
+//     sobre-nosotros, contacto)
+//   - Landings públicas de /premium (marketing, no requieren sesión)
+//
+// EXCLUIR intencionalmente (privadas, transaccionales o que requieren sesión):
+//   - /auth                     → login/registro
+//   - /account                  → panel de usuario autenticado
+//   - /premium/biblioteca       → contenido premium tras paywall
+//   - /unsubscribe              → enlace transaccional de email
+//   - /politica-reembolsos      → flujo transaccional post-compra
+//   - /paleta                   → preview interno de diseño
+//   - *  y  /not-found          → catch-all / 404
+// -----------------------------------------------------------------------------
+
+// Lista blanca única fuente de verdad para el sitemap.
 /** @type {{path:string, changefreq?:string, priority?:string}[]} */
 const entries = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
