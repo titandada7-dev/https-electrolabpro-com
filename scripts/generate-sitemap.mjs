@@ -1,11 +1,11 @@
 // Genera public/sitemap.xml antes de `vite dev` y `vite build`.
-// Usa dominio canónico https://electrolabpro.com (sin www).
+// Usa dominio canónico https://www.electrolabpro.com (con www).
 // Para añadir/eliminar páginas, edita el array `entries` más abajo.
 
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const BASE_URL = "https://electrolabpro.com";
+const BASE_URL = "https://www.electrolabpro.com";
 
 // Rutas indexables. Excluidas: /auth, *, /not-found, /lovable/*.
 /** @type {{path:string, changefreq?:string, priority?:string}[]} */
@@ -57,6 +57,12 @@ const entries = [
   { path: "/decodificador-smd", changefreq: "monthly", priority: "0.9" },
   { path: "/reactancia-capacitiva", changefreq: "monthly", priority: "0.9" },
   { path: "/conversor-unidades", changefreq: "monthly", priority: "0.9" },
+
+  // Premium
+  { path: "/premium", changefreq: "monthly", priority: "0.6" },
+  { path: "/premium/contenido", changefreq: "monthly", priority: "0.6" },
+  { path: "/premium/simulador-circuitos", changefreq: "monthly", priority: "0.6" },
+  { path: "/premium/calculadoras-avanzadas", changefreq: "monthly", priority: "0.6" },
 ];
 
 function generateSitemap(items) {
