@@ -476,6 +476,22 @@ const CalculatorHub = () => {
             <ToolPanel tool={active} />
           </div>
 
+          {/* CTA hacia la URL propia de la calculadora (SEO + rastreo interno) */}
+          {(() => {
+            const routeMeta = CALCULATOR_ROUTES.find((r) => r.toolKey === active);
+            if (!routeMeta) return null;
+            return (
+              <div className="mt-3 flex justify-center">
+                <Link
+                  to={routeMeta.slug}
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-primary hover:underline"
+                >
+                  Abrir {routeMeta.shortLabel} en su propia página →
+                </Link>
+              </div>
+            );
+          })()}
+
           {/* Beneficios */}
           <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center mt-4 text-xs sm:text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1.5"><span style={{ color: accentBg }}>✔</span> Resultado automático</span>
