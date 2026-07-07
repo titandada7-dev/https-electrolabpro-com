@@ -1,0 +1,480 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<title>Reporte de contraste — ElectroLab Pro</title>
+<style>
+body{font:14px/1.5 system-ui,sans-serif;margin:24px;color:#0f172a;background:#f8fafc}
+h1{margin:0 0 4px}p{color:#475569;margin:0 0 16px}
+table{border-collapse:collapse;width:100%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05);border-radius:8px;overflow:hidden}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #e2e8f0;font-size:13px;vertical-align:middle}
+th{background:#f1f5f9;font-weight:600}
+tr.fail{background:#fef2f2}tr.pass:hover{background:#f8fafc}
+code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
+.swatch{display:inline-block;width:32px;text-align:center;border-radius:4px;border:1px solid rgba(0,0,0,.1);font-weight:600;font-size:12px;padding:2px 0}
+.stats{display:flex;gap:16px;margin:16px 0}
+.stat{background:#fff;padding:12px 16px;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.stat b{font-size:22px;display:block}
+</style></head><body>
+<h1>Reporte de contraste WCAG AA</h1>
+<p>Generado 2026-07-07T04:26:15.424Z · tokens de <code>src/index.css</code></p>
+<div class="stats">
+  <div class="stat"><b>38</b>pares evaluados</div>
+  <div class="stat" style="color:#b91c1c"><b>3</b>fallos</div>
+</div>
+<table><thead><tr>
+<th>Modo</th><th>Estado</th><th>Par</th><th>Tokens</th><th>α</th><th>FG</th><th>BG</th><th>Ratio</th><th>Mínimo</th><th>WCAG</th>
+</tr></thead><tbody><tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>texto principal</td>
+      <td><code>--foreground</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#0f1729;color:#fdfefe">Aa</span> <code>#0f1729</code></td>
+      <td><span class="swatch" style="background:#fdfefe;color:#0f1729">Aa</span> <code>#fdfefe</code></td>
+      <td><strong>17.69:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>texto atenuado</td>
+      <td><code>--muted-foreground</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#47566b;color:#fdfefe">Aa</span> <code>#47566b</code></td>
+      <td><span class="swatch" style="background:#fdfefe;color:#47566b">Aa</span> <code>#fdfefe</code></td>
+      <td><strong>7.39:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>texto atenuado sobre muted</td>
+      <td><code>--muted-foreground</code> / <code>--muted</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#47566b;color:#f0f4f9">Aa</span> <code>#47566b</code></td>
+      <td><span class="swatch" style="background:#f0f4f9;color:#47566b">Aa</span> <code>#f0f4f9</code></td>
+      <td><strong>6.76:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>texto en tarjeta</td>
+      <td><code>--card-foreground</code> / <code>--card</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#0f1729;color:#ffffff">Aa</span> <code>#0f1729</code></td>
+      <td><span class="swatch" style="background:#ffffff;color:#0f1729">Aa</span> <code>#ffffff</code></td>
+      <td><strong>17.87:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>texto en popover</td>
+      <td><code>--popover-foreground</code> / <code>--popover</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#0f1729;color:#ffffff">Aa</span> <code>#0f1729</code></td>
+      <td><span class="swatch" style="background:#ffffff;color:#0f1729">Aa</span> <code>#ffffff</code></td>
+      <td><strong>17.87:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>botón primario</td>
+      <td><code>--primary-foreground</code> / <code>--primary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#ffffff;color:#327df5">Aa</span> <code>#ffffff</code></td>
+      <td><span class="swatch" style="background:#327df5;color:#ffffff">Aa</span> <code>#327df5</code></td>
+      <td><strong>3.9:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>botón secundario</td>
+      <td><code>--secondary-foreground</code> / <code>--secondary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#222f4f;color:#f0f4fa">Aa</span> <code>#222f4f</code></td>
+      <td><span class="swatch" style="background:#f0f4fa;color:#222f4f">Aa</span> <code>#f0f4fa</code></td>
+      <td><strong>11.98:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>acento</td>
+      <td><code>--accent-foreground</code> / <code>--accent</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#0a5adb;color:#e0eeff">Aa</span> <code>#0a5adb</code></td>
+      <td><span class="swatch" style="background:#e0eeff;color:#0a5adb">Aa</span> <code>#e0eeff</code></td>
+      <td><strong>5.1:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>botón destructive</td>
+      <td><code>--destructive-foreground</code> / <code>--destructive</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#fafafa;color:#dc2828">Aa</span> <code>#fafafa</code></td>
+      <td><span class="swatch" style="background:#dc2828;color:#fafafa">Aa</span> <code>#dc2828</code></td>
+      <td><strong>4.6:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>hover</td>
+      <td>botón primario hover</td>
+      <td><code>--primary-foreground</code> / <code>--primary</code></td>
+      <td>0.9</td>
+      <td><span class="swatch" style="background:#ebf2fe;color:#327df5">Aa</span> <code>#ebf2fe</code></td>
+      <td><span class="swatch" style="background:#327df5;color:#ebf2fe">Aa</span> <code>#327df5</code></td>
+      <td><strong>3.46:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>hover</td>
+      <td>botón destructive hover</td>
+      <td><code>--destructive-foreground</code> / <code>--destructive</code></td>
+      <td>0.9</td>
+      <td><span class="swatch" style="background:#f7e5e5;color:#dc2828">Aa</span> <code>#f7e5e5</code></td>
+      <td><span class="swatch" style="background:#dc2828;color:#f7e5e5">Aa</span> <code>#dc2828</code></td>
+      <td><strong>3.95:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="fail">
+      <td>light</td>
+      <td>hover</td>
+      <td>acento hover</td>
+      <td><code>--accent-foreground</code> / <code>--accent</code></td>
+      <td>0.9</td>
+      <td><span class="swatch" style="background:#1f69df;color:#e0eeff">Aa</span> <code>#1f69df</code></td>
+      <td><span class="swatch" style="background:#e0eeff;color:#1f69df">Aa</span> <code>#e0eeff</code></td>
+      <td><strong>4.31:1</strong></td>
+      <td>4.5:1</td>
+      <td>❌</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>focus</td>
+      <td>focus ring sobre fondo</td>
+      <td><code>--ring</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#3c83f6;color:#fdfefe">Aa</span> <code>#3c83f6</code></td>
+      <td><span class="swatch" style="background:#fdfefe;color:#3c83f6">Aa</span> <code>#fdfefe</code></td>
+      <td><strong>3.6:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>focus</td>
+      <td>focus ring sobre tarjeta</td>
+      <td><code>--ring</code> / <code>--card</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#3c83f6;color:#ffffff">Aa</span> <code>#3c83f6</code></td>
+      <td><span class="swatch" style="background:#ffffff;color:#3c83f6">Aa</span> <code>#ffffff</code></td>
+      <td><strong>3.64:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>disabled</td>
+      <td>texto deshabilitado</td>
+      <td><code>--foreground</code> / <code>--background</code></td>
+      <td>0.5</td>
+      <td><span class="swatch" style="background:#868b94;color:#fdfefe">Aa</span> <code>#868b94</code></td>
+      <td><span class="swatch" style="background:#fdfefe;color:#868b94">Aa</span> <code>#fdfefe</code></td>
+      <td><strong>3.39:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="fail">
+      <td>light</td>
+      <td>disabled</td>
+      <td>primario deshabilitado</td>
+      <td><code>--primary-foreground</code> / <code>--primary</code></td>
+      <td>0.5</td>
+      <td><span class="swatch" style="background:#99befa;color:#327df5">Aa</span> <code>#99befa</code></td>
+      <td><span class="swatch" style="background:#327df5;color:#99befa">Aa</span> <code>#327df5</code></td>
+      <td><strong>2.06:1</strong></td>
+      <td>3:1</td>
+      <td>❌</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>texto sidebar</td>
+      <td><code>--sidebar-foreground</code> / <code>--sidebar-background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#0f1729;color:#ffffff">Aa</span> <code>#0f1729</code></td>
+      <td><span class="swatch" style="background:#ffffff;color:#0f1729">Aa</span> <code>#ffffff</code></td>
+      <td><strong>17.87:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>botón primario sidebar</td>
+      <td><code>--sidebar-primary-foreground</code> / <code>--sidebar-primary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#ffffff;color:#3c83f6">Aa</span> <code>#ffffff</code></td>
+      <td><span class="swatch" style="background:#3c83f6;color:#ffffff">Aa</span> <code>#3c83f6</code></td>
+      <td><strong>3.64:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>light</td>
+      <td>default</td>
+      <td>acento sidebar</td>
+      <td><code>--sidebar-accent-foreground</code> / <code>--sidebar-accent</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#0a5adb;color:#e0eeff">Aa</span> <code>#0a5adb</code></td>
+      <td><span class="swatch" style="background:#e0eeff;color:#0a5adb">Aa</span> <code>#e0eeff</code></td>
+      <td><strong>5.1:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>texto principal</td>
+      <td><code>--foreground</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#f3f4f7;color:#070a13">Aa</span> <code>#f3f4f7</code></td>
+      <td><span class="swatch" style="background:#070a13;color:#f3f4f7">Aa</span> <code>#070a13</code></td>
+      <td><strong>17.98:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>texto atenuado</td>
+      <td><code>--muted-foreground</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#acb4c3;color:#070a13">Aa</span> <code>#acb4c3</code></td>
+      <td><span class="swatch" style="background:#070a13;color:#acb4c3">Aa</span> <code>#070a13</code></td>
+      <td><strong>9.48:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>texto atenuado sobre muted</td>
+      <td><code>--muted-foreground</code> / <code>--muted</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#acb4c3;color:#171d2b">Aa</span> <code>#acb4c3</code></td>
+      <td><span class="swatch" style="background:#171d2b;color:#acb4c3">Aa</span> <code>#171d2b</code></td>
+      <td><strong>8.08:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>texto en tarjeta</td>
+      <td><code>--card-foreground</code> / <code>--card</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#edeff3;color:#0e1320">Aa</span> <code>#edeff3</code></td>
+      <td><span class="swatch" style="background:#0e1320;color:#edeff3">Aa</span> <code>#0e1320</code></td>
+      <td><strong>16.1:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>texto en popover</td>
+      <td><code>--popover-foreground</code> / <code>--popover</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#edeff3;color:#0e1320">Aa</span> <code>#edeff3</code></td>
+      <td><span class="swatch" style="background:#0e1320;color:#edeff3">Aa</span> <code>#0e1320</code></td>
+      <td><strong>16.1:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>botón primario</td>
+      <td><code>--primary-foreground</code> / <code>--primary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#070a13;color:#777cf8">Aa</span> <code>#070a13</code></td>
+      <td><span class="swatch" style="background:#777cf8;color:#070a13">Aa</span> <code>#777cf8</code></td>
+      <td><strong>5.67:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>botón secundario</td>
+      <td><code>--secondary-foreground</code> / <code>--secondary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#b6bcc9;color:#171d2b">Aa</span> <code>#b6bcc9</code></td>
+      <td><span class="swatch" style="background:#171d2b;color:#b6bcc9">Aa</span> <code>#171d2b</code></td>
+      <td><strong>8.84:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>acento</td>
+      <td><code>--accent-foreground</code> / <code>--accent</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#9ea1fa;color:#171845">Aa</span> <code>#9ea1fa</code></td>
+      <td><span class="swatch" style="background:#171845;color:#9ea1fa">Aa</span> <code>#171845</code></td>
+      <td><strong>7.13:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>botón destructive</td>
+      <td><code>--destructive-foreground</code> / <code>--destructive</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#fafafa;color:#dc2828">Aa</span> <code>#fafafa</code></td>
+      <td><span class="swatch" style="background:#dc2828;color:#fafafa">Aa</span> <code>#dc2828</code></td>
+      <td><strong>4.6:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>hover</td>
+      <td>botón primario hover</td>
+      <td><code>--primary-foreground</code> / <code>--primary</code></td>
+      <td>0.9</td>
+      <td><span class="swatch" style="background:#12152a;color:#777cf8">Aa</span> <code>#12152a</code></td>
+      <td><span class="swatch" style="background:#777cf8;color:#12152a">Aa</span> <code>#777cf8</code></td>
+      <td><strong>5.16:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>hover</td>
+      <td>botón destructive hover</td>
+      <td><code>--destructive-foreground</code> / <code>--destructive</code></td>
+      <td>0.9</td>
+      <td><span class="swatch" style="background:#f7e5e5;color:#dc2828">Aa</span> <code>#f7e5e5</code></td>
+      <td><span class="swatch" style="background:#dc2828;color:#f7e5e5">Aa</span> <code>#dc2828</code></td>
+      <td><strong>3.95:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>hover</td>
+      <td>acento hover</td>
+      <td><code>--accent-foreground</code> / <code>--accent</code></td>
+      <td>0.9</td>
+      <td><span class="swatch" style="background:#9193e8;color:#171845">Aa</span> <code>#9193e8</code></td>
+      <td><span class="swatch" style="background:#171845;color:#9193e8">Aa</span> <code>#171845</code></td>
+      <td><strong>6.02:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>focus</td>
+      <td>focus ring sobre fondo</td>
+      <td><code>--ring</code> / <code>--background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#777cf8;color:#070a13">Aa</span> <code>#777cf8</code></td>
+      <td><span class="swatch" style="background:#070a13;color:#777cf8">Aa</span> <code>#070a13</code></td>
+      <td><strong>5.67:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>focus</td>
+      <td>focus ring sobre tarjeta</td>
+      <td><code>--ring</code> / <code>--card</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#777cf8;color:#0e1320">Aa</span> <code>#777cf8</code></td>
+      <td><span class="swatch" style="background:#0e1320;color:#777cf8">Aa</span> <code>#0e1320</code></td>
+      <td><strong>5.32:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>disabled</td>
+      <td>texto deshabilitado</td>
+      <td><code>--foreground</code> / <code>--background</code></td>
+      <td>0.5</td>
+      <td><span class="swatch" style="background:#7d7f85;color:#070a13">Aa</span> <code>#7d7f85</code></td>
+      <td><span class="swatch" style="background:#070a13;color:#7d7f85">Aa</span> <code>#070a13</code></td>
+      <td><strong>4.94:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="fail">
+      <td>dark</td>
+      <td>disabled</td>
+      <td>primario deshabilitado</td>
+      <td><code>--primary-foreground</code> / <code>--primary</code></td>
+      <td>0.5</td>
+      <td><span class="swatch" style="background:#3f4386;color:#777cf8">Aa</span> <code>#3f4386</code></td>
+      <td><span class="swatch" style="background:#777cf8;color:#3f4386">Aa</span> <code>#777cf8</code></td>
+      <td><strong>2.55:1</strong></td>
+      <td>3:1</td>
+      <td>❌</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>texto sidebar</td>
+      <td><code>--sidebar-foreground</code> / <code>--sidebar-background</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#edeff3;color:#0b0f19">Aa</span> <code>#edeff3</code></td>
+      <td><span class="swatch" style="background:#0b0f19;color:#edeff3">Aa</span> <code>#0b0f19</code></td>
+      <td><strong>16.63:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>botón primario sidebar</td>
+      <td><code>--sidebar-primary-foreground</code> / <code>--sidebar-primary</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#070a13;color:#777cf8">Aa</span> <code>#070a13</code></td>
+      <td><span class="swatch" style="background:#777cf8;color:#070a13">Aa</span> <code>#777cf8</code></td>
+      <td><strong>5.67:1</strong></td>
+      <td>3:1</td>
+      <td>✅</td>
+    </tr>
+<tr class="pass">
+      <td>dark</td>
+      <td>default</td>
+      <td>acento sidebar</td>
+      <td><code>--sidebar-accent-foreground</code> / <code>--sidebar-accent</code></td>
+      <td>1</td>
+      <td><span class="swatch" style="background:#edeff3;color:#171d2b">Aa</span> <code>#edeff3</code></td>
+      <td><span class="swatch" style="background:#171d2b;color:#edeff3">Aa</span> <code>#171d2b</code></td>
+      <td><strong>14.63:1</strong></td>
+      <td>4.5:1</td>
+      <td>✅</td>
+    </tr></tbody></table>
+</body></html>
