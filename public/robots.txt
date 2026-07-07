@@ -4,6 +4,12 @@
 User-agent: Googlebot
 Allow: /
 Disallow: /*?q=
+Disallow: /auth
+Disallow: /account
+Disallow: /unsubscribe
+Disallow: /politica-reembolsos
+Disallow: /premium/biblioteca
+Disallow: /paleta
 
 User-agent: Googlebot-Image
 Allow: /
@@ -17,6 +23,12 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 Disallow: /*?q=
+Disallow: /auth
+Disallow: /account
+Disallow: /unsubscribe
+Disallow: /politica-reembolsos
+Disallow: /premium/biblioteca
+Disallow: /paleta
 
 User-agent: Twitterbot
 Allow: /
@@ -29,6 +41,11 @@ Allow: /
 Disallow: /*?q=
 Disallow: /api/
 Disallow: /auth
+Disallow: /account
+Disallow: /unsubscribe
+Disallow: /politica-reembolsos
+Disallow: /premium/biblioteca
+Disallow: /paleta
 
 # Crawl optimization
 Crawl-delay: 1
