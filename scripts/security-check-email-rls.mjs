@@ -5,7 +5,7 @@
 // Uses the same PG* env vars psql picks up. Run locally or in CI:
 //   node scripts/security-check-email-rls.mjs
 
-import pg from "pg";
+import { execFileSync } from "node:child_process";
 
 const EMAIL_TABLES = [
   "email_send_log",
@@ -26,72 +26,79 @@ const TRIGGER_ONLY_FUNCTIONS = [
   "audit_user_roles_change",
 ];
 
-const client = new pg.Client();
-await client.connect();
+function psql(sql) {
+  const out = execFileSync(
+    "psql",
+    ["-At", "-F", "\t", "-v", "ON_ERROR_STOP=1", "-c", sql],
+    { encoding: "utf8" },
+  );
+  return out
+    .trim()
+    .split("\n")
+    .filter(Boolean)
+    .map((line) => line.split("\t"));
+}
+
+function sqlList(items) {
+  return items.map((i) => `'${i.replace(/'/g, "''")}'`).join(",");
+}
 
 const failures = [];
+const tables = sqlList(EMAIL_TABLES);
+const fns = sqlList(TRIGGER_ONLY_FUNCTIONS);
 
 // 1. RLS enabled on every email queue table.
-const rls = await client.query(
-  `SELECT tablename, rowsecurity FROM pg_tables
-   WHERE schemaname='public' AND tablename = ANY($1)`,
-  [EMAIL_TABLES],
+const rls = psql(
+  `SELECT tablename, rowsecurity::text FROM pg_tables
+   WHERE schemaname='public' AND tablename IN (${tables})`,
 );
+const rlsMap = new Map(rls.map(([t, r]) => [t, r === "t" || r === "true"]));
 for (const t of EMAIL_TABLES) {
-  const row = rls.rows.find((r) => r.tablename === t);
-  if (!row) failures.push(`missing table public.${t}`);
-  else if (!row.rowsecurity) failures.push(`RLS disabled on public.${t}`);
+  if (!rlsMap.has(t)) failures.push(`missing table public.${t}`);
+  else if (!rlsMap.get(t)) failures.push(`RLS disabled on public.${t}`);
 }
 
-// 2. No policy on email tables targets anon/authenticated/public.
-const policies = await client.query(
-  `SELECT tablename, policyname, roles FROM pg_policies
-   WHERE schemaname='public' AND tablename = ANY($1)`,
-  [EMAIL_TABLES],
+// 2. Policies must not target anon/authenticated/public.
+const policies = psql(
+  `SELECT tablename, policyname, array_to_string(roles, ',') FROM pg_policies
+   WHERE schemaname='public' AND tablename IN (${tables})`,
 );
-for (const p of policies.rows) {
-  const bad = p.roles.filter((r) =>
-    ["anon", "authenticated", "public", "PUBLIC"].includes(r),
-  );
-  if (bad.length) {
+for (const [table, policyname, rolesStr] of policies) {
+  const bad = rolesStr
+    .split(",")
+    .filter((r) => ["anon", "authenticated", "public", "PUBLIC"].includes(r));
+  if (bad.length)
     failures.push(
-      `policy ${p.tablename}.${p.policyname} exposes roles: ${bad.join(",")}`,
+      `policy ${table}.${policyname} exposes roles: ${bad.join(",")}`,
     );
-  }
 }
 
-// 3. Direct table grants must not include anon/authenticated.
-const grants = await client.query(
+// 3. Direct table grants to anon/authenticated/PUBLIC are forbidden.
+const grants = psql(
   `SELECT table_name, grantee, privilege_type
    FROM information_schema.role_table_grants
-   WHERE table_schema='public' AND table_name = ANY($1)
+   WHERE table_schema='public' AND table_name IN (${tables})
      AND grantee IN ('anon','authenticated','PUBLIC')`,
-  [EMAIL_TABLES],
 );
-for (const g of grants.rows) {
-  failures.push(
-    `table public.${g.table_name} granted ${g.privilege_type} to ${g.grantee}`,
-  );
+for (const [table, grantee, priv] of grants) {
+  failures.push(`table public.${table} granted ${priv} to ${grantee}`);
 }
 
-// 4. Trigger-only functions: revoke EXECUTE from anon/authenticated/PUBLIC.
-const fns = await client.query(
+// 4. Trigger-only functions: no EXECUTE for anon/authenticated/PUBLIC.
+const fnRows = psql(
   `SELECT p.proname,
-          has_function_privilege('anon', p.oid, 'EXECUTE')          AS anon_x,
-          has_function_privilege('authenticated', p.oid, 'EXECUTE') AS auth_x,
-          has_function_privilege('public', p.oid, 'EXECUTE')        AS pub_x
+          has_function_privilege('anon', p.oid, 'EXECUTE')::text,
+          has_function_privilege('authenticated', p.oid, 'EXECUTE')::text,
+          has_function_privilege('public', p.oid, 'EXECUTE')::text
    FROM pg_proc p JOIN pg_namespace n ON n.oid = p.pronamespace
-   WHERE n.nspname='public' AND p.proname = ANY($1)`,
-  [TRIGGER_ONLY_FUNCTIONS],
+   WHERE n.nspname='public' AND p.proname IN (${fns})`,
 );
-for (const fn of fns.rows) {
-  if (fn.anon_x) failures.push(`function ${fn.proname} executable by anon`);
-  if (fn.auth_x)
-    failures.push(`function ${fn.proname} executable by authenticated`);
-  if (fn.pub_x) failures.push(`function ${fn.proname} executable by PUBLIC`);
+for (const [name, anonX, authX, pubX] of fnRows) {
+  if (anonX === "t") failures.push(`function ${name} executable by anon`);
+  if (authX === "t")
+    failures.push(`function ${name} executable by authenticated`);
+  if (pubX === "t") failures.push(`function ${name} executable by PUBLIC`);
 }
-
-await client.end();
 
 if (failures.length) {
   console.error("❌ Email queue security check FAILED:");
