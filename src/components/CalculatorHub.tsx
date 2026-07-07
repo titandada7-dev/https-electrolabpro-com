@@ -13,6 +13,8 @@ import SmdDecoderCalculator from "@/components/SmdDecoderCalculator";
 import CapacitiveReactanceCalculator from "@/components/CapacitiveReactanceCalculator";
 import UnitConverter from "@/components/UnitConverter";
 import { ToolSeoSection } from "@/data/toolSeoContent";
+import { CALCULATOR_ROUTES } from "@/data/calculatorRoutes";
+import { Link } from "react-router-dom";
 
 type ToolKey =
   | "resistor" | "ohm" | "led" | "divider" | "rc"
