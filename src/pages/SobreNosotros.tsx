@@ -22,7 +22,21 @@ const SobreNosotros = () => {
         "url": "https://electrolabpro.com",
         "founder": {
           "@type": "Person",
-          "name": "J.A. Sánchez"
+          "name": "J.A. Sánchez",
+          "jobTitle": "Editor técnico y desarrollador web",
+          "description": "Aficionado a la electrónica con más de 10 años de experiencia práctica y estudiante avanzado de Desarrollo Web e Informática.",
+          "knowsAbout": [
+            "Electrónica analógica",
+            "Arduino",
+            "ESP32",
+            "Raspberry Pi",
+            "Diseño de circuitos",
+            "Soldadura SMD y through-hole",
+            "Lectura de datasheets",
+            "React",
+            "TypeScript"
+          ],
+          "url": "https://electrolabpro.com/sobre-nosotros"
         }
       }
     };
