@@ -22,7 +22,21 @@ const SobreNosotros = () => {
         "url": "https://electrolabpro.com",
         "founder": {
           "@type": "Person",
-          "name": "J.A. Sánchez"
+          "name": "J.A. Sánchez",
+          "jobTitle": "Editor técnico y desarrollador web",
+          "description": "Aficionado a la electrónica con más de 10 años de experiencia práctica y estudiante avanzado de Desarrollo Web e Informática.",
+          "knowsAbout": [
+            "Electrónica analógica",
+            "Arduino",
+            "ESP32",
+            "Raspberry Pi",
+            "Diseño de circuitos",
+            "Soldadura SMD y through-hole",
+            "Lectura de datasheets",
+            "React",
+            "TypeScript"
+          ],
+          "url": "https://electrolabpro.com/sobre-nosotros"
         }
       }
     };
@@ -168,6 +182,132 @@ const SobreNosotros = () => {
                 Visitar el centro de Documentación Técnica →
               </Link>
             </div>
+          </section>
+
+          {/* Autoría y credenciales */}
+          <section className="p-6 md:p-8 rounded-2xl border border-primary/20 bg-card/80 backdrop-blur space-y-5">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-14 h-14 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center">
+                <Users className="w-7 h-7 text-primary" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold font-mono text-foreground">Autoría y Credenciales</h2>
+                <p className="text-sm text-muted-foreground">J.A. Sánchez — Fundador y editor técnico</p>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              <strong className="text-foreground">J.A. Sánchez</strong> es aficionado a la electrónica desde hace
+              más de <strong className="text-foreground">10 años</strong> y estudiante avanzado de{" "}
+              <strong className="text-foreground">Desarrollo Web e Informática</strong>. Combina la práctica
+              autodidacta —montaje de circuitos, reparación de equipos, prototipado con Arduino, ESP32 y
+              Raspberry Pi— con formación formal en programación (JavaScript, TypeScript, React) y en
+              fundamentos de ingeniería electrónica.
+            </p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Es el único autor y editor de todo el contenido publicado en ElectroLab Pro. Cada calculadora
+              se implementa en <strong className="text-foreground">TypeScript</strong> con fórmulas
+              derivadas de bibliografía técnica reconocida y se contrasta con mediciones reales antes de
+              publicarse. Cada artículo educativo se revisa contra las hojas de datos de los fabricantes
+              (Texas Instruments, NXP, ON Semi, STMicroelectronics) y contra los libros de referencia
+              (Horowitz &amp; Hill, Sedra &amp; Smith, manuales de Arduino y Espressif).
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="rounded-lg border border-border bg-background/50 p-4 text-center">
+                <p className="text-2xl font-bold font-mono text-primary">+10</p>
+                <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mt-1">
+                  Años en electrónica
+                </p>
+              </div>
+              <div className="rounded-lg border border-border bg-background/50 p-4 text-center">
+                <p className="text-2xl font-bold font-mono text-primary">21+</p>
+                <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mt-1">
+                  Artículos técnicos publicados
+                </p>
+              </div>
+              <div className="rounded-lg border border-border bg-background/50 p-4 text-center">
+                <p className="text-2xl font-bold font-mono text-primary">9</p>
+                <p className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mt-1">
+                  Calculadoras interactivas
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-sm font-mono font-bold uppercase tracking-wider text-primary">
+                Áreas de experiencia demostrable
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-muted-foreground">
+                {[
+                  "Diseño de circuitos analógicos: divisores, filtros RC, polarización de transistores.",
+                  "Prototipado con Arduino, ESP32 y Raspberry Pi (proyectos con sensores, PWM, I²C, SPI).",
+                  "Selección y dimensionado de componentes pasivos (resistencias, condensadores, inductores).",
+                  "Soldadura through-hole y SMD (0805, 0603) con estación de temperatura controlada.",
+                  "Lectura e interpretación de datasheets de fabricantes internacionales.",
+                  "Desarrollo web moderno: React 18, TypeScript, Vite, Tailwind CSS.",
+                ].map((item) => (
+                  <li key={item} className="flex gap-2 items-start">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                    <span className="leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-sm font-mono font-bold uppercase tracking-wider text-primary">
+                Proyectos y publicaciones destacadas
+              </h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li className="flex gap-2 items-start">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">
+                    <strong className="text-foreground">ElectroLab Pro</strong> — plataforma de calculadoras
+                    y guías gratuitas en español; código propio en React 18 + TypeScript, publicada en
+                    electrolabpro.com desde 2024.
+                  </span>
+                </li>
+                <li className="flex gap-2 items-start">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">
+                    <Link to="/guia-resistencias" className="text-primary hover:underline">
+                      Guía completa de resistencias
+                    </Link>{" "}
+                    y{" "}
+                    <Link to="/articulos/ley-de-ohm" className="text-primary hover:underline">
+                      Ley de Ohm explicada
+                    </Link>
+                    : artículos de referencia con más de 3 000 palabras cada uno, validados contra IEC 60062.
+                  </span>
+                </li>
+                <li className="flex gap-2 items-start">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">
+                    <Link to="/articulos/soldadura" className="text-primary hover:underline">
+                      Guía de soldadura electrónica
+                    </Link>{" "}
+                    y{" "}
+                    <Link to="/articulos/diseno-pcb" className="text-primary hover:underline">
+                      diseño de PCB
+                    </Link>
+                    : tutoriales HowTo estructurados en schema.org para búsquedas educativas.
+                  </span>
+                </li>
+                <li className="flex gap-2 items-start">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">
+                    Colaboración activa en foros de electrónica en español, respondiendo consultas sobre
+                    Arduino, ESP32 y componentes pasivos.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <p className="text-xs text-muted-foreground italic pt-2 border-t border-border">
+              La autoría de todo el contenido publicado está firmada. Si detectás un error técnico,
+              escribinos a través de <Link to="/contacto" className="text-primary hover:underline font-semibold">Contacto</Link>{" "}
+              y lo corregimos con crédito público al reportante.
+            </p>
           </section>
 
           {/* What we offer */}
