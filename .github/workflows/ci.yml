@@ -49,12 +49,42 @@ jobs:
             --reporter=json --outputFile=reports/test-results.json \
             | tee reports/test-output.txt
 
+      # E2E-focused suite: modal (focus trap, Escape, close button),
+      # keyboard-only navigation on the calculator, edge cases and
+      # Amazon tracking links. Runs the same test files as the main
+      # vitest step but produces a dedicated JUnit report so failures
+      # here are surfaced independently in the CI summary.
+      - name: E2E suite (modals + keyboard + calculator)
+        id: e2e
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          mkdir -p reports/e2e
+          bunx vitest run \
+            "src/components/ColorBandCalculator.test.tsx" \
+            "src/components/ColorBandCalculator.keyboard.test.tsx" \
+            "src/components/ColorBandCalculator.edge.test.tsx" \
+            "src/components/ComponentDictionary.test.tsx" \
+            --reporter=default \
+            --reporter=junit --outputFile=reports/e2e/e2e-results.junit.xml \
+            --reporter=json --outputFile=reports/e2e/e2e-results.json \
+            | tee reports/e2e/e2e-output.txt
+
       - name: Upload lint & test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lint-test-reports
           path: reports/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload E2E report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report
+          path: reports/e2e/
           if-no-files-found: warn
           retention-days: 14
 
