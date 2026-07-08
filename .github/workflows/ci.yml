@@ -97,11 +97,12 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-      - name: Fail if lint or tests failed
-        if: steps.lint.outcome == 'failure' || steps.test.outcome == 'failure'
+      - name: Fail if lint, tests or E2E failed
+        if: steps.lint.outcome == 'failure' || steps.test.outcome == 'failure' || steps.e2e.outcome == 'failure'
         run: |
           echo "Lint outcome: ${{ steps.lint.outcome }}"
           echo "Test outcome: ${{ steps.test.outcome }}"
+          echo "E2E outcome:  ${{ steps.e2e.outcome }}"
           exit 1
 
       - name: Build
