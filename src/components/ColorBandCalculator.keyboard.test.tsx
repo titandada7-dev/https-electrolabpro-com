@@ -32,8 +32,10 @@ describe("ColorBandCalculator (keyboard a11y)", () => {
 
   it("los botones de color exponen focus ring visible (clase Tailwind focus:)", () => {
     render(<ColorBandCalculator />);
-    // Botón seleccionado usa ring-2 ring-primary — indicador visual claro.
-    const selected = screen.getByRole("button", { name: /^Marrón \(1\)$/ });
+    // Botón seleccionado (Banda 1 = Marrón por defecto) usa ring-2 ring-primary.
+    const label = screen.getByText(/^Banda 1$/).closest("label") as HTMLElement;
+    const section = label.parentElement as HTMLElement;
+    const selected = within(section).getByRole("button", { name: /^Marrón \(1\)$/ });
     expect(selected.className).toMatch(/ring-2/);
     expect(selected.className).toMatch(/ring-primary/);
   });
