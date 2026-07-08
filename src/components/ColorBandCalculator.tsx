@@ -185,6 +185,16 @@ export default function ColorBandCalculator() {
            style={{ color: "#39FF14", textShadow: "0 0 10px rgba(57, 255, 20, 0.3)" }}>
           {result.tolerance}
         </p>
+        {/* Screen-reader announcement: se actualiza al cambiar cualquier banda */}
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          data-testid="resistor-live-announcer"
+          className="sr-only"
+        >
+          Valor de la resistencia: {result.formatted}, tolerancia {result.tolerance}
+        </div>
       </div>
 
       {/* Band selectors */}
