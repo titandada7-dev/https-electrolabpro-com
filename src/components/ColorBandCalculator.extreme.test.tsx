@@ -37,7 +37,7 @@ describe("ColorBandCalculator — E2E: selecciones inválidas y valores extremos
     selectColor(/^Banda 2$/, /^Negro \(0\)$/);
     selectColor(/^Multiplicador$/, /^Negro \(×1\)$/);
     const text = displayText();
-    expect(text).toMatch(/\b0\s*Ω\b/);
+    expect(text).toMatch(/(?:^|[^0-9.])0\s*Ω/);
     assertNoInvalidTokens(text);
   });
 
@@ -55,7 +55,7 @@ describe("ColorBandCalculator — E2E: selecciones inválidas y valores extremos
     selectColor(/^Banda 2$/, /^Negro \(0\)$/);
     selectColor(/^Multiplicador$/, /^Dorado \(×0\.1\)$/);
     const text = displayText();
-    expect(text).toMatch(/\b1\s*Ω\b/);
+    expect(text).toMatch(/(?:^|[^0-9.])1\s*Ω/);
     assertNoInvalidTokens(text);
   });
 

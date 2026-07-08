@@ -47,7 +47,7 @@ describe("AdSenseSlot — sidebar (panel 'Publicidad')", () => {
     const aside = screen.getByRole("complementary", { name: /Publicidad lateral/i });
     expect(aside.tagName).toBe("ASIDE");
     // El texto "Publicidad" aparece en el header del panel lateral.
-    expect(screen.getByText(/Publicidad/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Publicidad/i).length).toBeGreaterThan(0);
   });
 
   it("usa clases responsive Tailwind: oculto en móvil, visible en xl+ (fixed, 160px ancho)", () => {
