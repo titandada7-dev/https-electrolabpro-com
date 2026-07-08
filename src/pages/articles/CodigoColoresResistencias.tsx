@@ -31,29 +31,29 @@ const CodigoColoresResistencias = () => {
       <p>
         Antes de empezar con los ejemplos, memoriza (o guarda como referencia) esta tabla:
       </p>
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+      <div className="overflow-x-auto rounded-lg border border-border">
+        <table className="w-full text-sm overflow-hidden">
           <thead>
-            <tr className="bg-secondary text-foreground">
+            <tr className="bg-[#1a1a1a] text-white">
               <th className="px-3 py-2 text-left font-mono">Color</th>
               <th className="px-3 py-2 text-left font-mono">Dígito</th>
               <th className="px-3 py-2 text-left font-mono">Multiplicador</th>
               <th className="px-3 py-2 text-left font-mono">Tolerancia</th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="border-t border-border"><td className="px-3 py-2">Negro</td><td className="px-3 py-2 font-mono">0</td><td className="px-3 py-2 font-mono">×1</td><td className="px-3 py-2">—</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Marrón</td><td className="px-3 py-2 font-mono">1</td><td className="px-3 py-2 font-mono">×10</td><td className="px-3 py-2 font-mono">±1%</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Rojo</td><td className="px-3 py-2 font-mono">2</td><td className="px-3 py-2 font-mono">×100</td><td className="px-3 py-2 font-mono">±2%</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Naranja</td><td className="px-3 py-2 font-mono">3</td><td className="px-3 py-2 font-mono">×1k</td><td className="px-3 py-2">—</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Amarillo</td><td className="px-3 py-2 font-mono">4</td><td className="px-3 py-2 font-mono">×10k</td><td className="px-3 py-2">—</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Verde</td><td className="px-3 py-2 font-mono">5</td><td className="px-3 py-2 font-mono">×100k</td><td className="px-3 py-2 font-mono">±0.5%</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Azul</td><td className="px-3 py-2 font-mono">6</td><td className="px-3 py-2 font-mono">×1M</td><td className="px-3 py-2 font-mono">±0.25%</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Violeta</td><td className="px-3 py-2 font-mono">7</td><td className="px-3 py-2 font-mono">×10M</td><td className="px-3 py-2 font-mono">±0.1%</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Gris</td><td className="px-3 py-2 font-mono">8</td><td className="px-3 py-2 font-mono">×100M</td><td className="px-3 py-2 font-mono">±0.05%</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Blanco</td><td className="px-3 py-2 font-mono">9</td><td className="px-3 py-2 font-mono">×1G</td><td className="px-3 py-2">—</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Dorado</td><td className="px-3 py-2">—</td><td className="px-3 py-2 font-mono">×0.1</td><td className="px-3 py-2 font-mono">±5%</td></tr>
-            <tr className="border-t border-border"><td className="px-3 py-2">Plateado</td><td className="px-3 py-2">—</td><td className="px-3 py-2 font-mono">×0.01</td><td className="px-3 py-2 font-mono">±10%</td></tr>
+          <tbody className="bg-[#1a1a1a]">
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Negro</td><td className="px-3 py-2 font-mono text-white/90">0</td><td className="px-3 py-2 font-mono text-white/90">×1</td><td className="px-3 py-2 text-white/90">—</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Marrón</td><td className="px-3 py-2 font-mono text-white/90">1</td><td className="px-3 py-2 font-mono text-white/90">×10</td><td className="px-3 py-2 font-mono text-white/90">±1%</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Rojo</td><td className="px-3 py-2 font-mono text-white/90">2</td><td className="px-3 py-2 font-mono text-white/90">×100</td><td className="px-3 py-2 font-mono text-white/90">±2%</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Naranja</td><td className="px-3 py-2 font-mono text-white/90">3</td><td className="px-3 py-2 font-mono text-white/90">×1k</td><td className="px-3 py-2 text-white/90">—</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Amarillo</td><td className="px-3 py-2 font-mono text-white/90">4</td><td className="px-3 py-2 font-mono text-white/90">×10k</td><td className="px-3 py-2 text-white/90">—</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Verde</td><td className="px-3 py-2 font-mono text-white/90">5</td><td className="px-3 py-2 font-mono text-white/90">×100k</td><td className="px-3 py-2 font-mono text-white/90">±0.5%</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Azul</td><td className="px-3 py-2 font-mono text-white/90">6</td><td className="px-3 py-2 font-mono text-white/90">×1M</td><td className="px-3 py-2 font-mono text-white/90">±0.25%</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Violeta</td><td className="px-3 py-2 font-mono text-white/90">7</td><td className="px-3 py-2 font-mono text-white/90">×10M</td><td className="px-3 py-2 font-mono text-white/90">±0.1%</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Gris</td><td className="px-3 py-2 font-mono text-white/90">8</td><td className="px-3 py-2 font-mono text-white/90">×100M</td><td className="px-3 py-2 font-mono text-white/90">±0.05%</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Blanco</td><td className="px-3 py-2 font-mono text-white/90">9</td><td className="px-3 py-2 font-mono text-white/90">×1G</td><td className="px-3 py-2 text-white/90">—</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Dorado</td><td className="px-3 py-2 text-white/90">—</td><td className="px-3 py-2 font-mono text-white/90">×0.1</td><td className="px-3 py-2 font-mono text-white/90">±5%</td></tr>
+            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Plateado</td><td className="px-3 py-2 text-white/90">—</td><td className="px-3 py-2 font-mono text-white/90">×0.01</td><td className="px-3 py-2 font-mono text-white/90">±10%</td></tr>
           </tbody>
         </table>
       </div>
