@@ -1,11 +1,37 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
 import resistorImg from "@/assets/resistor-color-code.png";
 import PlayCTA from "@/components/PlayCTA";
 import AplicaloAhora from "@/components/AplicaloAhora";
 
+type TableTheme = "matte" | "dark" | "light";
+
+const TABLE_THEMES: Record<TableTheme, { label: string; bg: string; text: string; border: string; header: string }> = {
+  matte: { label: "Negro mate", bg: "bg-[#1a1a1a]", text: "text-white/90", border: "border-white/10", header: "bg-[#1a1a1a] text-white" },
+  dark:  { label: "Gris oscuro", bg: "bg-[#374151]", text: "text-white/90", border: "border-white/15", header: "bg-[#1f2937] text-white" },
+  light: { label: "Claro", bg: "bg-[#f3f4f6]", text: "text-slate-800", border: "border-slate-300", header: "bg-slate-200 text-slate-900" },
+};
+
+const STORAGE_KEY = "resistor-color-table-theme";
+
 const CodigoColoresResistencias = () => {
+  const [tableTheme, setTableTheme] = useState<TableTheme>("matte");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY) as TableTheme | null;
+      if (saved && saved in TABLE_THEMES) setTableTheme(saved);
+    } catch { /* no-op */ }
+  }, []);
+
+  const setTheme = (t: TableTheme) => {
+    setTableTheme(t);
+    try { localStorage.setItem(STORAGE_KEY, t); } catch { /* no-op */ }
+  };
+
+  const th = TABLE_THEMES[tableTheme];
   return (
     <ArticleLayout
       title="Guía Definitiva: Cómo Leer el Código de Colores de las Resistencias"
