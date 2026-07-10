@@ -1,11 +1,37 @@
 import ArticleLayout from "@/pages/ArticleLayout";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
 import resistorImg from "@/assets/resistor-color-code.png";
 import PlayCTA from "@/components/PlayCTA";
 import AplicaloAhora from "@/components/AplicaloAhora";
 
+type TableTheme = "matte" | "dark" | "light";
+
+const TABLE_THEMES: Record<TableTheme, { label: string; bg: string; text: string; border: string; header: string }> = {
+  matte: { label: "Negro mate", bg: "bg-[#1a1a1a]", text: "text-white/90", border: "border-white/10", header: "bg-[#1a1a1a] text-white" },
+  dark:  { label: "Gris oscuro", bg: "bg-[#374151]", text: "text-white/90", border: "border-white/15", header: "bg-[#1f2937] text-white" },
+  light: { label: "Claro", bg: "bg-[#f3f4f6]", text: "text-slate-800", border: "border-slate-300", header: "bg-slate-200 text-slate-900" },
+};
+
+const STORAGE_KEY = "resistor-color-table-theme";
+
 const CodigoColoresResistencias = () => {
+  const [tableTheme, setTableTheme] = useState<TableTheme>("matte");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY) as TableTheme | null;
+      if (saved && saved in TABLE_THEMES) setTableTheme(saved);
+    } catch { /* no-op */ }
+  }, []);
+
+  const setTheme = (t: TableTheme) => {
+    setTableTheme(t);
+    try { localStorage.setItem(STORAGE_KEY, t); } catch { /* no-op */ }
+  };
+
+  const th = TABLE_THEMES[tableTheme];
   return (
     <ArticleLayout
       title="Guía Definitiva: Cómo Leer el Código de Colores de las Resistencias"
@@ -31,32 +57,60 @@ const CodigoColoresResistencias = () => {
       <p>
         Antes de empezar con los ejemplos, memoriza (o guarda como referencia) esta tabla:
       </p>
+      <div className="flex flex-wrap items-center gap-2 mb-3" role="group" aria-label="Selector de fondo de la tabla">
+        <span className="text-xs text-muted-foreground mr-1">Fondo de la tabla:</span>
+        {(Object.keys(TABLE_THEMES) as TableTheme[]).map((key) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setTheme(key)}
+            aria-pressed={tableTheme === key}
+            className={`px-3 py-1.5 rounded-md text-xs font-medium border transition-colors ${
+              tableTheme === key
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-card text-foreground hover:bg-secondary"
+            }`}
+          >
+            {TABLE_THEMES[key].label}
+          </button>
+        ))}
+      </div>
       <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm overflow-hidden">
           <thead>
-            <tr className="bg-[#1a1a1a] text-white">
+            <tr className={th.header}>
               <th className="px-3 py-2 text-left font-mono">Color</th>
               <th className="px-3 py-2 text-left font-mono">Dígito</th>
               <th className="px-3 py-2 text-left font-mono">Multiplicador</th>
               <th className="px-3 py-2 text-left font-mono">Tolerancia</th>
             </tr>
           </thead>
-          <tbody className="bg-[#1a1a1a]">
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Negro</td><td className="px-3 py-2 font-mono text-white/90">0</td><td className="px-3 py-2 font-mono text-white/90">×1</td><td className="px-3 py-2 text-white/90">—</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Marrón</td><td className="px-3 py-2 font-mono text-white/90">1</td><td className="px-3 py-2 font-mono text-white/90">×10</td><td className="px-3 py-2 font-mono text-white/90">±1%</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Rojo</td><td className="px-3 py-2 font-mono text-white/90">2</td><td className="px-3 py-2 font-mono text-white/90">×100</td><td className="px-3 py-2 font-mono text-white/90">±2%</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Naranja</td><td className="px-3 py-2 font-mono text-white/90">3</td><td className="px-3 py-2 font-mono text-white/90">×1k</td><td className="px-3 py-2 text-white/90">—</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Amarillo</td><td className="px-3 py-2 font-mono text-white/90">4</td><td className="px-3 py-2 font-mono text-white/90">×10k</td><td className="px-3 py-2 text-white/90">—</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Verde</td><td className="px-3 py-2 font-mono text-white/90">5</td><td className="px-3 py-2 font-mono text-white/90">×100k</td><td className="px-3 py-2 font-mono text-white/90">±0.5%</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Azul</td><td className="px-3 py-2 font-mono text-white/90">6</td><td className="px-3 py-2 font-mono text-white/90">×1M</td><td className="px-3 py-2 font-mono text-white/90">±0.25%</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Violeta</td><td className="px-3 py-2 font-mono text-white/90">7</td><td className="px-3 py-2 font-mono text-white/90">×10M</td><td className="px-3 py-2 font-mono text-white/90">±0.1%</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Gris</td><td className="px-3 py-2 font-mono text-white/90">8</td><td className="px-3 py-2 font-mono text-white/90">×100M</td><td className="px-3 py-2 font-mono text-white/90">±0.05%</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Blanco</td><td className="px-3 py-2 font-mono text-white/90">9</td><td className="px-3 py-2 font-mono text-white/90">×1G</td><td className="px-3 py-2 text-white/90">—</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Dorado</td><td className="px-3 py-2 text-white/90">—</td><td className="px-3 py-2 font-mono text-white/90">×0.1</td><td className="px-3 py-2 font-mono text-white/90">±5%</td></tr>
-            <tr className="border-t border-white/10"><td className="px-3 py-2 text-white/90">Plateado</td><td className="px-3 py-2 text-white/90">—</td><td className="px-3 py-2 font-mono text-white/90">×0.01</td><td className="px-3 py-2 font-mono text-white/90">±10%</td></tr>
+          <tbody className={th.bg}>
+            {[
+              ["Negro", "0", "×1", "—"],
+              ["Marrón", "1", "×10", "±1%"],
+              ["Rojo", "2", "×100", "±2%"],
+              ["Naranja", "3", "×1k", "—"],
+              ["Amarillo", "4", "×10k", "—"],
+              ["Verde", "5", "×100k", "±0.5%"],
+              ["Azul", "6", "×1M", "±0.25%"],
+              ["Violeta", "7", "×10M", "±0.1%"],
+              ["Gris", "8", "×100M", "±0.05%"],
+              ["Blanco", "9", "×1G", "—"],
+              ["Dorado", "—", "×0.1", "±5%"],
+              ["Plateado", "—", "×0.01", "±10%"],
+            ].map(([color, digit, mult, tol]) => (
+              <tr key={color} className={`border-t ${th.border}`}>
+                <td className={`px-3 py-2 ${th.text}`}>{color}</td>
+                <td className={`px-3 py-2 font-mono ${th.text}`}>{digit}</td>
+                <td className={`px-3 py-2 font-mono ${th.text}`}>{mult}</td>
+                <td className={`px-3 py-2 font-mono ${th.text}`}>{tol}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
+
 
       <PlayCTA topic="resistencias" />
 
