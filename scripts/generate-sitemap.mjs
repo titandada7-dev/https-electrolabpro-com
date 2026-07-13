@@ -1,5 +1,5 @@
 // Genera public/sitemap.xml antes de `vite dev` y `vite build`.
-// Usa dominio canónico https://www.electrolabpro.com (con www).
+// Usa dominio canónico https://electrolabpro.com (con www).
 //
 // Auto-discovery:
 //   - Calculadoras interactivas → se leen de src/data/calculatorRoutes.ts
@@ -13,7 +13,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const BASE_URL = "https://www.electrolabpro.com";
+const BASE_URL = "https://electrolabpro.com";
 
 // -----------------------------------------------------------------------------
 // REGLAS DE INDEXACIÓN

@@ -1,11 +1,11 @@
 // Genera public/sitemap.xml antes de `vite dev` y `vite build`.
-// Mantiene todas las URLs en https://www.electrolabpro.com (canónicas www).
+// Mantiene todas las URLs en https://electrolabpro.com (canónicas www).
 // Para añadir/eliminar páginas, edita el array `entries` más abajo.
 
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://www.electrolabpro.com";
+const BASE_URL = "https://electrolabpro.com";
 
 interface SitemapEntry {
   path: string;

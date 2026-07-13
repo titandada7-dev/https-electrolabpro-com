@@ -7,7 +7,7 @@ import path from "node:path";
  * Garantizan que las URLs críticas (incluida la landing del juego)
  * estén presentes con la prioridad correcta para SEO.
  */
-const HOST = "https://www.electrolabpro.com";
+const HOST = "https://electrolabpro.com";
 
 describe("sitemap.xml", () => {
   let xml: string;
@@ -28,7 +28,7 @@ describe("sitemap.xml", () => {
 
   it("la entrada /aprende-jugando tiene priority 0.9", () => {
     const match = xml.match(
-      /<url>\s*<loc>https:\/\/www\.electrolabpro\.com\/aprende-jugando<\/loc>[\s\S]*?<\/url>/
+      /<url>\s*<loc>https:\/\/electrolabpro\.com\/aprende-jugando<\/loc>[\s\S]*?<\/url>/
     );
     expect(match).not.toBeNull();
     expect(match![0]).toContain("<priority>0.9</priority>");
@@ -36,7 +36,7 @@ describe("sitemap.xml", () => {
 
   it("la entrada /aprende-jugando tiene changefreq weekly", () => {
     const match = xml.match(
-      /<url>\s*<loc>https:\/\/www\.electrolabpro\.com\/aprende-jugando<\/loc>[\s\S]*?<\/url>/
+      /<url>\s*<loc>https:\/\/electrolabpro\.com\/aprende-jugando<\/loc>[\s\S]*?<\/url>/
     );
     expect(match![0]).toContain("<changefreq>weekly</changefreq>");
   });
@@ -49,7 +49,7 @@ describe("sitemap.xml", () => {
 
   it("la home tiene priority 1.0", () => {
     const match = xml.match(
-      /<url>\s*<loc>https:\/\/www\.electrolabpro\.com\/<\/loc>[\s\S]*?<\/url>/
+      /<url>\s*<loc>https:\/\/electrolabpro\.com\/<\/loc>[\s\S]*?<\/url>/
     );
     expect(match).not.toBeNull();
     expect(match![0]).toContain("<priority>1.0</priority>");
