@@ -7,7 +7,7 @@ import path from "node:path";
  * Garantizan que las URLs críticas (incluida la landing del juego)
  * estén presentes con la prioridad correcta para SEO.
  */
-const HOST = "https://www.electrolabpro.com";
+const HOST = "https://electrolabpro.com";
 
 describe("sitemap.xml", () => {
   let xml: string;

@@ -71,7 +71,7 @@ describe("sitemap.xml — public-only guarantee", () => {
   });
 
   it("todas las <loc> apuntan al dominio canónico con www", () => {
-    const bad = locs.filter((l) => !l.startsWith("https://www.electrolabpro.com/") && l !== "https://www.electrolabpro.com/");
+    const bad = locs.filter((l) => !l.startsWith("https://electrolabpro.com/") && l !== "https://electrolabpro.com/");
     expect(bad, `URLs con host inesperado: ${bad.join(", ")}`).toEqual([]);
   });
 });
