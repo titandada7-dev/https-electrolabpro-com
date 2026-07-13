@@ -3,6 +3,14 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 
+// Redirección canónica: www.electrolabpro.com → electrolabpro.com
+// Evita contenido duplicado para SEO. Preserva ruta, query y hash.
+if (typeof window !== "undefined" && window.location.hostname === "www.electrolabpro.com") {
+  const { pathname, search, hash } = window.location;
+  window.location.replace(`https://electrolabpro.com${pathname}${search}${hash}`);
+}
+
+
 // Guard: unregister service workers in preview/iframe contexts
 const isInIframe = (() => {
   try {
