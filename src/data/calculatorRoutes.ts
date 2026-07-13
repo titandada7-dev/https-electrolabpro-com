@@ -30,7 +30,7 @@ export interface CalculatorSeoMeta {
   keyword: string;
 }
 
-export const SITE_URL = "https://www.electrolabpro.com";
+export const SITE_URL = "https://electrolabpro.com";
 
 export const CALCULATOR_ROUTES: CalculatorSeoMeta[] = [
   {
