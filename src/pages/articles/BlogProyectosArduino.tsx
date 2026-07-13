@@ -185,7 +185,7 @@ const BlogProyectosArduino = () => {
           href="https://www.amazon.es/s?k=kit+arduino+completo+principiantes+sensores&tag=electrolabp0c-21"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(30,90%,50%)] hover:bg-[hsl(30,90%,45%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(30,90%,50%,0.3)]"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[hsl(25,90%,35%)] hover:bg-[hsl(25,90%,30%)] text-white font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_hsl(25,90%,35%,0.3)]"
         >
           <ShoppingCart className="w-4 h-4" />
           Ver kits de Arduino en Amazon
