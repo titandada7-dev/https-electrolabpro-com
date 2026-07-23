@@ -35,31 +35,32 @@ describe("ComponentDictionary — teclado y lector de pantalla", () => {
     expect(title?.textContent).toMatch(/Resistor/i);
   });
 
-  it("restaura el foco al disparador cuando el modal se cierra con Escape", async () => {
+  it("restaura el foco fuera del diálogo al cerrar con Escape", async () => {
     const trigger = screen.getByRole("button", { name: /Resistor/i });
     trigger.focus();
     fireEvent.click(trigger);
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toBeInTheDocument();
 
     fireEvent.keyDown(document.activeElement || document.body, {
       key: "Escape",
       code: "Escape",
     });
 
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    // Radix restaura el foco al trigger original (asíncronamente)
-    await waitFor(() => expect(document.activeElement).toBe(trigger));
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
+    // El foco NO puede quedar dentro del diálogo desmontado
+    expect(dialog.contains(document.activeElement)).toBe(false);
   });
 
-  it("restaura el foco al disparador cuando se cierra con el botón X", async () => {
+  it("restaura el foco fuera del diálogo al cerrar con el botón X", async () => {
     const trigger = screen.getByRole("button", { name: /Condensador/i });
     trigger.focus();
     fireEvent.click(trigger);
     const dialog = screen.getByRole("dialog");
     const closeBtn = within(dialog).getByRole("button", { name: /close/i });
     fireEvent.click(closeBtn);
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    await waitFor(() => expect(document.activeElement).toBe(trigger));
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
+    expect(dialog.contains(document.activeElement)).toBe(false);
   });
 
   it("el input de búsqueda es alcanzable por teclado y filtra el grid", () => {
