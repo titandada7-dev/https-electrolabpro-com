@@ -124,6 +124,27 @@ html {
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+
+  /* Global keyboard focus indicator — visible only for keyboard users.
+     Ensures every interactive element (links, buttons, custom [role=button],
+     summary, form controls, tabindex nodes) exposes a WCAG 2.4.7 focus ring
+     even when a shadcn/per-component focus style was not applied. */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  [role="link"]:focus-visible,
+  [role="menuitem"]:focus-visible,
+  [role="option"]:focus-visible,
+  [role="tab"]:focus-visible,
+  summary:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:not([tabindex="-1"]):focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
 }
 
 /* Estilos específicos para herramientas interactivas */
