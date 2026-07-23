@@ -35,7 +35,7 @@ describe("ComponentDictionary — teclado y lector de pantalla", () => {
     expect(title?.textContent).toMatch(/Resistor/i);
   });
 
-  it("restaura el foco al disparador cuando el modal se cierra con Escape", () => {
+  it("restaura el foco al disparador cuando el modal se cierra con Escape", async () => {
     const trigger = screen.getByRole("button", { name: /Resistor/i });
     trigger.focus();
     fireEvent.click(trigger);
@@ -47,11 +47,11 @@ describe("ComponentDictionary — teclado y lector de pantalla", () => {
     });
 
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    // Radix restaura el foco al trigger original
-    expect(document.activeElement).toBe(trigger);
+    // Radix restaura el foco al trigger original (asíncronamente)
+    await waitFor(() => expect(document.activeElement).toBe(trigger));
   });
 
-  it("restaura el foco al disparador cuando se cierra con el botón X", () => {
+  it("restaura el foco al disparador cuando se cierra con el botón X", async () => {
     const trigger = screen.getByRole("button", { name: /Condensador/i });
     trigger.focus();
     fireEvent.click(trigger);
@@ -59,7 +59,7 @@ describe("ComponentDictionary — teclado y lector de pantalla", () => {
     const closeBtn = within(dialog).getByRole("button", { name: /close/i });
     fireEvent.click(closeBtn);
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(document.activeElement).toBe(trigger);
+    await waitFor(() => expect(document.activeElement).toBe(trigger));
   });
 
   it("el input de búsqueda es alcanzable por teclado y filtra el grid", () => {
