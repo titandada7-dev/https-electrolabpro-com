@@ -20,6 +20,22 @@ class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error("[ErrorBoundary]", error, errorInfo);
     this.setState({ errorInfo });
+
+    // Si el fallo viene de un archivo de una versión anterior del sitio,
+    // recargamos una vez para tomar la versión publicada más reciente.
+    const message = error?.message ?? "";
+    const isStaleBundle =
+      /dynamically imported module|Loading chunk|Importing a module script failed/i.test(
+        message
+      );
+    if (isStaleBundle && sessionStorage.getItem("elp:boundary-reload") !== "1") {
+      try {
+        sessionStorage.setItem("elp:boundary-reload", "1");
+      } catch {
+        /* ignorar */
+      }
+      window.location.reload();
+    }
   }
 
   handleReload = () => {
