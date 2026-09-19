@@ -2,23 +2,17 @@ import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
-import { clearChunkReloadFlag } from "./lib/lazyWithRetry";
+import { reloadWithFreshAssets, scheduleChunkRecoveryReset } from "./lib/lazyWithRetry";
 
-// La app arrancó bien: habilitamos otra recarga automática si en el futuro
-// aparece un despliegue nuevo con archivos renombrados.
-clearChunkReloadFlag();
+// Esperamos a que la versión haya permanecido estable antes de habilitar otra
+// recuperación. Limpiar el indicador al iniciar podía provocar recargas en bucle.
+scheduleChunkRecoveryReset();
 
 // Vite avisa cuando un chunk precargado ya no existe (build nuevo publicado).
 // Recargamos una sola vez para tomar el index.html actualizado.
 window.addEventListener("vite:preloadError", (event) => {
   event.preventDefault();
-  if (sessionStorage.getItem("elp:preload-reload") === "1") return;
-  try {
-    sessionStorage.setItem("elp:preload-reload", "1");
-  } catch {
-    /* ignorar */
-  }
-  window.location.reload();
+  void reloadWithFreshAssets();
 });
 
 // Redirección canónica: www.electrolabpro.com → electrolabpro.com

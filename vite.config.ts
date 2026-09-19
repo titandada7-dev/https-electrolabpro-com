@@ -63,7 +63,13 @@ export default defineConfig(({ mode }) => ({
         enabled: false,
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
+        // El documento principal nunca se guarda en la PWA: así no puede seguir
+        // apuntando a chunks con hashes de una publicación anterior.
+        globPatterns: ["**/*.{js,css,ico,png,svg,woff2}"],
+        navigateFallback: null,
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         navigateFallbackDenylist: [/^\/~oauth/],
         runtimeCaching: [
           {

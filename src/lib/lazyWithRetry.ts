@@ -15,8 +15,10 @@ import { lazy, type ComponentType } from "react";
  */
 
 const RELOAD_FLAG = "elp:chunk-reload";
+const REFRESH_PARAM = "_elp_refresh";
+const RECOVERY_WINDOW_MS = 30_000;
 
-const isChunkLoadError = (error: unknown) => {
+export const isChunkLoadError = (error: unknown) => {
   const message = error instanceof Error ? error.message : String(error ?? "");
   return (
     /dynamically imported module/i.test(message) ||
@@ -25,6 +27,48 @@ const isChunkLoadError = (error: unknown) => {
     )
   );
 };
+
+/**
+ * Elimina caches locales y navega a una URL única. `location.reload()` puede
+ * reutilizar el mismo documento desde una capa intermedia; el parámetro fuerza
+ * una petición nueva del index sin cambiar la ruta visible de forma permanente.
+ */
+export async function reloadWithFreshAssets(): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+
+  const now = Date.now();
+  let lastRecovery = 0;
+  try {
+    lastRecovery = Number(sessionStorage.getItem(RELOAD_FLAG) ?? "0");
+  } catch {
+    /* sessionStorage puede estar bloqueado */
+  }
+
+  const url = new URL(window.location.href);
+  const cameFromRecovery = url.searchParams.has(REFRESH_PARAM);
+  if (cameFromRecovery || now - lastRecovery < RECOVERY_WINDOW_MS) return false;
+
+  try {
+    sessionStorage.setItem(RELOAD_FLAG, String(now));
+  } catch {
+    /* seguimos con el parámetro de URL como protección contra bucles */
+  }
+
+  try {
+    const registrations = await navigator.serviceWorker?.getRegistrations();
+    await Promise.all((registrations ?? []).map((registration) => registration.unregister()));
+    if (typeof caches !== "undefined") {
+      const keys = await caches.keys();
+      await Promise.all(keys.map((key) => caches.delete(key)));
+    }
+  } catch {
+    /* sin service worker o Cache API: la navegación fresca sigue siendo válida */
+  }
+
+  url.searchParams.set(REFRESH_PARAM, String(now));
+  window.location.replace(url.toString());
+  return true;
+}
 
 export function lazyWithRetry<T extends ComponentType<never>>(
   factory: () => Promise<{ default: T }>
@@ -39,29 +83,7 @@ export function lazyWithRetry<T extends ComponentType<never>>(
       try {
         return await factory();
       } catch (retryError) {
-        const alreadyReloaded =
-          typeof sessionStorage !== "undefined" &&
-          sessionStorage.getItem(RELOAD_FLAG) === "1";
-
-        if (!alreadyReloaded && typeof window !== "undefined") {
-          try {
-            sessionStorage.setItem(RELOAD_FLAG, "1");
-          } catch {
-            /* modo privado: seguimos igual */
-          }
-          // Limpiamos caches del service worker para no volver a servir el
-          // index.html viejo que apunta a hashes inexistentes.
-          try {
-            const registrations = await navigator.serviceWorker?.getRegistrations();
-            await Promise.all((registrations ?? []).map((r) => r.unregister()));
-            if (typeof caches !== "undefined") {
-              const keys = await caches.keys();
-              await Promise.all(keys.map((k) => caches.delete(k)));
-            }
-          } catch {
-            /* sin service worker: ignorar */
-          }
-          window.location.reload();
+        if (await reloadWithFreshAssets()) {
           // Promesa que nunca resuelve: evitamos renderizar el error mientras recarga.
           return await new Promise<{ default: T }>(() => {});
         }
@@ -72,13 +94,21 @@ export function lazyWithRetry<T extends ComponentType<never>>(
   });
 }
 
-/** Limpia el flag cuando la app arranca correctamente. */
-export function clearChunkReloadFlag() {
-  try {
-    sessionStorage.removeItem(RELOAD_FLAG);
-    sessionStorage.removeItem("elp:preload-reload");
-    sessionStorage.removeItem("elp:boundary-reload");
-  } catch {
-    /* ignorar */
-  }
+/**
+ * Considera estable la versión sólo después de que sus imports tuvieron tiempo
+ * de ejecutarse. Antes se limpiaba al iniciar y eso permitía un bucle de recarga.
+ */
+export function scheduleChunkRecoveryReset() {
+  window.setTimeout(() => {
+    try {
+      sessionStorage.removeItem(RELOAD_FLAG);
+    } catch {
+      /* ignorar */
+    }
+
+    const url = new URL(window.location.href);
+    if (url.searchParams.delete(REFRESH_PARAM)) {
+      window.history.replaceState(window.history.state, "", url.toString());
+    }
+  }, RECOVERY_WINDOW_MS);
 }

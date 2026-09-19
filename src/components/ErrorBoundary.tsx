@@ -1,4 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from "react";
+import { isChunkLoadError, reloadWithFreshAssets } from "@/lib/lazyWithRetry";
 
 interface Props {
   children: ReactNode;
@@ -23,18 +24,8 @@ class ErrorBoundary extends Component<Props, State> {
 
     // Si el fallo viene de un archivo de una versión anterior del sitio,
     // recargamos una vez para tomar la versión publicada más reciente.
-    const message = error?.message ?? "";
-    const isStaleBundle =
-      /dynamically imported module|Loading chunk|Importing a module script failed/i.test(
-        message
-      );
-    if (isStaleBundle && sessionStorage.getItem("elp:boundary-reload") !== "1") {
-      try {
-        sessionStorage.setItem("elp:boundary-reload", "1");
-      } catch {
-        /* ignorar */
-      }
-      window.location.reload();
+    if (isChunkLoadError(error)) {
+      void reloadWithFreshAssets();
     }
   }
 
