@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { Suspense, useEffect } from "react";
+import { lazyWithRetry } from "./lib/lazyWithRetry";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
 import NavButtons from "./components/NavButtons";
@@ -16,68 +17,68 @@ const shouldLoadDomainDebug = (() => {
   return new URLSearchParams(window.location.search).get("debug") === "domains";
 })();
 const DomainDebugBanner = shouldLoadDomainDebug
-  ? lazy(() => import("./components/DomainDebugBanner"))
+  ? lazyWithRetry(() => import("./components/DomainDebugBanner"))
   : null;
 // Banners no críticos: lazy para no bloquear el render inicial / LCP de Home.
-const CookieBanner = lazy(() => import("./components/CookieBanner"));
-const PWAInstallPrompt = lazy(() => import("./components/PWAInstallPrompt"));
+const CookieBanner = lazyWithRetry(() => import("./components/CookieBanner"));
+const PWAInstallPrompt = lazyWithRetry(() => import("./components/PWAInstallPrompt"));
 
 // Páginas legales y secundarias en lazy: reducen el JS inicial cargado en Home
-const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
-const Contacto = lazy(() => import("./pages/Contacto"));
-const AvisoLegal = lazy(() => import("./pages/AvisoLegal"));
-const SobreNosotros = lazy(() => import("./pages/SobreNosotros"));
-const TerminosCondiciones = lazy(() => import("./pages/TerminosCondiciones"));
-const PoliticaReembolsos = lazy(() => import("./pages/PoliticaReembolsos"));
-const Glosario = lazy(() => import("./pages/Glosario"));
-const AprendeJugando = lazy(() => import("./pages/AprendeJugando"));
-const DocumentacionTecnica = lazy(() => import("./pages/DocumentacionTecnica"));
-const GuiaResistencias = lazy(() => import("./pages/GuiaResistencias"));
-const GuiaMultimetro = lazy(() => import("./pages/GuiaMultimetro"));
-const Auth = lazy(() => import("./pages/Auth"));
-const Premium = lazy(() => import("./pages/Premium"));
-const Account = lazy(() => import("./pages/Account"));
-const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const PremiumHub = lazy(() => import("./pages/premium/PremiumHub"));
-const PremiumSimulador = lazy(() => import("./pages/premium/SimuladorCircuitos"));
-const PremiumCalculadoras = lazy(() => import("./pages/premium/CalculadorasAvanzadas"));
-const PremiumBiblioteca = lazy(() => import("./pages/premium/Biblioteca"));
-const PalettePreview = lazy(() => import("./pages/PalettePreview"));
+const PrivacyPolicy = lazyWithRetry(() => import("./pages/PrivacyPolicy"));
+const Contacto = lazyWithRetry(() => import("./pages/Contacto"));
+const AvisoLegal = lazyWithRetry(() => import("./pages/AvisoLegal"));
+const SobreNosotros = lazyWithRetry(() => import("./pages/SobreNosotros"));
+const TerminosCondiciones = lazyWithRetry(() => import("./pages/TerminosCondiciones"));
+const PoliticaReembolsos = lazyWithRetry(() => import("./pages/PoliticaReembolsos"));
+const Glosario = lazyWithRetry(() => import("./pages/Glosario"));
+const AprendeJugando = lazyWithRetry(() => import("./pages/AprendeJugando"));
+const DocumentacionTecnica = lazyWithRetry(() => import("./pages/DocumentacionTecnica"));
+const GuiaResistencias = lazyWithRetry(() => import("./pages/GuiaResistencias"));
+const GuiaMultimetro = lazyWithRetry(() => import("./pages/GuiaMultimetro"));
+const Auth = lazyWithRetry(() => import("./pages/Auth"));
+const Premium = lazyWithRetry(() => import("./pages/Premium"));
+const Account = lazyWithRetry(() => import("./pages/Account"));
+const Unsubscribe = lazyWithRetry(() => import("./pages/Unsubscribe"));
+const NotFound = lazyWithRetry(() => import("./pages/NotFound"));
+const PremiumHub = lazyWithRetry(() => import("./pages/premium/PremiumHub"));
+const PremiumSimulador = lazyWithRetry(() => import("./pages/premium/SimuladorCircuitos"));
+const PremiumCalculadoras = lazyWithRetry(() => import("./pages/premium/CalculadorasAvanzadas"));
+const PremiumBiblioteca = lazyWithRetry(() => import("./pages/premium/Biblioteca"));
+const PalettePreview = lazyWithRetry(() => import("./pages/PalettePreview"));
 
 // Artículos en lazy: cada uno es un chunk separado, sólo descarga al navegar
-const CodigoColoresResistencias = lazy(() => import("./pages/articles/CodigoColoresResistencias"));
-const Condensadores = lazy(() => import("./pages/articles/Condensadores"));
-const Diodos = lazy(() => import("./pages/articles/Diodos"));
-const LeyDeOhm = lazy(() => import("./pages/articles/LeyDeOhm"));
-const Multimetro = lazy(() => import("./pages/articles/Multimetro"));
-const CircuitosSerieParalelo = lazy(() => import("./pages/articles/CircuitosSerieParalelo"));
-const Transistores = lazy(() => import("./pages/articles/Transistores"));
-const Arduino = lazy(() => import("./pages/articles/Arduino"));
-const Osciloscopio = lazy(() => import("./pages/articles/Osciloscopio"));
-const FuentesAlimentacion = lazy(() => import("./pages/articles/FuentesAlimentacion"));
-const Soldadura = lazy(() => import("./pages/articles/Soldadura"));
-const ProtocoloI2C = lazy(() => import("./pages/articles/ProtocoloI2C"));
-const SensoresArduino = lazy(() => import("./pages/articles/SensoresArduino"));
-const PantallaOled = lazy(() => import("./pages/articles/PantallaOled"));
-const BlogPrimerLaboratorio = lazy(() => import("./pages/articles/BlogPrimerLaboratorio"));
-const BlogProyectosArduino = lazy(() => import("./pages/articles/BlogProyectosArduino"));
-const BlogDisenoPCB = lazy(() => import("./pages/articles/BlogDisenoPCB"));
-const QueArduinoComprar = lazy(() => import("./pages/articles/QueArduinoComprar"));
-const PwmArduino = lazy(() => import("./pages/articles/PwmArduino"));
-const ReguladoresVoltaje = lazy(() => import("./pages/articles/ReguladoresVoltaje"));
-const LeerDatasheet = lazy(() => import("./pages/articles/LeerDatasheet"));
+const CodigoColoresResistencias = lazyWithRetry(() => import("./pages/articles/CodigoColoresResistencias"));
+const Condensadores = lazyWithRetry(() => import("./pages/articles/Condensadores"));
+const Diodos = lazyWithRetry(() => import("./pages/articles/Diodos"));
+const LeyDeOhm = lazyWithRetry(() => import("./pages/articles/LeyDeOhm"));
+const Multimetro = lazyWithRetry(() => import("./pages/articles/Multimetro"));
+const CircuitosSerieParalelo = lazyWithRetry(() => import("./pages/articles/CircuitosSerieParalelo"));
+const Transistores = lazyWithRetry(() => import("./pages/articles/Transistores"));
+const Arduino = lazyWithRetry(() => import("./pages/articles/Arduino"));
+const Osciloscopio = lazyWithRetry(() => import("./pages/articles/Osciloscopio"));
+const FuentesAlimentacion = lazyWithRetry(() => import("./pages/articles/FuentesAlimentacion"));
+const Soldadura = lazyWithRetry(() => import("./pages/articles/Soldadura"));
+const ProtocoloI2C = lazyWithRetry(() => import("./pages/articles/ProtocoloI2C"));
+const SensoresArduino = lazyWithRetry(() => import("./pages/articles/SensoresArduino"));
+const PantallaOled = lazyWithRetry(() => import("./pages/articles/PantallaOled"));
+const BlogPrimerLaboratorio = lazyWithRetry(() => import("./pages/articles/BlogPrimerLaboratorio"));
+const BlogProyectosArduino = lazyWithRetry(() => import("./pages/articles/BlogProyectosArduino"));
+const BlogDisenoPCB = lazyWithRetry(() => import("./pages/articles/BlogDisenoPCB"));
+const QueArduinoComprar = lazyWithRetry(() => import("./pages/articles/QueArduinoComprar"));
+const PwmArduino = lazyWithRetry(() => import("./pages/articles/PwmArduino"));
+const ReguladoresVoltaje = lazyWithRetry(() => import("./pages/articles/ReguladoresVoltaje"));
+const LeerDatasheet = lazyWithRetry(() => import("./pages/articles/LeerDatasheet"));
 
 // Calculadoras con URL propia (SEO + metadatos por página + prerender SSG)
-const OhmCalculatorPage = lazy(() => import("./pages/calculators/OhmCalculatorPage"));
-const LedCalculatorPage = lazy(() => import("./pages/calculators/LedCalculatorPage"));
-const ResistorCalculatorPage = lazy(() => import("./pages/calculators/ResistorCalculatorPage"));
-const VoltageDividerPage = lazy(() => import("./pages/calculators/VoltageDividerPage"));
-const RCFilterPage = lazy(() => import("./pages/calculators/RCFilterPage"));
-const Timer555Page = lazy(() => import("./pages/calculators/Timer555Page"));
-const SmdDecoderPage = lazy(() => import("./pages/calculators/SmdDecoderPage"));
-const CapacitiveReactancePage = lazy(() => import("./pages/calculators/CapacitiveReactancePage"));
-const UnitConverterPage = lazy(() => import("./pages/calculators/UnitConverterPage"));
+const OhmCalculatorPage = lazyWithRetry(() => import("./pages/calculators/OhmCalculatorPage"));
+const LedCalculatorPage = lazyWithRetry(() => import("./pages/calculators/LedCalculatorPage"));
+const ResistorCalculatorPage = lazyWithRetry(() => import("./pages/calculators/ResistorCalculatorPage"));
+const VoltageDividerPage = lazyWithRetry(() => import("./pages/calculators/VoltageDividerPage"));
+const RCFilterPage = lazyWithRetry(() => import("./pages/calculators/RCFilterPage"));
+const Timer555Page = lazyWithRetry(() => import("./pages/calculators/Timer555Page"));
+const SmdDecoderPage = lazyWithRetry(() => import("./pages/calculators/SmdDecoderPage"));
+const CapacitiveReactancePage = lazyWithRetry(() => import("./pages/calculators/CapacitiveReactancePage"));
+const UnitConverterPage = lazyWithRetry(() => import("./pages/calculators/UnitConverterPage"));
 
 const RouteFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
