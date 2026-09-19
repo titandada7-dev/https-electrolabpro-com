@@ -20,7 +20,7 @@ const VoltageDividerCalculator = lazyWithRetry(() => import("@/components/Voltag
 const RCFilterCalculator = lazyWithRetry(() => import("@/components/RCFilterCalculator"));
 const Timer555Calculator = lazyWithRetry(() => import("@/components/Timer555Calculator"));
 const SmdDecoderCalculator = lazyWithRetry(() => import("@/components/SmdDecoderCalculator"));
-const CapacitiveReactanceCalculator = lazy(
+const CapacitiveReactanceCalculator = lazyWithRetry(
   () => import("@/components/CapacitiveReactanceCalculator")
 );
 const UnitConverter = lazyWithRetry(() => import("@/components/UnitConverter"));
