@@ -12,17 +12,17 @@ import {
 import CalculatorEduLink from "@/components/CalculatorEduLink";
 
 // Cargas diferidas: cada calculadora es un chunk separado.
-const ResistorCalculator = lazy(() => import("@/components/ResistorCalculator"));
-const OhmCalculator = lazy(() => import("@/components/OhmCalculator"));
-const LedCalculator = lazy(() => import("@/components/LedCalculator"));
-const VoltageDividerCalculator = lazy(() => import("@/components/VoltageDividerCalculator"));
-const RCFilterCalculator = lazy(() => import("@/components/RCFilterCalculator"));
-const Timer555Calculator = lazy(() => import("@/components/Timer555Calculator"));
-const SmdDecoderCalculator = lazy(() => import("@/components/SmdDecoderCalculator"));
+const ResistorCalculator = lazyWithRetry(() => import("@/components/ResistorCalculator"));
+const OhmCalculator = lazyWithRetry(() => import("@/components/OhmCalculator"));
+const LedCalculator = lazyWithRetry(() => import("@/components/LedCalculator"));
+const VoltageDividerCalculator = lazyWithRetry(() => import("@/components/VoltageDividerCalculator"));
+const RCFilterCalculator = lazyWithRetry(() => import("@/components/RCFilterCalculator"));
+const Timer555Calculator = lazyWithRetry(() => import("@/components/Timer555Calculator"));
+const SmdDecoderCalculator = lazyWithRetry(() => import("@/components/SmdDecoderCalculator"));
 const CapacitiveReactanceCalculator = lazy(
   () => import("@/components/CapacitiveReactanceCalculator")
 );
-const UnitConverter = lazy(() => import("@/components/UnitConverter"));
+const UnitConverter = lazyWithRetry(() => import("@/components/UnitConverter"));
 
 const CALC_COMPONENTS: Record<CalculatorSeoMeta["toolKey"], React.ComponentType> = {
   resistor: ResistorCalculator,

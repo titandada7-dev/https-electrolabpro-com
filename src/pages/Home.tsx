@@ -21,11 +21,11 @@ import AdSenseSlot from "@/components/AdSenseSlot";
 import { AD_SLOT_HEADER } from "@/config/adsense";
 
 // Componentes pesados below-the-fold: lazy para reducir el JS inicial y mejorar LCP.
-const ComponentDictionary = lazy(() => import("@/components/ComponentDictionary"));
-const MiniProjects = lazy(() => import("@/components/MiniProjects"));
-const CalculatorHub = lazy(() => import("@/components/CalculatorHub"));
-const InteractiveMultimeter = lazy(() => import("@/components/InteractiveMultimeter"));
-const GlobalSearch = lazy(() => import("@/components/GlobalSearch"));
+const ComponentDictionary = lazyWithRetry(() => import("@/components/ComponentDictionary"));
+const MiniProjects = lazyWithRetry(() => import("@/components/MiniProjects"));
+const CalculatorHub = lazyWithRetry(() => import("@/components/CalculatorHub"));
+const InteractiveMultimeter = lazyWithRetry(() => import("@/components/InteractiveMultimeter"));
+const GlobalSearch = lazyWithRetry(() => import("@/components/GlobalSearch"));
 
 const SectionFallback = () => (
   <div className="flex justify-center py-10" aria-hidden="true">
