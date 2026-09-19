@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { Suspense, useEffect } from "react";
+import { lazyWithRetry } from "./lib/lazyWithRetry";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
 import NavButtons from "./components/NavButtons";

@@ -1,4 +1,5 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
+import { lazyWithRetry } from "@/lib/lazyWithRetry";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { Zap, ArrowLeft, Calculator } from "lucide-react";

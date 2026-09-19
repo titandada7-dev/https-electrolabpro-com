@@ -1,4 +1,5 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { lazyWithRetry } from "@/lib/lazyWithRetry";
 import electrolabLogo from "@/assets/electrolab-logo.webp";
 import {
   Zap, ChevronDown, BookOpen, Cpu, Calculator, Users, Target,
