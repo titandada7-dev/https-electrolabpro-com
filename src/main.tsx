@@ -2,6 +2,24 @@ import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
+import { clearChunkReloadFlag } from "./lib/lazyWithRetry";
+
+// La app arrancó bien: habilitamos otra recarga automática si en el futuro
+// aparece un despliegue nuevo con archivos renombrados.
+clearChunkReloadFlag();
+
+// Vite avisa cuando un chunk precargado ya no existe (build nuevo publicado).
+// Recargamos una sola vez para tomar el index.html actualizado.
+window.addEventListener("vite:preloadError", (event) => {
+  event.preventDefault();
+  if (sessionStorage.getItem("elp:preload-reload") === "1") return;
+  try {
+    sessionStorage.setItem("elp:preload-reload", "1");
+  } catch {
+    /* ignorar */
+  }
+  window.location.reload();
+});
 
 // Redirección canónica: www.electrolabpro.com → electrolabpro.com
 // Evita contenido duplicado para SEO. Preserva ruta, query y hash.
