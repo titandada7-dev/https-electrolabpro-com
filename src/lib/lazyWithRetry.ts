@@ -76,6 +76,8 @@ export function lazyWithRetry<T extends ComponentType<never>>(
 export function clearChunkReloadFlag() {
   try {
     sessionStorage.removeItem(RELOAD_FLAG);
+    sessionStorage.removeItem("elp:preload-reload");
+    sessionStorage.removeItem("elp:boundary-reload");
   } catch {
     /* ignorar */
   }
